@@ -1,4 +1,6 @@
-import {Component, Input} from '@angular/core';
+import {Component, Injectable, Input, OnInit} from '@angular/core';
+import {LoginService} from './login/login.service';
+import {debug} from 'util';
 
 @Component({
   selector: 'app-root',
@@ -6,7 +8,17 @@ import {Component, Input} from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 
-export class AppComponent {
+@Injectable()
+export class AppComponent implements OnInit{
+
+  constructor(private loginService:LoginService){  }
+
+  ngOnInit(){
+    this.loginService.authenticationChanged.subscribe(res=>{
+      this.isAuthenticated = res;
+    });
+  }
+
   title = 'WhiteSmsML';
-  @Input() isAuthenticated:boolean=false;
+  isAuthenticated:boolean=false;
 }

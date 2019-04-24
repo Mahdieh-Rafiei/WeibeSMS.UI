@@ -1,19 +1,28 @@
-import { Injectable } from '@angular/core';
+import {EventEmitter, Injectable, Output} from '@angular/core';
 import {Observable} from 'rxjs';
-import {HttpClient} from '@angular/common/http';
+import {ApiService} from '../shared/api.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class LoginService {
 
-  constructor(private httpClient:HttpClient) { }
+  @Output() authenticationChanged: EventEmitter<boolean> = new EventEmitter<boolean>();
+  constructor(private apiService:ApiService) { }
 
-  loginViaUsernamePassword(username:string,password:string):Observable<any>{
-    return this.httpClient.post('https://localhost:43369/api/login',{});
+  loginViaUsernamePassword(username:string,password:string){
+    this.apiService.post(`user/login`,{
+      'username': '9125867859',
+      'password':'dc19db'
+    }).subscribe(res => {
+      console.log(res.Token);
+      localStorage.setItem('token',res.Token);
+      this.authenticationChanged.emit(true);
+    });
   }
 
   signOut(){
     localStorage.removeItem('token');
+    this.authenticationChanged.emit(false);
   }
 }
