@@ -1,45 +1,80 @@
-.nav-box{
-    position: relative;
-}
-.logo-box{
-    position: absolute;
-    background: #565555;
-    padding: 10px;
-    left: 0;
-}
-.nav-details{
-    position: absolute;
-    width: 100%;
-    left: 120px;
-}
-.logo-box img{
-    width: 100px;
-}
-.nav-top-section{
+.navbar{
+    margin-left: 200px;
     background: #de474f;
+    border-radius: 0 !important;
 }
-.nav-bottom-section{
-    background: #ffffff;
-}
-.nav-top-section ul{
-    margin: 0 !important;
-    padding: 0 !important;
+ul.left-box-nav{
+    margin-left: 15px;
+    margin-bottom: 0;
     list-style: none;
-    display: inline-block;
+    padding: 0;
+    border-right: 1px solid #fd8098;
+    width: 360px;
 }
-.nav-top-section ul li{
-    display: inline-block;
+a.toggle-menu{
+    padding: 0 14px;
+    line-height: 60px;
+    min-height: 60px;
+    font-size: 25px;
+    color: #ffffff;
+    cursor: pointer;
 }
-.programer{
-    background: #00bcd4;
+.credit h5{
+    color: #fff;
+    font-size: 12px;
+    font-weight: 400;
+}
+.buy-credit{
+    border: 2px solid #ffffff;
+    font-size: 12px;
+    font-weight: 400;
     padding: 6px 10px;
     border-radius: 5px;
     margin-left: 10px;
     cursor: pointer;
     color: #fff;
     transition: .2s;
+    margin-top: 13px;
 }
-.expire{
-    color: #fff;
-    margin-left: 15px;
+ul.left-box-nav:nth-child(3){
+    border-right: none;
+}
+.left-box-nav li, .right-box-nav li{
+    float: left !important;
+    position: relative;
+    display: block;
+}
+
+
+/*------nav-right-section------*/
+/*profile*/
+.profile {
+    padding: 0 14px;
+    line-height: 60px;
+    min-height: 60px;
+}
+.dropdown-profile li{
+    width: 100%;
+}
+.profile a{
+    text-decoration: none;
+    cursor: pointer;
+    font-size: 12px;
+}
+.profile a img{
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+}
+.profile a b{
+    font-size: 12px;
+    margin-left: 10px;
+    color: #ffe9ea;
+    font-weight: 400;
+}
+
+
+
+.btn-group.open .dropdown-toggle {
+    box-shadow: none;
 }
