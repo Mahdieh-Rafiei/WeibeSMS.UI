@@ -1,50 +1,56 @@
-<div>
-  <div name="slideRight">
-    <div class="navbar-default sidebar movable">
-      <div class="sidebar-nav navbar-collapse">
-        <div class="user-profile hidden-lg hidden-md hidden-sm">
-          <div class="user-pro-body">
-            <a><img src="avatar" alt="آواتار کاربر" class="img-circle pointer menuItem"></a>
-            <a class="white-link menuItem" style="border: none"><span class="hide-menu">akbar </span></a>
-            <br>
-            <a class="white-link menuItem" style="border: none"><span class="hide-menu">9124021677</span></a>
-            <br>
-          </div>
-        </div>
-        <ul class="nav">
-          <li class="waves-effect menuItem hidden-xs">
-            <a><i class="fa fa-home fa-1x"></i><span class="hide-menu"> صفحه اصلی </span></a>
-          </li>
-          <li class="waves-effect menuItem hidden-xs">
-            <a><i
-              class="fa fa-address-book fa-1x"></i><span class="hide-menu"> مخاطبین </span>
-            </a>
-          </li>
-          <li class="waves-effect menuItem hidden-xs">
-            <a><i class="fa fa-envelope fa-1x"></i><span class="hide-menu"> ارسال پیامک </span></a>
-          </li>
-          <li class="waves-effect menuItem">
-            <a><i class="fa fa-pencil fa-1x"></i><span class="hide-menu"> پیش نویس </span></a>
-          </li>
-          <li class="waves-effect menuItem">
-            <a><i class="IPe IPe-support fa-1x"></i><span class="hide-menu" style="padding-top: 9px;"> راهنما و پشتیبانی </span></a>
-          </li>
-          <li class="waves-effect menuItem">
-            <a><i class="fa fa-credit-card fa-1x"></i><span class="hide-menu">خرید شارژ</span></a>
-          </li>
-        </ul>
-        <ul class="nav" id="side-menu">
-          <li class="waves-effect menuItem">
-            <a active-class="active"><i class="fa fa-credit-card fa-1x"></i><span class="hide-menu"> تمدید </span></a>
-          </li>
-          <li class="waves-effect menuItem">
-            <a class="notActive"><i class="fa fa-power-off fa-1x"></i> <span class="hide-menu"> خروج </span></a>
-          </li>
-        </ul>
+<nav class="sidebar">
+  <!--menu-->
+  <div class="list-group">
+    <div class="sidebar-section">
+      <div class="logo-box">
+        <img src="../../assets/images/logo-ww.png" class="img-responsive center-block">
       </div>
+      <a class="list-group-item">
+        <i class="fa fa-question-circle"></i>&nbsp;
+          <span>Contacts</span>
+      </a>
+    </div>
+    <div class="sidebar-section">
+      <a class="list-group-item">
+        <i class="fa fa-question-circle"></i>&nbsp;
+        <span>Send</span>
+      </a>
+    </div>
+    <div class="nested-menu">
+      <a class="list-group-item">
+        <i class="fa fa-plus"></i>&nbsp;
+        <span>Menu</span>
+      </a>
+      <li class="nested" >
+        <ul id="dropdown-nested" *dropdownMenu class="dropdown-menu"
+            role="menu" aria-labelledby="button-nested">
+          <li role="menuitem"><a class="dropdown-item" href="#/dropdowns#nested-dropdowns">Action</a></li>
+
+          <li role="menuitem" dropdown triggers="mouseover" placement="right" container="body">
+            <a dropdownToggle class="dropdown-item dropdown-toggle"
+               (click)="false">Hover me for nested dropdown <span class="caret"></span></a>
+            <ul *dropdownMenu class="dropdown-menu" role="menu">
+              <li role="menuitem"><a class="dropdown-item" href="#/dropdowns#nested-dropdowns">Action</a></li>
+              <li role="menuitem"><a class="dropdown-item" href="#/dropdowns#nested-dropdowns">Action1</a></li>
+              <li role="menuitem"><a class="dropdown-item" href="#/dropdowns#nested-dropdowns">Action2</a></li>
+            </ul>
+          </li>
+
+          <li role="menuitem" dropdown triggers="mouseover" placement="right" container="body">
+            <a dropdownToggle class="dropdown-item dropdown-toggle"
+               (click)="false">Hover me for nested dropdown <span class="caret"></span></a>
+            <ul *dropdownMenu class="dropdown-menu" role="menu">
+              <li role="menuitem"><a class="dropdown-item" href="#/dropdowns#nested-dropdowns">Action</a></li>
+              <li role="menuitem"><a class="dropdown-item" href="#/dropdowns#nested-dropdowns">Action1</a></li>
+              <li role="menuitem"><a class="dropdown-item" href="#/dropdowns#nested-dropdowns">Action2</a></li>
+            </ul>
+          </li>
+
+          <li role="menuitem"><a class="dropdown-item" href="#/dropdowns#nested-dropdowns">Something else here</a></li>
+          <li class="divider dropdown-divider"></li>
+          <li role="menuitem"><a class="dropdown-item" href="#/dropdowns#nested-dropdowns">Separated link</a></li>
+        </ul>
+      </li>
     </div>
   </div>
-  <div>
-    <div class="black-screen movable"></div>
-  </div>
-</div>
+</nav>
