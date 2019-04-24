@@ -1,8 +1,10 @@
-<!--<app-login *ngIf="!isAuthenticated"></app-login>-->
-<!--<div *ngIf="isAuthenticated">-->
+
+<app-login *ngIf="!isAuthenticated"></app-login>
+<div *ngIf="isAuthenticated">
   <app-top-nav></app-top-nav>
   <app-sidebar></app-sidebar>
+  <router-outlet></router-outlet>
   <section class="main-container">
     <app-dashboard></app-dashboard>
   </section>
-<!--</div>-->
+</div>
