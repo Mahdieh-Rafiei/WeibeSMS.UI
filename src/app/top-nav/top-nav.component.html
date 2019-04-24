@@ -1,9 +1,9 @@
-<nav class="navbar navbar-expand-lg fixed-top">
+<nav [ngClass]="[isSidebarShown,'full-navbar']" class="navbar navbar-expand-lg fixed-top">
   <div class="container-fluid no-pad">
         <div class="col-md-12 navbar-content no-pad">
             <ul class="left-box-nav pull-left">
                 <li>
-                    <a class="toggle-menu"><i class="fa fa-bars"></i></a>
+                    <a (click)="changeSidebarState()" class="toggle-menu"><i class="fa fa-bars"></i></a>
                 </li>
             </ul>
             <ul class="left-box-nav pull-left">
