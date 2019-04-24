@@ -2,7 +2,9 @@
 <app-login *ngIf="!isAuthenticated"></app-login>
 <div *ngIf="isAuthenticated">
   <app-top-nav></app-top-nav>
-  <app-sidebar></app-sidebar>
+  <div *ngIf="isSidebarShown">
+    <app-sidebar></app-sidebar>
+  </div>
   <router-outlet></router-outlet>
   <section class="main-container">
     <app-dashboard></app-dashboard>

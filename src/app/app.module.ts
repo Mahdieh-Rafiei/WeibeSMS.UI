@@ -33,7 +33,8 @@ import {LoginService} from './login/login.service';
   providers: [
     ApiService,
     ConfigService,
-    LoginService
+    LoginService,
+    TopNavComponent
   ],
   bootstrap: [AppComponent]
 })
