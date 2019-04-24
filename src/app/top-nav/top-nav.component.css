@@ -1,6 +1,16 @@
+.nav-box{
+    position: relative;
+}
 .logo-box{
+    position: absolute;
     background: #565555;
     padding: 10px;
+    left: 0;
+}
+.nav-details{
+    position: absolute;
+    width: 100%;
+    left: 120px;
 }
 .logo-box img{
     width: 100px;

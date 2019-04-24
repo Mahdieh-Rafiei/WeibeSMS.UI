@@ -81,27 +81,45 @@
 
 <nav class="navbar navbar-expand-lg fixed-top">
   <div class="container-fluid no-pad">
-    <div class="col-md-1 logo-box">
-      <img src="../../assets/images/logo-ww.png" alt="پیامک سفید" class="img-responsive center-block">
-    </div>
-    <div class="col-md-11 no-pad">
-      <div class="no-pad nav-top-section">
-        <ul>
-          <li class="expire">Expire Date : 98/1/45</li>
-          <li class="programer"> programmer </li>
-        </ul>
-        <ul class="pull-right">
-          <li>User Name</li>
-          <li> notification </li>
-          <li>shop</li>
-        </ul>
+    <div class="col-md-12 no-pad">
+      <div class="nav-box">
+        <div class="logo-box">
+        <img src="../../assets/images/logo-ww.png" alt="پیامک سفید" class="img-responsive center-block">
       </div>
-      <div class="no-pad nav-bottom-section">
-        <div class="container">
-          <div class="col-md-6">White SMS</div>
-          <div class="col-md-6">Home</div>
+        <div class="nav-details no-pad">
+        <div class="no-pad nav-top-section">
+          <ul>
+            <li class="expire">Expire Date : 98/1/45</li>
+            <li class="programer"> programmer </li>
+          </ul>
+          <ul class="nav-account">
+            <li >
+              <a>
+                <img src="../../assets/images/user.jpg" alt="پروفایل" width="36">
+                <b class="hidden-xs">User Name</b>
+              </a>
+              <ul id="dropdown-basic" *dropdownMenu class="dropdown-menu" role="menu" aria-labelledby="button-basic">
+                <li role="menuitem"><a class="dropdown-item" href="#">Action</a></li>
+                <li role="menuitem"><a class="dropdown-item" href="#">Another action</a></li>
+                <li role="menuitem"><a class="dropdown-item" href="#">Something else here</a></li>
+                <li class="divider dropdown-divider"></li>
+                <li role="menuitem"><a class="dropdown-item" href="#">Separated link</a>
+                </li>
+              </ul>
+            </li>
+            <li> notification </li>
+            <li>shop</li>
+          </ul>
+        </div>
+        <div class="no-pad nav-bottom-section">
+          <div class="container">
+            <div class="col-md-6">White SMS</div>
+            <div class="col-md-6">Home</div>
+          </div>
         </div>
       </div>
+      </div>
     </div>
+
   </div>
 </nav>
