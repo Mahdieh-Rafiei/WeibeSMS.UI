@@ -1,0 +1,35 @@
+.logo-box{
+    background: #565555;
+    padding: 10px;
+}
+.logo-box img{
+    width: 100px;
+}
+.nav-top-section{
+    background: #de474f;
+}
+.nav-bottom-section{
+    background: #ffffff;
+}
+.nav-top-section ul{
+    margin: 0 !important;
+    padding: 0 !important;
+    list-style: none;
+    display: inline-block;
+}
+.nav-top-section ul li{
+    display: inline-block;
+}
+.programer{
+    background: #00bcd4;
+    padding: 6px 10px;
+    border-radius: 5px;
+    margin-left: 10px;
+    cursor: pointer;
+    color: #fff;
+    transition: .2s;
+}
+.expire{
+    color: #fff;
+    margin-left: 15px;
+}
