@@ -25,8 +25,15 @@ export class ApiService {
       catchError(this.handleError));
   }
 
-  post(url: string, payload: any): Observable<any> {
-    return this.httpClient.post( this.configService.baseUrl + url, payload, this.httpOptions ).pipe(
+  post(url: string, payload: any,needAuth:boolean): Observable<any> {
+
+    let options = {
+      'headers': this.httpOptions.headers.append('token',localStorage.getItem('token')),
+      'observe':this.httpOptions.observe
+    };
+
+    debugger;
+    return this.httpClient.post( this.configService.baseUrl + url, payload, needAuth ?  options : this.httpOptions).pipe(
       map((res: any) => res.body),
       catchError( this.handleError));
   }

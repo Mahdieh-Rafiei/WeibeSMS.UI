@@ -1,39 +1,65 @@
-<div class="container-fluid">
-  <div class="container text-center">
-    <div class="ws-login-box">
-      <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 right-box">
-        <div>
-          <h3>White SMS</h3>
-          <span>Thousand customer belong you</span>
-        </div>
-        <div>
-          <div class="col-md-10 col-md-offset-1 col-xs-12">
-            <div class="input-box">
-              <input [(ngModel)]="username" type="text" class="ws-login-input vinput" autofocus autocomplete="off" placeholder="phone number">
-            </div>
+<div class="register-page">
+  <div class="col-md-6 col-md-offset-3" style="margin-top: 40px;margin-bottom: 40px">
+    <div class="white-box">
+      <div class="user-bg"><img width="100%" alt="user" src="avatar">
+        <div class="overlay-box">
+          <div class="user-content">
+            <a><img src="avatar" class="thumb-lg img-circle" alt="img"></a>
+            <h4 class="text-white">mohsen chavoshi</h4>
+            <h5 class="text-white">9125698741</h5>
           </div>
-        </div>
-        <div>
-          <div class="col-md-10 col-md-offset-1 col-xs-12">
-            <button class="ws-btn login-btn">Register</button>
+          <div class="exit-btn" >
+            <i class="fa fa-power-off"></i>
           </div>
-        </div>
-        <div class="app-icons col-xs-12 hidden-sm hidden-lg hidden-md">
-          <ul>
-            <li><a  href="https://www.sms.ir/apps/PayamakSefid-v1.apk" target="_blank"><i class="fa fa-android"></i></a></li>
-            <li><a target="_blank"><i class="fa fa-apple"></i></a></li>
-            <li><a href="https://www.sms.ir/wp-content/uploads/2018/04/PayamakSefid.zip" target="_blank"><i class="fa fa-windows"></i></a></li>
-          </ul>
-        </div>
-      </div>
-      <div class="col-lg-6 col-md-6 col-sm-6 hidden-xs login-box-left">
-        <a href="https://www.sms.ir/خدمات/پیامک-سفید/" target="_blank" class="login-box-left-img">
-          <img src="./../../../../assets/images/dolphin-logo.png" alt="پیامک سفید" class="img-responsive center-block">
-        </a>
-        <div>
-          <p>Login</p>
         </div>
       </div>
     </div>
+    <div class="profile-bg col-md-12">
+      <div class="form-group col-md-6">
+        <input [(ngModel)]="firstName" type="text" class="form-control" placeholder="نام (الزامی*) ">
+      </div>
+
+      <div class="form-group col-md-6">
+        <input [(ngModel)]="lastName" type="text" class="form-control" placeholder="نام خانوادگی (الزامی*)">
+      </div>
+
+      <div class="form-group col-md-6">
+        <input [(ngModel)]="email" type="text" class="form-control" placeholder="ایمیل">
+      </div>
+
+      <div class="form-group col-md-6">
+        <input [(ngModel)]="userName" type="text" class="form-control" placeholder="نام کاربری (الزامی*)">
+      </div>
+
+      <div class="form-group col-md-6">
+        <input [(ngModel)]="password" maxlength="12" type="text" class="form-control" placeholder="رمز عبور (الزامی*)">
+      </div>
+
+      <div class="form-group col-md-12 rules-confirmation">
+        <br>
+        <span style="font-size: 15px;color: #4CAF50;font-weight: bold;">متن ارسالی به مخاطب پس از عضویت:</span>
+        <div class="sample-send-mesage">
+          <div>سلام شما در سامانه اطلاع رسانی <span style="color: #4CAF50;font-weight: bold">BussinessName</span> عضو شدید، دریافت پیامک از 300021 رایگان است.
+            <br>
+            <!--لغو عضویت: <span کد لغو عضویت، پس از تکمیل ثبت نام برایتان ایجاد می گردد. style="color: red;font-weight: bold">xxxxx</span>-->
+          </div>
+        </div>
+        <!--<collapse-transition :duration="400">-->
+          <!--<p v-if="BName && BName.length > 29" style="background: #FFC107;color: white;padding: 1px 6px;margin-bottom: 0;" class="bname-alert">تعداد صفحات پیامک عضویت شما <span style="font-weight: bold">۳ صفحه</span> شده است. بهتر است جهت صرفه جویی در هزینه ها نام تجاری کوتاه تری وارد نمایید.</p>-->
+        <!--</collapse-transition>-->
+        <br>
+        <p><span style="color:red;font-weight: bold">نکته:</span> <span style="color: #E91E63;font-weight: 400;">امکان تغییر اطلاعات کاربری و نام تجاری پس از تکمیل ثبت نام <strong>وجود ندارد.</strong></span></p>
+        <hr>
+        <div style="cursor:pointer" >
+          <span>
+            <i class="fa"></i>
+          </span> تعهد میدهم که
+          <!--<a @click.stop="" href="https://www.sms.ir/قوانین-پیامک-سفید/" target="_blank">قوانین ارسال پیامک سفید</a> را مطالعه کرده و با تمام بندهای آن موافقم</div>-->
+      </div>
+    </div>
+    <button (click)="register()" class="btn btn-success full-width">
+      <!--<i class="fa fa-spinner fa-spin"></i>-->
+      تکمیل ثبت نام
+    </button>
   </div>
 </div>
