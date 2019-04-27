@@ -17,11 +17,11 @@ import {LoginService} from './login/login.service';
 import {RegisterService} from './register/register.service';
 import {CanActivateRouteGuard} from './shared/CanActivateRouteGuard';
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
-import { ContactComponent } from './contact/contact.component';
-import { AddContactComponent } from './contact/add-contact/add-contact.component';
-import { AddContactCollectionComponent } from './contact/add-contact-collection/add-contact-collection.component';
-import { GroupComponent } from './contact/group/group.component';
-import { GroupViewComponent } from './contact/group-view/group-view.component';
+import { GroupComponent } from './group/group.component';
+import { GroupListComponent } from './group/group-list/group-list.component';
+import { ContactComponent } from './group/contact/contact.component';
+import { AddContactComponent } from './group/add-contact/add-contact.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -31,11 +31,11 @@ import { GroupViewComponent } from './contact/group-view/group-view.component';
     TopNavComponent,
     DashboardComponent,
     ForgotPasswordComponent,
+    GroupComponent,
+    GroupListComponent,
     ContactComponent,
     AddContactComponent,
-    AddContactCollectionComponent,
-    GroupComponent,
-    GroupViewComponent
+
   ],
   imports: [
     BrowserModule,
