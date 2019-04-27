@@ -1,3 +1,4 @@
+
 <h1>
   group-list works!
 </h1>
@@ -8,3 +9,79 @@
 <pre>
   {{groups | json}}
 </pre>
+
+<div class="main-container">
+  <div class="col-md-12 btn-section text-right">
+    <button> <i class="fa fa-plus"></i> New Group </button>
+  </div>
+  <div class="col-md-12 filter-section">
+    <div class="col-md-6 no-pad select text-left">
+      <input type="checkbox"> SELECT ALL
+    </div>
+    <div class="col-md-6 operation no-pad text-right">
+      <div class="search">
+        <input type="text" class="form-control" placeholder="Search Group">
+        <button class="btn btn-secondary search-icon" type="button">
+          <i class="fa fa-search"></i>
+        </button>
+      </div>
+      <button class="default-btn op-btn">
+        <i class="fa fa-filter"></i> Filter
+      </button>
+      <button class="default-btn op-btn">
+        <i class="fa fa-sort"></i> Sort
+      </button>
+    </div>
+  </div>
+  <div class="col-md-12 table-section no-pad text-left">
+    <table class="index-table text-left">
+      <thead>
+      <tr [routerLink]="['../group']">
+        <th class="text-right"><i class="fa fa-sort"></i> Title</th>
+        <th class="text-center"><i class="fa fa-sort"></i> Resipient</th>
+        <th></th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr>
+        <td class="text-right">
+          <div class="table-head">
+            <input type="checkbox"> <span>test01</span>
+          </div>
+        </td>
+        <td class=" text-center">
+          <div>35</div>
+        </td>
+        <td class="td-single text-right actions-container">
+          <div class="actions">
+            <a><i class="fa fa-trash"></i></a>
+            <a><i class="fa fa-pencil"></i></a>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td class="text-right">
+          <div class="table-head">
+            <input type="checkbox"> <span>test02</span>
+          </div>
+        </td>
+        <td class=" text-center">
+          <div>35</div>
+        </td>
+        <td class="td-single text-right actions-container">
+          <div class="actions">
+            <a><i class="fa fa-trash"></i></a>
+            <a><i class="fa fa-pencil"></i></a>
+          </div>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+    <div class="table-pagination text-right">
+      <span><i class="fa fa-arrow-circle-left"></i></span>
+      <span><i class="fa fa-arrow-circle-right"></i></span>
+    </div>
+  </div>
+
+</div>
+
