@@ -1,5 +1,6 @@
 import {Component, EventEmitter, Injectable, OnInit, Output} from '@angular/core';
 import {ConfigService} from '../shared/config.service';
+import {LoginService} from '../login/login.service';
 
 @Component({
   selector: 'app-top-nav',
@@ -10,7 +11,8 @@ import {ConfigService} from '../shared/config.service';
 export class TopNavComponent implements OnInit {
 
   isSidebarShown:boolean=true;
-  constructor(private configService:ConfigService) { }
+  constructor(private configService:ConfigService,
+              private loginService:LoginService) { }
 
   ngOnInit() {
   }
@@ -18,5 +20,9 @@ export class TopNavComponent implements OnInit {
   changeSidebarState(){
     this.isSidebarShown = !this.isSidebarShown;
     this.configService.sidebarStateChanged.emit(this.isSidebarShown);
+  }
+
+  logOut(){
+    this.loginService.logOut();
   }
 }

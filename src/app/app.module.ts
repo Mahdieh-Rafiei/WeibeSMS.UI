@@ -14,6 +14,14 @@ import {APP_ROUTES} from '../app.routes';
 import {ApiService} from './shared/api.service';
 import {ConfigService} from './shared/config.service';
 import {LoginService} from './login/login.service';
+import {RegisterService} from './register/register.service';
+import {CanActivateRouteGuard} from './shared/CanActivateRouteGuard';
+import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
+import { ContactComponent } from './contact/contact.component';
+import { AddContactComponent } from './contact/add-contact/add-contact.component';
+import { AddContactCollectionComponent } from './contact/add-contact-collection/add-contact-collection.component';
+import { GroupComponent } from './contact/group/group.component';
+import { GroupViewComponent } from './contact/group-view/group-view.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -21,7 +29,13 @@ import {LoginService} from './login/login.service';
     RegisterComponent,
     SidebarComponent,
     TopNavComponent,
-    DashboardComponent
+    DashboardComponent,
+    ForgotPasswordComponent,
+    ContactComponent,
+    AddContactComponent,
+    AddContactCollectionComponent,
+    GroupComponent,
+    GroupViewComponent
   ],
   imports: [
     BrowserModule,
@@ -34,7 +48,8 @@ import {LoginService} from './login/login.service';
     ApiService,
     ConfigService,
     LoginService,
-    TopNavComponent
+    RegisterService,
+    CanActivateRouteGuard
   ],
   bootstrap: [AppComponent]
 })
