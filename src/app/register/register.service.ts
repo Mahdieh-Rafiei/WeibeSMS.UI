@@ -20,7 +20,7 @@ export class RegisterService {
       'Mobile':mobile.toString(),
       'VerificationCode':verificationCode.toString()
     };
-
+debugger;
     return this.apiService.post(`User/VerifyMobile`,payload,false)
   }
 
