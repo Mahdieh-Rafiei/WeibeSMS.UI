@@ -19,27 +19,46 @@ export class ApiService {
   constructor(private httpClient: HttpClient,
               private configService: ConfigService) { }
 
-  get(url: string): Observable<any> {
-    return this.httpClient.get( this.configService.baseUrl + url, this.httpOptions ).pipe(
-      map((res: any) => res.body),
-      catchError(this.handleError));
-  }
-
-  post(url: string, payload: any,needAuth:boolean): Observable<any> {
-
+  get(url: string,needAuth:boolean): Observable<any> {
     let options = {
       'headers': this.httpOptions.headers.append('token',localStorage.getItem('token')),
       'observe':this.httpOptions.observe
     };
 
-    debugger;
+    return this.httpClient.get( this.configService.baseUrl + url,needAuth ?  options : this.httpOptions).pipe(
+      map((res: any) => res.body),
+      catchError(this.handleError));
+  }
+
+  post(url: string, payload: any,needAuth:boolean): Observable<any> {
+    let options = {
+      'headers': this.httpOptions.headers.append('token',localStorage.getItem('token')),
+      'observe':this.httpOptions.observe
+    };
+
     return this.httpClient.post( this.configService.baseUrl + url, payload, needAuth ?  options : this.httpOptions).pipe(
       map((res: any) => res.body),
       catchError( this.handleError));
   }
 
-  delete(url: string): Observable<any> {
-    return this.httpClient.delete( this.configService.baseUrl + url, this.httpOptions ).pipe(
+  put(url: string, payload: any,needAuth:boolean): Observable<any> {
+    let options = {
+      'headers': this.httpOptions.headers.append('token',localStorage.getItem('token')),
+      'observe':this.httpOptions.observe
+    };
+
+    return this.httpClient.put( this.configService.baseUrl + url, payload, needAuth ?  options : this.httpOptions).pipe(
+      map((res: any) => res.body),
+      catchError( this.handleError));
+  }
+
+  delete(url: string,needAuth:boolean): Observable<any> {
+    let options = {
+      'headers': this.httpOptions.headers.append('token',localStorage.getItem('token')),
+      'observe':this.httpOptions.observe
+    };
+
+    return this.httpClient.delete( this.configService.baseUrl + url ,needAuth ?  options : this.httpOptions ).pipe(
       map((res: any) => res.body),
       catchError(this.handleError));
   }
@@ -59,5 +78,4 @@ export class ApiService {
     window.alert(errorMessage);
     return throwError(errorMessage);
   }
-
 }

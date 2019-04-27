@@ -1,3 +1,15 @@
+
+<h1>
+  group-list works!
+</h1>
+
+<input type="text" [(ngModel)]="newGroupName">
+<button (click)="addNewGroup()">Add New</button>
+
+<pre>
+  {{groups | json}}
+</pre>
+
 <div class="main-container">
   <div class="col-md-12 btn-section text-right">
     <button> <i class="fa fa-plus"></i> New Group </button>
