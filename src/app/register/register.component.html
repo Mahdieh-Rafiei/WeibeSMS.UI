@@ -1,11 +1,11 @@
 <div class="register-page">
-  <div class="col-md-6 col-md-offset-3" style="margin-top: 40px;margin-bottom: 40px">
+  <div class="col-md-6 col-md-offset-3 register-page-div">
     <div class="white-box">
-      <div class="user-bg"><img width="100%" alt="user" src="avatar">
+      <div class="user-bg"><img width="100%" alt="user" src="../../assets/images/user.jpg">
         <div class="overlay-box">
           <div class="user-content">
-            <a><img src="avatar" class="thumb-lg img-circle" alt="img"></a>
-            <h4 class="text-white">mohsen chavoshi</h4>
+            <a><img src="../../assets/images/user.jpg" class="thumb-lg img-circle" alt="img"></a>
+            <h4 class="text-white">Mohsen chavoshi</h4>
             <h5 class="text-white">9125698741</h5>
           </div>
           <div class="exit-btn" >
@@ -16,50 +16,50 @@
     </div>
     <div class="profile-bg col-md-12">
       <div class="form-group col-md-6">
-        <input [(ngModel)]="firstName" type="text" class="form-control" placeholder="نام (الزامی*) ">
+        <input [(ngModel)]="firstName" type="text" class="form-control" placeholder="First Name * ">
       </div>
 
       <div class="form-group col-md-6">
-        <input [(ngModel)]="lastName" type="text" class="form-control" placeholder="نام خانوادگی (الزامی*)">
+        <input [(ngModel)]="lastName" type="text" class="form-control" placeholder="Last Name *">
       </div>
 
       <div class="form-group col-md-6">
-        <input [(ngModel)]="email" type="text" class="form-control" placeholder="ایمیل">
+        <input [(ngModel)]="email" type="text" class="form-control" placeholder="Email">
       </div>
 
       <div class="form-group col-md-6">
-        <input [(ngModel)]="userName" type="text" class="form-control" placeholder="نام کاربری (الزامی*)">
+        <input [(ngModel)]="userName" type="text" class="form-control" placeholder="Username *">
       </div>
 
       <div class="form-group col-md-6">
-        <input [(ngModel)]="password" maxlength="12" type="text" class="form-control" placeholder="رمز عبور (الزامی*)">
+        <input [(ngModel)]="password" maxlength="12" type="text" class="form-control" placeholder="Password *">
+      </div>
+
+      <div class="form-group col-md-6">
+        <input  maxlength="12" type="text" class="form-control" placeholder="Confirm Password *">
       </div>
 
       <div class="form-group col-md-12 rules-confirmation">
         <br>
-        <span style="font-size: 15px;color: #4CAF50;font-weight: bold;">متن ارسالی به مخاطب پس از عضویت:</span>
+        <span>message send to user after register</span>
         <div class="sample-send-mesage">
-          <div>سلام شما در سامانه اطلاع رسانی <span style="color: #4CAF50;font-weight: bold">BussinessName</span> عضو شدید، دریافت پیامک از 300021 رایگان است.
+          <div>Hello u are new user <span>BussinessName</span> you can send 3000 sms
             <br>
-            <!--لغو عضویت: <span کد لغو عضویت، پس از تکمیل ثبت نام برایتان ایجاد می گردد. style="color: red;font-weight: bold">xxxxx</span>-->
           </div>
         </div>
-        <!--<collapse-transition :duration="400">-->
-          <!--<p v-if="BName && BName.length > 29" style="background: #FFC107;color: white;padding: 1px 6px;margin-bottom: 0;" class="bname-alert">تعداد صفحات پیامک عضویت شما <span style="font-weight: bold">۳ صفحه</span> شده است. بهتر است جهت صرفه جویی در هزینه ها نام تجاری کوتاه تری وارد نمایید.</p>-->
-        <!--</collapse-transition>-->
         <br>
-        <p><span style="color:red;font-weight: bold">نکته:</span> <span style="color: #E91E63;font-weight: 400;">امکان تغییر اطلاعات کاربری و نام تجاری پس از تکمیل ثبت نام <strong>وجود ندارد.</strong></span></p>
+        <p><span>Note: </span> <span style="color: #E91E63;font-weight: 400;"> there  <strong>was not</strong> change your information</span></p>
         <hr>
-        <div style="cursor:pointer" >
+        <div style="cursor: pointer;">
           <span>
-            <i class="fa"></i>
-          </span> تعهد میدهم که
-          <!--<a @click.stop="" href="https://www.sms.ir/قوانین-پیامک-سفید/" target="_blank">قوانین ارسال پیامک سفید</a> را مطالعه کرده و با تمام بندهای آن موافقم</div>-->
+            <i class="fa fa-square"></i>
+          </span>
+          I'm committed to reading the <a href="https://www.sms.ir/قوانین-پیامک-سفید/" target="_blank">white text rules</a> and agree with all its provisions
+        </div>
       </div>
-    </div>
-    <button (click)="register()" class="btn btn-success full-width">
-      <!--<i class="fa fa-spinner fa-spin"></i>-->
-      تکمیل ثبت نام
-    </button>
+      <button disabled="disabled" class="btn btn-success full-width"><i class="fa fa-spinner fa-spin" style="display: none;"></i>
+        Register
+      </button>
+  </div>
   </div>
 </div>

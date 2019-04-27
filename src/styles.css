@@ -93,3 +93,9 @@ article, aside, details, figcaption, figure, footer, header, hgroup, main, menu,
 .no-pad{
     padding: 0 !important;
 }
+.text-white {
+    color: #fff!important;
+}
+.img-circle {
+    border-radius: 50%;
+}
