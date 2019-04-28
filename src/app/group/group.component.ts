@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {GroupService} from './group.service';
 import {ActivatedRoute, Router} from '@angular/router';
-import {assertNumber} from '@angular/core/src/render3/assert';
 
 @Component({
   selector: 'app-group',
@@ -10,14 +9,18 @@ import {assertNumber} from '@angular/core/src/render3/assert';
 })
 export class GroupComponent implements OnInit {
 
-  groups:any;
+  group:any;
   id:string;
-
+  contacts:any[];
   constructor(private groupService:GroupService,
               private activatedRoute:ActivatedRoute) { }
 
   ngOnInit() {
     this.id = this.activatedRoute.snapshot.paramMap.get('id');
-      this.groups = this.groupService.getGroup(this.id);
+    this.groupService.getGroup(this.id).subscribe(res=>{
+      console.log(res.Data);
+      this.group = res.Data;
+      this.contacts = res.Data.Contacts.Items;
+    });
   }
 }

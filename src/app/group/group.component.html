@@ -1,14 +1,3 @@
-
-<!--<h1>-->
-  <!--group works!-->
-<!--</h1>-->
-
-<!--<pre>-->
-<!--{{groups | json}}-->
-<!--</pre>-->
-
-
-
 <div class="main-container">
     <div class="col-md-12 btn-section text-right">
         <div class="col-md-6 no-pad text-left">
@@ -48,44 +37,26 @@
             </tr>
             </thead>
             <tbody>
-                <tr>
+                <tr *ngFor="let contact of contacts">
                 <td class="text-right">
                     <div class="table-head">
-                        <input type="checkbox"> <span>tmehmet</span>
+                        <input type="checkbox"> <span>{{contact.FirstName}}</span>
                     </div>
                 </td>
                 <td class=" text-center">
-                    <div>ali</div>
+                    <div>{{contact.LastName}}</div>
                 </td>
                 <td class=" text-center">
-                    <div>09122589970</div>
+                    <div>{{contact.Mobile}}</div>
                 </td>
                 <td class="td-single text-right actions-container">
                     <div class="actions">
                         <a><i class="fa fa-trash"></i></a>
                         <a><i class="fa fa-pencil"></i></a>
+                        <a [routerLink]="['contact',contact.Id]"><i class="fa fa-eye"></i></a>
                     </div>
                 </td>
             </tr>
-                <tr>
-                    <td class="text-right">
-                        <div class="table-head">
-                            <input type="checkbox"> <span>tmehmet</span>
-                        </div>
-                    </td>
-                    <td class=" text-center">
-                        <div>ali</div>
-                    </td>
-                    <td class=" text-center">
-                        <div>09122589970</div>
-                    </td>
-                    <td class="td-single text-right actions-container">
-                        <div class="actions">
-                            <a><i class="fa fa-trash"></i></a>
-                            <a><i class="fa fa-pencil"></i></a>
-                        </div>
-                    </td>
-                </tr>
             </tbody>
         </table>
         <div class="table-pagination text-right">
@@ -93,5 +64,4 @@
             <span><i class="fa fa-arrow-circle-right"></i></span>
         </div>
     </div>
-
 </div>

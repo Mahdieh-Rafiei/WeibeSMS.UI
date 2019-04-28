@@ -17,14 +17,18 @@ export class GroupListComponent implements OnInit {
   groups:any[];
   currentGroup:any;
 
+  showState:string='default';
   newGroupName:string;
   modifyGroupName:string;
 
-  showAddGroupModal:boolean = false;
   constructor(private groupService:GroupService,
               private router:Router) { }
 
   ngOnInit() {
+    this.getData();
+  }
+
+  getData(){
     this.groupService.getAll(this.pageSize,this.pageNumber)
       .subscribe(res=>{
         console.log(res);
@@ -32,19 +36,29 @@ export class GroupListComponent implements OnInit {
         this.groups = this.data.Items;
       });
   }
-
-  addNewGroup(){
+  setAddMode(){
     debugger;
-    this.showAddGroupModal=true;
+    this.showState = 'add';
+  }
+
+  setEditMode(group){
+    debugger;
+    this.currentGroup = group;
+    this.showState = 'edit';
+  }
+
+  saveNewGroup(){
     this.groupService.addGroup(this.newGroupName).subscribe(res=>{
       console.log(res.Data);
-      this.showAddGroupModal = false;
-      let id = res.Data .Id;
+      this.showState = 'edit';
+      let id = res.Data.Id;
       this.router.navigateByUrl(`group/${id}/add-contact`);
     });
   }
 
-  removeGroup(){
+  removeGroup(group){
+    this.currentGroup = group;
+
     if (this.currentGroup == null)
       return;
 
@@ -53,7 +67,12 @@ export class GroupListComponent implements OnInit {
   }
 
   modifyGroup(){
+    debugger;
     this.groupService.modifyGroup(this.currentGroup.Id,this.modifyGroupName)
-      .subscribe(res=>console.log(res));
+      .subscribe(res=>{
+        console.log(res);
+        this.showState = 'default';
+        this.currentGroup.GroupName = this.modifyGroupName;
+      });
   }
 }
