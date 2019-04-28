@@ -21,7 +21,7 @@ export class ApiService {
 
   get(url: string,needAuth:boolean): Observable<any> {
     let options = {
-      'headers': this.httpOptions.headers.append('token',localStorage.getItem('token')),
+      'headers': this.httpOptions.headers.append('token',localStorage.getItem(this.configService.tokenKeyName)),
       'observe':this.httpOptions.observe
     };
 
@@ -32,7 +32,7 @@ export class ApiService {
 
   post(url: string, payload: any,needAuth:boolean): Observable<any> {
     let options = {
-      'headers': this.httpOptions.headers.append('token',localStorage.getItem('token')),
+      'headers': this.httpOptions.headers.append('token',localStorage.getItem(this.configService.tokenKeyName)),
       'observe':this.httpOptions.observe
     };
 
@@ -43,7 +43,7 @@ export class ApiService {
 
   put(url: string, payload: any,needAuth:boolean): Observable<any> {
     let options = {
-      'headers': this.httpOptions.headers.append('token',localStorage.getItem('token')),
+      'headers': this.httpOptions.headers.append('token',localStorage.getItem(this.configService.tokenKeyName)),
       'observe':this.httpOptions.observe
     };
 
@@ -54,7 +54,7 @@ export class ApiService {
 
   delete(url: string,needAuth:boolean): Observable<any> {
     let options = {
-      'headers': this.httpOptions.headers.append('token',localStorage.getItem('token')),
+      'headers': this.httpOptions.headers.append('token',localStorage.getItem(this.configService.tokenKeyName)),
       'observe':this.httpOptions.observe
     };
 
@@ -71,7 +71,7 @@ export class ApiService {
     } else {
       // server-side error
       if (error.status === 401 || error.status === 403) {
-        localStorage.removeItem('token');
+        localStorage.removeItem(this.configService.tokenKeyName);
       }
       errorMessage = `Error Code: ${error.status}\nMessage: ${error.message}`;
     }

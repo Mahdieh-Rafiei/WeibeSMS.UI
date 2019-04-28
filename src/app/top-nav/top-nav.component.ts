@@ -1,6 +1,6 @@
 import {Component, EventEmitter, Injectable, OnInit, Output} from '@angular/core';
 import {ConfigService} from '../shared/config.service';
-import {LoginService} from '../login/login.service';
+import {AuthenticationService} from '../login/authentication.service';
 
 @Component({
   selector: 'app-top-nav',
@@ -12,7 +12,7 @@ export class TopNavComponent implements OnInit {
 
   isSidebarShown:boolean=true;
   constructor(private configService:ConfigService,
-              private loginService:LoginService) { }
+              private authService:AuthenticationService) { }
 
   ngOnInit() {
   }
@@ -23,6 +23,6 @@ export class TopNavComponent implements OnInit {
   }
 
   logOut(){
-    this.loginService.logOut();
+    this.authService.logOut();
   }
 }

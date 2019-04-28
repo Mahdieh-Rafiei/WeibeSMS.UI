@@ -10,7 +10,7 @@ export class RegisterService {
   constructor(private apiService:ApiService) {
   }
 
-  sendVerificationCode(mobile:number) : Observable<any>{
+  sendVerificationCode(mobile:string) : Observable<any>{
     return this.apiService.post(`User/SendVerificationCode`,{'mobile':mobile,'sendVerificationReason':1},false);
   }
 

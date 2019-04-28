@@ -13,7 +13,7 @@ import {RouterModule} from '@angular/router';
 import {APP_ROUTES} from '../app.routes';
 import {ApiService} from './shared/api.service';
 import {ConfigService} from './shared/config.service';
-import {LoginService} from './login/login.service';
+import {AuthenticationService} from './login/authentication.service';
 import {RegisterService} from './register/register.service';
 import {CanActivateRouteGuard} from './shared/CanActivateRouteGuard';
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
@@ -21,6 +21,7 @@ import { GroupComponent } from './group/group.component';
 import { GroupListComponent } from './group/group-list/group-list.component';
 import { ContactComponent } from './group/contact/contact.component';
 import { AddContactComponent } from './group/add-contact/add-contact.component';
+import {NotificationService} from './shared/notification.service';
 
 @NgModule({
   declarations: [
@@ -47,9 +48,10 @@ import { AddContactComponent } from './group/add-contact/add-contact.component';
   providers: [
     ApiService,
     ConfigService,
-    LoginService,
+    AuthenticationService,
     RegisterService,
-    CanActivateRouteGuard
+    CanActivateRouteGuard,
+    NotificationService
   ],
   bootstrap: [AppComponent]
 })

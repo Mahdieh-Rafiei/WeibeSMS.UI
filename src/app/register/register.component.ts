@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {RegisterService} from './register.service';
-import {LoginService} from '../login/login.service';
 import {Router} from '@angular/router';
+import {AuthenticationService} from '../login/authentication.service';
 
 @Component({
   selector: 'app-register',
@@ -17,7 +17,7 @@ export class RegisterComponent implements OnInit {
   email:string;
 
   constructor(private registerService:RegisterService,
-              private loginService:LoginService,
+              private authService:AuthenticationService,
               private router:Router) { }
 
   ngOnInit() {
@@ -27,7 +27,7 @@ export class RegisterComponent implements OnInit {
     this.registerService.saveInfo(this.firstName,this.lastName,this.email,this.userName,this.password)
       .subscribe(res=>{
         console.log(res);
-        this.loginService.authenticationChanged.emit(true);
+        this.authService.authenticationChanged.emit(true);
         this.router.navigateByUrl('');
       });
   }

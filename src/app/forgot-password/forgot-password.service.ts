@@ -20,7 +20,6 @@ export class ForgotPasswordService {
   }
 
   verify(mobile:string,verificationCode:string,key:string) : Observable<any >{
-    debugger;
     let payload = {
       'Key':  key,
       'Mobile':mobile,
@@ -31,7 +30,6 @@ export class ForgotPasswordService {
   }
 
   changePassword(password:string):Observable<any>{
-    debugger;
     let payload = {
       'Password':password
     };

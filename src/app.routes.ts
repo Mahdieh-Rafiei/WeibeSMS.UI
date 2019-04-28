@@ -18,7 +18,5 @@ export const APP_ROUTES: Routes = [
   {path: 'login', component: LoginComponent },
   {path: 'register', component: RegisterComponent},
   {path: 'forgot-password', component: ForgotPasswordComponent},
-  {path: 'group', component: GroupComponent},
-  {path: 'group-list', component: GroupListComponent},
   {path: '**', redirectTo: 'notfound'}
 ];
