@@ -1,6 +1,21 @@
 <div class="main-container">
+  <div *ngIf="showState=='add'">
+    <input type="text" [(ngModel)]="newGroupName">
+    <br>
+    <button (click)="saveNewGroup()">Save</button>
+  </div>
+
+  <div *ngIf="showState=='edit'">
+    <input type="text" [(ngModel)]="modifyGroupName">
+    <br>
+    <button (click)="modifyGroup()">Modify</button>
+  </div>
+
   <div class="col-md-12 btn-section text-right">
-    <button><i class="fa fa-plus"></i> New Group </button>
+    <button (click)="setAddMode()">
+      <i class="fa fa-plus">
+      </i> New Group
+    </button>
   </div>
   <div class="col-md-12 filter-section">
     <div class="col-md-6 no-pad select text-left">
@@ -24,7 +39,7 @@
   <div class="col-md-12 table-section no-pad text-left">
     <table class="index-table text-left">
       <thead>
-      <tr [routerLink]="['../group']">
+      <tr>
         <th class="text-right"><i class="fa fa-sort"></i> Title</th>
         <th class="text-center"><i class="fa fa-sort"></i> Resipient</th>
         <th></th>
@@ -42,8 +57,9 @@
         </td>
         <td class="td-single text-right actions-container">
           <div class="actions">
-            <a><i class="fa fa-trash"></i></a>
-            <a><i class="fa fa-pencil"></i></a>
+            <a (click)="removeGroup(group)"><i class="fa fa-trash"></i></a>
+            <a (click)="setEditMode(group)"> <i class="fa fa-pencil"></i></a>
+            <a [routerLink]="[group.Id]"><i class="fa fa-eye"></i></a>
           </div>
         </td>
       </tr>
@@ -56,23 +72,23 @@
   </div>
 </div>
 
-<div *ngIf="showAddGroupModal" class="modal fade in modal-back" role="dialog" tabindex="-1" style="display: block;" aria-modal="true">
-  <div role="document" class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button aria-label="Close" class="close pull-right" type="button">
-          <span aria-hidden="true">×</span>
-        </button>
-      </div>
-      <div class="modal-body text-center">
-        <div>
-          <input [(ngModel)]="newPassword" class="ws-login-input vinput" type="text" placeholder="password">
-          <br>
-          <input [(ngModel)]="confirmNewPassword" class="ws-login-input vinput" type="text" placeholder="confirm password">
-          <br>
-          <button class="ws-btn login-btn" (click)="changePassword()">Register</button>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
+<!--<div *ngIf="showAddGroupModal"  class="modal fade in modal-back" role="dialog" tabindex="-1" style="display: block;" aria-modal="true">-->
+  <!--<div role="document" class="modal-dialog">-->
+    <!--<div class="modal-content">-->
+      <!--<div class="modal-header">-->
+        <!--<button aria-label="Close" class="close pull-right" type="button">-->
+          <!--<span aria-hidden="true">×</span>-->
+        <!--</button>-->
+      <!--</div>-->
+      <!--<div class="modal-body text-center">-->
+        <!--<div>-->
+          <!--<input [(ngModel)]="newPassword" class="ws-login-input vinput" type="text" placeholder="password">-->
+          <!--<br>-->
+          <!--<input [(ngModel)]="confirmNewPassword" class="ws-login-input vinput" type="text" placeholder="confirm password">-->
+          <!--<br>-->
+          <!--<button class="ws-btn login-btn" (click)="changePassword()">Register</button>-->
+        <!--</div>-->
+      <!--</div>-->
+    <!--</div>-->
+  <!--</div>-->
+<!--</div>-->

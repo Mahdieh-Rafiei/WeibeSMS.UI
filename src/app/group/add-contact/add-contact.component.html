@@ -4,17 +4,24 @@
    <button class="previous-btn"> <i class="fa fa-arrow-left"></i> Previous </button>
   </div>
  </div>
- <div class="col-md-12 add-contact-tab no-pad">
-    <tabset>
-     <tab heading="Add Contact From File" id="tab1">
-      <app-add-contact-from-file></app-add-contact-from-file>
-     </tab>
-     <tab heading="Single Add Contact">
-      <app-single-add-contact></app-single-add-contact>
-     </tab>
-     <tab heading="Import Contact From Other Lists">
-      <app-import-contact-from-other-lists></app-import-contact-from-other-lists>
-     </tab>
-    </tabset>
- </div>
+
+  <button [routerLink]="['from-file']" type="button" class="btn btn-default">from file</button>
+  <button [routerLink]="['single-contact']" type="button" class="btn btn-default">single contact</button>
+  <button [routerLink]="['from-list']" type="button" class="btn btn-default">from list</button>
+
+ <!--<div class="col-md-12 add-contact-tab no-pad">-->
+    <!--<tabset>-->
+     <!--<tab routerLink="from-file" heading="Add Contact From File" id="tab1">-->
+      <!--&lt;!&ndash;<app-add-contact-from-file></app-add-contact-from-file>&ndash;&gt;-->
+     <!--</tab>-->
+     <!--<tab heading="Single Add Contact">-->
+      <!--<app-single-add-contact></app-single-add-contact>-->
+     <!--</tab>-->
+     <!--<tab heading="Import Contact From Other Lists">-->
+      <!--<app-import-contact-from-other-lists></app-import-contact-from-other-lists>-->
+     <!--</tab>-->
+    <!--</tabset>-->
+ <!--</div>-->
 </div>
+
+<router-outlet></router-outlet>
