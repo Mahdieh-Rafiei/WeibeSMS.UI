@@ -15,7 +15,7 @@ export class ContactService {
     return this.apiService.get('Contact',true);
   }
 
-  getContact(contactId:number) : Observable<any>{
+  getContact(contactId:string) : Observable<any>{
     return this.apiService.get(`Contact/${contactId}`,true);
   }
 
@@ -32,7 +32,7 @@ export class ContactService {
     return this.apiService.post(`Contact`,payload,true);
   }
 
-  modifyContact(groupId:number,contactId:number,number,firstName:string,lastName:string,mobile:string,email:string,gender:number):Observable<any>{
+  modifyContact(groupId:number,contactId:number,firstName:string,lastName:string,mobile:string,email:string,gender:number):Observable<any>{
     let payload={
       'Gender':gender,
       'FirstName':firstName,
