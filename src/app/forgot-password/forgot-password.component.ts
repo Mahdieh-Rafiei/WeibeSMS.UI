@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {ForgotPasswordService} from './forgot-password.service';
-import {Route, Router} from '@angular/router';
-import {LoginService} from '../login/login.service';
+import {Router} from '@angular/router';
+import {AuthenticationService} from '../login/authentication.service';
+
 
 @Component({
   selector: 'app-forgot-password',
@@ -20,7 +21,7 @@ export class ForgotPasswordComponent implements OnInit {
 
   constructor(private forgotPasswordService:ForgotPasswordService,
               private router:Router,
-              private loginService:LoginService){ }
+              private authService:AuthenticationService){ }
 
   ngOnInit() {
   }
@@ -34,26 +35,28 @@ export class ForgotPasswordComponent implements OnInit {
       })
   }
 
+  onTxtCodeKeyUp(){
+    if (this.verificationCode.length <5)
+      return;
+
+    this.verify();
+  }
+
   verify(){
     this.forgotPasswordService.verify(this.mobile,this.verificationCode,this.key)
       .subscribe(res=> {
         console.log(res);
         this.step = 3;
-        localStorage.setItem('token',res.Data.Token);
+        this.authService.setToken(res.Data.Token);
       });
   }
 
-  onVerifyCodeKeyUp(){
-    if(this.verificationCode.length == 5){
-      this.verify();
-    }
-  }
-
   changePassword(){
+    debugger;
     this.forgotPasswordService.changePassword(this.password)
       .subscribe(res => {
         console.log(res);
-        this.loginService.authenticationChanged.emit(true);
+        this.authService.authenticationChanged.emit(true);
         this.router.navigateByUrl('');
       });
   }

@@ -1,19 +1,24 @@
 import {EventEmitter, Injectable, Output} from '@angular/core';
-import {Observable} from 'rxjs';
 import {ApiService} from '../shared/api.service';
 import {Router} from '@angular/router';
+import {ConfigService} from '../shared/config.service';
 
 @Injectable({
   providedIn: 'root'
 })
-export class LoginService {
+export class AuthenticationService {
 
   @Output() authenticationChanged: EventEmitter<boolean> = new EventEmitter<boolean>();
   constructor(private apiService:ApiService,
-              private router:Router) { }
+              private router:Router,
+              private configService:ConfigService) { }
 
   isAuthenticated():boolean{
-    return (localStorage.getItem('token') !== null);
+    return (localStorage.getItem(this.configService.tokenKeyName) !== null);
+  }
+
+  setToken(token:string){
+    localStorage.setItem(this.configService.tokenKeyName,token);
   }
 
   loginViaUsernamePassword(username:string,password:string){
@@ -22,14 +27,14 @@ export class LoginService {
       'password':password
     },false).subscribe(res => {
       console.log(res.Data);
-      localStorage.setItem('token',res.Data.Token);
+      this.setToken(res.Data.Token);
       this.authenticationChanged.emit(true);
       this.router.navigateByUrl('');
     });
   }
 
   logOut(){
-    localStorage.removeItem('token');
+    localStorage.removeItem(this.configService.tokenKeyName);
     this.authenticationChanged.emit(false);
     this.router.navigateByUrl('/login');
   }

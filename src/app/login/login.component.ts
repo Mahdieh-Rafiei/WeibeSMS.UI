@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import {LoginService} from './login.service';
 import {RegisterService} from '../register/register.service';
 import {Router} from '@angular/router';
-import {assertNumber} from '@angular/core/src/render3/assert';
+import {AuthenticationService} from './authentication.service';
+import {NotificationService} from '../shared/notification.service';
 
 @Component({
   selector: 'app-login',
@@ -12,24 +12,34 @@ import {assertNumber} from '@angular/core/src/render3/assert';
 
 export class LoginComponent implements OnInit {
 
-  gettedCode:string;
-  gettedKey:string;
-
   isLoginMode:boolean=true;
   verificationCodeSent:boolean=false;
-  mobile:number;
-  verificationCode:number;
+  mobile:string;
+  verificationCode:string;
   username:string='';
   password:string='';
-  constructor(private loginService:LoginService,
+  registrationKey:string;
+
+  constructor(private authService:AuthenticationService,
               private registerService:RegisterService,
+              private notificationService:NotificationService,
               private router :Router) { }
 
   ngOnInit() {
   }
 
   login(){
-    this.loginService.loginViaUsernamePassword(this.username,this.password);
+    if (this.username.length == 0){
+      this.notificationService.error('username is null');
+      return;
+    }
+
+    if (this.password.length == 0){
+      this.notificationService.error('password is null');
+      return;
+    }
+
+    this.authService.loginViaUsernamePassword(this.username,this.password);
   }
 
   sendVerificationCode(){
@@ -37,16 +47,16 @@ export class LoginComponent implements OnInit {
     {
       console.log(res.Data);
       this.verificationCodeSent = true;
-      this.gettedCode = res.Data.Code;
-      this.gettedKey = res.Data.RegistrationKey;
+      this.registrationKey = res.Data.RegistrationKey;
     });
   }
 
   verify(){
-    this.registerService.verifyMobile(this.gettedKey,this.mobile.toString(),this.gettedCode).subscribe((res) =>
+    this.registerService.verifyMobile(this.registrationKey,this.mobile.toString(),this.verificationCode).subscribe((res) =>
     {
       console.log(res.Data);
       localStorage.setItem('token',res.Data.Token);
+      this.authService.setToken(res.Data.Token);
       this.router.navigateByUrl('/register');
     })
   }

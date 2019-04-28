@@ -1,9 +1,8 @@
-import {Component, Injectable, Input, OnInit} from '@angular/core';
-import {LoginService} from './login/login.service';
-import {debug} from 'util';
-import {TopNavComponent} from './top-nav/top-nav.component';
+import {Component, Injectable, OnInit} from '@angular/core';
+
 import {ConfigService} from './shared/config.service';
 import {Router} from '@angular/router';
+import {AuthenticationService} from './login/authentication.service';
 
 @Component({
   selector: 'app-root',
@@ -14,7 +13,7 @@ import {Router} from '@angular/router';
 @Injectable()
 export class AppComponent implements OnInit{
 
-  constructor(private loginService:LoginService
+  constructor(private authService:AuthenticationService
               ,private configService:ConfigService
               ,private router:Router
   ){  }
@@ -24,14 +23,14 @@ export class AppComponent implements OnInit{
   isSidebarShown:boolean=true;
 
   ngOnInit(){
-    this.loginService.authenticationChanged.subscribe(res=>{
+    this.authService.authenticationChanged.subscribe(res=>{
       this.isAuthenticated = res;
     });
 
-    this.isAuthenticated = this.loginService.isAuthenticated();
+    this.isAuthenticated = this.authService.isAuthenticated();
     this.configService.sidebarStateChanged.subscribe(res => this.isSidebarShown = res);
 
-    if (!this.loginService.isAuthenticated()){
+    if (!this.authService.isAuthenticated()){
       this.router.navigateByUrl('/login');
     }
   }

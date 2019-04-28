@@ -1,13 +1,6 @@
-<!--<input type="text" [(ngModel)]="newGroupName">-->
-<!--<button (click)="addNewGroup()">Add New</button>-->
-
-<!--<pre>-->
-  <!--{{groups | json}}-->
-<!--</pre>-->
-
 <div class="main-container">
   <div class="col-md-12 btn-section text-right">
-    <button> <i class="fa fa-plus"></i> New Group </button>
+    <button><i class="fa fa-plus"></i> New Group </button>
   </div>
   <div class="col-md-12 filter-section">
     <div class="col-md-6 no-pad select text-left">
@@ -38,30 +31,14 @@
       </tr>
       </thead>
       <tbody>
-      <tr>
+      <tr *ngFor="let group of groups">
         <td class="text-right">
           <div class="table-head">
-            <input type="checkbox"> <span>test01</span>
+            <input type="checkbox"> <span>{{group.GroupName}}</span>
           </div>
         </td>
         <td class=" text-center">
-          <div>35</div>
-        </td>
-        <td class="td-single text-right actions-container">
-          <div class="actions">
-            <a><i class="fa fa-trash"></i></a>
-            <a><i class="fa fa-pencil"></i></a>
-          </div>
-        </td>
-      </tr>
-      <tr>
-        <td class="text-right">
-          <div class="table-head">
-            <input type="checkbox"> <span>test02</span>
-          </div>
-        </td>
-        <td class=" text-center">
-          <div>35</div>
+          <div>{{165}}</div>
         </td>
         <td class="td-single text-right actions-container">
           <div class="actions">
@@ -77,6 +54,25 @@
       <span><i class="fa fa-arrow-circle-right"></i></span>
     </div>
   </div>
-
 </div>
 
+<div *ngIf="showAddGroupModal" class="modal fade in modal-back" role="dialog" tabindex="-1" style="display: block;" aria-modal="true">
+  <div role="document" class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button aria-label="Close" class="close pull-right" type="button">
+          <span aria-hidden="true">×</span>
+        </button>
+      </div>
+      <div class="modal-body text-center">
+        <div>
+          <input [(ngModel)]="newPassword" class="ws-login-input vinput" type="text" placeholder="password">
+          <br>
+          <input [(ngModel)]="confirmNewPassword" class="ws-login-input vinput" type="text" placeholder="confirm password">
+          <br>
+          <button class="ws-btn login-btn" (click)="changePassword()">Register</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

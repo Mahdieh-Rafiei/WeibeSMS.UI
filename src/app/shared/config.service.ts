@@ -9,7 +9,6 @@ export class ConfigService {
 
   constructor() { }
 
+  tokenKeyName='ipe-sms-token';
   baseUrl = 'http://192.168.1.94:8575/api/v1/';
-
-
 }
