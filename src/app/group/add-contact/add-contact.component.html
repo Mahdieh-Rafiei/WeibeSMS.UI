@@ -1,20 +1,26 @@
 <div class="main-container">
- <div class="col-md-12 btn-section text-left">
+  <div class="col-md-12 btn-section text-left">
   <div class="col-md-6 no-pad text-left">
    <button class="previous-btn"> <i class="fa fa-arrow-left"></i> Previous </button>
   </div>
  </div>
- <div class="col-md-12 add-contact-tab no-pad">
-    <tabset>
-     <tab heading="Add Contact From File" id="tab1">
-      <app-add-contact-from-file></app-add-contact-from-file>
-     </tab>
-     <tab heading="Single Add Contact">
-      <app-single-add-contact></app-single-add-contact>
-     </tab>
-     <tab heading="Import Contact From Other Lists">
-      <app-import-contact-from-other-lists></app-import-contact-from-other-lists>
-     </tab>
-    </tabset>
+  <div class="col-md-12 add-contact-tab text-center no-pad">
+   <div class="col-md-4 no-pad">
+    <div class="add-contact-div">Add Contact From File</div>
+   </div>
+   <div class="col-md-4 no-pad">
+    <div class="add-contact-div">Single Add Contact</div>
+   </div>
+   <div class="col-md-4 no-pad">
+    <div class="add-contact-div">Import Contact From Other Lists</div>
+   </div>
  </div>
+
+
+ <app-add-contact-from-file></app-add-contact-from-file>
+ <app-single-add-contact></app-single-add-contact>
+<app-import-contact-from-other-lists></app-import-contact-from-other-lists>
+
 </div>
+
+
