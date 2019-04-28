@@ -1,0 +1,86 @@
+.btn-section{
+    padding: 15px 0;
+}
+.save-btn{
+    background-color: #08a5a3;
+    border: 1px solid #08a5a3;
+    border-radius: 2px;
+    color: #ffffff;
+    padding: 10px 15px;
+    font-size: 12px;
+}
+.delete-btn{
+    background-color: #f5274e;
+    border: 1px solid #f5274e;
+    border-radius: 2px;
+    color: #ffffff;
+    padding: 10px 15px;
+    font-size: 12px;
+    margin-right: 10px;
+}
+.previous-btn{
+    background-color: #c2c2c2;
+    border: 1px solid #c2c2c2;
+    border-radius: 2px;
+    color: #ffffff;
+    padding: 10px 15px;
+    font-size: 12px;
+}
+
+.edit-recipient{
+    background-color: #ffffff;
+    border: 1px solid #c2c2c2;
+    border-radius: 4px;
+    padding: 10px 15px;
+    font-size: 12px;
+    margin-top: 10px;
+}
+.edit-recipient p{
+    color: #949494;
+    font-weight: 600;
+    font-size: 14px;
+}
+input[type="text"] {
+    border: 1px solid #949494;
+    margin-bottom: 10px;
+    padding: 10px;
+    width: 50%;
+    border-radius: 2px;
+}
+.space{
+    border-top: 1px dashed #000;
+    margin: 20px 0;
+}
+select {
+    border: 1px solid #949494;
+    margin-bottom: 10px;
+    padding: 10px;
+    width: 25%;
+    border-radius: 2px;
+}
+input.date-value {
+    border: 1px solid #949494;
+    border-radius: 2px;
+    width: unset;
+    margin-left: 30px;
+    margin-right: 15px;
+}
+.operation-fa i{
+    font-size: 25px;
+    color: #dedede;
+    border: 1px solid #dedede;
+    border-radius: 50%;
+    padding: 10px 13px;
+    margin-right: 15px;
+}
+/*---------------------------------------Responsive-------------------------------------------*/
+@media (max-width: 991px) and (min-width: 768px){
+    input[type="text"] {
+        width: 100%;
+    }
+}
+@media (max-width: 767px) and (min-width: 320px) {
+    input[type="text"] {
+        width: 100%;
+    }
+}

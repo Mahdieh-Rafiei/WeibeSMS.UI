@@ -1,0 +1,19 @@
+.btn-section{
+    padding: 15px 0;
+}
+.previous-btn{
+    background-color: #c2c2c2;
+    border: 1px solid #c2c2c2;
+    border-radius: 2px;
+    color: #ffffff;
+    padding: 10px 15px;
+    font-size: 12px;
+}
+/*tab*/
+ul.nav.nav-tabs {
+    background: #d9f2f1 !important;
+    padding: 20px !important;
+    border: 1px solid #d9f2f1 !important;
+    border-radius: 5px !important;
+}
+
