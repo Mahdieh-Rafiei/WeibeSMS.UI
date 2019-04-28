@@ -1,36 +1,26 @@
 <div class="main-container">
-  <div class="col-md-12 btn-section text-left">
-  <div class="col-md-6 no-pad text-left">
-   <button class="previous-btn"> <i class="fa fa-arrow-left"></i> Previous </button>
-  </div>
- </div>
+    <div class="col-md-12 btn-section text-left">
+          <div class="col-md-6 no-pad text-left">
+           <button class="previous-btn"> <i class="fa fa-arrow-left"></i> Previous </button>
+          </div>
+    </div>
 
-  <div class="col-md-12 add-contact-tab text-center no-pad">
-   <div class="col-md-4 no-pad">
-    <div class="add-contact-div">Add Contact From File</div>
-   </div>
-   <div class="col-md-4 no-pad">
-    <div class="add-contact-div">Single Add Contact</div>
-   </div>
-   <div class="col-md-4 no-pad">
-    <div class="add-contact-div">Import Contact From Other Lists</div>
-   </div>
- </div>
-
-
- 
-
+    <div class="col-md-12 add-contact-tab text-center no-pad">
+       <div class="col-md-4 no-pad">
+        <div [routerLink]="['from-file']"  class="add-contact-div">Add Contact From File</div>
+       </div>
+       <div class="col-md-4 no-pad">
+        <div [routerLink]="['single-contact']" class="add-contact-div">Single Add Contact</div>
+       </div>
+       <div class="col-md-4 no-pad">
+        <div [routerLink]="['from-list']" class="add-contact-div">Import Contact From Other Lists</div>
+       </div>
+    </div>
+    <router-outlet></router-outlet>
 </div>
 
 
 
 
-  <button [routerLink]="['from-file']" type="button" class="btn btn-default">from file</button>
-  <button [routerLink]="['single-contact']" type="button" class="btn btn-default">single contact</button>
-  <button [routerLink]="['from-list']" type="button" class="btn btn-default">from list</button>
 
-
-</div>
-
-<router-outlet></router-outlet>
 
