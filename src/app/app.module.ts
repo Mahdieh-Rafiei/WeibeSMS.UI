@@ -9,6 +9,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import {FormsModule} from '@angular/forms';
 import {HttpClientModule} from "@angular/common/http";
 import { BsDropdownModule } from 'ngx-bootstrap';
+import { TabsModule } from 'ngx-bootstrap';
 import {RouterModule} from '@angular/router';
 import {APP_ROUTES} from '../app.routes';
 import {ApiService} from './shared/api.service';
@@ -23,6 +24,11 @@ import { ContactComponent } from './group/contact/contact.component';
 import { AddContactComponent } from './group/add-contact/add-contact.component';
 import {NotificationService} from './shared/notification.service';
 
+import { SingleAddContactComponent } from './group/add-contact/single-add-contact/single-add-contact.component';
+import { AddContactFromFileComponent } from './group/add-contact/add-contact-from-file/add-contact-from-file.component';
+import { ImportContactFromOtherListsComponent } from './group/add-contact/import-contact-from-other-lists/import-contact-from-other-lists.component';
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -36,6 +42,9 @@ import {NotificationService} from './shared/notification.service';
     GroupListComponent,
     ContactComponent,
     AddContactComponent,
+    SingleAddContactComponent,
+    AddContactFromFileComponent,
+    ImportContactFromOtherListsComponent,
 
   ],
   imports: [
@@ -43,6 +52,7 @@ import {NotificationService} from './shared/notification.service';
     FormsModule,
     HttpClientModule,
     BsDropdownModule.forRoot(),
+    TabsModule.forRoot(),
     RouterModule.forRoot(APP_ROUTES),
   ],
   providers: [
