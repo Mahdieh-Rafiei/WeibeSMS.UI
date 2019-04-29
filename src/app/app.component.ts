@@ -23,7 +23,7 @@ export class AppComponent implements OnInit{
   isSidebarShown:boolean=true;
 
   ngOnInit(){
-    this.authService.authenticationChanged.subscribe(res=>{
+    this.configService.authenticationChanged.subscribe(res=>{
       this.isAuthenticated = res;
     });
 

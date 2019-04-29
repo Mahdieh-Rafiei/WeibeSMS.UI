@@ -37,12 +37,10 @@ export class GroupListComponent implements OnInit {
       });
   }
   setAddMode(){
-    debugger;
     this.showState = 'add';
   }
 
   setEditMode(group){
-    debugger;
     this.currentGroup = group;
     this.showState = 'edit';
   }
@@ -50,7 +48,7 @@ export class GroupListComponent implements OnInit {
   saveNewGroup(){
     this.groupService.addGroup(this.newGroupName).subscribe(res=>{
       console.log(res.Data);
-      this.showState = 'edit';
+      this.showState = 'default';
       let id = res.Data.Id;
       this.router.navigateByUrl(`group/${id}/add-contact`);
     });
@@ -68,11 +66,10 @@ export class GroupListComponent implements OnInit {
 
   modifyGroup(){
     debugger;
-    this.groupService.modifyGroup(this.currentGroup.Id,this.modifyGroupName)
+    this.groupService.modifyGroup(this.currentGroup.Id,this.currentGroup.GroupName)
       .subscribe(res=>{
         console.log(res);
         this.showState = 'default';
-        this.currentGroup.GroupName = this.modifyGroupName;
       });
   }
 }

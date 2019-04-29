@@ -1,0 +1,29 @@
+<h1>
+  user-event works!user-event works!user-event works!user-event works!user-event works!
+</h1>
+
+<div class="main-container">
+  <div class="col-md-12 btn-section text-left">
+
+    <button (click)="addUserEvent()" class="btn btn-default">Add</button>
+    <br>
+    <br>
+    <input type="text" [(ngModel)]="name">
+    <br>
+    <br>
+    <table>
+      <tr>
+        <th>Id</th>
+        <th>Title</th>
+      </tr>
+      <tr *ngFor="let ue of userEvents">
+        <td>{{ue.Id}}</td>
+        <td>{{ue.Name}}</td>
+        <td>
+          <button (click)="removeUserEvent(ue)">Delete</button>
+        </td>
+      </tr>
+    </table>
+
+  </div>
+</div>

@@ -1,8 +1,6 @@
 import { Injectable } from '@angular/core';
 import {ApiService} from '../../shared/api.service';
 import {Observable} from 'rxjs';
-import {assertNumber} from '@angular/core/src/render3/assert';
-import {reflectTypeEntityToDeclaration} from '@angular/compiler-cli/src/ngtsc/metadata';
 
 @Injectable({
   providedIn: 'root'
@@ -19,7 +17,7 @@ export class ContactService {
     return this.apiService.get(`Contact/${contactId}`,true);
   }
 
-  AddContact(groupId:number,firstName:string,lastName:string,mobile:string,gender:number,email:string){
+  addContact(groupId:number,firstName:string,lastName:string,mobile:string,gender:number,email:string){
     let payload={
       'Gender':gender,
       'FirstName':firstName,
@@ -32,12 +30,11 @@ export class ContactService {
     return this.apiService.post(`Contact`,payload,true);
   }
 
-  modifyContact(groupId:number,contactId:number,firstName:string,lastName:string,mobile:string,email:string,gender:number):Observable<any>{
+  modifyContact(groupId:number,contactId:number,firstName:string,lastName:string,email:string,gender:number):Observable<any>{
     let payload={
       'Gender':gender,
       'FirstName':firstName,
       'LastName':lastName,
-      'Mobile':mobile,
       'ContactGroupId': groupId,
       'Email':email
     };
@@ -47,5 +44,9 @@ export class ContactService {
 
   removeContact(contactId:number):Observable<any>{
     return this.apiService.delete(`Contact/${contactId}`,true);
+  }
+
+  removeContactFromGroup(groupId:string,contactId:string){
+    return this.apiService.delete(`Contact/${contactId}/group/${groupId}`,true);
   }
 }

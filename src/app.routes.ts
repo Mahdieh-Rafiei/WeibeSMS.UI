@@ -11,12 +11,13 @@ import {AddContactComponent} from './app/group/add-contact/add-contact.component
 import {SingleAddContactComponent} from './app/group/add-contact/single-add-contact/single-add-contact.component';
 import {AddContactFromFileComponent} from './app/group/add-contact/add-contact-from-file/add-contact-from-file.component';
 import {ImportContactFromOtherListsComponent} from './app/group/add-contact/import-contact-from-other-lists/import-contact-from-other-lists.component';
+import {UserEventComponent} from './app/user-event/user-event.component';
 
 export const APP_ROUTES: Routes = [
   {path: '', component: DashboardComponent,canActivate:[CanActivateRouteGuard]},
-  {path: 'group/:id',component: GroupComponent},
+  {path: 'group/:groupId',component: GroupComponent},
   {path: 'group',component: GroupListComponent},
-  {path: 'group/:id/contact/:id',component: ContactComponent},
+  {path: 'group/:groupId/contact/:contactId',component: ContactComponent},
 
   {path: 'group/:id/add-contact',component: AddContactComponent , children:[
           {path:'from-file',component:AddContactFromFileComponent},
@@ -27,6 +28,8 @@ export const APP_ROUTES: Routes = [
   {path: 'login', component: LoginComponent },
   {path: 'register', component: RegisterComponent},
   {path: 'forgot-password', component: ForgotPasswordComponent},
+
+  {path:'user-event',component:UserEventComponent},
 
   {path: '**', redirectTo: 'notfound'}
 ];

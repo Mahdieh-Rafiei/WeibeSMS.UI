@@ -27,6 +27,8 @@ import {NotificationService} from './shared/notification.service';
 import { SingleAddContactComponent } from './group/add-contact/single-add-contact/single-add-contact.component';
 import { AddContactFromFileComponent } from './group/add-contact/add-contact-from-file/add-contact-from-file.component';
 import { ImportContactFromOtherListsComponent } from './group/add-contact/import-contact-from-other-lists/import-contact-from-other-lists.component';
+import { UserEventComponent } from './user-event/user-event.component';
+import {UserEventService} from './user-event/user-event.service';
 
 
 @NgModule({
@@ -45,6 +47,7 @@ import { ImportContactFromOtherListsComponent } from './group/add-contact/import
     SingleAddContactComponent,
     AddContactFromFileComponent,
     ImportContactFromOtherListsComponent,
+    UserEventComponent,
 
   ],
   imports: [
@@ -61,7 +64,8 @@ import { ImportContactFromOtherListsComponent } from './group/add-contact/import
     AuthenticationService,
     RegisterService,
     CanActivateRouteGuard,
-    NotificationService
+    NotificationService,
+    UserEventService
   ],
   bootstrap: [AppComponent]
 })
