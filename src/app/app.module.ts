@@ -27,6 +27,12 @@ import {NotificationService} from './shared/notification.service';
 import { SingleAddContactComponent } from './group/add-contact/single-add-contact/single-add-contact.component';
 import { AddContactFromFileComponent } from './group/add-contact/add-contact-from-file/add-contact-from-file.component';
 import { ImportContactFromOtherListsComponent } from './group/add-contact/import-contact-from-other-lists/import-contact-from-other-lists.component';
+import { SendMessageComponent } from './send-message/send-message.component';
+import { SendMessageFirstStepComponent } from './send-message/send-message-first-step/send-message-first-step.component';
+import { SendMessageSecondStepComponent } from './send-message/send-message-second-step/send-message-second-step.component';
+import { SendMessageThirdStepComponent } from './send-message/send-message-third-step/send-message-third-step.component';
+import { SendMessageScheduleComponent } from './send-message/send-message-schedule/send-message-schedule.component';
+import { SendMessageEventComponent } from './send-message/send-message-event/send-message-event.component';
 
 
 @NgModule({
@@ -45,6 +51,12 @@ import { ImportContactFromOtherListsComponent } from './group/add-contact/import
     SingleAddContactComponent,
     AddContactFromFileComponent,
     ImportContactFromOtherListsComponent,
+    SendMessageComponent,
+    SendMessageFirstStepComponent,
+    SendMessageSecondStepComponent,
+    SendMessageThirdStepComponent,
+    SendMessageScheduleComponent,
+    SendMessageEventComponent,
 
   ],
   imports: [
