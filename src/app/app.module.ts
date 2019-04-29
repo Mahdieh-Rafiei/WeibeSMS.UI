@@ -29,6 +29,15 @@ import { AddContactFromFileComponent } from './group/add-contact/add-contact-fro
 import { ImportContactFromOtherListsComponent } from './group/add-contact/import-contact-from-other-lists/import-contact-from-other-lists.component';
 import { UserEventComponent } from './user-event/user-event.component';
 import {UserEventService} from './user-event/user-event.service';
+import { SendMessageComponent } from './send-message/send-message.component';
+import { SendMessageFirstStepComponent } from './send-message/send-message-first-step/send-message-first-step.component';
+import { SendMessageSecondStepComponent } from './send-message/send-message-second-step/send-message-second-step.component';
+import { SendMessageThirdStepComponent } from './send-message/send-message-third-step/send-message-third-step.component';
+import { SendMessageScheduleComponent } from './send-message/send-message-schedule/send-message-schedule.component';
+import { SendMessageEventComponent } from './send-message/send-message-event/send-message-event.component';
+import { AddDraftComponent } from './draft/add-draft/add-draft.component';
+import { DraftListComponent } from './draft/draft-list/draft-list.component';
+
 
 
 @NgModule({
@@ -48,6 +57,14 @@ import {UserEventService} from './user-event/user-event.service';
     AddContactFromFileComponent,
     ImportContactFromOtherListsComponent,
     UserEventComponent,
+    SendMessageComponent,
+    SendMessageFirstStepComponent,
+    SendMessageSecondStepComponent,
+    SendMessageThirdStepComponent,
+    SendMessageScheduleComponent,
+    SendMessageEventComponent,
+    AddDraftComponent,
+    DraftListComponent,
 
   ],
   imports: [

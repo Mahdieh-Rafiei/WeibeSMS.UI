@@ -63,7 +63,7 @@ blockquote {
     border: 1px solid rgba(120, 130, 140, 0.13);
 }
 p {
-    line-height: 1.6;
+    margin: 0 !important;
 }
 b {
     font-weight: 600;
