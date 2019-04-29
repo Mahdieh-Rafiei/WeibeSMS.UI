@@ -4,6 +4,8 @@ import {Observable, throwError} from 'rxjs/index';
 import {ConfigService} from './config.service';
 import { map } from 'rxjs/operators';
 import {catchError} from 'rxjs/internal/operators';
+import {Router} from '@angular/router';
+import {AuthenticationService} from '../login/authentication.service';
 
 @Injectable({
   providedIn: 'root'
@@ -17,7 +19,8 @@ export class ApiService {
   };
 
   constructor(private httpClient: HttpClient,
-              private configService: ConfigService) { }
+              private configService: ConfigService,
+              private route: Router) { }
 
   get(url: string,needAuth:boolean): Observable<any> {
     let options = {
@@ -27,7 +30,7 @@ export class ApiService {
 
     return this.httpClient.get( this.configService.baseUrl + url,needAuth ?  options : this.httpOptions).pipe(
       map((res: any) => res.body),
-      catchError(this.handleError));
+      catchError(err=> this.handleError(err,this.route,this.configService)));
   }
 
   post(url: string, payload: any,needAuth:boolean): Observable<any> {
@@ -38,7 +41,7 @@ export class ApiService {
 
     return this.httpClient.post( this.configService.baseUrl + url, payload, needAuth ?  options : this.httpOptions).pipe(
       map((res: any) => res.body),
-      catchError( this.handleError));
+      catchError(err=> this.handleError(err,this.route,this.configService)));
   }
 
   put(url: string, payload: any,needAuth:boolean): Observable<any> {
@@ -49,7 +52,7 @@ export class ApiService {
 
     return this.httpClient.put( this.configService.baseUrl + url, payload, needAuth ?  options : this.httpOptions).pipe(
       map((res: any) => res.body),
-      catchError( this.handleError));
+      catchError(err=> this.handleError(err,this.route,this.configService)));
   }
 
   delete(url: string,needAuth:boolean): Observable<any> {
@@ -60,10 +63,10 @@ export class ApiService {
 
     return this.httpClient.delete( this.configService.baseUrl + url ,needAuth ?  options : this.httpOptions ).pipe(
       map((res: any) => res.body),
-      catchError(this.handleError));
+      catchError(err=> this.handleError(err,this.route,this.configService)));
   }
 
-  handleError(error) {
+  handleError(error,router:Router,configService:ConfigService) {
     let errorMessage = '';
     if (error.error instanceof ErrorEvent) {
       // client-side error
@@ -71,7 +74,9 @@ export class ApiService {
     } else {
       // server-side error
       if (error.status === 401 || error.status === 403) {
-        localStorage.removeItem(this.configService.tokenKeyName);
+        localStorage.removeItem('jwt-sms');
+        this.route.navigateByUrl('login');
+         configService.authenticationChanged.emit(false);
       }
       errorMessage = `Error Code: ${error.status}\nMessage: ${error.message}`;
     }

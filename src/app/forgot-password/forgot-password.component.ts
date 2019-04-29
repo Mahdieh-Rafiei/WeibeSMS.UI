@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {ForgotPasswordService} from './forgot-password.service';
 import {Router} from '@angular/router';
 import {AuthenticationService} from '../login/authentication.service';
+import {ConfigService} from '../shared/config.service';
 
 
 @Component({
@@ -21,7 +22,8 @@ export class ForgotPasswordComponent implements OnInit {
 
   constructor(private forgotPasswordService:ForgotPasswordService,
               private router:Router,
-              private authService:AuthenticationService){ }
+              private authService:AuthenticationService,
+              private configService:ConfigService){ }
 
   ngOnInit() {
   }
@@ -56,7 +58,7 @@ export class ForgotPasswordComponent implements OnInit {
     this.forgotPasswordService.changePassword(this.password)
       .subscribe(res => {
         console.log(res);
-        this.authService.authenticationChanged.emit(true);
+        this.configService.authenticationChanged.emit(true);
         this.router.navigateByUrl('');
       });
   }

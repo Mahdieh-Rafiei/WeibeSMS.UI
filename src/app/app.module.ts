@@ -27,6 +27,8 @@ import {NotificationService} from './shared/notification.service';
 import { SingleAddContactComponent } from './group/add-contact/single-add-contact/single-add-contact.component';
 import { AddContactFromFileComponent } from './group/add-contact/add-contact-from-file/add-contact-from-file.component';
 import { ImportContactFromOtherListsComponent } from './group/add-contact/import-contact-from-other-lists/import-contact-from-other-lists.component';
+import { UserEventComponent } from './user-event/user-event.component';
+import {UserEventService} from './user-event/user-event.service';
 import { SendMessageComponent } from './send-message/send-message.component';
 import { SendMessageFirstStepComponent } from './send-message/send-message-first-step/send-message-first-step.component';
 import { SendMessageSecondStepComponent } from './send-message/send-message-second-step/send-message-second-step.component';
@@ -35,6 +37,7 @@ import { SendMessageScheduleComponent } from './send-message/send-message-schedu
 import { SendMessageEventComponent } from './send-message/send-message-event/send-message-event.component';
 import { AddDraftComponent } from './draft/add-draft/add-draft.component';
 import { DraftListComponent } from './draft/draft-list/draft-list.component';
+
 
 
 @NgModule({
@@ -53,6 +56,7 @@ import { DraftListComponent } from './draft/draft-list/draft-list.component';
     SingleAddContactComponent,
     AddContactFromFileComponent,
     ImportContactFromOtherListsComponent,
+    UserEventComponent,
     SendMessageComponent,
     SendMessageFirstStepComponent,
     SendMessageSecondStepComponent,
@@ -77,7 +81,8 @@ import { DraftListComponent } from './draft/draft-list/draft-list.component';
     AuthenticationService,
     RegisterService,
     CanActivateRouteGuard,
-    NotificationService
+    NotificationService,
+    UserEventService
   ],
   bootstrap: [AppComponent]
 })
