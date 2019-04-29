@@ -1,0 +1,61 @@
+.content-box{
+    background-color: #f9f9f9;
+    border: 1px solid #c2c2c2;
+    border-radius: 4px;
+    padding: 9px 15px;
+    color: #000;
+    margin-bottom: 10px;
+}
+h4{
+    color: #555555;
+    font-weight: 600;
+    padding:0 ;
+    margin: 0 !important;
+}
+.schedule p{
+    padding: 10px 0 5px 0;
+}
+.schedule-field{
+    padding-top: 10px;
+    padding-left: 15px;
+}
+input[type="radio"], input[type="checkbox"] {
+    margin: 0;
+}
+.input-active{
+    color: #fe9c00;
+}
+.schedule-field-input{
+    padding: 15px 0;
+}
+label{
+    font-weight: 400;
+    width: 60px;
+}
+input[type="text"]{
+    width: 15%;
+    padding: 5px;
+}
+::placeholder{
+    font-size: 12px;
+    color: #9f9f9f;
+    padding-left: 5px;
+}
+
+
+@media (max-width: 991px) and (min-width: 768px) {
+    input[type="text"] {
+        width: 35%;
+    }
+    .schedule-field{
+        padding-left: 0;
+    }
+}
+@media (max-width: 767px) and (min-width: 320px){
+    input[type="text"] {
+        width: 35%;
+    }
+    .schedule-field{
+        padding-left: 0;
+    }
+}
