@@ -21,8 +21,12 @@ import {SendMessageThirdStepComponent} from "./app/send-message/send-message-thi
 import {SendMessageScheduleComponent} from "./app/send-message/send-message-schedule/send-message-schedule.component";
 import {SendMessageEventComponent} from "./app/send-message/send-message-event/send-message-event.component";
 
-import {AddDraftComponent} from "./app/draft/add-draft/add-draft.component";
+import {DraftComponent} from "./app/draft/draft/draft.component";
 import {DraftListComponent} from "./app/draft/draft-list/draft-list.component";
+
+import {TicketComponent} from "./app/tickets/ticket/ticket.component";
+import {AddTicketComponent} from "./app/tickets/add-ticket/add-ticket.component";
+import {TicketListComponent} from "./app/tickets/ticket-list/ticket-list.component";
 
 export const APP_ROUTES: Routes = [
   {path: '', component: DashboardComponent,canActivate:[CanActivateRouteGuard]},
@@ -44,8 +48,12 @@ export const APP_ROUTES: Routes = [
           {path:'event',component:SendMessageEventComponent},
   ]},
 
-  {path: 'draft',component: AddDraftComponent},
+  {path: 'draft',component: DraftComponent},
   {path: 'draft-list',component: DraftListComponent},
+
+  {path: 'ticket',component: TicketComponent},
+  {path: 'add-ticket',component: AddTicketComponent},
+  {path: 'ticket-list',component: TicketListComponent},
 
   {path: 'login', component: LoginComponent },
   {path: 'register', component: RegisterComponent},
