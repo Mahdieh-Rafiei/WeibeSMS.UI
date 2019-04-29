@@ -21,7 +21,7 @@ import {SendMessageThirdStepComponent} from "./app/send-message/send-message-thi
 import {SendMessageScheduleComponent} from "./app/send-message/send-message-schedule/send-message-schedule.component";
 import {SendMessageEventComponent} from "./app/send-message/send-message-event/send-message-event.component";
 
-import {AddDraftComponent} from "./app/draft/add-draft/add-draft.component";
+import {DraftComponent} from "./app/draft/draft/draft.component";
 import {DraftListComponent} from "./app/draft/draft-list/draft-list.component";
 
 export const APP_ROUTES: Routes = [
@@ -44,7 +44,7 @@ export const APP_ROUTES: Routes = [
           {path:'event',component:SendMessageEventComponent},
   ]},
 
-  {path: 'draft',component: AddDraftComponent},
+  {path: 'draft',component: DraftComponent},
   {path: 'draft-list',component: DraftListComponent},
 
   {path: 'login', component: LoginComponent },
