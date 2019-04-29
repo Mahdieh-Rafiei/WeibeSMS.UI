@@ -33,6 +33,8 @@ import { SendMessageSecondStepComponent } from './send-message/send-message-seco
 import { SendMessageThirdStepComponent } from './send-message/send-message-third-step/send-message-third-step.component';
 import { SendMessageScheduleComponent } from './send-message/send-message-schedule/send-message-schedule.component';
 import { SendMessageEventComponent } from './send-message/send-message-event/send-message-event.component';
+import { AddDraftComponent } from './draft/add-draft/add-draft.component';
+import { DraftListComponent } from './draft/draft-list/draft-list.component';
 
 
 @NgModule({
@@ -57,6 +59,8 @@ import { SendMessageEventComponent } from './send-message/send-message-event/sen
     SendMessageThirdStepComponent,
     SendMessageScheduleComponent,
     SendMessageEventComponent,
+    AddDraftComponent,
+    DraftListComponent,
 
   ],
   imports: [

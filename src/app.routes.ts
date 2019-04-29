@@ -4,10 +4,10 @@ import {DashboardComponent} from './app/dashboard/dashboard.component';
 import {RegisterComponent} from './app/register/register.component';
 import {CanActivateRouteGuard} from './app/shared/CanActivateRouteGuard';
 import {ForgotPasswordComponent} from './app/forgot-password/forgot-password.component';
+
 import {GroupComponent} from './app/group/group.component';
 import {GroupListComponent} from './app/group/group-list/group-list.component';
 import {ContactComponent} from './app/group/contact/contact.component';
-
 import {AddContactComponent} from './app/group/add-contact/add-contact.component';
 import {SingleAddContactComponent} from './app/group/add-contact/single-add-contact/single-add-contact.component';
 import {AddContactFromFileComponent} from './app/group/add-contact/add-contact-from-file/add-contact-from-file.component';
@@ -20,10 +20,12 @@ import {SendMessageThirdStepComponent} from "./app/send-message/send-message-thi
 import {SendMessageScheduleComponent} from "./app/send-message/send-message-schedule/send-message-schedule.component";
 import {SendMessageEventComponent} from "./app/send-message/send-message-event/send-message-event.component";
 
-
+import {AddDraftComponent} from "./app/draft/add-draft/add-draft.component";
+import {DraftListComponent} from "./app/draft/draft-list/draft-list.component";
 
 export const APP_ROUTES: Routes = [
   {path: '', component: DashboardComponent,canActivate:[CanActivateRouteGuard]},
+
   {path: 'group/:id',component: GroupComponent},
   {path: 'group',component: GroupListComponent},
   {path: 'group/:id/contact/:id',component: ContactComponent},
@@ -40,6 +42,9 @@ export const APP_ROUTES: Routes = [
           {path:'schedule',component:SendMessageScheduleComponent},
           {path:'event',component:SendMessageEventComponent},
   ]},
+
+  {path: 'draft',component: AddDraftComponent},
+  {path: 'draft-list',component: DraftListComponent},
 
   {path: 'login', component: LoginComponent },
   {path: 'register', component: RegisterComponent},
