@@ -38,6 +38,10 @@ import { SendMessageEventComponent } from './send-message/send-message-event/sen
 import { DraftComponent } from './draft/draft/draft.component';
 import { DraftListComponent } from './draft/draft-list/draft-list.component';
 
+import { TicketListComponent } from './tickets/ticket-list/ticket-list.component';
+import { TicketComponent } from './tickets/ticket/ticket.component';
+import { AddTicketComponent } from './tickets/add-ticket/add-ticket.component';
+
 
 
 @NgModule({
@@ -65,6 +69,9 @@ import { DraftListComponent } from './draft/draft-list/draft-list.component';
     SendMessageEventComponent,
     DraftComponent,
     DraftListComponent,
+    TicketListComponent,
+    TicketComponent,
+    AddTicketComponent,
 
   ],
   imports: [
