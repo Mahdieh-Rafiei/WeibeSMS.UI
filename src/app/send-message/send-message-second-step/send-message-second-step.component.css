@@ -1,0 +1,148 @@
+.content-box{
+    background-color: #f9f9f9;
+    border: 1px solid #c2c2c2;
+    border-radius: 4px;
+    padding: 9px 15px;
+    color: #000;
+    margin-bottom: 10px;
+}
+.originator p:first-child, .recipient p:first-child{
+    font-size: 16px;
+    color: #555555;
+    font-weight: 600;
+    padding:0 0 15px 0;
+}
+.originator p:nth-child(2){
+    padding: 0 0 15px 0;
+}
+.originator select{
+    width: 15%;
+    background-color: #e9e9e9;
+    border: 1px solid #dedede;
+    padding: 8px;
+    margin-left: 5px;
+}
+
+.filter-section{
+    background-color: #e9e9e9;
+    font-size: 12px;
+    padding: 5px 15px;
+}
+.filter-section input{
+    margin: 0;
+}
+.select{
+    line-height: 34px;
+}
+.op-btn{
+    margin-right: 5px;
+    float: right;
+    padding: 6px 15px;
+}
+.search{
+    position: relative;
+    float: right;
+}
+.search input{
+    border: none;
+    border-bottom: 1px solid #555555;
+    border-radius: 0;
+    padding: 0 40px;
+    box-shadow: none;
+    width: 100%;
+    background: #e9e9e9;
+}
+.search-icon{
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: none;
+    color: #555555;
+}
+.recipient-table{
+    margin-top: 10px;
+}
+table{
+    width: 100%;
+    outline: none;
+}
+.recipient-table table tr td{
+    background-color: #e9e9e9;
+    padding: 5px 15px
+}
+.space-table {
+    border-collapse:separate;
+    border-spacing:0 5px;
+}
+
+
+@media (max-width: 991px) and (min-width: 768px){
+    .search{
+        float: unset;
+    }
+    .op-btn {
+        float: unset;
+        margin-top: 10px;
+    }
+    .upload-file-icon {
+        padding: 20px;
+        border-left: none;
+    }
+    .upload-file {
+        margin: 10px 0 0;
+    }
+    input[type="text"] {
+        width: 100%;
+    }
+    select{
+        width: 100%;
+    }
+    input.date-value{
+        margin-left: 0;
+        margin-right: 0;
+    }
+    .add-contact-div {
+        margin-bottom: 5px;
+    }
+
+    .originator select{
+        width: 100%;
+        margin-left: 0;
+        margin-top: 10px;
+    }
+}
+@media (max-width: 767px) and (min-width: 320px) {
+    .upload-file-icon {
+        padding: 20px;
+        border-left: none;
+    }
+    .search{
+        float: unset;
+    }
+    .op-btn {
+        float: unset;
+        margin-top: 10px;
+    }
+    .upload-file {
+        margin: 10px 0 0;
+    }
+    input[type="text"] {
+        width: 100%;
+    }
+    select {
+        width: 100%;
+    }
+    input.date-value{
+        margin-left: 0;
+        margin-right: 0;
+    }
+    .add-contact-div {
+        margin-bottom: 5px;
+    }
+
+    .originator select{
+        width: 100%;
+        margin-left: 0;
+        margin-top: 10px;
+    }
+}

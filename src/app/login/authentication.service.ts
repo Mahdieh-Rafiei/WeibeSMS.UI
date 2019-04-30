@@ -8,7 +8,7 @@ import {ConfigService} from '../shared/config.service';
 })
 export class AuthenticationService {
 
-  @Output() authenticationChanged: EventEmitter<boolean> = new EventEmitter<boolean>();
+
   constructor(private apiService:ApiService,
               private router:Router,
               private configService:ConfigService) { }
@@ -28,14 +28,14 @@ export class AuthenticationService {
     },false).subscribe(res => {
       console.log(res.Data);
       this.setToken(res.Data.Token);
-      this.authenticationChanged.emit(true);
+      this.configService.authenticationChanged.emit(true);
       this.router.navigateByUrl('');
     });
   }
 
   logOut(){
     localStorage.removeItem(this.configService.tokenKeyName);
-    this.authenticationChanged.emit(false);
+    this.configService.authenticationChanged.emit(false);
     this.router.navigateByUrl('/login');
   }
 }

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {RegisterService} from './register.service';
 import {Router} from '@angular/router';
 import {AuthenticationService} from '../login/authentication.service';
+import {ConfigService} from '../shared/config.service';
 
 @Component({
   selector: 'app-register',
@@ -18,7 +19,8 @@ export class RegisterComponent implements OnInit {
 
   constructor(private registerService:RegisterService,
               private authService:AuthenticationService,
-              private router:Router) { }
+              private router:Router,
+              private configService:ConfigService) { }
 
   ngOnInit() {
   }
@@ -27,7 +29,7 @@ export class RegisterComponent implements OnInit {
     this.registerService.saveInfo(this.firstName,this.lastName,this.email,this.userName,this.password)
       .subscribe(res=>{
         console.log(res);
-        this.authService.authenticationChanged.emit(true);
+        this.configService.authenticationChanged.emit(true);
         this.router.navigateByUrl('');
       });
   }

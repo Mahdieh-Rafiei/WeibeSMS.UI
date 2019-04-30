@@ -1,0 +1,19 @@
+<div class="main-container">
+  <div class="col-md-12 btn-section text-right">
+    <div class="col-md-6 no-pad text-left">
+      <button class="exit-btn"> Exit </button>
+    </div>
+    <div class="col-md-6 no-pad text-right">
+      <button class="next-btn"> Next </button>
+    </div>
+  </div>
+
+  <div class="col-md-12 div-section text-center">
+    <a class="active" [routerLink]="['first-step']">1.Content</a> >
+    <a [routerLink]="['second-step']">2.Originator & Recipients</a> >
+    <a class="current" [routerLink]="['schedule']">3.Send Config</a> >
+    <!--<a class="current" [routerLink]="['event']">3.Send Config</a> >-->
+    <a class="current" [routerLink]="['third-step']">4.Verify & Send</a>
+  </div>
+  <router-outlet></router-outlet>
+</div>

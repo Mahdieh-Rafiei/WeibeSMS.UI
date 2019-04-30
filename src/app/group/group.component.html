@@ -4,7 +4,7 @@
             <button class="previous-btn"> <i class="fa fa-arrow-left"></i> Previous </button>
         </div>
         <div class="col-md-6 no-pad text-right">
-            <button class="add-contact"> <i class="fa fa-plus"></i> Add Contact </button>
+            <button (click)="isAddMode=true" class="add-contact"> <i class="fa fa-plus"></i> Add Contact </button>
         </div>
     </div>
     <div class="col-md-12 filter-section">
@@ -51,9 +51,8 @@
                 </td>
                 <td class="td-single text-right actions-container">
                     <div class="actions">
-                        <a><i class="fa fa-trash"></i></a>
-                        <a><i class="fa fa-pencil"></i></a>
-                        <a [routerLink]="['contact',contact.Id]"><i class="fa fa-eye"></i></a>
+                        <a (click)="removeFromGroup(contact)"><i class="fa fa-trash"></i></a>
+                        <a [routerLink]="['contact',contact.Id]"><i class="fa fa-pencil"></i></a>
                     </div>
                 </td>
             </tr>
@@ -65,3 +64,35 @@
         </div>
     </div>
 </div>
+
+<div *ngIf="isAddMode"  class="modal fade in modal-back" role="dialog" tabindex="-1" style="display: block;" aria-modal="true">
+  <div role="document" class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button (click)="isAddMode=false" aria-label="Close" class="close pull-right" type="button">
+          <span aria-hidden="true">×</span>
+        </button>
+      </div>
+      <div class="modal-body text-center">
+        <div>
+          <input [(ngModel)]="firstName" class="ws-login-input" type="text" placeholder="first name">
+          <br>
+          <input [(ngModel)]="lastName" class="ws-login-input" type="text" placeholder="last name">
+          <br>
+
+          <input [(ngModel)]="mobile" class="ws-login-input" type="text" placeholder="mobile">
+          <br>
+
+          <input [(ngModel)]="email" class="ws-login-input" type="text" placeholder="email">
+          <br>
+
+          <input [(ngModel)]="gender" class="ws-login-input" type="text" placeholder="gender">
+          <br>
+
+          <button class="ws-btn modal-btn" (click)="addContact()">Save</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
