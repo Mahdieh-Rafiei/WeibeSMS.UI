@@ -1,38 +1,69 @@
 <div class="main-container">
   <div class="col-md-12 btn-section text-right">
-    <div class="col-md-6 no-pad text-left">
-      <button class="gray-btn"> <i class="fa fa-arrow-left"></i> Previous </button>
+    <button class="add-contact" [routerLink]="['/draft-list']"> <i class="fa fa-plus"></i> Create template </button>
+  </div>
+  <div class="col-md-12 filter-section">
+    <div class="col-md-6 no-pad select text-left">
+      <input type="checkbox"> SELECT ALL
     </div>
-    <div class="col-md-6 no-pad text-right">
-      <button class="green-btn"> <i class="fa fa-plus"></i> Save Template </button>
+    <div class="col-md-6 operation no-pad text-right">
+      <div class="search">
+        <input type="text" class="form-control" placeholder="Search Group">
+        <button class="btn btn-secondary search-icon" type="button">
+          <i class="fa fa-search"></i>
+        </button>
+      </div>
+      <button class="default-btn op-btn">
+        <i class="fa fa-filter"></i> Filter
+      </button>
+      <button class="default-btn op-btn">
+        <i class="fa fa-sort"></i> Sort
+      </button>
     </div>
   </div>
-  <div class="col-md-12 no-pad">
-    <div class="col-md-8 padding">
-      <textarea rows="7" class="content-box "> </textarea>
-      <div class="textarea-label">Message |</div>
-      <div class="count-sms">
-        <span>0 / 177</span>  |  <span>0 SMS</span>
-      </div>
-    </div>
-    <div class="col-md-4 padding">
-      <div class="content-box personalize">
-        <p>Personalize</p>
-        <p>* To use the field dynamically</p>
-        <p><i class="fa fa-plus-circle"></i> Name</p>
-        <p><i class="fa fa-plus-circle"></i> Surname</p>
-        <p><i class="fa fa-plus-circle"></i> Phone number</p>
-      </div>
-      <div class="template">
-        <select class="content-box">
-          <option>Template Select</option>
-          <option>Template 2</option>
-          <option>Template 3</option>
-          <option>Template 4</option>
-          <option>Template 5</option>
-        </select>
-      </div>
+  <div class="col-md-12 table-section no-pad text-left">
+    <table class="index-table text-left">
+      <thead>
+      <tr>
+        <th class="text-right"><i class="fa fa-sort"></i> Name</th>
+        <th class="text-center"><i class="fa fa-sort"></i> MESSAGE</th>
+        <th class="text-center">SEND</th>
+        <th></th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let d of drafts">
+        <td class="text-right">
+          <div class="table-head">
+            <input type="checkbox">{{d.Title}}
+          </div>
+        </td>
+        <td class=" text-center">
+          <div>
+            {{d.Summary}} <a><span [title]="d.MessageText" style="color: #f5274e;">. . .</span></a>
+          </div>
+        </td>
+        <td class=" text-center">
+          <div>
+            <select class="select-send">
+              <option>Simple send</option>
+              <option>Scheduled send</option>
+              <option>Event send</option>
+            </select>
+          </div>
+        </td>
+        <td class="td-single text-right actions-container">
+          <div class="actions">
+            <a><i (click)="removeDraft(d)" class="fa fa-trash"></i></a>
+            <a><i [routerLink]="['../draft/',d.Id]" class="fa fa-pencil"></i></a>
+          </div>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+    <div class="table-pagination text-right">
+      <span><i class="fa fa-arrow-circle-left"></i></span>
+      <span><i class="fa fa-arrow-circle-right"></i></span>
     </div>
   </div>
-
 </div>

@@ -49,9 +49,10 @@ export const APP_ROUTES: Routes = [
   ]},
 
   {path: 'draft',component: DraftComponent},
+  {path: 'draft/:id',component: DraftComponent},
   {path: 'draft-list',component: DraftListComponent},
 
-  {path: 'ticket',component: TicketComponent},
+  {path: 'ticket/:id',component: TicketComponent},
   {path: 'add-ticket',component: AddTicketComponent},
   {path: 'ticket-list',component: TicketListComponent},
 
