@@ -35,12 +35,16 @@ import { SendMessageSecondStepComponent } from './send-message/send-message-seco
 import { SendMessageThirdStepComponent } from './send-message/send-message-third-step/send-message-third-step.component';
 import { SendMessageScheduleComponent } from './send-message/send-message-schedule/send-message-schedule.component';
 import { SendMessageEventComponent } from './send-message/send-message-event/send-message-event.component';
-import { AddDraftComponent } from './draft/add-draft/add-draft.component';
+import { DraftComponent } from './draft/draft/draft.component';
 import { DraftListComponent } from './draft/draft-list/draft-list.component';
 import {ToastrModule} from 'ngx-toastr';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
+import { TicketListComponent } from './tickets/ticket-list/ticket-list.component';
+import { TicketComponent } from './tickets/ticket/ticket.component';
+import { AddTicketComponent } from './tickets/add-ticket/add-ticket.component';
 
+import { AngularEditorModule } from '@kolkov/angular-editor';
 
 @NgModule({
   declarations: [
@@ -65,14 +69,17 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
     SendMessageThirdStepComponent,
     SendMessageScheduleComponent,
     SendMessageEventComponent,
-    AddDraftComponent,
+    DraftComponent,
     DraftListComponent,
+    TicketListComponent,
+    TicketComponent,
+    AddTicketComponent,
 
   ],
   imports: [
     BrowserModule,
     FormsModule,
-    HttpClientModule,
+    HttpClientModule, AngularEditorModule,
     BsDropdownModule.forRoot(),
     TabsModule.forRoot(),
     RouterModule.forRoot(APP_ROUTES),

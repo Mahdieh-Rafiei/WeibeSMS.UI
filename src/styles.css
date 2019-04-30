@@ -146,9 +146,38 @@ article, aside, details, figcaption, figure, footer, header, hgroup, main, menu,
     color: #fff;
     font-size: 14px;
 }
-
-
-
+.green-btn{
+    background-color: #08a5a3;
+    border: 1px solid #08a5a3;
+    border-radius: 2px;
+    color: #ffffff;
+    padding: 10px 15px;
+    font-size: 12px;
+}
+.red-btn{
+    background-color: #f5274e;
+    border: 1px solid #f5274e;
+    border-radius: 2px;
+    color: #ffffff;
+    padding: 10px 15px;
+    font-size: 12px;
+}
+.gray-btn{
+    background-color: #c2c2c2;
+    border: 1px solid #c2c2c2;
+    border-radius: 2px;
+    color: #ffffff;
+    padding: 10px 15px;
+    font-size: 12px;
+}
+.warning-box{
+    background: #fb9678;
+    color: #fff;
+    border-color: #fb9678;
+    padding: 10px;
+    border-radius: 8px;
+    line-height: 1.9;
+}
 /*Modal*/
 .modal-back{
   background: #0000007a;

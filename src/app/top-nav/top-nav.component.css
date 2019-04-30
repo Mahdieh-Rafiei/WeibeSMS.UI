@@ -4,6 +4,10 @@
     border-radius: 0 !important;
     margin-bottom: 0;
 }
+
+.navbar-toggle{
+    margin-left: 0;
+}
 ul.left-box-nav{
     margin-left: 15px;
     margin-bottom: 0;
