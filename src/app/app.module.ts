@@ -42,57 +42,64 @@ import { TicketListComponent } from './tickets/ticket-list/ticket-list.component
 import { TicketComponent } from './tickets/ticket/ticket.component';
 import { AddTicketComponent } from './tickets/add-ticket/add-ticket.component';
 
-import { AngularEditorModule } from '@kolkov/angular-editor';
 import { CreateTransactionComponent } from './create-transaction/create-transaction.component';
 
-@NgModule({
-  declarations: [
-    AppComponent,
-    LoginComponent,
-    RegisterComponent,
-    SidebarComponent,
-    TopNavComponent,
-    DashboardComponent,
-    ForgotPasswordComponent,
-    GroupComponent,
-    GroupListComponent,
-    ContactComponent,
-    AddContactComponent,
-    SingleAddContactComponent,
-    AddContactFromFileComponent,
-    ImportContactFromOtherListsComponent,
-    UserEventComponent,
-    SendMessageComponent,
-    SendMessageFirstStepComponent,
-    SendMessageSecondStepComponent,
-    SendMessageThirdStepComponent,
-    SendMessageScheduleComponent,
-    SendMessageEventComponent,
-    DraftComponent,
-    DraftListComponent,
-    TicketListComponent,
-    TicketComponent,
-    AddTicketComponent,
-    CreateTransactionComponent,
+import { PlanListComponent } from './invoices/plan-list/plan-list.component';
+import { InvoiceListComponent } from './invoices/invoice-list/invoice-list.component';
 
-  ],
-  imports: [
-    BrowserModule,
-    FormsModule,
-    HttpClientModule, AngularEditorModule,
-    BsDropdownModule.forRoot(),
-    TabsModule.forRoot(),
-    RouterModule.forRoot(APP_ROUTES),
-  ],
-  providers: [
-    ApiService,
-    ConfigService,
-    AuthenticationService,
-    RegisterService,
-    CanActivateRouteGuard,
-    NotificationService,
-    UserEventService
-  ],
-  bootstrap: [AppComponent]
+import { AngularEditorModule } from '@kolkov/angular-editor';
+
+
+@NgModule({
+    declarations: [
+        AppComponent,
+        LoginComponent,
+        RegisterComponent,
+        SidebarComponent,
+        TopNavComponent,
+        DashboardComponent,
+        ForgotPasswordComponent,
+        GroupComponent,
+        GroupListComponent,
+        ContactComponent,
+        AddContactComponent,
+        SingleAddContactComponent,
+        AddContactFromFileComponent,
+        ImportContactFromOtherListsComponent,
+        UserEventComponent,
+        SendMessageComponent,
+        SendMessageFirstStepComponent,
+        SendMessageSecondStepComponent,
+        SendMessageThirdStepComponent,
+        SendMessageScheduleComponent,
+        SendMessageEventComponent,
+        DraftComponent,
+        DraftListComponent,
+        TicketListComponent,
+        TicketComponent,
+        AddTicketComponent,
+        PlanListComponent,
+        InvoiceListComponent,
+        CreateTransactionComponent
+
+    ],
+    imports: [
+        BrowserModule,
+        FormsModule,
+        HttpClientModule, AngularEditorModule,
+        BsDropdownModule.forRoot(),
+        TabsModule.forRoot(),
+        RouterModule.forRoot(APP_ROUTES),
+    ],
+    providers: [
+        ApiService,
+        ConfigService,
+        AuthenticationService,
+        RegisterService,
+        CanActivateRouteGuard,
+        NotificationService,
+        UserEventService
+    ],
+    bootstrap: [AppComponent]
 })
 export class AppModule { }

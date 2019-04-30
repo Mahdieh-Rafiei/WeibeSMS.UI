@@ -29,6 +29,9 @@ import {AddTicketComponent} from "./app/tickets/add-ticket/add-ticket.component"
 import {TicketListComponent} from "./app/tickets/ticket-list/ticket-list.component";
 import {CreateTransactionComponent} from "./app/create-transaction/create-transaction.component";
 
+import {InvoiceListComponent} from "./app/invoices/invoice-list/invoice-list.component";
+import {PlanListComponent} from "./app/invoices/plan-list/plan-list.component";
+
 export const APP_ROUTES: Routes = [
   {path: '', component: DashboardComponent,canActivate:[CanActivateRouteGuard]},
 
@@ -55,6 +58,9 @@ export const APP_ROUTES: Routes = [
   {path: 'ticket',component: TicketComponent},
   {path: 'add-ticket',component: AddTicketComponent},
   {path: 'ticket-list',component: TicketListComponent},
+
+  {path: 'invoice-list',component: InvoiceListComponent},
+  {path: 'plan-list',component: PlanListComponent},
 
   {path: 'login', component: LoginComponent },
   {path: 'register', component: RegisterComponent},

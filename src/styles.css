@@ -197,3 +197,40 @@ article, aside, details, figcaption, figure, footer, header, hgroup, main, menu,
   }
 }
 
+.pending-btn{
+    background-color: #fe9c00;
+    border:1px solid #fe9c00;
+    color: #ffffff;
+    font-size: 12px;
+    font-weight: 400;
+    padding: 0 5px;
+    border-radius: 4px;
+}
+.paid-btn{
+    background-color: #08a5a3;
+    border:1px solid #08a5a3;
+    color: #ffffff;
+    font-size: 12px;
+    font-weight: 400;
+    padding: 0 5px;
+    border-radius: 4px;
+}
+.failed-btn{
+    background-color: #f5274e;
+    border: 1px solid #f5274e;
+    color: #ffffff;
+    font-size: 12px;
+    font-weight: 400;
+    padding: 0 5px;
+    border-radius: 4px;
+}
+.white-btn{
+    background-color: #ffffff;
+    border: 1px solid #ffffff;
+    box-shadow: 1px 1px 5px 1px #d6d6d6;
+    color: #000000;
+    font-size: 12px;
+    font-weight: 400;
+    padding: 4px 10px;
+    border-radius: 4px;
+}
