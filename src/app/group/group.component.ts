@@ -41,7 +41,7 @@ export class GroupComponent implements OnInit {
      this.contactService.removeContactFromGroup(this.group.Id,contact.Id)
        .subscribe(res=>{
          console.log(res);
-         this.contacts = _.remove(this.contacts,c=>c.Id != contact.Id);
+         _.remove(this.contacts,c=>c.Id == contact.Id);
        });
   }
 
@@ -57,4 +57,6 @@ export class GroupComponent implements OnInit {
         });
       });
   }
+
+
 }

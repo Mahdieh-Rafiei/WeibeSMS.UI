@@ -61,7 +61,7 @@ export class GroupListComponent implements OnInit {
       return;
 
     this.groupService.removeGroup(this.currentGroup.Id).subscribe(res=>console.log(res));
-    this.groups = _.remove(this.groups,g=>g.Id != this.currentGroup.Id);
+    _.remove(this.groups,g=>g.Id == this.currentGroup.Id);
   }
 
   modifyGroup(){

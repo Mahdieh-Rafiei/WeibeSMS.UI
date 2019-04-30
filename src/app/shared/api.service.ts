@@ -6,6 +6,7 @@ import { map } from 'rxjs/operators';
 import {catchError} from 'rxjs/internal/operators';
 import {Router} from '@angular/router';
 import {AuthenticationService} from '../login/authentication.service';
+import {NotificationService} from './notification.service';
 
 @Injectable({
   providedIn: 'root'
@@ -20,7 +21,8 @@ export class ApiService {
 
   constructor(private httpClient: HttpClient,
               private configService: ConfigService,
-              private route: Router) { }
+              private route: Router,
+              private notificationService:NotificationService) { }
 
   get(url: string,needAuth:boolean): Observable<any> {
     let options = {
@@ -69,7 +71,7 @@ export class ApiService {
   handleError(error,router:Router,configService:ConfigService) {
     let errorMessage = '';
     if (error.error instanceof ErrorEvent) {
-      // client-side error
+
       errorMessage = `Error: ${error.error.message}`;
     } else {
       // server-side error
@@ -78,7 +80,7 @@ export class ApiService {
         this.route.navigateByUrl('login');
          configService.authenticationChanged.emit(false);
       }
-      errorMessage = `Error Code: ${error.status}\nMessage: ${error.message}`;
+      errorMessage = `Status Code: ${error.status}\nMessage: ${error.message}\n `;
     }
     window.alert(errorMessage);
     return throwError(errorMessage);

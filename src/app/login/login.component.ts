@@ -3,6 +3,7 @@ import {RegisterService} from '../register/register.service';
 import {Router} from '@angular/router';
 import {AuthenticationService} from './authentication.service';
 import {NotificationService} from '../shared/notification.service';
+import {ConfigService} from '../shared/config.service';
 
 @Component({
   selector: 'app-login',
@@ -23,19 +24,22 @@ export class LoginComponent implements OnInit {
   constructor(private authService:AuthenticationService,
               private registerService:RegisterService,
               private notificationService:NotificationService,
-              private router :Router) { }
+              private router :Router,
+              private configService:ConfigService) { }
 
   ngOnInit() {
   }
 
   login(){
+    debugger;
+    let val = this.configService.errorMessages.get(10);
     if (this.username.length == 0){
-      this.notificationService.error('username is null');
+      this.notificationService.error('username cant be null!','');
       return;
     }
 
     if (this.password.length == 0){
-      this.notificationService.error('password is null');
+      this.notificationService.error('password cant be null!','');
       return;
     }
 

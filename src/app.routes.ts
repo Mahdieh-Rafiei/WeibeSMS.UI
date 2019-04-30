@@ -2,7 +2,7 @@ import {Routes} from '@angular/router';
 import {LoginComponent} from './app/login/login.component';
 import {DashboardComponent} from './app/dashboard/dashboard.component';
 import {RegisterComponent} from './app/register/register.component';
-import {CanActivateRouteGuard} from './app/shared/CanActivateRouteGuard';
+import {CanActivateRouteGuard} from './app/shared/canActivateRouteGuard';
 import {ForgotPasswordComponent} from './app/forgot-password/forgot-password.component';
 
 import {GroupComponent} from './app/group/group.component';
@@ -53,9 +53,10 @@ export const APP_ROUTES: Routes = [
   ]},
 
   {path: 'draft',component: DraftComponent},
+  {path: 'draft/:id',component: DraftComponent},
   {path: 'draft-list',component: DraftListComponent},
 
-  {path: 'ticket',component: TicketComponent},
+  {path: 'ticket/:id',component: TicketComponent},
   {path: 'add-ticket',component: AddTicketComponent},
   {path: 'ticket-list',component: TicketListComponent},
 
