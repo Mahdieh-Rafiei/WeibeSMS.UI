@@ -9,7 +9,7 @@
     border: none;
     border-radius: 0;
     overflow-y: auto;
-    background-color: #666666;
+    background-color: #333;
     bottom: 0;
     overflow-x: hidden;
     padding-bottom: 40px;
@@ -23,12 +23,16 @@
 }
 a.list-group-item:hover, a.list-group-item:focus {
     color: #fff !important;
-    background-color: #666666 !important;
+    background-color: #333 !important;
 }
 .list-group-item {
-    background-color: #666 !important;
-    border: 1px solid #666 !important;
-    color: #ffffff !important;
+    background-color: #333 !important;
+    border: 1px solid #333 !important;
+    color: rgba(255,255,255,0.5);
+}
+.list-group-item:hover{
+    color: #fff;
+
 }
 .logo-box{
     padding: 10px;
@@ -52,7 +56,8 @@ a.list-group-item:hover, a.list-group-item:focus {
     height: auto;
 }
 .nested-menu .expand ul.submenu li a {
-    color: #fff;
+    color: #f9f9f9;
     padding: 10px;
     display: block;
 }
+

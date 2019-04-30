@@ -1,21 +1,18 @@
 .navbar{
     margin-left: 200px;
-    background: #de474f;
+    background: #ed4952;
     border-radius: 0 !important;
     margin-bottom: 0;
 }
-
-.navbar-toggle{
+.navbar-toggle {
     margin-left: 0;
 }
-ul.left-box-nav{
-    margin-left: 15px;
-    margin-bottom: 0;
-    list-style: none;
-    padding: 0;
-    border-right: 1px solid #fd8098;
-    width: 360px;
+@media (max-width: 767px) {
+    .navbar-toggle {
+        margin-left: 0;
+    }
 }
+
 a.toggle-menu{
     padding: 0 14px;
     line-height: 60px;
@@ -25,9 +22,9 @@ a.toggle-menu{
     cursor: pointer;
 }
 .credit h5{
-    color: #fff;
-    font-size: 12px;
-    font-weight: 400;
+    color: #ffffff;
+    padding: 5px 0;
+    margin: 0;
 }
 .buy-credit{
     border: 2px solid #ffffff;
@@ -35,22 +32,21 @@ a.toggle-menu{
     font-weight: 400;
     padding: 6px 10px;
     border-radius: 5px;
-    margin-left: 10px;
     cursor: pointer;
     color: #fff;
     transition: .2s;
-    margin-top: 13px;
+    background: none;
+    margin-right: 15px;
 }
-ul.left-box-nav:nth-child(3){
-    border-right: none;
+.notification i{
+    color: #ffffff;
+    font-size: 20px;
+    cursor: pointer;
 }
-.left-box-nav li, .right-box-nav li{
-    float: left !important;
-    position: relative;
-    display: block;
+.right-nav span{
+    color: #ffffff;
+    padding-right: 20px;
 }
-
-
 /*------nav-right-section------*/
 /*profile*/
 .profile {

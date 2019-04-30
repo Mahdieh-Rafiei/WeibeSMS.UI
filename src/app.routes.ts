@@ -27,6 +27,10 @@ import {DraftListComponent} from "./app/draft/draft-list/draft-list.component";
 import {TicketComponent} from "./app/tickets/ticket/ticket.component";
 import {AddTicketComponent} from "./app/tickets/add-ticket/add-ticket.component";
 import {TicketListComponent} from "./app/tickets/ticket-list/ticket-list.component";
+import {CreateTransactionComponent} from "./app/create-transaction/create-transaction.component";
+
+import {InvoiceListComponent} from "./app/invoices/invoice-list/invoice-list.component";
+import {PlanListComponent} from "./app/invoices/plan-list/plan-list.component";
 
 export const APP_ROUTES: Routes = [
   {path: '', component: DashboardComponent,canActivate:[CanActivateRouteGuard]},
@@ -56,9 +60,15 @@ export const APP_ROUTES: Routes = [
   {path: 'add-ticket',component: AddTicketComponent},
   {path: 'ticket-list',component: TicketListComponent},
 
+  {path: 'invoice-list',component: InvoiceListComponent},
+  {path: 'plan-list',component: PlanListComponent},
+
   {path: 'login', component: LoginComponent },
   {path: 'register', component: RegisterComponent},
   {path: 'forgot-password', component: ForgotPasswordComponent},
+
+
+  {path: 'create-transaction', component: CreateTransactionComponent},
 
   {path:'user-event',component:UserEventComponent},
 
