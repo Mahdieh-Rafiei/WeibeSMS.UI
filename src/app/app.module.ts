@@ -43,6 +43,7 @@ import { TicketComponent } from './tickets/ticket/ticket.component';
 import { AddTicketComponent } from './tickets/add-ticket/add-ticket.component';
 
 import { AngularEditorModule } from '@kolkov/angular-editor';
+import { CreateTransactionComponent } from './create-transaction/create-transaction.component';
 
 @NgModule({
   declarations: [
@@ -72,6 +73,7 @@ import { AngularEditorModule } from '@kolkov/angular-editor';
     TicketListComponent,
     TicketComponent,
     AddTicketComponent,
+    CreateTransactionComponent,
 
   ],
   imports: [

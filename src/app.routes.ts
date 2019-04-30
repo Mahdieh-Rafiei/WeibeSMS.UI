@@ -27,6 +27,7 @@ import {DraftListComponent} from "./app/draft/draft-list/draft-list.component";
 import {TicketComponent} from "./app/tickets/ticket/ticket.component";
 import {AddTicketComponent} from "./app/tickets/add-ticket/add-ticket.component";
 import {TicketListComponent} from "./app/tickets/ticket-list/ticket-list.component";
+import {CreateTransactionComponent} from "./app/create-transaction/create-transaction.component";
 
 export const APP_ROUTES: Routes = [
   {path: '', component: DashboardComponent,canActivate:[CanActivateRouteGuard]},
@@ -58,6 +59,9 @@ export const APP_ROUTES: Routes = [
   {path: 'login', component: LoginComponent },
   {path: 'register', component: RegisterComponent},
   {path: 'forgot-password', component: ForgotPasswordComponent},
+
+
+  {path: 'create-transaction', component: CreateTransactionComponent},
 
   {path:'user-event',component:UserEventComponent},
 

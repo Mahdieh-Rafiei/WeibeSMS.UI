@@ -4,9 +4,13 @@
     border-radius: 0 !important;
     margin-bottom: 0;
 }
-
-.navbar-toggle{
+.navbar-toggle {
     margin-left: 0;
+}
+@media (max-width: 767px) {
+    .navbar-toggle {
+        margin-left: 0;
+    }
 }
 
 a.toggle-menu{
@@ -32,14 +36,16 @@ a.toggle-menu{
     color: #fff;
     transition: .2s;
     background: none;
+    margin-right: 15px;
 }
 .notification i{
     color: #ffffff;
     font-size: 20px;
     cursor: pointer;
 }
-.right-nav{
-
+.right-nav span{
+    color: #ffffff;
+    padding-right: 20px;
 }
 /*------nav-right-section------*/
 /*profile*/
