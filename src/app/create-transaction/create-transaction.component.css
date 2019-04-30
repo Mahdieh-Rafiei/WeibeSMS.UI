@@ -1,0 +1,128 @@
+.billing-log h4{
+    color: #949494;
+    font-weight: 600;
+}
+.filter-section{
+    background-color: #ffffff;
+    border: 1px solid #c2c2c2;
+    border-radius: 4px;
+    padding: 10px 15px;
+    font-size: 12px;
+}
+.filter-section input{
+    margin: 0;
+}
+.select{
+    line-height: 34px;
+}
+.operation{
+    /*display: inline-flex;*/
+}
+.op-btn{
+    margin-right: 5px;
+    float: right;
+    padding: 6px 15px;
+}
+.search{
+    position: relative;
+    float: right;
+}
+.search input{
+    border: none;
+    border-bottom: 1px solid #a7a7a7;
+    border-radius: 0;
+    padding: 0 40px;
+    box-shadow: none;
+}
+.search-icon{
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: none;
+    color: #a7a7a7;
+}
+.table-section{
+    background-color: #ffffff;
+    border: 1px solid #c2c2c2;
+    border-radius: 4px;
+    padding: 10px 15px;
+    font-size: 12px;
+    margin-top: 10px;
+}
+/*-----------------------------------------------------table---------------------------------------------------------*/
+table{
+    width: 100%;
+    background-color: #ffffff;
+    border-radius: 4px;
+    transition: .3s;
+    outline: none;
+}
+table th{
+    font-size: 14px;
+    color: #aaaaaa;
+    padding: 15px;
+    font-weight: 400;
+    text-align: left;
+}
+tbody tr td{
+    padding: 5px 15px;
+    border-top: 1px solid #d4d4d4;
+    text-align: left;
+}
+table tbody tr:hover{
+    background-color: #acebe9;
+    cursor: pointer;
+}
+table tbody tr:hover .actions{
+    opacity: 1;
+}
+
+.actions{
+    opacity: 0;
+    font-size: 13px;
+    text-align: center;
+    transition: .3s;
+}
+.actions i {
+    padding: 10px;
+    color:#fff;
+    border-radius: 50%;
+    background-color: #08a5a3;
+    margin-left: 5px;
+}
+.actions i:hover{
+    color: #48786a;
+    background-color: #fff;
+}
+table input[type=checkbox]{
+    margin-right: 7px;
+}
+.table-pagination{
+    background: #ffffff;
+    padding: 10px 15px;
+    border-top: 1px solid #d4d4d4;
+    border-radius: 0 0 4px 4px
+}
+.table-pagination i{
+    font-size: 25px;
+    color: #949494;
+}
+.table-pagination span{
+    margin-left: 5px;
+}
+.simple-btn{
+    background-color: #08a5a3;
+    border: 1px solid #08a5a3;
+    color: #ffffff;
+    font-size: 12px;
+    border-radius: 5px;
+    font-weight: 400;
+}
+.schedule-btn{
+    background-color: #4680fe;
+    border: 1px solid #4680fe;
+    color: #ffffff;
+    font-size: 12px;
+    border-radius: 5px;
+    font-weight: 400;
+}
