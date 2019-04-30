@@ -1,3 +1,33 @@
-<p>
-  add-ticket works!
-</p>
+<div class="main-container">
+  <div class="col-md-12 div-section">
+    <div class="form-group">
+      <input type="text" placeholder="title" class="ws form-control has-tooltip">
+    </div>
+    <div class="form-group">
+      <div class="row">
+        <div class="col-xs-6">
+          <select class="ws form-control has-tooltip">
+            <option value="1">support</option>
+            <option value="2">developer</option>
+            <option value="3">sale</option>
+            <option value="4">manager</option>
+            <option value="8">undefined</option>
+          </select>
+        </div>
+        <div class="col-lg-6 col-xs-6">
+          <select class="ws form-control">
+            <option value="1">small</option>
+            <option value="2">middle</option>
+            <option value="3">large</option>
+          </select>
+        </div>
+      </div>
+    </div>
+    <angular-editor></angular-editor>
+    <div class="form-group">
+      <button class="ticket-submit">Submit</button>
+    </div>
+  </div>
+</div>
+
+

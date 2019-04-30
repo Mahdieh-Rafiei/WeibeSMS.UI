@@ -170,7 +170,14 @@ article, aside, details, figcaption, figure, footer, header, hgroup, main, menu,
     padding: 10px 15px;
     font-size: 12px;
 }
-
+.warning-box{
+    background: #fb9678;
+    color: #fff;
+    border-color: #fb9678;
+    padding: 10px;
+    border-radius: 8px;
+    line-height: 1.9;
+}
 /*Modal*/
 .modal-back{
   background: #0000007a;

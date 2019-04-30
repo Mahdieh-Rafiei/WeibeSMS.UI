@@ -42,7 +42,7 @@ import { TicketListComponent } from './tickets/ticket-list/ticket-list.component
 import { TicketComponent } from './tickets/ticket/ticket.component';
 import { AddTicketComponent } from './tickets/add-ticket/add-ticket.component';
 
-
+import { AngularEditorModule } from '@kolkov/angular-editor';
 
 @NgModule({
   declarations: [
@@ -77,7 +77,7 @@ import { AddTicketComponent } from './tickets/add-ticket/add-ticket.component';
   imports: [
     BrowserModule,
     FormsModule,
-    HttpClientModule,
+    HttpClientModule, AngularEditorModule,
     BsDropdownModule.forRoot(),
     TabsModule.forRoot(),
     RouterModule.forRoot(APP_ROUTES),

@@ -1,0 +1,23 @@
+.div-section{
+    background-color: #ffffff;
+    border: 1px solid #c2c2c2;
+    border-radius: 4px;
+    padding: 20px 15px;
+    font-size: 14px;
+    font-weight: 600;
+    color: #000;
+    margin-bottom: 15px;
+    margin-top: 15px;
+}
+.ticket-submit{
+    display: block;
+    width: 100%;
+    padding: 8px 12px;
+    font-size: 16px;
+    background-color: #08a5a3;
+    border: 1px solid #08a5a3;
+    color: #ffffff;
+    border-radius: 4px;
+    margin-top: 10px;
+    font-weight: 400;
+}
