@@ -16,7 +16,7 @@ import {ApiService} from './shared/api.service';
 import {ConfigService} from './shared/config.service';
 import {AuthenticationService} from './login/authentication.service';
 import {RegisterService} from './register/register.service';
-import {CanActivateRouteGuard} from './shared/CanActivateRouteGuard';
+import {CanActivateRouteGuard} from './shared/canActivateRouteGuard';
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
 import { GroupComponent } from './group/group.component';
 import { GroupListComponent } from './group/group-list/group-list.component';
@@ -28,7 +28,7 @@ import { SingleAddContactComponent } from './group/add-contact/single-add-contac
 import { AddContactFromFileComponent } from './group/add-contact/add-contact-from-file/add-contact-from-file.component';
 import { ImportContactFromOtherListsComponent } from './group/add-contact/import-contact-from-other-lists/import-contact-from-other-lists.component';
 import { UserEventComponent } from './user-event/user-event.component';
-import {UserEventService} from './user-event/user-event.service';
+import { UserEventService} from './user-event/user-event.service';
 import { SendMessageComponent } from './send-message/send-message.component';
 import { SendMessageFirstStepComponent } from './send-message/send-message-first-step/send-message-first-step.component';
 import { SendMessageSecondStepComponent } from './send-message/send-message-second-step/send-message-second-step.component';
@@ -37,6 +37,8 @@ import { SendMessageScheduleComponent } from './send-message/send-message-schedu
 import { SendMessageEventComponent } from './send-message/send-message-event/send-message-event.component';
 import { AddDraftComponent } from './draft/add-draft/add-draft.component';
 import { DraftListComponent } from './draft/draft-list/draft-list.component';
+import {ToastrModule} from 'ngx-toastr';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
 
 
@@ -74,6 +76,10 @@ import { DraftListComponent } from './draft/draft-list/draft-list.component';
     BsDropdownModule.forRoot(),
     TabsModule.forRoot(),
     RouterModule.forRoot(APP_ROUTES),
+    ToastrModule.forRoot({
+      preventDuplicates: true
+    }),
+    BrowserAnimationsModule
   ],
   providers: [
     ApiService,

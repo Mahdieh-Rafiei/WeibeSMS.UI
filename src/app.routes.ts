@@ -2,7 +2,7 @@ import {Routes} from '@angular/router';
 import {LoginComponent} from './app/login/login.component';
 import {DashboardComponent} from './app/dashboard/dashboard.component';
 import {RegisterComponent} from './app/register/register.component';
-import {CanActivateRouteGuard} from './app/shared/CanActivateRouteGuard';
+import {CanActivateRouteGuard} from './app/shared/canActivateRouteGuard';
 import {ForgotPasswordComponent} from './app/forgot-password/forgot-password.component';
 
 import {GroupComponent} from './app/group/group.component';
