@@ -33,12 +33,9 @@
         <p (click)="addSegment(3)"><i class="fa fa-plus-circle"></i> Phone number</p>
       </div>
       <div class="template">
-        <select class="content-box">
-          <option>Template Select</option>
-          <option>Template 2</option>
-          <option>Template 3</option>
-          <option>Template 4</option>
-          <option>Template 5</option>
+        <select (change)="test($event)" class="content-box">
+          <option [innerText]="d.Title" [value]="d.Id" *ngFor="let d of drafts">
+          </option>
         </select>
       </div>
     </div>
