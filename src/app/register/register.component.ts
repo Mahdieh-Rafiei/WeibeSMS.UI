@@ -13,12 +13,12 @@ import {UtilityService} from '../shared/utility.service';
 })
 export class RegisterComponent implements OnInit {
 
-  firstName:string;
-  lastName:string;
-  userName:string;
-  password:string;
-  email:string;
-  confirmPassword:string;
+  firstName:string='';
+  lastName:string='';
+  userName:string='';
+  password:string='';
+  email:string='';
+  confirmPassword:string='';
 
   constructor(private registerService:RegisterService,
               private authService:AuthenticationService,
