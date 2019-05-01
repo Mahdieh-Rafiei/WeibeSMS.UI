@@ -1,12 +1,10 @@
-.btn-section{
-    padding: 15px 0;
-}
 .filter-section{
     background-color: #ffffff;
     border: 1px solid #c2c2c2;
     border-radius: 4px;
     padding: 10px 15px;
     font-size: 12px;
+    margin-top: 10px;
 }
 .filter-section input{
     margin: 0;
@@ -114,6 +112,9 @@ i.fa.fa-sort{
     margin-right: 5px;
 }
 
+.green-btn, .blue-btn{
+    padding: 5px 15px !important;
+}
 
 /*---------------------------------------Responsive-------------------------------------------*/
 @media (max-width: 991px) and (min-width: 768px){
