@@ -48,6 +48,11 @@ import { PlanListComponent } from './invoices/plan-list/plan-list.component';
 import { InvoiceListComponent } from './invoices/invoice-list/invoice-list.component';
 import { AngularEditorModule } from '@kolkov/angular-editor';
 
+import { SmsReportListComponent } from './sms-reports/sms-report-list/sms-report-list.component';
+import { SmsReportComponent } from './sms-reports/sms-report/sms-report.component';
+import { DefinitionScheduleEventComponent } from './definition-schedule-event/definition-schedule-event.component';
+
+
 @NgModule({
     declarations: [
         AppComponent,
@@ -78,7 +83,11 @@ import { AngularEditorModule } from '@kolkov/angular-editor';
         AddTicketComponent,
         PlanListComponent,
         InvoiceListComponent,
-        CreateTransactionComponent
+        CreateTransactionComponent,
+        SmsReportListComponent,
+        SmsReportComponent,
+        DefinitionScheduleEventComponent,
+
   ],
   imports: [
     BrowserModule,
