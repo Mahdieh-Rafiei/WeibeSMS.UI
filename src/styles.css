@@ -153,6 +153,14 @@ article, aside, details, figcaption, figure, footer, header, hgroup, main, menu,
     padding: 10px 15px;
     font-size: 12px;
 }
+.blue-btn{
+    background-color: #4680fe;
+    border: 1px solid #4680fe;
+    border-radius: 2px;
+    color: #ffffff;
+    padding: 10px 15px;
+    font-size: 12px;
+}
 .red-btn{
     background-color: #f5274e;
     border: 1px solid #f5274e;

@@ -32,6 +32,10 @@ import {CreateTransactionComponent} from "./app/create-transaction/create-transa
 import {InvoiceListComponent} from "./app/invoices/invoice-list/invoice-list.component";
 import {PlanListComponent} from "./app/invoices/plan-list/plan-list.component";
 
+import {SmsReportComponent} from "./app/sms-reports/sms-report/sms-report.component";
+import {SmsReportListComponent} from "./app/sms-reports/sms-report-list/sms-report-list.component";
+import {DefinitionScheduleEventComponent} from "./app/definition-schedule-event/definition-schedule-event.component";
+
 export const APP_ROUTES: Routes = [
   {path: '', component: DashboardComponent,canActivate:[CanActivateRouteGuard]},
 
@@ -67,8 +71,12 @@ export const APP_ROUTES: Routes = [
   {path: 'register', component: RegisterComponent},
   {path: 'forgot-password', component: ForgotPasswordComponent},
 
+  {path: 'sms-report-list', component: SmsReportListComponent},
+  {path: 'sms-report', component: SmsReportComponent},
 
   {path: 'create-transaction', component: CreateTransactionComponent},
+
+  {path: 'schedule-event', component: DefinitionScheduleEventComponent},
 
   {path:'user-event',component:UserEventComponent},
 

@@ -1,12 +1,47 @@
 .btn-section{
     padding: 15px 0;
 }
+.previous-btn{
+    background-color: #c2c2c2;
+    border: 1px solid #c2c2c2;
+    border-radius: 2px;
+    color: #ffffff;
+    padding: 10px 15px;
+    font-size: 12px;
+}
+.message-report{
+    background-color: #e4f2ff;
+    border: 1px solid #beddff;
+    padding: 10px;
+    border-radius: 4px;
+}
+.message-report span{
+    color: #878e94;
+    font-weight: 600;
+}
+.message-report span:nth-child(2){
+    float: right;
+}
+.message-report p{
+    padding: 10px 15px;
+}
+.send-again{
+    text-align: right;
+    padding: 0 !important;
+}
+.send-again a{
+    color: #08a5a3;
+    text-decoration: none;
+    cursor: pointer;
+}
+/*filter-section*/
 .filter-section{
     background-color: #ffffff;
     border: 1px solid #c2c2c2;
     border-radius: 4px;
     padding: 10px 15px;
     font-size: 12px;
+    margin-top: 12px;
 }
 .filter-section input{
     margin: 0;
@@ -64,7 +99,7 @@ table th{
     text-align: left;
 }
 tbody tr td{
-    padding: 5px 15px;
+    padding: 10px 15px;
     border-top: 1px solid #d4d4d4;
     text-align: left;
 }
@@ -75,6 +110,7 @@ table tbody tr:hover{
 table tbody tr:hover .actions{
     opacity: 1;
 }
+
 .actions{
     opacity: 0;
     font-size: 13px;
@@ -108,13 +144,9 @@ table input[type=checkbox]{
 .table-pagination span{
     margin-left: 5px;
 }
-
-
 i.fa.fa-sort{
     margin-right: 5px;
 }
-
-
 /*---------------------------------------Responsive-------------------------------------------*/
 @media (max-width: 991px) and (min-width: 768px){
     .search{
