@@ -32,7 +32,7 @@ export class ApiService {
 
     return this.httpClient.get( this.configService.baseUrl + url,needAuth ?  options : this.httpOptions).pipe(
       map((res: any) => res.body),
-      catchError(err=> this.handleError(err,this.route,this.configService)));
+      catchError(err=> this.handleError(err,this.route,this.configService,this.notificationService)));
   }
 
   post(url: string, payload: any,needAuth:boolean): Observable<any> {
@@ -43,7 +43,7 @@ export class ApiService {
 
     return this.httpClient.post( this.configService.baseUrl + url, payload, needAuth ?  options : this.httpOptions).pipe(
       map((res: any) => res.body),
-      catchError(err=> this.handleError(err,this.route,this.configService)));
+      catchError(err=> this.handleError(err,this.route,this.configService,this.notificationService)));
   }
 
   put(url: string, payload: any,needAuth:boolean): Observable<any> {
@@ -54,7 +54,7 @@ export class ApiService {
 
     return this.httpClient.put( this.configService.baseUrl + url, payload, needAuth ?  options : this.httpOptions).pipe(
       map((res: any) => res.body),
-      catchError(err=> this.handleError(err,this.route,this.configService)));
+      catchError(err=> this.handleError(err,this.route,this.configService,this.notificationService)));
   }
 
   delete(url: string,needAuth:boolean): Observable<any> {
@@ -65,10 +65,10 @@ export class ApiService {
 
     return this.httpClient.delete( this.configService.baseUrl + url ,needAuth ?  options : this.httpOptions ).pipe(
       map((res: any) => res.body),
-      catchError(err=> this.handleError(err,this.route,this.configService)));
+      catchError(err=> this.handleError(err,this.route,this.configService,this.notificationService)));
   }
 
-  handleError(error,router:Router,configService:ConfigService) {
+  handleError(error,router:Router,configService:ConfigService,notificationService:NotificationService) {
     let errorMessage = '';
     if (error.error instanceof ErrorEvent) {
 
@@ -82,7 +82,10 @@ export class ApiService {
       }
       errorMessage = `Status Code: ${error.status}\nMessage: ${error.message}\n `;
     }
-    window.alert(errorMessage);
+
+    let errorCode = parseInt(error.error.Message);
+    let errorNotificationMessage = configService.errorMessages.get(errorCode);
+    this.notificationService.error(errorNotificationMessage,'Error');
     return throwError(errorMessage);
   }
 }

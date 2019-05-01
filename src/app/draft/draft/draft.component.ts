@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {DraftService} from '../draft.service';
 import {ActivatedRoute, Router} from '@angular/router';
-import {UserEventService} from '../../user-event/user-event.service';
 import {NotificationService} from '../../shared/notification.service';
+import _ from 'node_modules/lodash/lodash.js';
 
 @Component({
   selector: 'app-draft',
@@ -57,14 +57,17 @@ export class DraftComponent implements OnInit {
   addOrUpdateDraft(){
     if (this.isAddMode){
       this.draftService.addDraft(this.draft.Title,this.draft.MessageText)
-        .subscribe(res=>console.log(res));
+        .subscribe(res =>{
+          this.notificationService.success('Template saved successfully','');
+          this.router.navigateByUrl('draft-list');
+        });
     } else {
       this.draftService.modifyDraft(this.draft.Id,this.draft.Title,this.draft.MessageText)
-        .subscribe(res=>console.log(res));
+        .subscribe(res=>{
+          this.notificationService.success('Template saved successfully','');
+          this.router.navigateByUrl('draft-list');
+        });
     }
-
-    this.notificationService.success('Template saved successfully','');
-    this.router.navigateByUrl('draft-list');
   }
 
   addSegment(type:number){
@@ -116,5 +119,11 @@ export class DraftComponent implements OnInit {
       this.smsCount = 4 + Math.floor ((len - 459) / 153);
       this.localSmsLen = (len - 459) % 153;
     }
+  }
+
+  test(e){
+    let selectedId = e.target.value;
+    let selectedDraft = _.find(this.drafts,d=>d.Id == selectedId);
+    this.draft.MessageText = selectedDraft.MessageText;
   }
 }

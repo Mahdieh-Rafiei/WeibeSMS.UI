@@ -43,14 +43,10 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { TicketListComponent } from './tickets/ticket-list/ticket-list.component';
 import { TicketComponent } from './tickets/ticket/ticket.component';
 import { AddTicketComponent } from './tickets/add-ticket/add-ticket.component';
-
 import { CreateTransactionComponent } from './create-transaction/create-transaction.component';
-
 import { PlanListComponent } from './invoices/plan-list/plan-list.component';
 import { InvoiceListComponent } from './invoices/invoice-list/invoice-list.component';
-
 import { AngularEditorModule } from '@kolkov/angular-editor';
-
 
 @NgModule({
     declarations: [

@@ -35,8 +35,8 @@ import {PlanListComponent} from "./app/invoices/plan-list/plan-list.component";
 export const APP_ROUTES: Routes = [
   {path: '', component: DashboardComponent,canActivate:[CanActivateRouteGuard]},
 
-  {path: 'group/:groupId',component: GroupComponent},
-  {path: 'group',component: GroupListComponent},
+  {path: 'group/:groupId',component: GroupComponent,canActivate:[CanActivateRouteGuard]},
+  {path: 'group',component: GroupListComponent,canActivate:[CanActivateRouteGuard]},
   {path: 'group/:groupId/contact/:contactId',component: ContactComponent},
 
   {path: 'group/:id/add-contact',component: AddContactComponent , children:[

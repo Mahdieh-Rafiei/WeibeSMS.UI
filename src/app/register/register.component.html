@@ -5,11 +5,7 @@
         <div class="overlay-box">
           <div class="user-content">
             <a><img src="../../assets/images/user.jpg" class="thumb-lg img-circle" alt="img"></a>
-            <h4 class="text-white">Mohsen chavoshi</h4>
-            <h5 class="text-white">9125698741</h5>
-          </div>
-          <div class="exit-btn" >
-            <i class="fa fa-power-off"></i>
+            <h4 class="text-white">{{firstName}}  {{lastName}}</h4>
           </div>
         </div>
       </div>
@@ -24,7 +20,7 @@
       </div>
 
       <div class="form-group col-md-6">
-        <input [(ngModel)]="email" type="text" class="form-control" placeholder="Email">
+        <input [(ngModel)]="email" type="email" class="form-control" placeholder="Email">
       </div>
 
       <div class="form-group col-md-6">
@@ -36,29 +32,10 @@
       </div>
 
       <div class="form-group col-md-6">
-        <input  maxlength="12" type="text" class="form-control" placeholder="Confirm Password *">
+        <input (focusout)="confirmPasswordOut()" [(ngModel)]="confirmPassword" maxlength="12" type="text" class="form-control" placeholder="Confirm Password *">
       </div>
 
-      <div class="form-group col-md-12 rules-confirmation">
-        <br>
-        <span>message send to user after register</span>
-        <div class="sample-send-mesage">
-          <div>Hello u are new user <span>BussinessName</span> you can send 3000 sms
-            <br>
-          </div>
-        </div>
-        <br>
-        <p><span>Note: </span> <span style="color: #E91E63;font-weight: 400;"> there  <strong>was not</strong> change your information</span></p>
-        <hr>
-        <div style="cursor: pointer;">
-          <span>
-            <!--<i class="fa fa-square"></i>-->
-          </span>
-          <!--I'm committed to reading the <a href="https://www.sms.ir/قوانین-پیامک-سفید/" target="_blank">white text rules</a> and agree with all its provisions-->
-        </div>
-      </div>
       <button (click)="register()" class="btn btn-success full-width"><i class="fa fa-spinner fa-spin" style="display: none;"></i>
-      <!--<button (click)="register()" disabled="disabled" class="btn btn-success full-width"><i class="fa fa-spinner fa-spin" style="display: none;"></i>-->
         Register
       </button>
   </div>
