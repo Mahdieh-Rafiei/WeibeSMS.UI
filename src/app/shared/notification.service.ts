@@ -10,7 +10,8 @@ export class NotificationService {
 
   config={
     closeButton:true,
-    progressBar:true
+    progressBar:true,
+    timeout: 10000
   };
 
   warning(message:string,title?:string){
