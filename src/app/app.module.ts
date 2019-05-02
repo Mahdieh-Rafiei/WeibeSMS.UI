@@ -51,6 +51,8 @@ import { AngularEditorModule } from '@kolkov/angular-editor';
 import { SmsReportListComponent } from './sms-reports/sms-report-list/sms-report-list.component';
 import { SmsReportComponent } from './sms-reports/sms-report/sms-report.component';
 import { DefinitionScheduleEventComponent } from './definition-schedule-event/definition-schedule-event.component';
+import {TicketService} from './tickets/ticket.service';
+import { StatusTranslatorPipe } from './tickets/status-translator.pipe';
 
 
 @NgModule({
@@ -87,6 +89,7 @@ import { DefinitionScheduleEventComponent } from './definition-schedule-event/de
         SmsReportListComponent,
         SmsReportComponent,
         DefinitionScheduleEventComponent,
+        StatusTranslatorPipe,
 
   ],
   imports: [
@@ -109,7 +112,8 @@ import { DefinitionScheduleEventComponent } from './definition-schedule-event/de
     RegisterService,
     CanActivateRouteGuard,
     NotificationService,
-    UserEventService
+    UserEventService,
+    TicketService
   ],
   bootstrap: [AppComponent]
 })

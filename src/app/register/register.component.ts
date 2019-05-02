@@ -44,7 +44,6 @@ export class RegisterComponent implements OnInit {
       return;
     }
 
-
     if(this.password.length < 8){
       this.notificationService.error('Password should has at least 8 characters','');
       return;

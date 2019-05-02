@@ -14,7 +14,7 @@ export class TicketService {
   }
 
   getTicket(id:number){
-    return this.apiService.get(`Ticket`,true);
+    return this.apiService.get(`Ticket/${id}`,true);
   }
 
   addTicket(title:string,message:string,departmentId:number,priority:number){
@@ -27,5 +27,15 @@ export class TicketService {
     return this.apiService.post(`Ticket`,payload,true);
   }
 
-  // modifyTicket()
+   sendReply(id:number,replyText:string) : Observable<any>{
+    let payload={
+      Message:replyText
+    };
+
+    return this.apiService.post(`Ticket/${id}`,payload,true);
+   }
+
+   closeTicket(id:number):Observable<any>{
+    return this.apiService.put(`Ticket/${id}`,null,true);
+   }
 }

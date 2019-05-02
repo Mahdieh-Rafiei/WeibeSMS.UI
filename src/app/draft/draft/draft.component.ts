@@ -121,7 +121,7 @@ export class DraftComponent implements OnInit {
     }
   }
 
-  test(e){
+  assignReadyTemplate(e){
     let selectedId = e.target.value;
     let selectedDraft = _.find(this.drafts,d=>d.Id == selectedId);
     this.draft.MessageText = selectedDraft.MessageText;
