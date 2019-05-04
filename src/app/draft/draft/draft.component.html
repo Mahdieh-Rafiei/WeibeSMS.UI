@@ -1,10 +1,3 @@
-
-<h1>
-  draft draftdraftdraftdraftdraftdraftdraft
-</h1>
-
-
-
 <div class="main-container">
   <div class="col-md-12 btn-section text-right">
     <div class="col-md-6 no-pad text-left">
@@ -33,7 +26,7 @@
         <p (click)="addSegment(3)"><i class="fa fa-plus-circle"></i> Phone number</p>
       </div>
       <div class="template">
-        <select (change)="test($event)" class="content-box">
+        <select (change)="assignReadyTemplate($event)" class="content-box">
           <option [innerText]="d.Title" [value]="d.Id" *ngFor="let d of drafts">
           </option>
         </select>

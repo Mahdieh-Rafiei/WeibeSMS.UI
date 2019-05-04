@@ -13,12 +13,12 @@ import {UtilityService} from '../shared/utility.service';
 })
 export class RegisterComponent implements OnInit {
 
-  firstName:string;
-  lastName:string;
-  userName:string;
-  password:string;
-  email:string;
-  confirmPassword:string;
+  firstName:string='';
+  lastName:string='';
+  userName:string='';
+  password:string='';
+  email:string='';
+  confirmPassword:string='';
 
   constructor(private registerService:RegisterService,
               private authService:AuthenticationService,
@@ -43,7 +43,6 @@ export class RegisterComponent implements OnInit {
       this.notificationService.error('User name should has at least 6 characters','');
       return;
     }
-
 
     if(this.password.length < 8){
       this.notificationService.error('Password should has at least 8 characters','');
