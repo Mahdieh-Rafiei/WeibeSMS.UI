@@ -65,7 +65,9 @@ export class ApiService {
 
     return this.httpClient.delete( this.configService.baseUrl + url ,needAuth ?  options : this.httpOptions ).pipe(
       map((res: any) => res.body),
-      catchError(err=> this.handleError(err,this.route,this.configService,this.notificationService)));
+      catchError((err)=>{
+        return this.handleError(err,this.route,this.configService,this.notificationService);
+      } ));
   }
 
   handleError(error,router:Router,configService:ConfigService,notificationService:NotificationService) {

@@ -45,18 +45,16 @@ export class GroupComponent implements OnInit {
        });
   }
 
-  addContact(){
-    this.contactService.addContact(this.group.Id,this.firstName,this.lastName,this.mobile,this.gender,this.email)
-      .subscribe(res => {
-        console.log(res);
-        this.contacts.push({
-          'FirstName':this.firstName,
-          'LastName':this.lastName,
-          'Id':res.Data,
-          'Mobile':this.mobile
-        });
-      });
-  }
-
-
+  // addContact(){
+  //   this.contactService.addContact(this.group.Id,this.firstName,this.lastName,this.mobile,this.gender,this.email)
+  //     .subscribe(res => {
+  //       console.log(res);
+  //       this.contacts.push({
+  //         'FirstName':this.firstName,
+  //         'LastName':this.lastName,
+  //         'Id':res.Data,
+  //         'Mobile':this.mobile
+  //       });
+  //     });
+  // }
 }

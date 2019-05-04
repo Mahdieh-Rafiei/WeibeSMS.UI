@@ -7,7 +7,7 @@ import {EventEmitter, Injectable, Output} from '@angular/core';
 export class ConfigService {
 
   baseUrl:string;
-  tokenKeyName:string;
+  tokenKeyName:string;r
   errorMessages:Map<number,string>= new Map<number,string>();
 
   @Output() sidebarStateChanged: EventEmitter<boolean> = new EventEmitter<boolean>();
