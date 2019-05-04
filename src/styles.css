@@ -282,6 +282,9 @@ table input[type=checkbox]{
 .table-pagination span{
     margin-left: 5px;
 }
+i.fa.fa-sort {
+    margin-right: 5px;
+}
 /* ---------------------------Button---------------------------- */
 .success-btn{
     background-color: #5fa596;
