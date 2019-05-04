@@ -30,7 +30,10 @@ export class UserEventService {
   }
 
   removeUserEvent(id:number):Observable<any>{
-    debugger;
-    return this.apiService.delete(`UserEvent/${id}`,true);
+    let payload={
+      DeleteAnyway:true
+    };
+
+    return this.apiService.delete(`UserEvent/${id}`,payload,true);
   }
 }

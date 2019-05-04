@@ -15,7 +15,7 @@
       </div>
       <div class="col-md-6 operation-section">
         <form class="search-wrapper search">
-          <input type="text"  required>
+          <input name="filter" (input)="realTimeFilter()" [(ngModel)]="filterExpression" type="text">
           <button type="submit"><i class="fa fa-search"></i></button>
         </form>
       </div>
@@ -31,14 +31,14 @@
         </tr>
         </thead>
         <tbody>
-        <tr *ngFor="let group of groups">
+        <tr *ngFor="let group of filteredGroups">
           <td class="text-left">
             <div class="table-head">
               <span>{{group.GroupName}}</span>
             </div>
           </td>
           <td class=" text-center">
-            <div>{{165}}</div>
+            <div>{{group.ContactsCount}}</div>
           </td>
           <td class="td-single text-right actions-container">
             <div class="actions">
@@ -70,7 +70,7 @@
       </div>
       <div class="modal-body text-center">
         <div>
-          <input [(ngModel)]="newGroupName" class="ws-login-input" type="text" placeholder="name">
+          <input [(ngModel)]="groupName" class="ws-login-input" type="text" placeholder="name">
           <br>
           <button class="ws-btn modal-btn green-btn" (click)="saveNewGroup()">Save</button>
         </div>
@@ -89,7 +89,7 @@
       </div>
       <div class="modal-body text-center">
         <div>
-          <input [(ngModel)]="currentGroup.GroupName" class="ws-login-input" type="text" placeholder="password">
+          <input [(ngModel)]="groupName" class="ws-login-input" type="text" placeholder="password">
           <br>
           <button class="ws-btn modal-btn" (click)="modifyGroup()">Modify</button>
         </div>

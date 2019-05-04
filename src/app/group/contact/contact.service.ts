@@ -43,10 +43,10 @@ export class ContactService {
   }
 
   removeContact(contactId:number):Observable<any>{
-    return this.apiService.delete(`Contact/${contactId}`,true);
+    return this.apiService.delete(`Contact/${contactId}`,null,true);
   }
 
   removeContactFromGroup(groupId:string,contactId:string){
-    return this.apiService.delete(`Contact/${contactId}/group/${groupId}`,true);
+    return this.apiService.delete(`Contact/${contactId}/group/${groupId}`,null,true);
   }
 }

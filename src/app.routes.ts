@@ -44,7 +44,7 @@ export const APP_ROUTES: Routes = [
   {path: 'group',component: GroupListComponent,canActivate:[CanActivateRouteGuard]},
   {path: 'group/:groupId/contact/:contactId',component: ContactComponent},
 
-  {path: 'group/:id/add-contact',component: AddContactComponent , children:[
+  {path: 'group/:groupId/add-contact',component: AddContactComponent , children:[
           {path:'from-file',component:AddContactFromFileComponent},
           {path:'single-contact',component:SingleAddContactComponent},
           {path:'from-list',component:ImportContactFromOtherListsComponent},

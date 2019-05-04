@@ -36,6 +36,6 @@ export class DraftService {
   }
 
   removeDraft(id:number) :Observable<any>{
-    return this.apiService.delete(`DraftMessage/${id}`,true);
+    return this.apiService.delete(`DraftMessage/${id}`,null,true);
   }
 }

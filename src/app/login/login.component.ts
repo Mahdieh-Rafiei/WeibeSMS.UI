@@ -65,8 +65,7 @@ export class LoginComponent implements OnInit {
   verify(){
     this.registerService.verifyMobile(this.registrationKey,this.mobile.toString(),this.verificationCode).subscribe((res) =>
     {
-      console.log(res.Data);
-      this.authService.setTempToken(res.Data.Token);
+      this.authService.setToken(res.Data.Token);
       this.router.navigateByUrl('/register');
     })
   }

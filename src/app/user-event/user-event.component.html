@@ -1,7 +1,7 @@
 <div class="btn-section text-right">
   <div class="col-md-12 no-pad text-right">
     <button class="green-btn"> <i class="fa fa-plus"></i> Send Event SMS </button>
-    <button class="green-btn" (click)="addUserEvent()" style="margin-left: 10px"> <i class="fa fa-plus"></i> New Fields </button>
+    <button class="green-btn" (click)="mode='add'" style="margin-left: 10px"> <i class="fa fa-plus"></i> New Fields </button>
   </div>
 </div>
 <div class="main-container">
@@ -10,7 +10,7 @@
       <h4><i class="fa fa-question-circle"></i> Event Field</h4>
       <p>Lorem ipsum dolor sit amet consectetur adipiscing elit sed do eiusmod tempor incididunt ut labore. </p>
     </div>
-    <!--operation-->
+
     <div class="col-md-12 no-pad operation">
       <div class="col-md-6 operation-section">
         <button class="light-blue-btn">
@@ -18,13 +18,13 @@
         </button>
       </div>
       <div class="col-md-6 operation-section">
-        <form class="search-wrapper search">
-          <input type="text"  required>
+        <form  class="search-wrapper search">
+          <input name="filter" (input)="realTimeFilter()" [(ngModel)]="filterExpression" type="text">
           <button type="submit"><i class="fa fa-search"></i></button>
         </form>
       </div>
     </div>
-    <!--table-->
+
     <div class="col-md-12 table-div">
       <table class="index-table text-left">
         <thead>
@@ -35,30 +35,62 @@
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let ue of userEvents">
-            <td class="text-left">{{ue.Id}}</td>
-            <td class="text-left"><input type="checkbox">{{ue.Name}}</td>
+          <tr *ngFor="let ue of filteredUserEvents,index as i">
+            <td class="text-left">{{i + 1}}</td>
+            <td class="text-left">{{ue.Name}}</td>
             <td class="td-single text-left actions-container">
               <div class="actions">
                 <a (click)="removeUserEvent(ue)"><i class="fa fa-trash"></i></a>
-                <a> <i class="fa fa-pencil"></i></a>
+                <a (click)="setModifyMode(ue)"> <i class="fa fa-pencil"></i></a>
               </div>
             </td>
           </tr>
         </tbody>
       </table>
-      <div class="table-pagination text-right">
-        <span><i class="fa fa-arrow-circle-left"></i></span>
-        <span><i class="fa fa-arrow-circle-right"></i></span>
-      </div>
     </div>
   </div>
 </div>
 
 
 
+<div *ngIf="mode=='add'"  class="modal fade in modal-back" role="dialog" tabindex="-1" style="display: block;" aria-modal="true">
+  <div role="document" class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button (click)="mode='default'" aria-label="Close" class="close pull-right" type="button">
+          <span aria-hidden="true">×</span>
+        </button>
+      </div>
+      <div class="modal-body text-center">
+        <div>
+          <input [(ngModel)]="name" class="ws-login-input" type="text" placeholder="event name">
+          <br>
+          <button class="ws-btn modal-btn" (click)="addUserEvent()">Save</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 
+<div *ngIf="mode=='edit'"  class="modal fade in modal-back" role="dialog" tabindex="-1" style="display: block;" aria-modal="true">
+  <div role="document" class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button (click)="mode='default'" aria-label="Close" class="close pull-right" type="button">
+          <span aria-hidden="true">×</span>
+        </button>
+      </div>
+      <div class="modal-body text-center">
+        <div>
+          <input [(ngModel)]="name" class="ws-login-input" type="text" placeholder="event name">
+          <br>
 
+          <button class="ws-btn modal-btn" (click)="modifyUserEvent()">Modify</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 
 
 
