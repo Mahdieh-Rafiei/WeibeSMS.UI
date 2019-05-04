@@ -1,24 +1,3 @@
-.btn-section{
-  padding: 15px 0;
-}
-.green-btn{
-  background-color: #08a5a3;
-  border: 1px solid #08a5a3;
-  border-radius: 2px;
-  color: #ffffff;
-  padding: 10px 35px;
-  font-size: 12px;
-}
-.gray-btn{
-  background-color: #c2c2c2;
-  border: 1px solid #c2c2c2;
-  border-radius: 2px;
-  color: #ffffff;
-  padding: 10px 35px;
-  font-size: 12px;
-}
-
-
 .col-md-8.padding{
   padding: 0 15px 0 0;
   position: relative;
@@ -27,7 +6,14 @@
   padding: 0 0 0 15px;
 }
 .content-box{
-  background-color: #f9f9f9;
+  border: 1px solid #c2c2c2;
+  border-radius: 4px;
+  padding: 9px 15px;
+  color: #000;
+  margin-bottom: 10px;
+}
+.input-name{
+  width: 100%;
   border: 1px solid #c2c2c2;
   border-radius: 4px;
   padding: 9px 15px;
@@ -36,7 +22,7 @@
 }
 textarea.content-box{
   width: 100%;
-  padding: 32px 10px !important;
+  padding: 10px !important;
 }
 .textarea-label{
   position: absolute;
@@ -71,6 +57,7 @@ select{
   color: #08a5a3;
   line-height: 2;
   font-weight: 600;
+  cursor: pointer;
 }
 @media (max-width: 991px) and (min-width: 768px){
   .col-md-8.padding{
