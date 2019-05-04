@@ -304,7 +304,7 @@ i.fa.fa-sort {
 .green-btn{
     background-color: #08a5a3;
     border: 1px solid #08a5a3;
-    border-radius: 2px;
+    border-radius: 4px;
     color: #ffffff;
     padding: 10px 15px;
     font-size: 12px;
@@ -312,7 +312,7 @@ i.fa.fa-sort {
 .blue-btn{
     background-color: #4680fe;
     border: 1px solid #4680fe;
-    border-radius: 2px;
+    border-radius: 4px;
     color: #ffffff;
     padding: 10px 15px;
     font-size: 12px;
@@ -320,7 +320,7 @@ i.fa.fa-sort {
 .red-btn{
     background-color: #f5274e;
     border: 1px solid #f5274e;
-    border-radius: 2px;
+    border-radius: 4px;
     color: #ffffff;
     padding: 10px 15px;
     font-size: 12px;
@@ -328,7 +328,7 @@ i.fa.fa-sort {
 .gray-btn{
     background-color: #c2c2c2;
     border: 1px solid #c2c2c2;
-    border-radius: 2px;
+    border-radius: 4px;
     color: #ffffff;
     padding: 10px 15px;
     font-size: 12px;
