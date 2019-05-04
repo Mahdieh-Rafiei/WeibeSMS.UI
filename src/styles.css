@@ -286,41 +286,6 @@ i.fa.fa-sort {
     margin-right: 5px;
 }
 /* ---------------------------Button---------------------------- */
-.success-btn{
-    background-color: #5fa596;
-    border: 1px solid #5fa596;
-    border-radius: 4px;
-    color: #fff;
-    font-size: 14px;
-}
-.danger-btn{
-    background-color: #f5274e;
-    border: 1px solid #f5274e;
-    border-radius: 4px;
-    color: #fff;
-    font-size: 14px;
-}
-.default-btn{
-    background-color: #c2c2c2;
-    border: 1px solid #c2c2c2;
-    border-radius: 4px;
-    color: #fff;
-    font-size: 14px;
-}
-.warning-btn{
-    background-color: #fe9c00;
-    border: 1px solid #fe9c00;
-    border-radius: 4px;
-    color: #fff;
-    font-size: 14px;
-}
-.primery-btn{
-    background-color: #4680fe;
-    border: 1px solid #4680fe;
-    border-radius: 4px;
-    color: #fff;
-    font-size: 14px;
-}
 .light-blue-btn{
     background-color: #eff6fd;
     border: 1px solid #eff6fd;
@@ -336,11 +301,6 @@ i.fa.fa-sort {
     font-weight: 600;
     font-size: 14px;
 }
-
-
-
-
-
 .green-btn{
     background-color: #08a5a3;
     border: 1px solid #08a5a3;
@@ -507,6 +467,7 @@ i.fa.fa-sort {
     }
 }
 /*----------------------------------End Load------------------------------------*/
+/*----------------------------------Responsive------------------------------------*/
 @media (max-width: 991px) and (min-width: 768px){
     .search-wrapper {
         width: 100%;
