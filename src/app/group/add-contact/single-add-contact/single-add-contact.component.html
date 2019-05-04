@@ -1,29 +1,29 @@
 
 <div class="col-md-12 section-div single-add-contact">
   <div class="col-md-6 no-pad">
-    <input type="text" placeholder="Phone Number :">
+    <input [(ngModel)]="mobile" type="text" placeholder="Phone Number :">
     <br/>
-    <input type="text" placeholder="Surname :">
+    <input [(ngModel)]="lastName" type="text" placeholder="Surname :">
   </div>
   <div class="col-md-6 no-pad">
-    <input type="text" placeholder="Name :">
+    <input [(ngModel)]="firstName" type="text" placeholder="Name :">
     <br/>
-    <select placeholder="gender">
+    <select [(ngModel)]="gender" placeholder="gender">
       <option value="1">Female</option>
       <option value="2">Male</option>
       <option value="3">Unknown</option>
     </select>
   </div>
   <div class="col-md-12 no-pad">
-    <select [disabled]="userEvents.length">
-      <option value="volvo">Select Field</option>
+    <select>
+      <option *ngFor="let ue of userEvents" [value]="ue.Id">{{ue.Name}}</option>
     </select>
     <input type="text" class="date-value" placeholder="value">
     <span class="operation-fa"><i class="fa fa-trash"></i></span>
     <span class="operation-fa"><i class="fa fa-plus"></i></span>
   </div>
   <div class="col-md-6 no-pad">
-    <button class="btn btn-info">Save</button>
+    <button (click)="addContact()" class="btn btn-info">Save</button>
   </div>
 </div>
 

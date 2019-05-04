@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<button id="btn">Load</button>
+<div id="container">
+
+</div>
+<script>
+  let btn = document.getElementById('btn');
+  let container =document.getElementById('container');
+  btn.addEventListener('click',function () {
+    let xhr = new  XMLHttpRequest();
+    xhr.onreadystatechange = function () {
+      if (this.readyState == 4 && this.status == 200){
+        container.innerText += xhr.responseText;
+      }
+    };
+
+    xhr.open('GET','http://192.168.1.94:8070/api/values',true);
+    xhr.send();
+  });
+
+</script>
+</body>
+</html>

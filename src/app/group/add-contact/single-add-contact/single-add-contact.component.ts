@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {ContactService} from '../../contact/contact.service';
 import {UserEventService} from '../../../user-event/user-event.service';
 import {NotificationService} from '../../../shared/notification.service';
-import {ActivatedRoute} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
+import {GroupService} from '../../group.service';
 
 @Component({
   selector: 'app-single-add-contact',
@@ -11,7 +12,7 @@ import {ActivatedRoute} from '@angular/router';
 })
 export class SingleAddContactComponent implements OnInit {
 
-  groupId:string;
+  groupId:number;
   userEvents:any[]=[];
   mobile:string='';
   firstName:string='';
@@ -22,11 +23,13 @@ export class SingleAddContactComponent implements OnInit {
   constructor(private contactService:ContactService,
               private userEventService:UserEventService,
               private notificationService:NotificationService,
-              private activatedRoute:ActivatedRoute
+              private activatedRoute:ActivatedRoute,
+              private groupService:GroupService,
+              private router:Router
               ) { }
 
   ngOnInit() {
-    this.groupId = this.activatedRoute.snapshot.paramMap.get('groupId');
+    this.groupId = this.groupService.selectedGroupId;
     this.userEventService.getUserEvents()
       .subscribe(res=>{
         console.log(res.Data);
@@ -41,9 +44,10 @@ export class SingleAddContactComponent implements OnInit {
       return;
     }
 
-    this.contactService.addContact(parseInt(this.groupId),this.firstName,this.lastName,this.mobile,this.gender,this.email)
+    this.contactService.addContact(this.groupId,this.firstName,this.lastName,this.mobile,this.gender,this.email)
       .subscribe(res=>{
-        console.log(res);
+        this.notificationService.success('Contact added successfully','');
+        this.router.navigateByUrl(`group/${this.groupId}`);
       });
   }
 }

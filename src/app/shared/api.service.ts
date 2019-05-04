@@ -32,7 +32,7 @@ export class ApiService {
 
     return this.httpClient.get( this.configService.baseUrl + url,needAuth ?  options : this.httpOptions).pipe(
       map((res: any) => res.body),
-      catchError(err=> this.handleError(err,this.route,this.configService,this.notificationService)));
+      catchError(err=> this.handleError(err,this.route,this.configService)));
   }
 
   post(url: string, payload: any,needAuth:boolean): Observable<any> {
@@ -43,7 +43,7 @@ export class ApiService {
 
     return this.httpClient.post( this.configService.baseUrl + url, payload, needAuth ?  options : this.httpOptions).pipe(
       map((res: any) => res.body),
-      catchError(err=> this.handleError(err,this.route,this.configService,this.notificationService)));
+      catchError(err=> this.handleError(err,this.route,this.configService)));
   }
 
   put(url: string, payload: any,needAuth:boolean): Observable<any> {
@@ -54,23 +54,30 @@ export class ApiService {
 
     return this.httpClient.put( this.configService.baseUrl + url, payload, needAuth ?  options : this.httpOptions).pipe(
       map((res: any) => res.body),
-      catchError(err=> this.handleError(err,this.route,this.configService,this.notificationService)));
+      catchError(err=> this.handleError(err,this.route,this.configService)));
   }
 
-  delete(url: string,needAuth:boolean): Observable<any> {
+  delete(url: string,payload:any,needAuth:boolean): Observable<any> {
     let options = {
-      'headers': this.httpOptions.headers.append('token',localStorage.getItem(this.configService.tokenKeyName)),
-      'observe':this.httpOptions.observe
+      'headers':  this.httpOptions.headers,
+      'observe':this.httpOptions.observe,
+      'body':null
     };
 
-    return this.httpClient.delete( this.configService.baseUrl + url ,needAuth ?  options : this.httpOptions ).pipe(
+    if (needAuth){
+      options.headers = options.headers.append('token',localStorage.getItem(this.configService.tokenKeyName));
+    }
+
+    if (payload){
+      options.body = payload
+    }
+
+    return this.httpClient.delete( this.configService.baseUrl + url ,options).pipe(
       map((res: any) => res.body),
-      catchError((err)=>{
-        return this.handleError(err,this.route,this.configService,this.notificationService);
-      } ));
+      catchError(err=> this.handleError(err,this.route,this.configService)));
   }
 
-  handleError(error,router:Router,configService:ConfigService,notificationService:NotificationService) {
+  handleError(error,router:Router,configService:ConfigService) {
     let errorMessage = '';
     if (error.error instanceof ErrorEvent) {
 
