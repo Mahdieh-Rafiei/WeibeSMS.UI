@@ -1,71 +1,11 @@
-.btn-section{
-    padding: 15px 0;
+.user-event{
+    margin-bottom: 10px;
 }
-.btn-section button{
-    margin-left: 5px;
-}
-/*-----------------------------------------------------table---------------------------------------------------------*/
-table{
-    width: 100%;
-    background-color: #ffffff;
-    border-radius: 4px;
-    transition: .3s;
-    outline: none;
-}
-table th{
-    font-size: 14px;
-    color: #aaaaaa;
-    padding: 15px;
-    font-weight: 400;
-    text-align: left;
-}
-tbody tr td{
-    padding: 5px 15px;
-    border-top: 1px solid #d4d4d4;
-    text-align: left;
-}
-table tbody tr:hover{
-    background-color: #acebe9;
-    cursor: pointer;
-}
-table tbody tr:hover .actions{
-    opacity: 1;
-}
-
-.actions{
-    opacity: 0;
-    font-size: 13px;
-    text-align: center;
-    transition: .3s;
-}
-.actions i {
-    padding: 10px;
-    color:#fff;
-    border-radius: 50%;
-    background-color: #08a5a3;
-    margin-left: 5px;
-}
-.actions i:hover{
-    color: #48786a;
-    background-color: #fff;
-}
-.manage{
-    color: #185197;
-    text-decoration: underline;
-}
-table input[type=checkbox]{
-    margin-right: 7px;
-}
-.table-pagination{
-    background: #ffffff;
-    padding: 10px 15px;
-    border-top: 1px solid #d4d4d4;
-    border-radius: 0 0 4px 4px
-}
-.table-pagination i{
-    font-size: 25px;
+.user-event h4{
     color: #949494;
+    font-weight: 600;
 }
-.table-pagination span{
-    margin-left: 5px;
+.user-event p{
+    padding-left: 15px;
+    font-size: 12px;
 }

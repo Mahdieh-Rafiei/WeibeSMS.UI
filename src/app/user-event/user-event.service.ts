@@ -10,7 +10,7 @@ export class UserEventService {
   constructor(private apiService:ApiService) { }
 
   getUserEvents() :Observable<any>{
-    return this.apiService.get(`UserEvents`,true);
+    return this.apiService.get(`UserEvent`,true);
   }
 
   addUserEvent(name) : Observable<any> {
@@ -18,7 +18,7 @@ export class UserEventService {
       Name:name
     };
 
-    return this.apiService.post(`UserEvents`,payload,true);
+    return this.apiService.post(`UserEvent`,payload,true);
   }
 
   modifyUserEvent(id:number,name:string) :Observable<any>{
@@ -26,11 +26,11 @@ export class UserEventService {
       Name:name
     };
 
-    return this.apiService.put(`UserEvents/${id}`,payload,true);
+    return this.apiService.put(`UserEvent/${id}`,payload,true);
   }
 
   removeUserEvent(id:number):Observable<any>{
     debugger;
-    return this.apiService.delete(`UserEvents/${id}`,true);
+    return this.apiService.delete(`UserEvent/${id}`,true);
   }
 }
