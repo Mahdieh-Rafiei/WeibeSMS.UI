@@ -1,24 +1,52 @@
 <div class="main-container">
-    <div *ngIf="ticket && isClosed" class="warning-box">
+    <div class="col-md-12 warning-box" *ngIf="ticket && isClosed">
         <p>support request closed. u can open that with sending reply.</p>
     </div>
     <div class="col-md-12 div-section">
-        <div class="ticket-box">
-            <img src="../../../assets/images/user.jpg" alt="" class="profile-picture img-thumbnail img-circle">
-            <div class="name">
-                <span *ngIf="ticket">{{ticket.AuthorName}}</span>
-                <p *ngIf="ticket">{{ticket.Date}}</p>
-            </div>
+        <div class="col-md-12 subject-ticket">
             <h4 *ngIf="ticket">{{ticket.Title}}</h4>
-            <div class="ticket-body">
-                <p *ngIf="ticket" [innerHTML]="ticket.Message"></p>
+            <p><span>supporter</span> - <span>here is priority</span> </p>
+        </div>
+        <div class="col-md-12 supporter no-pad">
+            <div class="col-md-1 text-center no-pad profile-pic">
+                <img src="../../../assets/images/user.jpg" alt="" class="profile-picture img-thumbnail img-circle">
             </div>
-            <hr>
-            <br>
-            <button [innerText]="isClosed ? 'Closed' : 'Close'" (click)="closeTicket()"
-                    [disabled]="isClosed" [ngClass]="[isClosed ? 'gray-btn close-btn' : 'btn btn-default']"></button>
+            <div class="col-md-8 no-pad ">
+                <p class="date-author">
+                    <span *ngIf="ticket">{{ticket.AuthorName}}</span>
+                    <span *ngIf="ticket">{{ticket.Date}}</span>
+                </p>
+                <div class="supporter-ticket">
+                    <p *ngIf="ticket" [innerHTML]="ticket.Message"></p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-12 customer no-pad">
+            <div class="col-md-1 text-center no-pad profile-pic" style="float: right">
+                <img src="../../../assets/images/user.jpg" alt="" class="profile-picture img-thumbnail img-circle">
+            </div>
+            <div class="col-md-8 no-pad" style="float: right;">
+                <p class="date-author-customer text-right">
+                    <span *ngIf="ticket">{{ticket.AuthorName}}</span>
+                    <span *ngIf="ticket">{{ticket.Date}}</span>
+                </p>
+                <div class="customer-ticket">
+                    <p *ngIf="ticket" [innerHTML]="ticket.Message"></p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-12 operation-btn">
+            <div class="col-md-6 no-pad text-left">
+                <button [innerText]="isClosed ? 'Closed' : 'Close'" (click)="closeTicket()"
+                        [disabled]="isClosed" [ngClass]="[isClosed ? 'gray-btn close-btn' : 'btn red-btn']">
+                </button>
+            </div>
+            <div class="col-md-6 no-pad text-right">
+                <button class="green-btn">Reply ticket</button>
+            </div>
         </div>
     </div>
+    <!--editor-->
     <div class="col-md-12 div-section">
         <angular-editor [(ngModel)]="replyText"></angular-editor>
         <div class="form-group">
@@ -26,3 +54,6 @@
         </div>
     </div>
 </div>
+
+
+
