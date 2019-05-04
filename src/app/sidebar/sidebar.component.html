@@ -5,33 +5,63 @@
       <div class="logo-box">
         <img src="../../assets/images/logo-ww.png" class="img-responsive center-block">
       </div>
-      <a class="list-group-item" [routerLink]="['/group']">
+      <a class="list-group-item" [routerLink]="['']">
         <i class="fa fa-question-circle"></i>&nbsp;
-          <span routerLink="group">Contacts</span>
+          <span routerLink="group">Dashboard</span>
       </a>
     </div>
     <div class="sidebar-section">
-      <a class="list-group-item" [routerLink]="['/send-message']">
+      <a class="list-group-item" [routerLink]="['../group']">
+        <i class="fa fa-question-circle"></i>&nbsp;
+        <span routerLink="group">Contacts</span>
+      </a>
+    </div>
+    <div class="sidebar-section">
+      <a class="list-group-item" [routerLink]="['../send-message']">
         <i class="fa fa-question-circle"></i>&nbsp;
         <span>Send</span>
       </a>
     </div>
     <div class="sidebar-section">
-      <a class="list-group-item" [routerLink]="['/draft']">
+      <a class="list-group-item" [routerLink]="['../draft-list']">
         <i class="fa fa-question-circle"></i>&nbsp;
         <span>Draft</span>
       </a>
     </div>
     <div class="sidebar-section">
-      <a class="list-group-item" [routerLink]="['/ticket-list']">
+      <a class="list-group-item" [routerLink]="['../create-transaction']">
+        <i class="fa fa-question-circle"></i>&nbsp;
+        <span>create transaction</span>
+      </a>
+    </div>
+    <div class="sidebar-section">
+      <a class="list-group-item" [routerLink]="['../invoice-list']">
+        <i class="fa fa-question-circle"></i>&nbsp;
+        <span>invoice</span>
+      </a>
+    </div>
+    <div class="sidebar-section">
+      <a class="list-group-item" [routerLink]="['../ticket-list']">
         <i class="fa fa-question-circle"></i>&nbsp;
         <span>Ticket</span>
       </a>
     </div>
     <div class="sidebar-section">
-      <a class="list-group-item" [routerLink]="['/user-event']">
+      <a class="list-group-item" [routerLink]="['../user-event']">
         <i class="fa fa-question-circle"></i>&nbsp;
         <span>Field</span>
+      </a>
+    </div>
+    <div class="sidebar-section">
+      <a class="list-group-item" [routerLink]="['../sms-report-list']">
+        <i class="fa fa-question-circle"></i>&nbsp;
+        <span>Reports</span>
+      </a>
+    </div>
+    <div class="sidebar-section">
+      <a class="list-group-item" [routerLink]="['../schedule-event']">
+        <i class="fa fa-question-circle"></i>&nbsp;
+        <span>Schedule & Event</span>
       </a>
     </div>
     <div class="nested-menu">

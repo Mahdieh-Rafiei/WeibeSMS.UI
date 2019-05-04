@@ -3,6 +3,7 @@ import {Component, Injectable, OnInit} from '@angular/core';
 import {ConfigService} from './shared/config.service';
 import {Router} from '@angular/router';
 import {AuthenticationService} from './login/authentication.service';
+import {normalizeDebugBindingName} from '@angular/core/src/util/ng_reflect';
 
 @Component({
   selector: 'app-root',
@@ -18,7 +19,7 @@ export class AppComponent implements OnInit{
               ,private router:Router
   ){  }
 
-  title = 'WhiteSmsML';
+  title = 'WeibeSMS';
   isAuthenticated:boolean;
   isSidebarShown:boolean=true;
 
@@ -30,9 +31,13 @@ export class AppComponent implements OnInit{
     this.isAuthenticated = this.authService.isAuthenticated();
     this.configService.sidebarStateChanged.subscribe(res => this.isSidebarShown = res);
 
+    if (this.authService.isInRegisterMode()){
+      this.router.navigateByUrl('/register');
+      return;
+    }
+
     if (!this.authService.isAuthenticated()){
       this.router.navigateByUrl('/login');
     }
   }
-
 }

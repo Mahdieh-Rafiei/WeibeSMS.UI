@@ -1,36 +1,43 @@
-<div class="main-container">
-  <div class="col-md-12 btn-section text-left">
-    <div class="col-md-6 no-pad text-left">
-      <button class="previous-btn"> <i class="fa fa-arrow-left"></i> Previous </button>
-    </div>
-    <div class="col-md-6 no-pad text-right">
-      <button (click)="deleteContact()" class="delete-btn"> <i class="fa fa-trash"></i> Delete Permanent </button>
-      <button (click)="modifyContact()" class="save-btn"> <i class="fa fa-edit"></i> Save </button>
-    </div>
+<div class="btn-section text-right">
+  <div class="col-md-6 no-pad text-left">
+    <button class="previous-btn"> <i class="fa fa-arrow-left"></i> Previous </button>
   </div>
-
-  <div class="col-md-12 edit-recipient text-left">
-    <p>Edit Recipient</p>
-    <div class="col-md-6 no-pad">
-      <input [(ngModel)]="contact.Mobile" type="text" disabled placeholder="Phone Number :">
-      <br/>
-      <input [(ngModel)]="contact.LastName" type="text" placeholder="Surname :">
-    </div>
-    <div class="col-md-6 no-pad">
-      <input [(ngModel)]="contact.FirstName" type="text" placeholder="Name :">
-      <br/>
-      <input [(ngModel)]="contact.Gender" type="text" placeholder="Gender :">
-    </div>
-    <div class="col-md-12 space"></div>
-    <div class="col-md-12 no-pad">
-      <select>
-        <option value="volvo">Select Field</option>
-        <option value="saab">field 2</option>
-        <option value="vw">field 3</option>
-      </select>
-      <input type="text" class="date-value" placeholder="value">
-      <span class="operation-fa"><i class="fa fa-trash"></i></span>
-      <span class="operation-fa"><i class="fa fa-plus"></i></span>
+  <div class="col-md-6 no-pad text-right">
+    <button (click)="deleteContact()" class="red-btn" style="margin-right: 5px"> <i class="fa fa-trash"></i> Delete Permanent </button>
+    <button (click)="modifyContact()" class="green-btn"> <i class="fa fa-edit"></i> Save </button>
+  </div>
+</div>
+<div class="main-container">
+  <div class="col-md-12 div-section">
+    <div class="col-md-12 edit-recipient">
+      <p>Edit Recipient</p>
+      <div class="col-md-6 no-pad">
+        <input [(ngModel)]="contact.Mobile" type="text" disabled placeholder="Phone Number :">
+        <br/>
+        <input [(ngModel)]="contact.LastName" type="text" placeholder="Surname :">
+      </div>
+      <div class="col-md-6 no-pad">
+        <input [(ngModel)]="contact.FirstName" type="text" placeholder="Name :">
+        <br/>
+        <input [(ngModel)]="contact.Gender" type="text" placeholder="Gender :">
+      </div>
+      <div class="col-md-12 space"></div>
+      <div class="col-md-12 no-pad">
+        <select>
+          <option value="volvo">Select Field</option>
+          <option value="saab">field 2</option>
+          <option value="vw">field 3</option>
+        </select>
+        <input type="text" class="date-value" placeholder="value">
+        <span class="operation-fa"><i class="fa fa-trash"></i></span>
+        <span class="operation-fa"><i class="fa fa-plus"></i></span>
+      </div>
     </div>
   </div>
 </div>
+
+
+
+
+
+

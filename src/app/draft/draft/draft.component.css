@@ -1,168 +1,82 @@
-.btn-section{
-    padding: 15px 0;
+.col-md-8.padding{
+  padding: 0 15px 0 0;
+  position: relative;
 }
-.add-contact{
-    background-color: #08a5a3;
-    border: 1px solid #08a5a3;
-    border-radius: 2px;
-    color: #ffffff;
-    padding: 10px 15px;
-    font-size: 12px;
+.col-md-4.padding{
+  padding: 0 0 0 15px;
 }
-.previous-btn{
-    background-color: #c2c2c2;
-    border: 1px solid #c2c2c2;
-    border-radius: 2px;
-    color: #ffffff;
-    padding: 10px 15px;
-    font-size: 12px;
+.content-box{
+  border: 1px solid #c2c2c2;
+  border-radius: 4px;
+  padding: 9px 15px;
+  color: #000;
+  margin-bottom: 10px;
 }
-.filter-section{
-    background-color: #ffffff;
-    border: 1px solid #c2c2c2;
-    border-radius: 4px;
-    padding: 10px 15px;
-    font-size: 12px;
+.input-name{
+  width: 100%;
+  border: 1px solid #c2c2c2;
+  border-radius: 4px;
+  padding: 9px 15px;
+  color: #000;
+  margin-bottom: 10px;
 }
-.filter-section input{
-    margin: 0;
+textarea.content-box{
+  width: 100%;
+  padding: 10px !important;
 }
-.select{
-    line-height: 34px;
+.textarea-label{
+  position: absolute;
+  top: 5px;
+  left: 10px;
+  color: #b6b6b6;
 }
-.operation{
-    /*display: inline-flex;*/
+.count-sms{
+  position: absolute;
+  right: 30px;
+  bottom: 20px;
 }
-.op-btn{
-    margin-right: 5px;
-    float: right;
-    padding: 6px 15px;
-}
-.search{
-    position: relative;
-    float: right;
-}
-.search input{
-    border: none;
-    border-bottom: 1px solid #a7a7a7;
-    border-radius: 0;
-    padding: 0 40px;
-    box-shadow: none;
-}
-.search-icon{
-    position: absolute;
-    top: 0;
-    left: 0;
-    background: none;
-    color: #a7a7a7;
-}
-.table-section{
-    background-color: #ffffff;
-    border: 1px solid #c2c2c2;
-    border-radius: 4px;
-    padding: 10px 15px;
-    font-size: 12px;
-    margin-top: 10px;
-}
-/*-----------------------------------------------------table---------------------------------------------------------*/
-table{
-    width: 100%;
-    background-color: #ffffff;
-    border-radius: 4px;
-    transition: .3s;
-    outline: none;
-}
-table th{
-    font-size: 14px;
-    color: #aaaaaa;
-    padding: 15px;
-    font-weight: 400;
-    text-align: left;
-}
-tbody tr td{
-    padding: 5px 15px;
-    border-top: 1px solid #d4d4d4;
-    text-align: left;
-}
-table tbody tr:hover{
-    background-color: #acebe9;
-    cursor: pointer;
-}
-table tbody tr:hover .actions{
-    opacity: 1;
+select{
+  width: 100%;
 }
 
-.actions{
-    opacity: 0;
-    font-size: 13px;
-    text-align: center;
-    transition: .3s;
+.personalize p:first-child{
+  font-size: 14px;
+  font-weight: 600;
+  color: #555555;
 }
-.actions i {
-    padding: 10px;
-    color:#fff;
-    border-radius: 50%;
-    background-color: #08a5a3;
-    margin-left: 5px;
+.personalize p:nth-child(2){
+  font-size: 12px;
+  color: #555555;
+  line-height: 2;
+  padding-top: 5px;
 }
-.actions i:hover{
-    color: #48786a;
-    background-color: #fff;
+.personalize p:nth-child(3){
+  padding-top: 5px;
 }
-.manage{
-    color: #185197;
-    text-decoration: underline;
+.personalize p:nth-child(3), p:nth-child(4), p:nth-child(5){
+  color: #08a5a3;
+  line-height: 2;
+  font-weight: 600;
+  cursor: pointer;
 }
-table input[type=checkbox]{
-    margin-right: 7px;
-}
-.table-pagination{
-    background: #ffffff;
-    padding: 10px 15px;
-    border-top: 1px solid #d4d4d4;
-    border-radius: 0 0 4px 4px
-}
-.table-pagination i{
-    font-size: 25px;
-    color: #949494;
-}
-.table-pagination span{
-    margin-left: 5px;
-}
-input[type=checkbox]{
-    margin-top: 0;
-}
-
-select.select-send {
-    background: #59d7d3;
-    color: #ffffff;
-    border: 1px solid #59d7d3;
-    padding: 4px 10px;
-    border-radius: 5px;
-}
-table tbody tr:hover select.select-send {
-    background: #ffffff;
-    color: #59d7d3;
-    border: 1px solid #ffffff;
-}
-/*---------------------------------------table End-------------------------------------------*/
-
-/*---------------------------------------Responsive-------------------------------------------*/
 @media (max-width: 991px) and (min-width: 768px){
-    .search{
-        float: unset;
-    }
-    .op-btn {
-        float: unset;
-        margin-top: 10px;
-    }
+  .col-md-8.padding{
+    padding: 0
+  }
+  .col-md-4.padding{
+    padding: 0;
+  }
 }
-@media (max-width: 767px) and (min-width: 320px) {
-    .search{
-        float: unset;
-    }
-    .op-btn {
-        float: unset;
-        margin-top: 10px;
-    }
+@media (max-width: 767px) and (min-width: 320px){
+  .col-md-8.padding{
+    padding: 0
+  }
+  .col-md-4.padding{
+    padding: 0;
+  }
 }
+
+
+
+
+

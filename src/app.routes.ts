@@ -2,7 +2,7 @@ import {Routes} from '@angular/router';
 import {LoginComponent} from './app/login/login.component';
 import {DashboardComponent} from './app/dashboard/dashboard.component';
 import {RegisterComponent} from './app/register/register.component';
-import {CanActivateRouteGuard} from './app/shared/CanActivateRouteGuard';
+import {CanActivateRouteGuard} from './app/shared/canActivateRouteGuard';
 import {ForgotPasswordComponent} from './app/forgot-password/forgot-password.component';
 
 import {GroupComponent} from './app/group/group.component';
@@ -27,12 +27,20 @@ import {DraftListComponent} from "./app/draft/draft-list/draft-list.component";
 import {TicketComponent} from "./app/tickets/ticket/ticket.component";
 import {AddTicketComponent} from "./app/tickets/add-ticket/add-ticket.component";
 import {TicketListComponent} from "./app/tickets/ticket-list/ticket-list.component";
+import {CreateTransactionComponent} from "./app/create-transaction/create-transaction.component";
+
+import {InvoiceListComponent} from "./app/invoices/invoice-list/invoice-list.component";
+import {PlanListComponent} from "./app/invoices/plan-list/plan-list.component";
+
+import {SmsReportComponent} from "./app/sms-reports/sms-report/sms-report.component";
+import {SmsReportListComponent} from "./app/sms-reports/sms-report-list/sms-report-list.component";
+import {DefinitionScheduleEventComponent} from "./app/definition-schedule-event/definition-schedule-event.component";
 
 export const APP_ROUTES: Routes = [
   {path: '', component: DashboardComponent,canActivate:[CanActivateRouteGuard]},
 
-  {path: 'group/:groupId',component: GroupComponent},
-  {path: 'group',component: GroupListComponent},
+  {path: 'group/:groupId',component: GroupComponent,canActivate:[CanActivateRouteGuard]},
+  {path: 'group',component: GroupListComponent,canActivate:[CanActivateRouteGuard]},
   {path: 'group/:groupId/contact/:contactId',component: ContactComponent},
 
   {path: 'group/:id/add-contact',component: AddContactComponent , children:[
@@ -49,15 +57,26 @@ export const APP_ROUTES: Routes = [
   ]},
 
   {path: 'draft',component: DraftComponent},
+  {path: 'draft/:id',component: DraftComponent},
   {path: 'draft-list',component: DraftListComponent},
 
-  {path: 'ticket',component: TicketComponent},
+  {path: 'ticket/:id',component: TicketComponent},
   {path: 'add-ticket',component: AddTicketComponent},
   {path: 'ticket-list',component: TicketListComponent},
+
+  {path: 'invoice-list',component: InvoiceListComponent},
+  {path: 'plan-list',component: PlanListComponent},
 
   {path: 'login', component: LoginComponent },
   {path: 'register', component: RegisterComponent},
   {path: 'forgot-password', component: ForgotPasswordComponent},
+
+  {path: 'sms-report-list', component: SmsReportListComponent},
+  {path: 'sms-report', component: SmsReportComponent},
+
+  {path: 'create-transaction', component: CreateTransactionComponent},
+
+  {path: 'schedule-event', component: DefinitionScheduleEventComponent},
 
   {path:'user-event',component:UserEventComponent},
 

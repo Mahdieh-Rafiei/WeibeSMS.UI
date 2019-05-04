@@ -1,27 +1,28 @@
 <div class="main-container">
-    <div class="warning-box">
+    <div *ngIf="ticket && isClosed" class="warning-box">
         <p>support request closed. u can open that with sending reply.</p>
     </div>
     <div class="col-md-12 div-section">
         <div class="ticket-box">
             <img src="../../../assets/images/user.jpg" alt="" class="profile-picture img-thumbnail img-circle">
             <div class="name">
-                <span>Mahdiye Rafiee</span>
-                <p>1398/02/09 13:16:51</p>
+                <span *ngIf="ticket">{{ticket.AuthorName}}</span>
+                <p *ngIf="ticket">{{ticket.Date}}</p>
             </div>
-            <h4>zxdcd</h4>
+            <h4 *ngIf="ticket">{{ticket.Title}}</h4>
             <div class="ticket-body">
-                <p>sdfsdfsdf</p>
+                <p *ngIf="ticket" [innerHTML]="ticket.Message"></p>
             </div>
             <hr>
             <br>
-            <button disabled="disabled" class="gray-btn close-btn"> Closed </button>
+            <button [innerText]="isClosed ? 'Closed' : 'Close'" (click)="closeTicket()"
+                    [disabled]="isClosed" [ngClass]="[isClosed ? 'gray-btn close-btn' : 'btn btn-default']"></button>
         </div>
     </div>
     <div class="col-md-12 div-section">
-        <angular-editor></angular-editor>
+        <angular-editor [(ngModel)]="replyText"></angular-editor>
         <div class="form-group">
-            <button class="ticket-submit">Submit</button>
+            <button (click)="sendReply()" class="ticket-submit">Submit</button>
         </div>
     </div>
 </div>
