@@ -102,7 +102,7 @@ article, aside, details, figcaption, figure, footer, header, hgroup, main, menu,
     border-radius: 50%;
 }
 .main-container {
-    margin-top: 0;
+    margin-top: 10px;
     margin-left: 215px;
     margin-right: 15px;
     padding: 0;
@@ -115,7 +115,7 @@ article, aside, details, figcaption, figure, footer, header, hgroup, main, menu,
 .btn-section{
     padding: 15px 25px;
     background: #ffffff;
-    margin: 0 0 25px 200px;
+    margin: 0 0 20px 200px;
     -ms-overflow-x: hidden;
     overflow-x: hidden;
     overflow-y: scroll;
@@ -150,7 +150,7 @@ article, aside, details, figcaption, figure, footer, header, hgroup, main, menu,
     border: none;
     border-radius: 3px 0 0 3px;
     padding: 10px;
-    width: 80%;
+    width: 70%;
 }
 .search-wrapper input:focus {
     outline: 0;
@@ -224,6 +224,7 @@ table{
     transition: .3s;
     outline: none;
     border: 1px dashed #d4d1cc;
+    border-bottom: none;
 }
 table th{
     font-size: 14px;
@@ -233,7 +234,7 @@ table th{
     text-align: left;
 }
 tbody tr td{
-    padding: 5px 15px;
+    padding: 10px 15px;
     border-top: 1px dashed #d4d4d4;
     text-align: left;
 }
@@ -269,10 +270,10 @@ table input[type=checkbox]{
     margin-right: 7px;
 }
 .table-pagination{
-    background: #ffffff;
+
     padding: 10px 15px;
-    border-top: 1px solid #d4d4d4;
-    border-radius: 0 0 4px 4px
+    border-radius: 0 0 4px 4px;
+    border: 1px dashed #d4d4d4;
 }
 .table-pagination i{
     font-size: 25px;
@@ -503,3 +504,14 @@ table input[type=checkbox]{
     }
 }
 /*----------------------------------End Load------------------------------------*/
+@media (max-width: 991px) and (min-width: 768px){
+    .search-wrapper {
+        width: 100%;
+    }
+}
+@media (max-width: 767px) and (min-width: 320px) {
+    .search-wrapper {
+        width: 100%;
+    }
+}
+

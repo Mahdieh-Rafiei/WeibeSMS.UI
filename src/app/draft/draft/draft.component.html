@@ -1,44 +1,40 @@
-
-<h1>
-  draft draftdraftdraftdraftdraftdraftdraft
-</h1>
-
-
-
-<div class="main-container">
-  <div class="col-md-12 btn-section text-right">
-    <div class="col-md-6 no-pad text-left">
-      <button class="gray-btn"> <i class="fa fa-arrow-left"></i> Previous </button>
-    </div>
-    <div class="col-md-6 no-pad text-right">
-      <button (click)="addOrUpdateDraft()" class="green-btn"> <i class="fa fa-plus"></i> Save Template </button>
-    </div>
+<div class="btn-section text-right">
+  <div class="col-md-6 no-pad text-left">
+    <button class="previous-btn"> <i class="fa fa-arrow-left"></i> Previous </button>
   </div>
-
-  <input [(ngModel)]="draft.Title" type="text" placeholder="title">
-
-  <div class="col-md-12 no-pad">
-    <div class="col-md-8 padding">
-      <textarea placeholder="Message text" (input)="onMessageTextChange()" [(ngModel)]="draft.MessageText" rows="7" class="content-box "></textarea>
-      <div class="count-sms">
-        <span>{{localSmsLen}} / {{container}}</span>  |  <span>{{smsCount}} SMS</span>
-      </div>
-    </div>
-    <div class="col-md-4 padding">
-      <div class="content-box personalize">
-        <p>Personalize</p>
-        <p>* To use the field dynamically</p>
-        <p (click)="addSegment(1)"><i class="fa fa-plus-circle"></i> Name</p>
-        <p (click)="addSegment(2)"><i class="fa fa-plus-circle"></i> Surname</p>
-        <p (click)="addSegment(3)"><i class="fa fa-plus-circle"></i> Phone number</p>
-      </div>
-      <div class="template">
-        <select (change)="test($event)" class="content-box">
-          <option [innerText]="d.Title" [value]="d.Id" *ngFor="let d of drafts">
-          </option>
-        </select>
+  <div class="col-md-6 no-pad text-right">
+    <button (click)="addOrUpdateDraft()" class="green-btn"> <i class="fa fa-plus"></i> Save Template </button>
+  </div>
+</div>
+<div class="main-container">
+  <div class="col-md-12 div-section">
+    <div class="col-md-12 draft">
+      <input [(ngModel)]="draft.Title" type="text" placeholder="name" class="input-name">
+      <div class="col-md-12 no-pad">
+        <div class="col-md-8 padding">
+          <textarea placeholder="Message |" (input)="onMessageTextChange()" [(ngModel)]="draft.MessageText" rows="9" class="content-box"></textarea>
+          <div class="count-sms">
+            <span>{{localSmsLen}} / {{container}}</span>  |  <span>{{smsCount}} SMS</span>
+          </div>
+        </div>
+        <div class="col-md-4 padding">
+          <div class="content-box personalize">
+            <p>Personalize</p>
+            <p>* To use the field dynamically</p>
+            <p (click)="addSegment(1)"><i class="fa fa-plus-circle"></i> Name</p>
+            <p (click)="addSegment(2)"><i class="fa fa-plus-circle"></i> Surname</p>
+            <p (click)="addSegment(3)"><i class="fa fa-plus-circle"></i> Phone number</p>
+          </div>
+          <div class="template">
+            <select (change)="test($event)" class="content-box">
+              <option [innerText]="d.Title" [value]="d.Id" *ngFor="let d of drafts">
+              </option>
+            </select>
+          </div>
+        </div>
       </div>
     </div>
   </div>
 </div>
+
 
