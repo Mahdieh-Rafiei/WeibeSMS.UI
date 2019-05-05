@@ -7,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ImportContactFromOtherListsComponent implements OnInit {
 
+    isCollapsed = false;
+
   constructor() { }
 
   ngOnInit() {
