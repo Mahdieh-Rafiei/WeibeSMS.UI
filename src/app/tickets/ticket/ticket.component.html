@@ -6,12 +6,12 @@
         <div class="ticket-box">
             <img src="../../../assets/images/user.jpg" alt="" class="profile-picture img-thumbnail img-circle">
             <div class="name">
-                <span *ngIf="ticket">{{ticket.AuthorName}}</span>
-                <p *ngIf="ticket">{{ticket.Date}}</p>
+                <span *ngIf="ticket">{{ticket.authorName}}</span>
+                <p *ngIf="ticket">{{ticket.date}}</p>
             </div>
-            <h4 *ngIf="ticket">{{ticket.Title}}</h4>
+            <h4 *ngIf="ticket">{{ticket.title}}</h4>
             <div class="ticket-body">
-                <p *ngIf="ticket" [innerHTML]="ticket.Message"></p>
+                <p *ngIf="ticket" [innerHTML]="ticket.message"></p>
             </div>
             <hr>
             <br>

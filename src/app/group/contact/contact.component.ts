@@ -22,13 +22,13 @@ export class ContactComponent implements OnInit {
     this.groupId = this.activatedRoute.snapshot.paramMap.get('groupId');
     this.contact = this.contactService.getContact(this.contactId)
       .subscribe(res => {
-        this.contact = res.Data;
+        this.contact = res.data;
       });
   }
 
   modifyContact(){
-    this.contactService.modifyContact(this.contact.ContactGroupId,this.contact.Id,this.contact.FirstName,
-      this.contact.LastName,this.contact.Email,this.contact.Gender)
+    this.contactService.modifyContact(this.contact.contactGroupId,this.contact.id,this.contact.firstName,
+      this.contact.lastName,this.contact.email,this.contact.gender)
       .subscribe(res => {
       console.log(res);
         this.router.navigateByUrl(`group/${this.groupId}`);

@@ -1,12 +1,13 @@
+
 <div class="btn-section text-right">
     <button class="green-btn" (click)="setAddMode()">
       <i class="fa fa-plus">
       </i> New Group
     </button>
 </div>
+
 <div class="main-container">
   <div class="col-md-12 div-section">
-    <!--operation-->
     <div class="col-md-12 no-pad operation">
       <div class="col-md-6 operation-section">
         <button class="light-blue-btn">
@@ -25,40 +26,40 @@
       <table class="index-table text-left">
         <thead>
         <tr>
+          <th class="text-left"><i class="fa fa-sort"></i> Id</th>
           <th class="text-left"><i class="fa fa-sort"></i> Title</th>
-          <th class="text-center"><i class="fa fa-sort"></i> Resipient</th>
+          <th class="text-center"><i class="fa fa-sort"></i> Recipient</th>
           <th></th>
         </tr>
         </thead>
         <tbody>
-        <tr *ngFor="let group of filteredGroups">
+        <tr *ngFor="let group of filteredGroups,index as i">
           <td class="text-left">
             <div class="table-head">
-              <span>{{group.GroupName}}</span>
+              <span>{{i + 1}}</span>
+            </div>
+          </td>
+          <td class="text-left">
+            <div class="table-head">
+              <span>{{group.groupName}}</span>
             </div>
           </td>
           <td class=" text-center">
-            <div>{{group.ContactsCount}}</div>
+            <div>{{group.contactsCount}}</div>
           </td>
           <td class="td-single text-right actions-container">
             <div class="actions">
               <a (click)="removeGroup(group)"><i class="fa fa-trash"></i></a>
               <a (click)="setEditMode(group)"> <i class="fa fa-pencil"></i></a>
-              <a [routerLink]="[group.Id]"><i class="fa fa-eye"></i></a>
+              <a [routerLink]="[group.id]"><i class="fa fa-eye"></i></a>
             </div>
           </td>
         </tr>
         </tbody>
       </table>
     </div>
-
   </div>
-  <!--table-->
-
 </div>
-
-
-
 
 <div *ngIf="showState == 'add'"  class="modal fade in modal-back" role="dialog" tabindex="-1" style="display: block;" aria-modal="true">
   <div role="document" class="modal-dialog">

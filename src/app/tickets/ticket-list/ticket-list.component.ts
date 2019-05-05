@@ -17,8 +17,8 @@ export class TicketListComponent implements OnInit {
   ngOnInit() {
     this.ticketService.getAllTickets(this.pageNumber,this.pageSize)
       .subscribe(res=>{
-        this.tickets = res.Data.Items;
-        console.log(res.Data);
+        this.tickets = res.data.items;
+        console.log(res.data);
       });
   }
 }

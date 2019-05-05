@@ -24,9 +24,9 @@ export class TicketComponent implements OnInit {
     this.id = parseInt(this.activatedRoute.snapshot.paramMap.get('id'));
     this.ticketService.getTicket(this.id)
       .subscribe(res=>{
-        console.log(res.Data);
-        this.ticket = res.Data;
-        this.isClosed = res.Data.Status == 6;
+        console.log(res.data);
+        this.ticket = res.data;
+        this.isClosed = res.data.status == 6;
       });
   }
 
@@ -38,7 +38,7 @@ export class TicketComponent implements OnInit {
 
     this.ticketService.sendReply(this.id,this.replyText)
       .subscribe(res=>{
-        console.log(res.Data);
+        console.log(res.data);
         this.notificationService.success('Reply Message Add Successfully','');
       });
   }

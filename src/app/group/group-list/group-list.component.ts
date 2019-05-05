@@ -35,11 +35,10 @@ export class GroupListComponent implements OnInit {
     this.groupService.getAll(this.pageSize,this.pageNumber)
       .subscribe(res=>{
         console.log(res);
-        this.data= res.Data;
-        this.groups = this.data.Items;
+        this.data= res.data;
+        this.groups = this.data.items;
 
         this.realTimeFilter();
-        debugger;
       });
   }
   setAddMode(){
@@ -50,14 +49,14 @@ export class GroupListComponent implements OnInit {
   setEditMode(group){
     this.currentGroup = group;
     this.showState = 'edit';
-    this.groupName = group.GroupName;
+    this.groupName = group.groupName;
   }
 
   saveNewGroup(){
     this.groupService.addGroup(this.groupName).subscribe(res=>{
-      console.log(res.Data);
+      console.log(res.data);
       this.showState = 'default';
-      let id = res.Data.Id;
+      let id = res.data.Id;
       this.router.navigateByUrl(`group/${id}/add-contact`);
     });
   }
@@ -68,23 +67,22 @@ export class GroupListComponent implements OnInit {
     if (this.currentGroup == null)
       return;
 
-    this.groupService.removeGroup(this.currentGroup.Id).subscribe(res=>console.log(res));
-    _.remove(this.groups,g=>g.Id == this.currentGroup.Id);
+    this.groupService.removeGroup(this.currentGroup.id).subscribe(res=>console.log(res));
+    _.remove(this.groups,g=>g.Id == this.currentGroup.id);
     this.realTimeFilter();
   }
 
   modifyGroup(){
-    debugger;
-    this.groupService.modifyGroup(this.currentGroup.Id,this.groupName)
+    this.groupService.modifyGroup(this.currentGroup.id,this.groupName)
       .subscribe(res=>{
         console.log(res);
         this.showState = 'default';
-        this.currentGroup.GroupName = this.groupName;
+        this.currentGroup.groupName = this.groupName;
         this.realTimeFilter();
       });
   }
 
   realTimeFilter(){
-      this.filteredGroups = this.utilityService.filterByExpression(this.groups,'GroupName',this.filterExpression);
+      this.utilityService.filterByExpression(this.groups,this.filteredGroups,'GroupName',this.filterExpression);
     }
 }

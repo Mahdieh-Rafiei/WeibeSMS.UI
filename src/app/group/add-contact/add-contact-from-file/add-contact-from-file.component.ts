@@ -12,4 +12,12 @@ export class AddContactFromFileComponent implements OnInit {
   ngOnInit() {
   }
 
+  downloadSample(){
+    window.open('/assets/contact.xlsx');
+  }
+
+  dropped(e){
+    debugger;
+    console.log('khagsdfajgf');
+  }
 }

@@ -58,14 +58,14 @@ export class LoginComponent implements OnInit {
       this.notificationService.success('Verification code sent successfully','');
       console.log(res.Data);
       this.verificationCodeSent = true;
-      this.registrationKey = res.Data.RegistrationKey;
+      this.registrationKey = res.data.registrationKey;
     });
   }
 
   verify(){
     this.registerService.verifyMobile(this.registrationKey,this.mobile.toString(),this.verificationCode).subscribe((res) =>
     {
-      this.authService.setToken(res.Data.Token);
+      this.authService.setToken(res.data.token);
       this.router.navigateByUrl('/register');
     })
   }
