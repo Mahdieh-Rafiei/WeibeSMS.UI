@@ -5,15 +5,30 @@
 </div>
 <div class="main-container">
     <div class="col-md-12 add-contact-tab text-center no-pad">
+        <h3>How would you like to get contacts into your list?</h3>
         <div class="col-md-4 no-pad">
-            <div [routerLink]="['from-file']"  class="add-contact-div">Add Contact From File</div>
+            <div [routerLink]="['single-contact']" class="add-contact-div">
+                <p>Add Contacts <span class="type-add">"single"</span> </p>
+                <img src="../../../assets/images/addcontact/sigle.svg">
+                <p>If you want to add them manually.</p>
+            </div>
         </div>
         <div class="col-md-4 no-pad">
-            <div [routerLink]="['single-contact']" class="add-contact-div">Single Add Contact</div>
+
+            <div [routerLink]="['from-list']" class="add-contact-div">
+                <p>Add Contacts <span class="type-add">"List"</span> </p>
+                <img src="../../../assets/images/addcontact/list.svg">
+                <p>If you want to add them from other list.</p>
+            </div>
         </div>
         <div class="col-md-4 no-pad">
-            <div [routerLink]="['from-list']" class="add-contact-div">Import Contact From Other Lists</div>
+            <div [routerLink]="['from-file']"  class="add-contact-div">
+                <p>Import Contacts</p>
+                <img src="../../../assets/images/addcontact/excel.svg">
+                <p>Import your contacts from Excel.</p>
+            </div>
         </div>
+
     </div>
     <router-outlet></router-outlet>
 </div>

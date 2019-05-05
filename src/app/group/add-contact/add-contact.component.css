@@ -3,16 +3,26 @@
     margin-bottom: 10px;
 }
 .add-contact-div {
-    background: #d9f2f1;
-    border: 1px solid #d9f2f1;
-    padding: 40px;
+    background: #f9f9f9;
+    padding: 10px;
     font-size: 16px;
     margin-bottom: 0;
     line-height: 2;
     cursor: pointer;
     transition: .4s;
+    z-index: 99;
 }
 .add-contact-div:hover{
-    box-shadow: 0px 0px 4px 0px #808080;
+    box-shadow: 1px 2px 20px rgb(217, 224, 238);
     transition: .4s;
+    z-index: 3;
+}
+.type-add{
+    font-size: 14px;
+    color: #ed4952;
+}
+.add-contact-div img{
+    margin: 0 auto;
+    display: block;
+    height: 150px;
 }
