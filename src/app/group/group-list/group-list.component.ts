@@ -83,6 +83,6 @@ export class GroupListComponent implements OnInit {
   }
 
   realTimeFilter(){
-      this.utilityService.filterByExpression(this.groups,this.filteredGroups,'GroupName',this.filterExpression);
+      this.utilityService.filterByExpression(this.groups,this.filteredGroups,'groupName',this.filterExpression);
     }
 }

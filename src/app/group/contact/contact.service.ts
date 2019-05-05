@@ -1,13 +1,15 @@
 import { Injectable } from '@angular/core';
 import {ApiService} from '../../shared/api.service';
 import {Observable} from 'rxjs';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
+import {ConfigService} from '../../shared/config.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ContactService {
 
-  constructor(private apiService:ApiService) { }
+  constructor(private apiService:ApiService,private http:HttpClient,private configService:ConfigService) { }
 
   getAllContacts(groupId:number) : Observable<any>{
     return this.apiService.get('Contact',true);
@@ -28,6 +30,18 @@ export class ContactService {
     };
 
     return this.apiService.post(`Contact`,payload,true);
+  }
+
+  addContactFromFile(groupId:number,replaceDuplicateContact:boolean,file:File,relativePath:string) : Observable<any>{
+
+    const formData = new FormData();
+    formData.append('logo', file, relativePath);
+
+    const headers = new HttpHeaders({
+      'token': localStorage.getItem('jwt-sms')
+    });
+
+    return this.http.post(`${this.configService.baseUrl}Contact/${groupId}`, formData, { headers: headers });
   }
 
   modifyContact(groupId:number,contactId:number,firstName:string,lastName:string,email:string,gender:number):Observable<any>{

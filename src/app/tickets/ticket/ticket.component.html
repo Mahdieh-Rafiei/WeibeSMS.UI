@@ -15,7 +15,7 @@
                 <p *ngIf="ticket" [innerHTML]="ticket.message"></p>
 
         <div class="col-md-12 subject-ticket">
-            <h4 *ngIf="ticket">{{ticket.Title}}</h4>
+            <h4 *ngIf="ticket">{{ticket.title}}</h4>
             <p><span>supporter</span> - <span>here is priority</span> </p>
         </div>
         <div class="col-md-12 supporter no-pad">
@@ -24,11 +24,11 @@
             </div>
             <div class="col-md-8 no-pad ">
                 <p class="date-author">
-                    <span *ngIf="ticket">{{ticket.AuthorName}}</span>
-                    <span *ngIf="ticket">{{ticket.Date}}</span>
+                    <span *ngIf="ticket">{{ticket.authorName}}</span>
+                    <span *ngIf="ticket">{{ticket.date}}</span>
                 </p>
                 <div class="supporter-ticket">
-                    <p *ngIf="ticket" [innerHTML]="ticket.Message"></p>
+                    <p *ngIf="ticket" [innerHTML]="ticket.message"></p>
                 </div>
             </div>
         </div>
@@ -38,11 +38,11 @@
             </div>
             <div class="col-md-8 no-pad" style="float: right;">
                 <p class="date-author-customer text-right">
-                    <span *ngIf="ticket">{{ticket.AuthorName}}</span>
-                    <span *ngIf="ticket">{{ticket.Date}}</span>
+                    <span *ngIf="ticket">{{ticket.authorName}}</span>
+                    <span *ngIf="ticket">{{ticket.date}}</span>
                 </p>
                 <div class="customer-ticket">
-                    <p *ngIf="ticket" [innerHTML]="ticket.Message"></p>
+                    <p *ngIf="ticket" [innerHTML]="ticket.message"></p>
                 </div>
             </div>
         </div>

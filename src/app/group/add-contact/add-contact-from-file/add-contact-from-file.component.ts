@@ -1,4 +1,10 @@
 import { Component, OnInit } from '@angular/core';
+import {FileSystemFileEntry, UploadEvent} from 'ngx-file-drop';
+import {ContactService} from '../../contact/contact.service';
+import {GroupService} from '../../group.service';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
+import {NotificationService} from '../../../shared/notification.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-add-contact-from-file',
@@ -7,17 +13,39 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AddContactFromFileComponent implements OnInit {
 
-  constructor() { }
+  result:any;
+  resultView:boolean=false;
+  constructor(private contactService:ContactService,
+              private groupService:GroupService,
+              private notificationService:NotificationService,
+              private router:Router) {
+  }
 
   ngOnInit() {
   }
 
-  downloadSample(){
+  downloadSample() {
     window.open('/assets/contact.xlsx');
   }
 
-  dropped(e){
-    debugger;
-    console.log('khagsdfajgf');
+  dropped(e) {
+    let droppedFile = e.files[0];
+
+    const fileEntry = droppedFile.fileEntry as FileSystemFileEntry;
+
+      fileEntry.file((file: File) => {
+        this.contactService.addContactFromFile(this.groupService.selectedGroupId,true,file,droppedFile.relativePath)
+          .subscribe(res=>{
+            console.log(res);
+            this.result = res.data;
+            this.resultView=true;
+            this.notificationService.success('File processed successfully','');
+          });
+    });
+  }
+
+  close(){
+    this.resultView=false;
+    this.router.navigateByUrl(`group/${this.groupService.selectedGroupId}`);
   }
 }

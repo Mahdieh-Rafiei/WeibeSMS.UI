@@ -32,8 +32,8 @@ export class SingleAddContactComponent implements OnInit {
     this.groupId = this.groupService.selectedGroupId;
     this.userEventService.getUserEvents()
       .subscribe(res=>{
-        console.log(res.Data);
-        this.userEvents = res.Data;
+        console.log(res.data);
+        this.userEvents = res.data;
       })
   }
 
