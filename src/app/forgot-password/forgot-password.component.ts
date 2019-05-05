@@ -33,7 +33,7 @@ export class ForgotPasswordComponent implements OnInit {
       .subscribe(res=>{
         console.log(res);
         this.step = 2;
-        this.key = res.Data.RegistrationKey
+        this.key = res.data.registrationKey
       })
   }
 
@@ -49,7 +49,7 @@ export class ForgotPasswordComponent implements OnInit {
       .subscribe(res=> {
         console.log(res);
         this.step = 3;
-        this.authService.setToken(res.Data.Token);
+        this.authService.setToken(res.data.token);
       });
   }
 

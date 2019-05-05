@@ -9,10 +9,10 @@
 <div class="main-container">
   <div class="col-md-12 div-section">
     <div class="col-md-12 draft">
-      <input [(ngModel)]="draft.Title" type="text" placeholder="name" class="input-name">
+      <input [(ngModel)]="draft.title" type="text" placeholder="name" class="input-name">
       <div class="col-md-12 no-pad">
         <div class="col-md-8 padding">
-          <textarea placeholder="Message |" (input)="onMessageTextChange()" [(ngModel)]="draft.MessageText" rows="9" class="content-box"></textarea>
+          <textarea placeholder="Message |" (input)="onMessageTextChange()" [(ngModel)]="draft.messageText" rows="9" class="content-box"></textarea>
           <div class="count-sms">
             <span>{{localSmsLen}} / {{container}}</span>  |  <span>{{smsCount}} SMS</span>
           </div>
@@ -26,8 +26,8 @@
             <p (click)="addSegment(3)"><i class="fa fa-plus-circle"></i> Phone number</p>
           </div>
           <div class="template">
-            <select (change)="test($event)" class="content-box">
-              <option [innerText]="d.Title" [value]="d.Id" *ngFor="let d of drafts">
+            <select class="content-box">
+              <option [innerText]="d.title" [value]="d.id" *ngFor="let d of drafts">
               </option>
             </select>
           </div>

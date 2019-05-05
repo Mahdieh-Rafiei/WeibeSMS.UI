@@ -10,11 +10,12 @@ export class DraftService {
   constructor(private apiService:ApiService) { }
 
   getAllDrafts(pageNumber:number,pageSize:number) :Observable<any>{
-    return this.apiService.get(`DraftMessage?pageNumber=${pageNumber}&pageSize=${pageSize}`,true);
+    debugger;
+    return this.apiService.get(`userDraftMessage?pageNumber=${1}&pageSize=${10}`,true);
   }
 
   getDraft(id:number):Observable<any>{
-   return this.apiService.get(`DraftMessage/${id}`,true);
+   return this.apiService.get(`UserDraftMessage/${id}`,true);
   }
 
   addDraft(title:string,messageText:string) : Observable<any>{
@@ -23,7 +24,7 @@ export class DraftService {
       MessageText:messageText
     };
 
-   return this.apiService.post(`DraftMessage`,payload,true);
+   return this.apiService.post(`UserDraftMessage`,payload,true);
   }
 
   modifyDraft(id:number,title:string,messageText:string) :Observable<any>{
@@ -32,10 +33,10 @@ export class DraftService {
       MessageText:messageText
     };
 
-    return this.apiService.put(`DraftMessage/${id}`,payload,true);
+    return this.apiService.put(`UserDraftMessage/${id}`,payload,true);
   }
 
   removeDraft(id:number) :Observable<any>{
-    return this.apiService.delete(`DraftMessage/${id}`,null,true);
+    return this.apiService.delete(`UserDraftMessage/${id}`,null,true);
   }
 }

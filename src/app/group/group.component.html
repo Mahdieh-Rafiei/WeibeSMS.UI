@@ -37,19 +37,19 @@
                     <tr *ngFor="let contact of contacts">
                         <td class="text-right">
                             <div class="table-head">
-                                <input type="checkbox"> <span>{{contact.FirstName}}</span>
+                                <input type="checkbox"> <span>{{contact.firstName}}</span>
                             </div>
                         </td>
                         <td class=" text-center">
-                            <div>{{contact.LastName}}</div>
+                            <div>{{contact.lastName}}</div>
                         </td>
                         <td class=" text-center">
-                            <div>{{contact.Mobile}}</div>
+                            <div>{{contact.mobile}}</div>
                         </td>
                         <td class="td-single text-right actions-container">
                             <div class="actions">
                                 <a (click)="removeFromGroup(contact)"><i class="fa fa-trash"></i></a>
-                                <a [routerLink]="['contact',contact.Id]"><i class="fa fa-pencil"></i></a>
+                                <a [routerLink]="['contact',contact.id]"><i class="fa fa-pencil"></i></a>
                             </div>
                         </td>
                     </tr>

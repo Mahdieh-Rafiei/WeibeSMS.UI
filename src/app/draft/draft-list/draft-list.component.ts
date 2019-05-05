@@ -18,14 +18,14 @@ export class DraftListComponent implements OnInit {
   ngOnInit() {
     this.draftService.getAllDrafts(this.pageNumber,this.pageSize)
       .subscribe(res => {
-        console.log(res.Data);
-        res.Data.Items.forEach(i=>{
+        console.log(res.data);
+        res.data.items.forEach(i=>{
           console.log(i);
           this.drafts.push({
-            Id:i.Id,
-            MessageText:i.MessageText,
-            Title:i.Title,
-            Summary:i.MessageText.substring(0,30)
+            id:i.id,
+            messageText:i.messageText,
+            title:i.title,
+            summary:i.messageText.substring(0,30)
           });
         });
         console.log(this.drafts);
@@ -33,10 +33,10 @@ export class DraftListComponent implements OnInit {
   }
 
   removeDraft(draft){
-    this.draftService.removeDraft(draft.Id)
+    this.draftService.removeDraft(draft.id)
       .subscribe(res=>{
         console.log(res);
-        _.remove(this.drafts,d=>d.Id == draft.Id);
+        _.remove(this.drafts,d=>d.id == draft.id);
       });
   }
 

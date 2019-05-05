@@ -23,19 +23,19 @@ export class GroupComponent implements OnInit {
     this.groupId = this.activatedRoute.snapshot.paramMap.get('groupId');
     this.groupService.selectedGroupId = parseInt(this.groupId);
     this.groupService.getGroup(this.groupId).subscribe(res=>{
-      console.log(res.Data);
-      this.group = res.Data;
+      console.log(res.data);
+      this.group = res.data;
 
-      this.contacts = res.Data.Contacts.Items;
+      this.contacts = res.data.contacts.items;
       console.log(this.contacts);
     });
   }
 
   removeFromGroup(contact){
-     this.contactService.removeContactFromGroup(this.group.Id,contact.Id)
+     this.contactService.removeContactFromGroup(this.group.id,contact.id)
        .subscribe(res=>{
          console.log(res);
-         _.remove(this.contacts,c=>c.Id == contact.Id);
+         _.remove(this.contacts,c=>c.id == contact.id);
        });
   }
 }

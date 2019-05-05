@@ -26,8 +26,8 @@ export class AuthenticationService {
       'username': username,
       'password':password
     },false).subscribe(res => {
-      console.log(res.Data);
-      this.setToken(res.Data.Token);
+      console.log(res.data);
+      this.setToken(res.data.token);
       this.configService.authenticationChanged.emit(true);
       this.router.navigateByUrl('');
     });

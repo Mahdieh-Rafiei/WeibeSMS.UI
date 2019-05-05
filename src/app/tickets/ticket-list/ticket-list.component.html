@@ -35,12 +35,12 @@
         </thead>
         <tbody>
         <tr *ngFor="let t of tickets">
-          <td class="text-left">{{t.Title}}</td>
-          <td class="text-left">{{t.Date}}</td>
-          <td class="text-left">{{t.Status | statusTranslator}}</td>
+          <td class="text-left">{{t.title}}</td>
+          <td class="text-left">{{t.date}}</td>
+          <td class="text-left">{{t.status | statusTranslator}}</td>
           <td class="td-single text-left actions-container">
             <div class="actions">
-              <a [routerLink]="['../ticket',t.Id]"><i class="fa fa-eye"></i></a>
+              <a [routerLink]="['../ticket',t.id]"><i class="fa fa-eye"></i></a>
             </div>
           </td>
         </tr>

@@ -11,7 +11,7 @@ import {UtilityService} from '../shared/utility.service';
 export class UserEventComponent implements OnInit {
 
   userEvents:any[];
-  filteredUserEvents:any[];
+  filteredUserEvents:any[]=[];
   name:string;
   mode:string='default';
   currentUserEvent:any;
@@ -24,7 +24,7 @@ export class UserEventComponent implements OnInit {
     this.userEventService.getUserEvents()
       .subscribe(res =>{
         console.log(res);
-        this.userEvents = res.Data;
+        this.userEvents = res.data;
         this.realTimeFilter();
       });
   }
@@ -34,7 +34,7 @@ export class UserEventComponent implements OnInit {
       .subscribe(res=>{
         console.log(res);
         this.userEvents.push({
-          Id:res.Data,
+          Id:res.data,
           Name:this.name
         });
         this.mode = 'default';
@@ -57,7 +57,7 @@ export class UserEventComponent implements OnInit {
     this.userEventService.modifyUserEvent(this.currentUserEvent.Id,this.name)
       .subscribe(res => {
         console.log(res);
-        this.currentUserEvent.Name = this.name;
+        this.currentUserEvent.name = this.name;
         this.mode='default';
       });
   }
@@ -65,11 +65,11 @@ export class UserEventComponent implements OnInit {
   setModifyMode(userEvent){
     this.mode='edit';
     this.currentUserEvent = userEvent;
-    this.name = this.currentUserEvent.Name;
+    this.name = this.currentUserEvent.name;
     this.realTimeFilter();
   }
 
   realTimeFilter(){
-    this.filteredUserEvents = this.utilityService.filterByExpression(this.userEvents,'Name',this.filterExpression);
+     this.utilityService.filterByExpression(this.userEvents,this.filteredUserEvents,'name',this.filterExpression);
   }
 }
