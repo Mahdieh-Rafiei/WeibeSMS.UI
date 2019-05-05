@@ -1,110 +1,117 @@
-<nav class="sidebar">
+<nav class="sidebar" id="style-1">
   <!--menu-->
   <div class="list-group">
     <div class="sidebar-section">
+      <div class="company-name text-center">
+        <p><i class="fa fa-paw"></i> Relax Co.</p>
+      </div>
       <div class="logo-box">
-        <img src="../../assets/images/logo-ww.png" class="img-responsive center-block">
+        <img src="../../assets/images/4.png" class="img-responsive center-block">
       </div>
       <a class="list-group-item" [routerLink]="['']">
-        <i class="fa fa-question-circle"></i>&nbsp;
-          <span routerLink="group">Dashboard</span>
+        <i class="fa fa-home"></i> Dashboard
       </a>
     </div>
     <div class="sidebar-section">
       <a class="list-group-item" [routerLink]="['../group']">
-        <i class="fa fa-question-circle"></i>&nbsp;
-        <span routerLink="group">Contacts</span>
+        <i class="fa fa-address-book"></i> Contacts
+      </a>
+    </div>
+    <div class="nested-menu">
+      <a class="list-group-item" (click)="addExpandClass('send')" [routerLink]="['../send-message']">
+        <i class="fa fa-envelope"></i>&nbsp;Send
+        <span class="fa fa-chevron-down"></span>
+      </a>
+      <li class="nested" [class.expand]="showMenu === 'send'">
+        <ul class="submenu">
+          <li>
+            <a href="javascript:void(0)">
+              <i class="fa fa-monument"></i>&nbsp;
+              <span>Simple</span>
+            </a>
+          </li>
+          <li>
+            <a href="javascript:void(0)">
+              <i class="fa fa-monument"></i>&nbsp;
+              <span>Schedule</span>
+            </a>
+          </li>
+          <li>
+            <a href="javascript:void(0)">
+              <i class="fa fa-monument"></i>&nbsp;
+              <span>Event base</span>
+            </a>
+          </li>
+        </ul>
+      </li>
+    </div>
+    <div class="sidebar-section">
+      <a class="list-group-item" [routerLink]="['../sms-report-list']">
+        <i class="fa fa-bar-chart-o"></i> Reports
       </a>
     </div>
     <div class="sidebar-section">
-      <a class="list-group-item" [routerLink]="['../send-message']">
-        <i class="fa fa-question-circle"></i>&nbsp;
-        <span>Send</span>
+      <a class="list-group-item" [routerLink]="['../report-verification']">
+        <i class="fa fa-check-square"></i> verification
       </a>
     </div>
-    <div class="sidebar-section">
-      <a class="list-group-item" [routerLink]="['../draft-list']">
-        <i class="fa fa-question-circle"></i>&nbsp;
-        <span>Draft</span>
+    <div class="nested-menu">
+      <a class="list-group-item" (click)="addExpandClass('option')">
+        <i class="fa fa-cog"></i> Option
+        <span class="fa fa-chevron-down"></span>
       </a>
+      <li class="nested" [class.expand]="showMenu === 'option'">
+        <ul class="submenu">
+          <li>
+            <a [routerLink]="['../draft-list']">
+              <i class="fa fa-monument"></i>&nbsp;
+              <span>Draft</span>
+            </a>
+          </li>
+          <li>
+            <a [routerLink]="['../schedule-event']">
+              <i class="fa fa-monument"></i>&nbsp;
+              <span>schedule,events</span>
+            </a>
+          </li>
+          <li>
+            <a [routerLink]="['../user-event']">
+              <i class="fa fa-monument"></i>&nbsp;
+              <span>event_field</span>
+            </a>
+          </li>
+        </ul>
+      </li>
+    </div>
+    <div class="nested-menu">
+      <a class="list-group-item" (click)="addExpandClass('credit')">
+        <i class="fa fa-credit-card"></i> Credit
+        <span class="fa fa-chevron-down"></span>
+      </a>
+      <li class="nested" [class.expand]="showMenu === 'credit'">
+        <ul class="submenu">
+          <li>
+            <a [routerLink]="['../invoice-list']">
+              <i class="fa fa-monument"></i>&nbsp;invoices
+            </a>
+          </li>
+          <li>
+            <a [routerLink]="['../create-transaction']">
+              <i class="fa fa-monument"></i>&nbsp;transactions
+            </a>
+          </li>
+        </ul>
+      </li>
     </div>
     <div class="sidebar-section">
-      <a class="list-group-item" [routerLink]="['../create-transaction']">
-        <i class="fa fa-question-circle"></i>&nbsp;
-        <span>create transaction</span>
-      </a>
-    </div>
-    <div class="sidebar-section">
-      <a class="list-group-item" [routerLink]="['../invoice-list']">
-        <i class="fa fa-question-circle"></i>&nbsp;
-        <span>invoice</span>
+      <a class="list-group-item" [routerLink]="['../ticket-list']">
+        <i class="fa fa-phone-square"></i> support
       </a>
     </div>
     <div class="sidebar-section">
       <a class="list-group-item" [routerLink]="['../ticket-list']">
-        <i class="fa fa-question-circle"></i>&nbsp;
-        <span>Ticket</span>
+        <i class="fa fa-code"></i> developers
       </a>
-    </div>
-    <div class="sidebar-section">
-      <a class="list-group-item" [routerLink]="['../user-event']">
-        <i class="fa fa-question-circle"></i>&nbsp;
-        <span>Field</span>
-      </a>
-    </div>
-    <div class="sidebar-section">
-      <a class="list-group-item" [routerLink]="['../sms-report-list']">
-        <i class="fa fa-question-circle"></i>&nbsp;
-        <span>Reports</span>
-      </a>
-    </div>
-    <div class="sidebar-section">
-      <a class="list-group-item" [routerLink]="['../schedule-event']">
-        <i class="fa fa-question-circle"></i>&nbsp;
-        <span>Schedule & Event</span>
-      </a>
-    </div>
-    <div class="nested-menu">
-      <a class="list-group-item">
-        <i class="fa fa-plus"></i>&nbsp;
-        <span>Menu</span>
-      </a>
-      <li class="nested" >
-        <div class="btn-group" dropdown [autoClose]="false" container="body">
-          <button id="button-nested" dropdownToggle type="button" class="btn btn-primary dropdown-toggle"
-                  aria-controls="dropdown-nested">
-            This dropdown has nested submenu <span class="caret"></span>
-          </button>
-          <ul id="dropdown-nested" *dropdownMenu class="dropdown-menu"
-              role="menu" aria-labelledby="button-nested">
-            <li role="menuitem"><a class="dropdown-item" href="#/dropdowns#nested-dropdowns">Action</a></li>
-
-            <li role="menuitem" dropdown triggers="mouseover" placement="right" container="body">
-              <a dropdownToggle class="dropdown-item dropdown-toggle"
-                 (click)="false">Hover me for nested dropdown <span class="caret"></span></a>
-              <ul *dropdownMenu class="dropdown-menu" role="menu">
-                <li role="menuitem"><a class="dropdown-item" href="#/dropdowns#nested-dropdowns">Action</a></li>
-                <li role="menuitem"><a class="dropdown-item" href="#/dropdowns#nested-dropdowns">Action1</a></li>
-                <li role="menuitem"><a class="dropdown-item" href="#/dropdowns#nested-dropdowns">Action2</a></li>
-              </ul>
-            </li>
-
-            <li role="menuitem" dropdown triggers="mouseover" placement="right" container="body">
-              <a dropdownToggle class="dropdown-item dropdown-toggle"
-                 (click)="false">Hover me for nested dropdown <span class="caret"></span></a>
-              <ul *dropdownMenu class="dropdown-menu" role="menu">
-                <li role="menuitem"><a class="dropdown-item" href="#/dropdowns#nested-dropdowns">Action</a></li>
-                <li role="menuitem"><a class="dropdown-item" href="#/dropdowns#nested-dropdowns">Action1</a></li>
-                <li role="menuitem"><a class="dropdown-item" href="#/dropdowns#nested-dropdowns">Action2</a></li>
-              </ul>
-            </li>
-
-            <li role="menuitem"><a class="dropdown-item" href="#/dropdowns#nested-dropdowns">Something else here</a></li>
-            <li class="divider dropdown-divider"></li>
-            <li role="menuitem"><a class="dropdown-item" href="#/dropdowns#nested-dropdowns">Separated link</a></li>
-          </ul>
-        </div>
-      </li>
     </div>
   </div>
 </nav>

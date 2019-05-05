@@ -53,7 +53,9 @@ import { SmsReportComponent } from './sms-reports/sms-report/sms-report.componen
 import { DefinitionScheduleEventComponent } from './definition-schedule-event/definition-schedule-event.component';
 import {TicketService} from './tickets/ticket.service';
 import { StatusTranslatorPipe } from './tickets/status-translator.pipe';
+
 import {FileDropModule} from 'ngx-file-drop';
+import { VerificationCodeReportComponent } from './sms-reports/verification-code-report/verification-code-report.component';
 
 
 @NgModule({
@@ -91,6 +93,7 @@ import {FileDropModule} from 'ngx-file-drop';
         SmsReportComponent,
         DefinitionScheduleEventComponent,
         StatusTranslatorPipe,
+        VerificationCodeReportComponent,
 
   ],
   imports: [
