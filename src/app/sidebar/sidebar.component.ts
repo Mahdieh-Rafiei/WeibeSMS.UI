@@ -15,7 +15,6 @@ export class SidebarComponent implements OnInit {
       this.showMenu = '';
   }
 
-
   // subMenu
   addExpandClass(element: any) {
       if (element === this.showMenu) {
@@ -24,7 +23,4 @@ export class SidebarComponent implements OnInit {
           this.showMenu = element;
       }
   }
-
-
-
 }
