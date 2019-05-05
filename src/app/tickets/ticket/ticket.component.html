@@ -3,17 +3,6 @@
         <p>support request closed. u can open that with sending reply.</p>
     </div>
     <div class="col-md-12 div-section">
-
-        <div class="ticket-box">
-            <img src="../../../assets/images/user.jpg" alt="" class="profile-picture img-thumbnail img-circle">
-            <div class="name">
-                <span *ngIf="ticket">{{ticket.authorName}}</span>
-                <p *ngIf="ticket">{{ticket.date}}</p>
-            </div>
-            <h4 *ngIf="ticket">{{ticket.title}}</h4>
-            <div class="ticket-body">
-                <p *ngIf="ticket" [innerHTML]="ticket.message"></p>
-
         <div class="col-md-12 subject-ticket">
             <h4 *ngIf="ticket">{{ticket.title}}</h4>
             <p><span>supporter</span> - <span>here is priority</span> </p>
@@ -54,7 +43,6 @@
             </div>
             <div class="col-md-6 no-pad text-right">
                 <button class="green-btn">Reply ticket</button>
-
             </div>
         </div>
     </div>
@@ -66,6 +54,3 @@
         </div>
     </div>
 </div>
-
-
-

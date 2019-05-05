@@ -32,6 +32,8 @@ import {CreateTransactionComponent} from "./app/create-transaction/create-transa
 import {InvoiceListComponent} from "./app/invoices/invoice-list/invoice-list.component";
 import {PlanListComponent} from "./app/invoices/plan-list/plan-list.component";
 
+import {DevelopersComponent} from "./app/developers/developers.component";
+
 import {SmsReportComponent} from "./app/sms-reports/sms-report/sms-report.component";
 import {SmsReportListComponent} from "./app/sms-reports/sms-report-list/sms-report-list.component";
 import {VerificationCodeReportComponent} from "./app/sms-reports/verification-code-report/verification-code-report.component";
@@ -77,6 +79,8 @@ export const APP_ROUTES: Routes = [
   {path: 'report-verification', component: VerificationCodeReportComponent},
 
   {path: 'create-transaction', component: CreateTransactionComponent},
+
+  {path: 'developers', component: DevelopersComponent},
 
   {path: 'schedule-event', component: DefinitionScheduleEventComponent},
 

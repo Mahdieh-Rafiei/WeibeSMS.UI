@@ -212,6 +212,16 @@ article, aside, details, figcaption, figure, footer, header, hgroup, main, menu,
     border: 0;
     padding: 0;
 }
+.trash{
+    background-color: #ffe8ee;
+    border-radius: 4px;
+    padding: 4px 10px;
+    border: 1px solid #ffe8ee;
+    margin-left: 5px;
+}
+.trash i{
+    color: #da002b;
+}
 /*----------------------------End Search---------------------------*/
 /*------------------------------table------------------------------*/
 .table-div{
@@ -415,7 +425,6 @@ i.fa.fa-sort {
     margin-bottom: 10px;
     margin-top: 10px;
 }
-
 
 /*----------------------------Loading--------------------------------*/
 .spinner {

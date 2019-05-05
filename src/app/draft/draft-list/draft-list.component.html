@@ -20,11 +20,11 @@
       </div>
     </div>
     <!--table-->
-    <div class="col-md-12 table-div">
+    <div class="col-md-12 table-div table-responsive">
       <table class="index-table text-left">
         <thead>
         <tr>
-          <th class="text-right"><i class="fa fa-sort"></i> Name</th>
+          <th class="text-left"><i class="fa fa-sort"></i> Name</th>
           <th class="text-center"><i class="fa fa-sort"></i> MESSAGE</th>
           <th class="text-center">Send Action</th>
           <th></th>
@@ -32,7 +32,7 @@
         </thead>
         <tbody>
         <tr *ngFor="let d of drafts">
-          <td class="text-right">
+          <td class="text-left">
             <div class="table-head">
               <input type="checkbox">{{d.title}}
             </div>

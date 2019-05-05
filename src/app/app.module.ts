@@ -9,6 +9,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import {FormsModule} from '@angular/forms';
 import {HttpClientModule} from "@angular/common/http";
 import { BsDropdownModule } from 'ngx-bootstrap';
+import { CollapseModule } from 'ngx-bootstrap';
 import { TabsModule } from 'ngx-bootstrap';
 import {RouterModule} from '@angular/router';
 import {APP_ROUTES} from '../app.routes';
@@ -56,6 +57,7 @@ import { StatusTranslatorPipe } from './tickets/status-translator.pipe';
 
 import {FileDropModule} from 'ngx-file-drop';
 import { VerificationCodeReportComponent } from './sms-reports/verification-code-report/verification-code-report.component';
+import { DevelopersComponent } from './developers/developers.component';
 
 
 @NgModule({
@@ -94,6 +96,7 @@ import { VerificationCodeReportComponent } from './sms-reports/verification-code
         DefinitionScheduleEventComponent,
         StatusTranslatorPipe,
         VerificationCodeReportComponent,
+        DevelopersComponent,
 
   ],
   imports: [
@@ -103,6 +106,7 @@ import { VerificationCodeReportComponent } from './sms-reports/verification-code
     AngularEditorModule,
     BsDropdownModule.forRoot(),
     TabsModule.forRoot(),
+    CollapseModule.forRoot(),
     RouterModule.forRoot(APP_ROUTES),
     ToastrModule.forRoot({
       preventDuplicates: true
