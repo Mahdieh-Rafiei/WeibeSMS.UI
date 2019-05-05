@@ -3,7 +3,7 @@
         <button class="previous-btn"> <i class="fa fa-arrow-left"></i> Previous </button>
     </div>
     <div class="col-md-6 no-pad text-right">
-        <button (click)="isAddMode=true" class="green-btn"> <i class="fa fa-plus"></i> Add Contact </button>
+        <button [routerLink]="['add-contact']" class="green-btn"> <i class="fa fa-plus"></i> Add Contact </button>
     </div>
 </div>
 <div class="main-container">
@@ -37,61 +37,30 @@
                     <tr *ngFor="let contact of contacts">
                         <td class="text-right">
                             <div class="table-head">
-                                <input type="checkbox"> <span>{{contact.FirstName}}</span>
+                                <input type="checkbox"> <span>{{contact.firstName}}</span>
                             </div>
                         </td>
                         <td class=" text-center">
-                            <div>{{contact.LastName}}</div>
+                            <div>{{contact.lastName}}</div>
                         </td>
                         <td class=" text-center">
-                            <div>{{contact.Mobile}}</div>
+                            <div>{{contact.mobile}}</div>
                         </td>
                         <td class="td-single text-right actions-container">
                             <div class="actions">
                                 <a (click)="removeFromGroup(contact)"><i class="fa fa-trash"></i></a>
-                                <a [routerLink]="['contact',contact.Id]"><i class="fa fa-pencil"></i></a>
+                                <a [routerLink]="['contact',contact.id]"><i class="fa fa-pencil"></i></a>
                             </div>
                         </td>
                     </tr>
                 </tbody>
             </table>
             <div class="table-pagination text-right">
-            <span><i class="fa fa-arrow-circle-left"></i></span>
-            <span><i class="fa fa-arrow-circle-right"></i></span>
-        </div>
+                <span><i class="fa fa-arrow-circle-left"></i></span>
+                <span><i class="fa fa-arrow-circle-right"></i></span>
+            </div>
         </div>
     </div>
 </div>
 
-
-<div *ngIf="isAddMode"  class="modal fade in modal-back" role="dialog" tabindex="-1" style="display: block;" aria-modal="true">
-  <div role="document" class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button (click)="isAddMode=false" aria-label="Close" class="close pull-right" type="button">
-          <span aria-hidden="true">×</span>
-        </button>
-      </div>
-      <div class="modal-body text-center">
-        <div>
-          <input [(ngModel)]="firstName" class="ws-login-input" type="text" placeholder="first name">
-          <br>
-          <input [(ngModel)]="lastName" class="ws-login-input" type="text" placeholder="last name">
-          <br>
-
-          <input [(ngModel)]="mobile" class="ws-login-input" type="text" placeholder="mobile">
-          <br>
-
-          <input [(ngModel)]="email" class="ws-login-input" type="text" placeholder="email">
-          <br>
-
-          <input [(ngModel)]="gender" class="ws-login-input" type="text" placeholder="gender">
-          <br>
-
-          <button class="ws-btn modal-btn" (click)="addContact()">Save</button>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
 

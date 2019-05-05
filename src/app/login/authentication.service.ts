@@ -17,17 +17,8 @@ export class AuthenticationService {
     return (localStorage.getItem(this.configService.tokenKeyName) !== null);
   }
 
-  isInRegisterMode():boolean{
-    return (localStorage.getItem('tempToken') !== null);
-  }
-
   setToken(token:string){
-    localStorage.setItem(this.configService.tokenKeyName,token.length == 0 ? localStorage.getItem('tempToken') : token);
-    localStorage.removeItem('tempToken');
-  }
-
-  setTempToken(tempToken:string){
-    localStorage.setItem('tempToken',tempToken);
+    localStorage.setItem(this.configService.tokenKeyName,token);
   }
 
   loginViaUsernamePassword(username:string,password:string){
@@ -35,8 +26,8 @@ export class AuthenticationService {
       'username': username,
       'password':password
     },false).subscribe(res => {
-      console.log(res.Data);
-      this.setToken(res.Data.Token);
+      console.log(res.data);
+      this.setToken(res.data.token);
       this.configService.authenticationChanged.emit(true);
       this.router.navigateByUrl('');
     });

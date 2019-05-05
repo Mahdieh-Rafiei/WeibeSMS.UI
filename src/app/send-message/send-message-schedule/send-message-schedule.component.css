@@ -26,7 +26,7 @@ input[type="radio"], input[type="checkbox"] {
     color: #fe9c00;
 }
 .schedule-field-input{
-    padding: 15px 0;
+    padding: 15px;
 }
 label{
     font-weight: 400;
@@ -45,17 +45,23 @@ input[type="text"]{
 
 @media (max-width: 991px) and (min-width: 768px) {
     input[type="text"] {
-        width: 35%;
+        width: 100%;
     }
     .schedule-field{
         padding-left: 0;
+    }
+    .schedule-field-input {
+        padding: 15px 0;
     }
 }
 @media (max-width: 767px) and (min-width: 320px){
     input[type="text"] {
-        width: 35%;
+        width: 100%;
     }
     .schedule-field{
         padding-left: 0;
+    }
+    .schedule-field-input {
+        padding: 15px 0;
     }
 }

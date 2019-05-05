@@ -34,6 +34,7 @@ import {PlanListComponent} from "./app/invoices/plan-list/plan-list.component";
 
 import {SmsReportComponent} from "./app/sms-reports/sms-report/sms-report.component";
 import {SmsReportListComponent} from "./app/sms-reports/sms-report-list/sms-report-list.component";
+import {VerificationCodeReportComponent} from "./app/sms-reports/verification-code-report/verification-code-report.component";
 import {DefinitionScheduleEventComponent} from "./app/definition-schedule-event/definition-schedule-event.component";
 
 export const APP_ROUTES: Routes = [
@@ -43,7 +44,7 @@ export const APP_ROUTES: Routes = [
   {path: 'group',component: GroupListComponent,canActivate:[CanActivateRouteGuard]},
   {path: 'group/:groupId/contact/:contactId',component: ContactComponent},
 
-  {path: 'group/:id/add-contact',component: AddContactComponent , children:[
+  {path: 'group/:groupId/add-contact',component: AddContactComponent , children:[
           {path:'from-file',component:AddContactFromFileComponent},
           {path:'single-contact',component:SingleAddContactComponent},
           {path:'from-list',component:ImportContactFromOtherListsComponent},
@@ -73,6 +74,7 @@ export const APP_ROUTES: Routes = [
 
   {path: 'sms-report-list', component: SmsReportListComponent},
   {path: 'sms-report', component: SmsReportComponent},
+  {path: 'report-verification', component: VerificationCodeReportComponent},
 
   {path: 'create-transaction', component: CreateTransactionComponent},
 

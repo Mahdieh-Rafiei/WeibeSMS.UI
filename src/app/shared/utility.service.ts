@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {tryParse} from 'selenium-webdriver/http';
+import _ from 'node_modules/lodash/lodash.js'
 
 @Injectable({
   providedIn: 'root'
@@ -19,5 +19,22 @@ export class UtilityService {
   hasDigit(phrase){
     let regex = /\d/g;
     return regex.test(phrase);
+  }
+
+  filterByExpression(sourceCollection:any[],filteredCollection:any[],columnName,expression){
+
+    _.remove(filteredCollection);
+    expression = expression.toLowerCase();
+    let filtered;
+    if (expression.length == 0){
+      filtered = sourceCollection;
+    }else {
+      filtered = sourceCollection.filter((s)=>{
+        let val = s[columnName];
+        val = val.toLowerCase();
+        return val.indexOf(expression) > -1;
+      });
+    }
+    filtered.forEach(f=> filteredCollection.push(f));
   }
 }

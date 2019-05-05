@@ -38,7 +38,7 @@ export class DraftComponent implements OnInit {
       this.draftService.getDraft(this.id)
         .subscribe(res=>{
           console.log(res);
-          this.draft=res.Data;
+          this.draft=res.data;
           this.onMessageTextChange();
         });
     }
@@ -49,20 +49,20 @@ export class DraftComponent implements OnInit {
     this.draftService.getAllDrafts(1,1000) //TODO: correct pagination
     //TODO: use an api to resolve only names
       .subscribe(res => {
-        this.drafts = res.Data.Items;
+        this.drafts = res.data.items;
         console.log(this.drafts);
       });
   }
 
   addOrUpdateDraft(){
     if (this.isAddMode){
-      this.draftService.addDraft(this.draft.Title,this.draft.MessageText)
+      this.draftService.addDraft(this.draft.title,this.draft.messageText)
         .subscribe(res =>{
           this.notificationService.success('Template saved successfully','');
           this.router.navigateByUrl('draft-list');
         });
     } else {
-      this.draftService.modifyDraft(this.draft.Id,this.draft.Title,this.draft.MessageText)
+      this.draftService.modifyDraft(this.draft.id,this.draft.title,this.draft.messageText)
         .subscribe(res=>{
           this.notificationService.success('Template saved successfully','');
           this.router.navigateByUrl('draft-list');
@@ -89,13 +89,13 @@ export class DraftComponent implements OnInit {
         break;
       }
     }
-    this.draft.MessageText = this.draft.MessageText.concat(` ${expression}`);
+    this.draft.messageText = this.draft.messageText.concat(` ${expression}`);
     this.onMessageTextChange();
   }
 
   onMessageTextChange(){
 
-    let len = this.draft.MessageText.length;
+    let len = this.draft.messageText.length;
     this.container = 153;
 
     if (len == 0){
@@ -124,6 +124,6 @@ export class DraftComponent implements OnInit {
   assignReadyTemplate(e){
     let selectedId = e.target.value;
     let selectedDraft = _.find(this.drafts,d=>d.Id == selectedId);
-    this.draft.MessageText = selectedDraft.MessageText;
+    this.draft.messageText = selectedDraft.messageText;
   }
 }

@@ -54,6 +54,9 @@ import { DefinitionScheduleEventComponent } from './definition-schedule-event/de
 import {TicketService} from './tickets/ticket.service';
 import { StatusTranslatorPipe } from './tickets/status-translator.pipe';
 
+import {FileDropModule} from 'ngx-file-drop';
+import { VerificationCodeReportComponent } from './sms-reports/verification-code-report/verification-code-report.component';
+
 
 @NgModule({
     declarations: [
@@ -90,6 +93,7 @@ import { StatusTranslatorPipe } from './tickets/status-translator.pipe';
         SmsReportComponent,
         DefinitionScheduleEventComponent,
         StatusTranslatorPipe,
+        VerificationCodeReportComponent,
 
   ],
   imports: [
@@ -103,7 +107,8 @@ import { StatusTranslatorPipe } from './tickets/status-translator.pipe';
     ToastrModule.forRoot({
       preventDuplicates: true
     }),
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    FileDropModule
   ],
   providers: [
     ApiService,

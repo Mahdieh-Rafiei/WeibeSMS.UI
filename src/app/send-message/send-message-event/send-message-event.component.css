@@ -41,7 +41,7 @@ input[type="text"]{
         padding: 0;
     }
     input[type="text"] {
-        width: 35%;
+        width: 100%;
     }
     .schedule-field{
         padding-left: 0;
@@ -55,7 +55,7 @@ input[type="text"]{
         padding: 0;
     }
     input[type="text"] {
-        width: 35%;
+        width: 100%;
     }
     .schedule-field{
         padding-left: 0;

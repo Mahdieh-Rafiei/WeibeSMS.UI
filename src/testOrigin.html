@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<button id="btn">Load</button>
+<div id="container">
+
+</div>
+<script>
+  let btn = document.getElementById('btn');
+  let container =document.getElementById('container');
+  btn.addEventListener('click',function () {
+    let xhr = new  XMLHttpRequest();
+
+    xhr.onreadystatechange = function () {
+      if (this.readyState == 4 && this.status == 200){
+        container.innerText += xhr.responseText;
+      }
+    };
+
+    xhr.open('GET','http://192.168.1.94:8070/api/v1/UserDraftMessage',true);
+    xhr.setRequestHeader('token','cjlXZkRVUE5FY0lYOWlwYWszbWd4S00yNi8xeWtMZ0dZeGpCWDliR3BzTTVsZVFYTWpTNGNnSUlYeXdiN2JpWnpTZ1o4L0dLaCs3ZDdsdnFwTzNJekRNN1lGUitYZjMyb1R2d3VBVEkzWHM5dElwSHJPNTZvcXhaOGJoWUxJSHIrZVpQUnpQYmhobUlkY1N5Y1NWNGVQMVFlQzFpeXpOSCtXTEVZY3BOdWs4PQ==');
+    xhr.send();
+  });
+
+</script>
+</body>
+</html>

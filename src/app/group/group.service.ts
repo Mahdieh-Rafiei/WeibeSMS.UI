@@ -8,6 +8,8 @@ import {Observable} from 'rxjs';
 })
 export class GroupService {
 
+  public selectedGroupId:number;
+
   constructor(private apiService :ApiService) { }
 
   getAll(pageSize:number,pageNumber:number) : Observable<any>{
@@ -35,6 +37,6 @@ export class GroupService {
   }
 
   removeGroup(id:number){
-    return this.apiService.delete(`ContactGroup/${id}`,true)
+    return this.apiService.delete(`ContactGroup/${id}`,null,true)
   }
 }

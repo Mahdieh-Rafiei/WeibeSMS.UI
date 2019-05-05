@@ -31,6 +31,7 @@ export class RegisterComponent implements OnInit {
   }
 
   register(){
+
     if (this.firstName.length == 0)
       this.notificationService.error('First name is required!','');
 
@@ -66,8 +67,6 @@ export class RegisterComponent implements OnInit {
 
     this.registerService.saveInfo(this.firstName,this.lastName,this.email,this.userName,this.password)
       .subscribe(res=>{
-        console.log(res);
-        this.authService.setToken('');
         this.configService.authenticationChanged.emit(true);
         this.router.navigateByUrl('');
       });

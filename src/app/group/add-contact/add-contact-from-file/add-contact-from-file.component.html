@@ -2,14 +2,21 @@
 <div class="col-md-12 section-div from-file">
   <div class="col-md-8 text-center no-pad">
     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor .</p>
-    <div class="upload-file text-center">
-      <p><i class="fa fa-upload"></i></p>
-      <p>click or drag and  drog file here.</p>
-      <p>( allowed file : .xls )</p>
-    </div>
+    <!--<div [draggable]="true" (dragend)="onDrag($eve)" class="upload-file text-center">-->
+      <!--<p><i class="fa fa-upload"></i></p>-->
+      <!--<p>click or drag and  drog file here.</p>-->
+      <!--<p>( allowed file : .xls )</p>-->
+    <!--</div>-->
+    <file-drop dropZoneLabel="Drop files here" (onFileDrop)="dropped($event)">
+               <!--(onFileOver)="fileOver($event)" (onFileLeave)="fileLeave($event)">-->
+      <span>optional content (don't set dropZoneLabel then)</span>
+    </file-drop>
+
   </div>
   <div class="col-md-4 upload-file-icon text-center">
     <i class="fa fa-file"></i>
-    <p><i class="fa fa-upload"></i> excel template </p>
+    <p (click)="downloadSample()" style="cursor: pointer" >
+      <i class="fa fa-upload"></i> excel template
+    </p>
   </div>
 </div>
