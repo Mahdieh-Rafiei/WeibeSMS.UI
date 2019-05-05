@@ -7,7 +7,7 @@ import {EventEmitter, Injectable, Output} from '@angular/core';
 export class ConfigService {
 
   baseUrl:string;
-  tokenKeyName:string;r
+  tokenKeyName:string;
   errorMessages:Map<number,string>= new Map<number,string>();
 
   @Output() sidebarStateChanged: EventEmitter<boolean> = new EventEmitter<boolean>();
@@ -15,7 +15,7 @@ export class ConfigService {
 
   constructor() {
     this.tokenKeyName='jwt-sms';
-    this.baseUrl = 'http://192.168.1.94:8575/api/v1/';
+    this.baseUrl = 'http://192.168.1.94:8070/api/v1/';
 
     this.errorMessages.set(1,'Entered values are wrong!');
     this.errorMessages.set(2,'Get verification code again please!');
