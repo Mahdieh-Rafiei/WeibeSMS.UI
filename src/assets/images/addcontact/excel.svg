@@ -1,0 +1,26 @@
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 512 438.3" style="enable-background:new 0 0 512 438.3;" xml:space="preserve">
+<style type="text/css">
+	.st0{fill:none;stroke:#2A2A2A;stroke-width:7;stroke-linecap:round;stroke-linejoin:round;}
+	.st1{fill:none;stroke:#2A2A2A;stroke-width:7;stroke-linecap:round;stroke-miterlimit:10;}
+	.st2{fill:none;stroke:#2A2A2A;stroke-width:7;stroke-miterlimit:10;}
+	.st3{fill:#FFFFFF;}
+	.st4{fill:#2A2A2A;}
+	.st5{fill:#FFFFFF;stroke:#121617;stroke-width:4;stroke-linecap:round;stroke-linejoin:round;}
+</style>
+<g id="group1">
+	<line class="st0" x1="25.3" y1="425.8" x2="6" y2="425.8"/>
+	<line class="st0" x1="39.3" y1="425.7" x2="506" y2="425.7"/>
+	<path class="st1" d="M79.5,423.8c0-97.4,79.1-176.5,176.5-176.5c97.5,0,176.5,79.1,176.5,176.5"/>
+	<path class="st2" d="M256,204c-52.7,0-95.6-42.8-95.6-95.6c0-52.7,42.8-95.6,95.6-95.6s95.6,42.8,95.6,95.6S308.8,204,256,204z"/>
+</g>
+<g id="group2">
+	<g>
+		<circle class="st3" cx="440" cy="361.4" r="64.2"/>
+		<path class="st4" d="M440,299.7c34.1,0,61.7,27.6,61.7,61.7s-27.6,61.7-61.7,61.7s-61.7-27.6-61.7-61.7
+			C378.3,327.4,405.9,299.7,440,299.7 M440,294.7c-36.8,0-66.7,29.9-66.7,66.7s29.9,66.7,66.7,66.7s66.7-29.9,66.7-66.7
+			C506.7,324.7,476.8,294.7,440,294.7L440,294.7z"/>
+	</g>
+	<polygon class="st5" points="451.6,361.8 479.8,361.8 441,402.1 401.2,360.9 431.5,360.9 431.5,321.5 451.6,321.5 	"/>
+</g>
+</svg>
