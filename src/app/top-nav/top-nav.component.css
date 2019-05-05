@@ -4,6 +4,9 @@
     border-radius: 0 !important;
     margin-bottom: 0;
 }
+.slim-navbar {
+    margin-left: 70px;
+}
 .navbar-toggle {
     margin-left: 0;
 }
