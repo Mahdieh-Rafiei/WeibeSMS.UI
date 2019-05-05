@@ -9,7 +9,7 @@
     border: none;
     border-radius: 0;
     overflow-y: auto;
-    background-color: #333;
+    background-color: #1e1e1e;
     bottom: 0;
     overflow-x: hidden;
     padding-bottom: 40px;
@@ -42,7 +42,6 @@
 .company-name p i {
     border: 1px solid #EAEAEA;
     padding: 5px 6px;
-    border-radius: 50%;
 }
 .logo-box{
     padding: 0;
@@ -52,15 +51,15 @@
 }
 /*---- li a ----*/
 a.list-group-item {
-    background-color: #333;
-    border: 1px solid #333;
+    background-color: #1e1e1e;
+    border: 1px solid #1e1e1e;
     transition: .5s;
     color: #E7E7E7;
     font-weight: 500;
 }
 a.list-group-item:hover{
-    background-color: rgba(79, 79, 79, 0.66);
-    transition: .5s;
+    background-color: rgba(255,255, 255, .1);
+    transition: .3s;
 }
 .fa {
     width: 26px;
