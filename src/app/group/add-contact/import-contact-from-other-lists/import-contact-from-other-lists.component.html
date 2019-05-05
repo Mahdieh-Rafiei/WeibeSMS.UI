@@ -1,52 +1,92 @@
-<div class="col-md-12 section-div from-other-list">
-  <div class="col-md-12 text-right">
-    <div class="col-md-12 filter-section">
-      <div class="col-md-6 no-pad select text-left">
-        <input type="checkbox"> SELECT ALL
-      </div>
-      <div class="col-md-6 operation no-pad text-right">
-        <div class="search">
-          <input type="text" class="form-control" placeholder="Search Group">
-          <button class="btn btn-secondary search-icon" type="button">
-            <i class="fa fa-search"></i>
-          </button>
+<div class="col-md-12 section-div from-list no-pad">
+    <div class="col-md-12 div-section">
+        <div class="col-md-12">
+            <div class="col-md-3 other-list" id="style-1">
+                <h5 (click)="isCollapsed = !isCollapsed" [attr.aria-expanded]="!isCollapsed" aria-controls="collapseBasic">
+                    My List
+                    <span class="fa fa-chevron-down"></span>
+                </h5>
+
+                <div id="collapseBasic" [collapse]="isCollapsed">
+                    <div class="collapse-list">
+                        <p>
+                            <input type="checkbox"> Test 01
+                        </p>
+                        <p>
+                            <input type="checkbox"> Test 02
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+            <div class="col-md-9 other-list" id="style-2">
+                <!--operation-->
+                <div class="col-md-12 no-pad operation">
+                    <div class="col-md-6 operation-section">
+                        <input type="checkbox"> SELECT
+                    </div>
+                    <div class="col-md-6 operation-section">
+                        <form class="search-wrapper search">
+                            <input type="text">
+                            <button type="submit"><i class="fa fa-search"></i></button>
+                        </form>
+                    </div>
+                </div>
+                <!--table-->
+                <div class="col-md-12 table-div table-responsive">
+                    <table class="index-table text-left">
+                        <thead>
+                            <tr>
+                                <th class="text-left"><i class="fa fa-sort"></i> #</th>
+                                <th class="text-center"><i class="fa fa-sort"></i> Name</th>
+                                <th class="text-center"><i class="fa fa-sort"></i> Surename</th>
+                                <th class="text-center"><i class="fa fa-sort"></i> Recipient number</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="text-left">
+                                    <div class="table-head">
+                                        <input type="checkbox"> 01
+                                    </div>
+                                </td>
+                                <td class=" text-center">
+                                    Test
+                                </td>
+                                <td class=" text-center">
+                                    Test
+                                </td>
+                                <td class="td-single text-right actions-container">
+                                    016589587416
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="text-left">
+                                    <div class="table-head">
+                                        <input type="checkbox"> 01
+                                    </div>
+                                </td>
+                                <td class=" text-center">
+                                    Test
+                                </td>
+                                <td class=" text-center">
+                                    Test
+                                </td>
+                                <td class="td-single text-right actions-container">
+                                    016589587416
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div class="table-pagination text-right">
+                        <span><i class="fa fa-arrow-circle-left"></i></span>
+                        <span><i class="fa fa-arrow-circle-right"></i></span>
+                    </div>
+                    <div class="recipient-div text-right">
+                        recipient : 0
+                    </div>
+                </div>
+            </div>
         </div>
-        <button class="default-btn op-btn">
-          <i class="fa fa-filter"></i> Filter
-        </button>
-        <button class="default-btn op-btn">
-          <i class="fa fa-sort"></i> Sort
-        </button>
-      </div>
     </div>
-    <div class="col-md-12 recipient-table no-pad">
-      <table>
-        <tr>
-          <td align="left"><input type="checkbox">Test 01</td>
-          <td align="right">Recipient 01</td>
-        </tr>
-      </table>
-      <table class="space-table">
-        <tr>
-          <td align="left"><input type="checkbox">Test 01</td>
-          <td align="right">Recipient 01</td>
-        </tr>
-      </table>
-      <table class="space-table">
-        <tr>
-          <td align="left"><input type="checkbox">Test 01</td>
-          <td align="right">Recipient 01</td>
-        </tr>
-      </table>
-      <table class="space-table">
-        <tr>
-          <td align="right">Recipient: 0</td>
-        </tr>
-      </table>
-    </div>
-    <div class="col-md-12 operation-div no-pad">
-      <button class="operation-btn"><i class="fa fa-cut"></i> cut</button>
-      <button class="operation-btn"><i class="fa fa-copy"></i> copy</button>
-    </div>
-  </div>
 </div>
