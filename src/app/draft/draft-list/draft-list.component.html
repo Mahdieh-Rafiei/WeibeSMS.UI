@@ -34,12 +34,12 @@
         <tr *ngFor="let d of drafts">
           <td class="text-right">
             <div class="table-head">
-              <input type="checkbox">{{d.Title}}
+              <input type="checkbox">{{d.title}}
             </div>
           </td>
           <td class=" text-center">
             <div>
-              {{d.Summary}} <a><span [title]="d.MessageText" style="color: #f5274e;">. . .</span></a>
+              {{d.summary}} <a><span [title]="d.messageText" style="color: #f5274e;">. . .</span></a>
             </div>
           </td>
           <td class=" text-center">
@@ -54,7 +54,7 @@
           <td class="td-single text-right actions-container">
             <div class="actions">
               <a><i (click)="removeDraft(d)" class="fa fa-trash"></i></a>
-              <a><i [routerLink]="['../draft/',d.Id]" class="fa fa-pencil"></i></a>
+              <a><i [routerLink]="['../draft/',d.id]" class="fa fa-pencil"></i></a>
             </div>
           </td>
         </tr>
