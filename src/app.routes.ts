@@ -38,6 +38,8 @@ import {SmsReportComponent} from "./app/sms-reports/sms-report/sms-report.compon
 import {SmsReportListComponent} from "./app/sms-reports/sms-report-list/sms-report-list.component";
 import {VerificationCodeReportComponent} from "./app/sms-reports/verification-code-report/verification-code-report.component";
 import {DefinitionScheduleEventComponent} from "./app/definition-schedule-event/definition-schedule-event.component";
+import {UserNotificationComponent} from "./app/user-notification/user-notification.component";
+import {ChangePasswordComponent} from "./app/user/change-password/change-password.component";
 
 export const APP_ROUTES: Routes = [
   {path: '', component: DashboardComponent,canActivate:[CanActivateRouteGuard]},
@@ -82,7 +84,11 @@ export const APP_ROUTES: Routes = [
 
   {path: 'developers', component: DevelopersComponent},
 
+  {path: 'notification', component: UserNotificationComponent},
+
   {path: 'schedule-event', component: DefinitionScheduleEventComponent},
+
+  {path: 'change-password', component: ChangePasswordComponent},
 
   {path:'user-event',component:UserEventComponent},
 

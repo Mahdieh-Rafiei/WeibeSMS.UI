@@ -1,0 +1,64 @@
+<nav class="sidebar" id="style-1">
+  <!--menu-->
+  <div class="list-group">
+    <div class="sidebar-section">
+      <div class="company-name text-center">
+        <p><i class="fa fa-paw"></i></p>
+      </div>
+      <a class="list-group-item" [routerLink]="['']">
+        <i class="fa fa-home"></i>
+        <p>Dashboard</p>
+      </a>
+    </div>
+    <div class="sidebar-section">
+      <a class="list-group-item" [routerLink]="['../group']">
+        <i class="fa fa-address-book"></i>
+        <p>Contacts</p>
+      </a>
+    </div>
+    <div class="nested-menu">
+      <a class="list-group-item"  [routerLink]="['../send-message']">
+        <i class="fa fa-envelope"></i>&nbsp;
+        <p>Send</p>
+      </a>
+      <!--Sub Menu-->
+    </div>
+    <div class="sidebar-section">
+      <a class="list-group-item" [routerLink]="['../sms-report-list']">
+        <i class="fa fa-bar-chart-o"></i>
+        <p>Reports</p>
+      </a>
+    </div>
+    <div class="sidebar-section">
+      <a class="list-group-item" [routerLink]="['../report-verification']">
+        <i class="fa fa-check-square"></i>
+        <p>verification</p>
+      </a>
+    </div>
+    <div class="nested-menu">
+      <a class="list-group-item" (click)="addExpandClass('option')">
+        <i class="fa fa-cog"></i>
+        <p>Option</p>
+      </a>
+      <!--Sub Menu-->
+    </div>
+    <div class="nested-menu">
+      <a class="list-group-item" (click)="addExpandClass('credit')">
+        <i class="fa fa-credit-card"></i> <p>Credit</p>
+      </a>
+      <!--Sub Menu-->
+    </div>
+    <div class="sidebar-section">
+      <a class="list-group-item" [routerLink]="['../ticket-list']">
+        <i class="fa fa-phone-square"></i>
+        <p>support</p>
+      </a>
+    </div>
+    <div class="sidebar-section">
+      <a class="list-group-item" [routerLink]="['../developers']">
+        <i class="fa fa-code"></i>
+        <p>developers</p>
+      </a>
+    </div>
+  </div>
+</nav>
