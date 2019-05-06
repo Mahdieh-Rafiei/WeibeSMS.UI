@@ -11,8 +11,8 @@ export class ContactService {
 
   constructor(private apiService:ApiService,private http:HttpClient,private configService:ConfigService) { }
 
-  getAllContacts(groupId:number) : Observable<any>{
-    return this.apiService.get('Contact',true);
+  getAllContacts(groupId:number,pageNumber:number,pageSize:number) : Observable<any>{
+    return this.apiService.get(`Contact/ContactGroup/${groupId}?pageNumber=${pageNumber}&pageSize=${pageSize}`,true);
   }
 
   getContact(contactId:string) : Observable<any>{

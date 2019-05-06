@@ -42,8 +42,6 @@ export class ApiService {
       'observe':this.httpOptions.observe
     };
 
-    debugger;
-
     return this.httpClient.post( this.configService.baseUrl + url, payload, needAuth ?  options : this.httpOptions).pipe(
       map((res: any) => res.body),
       catchError(err=> this.handleError(err,this.route,this.configService)));

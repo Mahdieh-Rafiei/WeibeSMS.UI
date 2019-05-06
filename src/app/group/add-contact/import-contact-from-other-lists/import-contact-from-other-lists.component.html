@@ -9,11 +9,9 @@
 
                 <div id="collapseBasic" [collapse]="isCollapsed">
                     <div class="collapse-list">
-                        <p>
-                            <input type="checkbox"> Test 01
-                        </p>
-                        <p>
-                            <input type="checkbox"> Test 02
+                        <p  *ngFor="let g of groups">
+                            <input type="checkbox">
+                           <span (click)="loadContacts(g)">{{g.groupName}}</span>
                         </p>
                     </div>
                 </div>
@@ -27,7 +25,7 @@
                     </div>
                     <div class="col-md-6 operation-section">
                         <form class="search-wrapper search">
-                            <input type="text">
+                            <input (input)="realTimeFilter()" [(ngModel)]="filterExpression" name="filter" type="text">
                             <button type="submit"><i class="fa fa-search"></i></button>
                         </form>
                     </div>
@@ -39,41 +37,25 @@
                             <tr>
                                 <th class="text-left"><i class="fa fa-sort"></i> #</th>
                                 <th class="text-center"><i class="fa fa-sort"></i> Name</th>
-                                <th class="text-center"><i class="fa fa-sort"></i> Surename</th>
+                                <th class="text-center"><i class="fa fa-sort"></i> SureName</th>
                                 <th class="text-center"><i class="fa fa-sort"></i> Recipient number</th>
                             </tr>
                         </thead>
-                        <tbody>
-                            <tr>
+                        <tbody *ngIf="selectedGroup && filteredContacts">
+                            <tr *ngFor="let c of filteredContacts,index as i">
                                 <td class="text-left">
                                     <div class="table-head">
-                                        <input type="checkbox"> 01
+                                        <input type="checkbox"> {{i + 1}}
                                     </div>
                                 </td>
                                 <td class=" text-center">
-                                    Test
+                                    {{c.firstName}}
                                 </td>
                                 <td class=" text-center">
-                                    Test
+                                    {{c.lastName}}
                                 </td>
                                 <td class="td-single text-right actions-container">
-                                    016589587416
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="text-left">
-                                    <div class="table-head">
-                                        <input type="checkbox"> 01
-                                    </div>
-                                </td>
-                                <td class=" text-center">
-                                    Test
-                                </td>
-                                <td class=" text-center">
-                                    Test
-                                </td>
-                                <td class="td-single text-right actions-container">
-                                    016589587416
+                                    {{c.mobile}}
                                 </td>
                             </tr>
                         </tbody>

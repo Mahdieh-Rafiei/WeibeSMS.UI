@@ -4,7 +4,7 @@ import {ContactService} from '../../contact/contact.service';
 import {GroupService} from '../../group.service';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {NotificationService} from '../../../shared/notification.service';
-import {Router} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 
 @Component({
   selector: 'app-add-contact-from-file',
@@ -15,13 +15,17 @@ export class AddContactFromFileComponent implements OnInit {
 
   result:any;
   resultView:boolean=false;
+  groupId:number;
+
   constructor(private contactService:ContactService,
               private groupService:GroupService,
               private notificationService:NotificationService,
+              private activatedRoute:ActivatedRoute,
               private router:Router) {
   }
 
   ngOnInit() {
+    this.groupId =parseInt(this.activatedRoute.parent.snapshot.paramMap.get('groupId'));
   }
 
   downloadSample() {
@@ -34,7 +38,7 @@ export class AddContactFromFileComponent implements OnInit {
     const fileEntry = droppedFile.fileEntry as FileSystemFileEntry;
 
       fileEntry.file((file: File) => {
-        this.contactService.addContactFromFile(this.groupService.selectedGroupId,true,file,droppedFile.relativePath)
+        this.contactService.addContactFromFile(this.groupId,true,file,droppedFile.relativePath)
           .subscribe(res=>{
             console.log(res);
             this.result = res.data;
@@ -46,6 +50,6 @@ export class AddContactFromFileComponent implements OnInit {
 
   close(){
     this.resultView=false;
-    this.router.navigateByUrl(`group/${this.groupService.selectedGroupId}`);
+    this.router.navigateByUrl(`group/${this.groupId}`);
   }
 }
