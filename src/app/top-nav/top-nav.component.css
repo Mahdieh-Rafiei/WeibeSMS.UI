@@ -7,6 +7,10 @@
 .slim-navbar {
     margin-left: 70px;
 }
+.hidden-navbar {
+  margin-left:0;
+}
+
 .navbar-toggle {
     margin-left: 0;
 }

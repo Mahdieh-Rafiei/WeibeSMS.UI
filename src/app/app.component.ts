@@ -1,4 +1,4 @@
-import {Component, Injectable, OnInit} from '@angular/core';
+import {Component, HostListener, Injectable, OnInit} from '@angular/core';
 
 import {ConfigService} from './shared/config.service';
 import {Router} from '@angular/router';
@@ -21,18 +21,36 @@ export class AppComponent implements OnInit{
 
   title = 'WeibeSMS';
   isAuthenticated:boolean;
-  isSidebarShown:boolean=true;
+  sidebarMode:string='default';
+  public innerWidth: any;
 
   ngOnInit(){
     this.configService.authenticationChanged.subscribe(res=>{
       this.isAuthenticated = res;
     });
 
+    this.onResize(null);
+    this.innerWidth = window.innerWidth;
+
     this.isAuthenticated = this.authService.isAuthenticated();
-    this.configService.sidebarStateChanged.subscribe(res => this.isSidebarShown = res);
+    this.configService.sidebarStateChanged.subscribe(res => this.sidebarMode = res);
 
     if (!this.authService.isAuthenticated()){
       this.router.navigateByUrl('/login');
     }
   }
+
+  @HostListener('window:resize', ['$event'])
+  onResize(event) {
+    this.innerWidth = window.innerWidth;
+    if (this.innerWidth <768 ){
+      this.sidebarMode = 'hidden'
+    } else if (this.innerWidth >= 768 && this.innerWidth <= 991) {
+      this.sidebarMode = 'slim'
+    }
+    else {
+      this.sidebarMode = 'default';
+    }
+  }
+
 }

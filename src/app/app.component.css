@@ -8,3 +8,10 @@
     /*position: relative;*/
     overflow: hidden;
 }
+
+.slim-navbar {
+  margin-left: -130px;
+}
+.hidden-navbar {
+  margin-left: -200px;
+}

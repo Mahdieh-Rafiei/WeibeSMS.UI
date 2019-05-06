@@ -40,6 +40,7 @@
             <table class="index-table text-left">
                 <thead>
                     <tr>
+                        <th class="text-right"><i class="fa fa-sort"></i> Id</th>
                         <th class="text-right"><i class="fa fa-sort"></i> Name</th>
                         <th class="text-center"><i class="fa fa-sort"></i> Surname</th>
                         <th class="text-center"><i class="fa fa-sort"></i> Phone number</th>
@@ -47,10 +48,16 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr *ngFor="let contact of contacts">
+                    <tr *ngFor="let contact of contacts,index as i">
+                      <td class="text-right">
+                        <div>
+                          <input type="checkbox">
+                          {{i + 1}}
+                        </div>
+                      </td>
                         <td class="text-right">
                             <div class="table-head">
-                                <input type="checkbox"> <span>{{contact.firstName}}</span>
+                                <span>{{contact.firstName}}</span>
                             </div>
                         </td>
                         <td class=" text-center">

@@ -7,6 +7,7 @@ import {catchError} from 'rxjs/internal/operators';
 import {Router} from '@angular/router';
 import {AuthenticationService} from '../login/authentication.service';
 import {NotificationService} from './notification.service';
+import {debug} from 'util';
 
 @Injectable({
   providedIn: 'root'
@@ -45,6 +46,7 @@ export class ApiService {
       map((res: any) => res.body),
       catchError(err=> this.handleError(err,this.route,this.configService)));
   }
+
 
   put(url: string, payload: any,needAuth:boolean): Observable<any> {
     let options = {

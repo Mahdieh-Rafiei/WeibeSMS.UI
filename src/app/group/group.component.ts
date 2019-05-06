@@ -3,6 +3,7 @@ import {GroupService} from './group.service';
 import {ActivatedRoute, Router} from '@angular/router';
 import {ContactService} from './contact/contact.service';
 import _ from 'node_modules/lodash/lodash.js';
+import {isViewDebugError} from '@angular/core/src/view/errors';
 
 @Component({
   selector: 'app-group',
@@ -21,11 +22,10 @@ export class GroupComponent implements OnInit {
 
   ngOnInit() {
     this.groupId = this.activatedRoute.snapshot.paramMap.get('groupId');
-    this.groupService.selectedGroupId = parseInt(this.groupId);
+    console.log(this.groupId);
     this.groupService.getGroup(this.groupId).subscribe(res=>{
       console.log(res.data);
       this.group = res.data;
-
       this.contacts = res.data.contacts.items;
       console.log(this.contacts);
     });

@@ -1,14 +1,16 @@
-import { Injectable } from '@angular/core';
+import {Injectable, Input} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {ApiService} from '../shared/api.service';
 import {Observable} from 'rxjs';
+import get = Reflect.get;
+import {ActivatedRoute} from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
 })
 export class GroupService {
 
-  public selectedGroupId:number;
+
 
   constructor(private apiService :ApiService) { }
 

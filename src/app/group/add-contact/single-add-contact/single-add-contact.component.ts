@@ -29,11 +29,11 @@ export class SingleAddContactComponent implements OnInit {
               ) { }
 
   ngOnInit() {
-    this.groupId = this.groupService.selectedGroupId;
+    this.groupId = parseInt(this.activatedRoute.parent.snapshot.paramMap.get('groupId'));
     this.userEventService.getUserEvents()
       .subscribe(res=>{
-        console.log(res.Data);
-        this.userEvents = res.Data;
+        console.log(res.data);
+        this.userEvents = res.data;
       })
   }
 
