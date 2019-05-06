@@ -59,6 +59,9 @@ import {FileDropModule} from 'ngx-file-drop';
 import { VerificationCodeReportComponent } from './sms-reports/verification-code-report/verification-code-report.component';
 import { DevelopersComponent } from './developers/developers.component';
 import { SlimSidebarComponent } from './slim-sidebar/slim-sidebar.component';
+import { UserNotificationComponent } from './user-notification/user-notification.component';
+import { ProfileComponent } from './user/profile/profile.component';
+import { ChangePasswordComponent } from './user/change-password/change-password.component';
 
 
 @NgModule({
@@ -99,6 +102,9 @@ import { SlimSidebarComponent } from './slim-sidebar/slim-sidebar.component';
         VerificationCodeReportComponent,
         DevelopersComponent,
         SlimSidebarComponent,
+        UserNotificationComponent,
+        ProfileComponent,
+        ChangePasswordComponent,
 
   ],
   imports: [

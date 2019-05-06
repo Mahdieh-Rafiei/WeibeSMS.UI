@@ -39,11 +39,6 @@
     color: #ffffff;
     font-size: 24px;
 }
-.company-name p i {
-    border: 1px solid #EAEAEA;
-    padding: 5px 6px;
-    border-radius: 50%;
-}
 /*---- li a ----*/
 a.list-group-item {
     background-color: #333;
@@ -134,3 +129,6 @@ a.list-group-item:hover{
     position: absolute;
     top: 0;
 }
+
+
+
