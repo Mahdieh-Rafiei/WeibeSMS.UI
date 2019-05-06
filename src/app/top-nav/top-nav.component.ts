@@ -10,16 +10,33 @@ import {AuthenticationService} from '../login/authentication.service';
 @Injectable()
 export class TopNavComponent implements OnInit {
 
-  isSidebarShown:boolean=true;
+  sidebarMode:string='';
+
   constructor(private configService:ConfigService,
               private authService:AuthenticationService) { }
 
   ngOnInit() {
+
+    if (window.innerWidth < 768 ){
+      this.sidebarMode = 'hidden';
+    } else if (window.innerWidth >= 768 && window.innerWidth < 991){
+      this.sidebarMode = 'slim';
+    }else {
+      this.sidebarMode = 'default';
+    }
+    // this.configService.sidebarStateChanged.emit(this.sidebarMode);
   }
 
+
   changeSidebarState(){
-    this.isSidebarShown = !this.isSidebarShown;
-    this.configService.sidebarStateChanged.emit(this.isSidebarShown);
+
+    if (window.innerWidth < 768) {
+      this.sidebarMode = this.sidebarMode == 'default' ? 'hidden' : 'default';
+    }else {
+      this.sidebarMode = this.sidebarMode == 'default' ? 'slim' : 'default';
+    }
+
+    this.configService.sidebarStateChanged.emit(this.sidebarMode);
   }
 
   logOut(){

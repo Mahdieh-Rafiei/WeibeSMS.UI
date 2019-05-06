@@ -10,7 +10,7 @@ export class ConfigService {
   tokenKeyName:string;
   errorMessages:Map<number,string>= new Map<number,string>();
 
-  @Output() sidebarStateChanged: EventEmitter<boolean> = new EventEmitter<boolean>();
+  @Output() sidebarStateChanged: EventEmitter<string> = new EventEmitter<string>();
   @Output() authenticationChanged: EventEmitter<boolean> = new EventEmitter<boolean>();
 
   constructor() {

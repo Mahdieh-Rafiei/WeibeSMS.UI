@@ -1,0 +1,28 @@
+.billing-log h4{
+    color: #949494;
+    font-weight: 600;
+}
+.search-wrapper {
+    width: 35%;
+}
+.search-wrapper input {
+    width: 80%;
+}
+
+
+@media (max-width: 991px) and (min-width: 768px) {
+    .search-wrapper {
+        width: 100% !important;
+    }
+    .search-wrapper input {
+        width: 70% !important;
+    }
+}
+@media (max-width: 767px) and (min-width: 320px) {
+    .search-wrapper {
+        width: 100% !important;
+    }
+    .search-wrapper input {
+        width: 70% !important;
+    }
+}
