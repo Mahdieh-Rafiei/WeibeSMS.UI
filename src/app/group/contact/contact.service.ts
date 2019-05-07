@@ -44,6 +44,24 @@ export class ContactService {
     return this.http.post(`${this.configService.baseUrl}Contact/${groupId}`, formData, { headers: headers });
   }
 
+  addContactFromGroups(destinationGroupId:number,operationInfo:Map<number,number[]>,isCut:boolean) : Observable<any>{
+
+    let dict = [];
+
+    operationInfo.forEach((value, key) => {
+      dict.push({
+        key:key,
+        value: value
+      });
+    });
+
+    let payload = {
+      Dic:dict
+    };
+
+    return this.apiService.post(`ContactGroup/${isCut? 'Move' : 'Copy'}/${destinationGroupId}`,payload,true);
+  }
+
   modifyContact(groupId:number,contactId:number,firstName:string,lastName:string,email:string,gender:number):Observable<any>{
     let payload={
       'Gender':gender,

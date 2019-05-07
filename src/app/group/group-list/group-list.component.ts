@@ -3,6 +3,7 @@ import {GroupService} from '../group.service';
 import _ from 'node_modules/lodash/lodash.js';
 import {Router} from '@angular/router';
 import {UtilityService} from '../../shared/utility.service';
+import {NotificationService} from '../../shared/notification.service';
 
 @Component({
   selector: 'app-group-list',
@@ -25,7 +26,8 @@ export class GroupListComponent implements OnInit {
 
   constructor(private groupService:GroupService,
               private router:Router,
-              private utilityService:UtilityService) { }
+              private utilityService:UtilityService,
+              private notificationService:NotificationService) { }
 
   ngOnInit() {
     this.getData();
@@ -56,20 +58,28 @@ export class GroupListComponent implements OnInit {
     this.groupService.addGroup(this.groupName).subscribe(res=>{
       console.log(res.data);
       this.showState = 'default';
-      let id = res.data.Id;
-      this.router.navigateByUrl(`group/${id}/add-contact`);
+      let id = res.data.id;
+      this.notificationService.success('New group added successfully','');
+      this.router.navigateByUrl(`group/${id}/add-contact/single-contact`);
     });
   }
 
   removeGroup(group){
+
+    debugger;
+
     this.currentGroup = group;
 
     if (this.currentGroup == null)
       return;
 
-    this.groupService.removeGroup(this.currentGroup.id).subscribe(res=>console.log(res));
-    _.remove(this.groups,g=>g.Id == this.currentGroup.id);
-    this.realTimeFilter();
+    this.groupService.removeGroup(this.currentGroup.id)
+      .subscribe(res=>{
+        console.log(res);
+        _.remove(this.groups,g=>g.id == this.currentGroup.id);
+        this.notificationService.success('Group removed successfully','');
+        this.realTimeFilter();
+      });
   }
 
   modifyGroup(){
@@ -78,6 +88,7 @@ export class GroupListComponent implements OnInit {
         console.log(res);
         this.showState = 'default';
         this.currentGroup.groupName = this.groupName;
+        this.notificationService.success('Group modified successfully','');
         this.realTimeFilter();
       });
   }
