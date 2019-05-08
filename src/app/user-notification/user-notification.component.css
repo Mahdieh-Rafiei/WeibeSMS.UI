@@ -10,11 +10,11 @@
 }
 
 .read-user-notification{
-  background-color: green;
+  background-color: #5fd6bf;
 }
 
 .unread-user-notification{
-  background-color: red;
+  background-color: #ffd7cd;
 }
 
 @media (max-width: 991px) and (min-width: 768px) {
