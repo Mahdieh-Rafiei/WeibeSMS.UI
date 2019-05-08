@@ -40,6 +40,8 @@ import {VerificationCodeReportComponent} from "./app/sms-reports/verification-co
 import {DefinitionScheduleEventComponent} from "./app/definition-schedule-event/definition-schedule-event.component";
 import {UserNotificationComponent} from "./app/user-notification/user-notification.component";
 import {ChangePasswordComponent} from "./app/user/change-password/change-password.component";
+import {ProfileComponent} from "./app/user/profile/profile.component";
+import {BillingAddressComponent} from "./app/user/billing-address/billing-address.component";
 
 export const APP_ROUTES: Routes = [
   {path: '', component: DashboardComponent,canActivate:[CanActivateRouteGuard]},
@@ -91,6 +93,10 @@ export const APP_ROUTES: Routes = [
   {path: 'change-password', component: ChangePasswordComponent},
 
   {path:'user-event',component:UserEventComponent},
+
+  {path:'profile',component:ProfileComponent},
+
+  {path:'billing-address',component:BillingAddressComponent},
 
   {path: '**', redirectTo: 'notfound'}
 ];

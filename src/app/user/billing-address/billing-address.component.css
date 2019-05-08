@@ -1,0 +1,27 @@
+label{
+    font-weight: 400;
+    width: 75px;
+}
+input[type=text].full-name{
+    width: 43%;
+    padding: 8px 5px;
+}
+select {
+    width: 72%;
+    padding: 11px 5px;
+}
+.select-input{
+    margin-top: 10px;
+}
+
+
+@media (max-width: 991px) and (min-width: 768px){
+    select {
+      margin-bottom: 10px;
+    }
+}
+@media (max-width: 767px) and (min-width: 320px) {
+    select {
+        margin-bottom: 10px;
+    }
+}
