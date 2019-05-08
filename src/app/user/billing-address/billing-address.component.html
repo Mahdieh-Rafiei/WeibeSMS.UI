@@ -28,6 +28,22 @@
           </select>
         </div>
       </div>
+      <div class="col-md-12 no-pad select-input">
+        <label>Address :</label>
+        <input type="text" class="address-input" placeholder="Enter your address">
+      </div>
+      <div class="col-md-12 no-pad select-input">
+        <h4>VAT NUMBER</h4>
+        <input type="checkbox"> I don't have a VAT number
+        <br>
+        <input type="checkbox" (click)="isCollapsed = !isCollapsed" [attr.aria-expanded]="!isCollapsed" aria-controls="collapseBasic"> Enter VAT number
+        <div id="collapseBasic" [collapse]="isCollapsed">
+          <input type="text" class="vat-num" placeholder="VAT number" >
+        </div>
+      </div>
+      <div class="col-md-12 btn-save text-right">
+        <button class="green-btn">Save</button>
+      </div>
     </div>
   </div>
 </div>

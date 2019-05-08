@@ -6,7 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./billing-address.component.css']
 })
 export class BillingAddressComponent implements OnInit {
-
+    isCollapsed = false;
   constructor() { }
 
   ngOnInit() {
