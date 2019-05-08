@@ -62,6 +62,7 @@ import { SlimSidebarComponent } from './slim-sidebar/slim-sidebar.component';
 import { UserNotificationComponent } from './user-notification/user-notification.component';
 import { ProfileComponent } from './user/profile/profile.component';
 import { ChangePasswordComponent } from './user/change-password/change-password.component';
+import { BillingAddressComponent } from './user/billing-address/billing-address.component';
 
 
 @NgModule({
@@ -105,6 +106,7 @@ import { ChangePasswordComponent } from './user/change-password/change-password.
         UserNotificationComponent,
         ProfileComponent,
         ChangePasswordComponent,
+        BillingAddressComponent,
 
   ],
   imports: [

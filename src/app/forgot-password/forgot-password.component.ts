@@ -23,7 +23,9 @@ export class ForgotPasswordComponent implements OnInit {
   constructor(private forgotPasswordService:ForgotPasswordService,
               private router:Router,
               private authService:AuthenticationService,
-              private configService:ConfigService){ }
+              private configService:ConfigService){
+
+  }
 
   ngOnInit() {
   }
@@ -62,4 +64,10 @@ export class ForgotPasswordComponent implements OnInit {
         this.router.navigateByUrl('');
       });
   }
+
+
+
+
+
+
 }

@@ -26,8 +26,9 @@
                         <b class="hidden-xs">Your company name <span><i class="fa fa-chevron-down"></i></span></b>
                     </a>
                     <ul id="dropdown-basic" *dropdownMenu class="dropdown-menu dropdown-profile" role="menu" aria-labelledby="button-basic">
-                        <li role="menuitem"><a class="dropdown-item" [routerLink]="['']"><i class="fa fa-user"></i> Profile</a></li>
+                        <li role="menuitem"><a class="dropdown-item" [routerLink]="['/profile']"><i class="fa fa-user"></i> Profile</a></li>
                         <li role="menuitem"><a class="dropdown-item" [routerLink]="['/change-password']"><i class="fa fa-user"></i> Change password</a></li>
+                        <li role="menuitem"><a class="dropdown-item" [routerLink]="['/billing-address']"><i class="fa fa-user"></i> Billing address</a></li>
                         <li class="divider dropdown-divider"></li>
                         <li role="menuitem"><a (click)="logOut()" class="dropdown-item" ><i class="fa fa-power-off"></i> Log out</a></li>
                     </ul>
