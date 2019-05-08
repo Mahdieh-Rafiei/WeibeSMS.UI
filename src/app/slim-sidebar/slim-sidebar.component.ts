@@ -12,4 +12,7 @@ export class SlimSidebarComponent implements OnInit {
   ngOnInit() {
   }
 
+  addExpandClass(e){
+
+  }
 }

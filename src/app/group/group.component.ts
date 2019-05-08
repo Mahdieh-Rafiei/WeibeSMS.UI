@@ -3,7 +3,6 @@ import {GroupService} from './group.service';
 import {ActivatedRoute, Router} from '@angular/router';
 import {ContactService} from './contact/contact.service';
 import _ from 'node_modules/lodash/lodash.js';
-import {isViewDebugError} from '@angular/core/src/view/errors';
 
 @Component({
   selector: 'app-group',

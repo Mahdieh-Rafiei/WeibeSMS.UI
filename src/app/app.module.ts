@@ -62,6 +62,7 @@ import { SlimSidebarComponent } from './slim-sidebar/slim-sidebar.component';
 import { UserNotificationComponent } from './user-notification/user-notification.component';
 import { ProfileComponent } from './user/profile/profile.component';
 import { ChangePasswordComponent } from './user/change-password/change-password.component';
+import {UserService} from './user/user.service';
 import { BillingAddressComponent } from './user/billing-address/billing-address.component';
 
 
@@ -132,7 +133,8 @@ import { BillingAddressComponent } from './user/billing-address/billing-address.
     CanActivateRouteGuard,
     NotificationService,
     UserEventService,
-    TicketService
+    TicketService,
+    UserService
   ],
   bootstrap: [AppComponent]
 })
