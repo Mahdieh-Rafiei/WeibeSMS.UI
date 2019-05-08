@@ -3,6 +3,7 @@ import {ApiService} from '../../shared/api.service';
 import {Observable} from 'rxjs';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {ConfigService} from '../../shared/config.service';
+import {Immediate} from 'rxjs/internal-compatibility';
 
 @Injectable({
   providedIn: 'root'
@@ -32,10 +33,12 @@ export class ContactService {
     return this.apiService.post(`Contact`,payload,true);
   }
 
-  addContactFromFile(groupId:number,replaceDuplicateContact:boolean,file:File,relativePath:string) : Observable<any>{
+  addContactFromFile(groupId:number,replaceDuplicateContact:boolean,immediate:boolean,file:File,relativePath:string) : Observable<any>{
 
     const formData = new FormData();
     formData.append('logo', file, relativePath);
+    formData.append('replaceDuplicateContact', replaceDuplicateContact.toString());
+    formData.append('immediate', Immediate.toString());
 
     const headers = new HttpHeaders({
       'token': localStorage.getItem('jwt-sms')
@@ -45,19 +48,13 @@ export class ContactService {
   }
 
   addContactFromGroups(destinationGroupId:number,operationInfo:Map<number,number[]>,isCut:boolean) : Observable<any>{
-
-    let dict = [];
+    let rows={};
 
     operationInfo.forEach((value, key) => {
-      dict.push({
-        key:key,
-        value: value
-      });
+       rows[key]=value
     });
 
-    let payload = {
-      Dic:dict
-    };
+    let payload = {Dic:rows};
 
     return this.apiService.post(`ContactGroup/${isCut? 'Move' : 'Copy'}/${destinationGroupId}`,payload,true);
   }

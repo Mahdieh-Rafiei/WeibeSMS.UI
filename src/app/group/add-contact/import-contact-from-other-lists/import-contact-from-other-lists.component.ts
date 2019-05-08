@@ -3,7 +3,7 @@ import {ContactService} from '../../contact/contact.service';
 import {NotificationService} from '../../../shared/notification.service';
 import {GroupService} from '../../group.service';
 import _ from 'node_modules/lodash/lodash.js';
-import {ActivatedRoute} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import {UtilityService} from '../../../shared/utility.service';
 import {ElementSchemaRegistry} from '@angular/compiler';
 
@@ -27,13 +27,13 @@ export class ImportContactFromOtherListsComponent implements OnInit {
   contactsForGrid:any[]=[];
   contactsSelectedFromGrid:Map<number,number[]>= new Map<number,number[]>();
   groupSelectedFromLeft:number[]=[];
-  isFilteredContactsSelected:boolean=false;
   totalContactsSelectedCount;
 
   constructor(private contactService:ContactService,
               private groupService:GroupService,
               private activatedRoute:ActivatedRoute,
               private notificationService:NotificationService,
+              private router:Router,
               private utilityService:UtilityService) { }
 
   ngOnInit() {
@@ -142,7 +142,6 @@ export class ImportContactFromOtherListsComponent implements OnInit {
   }
 
   operation(isCut:boolean){
-    debugger;
     let apiModel = new Map<number,number[]>();
     this.contactsSelectedFromGrid.forEach((value, key) => {
       apiModel.set(key,value);
@@ -153,7 +152,10 @@ export class ImportContactFromOtherListsComponent implements OnInit {
     });
 
     this.contactService.addContactFromGroups(this.groupId,apiModel,isCut)
-      .subscribe(res=>console.log(res));
-
+      .subscribe(res=>{
+        console.log(res);
+        this.notificationService.success('Operation done successfully','');
+        this.router.navigateByUrl(`group/${this.groupId}`);
+      });
   }
 }

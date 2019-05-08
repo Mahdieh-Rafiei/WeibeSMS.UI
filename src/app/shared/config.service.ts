@@ -16,7 +16,8 @@ export class ConfigService {
   constructor() {
     this.tokenKeyName='jwt-sms';
     // this.baseUrl = 'http://185.211.58.52/api/v1/';
-    this.baseUrl = 'http://192.168.1.94:8070/appapi/v1/';
+     this.baseUrl = 'http://192.168.1.94:8070/appapi/v1/';
+    // this.baseUrl = 'http://localhost:60241/appapi/v1/';
 
     this.errorMessages.set(1,'Entered values are wrong!');
     this.errorMessages.set(2,'Get verification code again please!');
