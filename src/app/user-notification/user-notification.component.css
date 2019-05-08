@@ -9,6 +9,13 @@
     width: 80%;
 }
 
+.read-user-notification{
+  background-color: green;
+}
+
+.unread-user-notification{
+  background-color: red;
+}
 
 @media (max-width: 991px) and (min-width: 768px) {
     .search-wrapper {

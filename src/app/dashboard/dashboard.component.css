@@ -1,3 +1,47 @@
-/*.alert-box{*/
-
-/*}*/
+.alert-box-default{
+    margin-bottom: 10px;
+}
+.alert-box-default span:nth-child(2){
+    float: right;
+    color: #929598;
+}
+.div-section{
+    padding: 10px;
+}
+.sms-sent-month{
+    border: 1px solid #c2c2c2;
+    border-radius: 4px;
+}
+.sms-sent-month h4{
+    font-weight: 600;
+    padding-left: 10px;
+}
+.sms-sent-month h1{
+    padding-left:20px;
+}
+.box-chart{
+    border-top: 1px solid #c2c2c2;
+}
+.box-chart-left{
+    border-right: 1px solid #c2c2c2;
+}
+.report-daily-top{
+    border-bottom: 1px solid #c2c2c2;
+}
+.border-right{
+    border-right: 1px solid #c2c2c2;
+}
+.activity{
+    margin-top: 15px;
+}
+.activity-box{
+    border: 1px solid #c2c2c2;
+    border-radius: 4px;
+    padding: 15px;
+}
+.col-md-6.act-left{
+    padding: 0 8px 0 0;
+}
+.col-md-6.act-right{
+    padding: 0 0 0 8px;
+}

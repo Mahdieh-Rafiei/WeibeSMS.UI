@@ -1,18 +1,25 @@
-import {Component, EventEmitter, Injectable, OnInit, Output} from '@angular/core';
+import {Component, Injectable, OnInit} from '@angular/core';
 import {ConfigService} from '../shared/config.service';
 import {AuthenticationService} from '../login/authentication.service';
+import {UserNotificationService} from '../user-notification/user-notification.service';
+import _ from 'node_modules/lodash/lodash.js';
 
 @Component({
   selector: 'app-top-nav',
   templateUrl: './top-nav.component.html',
   styleUrls: ['./top-nav.component.css']
 })
+
 @Injectable()
 export class TopNavComponent implements OnInit {
 
   sidebarMode:string='';
+  userNotifications:any[];
+  showNotification:boolean=false;
+  selectedNotification:any;
 
   constructor(private configService:ConfigService,
+              private userNotificationService:UserNotificationService,
               private authService:AuthenticationService) { }
 
   ngOnInit() {
@@ -24,9 +31,14 @@ export class TopNavComponent implements OnInit {
     }else {
       this.sidebarMode = 'default';
     }
+
+    this.userNotificationService.getAllUserNotifications(1,10,true)
+      .subscribe(res=>{
+        console.log(res.data);
+        this.userNotifications = res.data.items
+      });
     // this.configService.sidebarStateChanged.emit(this.sidebarMode);
   }
-
 
   changeSidebarState(){
 
@@ -41,5 +53,15 @@ export class TopNavComponent implements OnInit {
 
   logOut(){
     this.authService.logOut();
+  }
+
+  preparingShowNotification(notification){
+    this.selectedNotification=notification;
+    this.showNotification=true;
+    _.remove(this.userNotifications,un=>un.id == notification.id);
+    this.userNotificationService.getUserNotification(notification.id)
+      .subscribe(res=>{
+        console.log(res.data);
+      });
   }
 }
