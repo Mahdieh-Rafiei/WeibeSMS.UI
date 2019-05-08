@@ -13,6 +13,21 @@ select {
 .select-input{
     margin-top: 10px;
 }
+.address-input{
+    width: 95%;
+    padding: 8px 5px;
+}
+.vat-num{
+    width: 20%;
+    padding: 8px 5px;
+    margin-top: 5px;
+}
+.btn-save{
+    border-top: 1px solid #dfdfdf;
+    margin-top: 20px;
+    padding: 15px;
+}
+
 
 
 @media (max-width: 991px) and (min-width: 768px){
