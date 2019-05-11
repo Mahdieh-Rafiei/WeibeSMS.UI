@@ -1,41 +1,44 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {ApiService} from '../shared/api.service';
 import {Observable} from 'rxjs';
+import {TicketListResponseModel} from './ticket-list/models/ticket-list-response.model';
+import {TicketResponseInterface} from './ticket/models/ticket-response.interface';
+import {AddTicketInterface} from './add-ticket/models/add-ticket.interface';
+import {AddTicketResponseInterface} from './add-ticket/models/add-ticket-response.interface';
+import {ReplyTicketInterface} from './ticket/models/reply-ticket.interface';
+import {ReplyTicketResponseInterface} from './ticket/models/reply-ticket-response.interface';
+import {CloseTicketInterface} from './ticket/models/close-ticket.interface';
 
 @Injectable({
   providedIn: 'root'
 })
 export class TicketService {
 
-  constructor(private apiService:ApiService) { }
-
-  getAllTickets(pageNumber:number,pageSize:number) : Observable<any>{
-    return this.apiService.get(`Ticket`,true);
+  constructor(private apiService: ApiService) {
   }
 
-  getTicket(id:number){
-    return this.apiService.get(`Ticket/${id}`,true);
+  getAllTickets(pageNumber: number, pageSize: number): Observable<TicketListResponseModel> {
+    const url = `Ticket`;
+    return this.apiService.get(url, true);
   }
 
-  addTicket(title:string,message:string,departmentId:number,priority:number){
-    let payload={
-      Title:title,
-      Message:message,
-      DepartmentId:departmentId,
-      Priority:priority
-    };
-    return this.apiService.post(`Ticket`,payload,true);
+  getTicket(id: number): Observable<TicketResponseInterface> {
+    const url = `Ticket/${id}`;
+    return this.apiService.get(url, true);
   }
 
-   sendReply(id:number,replyText:string) : Observable<any>{
-    let payload={
-      Message:replyText
-    };
+  addTicket(payload): Observable<AddTicketResponseInterface> {
+    const url = `Ticket`;
+    return this.apiService.post<AddTicketInterface>(url, payload, true);
+  }
 
-    return this.apiService.post(`Ticket/${id}`,payload,true);
-   }
+  sendReply(id: number, payload): Observable<ReplyTicketResponseInterface> {
+    const url = `Ticket/${id}`;
+    return this.apiService.post<ReplyTicketInterface>(url, payload, true);
+  }
 
-   closeTicket(id:number):Observable<any>{
-    return this.apiService.put(`Ticket/${id}`,null,true);
-   }
+  closeTicket(id: number): Observable<CloseTicketInterface> {
+    const url = `Ticket/${id}`;
+    return this.apiService.put(url, null, true);
+  }
 }

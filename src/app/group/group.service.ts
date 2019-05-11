@@ -4,6 +4,13 @@ import {ApiService} from '../shared/api.service';
 import {Observable} from 'rxjs';
 import get = Reflect.get;
 import {ActivatedRoute} from '@angular/router';
+import {GroupListInterface} from './group-list/models/group-list.interface';
+import {AddGroupNameInterface} from './group-list/models/add-group-name.interface';
+import {AddGroupNameResponseInterface} from './group-list/models/add-group-name-response.interface';
+import {ModifyGroupNameInterface} from './group-list/models/modify-group-name.interface';
+import {ModifyGroupNameResponseInterface} from './group-list/models/modify-group-name-response.interface';
+import {RemoveGroupNameResponseInterface} from './group-list/models/remove-group-name-response.interface';
+import {GroupResponseInterface} from './models/group-response.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -11,34 +18,31 @@ import {ActivatedRoute} from '@angular/router';
 export class GroupService {
 
 
-
-  constructor(private apiService :ApiService) { }
-
-  getAll(pageSize:number,pageNumber:number) : Observable<any>{
-    return this.apiService.get('ContactGroup',true);
+  constructor(private apiService: ApiService) {
   }
 
-  getGroup(id:string) :Observable<any>{
-    return this.apiService.get(`ContactGroup/${id}`,true);
+  getAllGroupList(pageSize: number, pageNumber: number): Observable<GroupListInterface> {
+    const url = `ContactGroup`;
+    return this.apiService.get(url, true);
   }
 
-  addGroup(groupName:string) : Observable<any>{
-    let payload={
-      'GroupName':groupName
-    };
-
-    return this.apiService.post('ContactGroup',payload,true);
+  getGroup(id: string): Observable<GroupResponseInterface> {
+    const url = `ContactGroup/${id}`;
+    return this.apiService.get(url, true);
   }
 
-  modifyGroup(id:number,groupName:string){
-    let payload={
-      'GroupName':groupName
-    };
-
-    return this.apiService.put(`ContactGroup/${id}`,payload,true)
+  addGroup(data): Observable<AddGroupNameResponseInterface> {
+    const url = `ContactGroup`;
+    return this.apiService.post<AddGroupNameInterface>(url, data, true);
   }
 
-  removeGroup(id:number){
-    return this.apiService.delete(`ContactGroup/${id}`,null,true)
+  modifyGroup(id: number, data): Observable<ModifyGroupNameResponseInterface> {
+    const url = `ContactGroup/${id}`;
+    return this.apiService.put<ModifyGroupNameInterface>(url, data, true);
+  }
+
+  removeGroup(id: number) {
+    const url = `ContactGroup/${id}`;
+    return this.apiService.delete<RemoveGroupNameResponseInterface>(url, null, true);
   }
 }
