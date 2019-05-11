@@ -1,152 +1,36 @@
-/*.ws-box{*/
-    /*height: 500px;*/
-    /*position: absolute;*/
-    /*margin: auto;*/
-    /*top: -40px;*/
-    /*right: 0;*/
-    /*bottom: 0;*/
-    /*left: 0;*/
-    /*width: 34%;*/
-/*}*/
-/*.ws-login-box {*/
-    /*background: #fff;*/
-    /*box-shadow: 0 3px 9px 6px #cccccc;*/
-/*}*/
-
-
-
-/*@media (min-width: 1600px) {*/
-    /*.ws-box {*/
-        /*width: 35%;*/
-    /*}*/
-/*}*/
-
-/*@media (max-width: 768px) {*/
-    /*.ws-box {*/
-        /*width: 95%;*/
-    /*}*/
-
-    /*.vb-content {*/
-        /*width: calc(100% + -30px) !important;*/
-    /*}*/
-
-    /*.affiliate-register-form {*/
-        /*margin-top: 20px;*/
-    /*}*/
-/*}*/
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-.register-page-div{
-    margin-top: 40px;
-    margin-bottom: 40px
-}
-.white-box {
-    background: #fff;
-    padding: 25px;
-    margin-bottom: 15px;
-}
-.user-bg {
-    margin: -25px;
-    height: 170px;
-    overflow: hidden;
-    position: relative;
-}
-.user-bg .overlay-box {
-    background: linear-gradient(90deg,#cb2d3e,#ef473a);
-}
-.user-bg .overlay-box {
-    opacity: .9;
+.ws-box{
+    height: 500px;
     position: absolute;
-    top: 0;
-    left: 0;
+    margin: auto;
+    top: -40px;
     right: 0;
-    height: 100%;
-    text-align: center;
-}
-.user-bg .overlay-box .user-content {
-    padding: 15px;
-    margin-top: 30px;
-}
-.thumb-lg {
-    height: 88px;
-    width: 88px;
-}
-.overlay-box .exit-btn {
-    position: absolute;
-    left: 10px;
     bottom: 0;
-    color: #ffd9db;
-    font-size: 25px;
-    transition: .3s;
-    cursor: pointer;
+    left: 0;
+    width: 34%;
 }
-.profile-bg {
+.ws-login-box {
     background: #fff;
-    margin-top: -14px;
-    padding-top: 25px;
-    padding-bottom: 10px;
+    box-shadow: 0 3px 9px 6px #cccccc;
 }
-.form-group {
-    margin-bottom: 10px;
+
+
+
+@media (min-width: 1600px) {
+    .ws-box {
+        width: 35%;
+    }
 }
-.rules-confirmation span{
-    font-size: 15px;
-    color: rgb(76, 175, 80);
-    font-weight: bold;
-}
-.sample-send-mesage {
-    background: #edf1f5;
-    padding: 20px 5px;
-    margin-top: 20px;
-    border: 1px solid #eaeaea;
-}
-.sample-send-mesage div span{
-    color: rgb(76, 175, 80);
-    font-weight: bold;
-}
-.rules-confirmation p span:first-child{
-    color:red;
-    font-weight: bold
-}
-.rules-confirmation p span:nth-child(2){
-    color: rgb(233, 30, 99);
-    font-weight: 400;
-}
-.rules-confirmation .fa-check-square {
-    color: #4caf50;
-}
-.rules-confirmation .fa-check-square, .rules-confirmation .fa-square {
-    color: #d6d6d6;
-    font-size: 16px;
-    transition: .2s;
-    cursor: pointer;
-}
-.btn.disabled, .btn[disabled], fieldset[disabled] .btn {
-    cursor: not-allowed;
-    filter: alpha(opacity=65);
-    box-shadow: none;
-    opacity: .65;
-}
-button[disabled=disabled] {
-    background: #949494!important;
-    cursor: not-allowed;
-}
-button[disabled], html input[disabled] {
-    cursor: default;
-}
-.full-width {
-    width: 100%;
+
+@media (max-width: 768px) {
+    .ws-box {
+        width: 95%;
+    }
+
+    .vb-content {
+        width: calc(100% + -30px) !important;
+    }
+
+    .affiliate-register-form {
+        margin-top: 20px;
+    }
 }

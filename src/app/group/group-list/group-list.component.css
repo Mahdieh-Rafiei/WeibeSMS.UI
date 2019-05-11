@@ -1,75 +1,35 @@
-.pagination-section{
-    margin: 0 auto;
+ul.filtering-menu {
+    list-style: none;
+    box-shadow: 0 6px 10px 2px #00000038;
+    padding: 0;
 }
-.pagination-wrapper {
-    text-align: center;
-    margin: 40px 0;
+ul.filtering-menu li{
+    color: #000;
 }
-.pagination {
-    display: inline-block;
-    height: 50px;
-    margin-top: 20px;
-    padding: 0 25px;
-    border-radius: 0;
-    background-color: #eee;
+.filtering-menu li{
+    padding: 10px 15px;
+    border-top: 1px solid #e0e0e0;
 }
-@media only screen and (max-width: 1199px) {
-    .pagination {
-        height: 50px;
-        margin-top: 50px;
-        padding: 0 10px;
-        border-radius: 25px;
-    }
+.filtering-menu li:first-child{
+    border-top: none;
 }
-.page-numbers {
-    display: block;
-    padding: 0 20px;
-    float: left;
-    transition: 400ms ease;
-    color: #595959;
-    font-size: 14px;
-    letter-spacing: 0.1em;
-    line-height: 50px;
+.filtering-menu li a{
+    color: #000;
 }
-.page-numbers:hover, .page-numbers.current {
-    background-color: #08a5a3;
-    color: #fff;
+.filtering-menu li a p{
+    padding-bottom: 5px;
 }
-.page-numbers.prev:hover, .page-numbers.next:hover {
-    background-color: transparent;
-    color: #08a5a3;
-    cursor: pointer;
+.filtering-menu li a label{
+    width: 55px;
+    font-weight: 400;
 }
-@media only screen and (max-width: 1199px) {
-    .page-numbers {
-        padding: 0 15px;
-        font-size: 16px;
-        line-height: 50px;
-    }
+.filtering-menu li a select {
+    width: 63%;
+    padding: 5px;
 }
-@media only screen and (min-width: 120px) and (max-width: 1024px) {
-    .page-numbers {
-        padding: 0 14px;
-        display: none;
-    }
-    .page-numbers:nth-of-type(2) {
-        position: relative;
-        padding-right: 50px;
-    }
-    .page-numbers:nth-of-type(2)::after {
-        content: '...';
-        position: absolute;
-        font-size: 25px;
-        top: 0;
-        left: 45px;
-    }
-    .page-numbers:nth-child(-n+3), .page-numbers:nth-last-child(-n+3) {
-        display: block;
-    }
-    .page-numbers:nth-last-child(-n+4) {
-        padding-right: 14px;
-    }
-    .page-numbers:nth-last-child(-n+4)::after {
-        content: none;
-    }
+.filtering-menu li a input {
+    margin-bottom: 10px;
+}
+.filtering-menu li a button{
+    margin-right: 5px;
 }

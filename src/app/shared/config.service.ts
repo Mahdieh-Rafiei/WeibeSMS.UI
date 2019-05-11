@@ -17,8 +17,10 @@ export class ConfigService {
     this.tokenKeyName='jwt-sms';
 
     // this.baseUrl = 'http://192.168.1.94:8070/appapi/v1/';
+
     // this.baseUrl = 'http://192.168.1.94:8070/appapi/v1/';
-      this.baseUrl = 'http://185.211.58.52/appapi/v1/';
+    this.baseUrl = 'http://192.168.1.94:8070/appapi/v1/';
+    //   this.baseUrl = 'http://185.211.58.52/appapi/v1/';
       // this.baseUrl = 'http://192.168.1.94:8070/appapi/v1/';
 
 
