@@ -9,7 +9,7 @@
     border: none;
     border-radius: 0;
     overflow-y: auto;
-    background-color: #191919;
+    background-color: #1e262d;
     bottom: 0;
     overflow-x: hidden;
     padding-bottom: 40px;
@@ -52,7 +52,7 @@
 }
 /*---- li a ----*/
 a.list-group-item {
-    background-color: #191919;
+    background-color: #1e262d;
     border: none;
     transition: .5s;
     color: #E7E7E7;
@@ -60,7 +60,7 @@ a.list-group-item {
     margin: 10px 15px 0;
 }
 a.list-group-item:hover{
-    background-color: rgba(200,200, 200, .2);
+    background-color: rgba(200,200, 200, .1);
     transition: .1s;
     border-radius: 5px !important;
 }
@@ -101,6 +101,9 @@ a.list-group-item:active{
     display: block;
     margin: 0 15px;
 }
+.nested-menu .expand ul.submenu li a span{
+    font-size: 12px;
+}
 .active a span.fa {
     text-align: right!important;
     margin-right: 4px;
@@ -116,9 +119,9 @@ a.list-group-item:active{
 .expand{
     /*border-right: 5px solid #1ABB9C;*/
 }
-.nested-menu .expand ul{
-    background-color: rgba(200,200,200,.2);
-}
+/*.nested-menu .expand ul{*/
+    /*background-color: rgba(200,200,200,.2);*/
+/*}*/
 .nested-menu .expand ul.submenu li{
     position: relative;
 }
@@ -135,11 +138,11 @@ a.list-group-item:active{
     z-index: 1;
     border-radius: 50%;
 }
-.nested-menu .expand ul.submenu li:after {
-    border-left: 1px solid #ffffff;
-    bottom: 0;
-    content: "";
-    left: 38px;
-    position: absolute;
-    top: 0;
-}
+/*.nested-menu .expand ul.submenu li:after {*/
+    /*border-left: 1px solid #ffffff;*/
+    /*bottom: 0;*/
+    /*content: "";*/
+    /*left: 38px;*/
+    /*position: absolute;*/
+    /*top: 0;*/
+/*}*/
