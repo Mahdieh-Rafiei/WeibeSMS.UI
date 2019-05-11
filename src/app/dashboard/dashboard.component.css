@@ -15,21 +15,10 @@
 .sms-sent-month h4{
     font-weight: 600;
     padding-left: 10px;
+    padding-right: 10px;
 }
 .sms-sent-month h1{
     padding-left:20px;
-}
-.box-chart{
-    border-top: 1px solid #c2c2c2;
-}
-.box-chart-left{
-    border-right: 1px solid #c2c2c2;
-}
-.report-daily-top{
-    border-bottom: 1px solid #c2c2c2;
-}
-.border-right{
-    border-right: 1px solid #c2c2c2;
 }
 .activity{
     margin-top: 15px;
@@ -44,6 +33,11 @@
 }
 .col-md-6.act-right{
     padding: 0 0 0 8px;
+}
+.daily-report{
+    background-color: #cdf3f2;
+    border: 1px solid #d1d1d1;
+    margin-bottom: 30px;
 }
 
 
