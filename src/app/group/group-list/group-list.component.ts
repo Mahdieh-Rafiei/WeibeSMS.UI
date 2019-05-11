@@ -1,9 +1,14 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {GroupService} from '../group.service';
 import _ from 'node_modules/lodash/lodash.js';
 import {Router} from '@angular/router';
 import {UtilityService} from '../../shared/utility.service';
 import {NotificationService} from '../../shared/notification.service';
+import {GroupListInterface} from './models/group-list.interface';
+import {AddGroupNameInterface} from './models/add-group-name.interface';
+import {AddGroupNameResponseInterface} from './models/add-group-name-response.interface';
+import {ModifyGroupNameResponseInterface} from './models/modify-group-name-response.interface';
+import {RemoveGroupNameResponseInterface} from './models/remove-group-name-response.interface';
 
 @Component({
   selector: 'app-group-list',
@@ -19,7 +24,6 @@ export class GroupListComponent implements OnInit {
   groups:any[]=[];
   currentGroup:any;
   totalItemsCount:number;
-  // filteredGroups:any[]=[];
   phrase='';
 
   showState:string='default';
@@ -30,43 +34,43 @@ export class GroupListComponent implements OnInit {
               private utilityService:UtilityService,
               private notificationService:NotificationService) { }
 
+
   ngOnInit() {
-    this.getData();
+    this.getAllGroupList();
   }
 
-  getData(){
-    this.groupService.getAll(this.pageSize,this.pageNumber,this.phrase)
-      .subscribe(res=>{
-        console.log(res);
-        this.data= res.data;
+  getAllGroupList() {
+    this.groupService.getAllGroupList(this.pageSize, this.pageNumber,this.phrase)
+      .subscribe((res: GroupListInterface) => {
+        this.data = res.data;
         this.groups = this.data.items;
         this.totalItemsCount = this.data.totalItemsCount;
       });
   }
-  setAddMode(){
+
+  setAddMode() {
     this.showState = 'add';
     this.groupName = '';
   }
 
-  setEditMode(group){
+  setEditMode(group) {
     this.currentGroup = group;
     this.showState = 'edit';
     this.groupName = group.groupName;
   }
 
-  saveNewGroup(){
-    this.groupService.addGroup(this.groupName).subscribe(res=>{
-      console.log(res.data);
-      this.showState = 'default';
-      let id = res.data.id;
-      this.notificationService.success('New group added successfully','');
-      this.router.navigateByUrl(`group/${id}/add-contact/single-contact`);
-    });
+  saveNewGroup() {
+    const data: AddGroupNameInterface = {GroupName: this.groupName};
+    this.groupService.addGroup(data)
+      .subscribe((res: AddGroupNameResponseInterface) => {
+        this.showState = 'default';
+        const id = res.data.id;
+        this.notificationService.success('New group added successfully', '');
+        this.router.navigateByUrl(`group/${id}/add-contact/single-contact`);
+      });
   }
 
-  removeGroup(group){
-
-    debugger;
+  removeGroup(group) {
 
     this.currentGroup = group;
 
@@ -74,33 +78,30 @@ export class GroupListComponent implements OnInit {
       return;
 
     this.groupService.removeGroup(this.currentGroup.id)
-      .subscribe(res=>{
-        console.log(res);
-        _.remove(this.groups,g=>g.id == this.currentGroup.id);
-        this.notificationService.success('Group removed successfully','');
-        // this.realTimeFilter();
+      .subscribe((res: RemoveGroupNameResponseInterface) => {
+        _.remove(this.groups, g => g.id === this.currentGroup.id);
+        this.notificationService.success('Group removed successfully', '');
       });
   }
 
-  modifyGroup(){
-    this.groupService.modifyGroup(this.currentGroup.id,this.groupName)
-      .subscribe(res=>{
+  modifyGroup() {
+    const data = {GroupName: this.groupName};
+    this.groupService.modifyGroup(this.currentGroup.id, data)
+      .subscribe((res: ModifyGroupNameResponseInterface) => {
         console.log(res);
         this.showState = 'default';
         this.currentGroup.groupName = this.groupName;
         this.notificationService.success('Group modified successfully','');
-        // this.realTimeFilter();
       });
   }
 
   getDataWithSearch(){
     this.pageNumber=1;
-    this.getData();
+    this.getAllGroupList();
   }
 
   doPaging(e){
     this.pageNumber=e;
-    this.getData();
+    this.getAllGroupList();
   }
-
 }

@@ -12,7 +12,7 @@ import {normalizeDebugBindingName} from '@angular/core/src/util/ng_reflect';
 })
 
 @Injectable()
-export class AppComponent implements OnInit{
+export class AppComponent implements OnInit {
 
   constructor(private authService:AuthenticationService
               ,public configService:ConfigService
@@ -21,10 +21,11 @@ export class AppComponent implements OnInit{
 
   title = 'WeibeSMS';
   isAuthenticated:boolean;
+
   public innerWidth: any;
 
-  ngOnInit(){
-    this.configService.authenticationChanged.subscribe(res=>{
+  ngOnInit() {
+    this.configService.authenticationChanged.subscribe(res => {
       this.isAuthenticated = res;
     });
 
@@ -34,7 +35,7 @@ export class AppComponent implements OnInit{
     this.isAuthenticated = this.authService.isAuthenticated();
     // this.configService.sidebarStateChanged.subscribe(res => this.configService.sidebarMode = res);
 
-    if (!this.authService.isAuthenticated()){
+    if (!this.authService.isAuthenticated()) {
       this.router.navigateByUrl('/login');
     }
   }
@@ -51,5 +52,4 @@ export class AppComponent implements OnInit{
       this.configService.sidebarMode = 'default';
     }
   }
-
 }

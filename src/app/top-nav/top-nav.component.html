@@ -11,6 +11,10 @@
                     <a id="button-notif" dropdownToggle class="dropdown-toggle" aria-controls="dropdown-notif">
                         <i class="fa fa-bell"></i>
                     </a>
+                    <div class="notification-alarm">
+                        <span class="wave wave-danger"></span>
+                        <span class="dot"></span>
+                    </div>
                     <ul *ngIf="userNotifications" id="dropdown-notif" class="dropdown-menu dropdown-profile" role="menu" aria-labelledby="button-notif">
                         <div *ngFor="let un of userNotifications">
                           <li role="menuitem"><a class="dropdown-item" (click)="preparingShowNotification(un)"> {{un.title}} </a></li>
