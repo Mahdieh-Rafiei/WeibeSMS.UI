@@ -33,12 +33,13 @@ export class AddContactFromFileComponent implements OnInit {
   }
 
   dropped(e) {
+    debugger;
     let droppedFile = e.files[0];
 
     const fileEntry = droppedFile.fileEntry as FileSystemFileEntry;
 
       fileEntry.file((file: File) => {
-        this.contactService.addContactFromFile(this.groupId,true,file,droppedFile.relativePath)
+        this.contactService.addContactFromFile(this.groupId,true,true,file,droppedFile.relativePath)
           .subscribe(res=>{
             console.log(res);
             this.result = res.data;

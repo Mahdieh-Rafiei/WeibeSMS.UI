@@ -9,20 +9,20 @@
 
                 <div id="collapseBasic" [collapse]="isCollapsed">
                     <div class="collapse-list">
-                        <p  *ngFor="let g of groups">
-                            <input type="checkbox">
-                           <span (click)="loadContacts(g)">{{g.groupName}}</span>
+                        <p *ngFor="let g of groups">
+                           <input  (ngModelChange)="groupCheckedChanged($event,g)" [(ngModel)]="g.isSelected" type="checkbox">
+                           <span (click)="loadContacts(g)">{{g.groupName}}  ({{g.contactsCount}})</span>
                         </p>
                     </div>
                 </div>
 
             </div>
-            <div class="col-md-9 other-list" id="style-2">
+            <div *ngIf="clickedGroup" class="col-md-9 other-list" id="style-2">
                 <!--operation-->
                 <div class="col-md-12 no-pad operation">
-                    <div class="col-md-6 operation-section">
-                        <input type="checkbox"> SELECT
-                    </div>
+                    <!--<div class="col-md-6 operation-section">-->
+                        <!--<input (ngModelChange)="filteredContactsSelectedChanged($event)" [(ngModel)]="isFilteredContactsSelected" type="checkbox"> SELECT-->
+                    <!--</div>-->
                     <div class="col-md-6 operation-section">
                         <form class="search-wrapper search">
                             <input (input)="realTimeFilter()" [(ngModel)]="filterExpression" name="filter" type="text">
@@ -41,11 +41,11 @@
                                 <th class="text-center"><i class="fa fa-sort"></i> Recipient number</th>
                             </tr>
                         </thead>
-                        <tbody *ngIf="selectedGroup && filteredContacts">
-                            <tr *ngFor="let c of filteredContacts,index as i">
+                        <tbody *ngIf="clickedGroup && contactsForGrid">
+                            <tr *ngFor="let c of contactsForGrid,index as i">
                                 <td class="text-left">
                                     <div class="table-head">
-                                        <input type="checkbox"> {{i + 1}}
+                                        <input (ngModelChange)="contactCheckedChanged($event,c)" [(ngModel)]="c.isSelected" type="checkbox"> {{i + 1}}
                                     </div>
                                 </td>
                                 <td class=" text-center">
@@ -64,21 +64,22 @@
                         <span><i class="fa fa-arrow-circle-left"></i></span>
                         <span><i class="fa fa-arrow-circle-right"></i></span>
                     </div>
-                    <div class="recipient-div text-right">
-                        recipient : 0
-                    </div>
-                  <div class="col-md-12 operation-div no-pad text-right">
-                    <button class="green-btn" style="margin-right: 5px"><i class="fa fa-cut"></i> cut</button>
-                    <button class="green-btn"><i class="fa fa-copy"></i> copy</button>
-                  </div>
+
+                  <!--<div class="col-md-12 operation-div no-pad text-right">-->
+                    <!--<button class="green-btn" style="margin-right: 5px"><i class="fa fa-cut"></i> cut</button>-->
+                    <!--<button class="green-btn"><i class="fa fa-copy"></i> copy</button>-->
+                  <!--</div>-->
+
                 </div>
-
-
             </div>
+          <div class="recipient-div text-right col-md-12">
+            <div class="col-md-6">Total contacts selected : {{totalContactsSelectedCount}}</div>
+          </div>
             <div class="col-md-12 operation-div no-pad text-right">
-                <button class="green-btn" style="margin-right: 5px"><i class="fa fa-cut"></i> cut</button>
-                <button class="green-btn"><i class="fa fa-copy"></i> copy</button>
+                <button (click)="operation(true)" class="green-btn" style="margin-right: 5px"><i class="fa fa-cut"></i> cut</button>
+                <button (click)="operation(false)" class="green-btn"><i class="fa fa-copy"></i> copy</button>
             </div>
+
         </div>
     </div>
 </div>

@@ -14,6 +14,8 @@ export class TicketComponent implements OnInit {
   id:number;
   replyText:string='';
   isClosed:boolean=false;
+  isReplyMode:boolean=false;
+  replys:any[]=[];
 
   constructor(private ticketService:TicketService,
               private activatedRoute:ActivatedRoute,
@@ -31,6 +33,9 @@ export class TicketComponent implements OnInit {
   }
 
   sendReply(){
+    if (!this.isReplyMode)
+      return;
+
     if (this.replyText.length == 0){
       this.notificationService.error('Reply text cant be null!','');
       return;
@@ -39,7 +44,16 @@ export class TicketComponent implements OnInit {
     this.ticketService.sendReply(this.id,this.replyText)
       .subscribe(res=>{
         console.log(res.data);
+        this.ticket.ticketReply.push({
+          id:res.data,
+          isAdmin:false,
+          message:this.replyText,
+          creationDateTime:Date()
+        });
+
         this.notificationService.success('Reply Message Add Successfully','');
+        this.isReplyMode=false;
+        this.isClosed=false;
       });
   }
 
@@ -48,7 +62,8 @@ export class TicketComponent implements OnInit {
        .subscribe(res=>{
          console.log(res);
          this.notificationService.success('Ticket closed successfully','');
-         this.router.navigateByUrl(`../Ticket-list`);
+         this.isClosed=true;
+         this.router.navigateByUrl('ticket-list');
        });
   }
 }

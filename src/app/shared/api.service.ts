@@ -80,10 +80,11 @@ export class ApiService {
   }
 
   handleError(error,router:Router,configService:ConfigService) {
+    debugger;
     let errorMessage = '';
     if (error.error instanceof ErrorEvent) {
 
-      errorMessage = `Error: ${error.error.message}`;
+      errorMessage = `Error: ${error.error.Message}`;
     } else {
       // server-side error
       if (error.status === 401 || error.status === 403) {
