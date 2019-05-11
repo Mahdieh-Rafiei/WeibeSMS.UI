@@ -1,9 +1,6 @@
 import {Injectable, Input} from '@angular/core';
-import {HttpClient} from '@angular/common/http';
 import {ApiService} from '../shared/api.service';
 import {Observable} from 'rxjs';
-import get = Reflect.get;
-import {ActivatedRoute} from '@angular/router';
 import {GroupListInterface} from './group-list/models/group-list.interface';
 import {AddGroupNameInterface} from './group-list/models/add-group-name.interface';
 import {AddGroupNameResponseInterface} from './group-list/models/add-group-name-response.interface';
@@ -17,12 +14,11 @@ import {GroupResponseInterface} from './models/group-response.interface';
 })
 export class GroupService {
 
+  constructor(private apiService :ApiService) { }
 
-  constructor(private apiService: ApiService) {
-  }
 
-  getAllGroupList(pageSize: number, pageNumber: number): Observable<GroupListInterface> {
-    const url = `ContactGroup`;
+  getAllGroupList(pageSize:number,pageNumber:number,phrase:string): Observable<GroupListInterface> {
+    const url = `ContactGroup?pageSize=${pageSize}&pageNumber=${pageNumber}&groupName=${phrase}`;
     return this.apiService.get(url, true);
   }
 

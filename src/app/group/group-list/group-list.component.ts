@@ -18,33 +18,33 @@ import {RemoveGroupNameResponseInterface} from './models/remove-group-name-respo
 
 export class GroupListComponent implements OnInit {
 
-  pageNumber: number;
-  pageSize: number;
-  data: any;
-  groups: any[] = [];
-  currentGroup: any;
-  filteredGroups: any[] = [];
-  filterExpression = '';
+  pageNumber:number=1;
+  pageSize:number=10;
+  data:any;
+  groups:any[]=[];
+  currentGroup:any;
+  totalItemsCount:number;
+  phrase='';
 
-  showState: string = 'default';
-  groupName: string = '';
+  showState:string='default';
+  groupName:string='';
 
-  constructor(private groupService: GroupService,
-              private router: Router,
-              private utilityService: UtilityService,
-              private notificationService: NotificationService) {
-  }
+  constructor(private groupService:GroupService,
+              private router:Router,
+              private utilityService:UtilityService,
+              private notificationService:NotificationService) { }
+
 
   ngOnInit() {
-    this.getAllGroupList(this.pageSize, this.pageNumber);
+    this.getAllGroupList();
   }
 
-  getAllGroupList(pageSize, pageNumber) {
-    this.groupService.getAllGroupList(pageSize, pageNumber)
+  getAllGroupList() {
+    this.groupService.getAllGroupList(this.pageSize, this.pageNumber,this.phrase)
       .subscribe((res: GroupListInterface) => {
         this.data = res.data;
         this.groups = this.data.items;
-        this.realTimeFilter();
+        this.totalItemsCount = this.data.totalItemsCount;
       });
   }
 
@@ -81,7 +81,6 @@ export class GroupListComponent implements OnInit {
       .subscribe((res: RemoveGroupNameResponseInterface) => {
         _.remove(this.groups, g => g.id === this.currentGroup.id);
         this.notificationService.success('Group removed successfully', '');
-        this.realTimeFilter();
       });
   }
 
@@ -92,12 +91,17 @@ export class GroupListComponent implements OnInit {
         console.log(res);
         this.showState = 'default';
         this.currentGroup.groupName = this.groupName;
-        this.notificationService.success('Group modified successfully', '');
-        this.realTimeFilter();
+        this.notificationService.success('Group modified successfully','');
       });
   }
 
-  realTimeFilter() {
-    this.utilityService.filterByExpression(this.groups, this.filteredGroups, 'groupName', this.filterExpression);
+  getDataWithSearch(){
+    this.pageNumber=1;
+    this.getAllGroupList();
+  }
+
+  doPaging(e){
+    this.pageNumber=e;
+    this.getAllGroupList();
   }
 }

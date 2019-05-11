@@ -14,42 +14,29 @@ import {NotificationResponseInterface} from '../user-notification/models/notific
 @Injectable()
 export class TopNavComponent implements OnInit {
 
-  sidebarMode: string = '';
-  userNotifications: any[];
-  showNotification: boolean = false;
-  selectedNotification: any;
+  userNotifications:any[];
+  showNotification:boolean=false;
+  selectedNotification:any;
 
-  constructor(private configService: ConfigService,
-              private userNotificationService: UserNotificationService,
-              private authService: AuthenticationService) {
-  }
+  constructor(public configService:ConfigService,
+              private userNotificationService:UserNotificationService,
+              private authService:AuthenticationService) { }
 
   ngOnInit() {
-
-    if (window.innerWidth < 768) {
-      this.sidebarMode = 'hidden';
-    } else if (window.innerWidth >= 768 && window.innerWidth < 991) {
-      this.sidebarMode = 'slim';
-    } else {
-      this.sidebarMode = 'default';
-    }
 
     this.userNotificationService.getAllUserNotifications(1, 10, true)
       .subscribe((res: NotificationResponseInterface) => {
         this.userNotifications = res.data.items;
       });
-    // this.configService.sidebarStateChanged.emit(this.sidebarMode);
   }
 
   changeSidebarState() {
 
     if (window.innerWidth < 768) {
-      this.sidebarMode = this.sidebarMode == 'default' ? 'hidden' : 'default';
-    } else {
-      this.sidebarMode = this.sidebarMode == 'default' ? 'slim' : 'default';
+      this.configService.sidebarMode = this.configService.sidebarMode == 'default' ? 'hidden' : 'default';
+    }else {
+      this.configService.sidebarMode = this.configService.sidebarMode == 'default' ? 'slim' : 'default';
     }
-
-    this.configService.sidebarStateChanged.emit(this.sidebarMode);
   }
 
   logOut() {

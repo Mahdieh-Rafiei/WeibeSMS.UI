@@ -11,7 +11,7 @@ export class DraftService {
 
   getAllDrafts(pageNumber:number,pageSize:number) :Observable<any>{
     debugger;
-    return this.apiService.get(`userDraftMessage?pageNumber=${1}&pageSize=${10}`,true);
+    return this.apiService.get(`userDraftMessage?pageNumber=${pageNumber}&pageSize=${pageSize}`,true);
   }
 
   getDraft(id:number):Observable<any>{

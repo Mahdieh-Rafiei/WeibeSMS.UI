@@ -14,15 +14,14 @@ import {normalizeDebugBindingName} from '@angular/core/src/util/ng_reflect';
 @Injectable()
 export class AppComponent implements OnInit {
 
-  constructor(private authService: AuthenticationService
-    , private configService: ConfigService
-    , private router: Router
-  ) {
-  }
+  constructor(private authService:AuthenticationService
+              ,public configService:ConfigService
+              ,private router:Router
+  ){  }
 
   title = 'WeibeSMS';
-  isAuthenticated: boolean;
-  sidebarMode: string = 'default';
+  isAuthenticated:boolean;
+
   public innerWidth: any;
 
   ngOnInit() {
@@ -34,7 +33,7 @@ export class AppComponent implements OnInit {
     this.innerWidth = window.innerWidth;
 
     this.isAuthenticated = this.authService.isAuthenticated();
-    this.configService.sidebarStateChanged.subscribe(res => this.sidebarMode = res);
+    // this.configService.sidebarStateChanged.subscribe(res => this.configService.sidebarMode = res);
 
     if (!this.authService.isAuthenticated()) {
       this.router.navigateByUrl('/login');
@@ -44,14 +43,13 @@ export class AppComponent implements OnInit {
   @HostListener('window:resize', ['$event'])
   onResize(event) {
     this.innerWidth = window.innerWidth;
-    if (this.innerWidth < 768) {
-      this.sidebarMode = 'hidden';
+    if (this.innerWidth <768 ){
+      this.configService.sidebarMode = 'hidden'
     } else if (this.innerWidth >= 768 && this.innerWidth <= 991) {
-      this.sidebarMode = 'slim';
+      this.configService.sidebarMode = 'slim'
     }
     else {
-      this.sidebarMode = 'default';
+      this.configService.sidebarMode = 'default';
     }
   }
-
 }

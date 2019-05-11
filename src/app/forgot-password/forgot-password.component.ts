@@ -1,8 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, ElementRef, OnInit,AfterViewInit , ViewChild} from '@angular/core';
 import {ForgotPasswordService} from './forgot-password.service';
 import {Router} from '@angular/router';
 import {AuthenticationService} from '../login/authentication.service';
 import {ConfigService} from '../shared/config.service';
+import {startWith} from 'rxjs/operators';
+import {logger} from 'codelyzer/util/logger';
 
 
 @Component({
@@ -15,22 +17,32 @@ export class ForgotPasswordComponent implements OnInit {
 
   step:number=1;
   mobile:string;
-  verificationCode:string;
+  verificationCodePart1:string='';
+  verificationCodePart2:string='';
+  verificationCodePart3:string='';
+  verificationCodePart4:string='';
+  verificationCodePart5:string='';
   key:string;
   password:string;
   confirmPassword:string;
+
+  @ViewChild('verificationCodePart1Element') verificationCodePart1Element: ElementRef;
+  @ViewChild('verificationCodePart2Element') verificationCodePart2Element: ElementRef;
+  @ViewChild('verificationCodePart3Element') verificationCodePart3Element: ElementRef;
+  @ViewChild('verificationCodePart4Element') verificationCodePart4Element: ElementRef;
+  @ViewChild('verificationCodePart5Element') verificationCodePart5Element: ElementRef;
 
   constructor(private forgotPasswordService:ForgotPasswordService,
               private router:Router,
               private authService:AuthenticationService,
               private configService:ConfigService){
-
   }
 
   ngOnInit() {
   }
 
   sendVerificationCode(){
+
     this.forgotPasswordService.sendVerificationCode(this.mobile)
       .subscribe(res=>{
         console.log(res);
@@ -39,15 +51,12 @@ export class ForgotPasswordComponent implements OnInit {
       })
   }
 
-  onTxtCodeKeyUp(){
-    if (this.verificationCode.length <5)
-      return;
-
-    this.verify();
-  }
-
   verify(){
-    this.forgotPasswordService.verify(this.mobile,this.verificationCode,this.key)
+    debugger;
+    let verificationCode = this.verificationCodePart1.concat(this.verificationCodePart2,this.verificationCodePart3,
+      this.verificationCodePart4,this.verificationCodePart5);
+
+    this.forgotPasswordService.verify(this.mobile,verificationCode,this.key)
       .subscribe(res=> {
         console.log(res);
         this.step = 3;
@@ -65,9 +74,36 @@ export class ForgotPasswordComponent implements OnInit {
       });
   }
 
+  setFocus(elementNumber:number,value){
+    if (!value || value.length == 0){
+      return;
+    }
 
+    switch (elementNumber) {
 
+      case 1:
+        this.verificationCodePart2Element.nativeElement.focus();
+        console.log(this.verificationCodePart1);
+        break;
 
+      case 2:
+        this.verificationCodePart3Element.nativeElement.focus();
+        console.log(this.verificationCodePart2);
+        break;
 
+      case 3:
+        this.verificationCodePart4Element.nativeElement.focus();
+        console.log(this.verificationCodePart3);
+        break;
 
+      case 4:
+        this.verificationCodePart5Element.nativeElement.focus();
+        console.log(this.verificationCodePart4);
+        break;
+
+      case 5:
+        console.log(this.verificationCodePart5);
+        this.verify();
+    }
+  }
 }
