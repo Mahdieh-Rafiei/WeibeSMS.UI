@@ -11,12 +11,11 @@
                     <a id="button-notif" dropdownToggle class="dropdown-toggle" aria-controls="dropdown-notif">
                         <i class="fa fa-bell"></i>
                     </a>
-                    <ul id="dropdown-notif" *dropdownMenu class="dropdown-menu dropdown-profile" role="menu" aria-labelledby="button-notif">
-                        <li role="menuitem"><a class="dropdown-item" href="#"> lorem ipsume lorem ipsume lorem ipsume </a></li>
-                        <li class="divider dropdown-divider"></li>
-                        <li role="menuitem"><a class="dropdown-item" href="#"> lorem ipsume lorem ipsume lorem ipsume </a></li>
-                        <li class="divider dropdown-divider"></li>
-                        <li role="menuitem"><a class="dropdown-item" href="#"> lorem ipsume lorem ipsume lorem ipsume </a></li>
+                    <ul *ngIf="userNotifications" id="dropdown-notif" class="dropdown-menu dropdown-profile" role="menu" aria-labelledby="button-notif">
+                        <div *ngFor="let un of userNotifications">
+                          <li role="menuitem"><a class="dropdown-item" (click)="preparingShowNotification(un)"> {{un.title}} </a></li>
+                          <li class="divider dropdown-divider"></li>
+                        </div>
                         <li role="menuitem"><a class="dropdown-item" routerLink="../notification" > more </a></li>
                     </ul>
                 </div>
@@ -37,3 +36,23 @@
         </div>
   </div>
 </nav>
+
+<div *ngIf="showNotification"  class="modal fade in modal-back" role="dialog" tabindex="-1" style="display: block;" aria-modal="true">
+  <div role="document" class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button (click)="showNotification=false" aria-label="Close" class="close pull-right" type="button">
+          <span aria-hidden="true">×</span>
+        </button>
+      </div>
+      <div class="modal-body text-center">
+        <div>
+          <p>{{selectedNotification.title}}</p>
+          <br>
+          <p>{{selectedNotification.description}}</p>
+          <br>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
