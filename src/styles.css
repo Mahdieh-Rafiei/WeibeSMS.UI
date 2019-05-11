@@ -1,6 +1,23 @@
 @charset "UTF-8";
+@font-face {
+    font-family: 'OpenSans-Regular';
+    src: url('assets/fonts/OpenSans-Regular.eot?#')  format('eot'),
+    url('assets/fonts/OpenSans-Regular.woff')   format('woff'),
+    url('assets/fonts/OpenSans-Regular.ttf')    format('truetype');
+}
+@font-face {
+    font-family: 'OpenSans-Bold';
+    src: url('assets/fonts/OpenSans-Bold.eot?#')  format('eot'),
+    url('assets/fonts/OpenSans-Bold.woff')   format('woff'),
+    url('assets/fonts/OpenSans-Bold.ttf')    format('truetype');
+}
+
+
+
+
 * {
     outline: none !important;
+    font-family: 'OpenSans-Regular';
 }
 :focus, :active, :enabled{
     outline: none !important;
@@ -8,12 +25,13 @@
 html {
     position: relative;
     min-height: 100%;
+    font-family: 'OpenSans-Regular';
 }
 body {
     background-color: #f2f2f2;
     margin: 0;
     overflow-x: hidden;
-    /*color: #686868;*/
+    font-family: 'OpenSans-Regular';
     font-weight: 300;
 }
 h1,
@@ -25,6 +43,7 @@ h6 {
     color: #2b2b2b;
     margin: 10px 0;
     font-weight: 300;
+    font-family: 'OpenSans-Regular';
 }
 h1 {
     line-height: 48px;
@@ -43,11 +62,9 @@ h4 {
     font-size: 18px;
 }
 h5 {
-    font-size: 18px;
     font-size: 16px;
 }
 h5 {
-    font-size: 16px;
     font-size: 14px;
 }
 .dn {
@@ -65,6 +82,7 @@ blockquote {
 }
 p {
     margin: 0 !important;
+    font-family: 'OpenSans-Regular';
 }
 b {
     font-weight: 600;
@@ -72,6 +90,9 @@ b {
 a:hover {
     outline: 0;
     text-decoration: none;
+}
+a{
+    font-family: 'OpenSans-Regular';
 }
 a:active {
     outline: 0;
