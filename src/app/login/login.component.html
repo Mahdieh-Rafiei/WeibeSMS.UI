@@ -32,7 +32,7 @@
           <span>Create a free account on <span class="weib">Weiß SMS</span>.</span>
           <div class="col-md-10 col-md-offset-1 col-xs-12">
             <div class="input-box v-input-box">
-              <input onPaste="return false" (keydown)="onMobileKeyDown($event)" [(ngModel)]="mobile" type="text" class="ws-login-input vinput "  autofocus autocomplete="off" placeholder="phone number">
+              <input appNumericInput onPaste="return false" [(ngModel)]="mobile" type="text" class="ws-login-input vinput "  autofocus autocomplete="off" placeholder="phone number">
             <select class="v-input-select">
               <option><img src="#"> +98</option>
               <option>English</option>
@@ -45,7 +45,7 @@
           </div>
           <div class="col-md-12">
             <hr>
-            <p>Already have an account? <span class="sign-up" (click)="login()" >Sign in</span></p>
+            <p>Already have an account? <span class="sign-in" (click)="rollbackToLoginMode()">Sign in</span></p>
           </div>
         </div>
         <div *ngIf="!isLoginMode && verificationCodeSent">
@@ -53,13 +53,13 @@
           <span>Create a free account on <span class="weib">Weiß SMS</span>.</span>
           <div class="col-md-10 col-md-offset-1 col-xs-12">
             <div class="input-box-vc">
-              <p class="wrong">your number : <span>09197514700</span> <span> wrong ? </span></p>
-              <input type="text" class="verification-code-input">
-              <input type="text" class="verification-code-input">
-              <input type="text" class="verification-code-input">
-              <input type="text" class="verification-code-input">
-              <input type="text" class="verification-code-input">
-              <!--<input  [(ngModel)]="verificationCode" type="text" class="ws-login-input vcinput" autofocus autocomplete="off" placeholder="verification code">-->
+              <p class="wrong">your number : <span>{{mobile}}</span> <span (click)="rollbackToFirstStep()"> wrong ? </span></p>
+              <input appNumericInput maxlength="1" [(ngModel)]="verificationCodePart1" (ngModelChange)="setFocus(1,$event)" #verificationCodePart1Element  type="text" class="verification-code-input">
+              <input appNumericInput maxlength="1" [(ngModel)]="verificationCodePart2" (ngModelChange)="setFocus(2,$event)" #verificationCodePart2Element  type="text" class="verification-code-input">
+              <input appNumericInput maxlength="1" [(ngModel)]="verificationCodePart3" (ngModelChange)="setFocus(3,$event)" #verificationCodePart3Element type="text" class="verification-code-input">
+              <input appNumericInput maxlength="1" [(ngModel)]="verificationCodePart4" (ngModelChange)="setFocus(4,$event)" #verificationCodePart4Element type="text" class="verification-code-input">
+              <input appNumericInput maxlength="1" [(ngModel)]="verificationCodePart5" (ngModelChange)="setFocus(5,$event)" #verificationCodePart5Element type="text" class="verification-code-input">
+              <input [(ngModel)]="verificationCode" type="text" class="ws-login-input vcinput" autofocus autocomplete="off" placeholder="verification code">
               <p class="resend"><img src="../../assets/images/redo.png"> Resend again</p>
             </div>
           </div>

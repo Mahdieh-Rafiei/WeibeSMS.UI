@@ -63,21 +63,57 @@
         <span><i class="fa fa-arrow-circle-right"></i></span>
       </div>
     </div>
-  </div>
+        <div class="col-md-3">
+          <div class="filtering">
+            <ul class="filtering-menu">
+              <li>
+                <a href="#">
+                  <p> Lorem ipsum dolor sit amet.</p>
+                  <select>
+                    <option>select</option>
+                    <option>Test 02</option>
+                    <option>Test 03</option>
+                  </select>
+                </a>
+              </li>
+              <li>
+                <a href="#">
+                  <p> Lorem ipsum dolor sit amet.</p>
+                  <label>from :</label> <input type="date"><br>
+                  <label>to :</label> <input type="date">
+                </a>
+              </li>
+              <li>
+                <a href="#">
+                  <p> Lorem ipsum dolor sit amet.</p>
+                  <label>from :</label> <input type="date"> <br>
+                  <label>to :</label> <input type="date">
+                </a>
+              </li>
+              <li>
+                <a href="#">
+                  <p> Lorem ipsum dolor sit amet.</p>
+                  <select>
+                    <option>select</option>
+                    <option>Test 02</option>
+                    <option>Test 03</option>
+                  </select>
+                </a>
+              </li>
+              <li class="text-center">
+                <a href="#">
+                  <button class="green-btn">Apply</button>
+                  <button class="gray-btn">Cancel</button>
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
 
-  <!--pagination-->
-  <!--<div class="pagination-section">-->
-    <!--<div class="pagination">-->
-      <!--<a class="prev page-numbers">prev</a>-->
-      <!--<span aria-current="page" class="page-numbers current">1</span>-->
-      <!--<a class="page-numbers">2</a>-->
-      <!--<a class="page-numbers">...</a>-->
-      <!--<a class="page-numbers">10</a>-->
-      <!--<a class="next page-numbers">next</a>-->
-    <!--</div>-->
-  <!--</div>-->
 
   <pagination-controls (pageChange)="doPaging($event)"></pagination-controls>
+
+  </div>
 
 </div>
 

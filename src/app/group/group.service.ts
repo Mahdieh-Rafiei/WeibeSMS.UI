@@ -10,8 +10,6 @@ import {ActivatedRoute} from '@angular/router';
 })
 export class GroupService {
 
-
-
   constructor(private apiService :ApiService) { }
 
   getAll(pageSize:number,pageNumber:number,phrase:string) : Observable<any>{

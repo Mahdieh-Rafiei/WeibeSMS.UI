@@ -65,6 +65,7 @@ import { ChangePasswordComponent } from './user/change-password/change-password.
 import {UserService} from './user/user.service';
 import { BillingAddressComponent } from './user/billing-address/billing-address.component';
 import {NgxPaginationModule} from 'ngx-pagination';
+import { NumericInputDirective } from './shared/numeric-input.directive';
 
 
 @NgModule({
@@ -109,7 +110,7 @@ import {NgxPaginationModule} from 'ngx-pagination';
         ProfileComponent,
         ChangePasswordComponent,
         BillingAddressComponent,
-
+        NumericInputDirective
   ],
   imports: [
     BrowserModule,
