@@ -13,11 +13,12 @@ import {NotificationService} from '../../shared/notification.service';
 
 export class GroupListComponent implements OnInit {
 
-  pageNumber:number;
-  pageSize:number;
+  pageNumber:number=1;
+  pageSize:number=10;
   data:any;
   groups:any[]=[];
   currentGroup:any;
+  totalItemsCount:number;
   // filteredGroups:any[]=[];
   phrase='';
 
@@ -39,7 +40,7 @@ export class GroupListComponent implements OnInit {
         console.log(res);
         this.data= res.data;
         this.groups = this.data.items;
-        // this.realTimeFilter();
+        this.totalItemsCount = this.data.totalItemsCount;
       });
   }
   setAddMode(){
@@ -92,12 +93,14 @@ export class GroupListComponent implements OnInit {
       });
   }
 
-  // realTimeFilter(){
-  //     this.utilityService.filterByExpression(this.groups,this.filteredGroups,'groupName',this.filterExpression);
-  //   }
-
   getDataWithSearch(){
     this.pageNumber=1;
     this.getData();
   }
+
+  doPaging(e){
+    this.pageNumber=e;
+    this.getData();
+  }
+
 }

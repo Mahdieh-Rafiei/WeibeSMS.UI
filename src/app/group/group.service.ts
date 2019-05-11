@@ -15,7 +15,7 @@ export class GroupService {
   constructor(private apiService :ApiService) { }
 
   getAll(pageSize:number,pageNumber:number,phrase:string) : Observable<any>{
-    return this.apiService.get(`ContactGroup?phrase=${phrase}`,true);
+    return this.apiService.get(`ContactGroup?pageSize=${pageSize}&pageNumber=${pageNumber}&groupName=${phrase}`,true);
   }
 
   getGroup(id:string) :Observable<any>{

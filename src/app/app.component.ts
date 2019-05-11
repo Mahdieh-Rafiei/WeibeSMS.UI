@@ -15,7 +15,7 @@ import {normalizeDebugBindingName} from '@angular/core/src/util/ng_reflect';
 export class AppComponent implements OnInit{
 
   constructor(private authService:AuthenticationService
-              ,private configService:ConfigService
+              ,public configService:ConfigService
               ,private router:Router
   ){  }
 
@@ -32,7 +32,7 @@ export class AppComponent implements OnInit{
     this.innerWidth = window.innerWidth;
 
     this.isAuthenticated = this.authService.isAuthenticated();
-    this.configService.sidebarStateChanged.subscribe(res => this.configService.sidebarMode = res);
+    // this.configService.sidebarStateChanged.subscribe(res => this.configService.sidebarMode = res);
 
     if (!this.authService.isAuthenticated()){
       this.router.navigateByUrl('/login');

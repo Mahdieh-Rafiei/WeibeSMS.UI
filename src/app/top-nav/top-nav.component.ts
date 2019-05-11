@@ -17,7 +17,7 @@ export class TopNavComponent implements OnInit {
   showNotification:boolean=false;
   selectedNotification:any;
 
-  constructor(private configService:ConfigService,
+  constructor(public configService:ConfigService,
               private userNotificationService:UserNotificationService,
               private authService:AuthenticationService) { }
 
@@ -47,7 +47,7 @@ export class TopNavComponent implements OnInit {
       this.configService.sidebarMode = this.configService.sidebarMode == 'default' ? 'slim' : 'default';
     }
 
-    this.configService.sidebarStateChanged.emit(this.configService.sidebarMode);
+    // this.configService.sidebarStateChanged.emit(this.configService.sidebarMode);
   }
 
   logOut(){

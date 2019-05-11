@@ -32,7 +32,9 @@
         </tr>
         </thead>
         <tbody>
-        <tr *ngFor="let group of groups,index as i">
+        <tr *ngFor="let group of groups | paginate : {
+        itemsPerPage:10,currentPage:pageNumber,totalItems:totalItemsCount
+        },index as i">
           <td class="text-left">
             <div class="table-head">
               <span>{{i + 1}}</span>
@@ -62,6 +64,21 @@
       </div>
     </div>
   </div>
+
+  <!--pagination-->
+  <!--<div class="pagination-section">-->
+    <!--<div class="pagination">-->
+      <!--<a class="prev page-numbers">prev</a>-->
+      <!--<span aria-current="page" class="page-numbers current">1</span>-->
+      <!--<a class="page-numbers">2</a>-->
+      <!--<a class="page-numbers">...</a>-->
+      <!--<a class="page-numbers">10</a>-->
+      <!--<a class="next page-numbers">next</a>-->
+    <!--</div>-->
+  <!--</div>-->
+
+  <pagination-controls (pageChange)="doPaging($event)"></pagination-controls>
+
 </div>
 
 <div *ngIf="showState == 'add'"  class="modal fade in modal-back" role="dialog" tabindex="-1" style="display: block;" aria-modal="true">
@@ -101,3 +118,5 @@
     </div>
   </div>
 </div>
+
+
