@@ -9,6 +9,7 @@ export class ConfigService {
   baseUrl:string;
   tokenKeyName:string;
   errorMessages:Map<number,string>= new Map<number,string>();
+  sidebarMode:string='default';
 
   @Output() sidebarStateChanged: EventEmitter<string> = new EventEmitter<string>();
   @Output() authenticationChanged: EventEmitter<boolean> = new EventEmitter<boolean>();
@@ -16,9 +17,9 @@ export class ConfigService {
   constructor() {
     this.tokenKeyName='jwt-sms';
 
-    // this.baseUrl = 'http://localhost:60241/appapi/v1/';
+     this.baseUrl = 'https://localhost:44388/appapi/v1/';
     // this.baseUrl = 'http://185.211.58.52/appapi/v1/';
-    this.baseUrl = 'http://192.168.1.94:8070/appapi/v1/';
+    // this.baseUrl = 'http://192.168.1.94:8070/appapi/v1/';
 
     this.errorMessages.set(1,'Entered values are wrong!');
     this.errorMessages.set(2,'Get verification code again please!');

@@ -1,4 +1,4 @@
-<nav [ngClass]="{'slim-navbar':sidebarMode=='slim', 'hidden-navbar':sidebarMode=='hidden'}" class="navbar navbar-expand-lg fixed-top">
+<nav [ngClass]="{'slim-navbar':configService.sidebarMode=='slim', 'hidden-navbar':configService.sidebarMode=='hidden'}" class="navbar navbar-expand-lg fixed-top">
   <div class="container-fluid no-pad">
         <div class="col-md-12 navbar-content no-pad">
             <div class="col-md-2 col-sm-2 col-xs-2">

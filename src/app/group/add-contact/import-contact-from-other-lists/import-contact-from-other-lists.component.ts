@@ -5,7 +5,6 @@ import {GroupService} from '../../group.service';
 import _ from 'node_modules/lodash/lodash.js';
 import {ActivatedRoute, Router} from '@angular/router';
 import {UtilityService} from '../../../shared/utility.service';
-import {ElementSchemaRegistry} from '@angular/compiler';
 
 @Component({
   selector: 'app-import-contact-from-other-lists',
@@ -38,7 +37,7 @@ export class ImportContactFromOtherListsComponent implements OnInit {
 
   ngOnInit() {
     this.groupId = parseInt(this.activatedRoute.parent.snapshot.paramMap.get('groupId'));
-    this.groupService.getAll(this.groupPageSize,this.groupPageNumber)
+    this.groupService.getAll(this.groupPageSize,this.groupPageNumber,'')
       .subscribe(res=>{
         this.groups = res.data.items.filter(i=>i.id != this.groupId);
         this.groups.forEach(g=> g.isSelected=false);

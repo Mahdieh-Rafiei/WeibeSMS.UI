@@ -21,7 +21,6 @@ export class AppComponent implements OnInit{
 
   title = 'WeibeSMS';
   isAuthenticated:boolean;
-  sidebarMode:string='default';
   public innerWidth: any;
 
   ngOnInit(){
@@ -33,7 +32,7 @@ export class AppComponent implements OnInit{
     this.innerWidth = window.innerWidth;
 
     this.isAuthenticated = this.authService.isAuthenticated();
-    this.configService.sidebarStateChanged.subscribe(res => this.sidebarMode = res);
+    this.configService.sidebarStateChanged.subscribe(res => this.configService.sidebarMode = res);
 
     if (!this.authService.isAuthenticated()){
       this.router.navigateByUrl('/login');
@@ -44,12 +43,12 @@ export class AppComponent implements OnInit{
   onResize(event) {
     this.innerWidth = window.innerWidth;
     if (this.innerWidth <768 ){
-      this.sidebarMode = 'hidden'
+      this.configService.sidebarMode = 'hidden'
     } else if (this.innerWidth >= 768 && this.innerWidth <= 991) {
-      this.sidebarMode = 'slim'
+      this.configService.sidebarMode = 'slim'
     }
     else {
-      this.sidebarMode = 'default';
+      this.configService.sidebarMode = 'default';
     }
   }
 

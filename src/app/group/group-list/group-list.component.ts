@@ -18,8 +18,8 @@ export class GroupListComponent implements OnInit {
   data:any;
   groups:any[]=[];
   currentGroup:any;
-  filteredGroups:any[]=[];
-  filterExpression='';
+  // filteredGroups:any[]=[];
+  phrase='';
 
   showState:string='default';
   groupName:string='';
@@ -34,13 +34,12 @@ export class GroupListComponent implements OnInit {
   }
 
   getData(){
-    this.groupService.getAll(this.pageSize,this.pageNumber)
+    this.groupService.getAll(this.pageSize,this.pageNumber,this.phrase)
       .subscribe(res=>{
         console.log(res);
         this.data= res.data;
         this.groups = this.data.items;
-
-        this.realTimeFilter();
+        // this.realTimeFilter();
       });
   }
   setAddMode(){
@@ -78,7 +77,7 @@ export class GroupListComponent implements OnInit {
         console.log(res);
         _.remove(this.groups,g=>g.id == this.currentGroup.id);
         this.notificationService.success('Group removed successfully','');
-        this.realTimeFilter();
+        // this.realTimeFilter();
       });
   }
 
@@ -89,11 +88,16 @@ export class GroupListComponent implements OnInit {
         this.showState = 'default';
         this.currentGroup.groupName = this.groupName;
         this.notificationService.success('Group modified successfully','');
-        this.realTimeFilter();
+        // this.realTimeFilter();
       });
   }
 
-  realTimeFilter(){
-      this.utilityService.filterByExpression(this.groups,this.filteredGroups,'groupName',this.filterExpression);
-    }
+  // realTimeFilter(){
+  //     this.utilityService.filterByExpression(this.groups,this.filteredGroups,'groupName',this.filterExpression);
+  //   }
+
+  getDataWithSearch(){
+    this.pageNumber=1;
+    this.getData();
+  }
 }

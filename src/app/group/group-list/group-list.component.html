@@ -15,8 +15,8 @@
       </div>
       <div class="col-md-6 operation-section">
         <form class="search-wrapper search">
-          <input name="filter" (input)="realTimeFilter()" [(ngModel)]="filterExpression" type="text">
-          <button type="submit"><i class="fa fa-search"></i></button>
+          <input name="filter" [(ngModel)]="phrase" type="text">
+          <button (click)="getDataWithSearch()" type="submit"><i class="fa fa-search"></i></button>
         </form>
       </div>
     </div>
@@ -32,7 +32,7 @@
         </tr>
         </thead>
         <tbody>
-        <tr *ngFor="let group of filteredGroups,index as i">
+        <tr *ngFor="let group of groups,index as i">
           <td class="text-left">
             <div class="table-head">
               <span>{{i + 1}}</span>
