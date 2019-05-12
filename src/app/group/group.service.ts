@@ -14,10 +14,10 @@ import {GroupResponseInterface} from './models/group-response.interface';
 })
 export class GroupService {
 
-  constructor(private apiService :ApiService) { }
+  constructor(private apiService: ApiService) {
+  }
 
-
-  getAllGroupList(pageSize:number,pageNumber:number,phrase:string): Observable<GroupListInterface> {
+  getAllGroupList(pageSize: number, pageNumber: number, phrase: string): Observable<GroupListInterface> {
     const url = `ContactGroup?pageSize=${pageSize}&pageNumber=${pageNumber}&groupName=${phrase}`;
     return this.apiService.get(url, true);
   }

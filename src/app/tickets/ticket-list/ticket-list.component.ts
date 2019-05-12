@@ -18,11 +18,11 @@ export class TicketListComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.getAllTickets(this.pageNumber, this.pageSize);
+    this.getAllTickets();
   }
 
-  getAllTickets(pageNumber, pageSize) {
-    this.ticketService.getAllTickets(pageNumber, pageSize)
+  getAllTickets() {
+    this.ticketService.getAllTickets(this.pageNumber, this.pageSize)
       .subscribe((res: TicketListResponseModel) => {
         this.tickets = res.data.items;
       });

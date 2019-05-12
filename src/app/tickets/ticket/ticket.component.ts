@@ -40,8 +40,8 @@ export class TicketComponent implements OnInit {
   }
 
   sendReply() {
-    if (!this.isReplyMode)
-      return;
+    if (!this.isReplyMode) return;
+
 
     if (this.replyText.length === 0) {
       this.notificationService.error('Reply text cant be null!', '');

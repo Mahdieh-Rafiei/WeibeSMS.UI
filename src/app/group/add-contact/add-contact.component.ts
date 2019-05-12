@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
 
 @Component({
@@ -8,10 +8,11 @@ import {ActivatedRoute} from '@angular/router';
 })
 export class AddContactComponent implements OnInit {
 
-  constructor(private activatedRoute:ActivatedRoute) { }
+  constructor(private activatedRoute: ActivatedRoute) {
+  }
 
   ngOnInit() {
-    let id = this.activatedRoute.snapshot.paramMap.get('groupId');
+    const id = this.activatedRoute.snapshot.paramMap.get('groupId');
     console.log('SelectedId is :' + id);
   }
 }

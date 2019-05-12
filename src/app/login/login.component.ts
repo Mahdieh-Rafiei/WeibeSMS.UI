@@ -1,4 +1,3 @@
-
 import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {RegisterService} from '../register/register.service';
 import {Router} from '@angular/router';
@@ -17,12 +16,12 @@ import {LoginInterface} from './models/login.interface';
 
 export class LoginComponent implements OnInit {
 
-  isLoginMode:boolean=true;
-  verificationCodeSent:boolean=false;
-  mobile:string='';
-  username:string='';
-  password:string='';
-  registrationKey:string;
+  isLoginMode: boolean = true;
+  verificationCodeSent: boolean = false;
+  mobile: string = '';
+  username: string = '';
+  password: string = '';
+  registrationKey: string;
 
   @ViewChild('verificationCodePart1Element') verificationCodePart1Element: ElementRef;
   @ViewChild('verificationCodePart2Element') verificationCodePart2Element: ElementRef;
@@ -30,11 +29,11 @@ export class LoginComponent implements OnInit {
   @ViewChild('verificationCodePart4Element') verificationCodePart4Element: ElementRef;
   @ViewChild('verificationCodePart5Element') verificationCodePart5Element: ElementRef;
 
-  verificationCodePart1:string='';
-  verificationCodePart2:string='';
-  verificationCodePart3:string='';
-  verificationCodePart4:string='';
-  verificationCodePart5:string='';
+  verificationCodePart1: string = '';
+  verificationCodePart2: string = '';
+  verificationCodePart3: string = '';
+  verificationCodePart4: string = '';
+  verificationCodePart5: string = '';
 
 
   constructor(private authService: AuthenticationService,
@@ -75,27 +74,28 @@ export class LoginComponent implements OnInit {
     });
   }
 
-  rollbackToFirstStep(){
+  rollbackToFirstStep() {
     this.verificationCodeSent = false;
     this.registrationKey = '';
   }
 
-  rollbackToLoginMode(){
+  rollbackToLoginMode() {
     this.rollbackToFirstStep();
-    this.isLoginMode=true;
+    this.isLoginMode = true;
   }
 
-  verify(){
-    let verificationCode = this.verificationCodePart1.concat(this.verificationCodePart2,this.verificationCodePart3,
-      this.verificationCodePart4,this.verificationCodePart5);
-    this.registerService.verifyMobile(this.registrationKey,this.mobile.toString(),verificationCode).subscribe((res) =>{
-      this.authService.setToken(res.data.token);
-      this.router.navigateByUrl('/register');
-    });
+  verify() {
+    const verificationCode = this.verificationCodePart1.concat(this.verificationCodePart2, this.verificationCodePart3,
+      this.verificationCodePart4, this.verificationCodePart5);
+    this.registerService.verifyMobile(this.registrationKey, this.mobile.toString(), verificationCode)
+      .subscribe((res) => {
+        this.authService.setToken(res.data.token);
+        this.router.navigateByUrl('/register');
+      });
   }
 
-  setFocus(elementNumber:number,value){
-    if (!value || value.length == 0){
+  setFocus(elementNumber: number, value) {
+    if (!value || value.length === 0) {
       return;
     }
 

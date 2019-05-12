@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {ContactService} from './contact.service';
 import {ActivatedRoute, Router} from '@angular/router';
 
@@ -9,13 +9,14 @@ import {ActivatedRoute, Router} from '@angular/router';
 })
 export class ContactComponent implements OnInit {
 
-  contactId:string;
-  contact:any;
-  groupId:string;
+  contactId: string;
+  contact: any;
+  groupId: string;
 
-  constructor(private contactService:ContactService,
-              private activatedRoute:ActivatedRoute,
-              private router:Router) { }
+  constructor(private contactService: ContactService,
+              private activatedRoute: ActivatedRoute,
+              private router: Router) {
+  }
 
   ngOnInit() {
     this.contactId = this.activatedRoute.snapshot.paramMap.get('contactId');
@@ -26,16 +27,16 @@ export class ContactComponent implements OnInit {
       });
   }
 
-  modifyContact(){
-    this.contactService.modifyContact(this.contact.contactGroupId,this.contact.id,this.contact.firstName,
-      this.contact.lastName,this.contact.email,this.contact.gender)
+  modifyContact() {
+    this.contactService.modifyContact(this.contact.contactGroupId, this.contact.id,
+      this.contact.firstName, this.contact.lastName, this.contact.email, this.contact.gender)
       .subscribe(res => {
-      console.log(res);
+        console.log(res);
         this.router.navigateByUrl(`group/${this.groupId}`);
-    })
+      });
   }
 
-  deleteContact(){
+  deleteContact() {
     this.contactService.removeContact(this.contact.Id)
       .subscribe(res => {
         console.log(res);

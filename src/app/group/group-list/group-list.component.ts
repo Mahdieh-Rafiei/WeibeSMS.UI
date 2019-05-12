@@ -18,21 +18,22 @@ import {RemoveGroupNameResponseInterface} from './models/remove-group-name-respo
 
 export class GroupListComponent implements OnInit {
 
-  pageNumber:number=1;
-  pageSize:number=10;
-  data:any;
-  groups:any[]=[];
-  currentGroup:any;
-  totalItemsCount:number;
-  phrase='';
+  pageNumber: number = 1;
+  pageSize: number = 10;
+  data: any;
+  groups: any[] = [];
+  currentGroup: any;
+  totalItemsCount: number;
+  phrase = '';
 
-  showState:string='default';
-  groupName:string='';
+  showState: string = 'default';
+  groupName: string = '';
 
-  constructor(private groupService:GroupService,
-              private router:Router,
-              private utilityService:UtilityService,
-              private notificationService:NotificationService) { }
+  constructor(private groupService: GroupService,
+              private router: Router,
+              private utilityService: UtilityService,
+              private notificationService: NotificationService) {
+  }
 
 
   ngOnInit() {
@@ -40,7 +41,7 @@ export class GroupListComponent implements OnInit {
   }
 
   getAllGroupList() {
-    this.groupService.getAllGroupList(this.pageSize, this.pageNumber,this.phrase)
+    this.groupService.getAllGroupList(this.pageSize, this.pageNumber, this.phrase)
       .subscribe((res: GroupListInterface) => {
         this.data = res.data;
         this.groups = this.data.items;
@@ -74,8 +75,7 @@ export class GroupListComponent implements OnInit {
 
     this.currentGroup = group;
 
-    if (this.currentGroup == null)
-      return;
+    if (this.currentGroup == null) return;
 
     this.groupService.removeGroup(this.currentGroup.id)
       .subscribe((res: RemoveGroupNameResponseInterface) => {
@@ -91,17 +91,17 @@ export class GroupListComponent implements OnInit {
         console.log(res);
         this.showState = 'default';
         this.currentGroup.groupName = this.groupName;
-        this.notificationService.success('Group modified successfully','');
+        this.notificationService.success('Group modified successfully', '');
       });
   }
 
-  getDataWithSearch(){
-    this.pageNumber=1;
+  getDataWithSearch() {
+    this.pageNumber = 1;
     this.getAllGroupList();
   }
 
-  doPaging(e){
-    this.pageNumber=e;
+  doPaging(e) {
+    this.pageNumber = e;
     this.getAllGroupList();
   }
 }
