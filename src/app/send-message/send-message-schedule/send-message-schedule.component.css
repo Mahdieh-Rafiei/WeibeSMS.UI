@@ -33,8 +33,12 @@ label{
     width: 60px;
 }
 input[type="text"]{
-    width: 15%;
-    padding: 5px;
+    width: 20%;
+    padding: 0.65rem 1rem;
+    border-radius: 4px;
+    border: 1px solid #e2e5ec;
+    font-size: 14px;
+    color: #495057;
 }
 ::placeholder{
     font-size: 12px;

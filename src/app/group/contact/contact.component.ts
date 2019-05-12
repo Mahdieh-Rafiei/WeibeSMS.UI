@@ -21,6 +21,10 @@ export class ContactComponent implements OnInit {
   ngOnInit() {
     this.contactId = this.activatedRoute.snapshot.paramMap.get('contactId');
     this.groupId = this.activatedRoute.snapshot.paramMap.get('groupId');
+    this.getContact();
+  }
+
+  getContact() {
     this.contact = this.contactService.getContact(this.contactId)
       .subscribe(res => {
         this.contact = res.data;

@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {DraftService} from '../draft.service';
 import _ from 'node_modules/lodash/lodash.js';
+import {DraftInterface} from '../draft/models/draft.interface';
 
 @Component({
   selector: 'app-draft-list',
@@ -9,34 +10,39 @@ import _ from 'node_modules/lodash/lodash.js';
 })
 export class DraftListComponent implements OnInit {
 
-  drafts:any[] = [];
-  pageNumber:number;
-  pageSize:number;
+  drafts: any[] = [];
+  pageNumber: number = 1;
+  pageSize: number = 10;
 
-  constructor(private draftService:DraftService) { }
+  constructor(private draftService: DraftService) {
+  }
 
   ngOnInit() {
-    this.draftService.getAllDrafts(this.pageNumber,this.pageSize)
-      .subscribe(res => {
+    this.getAllDrafts();
+  }
+
+  getAllDrafts() {
+    this.draftService.getAllDrafts(this.pageNumber, this.pageSize)
+      .subscribe((res: DraftInterface) => {
         console.log(res.data);
-        res.data.items.forEach(i=>{
+        res.data.items.forEach((i: any) => {
           console.log(i);
           this.drafts.push({
-            id:i.id,
-            messageText:i.messageText,
-            title:i.title,
-            summary:i.messageText.substring(0,30)
+            id: i.id,
+            messageText: i.messageText,
+            title: i.title,
+            summary: i.messageText.substring(0, 30)
           });
         });
         console.log(this.drafts);
       });
   }
 
-  removeDraft(draft){
+  removeDraft(draft) {
     this.draftService.removeDraft(draft.id)
-      .subscribe(res=>{
+      .subscribe(res => {
         console.log(res);
-        _.remove(this.drafts,d=>d.id == draft.id);
+        _.remove(this.drafts, d => d.id === draft.id);
       });
   }
 

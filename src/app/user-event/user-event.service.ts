@@ -1,39 +1,38 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {ApiService} from '../shared/api.service';
 import {Observable} from 'rxjs';
+import {UserEventResponseInterface} from './models/user-event-response.interface';
+import {AddUserEventInterface} from './models/add-user-event.interface';
+import {EditUserEventResponseInterface} from './models/edit-user-event-response.interface';
+import {AddUserEventResponseInterface} from './models/add-user-event-response.interface';
+import {RemoveUserEventInterface} from './models/remove-user-event.interface';
+import {RemoveUserEventResponseInterface} from './models/remove-user-event-response.interface';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserEventService {
 
-  constructor(private apiService:ApiService) { }
-
-  getUserEvents() :Observable<any>{
-    return this.apiService.get(`UserEvent`,true);
+  constructor(private apiService: ApiService) {
   }
 
-  addUserEvent(name) : Observable<any> {
-    let payload={
-      Name:name
-    };
-
-    return this.apiService.post(`UserEvent`,payload,true);
+  getUserEvents(): Observable<UserEventResponseInterface> {
+    const url = `UserEvent`;
+    return this.apiService.get(url, true);
   }
 
-  modifyUserEvent(id:number,name:string) :Observable<any>{
-    let payload = {
-      Name:name
-    };
-
-    return this.apiService.put(`UserEvent/${id}`,payload,true);
+  addUserEvent(payload): Observable<AddUserEventResponseInterface> {
+    const url = `UserEvent`;
+    return this.apiService.post<AddUserEventInterface>(url, payload, true);
   }
 
-  removeUserEvent(id:number):Observable<any>{
-    let payload={
-      DeleteAnyway:true
-    };
+  modifyUserEvent(id: number, payload): Observable<EditUserEventResponseInterface> {
+    const url = `UserEvent/${id}`;
+    return this.apiService.put(url, payload, true);
+  }
 
-    return this.apiService.delete(`UserEvent/${id}`,payload,true);
+  removeUserEvent(id: number, payload): Observable<RemoveUserEventResponseInterface> {
+    const url = `UserEvent/${id}`;
+    return this.apiService.delete<RemoveUserEventInterface>(url, payload, true);
   }
 }

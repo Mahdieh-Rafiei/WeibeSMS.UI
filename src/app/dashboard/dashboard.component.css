@@ -39,7 +39,12 @@
     border: 1px solid #d1d1d1;
     margin-bottom: 30px;
 }
-
+.report-title{
+    float: left;
+}
+.report-date{
+    float: right;
+}
 
 @media (max-width: 991px) and (min-width: 768px){
     .col-md-6.act-left{
@@ -55,7 +60,12 @@
     .border-right {
         border-right: none;
     }
-
+    .report-title{
+        float: none;
+    }
+    .report-date{
+        float: none;
+    }
 }
 @media (max-width: 767px) and (min-width: 320px) {
     .col-md-6.act-left{
@@ -70,5 +80,11 @@
     }
     .border-right {
         border-right: none;
+    }
+    .report-title{
+        float: none;
+    }
+    .report-date{
+        float: none;
     }
 }

@@ -4,6 +4,10 @@ import {Observable} from 'rxjs';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {ConfigService} from '../../shared/config.service';
 import {Immediate} from 'rxjs/internal-compatibility';
+import {AddContactInterface} from '../add-contact/single-add-contact/models/add-contact.interface';
+import {AddContactResponseInterface} from '../add-contact/single-add-contact/models/add-contact-response.interface';
+import {GetContactInterface} from './models/get-contact.interface';
+import {RemoveContactFormGroupInterface} from './models/remove-contact-form-group.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -17,21 +21,14 @@ export class ContactService {
     return this.apiService.get(`Contact/ContactGroup/${groupId}?pageNumber=${pageNumber}&pageSize=${pageSize}`, true);
   }
 
-  getContact(contactId: string): Observable<any> {
-    return this.apiService.get(`Contact/${contactId}`, true);
+  getContact(contactId: string): Observable<GetContactInterface> {
+    const url = `Contact/${contactId}`;
+    return this.apiService.get(url, true);
   }
 
-  addContact(groupId: number, firstName: string, lastName: string, mobile: string, gender: number, email: string) {
-    let payload = {
-      'Gender': gender,
-      'FirstName': firstName,
-      'LastName': lastName,
-      'Mobile': mobile,
-      'ContactGroupId': groupId,
-      'Email': email
-    };
-
-    return this.apiService.post(`Contact`, payload, true);
+  addContact(payload): Observable<AddContactResponseInterface> {
+    const url = `Contact`;
+    return this.apiService.post<AddContactInterface>(url, payload, true);
   }
 
   addContactFromFile(groupId: number, replaceDuplicateContact: boolean, immediate: boolean, file: File, relativePath: string): Observable<any> {
@@ -76,7 +73,8 @@ export class ContactService {
     return this.apiService.delete(`Contact/${contactId}`, null, true);
   }
 
-  removeContactFromGroup(groupId: string, contactId: string) {
-    return this.apiService.delete(`Contact/${contactId}/group/${groupId}`, null, true);
+  removeContactFromGroup(groupId: string, contactId: string): Observable<RemoveContactFormGroupInterface> {
+    const url = `Contact/${contactId}/group/${groupId}`;
+    return this.apiService.delete(url, null, true);
   }
 }

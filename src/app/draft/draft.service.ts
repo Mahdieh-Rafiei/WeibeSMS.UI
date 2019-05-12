@@ -1,42 +1,40 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {ApiService} from '../shared/api.service';
 import {Observable} from 'rxjs';
+import {DraftInterface} from './draft/models/draft.interface';
+import {AddDraftInterface} from './draft/models/add-draft.interface';
+import {AddDraftResponseInterface} from './draft/models/add-draft-response.interface';
+import {GetDraftInterface} from './draft/models/get-draft.interface';
 
 @Injectable({
   providedIn: 'root'
 })
 export class DraftService {
 
-  constructor(private apiService:ApiService) { }
-
-  getAllDrafts(pageNumber:number,pageSize:number) :Observable<any>{
-    debugger;
-    return this.apiService.get(`userDraftMessage?pageNumber=${pageNumber}&pageSize=${pageSize}`,true);
+  constructor(private apiService: ApiService) {
   }
 
-  getDraft(id:number):Observable<any>{
-   return this.apiService.get(`UserDraftMessage/${id}`,true);
+  getAllDrafts(pageNumber: number, pageSize: number): Observable<DraftInterface> {
+    const url = `userDraftMessage?pageNumber=${pageNumber}&pageSize=${pageSize}`;
+    return this.apiService.get(url, true);
   }
 
-  addDraft(title:string,messageText:string) : Observable<any>{
-    let payload = {
-      Title:title,
-      MessageText:messageText
-    };
-
-   return this.apiService.post(`UserDraftMessage`,payload,true);
+  getDraft(id: number): Observable<GetDraftInterface> {
+    const url = `UserDraftMessage/${id}`;
+    return this.apiService.get(url, true);
   }
 
-  modifyDraft(id:number,title:string,messageText:string) :Observable<any>{
-    let payload ={
-      Title: title,
-      MessageText:messageText
-    };
-
-    return this.apiService.put(`UserDraftMessage/${id}`,payload,true);
+  addDraft(payload): Observable<AddDraftResponseInterface> {
+    const url = `UserDraftMessage`;
+    return this.apiService.post<AddDraftInterface>(url, payload, true);
   }
 
-  removeDraft(id:number) :Observable<any>{
-    return this.apiService.delete(`UserDraftMessage/${id}`,null,true);
+  modifyDraft(id: number, payload): Observable<any> {
+    const url = `UserDraftMessage/${id}`;
+    return this.apiService.put(url, payload, true);
+  }
+
+  removeDraft(id: number): Observable<any> {
+    return this.apiService.delete(`UserDraftMessage/${id}`, null, true);
   }
 }
