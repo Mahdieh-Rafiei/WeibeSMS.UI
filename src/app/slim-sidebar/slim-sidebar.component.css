@@ -9,7 +9,7 @@
     border: none;
     border-radius: 0;
     overflow-y: auto;
-    background-color: #333;
+    background-color: #1e262d;
     bottom: 0;
     overflow-x: hidden;
     padding-bottom: 40px;
@@ -41,8 +41,8 @@
 }
 /*---- li a ----*/
 a.list-group-item {
-    background-color: #333;
-    border: 1px solid #333;
+    background-color: #1e262d;
+    border: 1px solid #1e262d;
     transition: .5s;
     color: #E7E7E7;
     font-weight: 500;

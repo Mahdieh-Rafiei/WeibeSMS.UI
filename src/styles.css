@@ -11,10 +11,6 @@
     url('assets/fonts/OpenSans-Bold.woff')   format('woff'),
     url('assets/fonts/OpenSans-Bold.ttf')    format('truetype');
 }
-
-
-
-
 * {
     outline: none !important;
     font-family: 'OpenSans-Regular';
@@ -28,7 +24,7 @@ html {
     font-family: 'OpenSans-Regular';
 }
 body {
-    background-color: #f2f2f2;
+    background-color: #ededf3;
     margin: 0;
     overflow-x: hidden;
     font-family: 'OpenSans-Regular';
@@ -42,40 +38,40 @@ h5,
 h6 {
     color: #2b2b2b;
     margin: 10px 0;
-    font-weight: 300;
     font-family: 'OpenSans-Regular';
+    font-weight: 600;
 }
-h1 {
-    line-height: 48px;
-    font-size: 36px;
-}
-h2 {
-    line-height: 36px;
-    font-size: 24px;
-}
-h3 {
-    line-height: 30px;
-    font-size: 21px;
-}
-h4 {
-    line-height: 22px;
-    font-size: 18px;
-}
-h5 {
-    font-size: 16px;
-}
-h5 {
-    font-size: 14px;
-}
-.dn {
-    display: none;
-}
-.db {
-    display: block;
-}
-.light_op_text {
-    color: rgba(255, 255, 255, 0.5);
-}
+/*h1 {*/
+    /*line-height: 48px;*/
+    /*font-size: 36px;*/
+/*}*/
+/*h2 {*/
+    /*line-height: 36px;*/
+    /*font-size: 24px;*/
+/*}*/
+/*h3 {*/
+    /*line-height: 30px;*/
+    /*font-size: 21px;*/
+/*}*/
+/*h4 {*/
+    /*line-height: 22px;*/
+    /*font-size: 18px;*/
+/*}*/
+/*h5 {*/
+    /*font-size: 16px;*/
+/*}*/
+/*h5 {*/
+    /*font-size: 14px;*/
+/*}*/
+/*.dn {*/
+    /*display: none;*/
+/*}*/
+/*.db {*/
+    /*display: block;*/
+/*}*/
+/*.light_op_text {*/
+    /*color: rgba(255, 255, 255, 0.5);*/
+/*}*/
 blockquote {
     border-left: 5px solid #fb9678 !important;
     border: 1px solid rgba(120, 130, 140, 0.13);
@@ -131,9 +127,6 @@ article, aside, details, figcaption, figure, footer, header, hgroup, main, menu,
     position: relative;
     overflow: hidden;
 }
-/*.slim-main-container {*/
-    /*margin-left: 105px;*/
-/*}*/
 .btn-section{
     padding: 15px 25px;
     background: #ffffff;
@@ -143,12 +136,11 @@ article, aside, details, figcaption, figure, footer, header, hgroup, main, menu,
     overflow-y: scroll;
     overflow: hidden;
 }
-/*.slim-btn-section {*/
-    /*margin: 0 0 20px 90px;*/
-/*}*/
 .div-section{
     background: #ffffff;
     padding: 10px 0;
+    border-radius: 1rem;
+    box-shadow: 0px 0px 13px 0px rgba(82, 63, 105, 0.05);
 }
 .operation-section{
     padding: 5px 10px;
@@ -258,23 +250,26 @@ table{
     border-radius: 4px;
     transition: .3s;
     outline: none;
-    border: 1px dashed #d4d1cc;
-    border-bottom: none;
+
+}
+table thead tr{
+    background: #ebedf2;
 }
 table th{
     font-size: 14px;
-    color: #aaaaaa;
+    color: #6c7293;
     padding: 15px;
     font-weight: 400;
     text-align: left;
 }
 tbody tr td{
     padding: 10px 15px;
-    border-top: 1px dashed #d4d4d4;
+    border-top: 1px solid #efefef;
     text-align: left;
+    color: #212529;
 }
 table tbody tr:hover{
-    background-color: #fff0d9;
+    background-color: #f4f5f9;
     cursor: pointer;
 }
 table tbody tr:hover .actions{
@@ -305,10 +300,11 @@ table input[type=checkbox]{
     margin-right: 7px;
 }
 .table-pagination{
-
+    border-top: 1px solid #efefef;
+    border-left: none;
+    border-right: none;
     padding: 10px 15px;
     border-radius: 0 0 4px 4px;
-    border: 1px dashed #d4d4d4;
 }
 .table-pagination i{
     font-size: 25px;
@@ -437,6 +433,38 @@ i.fa.fa-sort {
     padding: 4px 10px;
     border-radius: 4px;
 }
+.simple-btn{
+    background-color: #2dce89;
+    color: #ffffff;
+    font-size: 12px;
+    font-weight: 400;
+    padding: 0 5px;
+    border-radius: 4px;
+}
+.schedule-btn{
+    background-color: #11cddf;
+    color: #ffffff;
+    font-size: 12px;
+    font-weight: 400;
+    padding: 0 5px;
+    border-radius: 4px;
+}
+.event-btn{
+    background-color: #fb6340;
+    color: #ffffff;
+    font-size: 12px;
+    font-weight: 400;
+    padding: 0 5px;
+    border-radius: 4px;
+}
+.verification-btn{
+    background-color: #f5365c;
+    color: #ffffff;
+    font-size: 12px;
+    font-weight: 400;
+    padding: 0 5px;
+    border-radius: 4px;
+}
 /*----------------------------alert-box--------------------------------*/
 .alert-box-default{
     background-color: #edeef0;
@@ -445,17 +473,22 @@ i.fa.fa-sort {
     color: #505558;
     border-radius: 5px;
 }
+/*----------------------------input--------------------------------*/
+input, select{
+    padding: 0.65rem 1rem;
+    border-radius: 4px;
+    border: 1px solid #e2e5ec;
+    font-size: 14px;
+    color: #495057;
+}
 /*----------------------------Loading--------------------------------*/
 .spinner {
     position: absolute;
     top: 50%;
     left: 50%;
     -ms-transform: translate(-50%, -50%);
-    /* IE 9 */
     -webkit-transform: translate(-50%, -50%);
-    /* Safari */
     transform: translate(-50%, -50%);
-    /* Standard syntax */
     width: 70px;
     height: 70px;
 }
