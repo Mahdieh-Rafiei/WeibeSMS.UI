@@ -1,14 +1,15 @@
 .navbar{
     margin-left: 235px;
-    background: #ed4952;
+    background: #ffffff;
     border-radius: 0 !important;
     margin-bottom: 0;
+    box-shadow: 5px 0 10px rgba(0,0,0, .5);
 }
 .slim-navbar {
     margin-left: 70px;
 }
 .hidden-navbar {
-  margin-left:0;
+    margin-left:0;
 }
 
 .navbar-toggle {
@@ -25,7 +26,7 @@ a.toggle-menu{
     line-height: 60px;
     min-height: 60px;
     font-size: 25px;
-    color: #ffffff;
+    color: #434349;
     cursor: pointer;
 }
 .credit h5{
@@ -34,13 +35,13 @@ a.toggle-menu{
     margin: 0;
 }
 .buy-credit{
-    border: 2px solid #ffffff;
+    border: none;
     font-size: 12px;
     font-weight: 400;
     padding: 6px 10px;
     border-radius: 5px;
     cursor: pointer;
-    color: #fff;
+    color: #0abb87;
     transition: .2s;
     background: none;
     margin-right: 15px;
@@ -51,8 +52,8 @@ a.toggle-menu{
     cursor: pointer;
 }
 .right-nav span{
-    color: #ffffff;
-    padding-right: 20px;
+    font-size: 15px;
+    color: #434349;
 }
 /*------nav-right-section------*/
 /*profile*/
@@ -83,7 +84,7 @@ a.toggle-menu{
 .btn-group.open .dropdown-toggle {
     box-shadow: none;
 }
-/*------*/
+/*----------*/
 .notification-alarm {
     position: relative;
     top: -12px;

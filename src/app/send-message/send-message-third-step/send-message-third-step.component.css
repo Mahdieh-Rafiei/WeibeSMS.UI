@@ -6,6 +6,12 @@
     color: #000;
     margin-bottom: 10px;
 }
+.content {
+    border: 1px solid #d8d8d8;
+    margin: 10px 0;
+    padding: 15px;
+    border-radius: 5px;
+}
 h4{
     color: #555555;
     font-weight: 600;
@@ -16,7 +22,8 @@ h4{
     padding-bottom: 15px;
 }
 .title-section{
-    font-size: 16px;
+    font-size: 15px;
+    font-weight: 600;
 }
 .border-box{
     border-top: 1px dashed #000;
@@ -42,12 +49,11 @@ h4{
 p span{
     color: #6b6b6b;
 }
-.confirm{
-    background-color: #08a5a3;
-    border: 1px solid #08a5a3;
-    border-radius: 2px;
-    color: #ffffff;
+.green-btn{
     padding: 10px 35px;
     font-size: 16px;
     font-weight: 600;
+}
+.confirm-section{
+    padding: 30px 0;
 }
