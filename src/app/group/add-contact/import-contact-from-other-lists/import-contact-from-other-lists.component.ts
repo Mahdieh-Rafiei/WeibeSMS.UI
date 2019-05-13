@@ -5,6 +5,9 @@ import {GroupService} from '../../group.service';
 import _ from 'node_modules/lodash/lodash.js';
 import {ActivatedRoute, Router} from '@angular/router';
 import {UtilityService} from '../../../shared/utility.service';
+import {GroupListInterface} from '../../group-list/models/group-list.interface';
+import {GetAllContactGroupInterface} from './models/get-all--contact-group.interface';
+import {ContactGroupMoveCopyResponseInterface} from './models/contact-group-move-copy-response.interface';
 
 @Component({
   selector: 'app-import-contact-from-other-lists',
@@ -38,8 +41,13 @@ export class ImportContactFromOtherListsComponent implements OnInit {
 
   ngOnInit() {
     this.groupId = parseInt(this.activatedRoute.parent.snapshot.paramMap.get('groupId'));
-    this.groupService.getAllGroupList(this.groupPageSize, this.groupPageNumber,'')
-      .subscribe(res => {
+    this.getAllGroupList();
+
+  }
+
+  getAllGroupList() {
+    this.groupService.getAllGroupList(this.groupPageSize, this.groupPageNumber, '')
+      .subscribe((res: GroupListInterface) => {
         this.groups = res.data.items.filter(i => i.id !== this.groupId);
         this.groups.forEach(g => g.isSelected = false);
       });
@@ -49,7 +57,7 @@ export class ImportContactFromOtherListsComponent implements OnInit {
     let count = 0;
 
     this.groupSelectedFromLeft.forEach(g => {
-      let group = _.find(this.groups, grp => grp.id == g);
+      const group = _.find(this.groups, grp => grp.id === g);
       count += group.contactsCount;
     });
 
@@ -62,12 +70,12 @@ export class ImportContactFromOtherListsComponent implements OnInit {
 
   contactCheckedChanged(e, c) {
     this.clickedGroup.contacts.forEach(cc => {
-      if (cc.id == c.id) {
+      if (cc.id === c.id) {
         cc.isSelected = e;
       }
     });
 
-    let keyExists = this.contactsSelectedFromGrid.has(this.clickedGroup.id);
+    const keyExists = this.contactsSelectedFromGrid.has(this.clickedGroup.id);
     if (e) {
       if (keyExists) {
         this.contactsSelectedFromGrid.get(this.clickedGroup.id).push(c.id);
@@ -76,13 +84,13 @@ export class ImportContactFromOtherListsComponent implements OnInit {
       }
     } else {
       this.clickedGroup.isSelected = false;
-      _.remove(this.groupSelectedFromLeft, id => id == this.clickedGroup.id);
+      _.remove(this.groupSelectedFromLeft, id => id === this.clickedGroup.id);
 
-      let selectedContacts = this.clickedGroup.contacts.filter(c => c.isSelected);
+      const selectedContacts = this.clickedGroup.contacts.filter(c => c.isSelected);
       if (!this.contactsSelectedFromGrid.has(this.clickedGroup.id)) {
         this.contactsSelectedFromGrid.set(this.clickedGroup.id, []);
       } else {
-        let array = this.contactsSelectedFromGrid.get(this.clickedGroup.id);
+        const array = this.contactsSelectedFromGrid.get(this.clickedGroup.id);
         selectedContacts.forEach(sc => {
           if (!_.includes(array, sc.id)) {
             array.push(sc.id);
@@ -125,13 +133,12 @@ export class ImportContactFromOtherListsComponent implements OnInit {
     this.clickedGroup = group;
     if (!group.contacts) {
       this.contactService.getAllContacts(group.id, this.contactPageNumber, this.contactPageSize)
-        .subscribe(res => {
+        .subscribe((res: GetAllContactGroupInterface) => {
           group.contacts = res.data.items;
           group.contacts.forEach(c => c.isSelected = this.clickedGroup.isSelected);
           this.realTimeFilter();
         });
-    }
-    else {
+    } else {
       this.realTimeFilter();
     }
   }
@@ -141,7 +148,7 @@ export class ImportContactFromOtherListsComponent implements OnInit {
   }
 
   operation(isCut: boolean) {
-    let apiModel = new Map<number, number[]>();
+    const apiModel = new Map<number, number[]>();
     this.contactsSelectedFromGrid.forEach((value, key) => {
       apiModel.set(key, value);
     });
@@ -151,7 +158,7 @@ export class ImportContactFromOtherListsComponent implements OnInit {
     });
 
     this.contactService.addContactFromGroups(this.groupId, apiModel, isCut)
-      .subscribe(res => {
+      .subscribe((res: ContactGroupMoveCopyResponseInterface) => {
         console.log(res);
         this.notificationService.success('Operation done successfully', '');
         this.router.navigateByUrl(`group/${this.groupId}`);

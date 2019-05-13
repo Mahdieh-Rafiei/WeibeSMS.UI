@@ -1,10 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {FileSystemFileEntry, UploadEvent} from 'ngx-file-drop';
 import {ContactService} from '../../contact/contact.service';
 import {GroupService} from '../../group.service';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {NotificationService} from '../../../shared/notification.service';
 import {ActivatedRoute, Router} from '@angular/router';
+import {AddContactFormGroupResponseInterface} from './models/add-contact-form-group-response.interface';
 
 @Component({
   selector: 'app-add-contact-from-file',
@@ -13,19 +14,19 @@ import {ActivatedRoute, Router} from '@angular/router';
 })
 export class AddContactFromFileComponent implements OnInit {
 
-  result:any;
-  resultView:boolean=false;
-  groupId:number;
+  result: any;
+  resultView: boolean = false;
+  groupId: number;
 
-  constructor(private contactService:ContactService,
-              private groupService:GroupService,
-              private notificationService:NotificationService,
-              private activatedRoute:ActivatedRoute,
-              private router:Router) {
+  constructor(private contactService: ContactService,
+              private groupService: GroupService,
+              private notificationService: NotificationService,
+              private activatedRoute: ActivatedRoute,
+              private router: Router) {
   }
 
   ngOnInit() {
-    this.groupId =parseInt(this.activatedRoute.parent.snapshot.paramMap.get('groupId'));
+    this.groupId = parseInt(this.activatedRoute.parent.snapshot.paramMap.get('groupId'));
   }
 
   downloadSample() {
@@ -33,24 +34,23 @@ export class AddContactFromFileComponent implements OnInit {
   }
 
   dropped(e) {
-    debugger;
-    let droppedFile = e.files[0];
+    const droppedFile = e.files[0];
 
     const fileEntry = droppedFile.fileEntry as FileSystemFileEntry;
 
-      fileEntry.file((file: File) => {
-        this.contactService.addContactFromFile(this.groupId,true,true,file,droppedFile.relativePath)
-          .subscribe(res=>{
-            console.log(res);
-            this.result = res.data;
-            this.resultView=true;
-            this.notificationService.success('File processed successfully','');
-          });
+    fileEntry.file((file: File) => {
+      this.contactService.addContactFromFile(this.groupId, true, true, file, droppedFile.relativePath)
+        .subscribe((res: AddContactFormGroupResponseInterface) => {
+          console.log(res);
+          this.result = res.data;
+          this.resultView = true;
+          this.notificationService.success('File processed successfully', '');
+        });
     });
   }
 
-  close(){
-    this.resultView=false;
+  close() {
+    this.resultView = false;
     this.router.navigateByUrl(`group/${this.groupId}`);
   }
 }

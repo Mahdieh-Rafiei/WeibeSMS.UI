@@ -5,6 +5,8 @@ import {DraftInterface} from './draft/models/draft.interface';
 import {AddDraftInterface} from './draft/models/add-draft.interface';
 import {AddDraftResponseInterface} from './draft/models/add-draft-response.interface';
 import {GetDraftInterface} from './draft/models/get-draft.interface';
+import {EditDraftResponseInterface} from './draft/models/edit-draft-response.interface';
+import {RemoveDraftInterface} from './draft/models/remove-draft.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -29,12 +31,13 @@ export class DraftService {
     return this.apiService.post<AddDraftInterface>(url, payload, true);
   }
 
-  modifyDraft(id: number, payload): Observable<any> {
+  modifyDraft(id: number, payload): Observable<EditDraftResponseInterface> {
     const url = `UserDraftMessage/${id}`;
     return this.apiService.put(url, payload, true);
   }
 
-  removeDraft(id: number): Observable<any> {
-    return this.apiService.delete(`UserDraftMessage/${id}`, null, true);
+  removeDraft(id: number): Observable<RemoveDraftInterface> {
+    const url = `UserDraftMessage/${id}`;
+    return this.apiService.delete(url, null, true);
   }
 }

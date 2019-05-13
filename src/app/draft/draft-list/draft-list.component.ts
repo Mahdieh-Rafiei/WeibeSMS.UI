@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {DraftService} from '../draft.service';
 import _ from 'node_modules/lodash/lodash.js';
 import {DraftInterface} from '../draft/models/draft.interface';
+import {RemoveDraftInterface} from '../draft/models/remove-draft.interface';
 
 @Component({
   selector: 'app-draft-list',
@@ -40,7 +41,7 @@ export class DraftListComponent implements OnInit {
 
   removeDraft(draft) {
     this.draftService.removeDraft(draft.id)
-      .subscribe(res => {
+      .subscribe((res: RemoveDraftInterface) => {
         console.log(res);
         _.remove(this.drafts, d => d.id === draft.id);
       });

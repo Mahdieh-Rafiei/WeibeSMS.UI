@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {UserNotificationService} from './user-notification.service';
 import _ from 'node_modules/lodash/lodash.js';
 import {NotificationResponseInterface} from './models/notification-response.interface';
+import {GetUserNotificationInterface} from './models/get-user-notification.interface';
 
 @Component({
   selector: 'app-user-notification',
@@ -34,7 +35,7 @@ export class UserNotificationComponent implements OnInit {
     this.selectedUserNotification = userNotification;
     this.showNotification = true;
     this.userNotificationService.getUserNotification(userNotification.id)
-      .subscribe(res => {
+      .subscribe((res: GetUserNotificationInterface) => {
         console.log(res.data);
         userNotification.isRead = true;
       });

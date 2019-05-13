@@ -2,6 +2,7 @@ import {Injectable} from '@angular/core';
 import {ApiService} from '../shared/api.service';
 import {Observable} from 'rxjs';
 import {NotificationResponseInterface} from './models/notification-response.interface';
+import {GetUserNotificationInterface} from './models/get-user-notification.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -16,7 +17,8 @@ export class UserNotificationService {
     return this.apiService.get(url, true);
   }
 
-  getUserNotification(id: number): Observable<any> {
-    return this.apiService.get(`Notification/${id}`, true);
+  getUserNotification(id: number): Observable<GetUserNotificationInterface> {
+    const url = `Notification/${id}`;
+    return this.apiService.get(url, true);
   }
 }

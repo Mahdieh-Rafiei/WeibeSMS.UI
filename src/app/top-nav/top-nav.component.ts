@@ -4,6 +4,7 @@ import {AuthenticationService} from '../login/authentication.service';
 import {UserNotificationService} from '../user-notification/user-notification.service';
 import _ from 'node_modules/lodash/lodash.js';
 import {NotificationResponseInterface} from '../user-notification/models/notification-response.interface';
+import {GetUserNotificationInterface} from '../user-notification/models/get-user-notification.interface';
 
 @Component({
   selector: 'app-top-nav',
@@ -14,13 +15,14 @@ import {NotificationResponseInterface} from '../user-notification/models/notific
 @Injectable()
 export class TopNavComponent implements OnInit {
 
-  userNotifications:any[];
-  showNotification:boolean=false;
-  selectedNotification:any;
+  userNotifications: any[];
+  showNotification: boolean = false;
+  selectedNotification: any;
 
-  constructor(public configService:ConfigService,
-              private userNotificationService:UserNotificationService,
-              private authService:AuthenticationService) { }
+  constructor(public configService: ConfigService,
+              private userNotificationService: UserNotificationService,
+              private authService: AuthenticationService) {
+  }
 
   ngOnInit() {
 
@@ -34,7 +36,7 @@ export class TopNavComponent implements OnInit {
 
     if (window.innerWidth < 768) {
       this.configService.sidebarMode = this.configService.sidebarMode == 'default' ? 'hidden' : 'default';
-    }else {
+    } else {
       this.configService.sidebarMode = this.configService.sidebarMode == 'default' ? 'slim' : 'default';
     }
   }
@@ -46,9 +48,9 @@ export class TopNavComponent implements OnInit {
   preparingShowNotification(notification) {
     this.selectedNotification = notification;
     this.showNotification = true;
-    _.remove(this.userNotifications, un => un.id == notification.id);
+    _.remove(this.userNotifications, un => un.id === notification.id);
     this.userNotificationService.getUserNotification(notification.id)
-      .subscribe(res => {
+      .subscribe((res: GetUserNotificationInterface) => {
         console.log(res.data);
       });
   }

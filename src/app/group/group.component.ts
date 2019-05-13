@@ -4,6 +4,7 @@ import {ActivatedRoute, Router} from '@angular/router';
 import {ContactService} from './contact/contact.service';
 import _ from 'node_modules/lodash/lodash.js';
 import {GroupResponseInterface} from './models/group-response.interface';
+import {RemoveContactFormGroupInterface} from './models/remove-contact-form-group.interface';
 
 @Component({
   selector: 'app-group',
@@ -32,7 +33,7 @@ export class GroupComponent implements OnInit {
 
   removeFromGroup(contact) {
     this.contactService.removeContactFromGroup(this.group.id, contact.id)
-      .subscribe(res => {
+      .subscribe((res: RemoveContactFormGroupInterface) => {
         console.log(res);
         _.remove(this.contacts, c => c.id === contact.id);
       });

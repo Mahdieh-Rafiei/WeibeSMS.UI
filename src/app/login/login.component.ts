@@ -7,6 +7,10 @@ import _ from 'node_modules/lodash/lodash.js';
 import {LoginResponseInterface} from './models/login-response.interface';
 import {ConfigService} from '../shared/config.service';
 import {LoginInterface} from './models/login.interface';
+import {SendVerificationCodeInterface} from './models/send-verification-code.interface';
+import {SendVerificationCodeResponseInterface} from './models/send-verification-code-response.interface';
+import {VerifyMobileInterface} from './models/verify-mobile.interface';
+import {VerifyMobileResponseInterface} from './models/verify-mobile-response.interface';
 
 @Component({
   selector: 'app-login',
@@ -66,12 +70,17 @@ export class LoginComponent implements OnInit {
   }
 
   sendVerificationCode() {
-    this.registerService.sendVerificationCode(this.mobile.toString()).subscribe((res) => {
-      this.notificationService.success('Verification code sent successfully', '');
-      console.log(res.data);
-      this.verificationCodeSent = true;
-      this.registrationKey = res.data.registrationKey;
-    });
+    const payload: SendVerificationCodeInterface = {
+      mobile: this.mobile.toString(),
+      sendVerificationReason: 1
+    };
+    this.registerService.sendVerificationCode(payload)
+      .subscribe((res: SendVerificationCodeResponseInterface) => {
+        this.notificationService.success('Verification code sent successfully', '');
+        console.log(res.data);
+        this.verificationCodeSent = true;
+        this.registrationKey = res.data.registrationKey;
+      });
   }
 
   rollbackToFirstStep() {
@@ -87,8 +96,13 @@ export class LoginComponent implements OnInit {
   verify() {
     const verificationCode = this.verificationCodePart1.concat(this.verificationCodePart2, this.verificationCodePart3,
       this.verificationCodePart4, this.verificationCodePart5);
-    this.registerService.verifyMobile(this.registrationKey, this.mobile.toString(), verificationCode)
-      .subscribe((res) => {
+    const payload: VerifyMobileInterface = {
+      Key: this.registrationKey,
+      Mobile: this.mobile.toString(),
+      VerificationCode: verificationCode.toString()
+    };
+    this.registerService.verifyMobile(payload)
+      .subscribe((res: any) => {
         this.authService.setToken(res.data.token);
         this.router.navigateByUrl('/register');
       });

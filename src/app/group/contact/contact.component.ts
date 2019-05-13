@@ -1,6 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {ContactService} from './contact.service';
 import {ActivatedRoute, Router} from '@angular/router';
+import {ModifyContactInterface} from '../add-contact/single-add-contact/models/modify-contact.interface';
+import {RemoveContactInterface} from './models/remove-contact.interface';
 
 @Component({
   selector: 'app-contact',
@@ -32,8 +34,14 @@ export class ContactComponent implements OnInit {
   }
 
   modifyContact() {
-    this.contactService.modifyContact(this.contact.contactGroupId, this.contact.id,
-      this.contact.firstName, this.contact.lastName, this.contact.email, this.contact.gender)
+    const payload: ModifyContactInterface = {
+      Gender: this.contact.gender,
+      FirstName: this.contact.firstName,
+      LastName: this.contact.lastName,
+      ContactGroupId: this.contact.id,
+      Email: this.contact.email
+    };
+    this.contactService.modifyContact(this.contact.id, payload)
       .subscribe(res => {
         console.log(res);
         this.router.navigateByUrl(`group/${this.groupId}`);
@@ -41,8 +49,8 @@ export class ContactComponent implements OnInit {
   }
 
   deleteContact() {
-    this.contactService.removeContact(this.contact.Id)
-      .subscribe(res => {
+    this.contactService.removeContact(this.contact.id)
+      .subscribe((res: RemoveContactInterface) => {
         console.log(res);
         this.router.navigateByUrl(`group/${this.groupId}`);
       });
