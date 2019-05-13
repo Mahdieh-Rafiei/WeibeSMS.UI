@@ -11,7 +11,6 @@
 .hidden-navbar {
     margin-left:0;
 }
-
 .navbar-toggle {
     margin-left: 0;
 }
@@ -20,7 +19,6 @@
         margin-left: 0;
     }
 }
-
 a.toggle-menu{
     padding: 0 14px;
     line-height: 60px;
@@ -29,6 +27,7 @@ a.toggle-menu{
     color: #434349;
     cursor: pointer;
 }
+
 .credit h5{
     color: #ffffff;
     padding: 5px 0;
