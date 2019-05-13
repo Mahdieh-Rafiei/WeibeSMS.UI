@@ -34,17 +34,26 @@ import {DevelopersComponent} from "./app/developers/developers.component";
 import {SmsReportComponent} from "./app/sms-reports/sms-report/sms-report.component";
 import {SmsReportListComponent} from "./app/sms-reports/sms-report-list/sms-report-list.component";
 import {VerificationCodeReportComponent} from "./app/sms-reports/verification-code-report/verification-code-report.component";
+
 import {DefinitionScheduleEventComponent} from "./app/definition-schedule-event/definition-schedule-event.component";
+
 import {UserNotificationComponent} from "./app/user-notification/user-notification.component";
-import {ChangePasswordComponent} from "./app/user-account/privacy/change-password/change-password.component";
+
 import {PrivacyComponent} from "./app/user-account/privacy/privacy.component";
+import {ChangePasswordComponent} from "./app/user-account/privacy/change-password/change-password.component";
+import {DeactiveAccountComponent} from "./app/user-account/privacy/deactive-account/deactive-account.component";
+import {LoginLogComponent} from "./app/user-account/privacy/login-log/login-log.component";
 import {ProfileComponent} from "./app/user-account/profile/profile.component";
-import {BillingComponent} from "./app/billing/billing.component";
-import {BillingAddressComponent} from "./app/billing/billing-address/billing-address.component";
-import {InvoiceListComponent} from "./app/billing/invoice-list/invoice-list.component";
 import {RewardPointComponent} from "./app/user-account/reward-point/reward-point.component";
 
+import {BillingComponent} from "./app/billing/billing.component";
+import {PaymentComponent} from "./app/billing/payment/payment.component";
+import {BillingAddressComponent} from "./app/billing/billing-address/billing-address.component";
+import {InvoiceListComponent} from "./app/billing/invoice-list/invoice-list.component";
+
 import {PlanListComponent} from "./app/plan-list/plan-list.component";
+
+
 
 export const APP_ROUTES: Routes = [
   {path: '', component: DashboardComponent,canActivate:[CanActivateRouteGuard]},
@@ -58,6 +67,7 @@ export const APP_ROUTES: Routes = [
           {path:'single-contact',component:SingleAddContactComponent},
           {path:'from-list',component:ImportContactFromOtherListsComponent},
   ]},
+
   {path: 'send-message',component: SendMessageComponent , children:[
           {path:'first-step',component:SendMessageFirstStepComponent},
           {path:'second-step',component:SendMessageSecondStepComponent},
@@ -65,6 +75,14 @@ export const APP_ROUTES: Routes = [
           {path:'schedule',component:SendMessageScheduleComponent},
           {path:'event',component:SendMessageEventComponent},
   ]},
+
+  {path: 'privacy',component: PrivacyComponent , children:[
+          {path:'change-password',component:ChangePasswordComponent},
+          {path:'deactive-account',component:DeactiveAccountComponent},
+          {path:'login-log',component:LoginLogComponent},
+      ]},
+  {path:'profile',component:ProfileComponent},
+  {path:'reward-point',component:RewardPointComponent},
 
   {path: 'draft',component: DraftComponent},
   {path: 'draft/:id',component: DraftComponent},
@@ -92,17 +110,12 @@ export const APP_ROUTES: Routes = [
 
   {path: 'schedule-event', component: DefinitionScheduleEventComponent},
 
-  {path: 'change-password', component: ChangePasswordComponent},
-
   {path:'user-event',component:UserEventComponent},
-
-  {path:'profile',component:ProfileComponent},
-  {path:'reward-point',component:RewardPointComponent},
 
   {path:'billing',component:BillingComponent},
   {path:'billing-address',component:BillingAddressComponent},
   {path: 'invoice-list',component: InvoiceListComponent},
-  {path: 'privacy',component: PrivacyComponent},
+  {path: 'payment',component: PaymentComponent},
 
 
   {path: '**', redirectTo: 'notfound'}

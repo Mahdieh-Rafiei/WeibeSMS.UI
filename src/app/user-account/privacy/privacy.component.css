@@ -1,0 +1,28 @@
+.privacy{
+    background: #ffffff;
+    padding: 30px;
+    border-radius: 1rem 1rem 0 0;
+    display: flex;
+    border-bottom: 1px solid #e2e5ec;
+}
+.title-tab{
+    cursor: pointer;
+}
+.title-tab p{
+    font-weight: 600;
+    padding: 5px 15px;
+    border-radius: 5px;
+    color: #6c7293;
+    text-align: center;
+}
+.title-tab p:hover{
+    color: #6c7293 !important;
+    background-color: #f4f5f9;
+}
+.active-tab{
+    color: #ffffff !important;
+    background-color: #6c7293;
+}
+.hover-tab{
+
+}

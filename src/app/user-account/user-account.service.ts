@@ -1,11 +1,11 @@
 import { Injectable } from '@angular/core';
-import {ApiService} from '../../shared/api.service';
+import {ApiService} from '../shared/api.service';
 import {Observable} from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
-export class UserService {
+export class UserAccountService {
 
   constructor(private apiService:ApiService) { }
 
@@ -16,7 +16,7 @@ export class UserService {
       NewPassword:newPassword
     };
 
-    return this.apiService.post(`User/ChangePassword`,payload,true);
+    return this.apiService.post(`UserAccount/ChangePassword`,payload,true);
   }
 
   profile(){

@@ -1,1 +1,17 @@
-<h1>billingbillingbillingbillingbillingbillingbillingbillingbillingbilling</h1>
+<div class="main-container">
+    <div class="col-md-12 privacy">
+        <div class="title-tab no-pad">
+            <p class="active-tab" [routerLink]="['change-password']">Invoice</p>
+        </div>
+        <div class="title-tab no-pad">
+            <p [routerLink]="['login-log']">Payment log</p>
+        </div>
+        <div class="title-tab no-pad">
+            <p class="none-tab" [routerLink]="['deactive-account']">Transaction log</p>
+        </div>
+        <div class="title-tab no-pad">
+            <p class="none-tab" [routerLink]="['billing-address']">Billing address</p>
+        </div>
+    </div>
+    <router-outlet></router-outlet>
+</div>

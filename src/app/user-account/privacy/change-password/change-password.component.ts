@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {UserService} from '../user.service';
+import {UserAccountService} from '../../user-account.service';
 import {NotificationService} from '../../../shared/notification.service';
 import {UtilityService} from '../../../shared/utility.service';
 import {Router} from '@angular/router';
@@ -15,7 +15,7 @@ export class ChangePasswordComponent implements OnInit {
   newPassword:string='';
   confirmPassword:string='';
 
-  constructor(private userService:UserService,
+  constructor(private userService:UserAccountService,
               private notificationService:NotificationService,
               private utilityService:UtilityService,
               private router:Router) { }
