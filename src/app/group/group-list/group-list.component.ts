@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {GroupService} from '../group.service';
 import _ from 'node_modules/lodash/lodash.js';
 import {Router} from '@angular/router';
@@ -34,7 +34,6 @@ export class GroupListComponent implements OnInit {
               private utilityService: UtilityService,
               private notificationService: NotificationService) {
   }
-
 
   ngOnInit() {
     this.getAllGroupList();

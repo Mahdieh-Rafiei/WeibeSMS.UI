@@ -1,8 +1,8 @@
 <div class="btn-section text-right">
-    <button class="green-btn" (click)="setAddMode()">
-      <i class="fa fa-plus">
-      </i> New Group
-    </button>
+  <button class="green-btn" (click)="setAddMode()">
+    <i class="fa fa-plus">
+    </i> New Group
+  </button>
 </div>
 
 <div class="main-container">
@@ -33,8 +33,8 @@
         </thead>
         <tbody>
         <tr *ngFor="let group of groups | paginate : {
-        itemsPerPage:10,currentPage:pageNumber,totalItems:totalItemsCount
-        },index as i">
+                    itemsPerPage : 10, currentPage : pageNumber, totalItems : totalItemsCount
+                    },index as i">
           <td class="text-left">
             <div class="table-head">
               <span>{{i + 1}}</span>
@@ -63,61 +63,66 @@
         <span><i class="fa fa-arrow-circle-right"></i></span>
       </div>
     </div>
-        <div class="col-md-3">
-          <div class="filtering">
-            <ul class="filtering-menu">
-              <li>
-                <a href="#">
-                  <p> Lorem ipsum dolor sit amet.</p>
-                  <select>
-                    <option>select</option>
-                    <option>Test 02</option>
-                    <option>Test 03</option>
-                  </select>
-                </a>
-              </li>
-              <li>
-                <a href="#">
-                  <p> Lorem ipsum dolor sit amet.</p>
-                  <label>from :</label> <input type="date"><br>
-                  <label>to :</label> <input type="date">
-                </a>
-              </li>
-              <li>
-                <a href="#">
-                  <p> Lorem ipsum dolor sit amet.</p>
-                  <label>from :</label> <input type="date"> <br>
-                  <label>to :</label> <input type="date">
-                </a>
-              </li>
-              <li>
-                <a href="#">
-                  <p> Lorem ipsum dolor sit amet.</p>
-                  <select>
-                    <option>select</option>
-                    <option>Test 02</option>
-                    <option>Test 03</option>
-                  </select>
-                </a>
-              </li>
-              <li class="text-center">
-                <a href="#">
-                  <button class="green-btn">Apply</button>
-                  <button class="gray-btn">Cancel</button>
-                </a>
-              </li>
-            </ul>
-          </div>
-        </div>
+    <div class="col-md-3">
+      <div class="filtering">
+        <ul class="filtering-menu">
+          <li>
+            <a href="#">
+              <p> Lorem ipsum dolor sit amet.</p>
+              <select>
+                <option>select</option>
+                <option>Test 02</option>
+                <option>Test 03</option>
+              </select>
+            </a>
+          </li>
+          <li>
+            <a href="#">
+              <p> Lorem ipsum dolor sit amet.</p>
+              <label>from :</label> <input type="date"><br>
+              <label>to :</label> <input type="date">
+            </a>
+          </li>
+          <li>
+            <a href="#">
+              <p> Lorem ipsum dolor sit amet.</p>
+              <label>from :</label> <input type="date"> <br>
+              <label>to :</label> <input type="date">
+            </a>
+          </li>
+          <li>
+            <a href="#">
+              <p> Lorem ipsum dolor sit amet.</p>
+              <select>
+                <option>select</option>
+                <option>Test 02</option>
+                <option>Test 03</option>
+              </select>
+            </a>
+          </li>
+          <li class="text-center">
+            <a href="#">
+              <button class="green-btn">Apply</button>
+              <button class="gray-btn">Cancel</button>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
 
 
-  <pagination-controls (pageChange)="doPaging($event)"></pagination-controls>
+    <pagination-controls (pageChange)="doPaging($event)"
+                         maxSize="5"
+                         responsive="true"
+                         previousLabel=""
+                         nextLabel=""></pagination-controls>
 
   </div>
 
 </div>
 
-<div *ngIf="showState == 'add'"  class="modal fade in modal-back" role="dialog" tabindex="-1" style="display: block;" aria-modal="true">
+<div *ngIf="showState == 'add'" class="modal fade in modal-back" role="dialog" tabindex="-1" style="display: block;"
+     aria-modal="true">
   <div role="document" class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
@@ -136,7 +141,8 @@
   </div>
 </div>
 
-<div *ngIf="showState == 'edit'"  class="modal fade in modal-back" role="dialog" tabindex="-1" style="display: block;" aria-modal="true">
+<div *ngIf="showState == 'edit'" class="modal fade in modal-back" role="dialog" tabindex="-1" style="display: block;"
+     aria-modal="true">
   <div role="document" class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">

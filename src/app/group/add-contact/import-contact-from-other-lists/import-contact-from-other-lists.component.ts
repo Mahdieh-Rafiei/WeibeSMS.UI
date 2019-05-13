@@ -24,6 +24,7 @@ export class ImportContactFromOtherListsComponent implements OnInit {
   contactPageSize: number = 10;
   filterExpression: string = '';
   groups: any[] = [];
+  ContactTotalItemsCount: number;
   clickedGroup: any;
 
   contactsForGrid: any[] = [];
@@ -132,20 +133,22 @@ export class ImportContactFromOtherListsComponent implements OnInit {
   loadContacts(group) {
     this.clickedGroup = group;
     if (!group.contacts) {
-      this.contactService.getAllContacts(group.id, this.contactPageNumber, this.contactPageSize)
-        .subscribe((res: GetAllContactGroupInterface) => {
-          group.contacts = res.data.items;
-          group.contacts.forEach(c => c.isSelected = this.clickedGroup.isSelected);
-          this.realTimeFilter();
-        });
+      this.getAllContacts(this.clickedGroup);
     } else {
-      this.realTimeFilter();
+      this.getDataWithSearch();
     }
   }
 
-  realTimeFilter() {
-    this.utilityService.filterByExpression(this.clickedGroup.contacts, this.contactsForGrid, 'firstName', this.filterExpression);
+  getAllContacts(group) {
+    this.contactService.getAllContacts(group.id, this.contactPageNumber, this.contactPageSize)
+      .subscribe((res: GetAllContactGroupInterface) => {
+        group.contacts = res.data.items;
+        this.contactsForGrid = res.data.items;
+        this.ContactTotalItemsCount = res.data.totalItemsCount;
+        group.contacts.forEach(c => c.isSelected = this.clickedGroup.isSelected);
+      });
   }
+
 
   operation(isCut: boolean) {
     const apiModel = new Map<number, number[]>();
@@ -164,4 +167,15 @@ export class ImportContactFromOtherListsComponent implements OnInit {
         this.router.navigateByUrl(`group/${this.groupId}`);
       });
   }
+
+  getDataWithSearch() {
+    this.contactPageNumber = 1;
+    this.getAllContacts(this.clickedGroup);
+  }
+
+  doPaging(e) {
+    this.contactPageNumber = e;
+    this.getAllContacts(this.clickedGroup);
+  }
+
 }
