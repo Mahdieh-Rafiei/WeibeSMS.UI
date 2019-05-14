@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {ApiService} from '../../shared/api.service';
 import {Observable} from 'rxjs';
 
@@ -8,32 +8,29 @@ import {Observable} from 'rxjs';
 
 export class ForgotPasswordService {
 
-  constructor(private apiService:ApiService) { }
-
-  sendVerificationCode(mobile:string) : Observable<any >{
-    let payload={
-      'Mobile':mobile,
-      'SendVerificationReason':2
-    };
-
-    return this.apiService.post('user/sendVerificationCode',payload,false);
+  constructor(private apiService: ApiService) {
   }
 
-  verify(mobile:string,verificationCode:string,key:string) : Observable<any >{
-    let payload = {
-      'Key':  key,
-      'Mobile':mobile,
-      'VerificationCode':verificationCode
-    };
-
-    return this.apiService.post('user/verifyMobile',payload,false);
+  sendVerificationCode(payload): Observable<any> {
+    const url = `user/sendVerificationCode`;
+    return this.apiService.post(url, payload, false);
   }
 
-  changePassword(password:string):Observable<any>{
+  verify(mobile: string, verificationCode: string, key: string): Observable<any> {
     let payload = {
-      'Password':password
+      'Key': key,
+      'Mobile': mobile,
+      'VerificationCode': verificationCode
     };
 
-    return this.apiService.post('user/changePassword',payload,true);
+    return this.apiService.post('user/verifyMobile', payload, false);
+  }
+
+  changePassword(password: string): Observable<any> {
+    let payload = {
+      'Password': password
+    };
+
+    return this.apiService.post('user/changePassword', payload, true);
   }
 }
