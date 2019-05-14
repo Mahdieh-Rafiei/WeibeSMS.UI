@@ -471,6 +471,10 @@ i.fa.fa-sort {
 i.fa.fa-sort{
     margin-right: 5px;
 }
+.sign-up, .sign-in{
+    color: #83d2d1;
+    cursor: pointer;
+}
 /*----------------------------alert-box--------------------------------*/
 .alert-box-default{
     background-color: #edeef0;
@@ -545,7 +549,3 @@ input, select, textarea{
         width: 100%;
     }
 }
-
-
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
