@@ -56,7 +56,7 @@
               <p class="wrong">your number : <span>{{mobile}}</span> <span (click)="rollbackToFirstStep()"> wrong ? </span></p>
               <p class="text-left">Inter verification code</p>
             </div>
-            <div class="col-md-12 cinput-box-vc no-pad">
+            <div class="col-md-12 input-box-vc no-pad">
               <input appNumericInput maxlength="1" [(ngModel)]="verificationCodePart1" (ngModelChange)="setFocus(1,$event)" #verificationCodePart1Element  type="text" class="col-md-2 verification-code-input">
               <input appNumericInput maxlength="1" [(ngModel)]="verificationCodePart2" (ngModelChange)="setFocus(2,$event)" #verificationCodePart2Element  type="text" class="col-md-2 verification-code-input">
               <input appNumericInput maxlength="1" [(ngModel)]="verificationCodePart3" (ngModelChange)="setFocus(3,$event)" #verificationCodePart3Element type="text" class="col-md-2 verification-code-input">

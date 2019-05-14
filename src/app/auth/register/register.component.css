@@ -42,14 +42,14 @@ select {
 }
 .red-text{
     color: #ec3c78;
-    font-size: 11px;
+    font-size: 10px;
     font-weight: 600;
 }
 .blue-text{
     color: #08a5a3;
 }
 .privacy{
-    padding-left: 30px;
+    padding: 20px 0 20px 30px;
 }
 .green-btn{
     padding: 10px 50px;

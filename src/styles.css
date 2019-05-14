@@ -5,14 +5,6 @@
   url('assets/fonts/OpenSans-Regular.woff') format('woff'),
   url('assets/fonts/OpenSans-Regular.ttf') format('truetype');
 }
-
-@font-face {
-  font-family: 'OpenSans-Bold';
-  src: url('assets/fonts/OpenSans-Bold.eot?#') format('eot'),
-  url('assets/fonts/OpenSans-Bold.woff') format('woff'),
-  url('assets/fonts/OpenSans-Bold.ttf') format('truetype');
-}
-
 * {
   outline: none !important;
   font-family: 'OpenSans-Regular';
