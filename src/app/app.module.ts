@@ -51,7 +51,7 @@ import { DraftListComponent } from './draft/draft-list/draft-list.component';
 import { TicketListComponent } from './tickets/ticket-list/ticket-list.component';
 import { TicketComponent } from './tickets/ticket/ticket.component';
 import { AddTicketComponent } from './tickets/add-ticket/add-ticket.component';
-import { CreateTransactionComponent } from './create-transaction/create-transaction.component';
+import { CreateTransactionComponent } from './billing/create-transaction/create-transaction.component';
 import { PlanListComponent } from './plan-list/plan-list.component';
 import { InvoiceListComponent } from './billing/invoice-list/invoice-list.component';
 import { SmsReportListComponent } from './sms-reports/sms-report-list/sms-report-list.component';
