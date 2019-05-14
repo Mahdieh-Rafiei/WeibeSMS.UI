@@ -1,50 +1,53 @@
-<div class="btn-section text-right">
-  <div class="col-md-12 no-pad text-right">
-    <button class="green-btn" [routerLink]="['/plan-list']">
-      <i class="fa fa-shopping-cart"></i> Buy Plan
-    </button>
-  </div>
-</div>
-<div class="main-container">
-  <div class="col-md-12 div-section">
+<div class="col-md-12 div-section">
+    <div class="col-md-12 change-password">
+        <h4>invoice</h4>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+    </div>
+    <!--operation-->
+    <div class="col-md-12 no-pad operation">
+        <div class="col-md-6 operation-section">
+            <select class="light-blue-btn" style="margin-right: 10px">
+                <option> Export</option>
+                <option> Test 1</option>
+                <option> Test 1</option>
+            </select>
+            <button class="light-blue-btn">
+                <i class="fa fa-filter"></i> Filter
+            </button>
+        </div>
+        <div class="col-md-6 operation-section">
+            <form class="search-wrapper search">
+                <input name="filter" type="text">
+                <button type="submit"><i class="fa fa-search"></i></button>
+            </form>
+        </div>
+    </div>
     <!--table-->
     <div class="col-md-12 table-div table-responsive">
-      <table class="index-table text-left">
-        <thead>
-        <tr>
-          <th class="text-left"><i class="fa fa-sort"></i>Order</th>
-          <th class="text-left"><i class="fa fa-sort"></i>DateTime</th>
-          <th class="text-left"><i class="fa fa-sort"></i>Description</th>
-          <th class="text-left"><i class="fa fa-sort"></i>Status</th>
-          <th></th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr>
-          <td class="text-left">#1</td>
-          <td class="text-left">98/2/8, 11:08</td>
-          <td class="text-left">500 credit for 60$</td>
-          <td class="text-left"><button class="pending-btn">pending</button></td>
-          <td class="text-left">
-            <button class="white-btn" style="margin-right: 5px"><i class="fa fa-shopping-cart"></i> Pay </button>
-            <button class="white-btn"><i class="fa fa-times"></i> Cancel </button>
-          </td>
-        </tr>
-        <tr>
-          <td class="text-left">#1</td>
-          <td class="text-left">98/2/8, 11:08</td>
-          <td class="text-left">500 credit for 60$</td>
-          <td class="text-left"><button class="paid-btn">pending</button></td>
-          <td class="text-left">
-            <button class="white-btn" style="margin-right: 5px"><i class="fa fa-file"></i> Print </button>
-          </td>
-        </tr>
-        </tbody>
-      </table>
-      <div class="table-pagination text-right">
-        <span><i class="fa fa-arrow-circle-left"></i></span>
-        <span><i class="fa fa-arrow-circle-right"></i></span>
-      </div>
+        <table class="index-table text-left">
+            <thead>
+            <tr>
+                <th class="text-left"><i class="fa fa-sort"></i>Id</th>
+                <th class="text-left"><i class="fa fa-sort"></i>Amount</th>
+                <th class="text-left"><i class="fa fa-sort"></i>Vat</th>
+                <th class="text-left"><i class="fa fa-sort"></i>Total Price</th>
+                <th class="text-left"><i class="fa fa-sort"></i>Created on</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td class="text-left">#1</td>
+                <td class="text-left">$500</td>
+                <td class="text-left">%5</td>
+                <td class="text-left">$1000</td>
+                <td class="text-left">98/2/8, 11:08</td>
+            </tr>
+
+            </tbody>
+        </table>
+        <div class="table-pagination text-right">
+            <span><i class="fa fa-arrow-circle-left"></i></span>
+            <span><i class="fa fa-arrow-circle-right"></i></span>
+        </div>
     </div>
-  </div>
 </div>
