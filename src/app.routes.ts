@@ -1,57 +1,57 @@
 import {Routes} from '@angular/router';
-import {LoginComponent} from './app/login/login.component';
-import {DashboardComponent} from './app/dashboard/dashboard.component';
-import {RegisterComponent} from './app/register/register.component';
+import {LoginComponent} from './app/auth/login/login.component';
+import {DashboardComponent} from './app/main/pages/dashboard/dashboard.component';
+import {RegisterComponent} from './app/auth/register/register.component';
 import {CanActivateRouteGuard} from './app/shared/canActivateRouteGuard';
-import {ForgotPasswordComponent} from './app/forgot-password/forgot-password.component';
+import {ForgotPasswordComponent} from './app/auth/forgot-password/forgot-password.component';
 
-import {GroupComponent} from './app/group/group.component';
-import {GroupListComponent} from './app/group/group-list/group-list.component';
-import {ContactComponent} from './app/group/contact/contact.component';
-import {AddContactComponent} from './app/group/add-contact/add-contact.component';
-import {SingleAddContactComponent} from './app/group/add-contact/single-add-contact/single-add-contact.component';
-import {AddContactFromFileComponent} from './app/group/add-contact/add-contact-from-file/add-contact-from-file.component';
-import {ImportContactFromOtherListsComponent} from './app/group/add-contact/import-contact-from-other-lists/import-contact-from-other-lists.component';
-import {UserEventComponent} from './app/user-event/user-event.component';
+import {GroupComponent} from './app/main/pages/group/group.component';
+import {GroupListComponent} from './app/main/pages/group/group-list/group-list.component';
+import {ContactComponent} from './app/main/pages/group/contact/contact.component';
+import {AddContactComponent} from './app/main/pages/group/add-contact/add-contact.component';
+import {SingleAddContactComponent} from './app/main/pages/group/add-contact/single-add-contact/single-add-contact.component';
+import {AddContactFromFileComponent} from './app/main/pages/group/add-contact/add-contact-from-file/add-contact-from-file.component';
+import {ImportContactFromOtherListsComponent} from './app/main/pages/group/add-contact/import-contact-from-file/import-contact-from-other-lists.component';
+import {UserEventComponent} from './app/main/pages/user-event/user-event.component';
 
-import {SendMessageComponent} from './app/send-message/send-message.component';
-import {SendMessageFirstStepComponent} from './app/send-message/send-message-first-step/send-message-first-step.component';
-import {SendMessageSecondStepComponent} from './app/send-message/send-message-second-step/send-message-second-step.component';
-import {SendMessageThirdStepComponent} from './app/send-message/send-message-third-step/send-message-third-step.component';
-import {SendMessageScheduleComponent} from './app/send-message/send-message-schedule/send-message-schedule.component';
-import {SendMessageEventComponent} from './app/send-message/send-message-event/send-message-event.component';
+import {SendMessageComponent} from './app/main/pages/send-message/send-message.component';
+import {SendMessageFirstStepComponent} from './app/main/pages/send-message/send-message-first-step/send-message-first-step.component';
+import {SendMessageSecondStepComponent} from './app/main/pages/send-message/send-message-second-step/send-message-second-step.component';
+import {SendMessageThirdStepComponent} from './app/main/pages/send-message/send-message-third-step/send-message-third-step.component';
+import {SendMessageScheduleComponent} from './app/main/pages/send-message/send-message-schedule/send-message-schedule.component';
+import {SendMessageEventComponent} from './app/main/pages/send-message/send-message-event/send-message-event.component';
 
-import {DraftComponent} from './app/draft/draft/draft.component';
-import {DraftListComponent} from './app/draft/draft-list/draft-list.component';
+import {DraftComponent} from './app/main/pages/draft/draft/draft.component';
+import {DraftListComponent} from './app/main/pages/draft/draft-list/draft-list.component';
 
-import {TicketComponent} from './app/tickets/ticket/ticket.component';
-import {AddTicketComponent} from './app/tickets/add-ticket/add-ticket.component';
-import {TicketListComponent} from './app/tickets/ticket-list/ticket-list.component';
+import {TicketComponent} from './app/main/pages/tickets/ticket/ticket.component';
+import {AddTicketComponent} from './app/main/pages/tickets/add-ticket/add-ticket.component';
+import {TicketListComponent} from './app/main/pages/tickets/ticket-list/ticket-list.component';
 
-import {DevelopersComponent} from './app/developers/developers.component';
+import {DevelopersComponent} from './app/main/pages/developers/developers.component';
 
-import {SmsReportComponent} from './app/sms-reports/sms-report/sms-report.component';
-import {SmsReportListComponent} from './app/sms-reports/sms-report-list/sms-report-list.component';
-import {VerificationCodeReportComponent} from './app/sms-reports/verification-code-report/verification-code-report.component';
+import {SmsReportComponent} from './app/main/pages/sms-report/sms-report/sms-report.component';
+import {SmsReportListComponent} from './app/main/pages/sms-report/sms-report-list/sms-report-list.component';
+import {VerificationCodeReportComponent} from './app/main/pages/sms-report/verification-code-report/verification-code-report.component';
 
-import {DefinitionScheduleEventComponent} from './app/definition-schedule-event/definition-schedule-event.component';
+import {DefinitionScheduleEventComponent} from './app/main/pages/definition-schedule-event/definition-schedule-event.component';
 
-import {UserNotificationComponent} from './app/user-notification/user-notification.component';
+import {UserNotificationComponent} from './app/main/pages/user-notification/user-notification.component';
 
-import {PrivacyComponent} from './app/user-account/privacy/privacy.component';
-import {ChangePasswordComponent} from './app/user-account/privacy/change-password/change-password.component';
-import {DeactiveAccountComponent} from './app/user-account/privacy/deactive-account/deactive-account.component';
-import {LoginLogComponent} from './app/user-account/privacy/login-log/login-log.component';
-import {ProfileComponent} from './app/user-account/profile/profile.component';
-import {RewardPointComponent} from './app/user-account/reward-point/reward-point.component';
+import {PrivacyComponent} from './app/main/pages/user-account/privacy/privacy.component';
+import {ChangePasswordComponent} from './app/main/pages/user-account/privacy/change-password/change-password.component';
+import {DeactiveAccountComponent} from './app/main/pages/user-account/privacy/deactive-account/deactive-account.component';
+import {LoginLogComponent} from './app/main/pages/user-account/privacy/login-log/login-log.component';
+import {ProfileComponent} from './app/main/pages/user-account/profile/profile.component';
+import {RewardPointComponent} from './app/main/pages/user-account/reward-point/reward-point.component';
 
-import {BillingComponent} from './app/billing/billing.component';
-import {PaymentComponent} from './app/billing/payment/payment.component';
-import {BillingAddressComponent} from './app/billing/billing-address/billing-address.component';
-import {InvoiceListComponent} from './app/billing/invoice-list/invoice-list.component';
-import {CreateTransactionComponent} from './app/billing/create-transaction/create-transaction.component';
+import {BillingComponent} from './app/main/pages/biling/billing.component';
+import {PaymentComponent} from './app/main/pages/biling/payment/payment.component';
+import {BillingAddressComponent} from './app/main/pages/biling/billing-address/billing-address.component';
+import {InvoiceListComponent} from './app/main/pages/biling/invoice-list/invoice-list.component';
+import {CreateTransactionComponent} from './app/main/pages/biling/create-transaction/create-transaction.component';
 
-import {PlanListComponent} from './app/plan-list/plan-list.component';
+import {PlanListComponent} from './app/main/pages/plan-list/plan-list.component';
 
 
 export const APP_ROUTES: Routes = [
