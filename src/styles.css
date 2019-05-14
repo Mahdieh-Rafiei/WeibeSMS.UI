@@ -434,6 +434,7 @@ i.fa.fa-sort {
 }
 .simple-btn{
     background-color: #2dce89;
+    border: 1px solid #2dce89;
     color: #ffffff;
     font-size: 12px;
     font-weight: 400;
@@ -442,6 +443,7 @@ i.fa.fa-sort {
 }
 .schedule-btn{
     background-color: #11cddf;
+    border: 1px solid #11cddf;
     color: #ffffff;
     font-size: 12px;
     font-weight: 400;
@@ -450,6 +452,7 @@ i.fa.fa-sort {
 }
 .event-btn{
     background-color: #fb6340;
+    border: 1px solid #fb6340;
     color: #ffffff;
     font-size: 12px;
     font-weight: 400;
@@ -458,11 +461,15 @@ i.fa.fa-sort {
 }
 .verification-btn{
     background-color: #f5365c;
+    border: 1px solid #f5365c;
     color: #ffffff;
     font-size: 12px;
     font-weight: 400;
     padding: 0 5px;
     border-radius: 4px;
+}
+i.fa.fa-sort{
+    margin-right: 5px;
 }
 /*----------------------------alert-box--------------------------------*/
 .alert-box-default{

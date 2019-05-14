@@ -1,21 +1,15 @@
-.billing-log h4{
-    color: #949494;
+.div-section{
+    border-radius: 0 0 1rem 1rem;
+}
+.change-password h4{
     font-weight: 600;
+    line-height: 1;
+    margin-bottom: 0;
 }
-
-.simple-btn{
-    background-color: #08a5a3;
-    border: 1px solid #08a5a3;
-    color: #ffffff;
+.change-password p{
     font-size: 12px;
-    border-radius: 5px;
-    font-weight: 400;
+    padding-top: 5px;
 }
-.schedule-btn{
-    background-color: #4680fe;
-    border: 1px solid #4680fe;
-    color: #ffffff;
-    font-size: 12px;
-    border-radius: 5px;
-    font-weight: 400;
+td i{
+    color: #fd397a;
 }

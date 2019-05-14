@@ -1,9 +1,24 @@
+.div-section{
+    border-radius: 0 0 1rem 1rem;
+}
+.profile h4{
+    font-weight: 600;
+    line-height: 1;
+    margin-bottom: 0;
+}
+.input-box{
+    padding: 15px 0;
+}
 label{
     font-weight: 400;
     width: 75px;
 }
 input[type=text].full-name{
     width: 43%;
+    padding: 8px 5px;
+}
+input[type=text].phone{
+    width: 72%;
     padding: 8px 5px;
 }
 select {
@@ -23,7 +38,6 @@ select {
     margin-top: 5px;
 }
 .btn-save{
-    border-top: 1px solid #dfdfdf;
     margin-top: 20px;
     padding: 15px;
 }
