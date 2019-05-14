@@ -14,37 +14,45 @@ import {AddContactFromFileComponent} from './app/group/add-contact/add-contact-f
 import {ImportContactFromOtherListsComponent} from './app/group/add-contact/import-contact-from-other-lists/import-contact-from-other-lists.component';
 import {UserEventComponent} from './app/user-event/user-event.component';
 
-import {SendMessageComponent} from './app/send-message/send-message.component';
-import {SendMessageFirstStepComponent} from './app/send-message/send-message-first-step/send-message-first-step.component';
-import {SendMessageSecondStepComponent} from './app/send-message/send-message-second-step/send-message-second-step.component';
-import {SendMessageThirdStepComponent} from './app/send-message/send-message-third-step/send-message-third-step.component';
-import {SendMessageScheduleComponent} from './app/send-message/send-message-schedule/send-message-schedule.component';
-import {SendMessageEventComponent} from './app/send-message/send-message-event/send-message-event.component';
+import {SendMessageComponent} from "./app/send-message/send-message.component";
+import {SendMessageFirstStepComponent} from "./app/send-message/send-message-first-step/send-message-first-step.component";
+import {SendMessageSecondStepComponent} from "./app/send-message/send-message-second-step/send-message-second-step.component";
+import {SendMessageThirdStepComponent} from "./app/send-message/send-message-third-step/send-message-third-step.component";
+import {SendMessageScheduleComponent} from "./app/send-message/send-message-schedule/send-message-schedule.component";
+import {SendMessageEventComponent} from "./app/send-message/send-message-event/send-message-event.component";
 
-import {DraftComponent} from './app/draft/draft/draft.component';
-import {DraftListComponent} from './app/draft/draft-list/draft-list.component';
+import {DraftComponent} from "./app/draft/draft/draft.component";
+import {DraftListComponent} from "./app/draft/draft-list/draft-list.component";
 
-import {TicketComponent} from './app/tickets/ticket/ticket.component';
-import {AddTicketComponent} from './app/tickets/add-ticket/add-ticket.component';
-import {TicketListComponent} from './app/tickets/ticket-list/ticket-list.component';
-import {CreateTransactionComponent} from './app/create-transaction/create-transaction.component';
+import {TicketComponent} from "./app/tickets/ticket/ticket.component";
+import {AddTicketComponent} from "./app/tickets/add-ticket/add-ticket.component";
+import {TicketListComponent} from "./app/tickets/ticket-list/ticket-list.component";
+import {CreateTransactionComponent} from "./app/create-transaction/create-transaction.component";
 
-import {DevelopersComponent} from './app/developers/developers.component';
+import {DevelopersComponent} from "./app/developers/developers.component";
 
-import {SmsReportComponent} from './app/sms-reports/sms-report/sms-report.component';
-import {SmsReportListComponent} from './app/sms-reports/sms-report-list/sms-report-list.component';
-import {VerificationCodeReportComponent} from './app/sms-reports/verification-code-report/verification-code-report.component';
-import {DefinitionScheduleEventComponent} from './app/definition-schedule-event/definition-schedule-event.component';
-import {UserNotificationComponent} from './app/user-notification/user-notification.component';
-import {ChangePasswordComponent} from './app/user-account/privacy/change-password/change-password.component';
-import {PrivacyComponent} from './app/user-account/privacy/privacy.component';
-import {ProfileComponent} from './app/user-account/profile/profile.component';
-import {BillingComponent} from './app/billing/billing.component';
-import {BillingAddressComponent} from './app/billing/billing-address/billing-address.component';
-import {InvoiceListComponent} from './app/billing/invoice-list/invoice-list.component';
-import {RewardPointComponent} from './app/user-account/reward-point/reward-point.component';
+import {SmsReportComponent} from "./app/sms-reports/sms-report/sms-report.component";
+import {SmsReportListComponent} from "./app/sms-reports/sms-report-list/sms-report-list.component";
+import {VerificationCodeReportComponent} from "./app/sms-reports/verification-code-report/verification-code-report.component";
 
-import {PlanListComponent} from './app/plan-list/plan-list.component';
+import {DefinitionScheduleEventComponent} from "./app/definition-schedule-event/definition-schedule-event.component";
+
+import {UserNotificationComponent} from "./app/user-notification/user-notification.component";
+
+import {PrivacyComponent} from "./app/user-account/privacy/privacy.component";
+import {ChangePasswordComponent} from "./app/user-account/privacy/change-password/change-password.component";
+import {DeactiveAccountComponent} from "./app/user-account/privacy/deactive-account/deactive-account.component";
+import {LoginLogComponent} from "./app/user-account/privacy/login-log/login-log.component";
+import {ProfileComponent} from "./app/user-account/profile/profile.component";
+import {RewardPointComponent} from "./app/user-account/reward-point/reward-point.component";
+
+import {BillingComponent} from "./app/billing/billing.component";
+import {PaymentComponent} from "./app/billing/payment/payment.component";
+import {BillingAddressComponent} from "./app/billing/billing-address/billing-address.component";
+import {InvoiceListComponent} from "./app/billing/invoice-list/invoice-list.component";
+
+import {PlanListComponent} from "./app/plan-list/plan-list.component";
+
 
 export const APP_ROUTES: Routes = [
   {path: '', component: DashboardComponent, canActivate: [CanActivateRouteGuard]},
@@ -60,6 +68,7 @@ export const APP_ROUTES: Routes = [
       {path: 'from-list', component: ImportContactFromOtherListsComponent},
     ]
   },
+
   {
     path: 'send-message', component: SendMessageComponent, children: [
       {path: 'first-step', component: SendMessageFirstStepComponent},
@@ -69,6 +78,24 @@ export const APP_ROUTES: Routes = [
       {path: 'event', component: SendMessageEventComponent},
     ]
   },
+  {
+    path: 'privacy', component: PrivacyComponent, children: [
+      {path: 'change-password', component: ChangePasswordComponent},
+      {path: 'deactive-account', component: DeactiveAccountComponent},
+      {path: 'login-log', component: LoginLogComponent},
+
+    ]
+  },
+  {
+    path: 'billing', component: BillingComponent, children: [
+      {path: 'billing-address', component: BillingAddressComponent},
+      {path: 'invoice-list', component: InvoiceListComponent},
+      {path: 'payment', component: PaymentComponent},
+      {path: 'create-transaction', component: CreateTransactionComponent},
+    ]
+  },
+  {path: 'profile', component: ProfileComponent},
+  {path: 'reward-point', component: RewardPointComponent},
 
   {path: 'draft', component: DraftComponent},
   {path: 'draft/:id', component: DraftComponent},
@@ -88,25 +115,13 @@ export const APP_ROUTES: Routes = [
   {path: 'sms-report', component: SmsReportComponent},
   {path: 'report-verification', component: VerificationCodeReportComponent},
 
-  {path: 'create-transaction', component: CreateTransactionComponent},
-
   {path: 'developers', component: DevelopersComponent},
 
   {path: 'notification', component: UserNotificationComponent},
 
   {path: 'schedule-event', component: DefinitionScheduleEventComponent},
 
-  {path: 'change-password', component: ChangePasswordComponent},
-
   {path: 'user-event', component: UserEventComponent},
-
-  {path: 'profile', component: ProfileComponent},
-  {path: 'reward-point', component: RewardPointComponent},
-
-  {path: 'billing', component: BillingComponent},
-  {path: 'billing-address', component: BillingAddressComponent},
-  {path: 'invoice-list', component: InvoiceListComponent},
-  {path: 'privacy', component: PrivacyComponent},
 
 
   {path: '**', redirectTo: 'notfound'}

@@ -63,7 +63,7 @@ import { VerificationCodeReportComponent } from './sms-reports/verification-code
 import { DevelopersComponent } from './developers/developers.component';
 import { SlimSidebarComponent } from './slim-sidebar/slim-sidebar.component';
 import { UserNotificationComponent } from './user-notification/user-notification.component';
-import { UserAccountComponent } from './user-account/user-account.component';
+
 import { PrivacyComponent } from './user-account/privacy/privacy.component';
 import { ProfileComponent } from './user-account/profile/profile.component';
 import { RewardPointComponent } from './user-account/reward-point/reward-point.component';
@@ -72,7 +72,7 @@ import { LoginLogComponent } from './user-account/privacy/login-log/login-log.co
 import { BillingComponent } from './billing/billing.component';
 import { PaymentComponent } from './billing/payment/payment.component';
 import { ChangePasswordComponent } from './user-account/privacy/change-password/change-password.component';
-import {UserService} from './user-account/privacy/user.service';
+import {UserAccountService} from './user-account/user-account.service';
 import { BillingAddressComponent } from './billing/billing-address/billing-address.component';
 
 @NgModule({
@@ -119,7 +119,6 @@ import { BillingAddressComponent } from './billing/billing-address/billing-addre
         BillingAddressComponent,
         NumericInputDirective,
         ProfileComponent,
-        UserAccountComponent,
         PrivacyComponent,
         RewardPointComponent,
         DeactiveAccountComponent,
@@ -143,7 +142,7 @@ import { BillingAddressComponent } from './billing/billing-address/billing-addre
     FileDropModule,
     NgxPaginationModule,
 
-    MatButtonModule
+    MatButtonModule,
   ],
   providers: [
     ApiService,
@@ -154,7 +153,7 @@ import { BillingAddressComponent } from './billing/billing-address/billing-addre
     NotificationService,
     UserEventService,
     TicketService,
-    UserService
+    UserAccountService
   ],
   bootstrap: [AppComponent]
 })
