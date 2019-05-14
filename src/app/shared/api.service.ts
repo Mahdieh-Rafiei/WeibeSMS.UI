@@ -5,7 +5,7 @@ import {ConfigService} from './config.service';
 import {map} from 'rxjs/operators';
 import {catchError} from 'rxjs/internal/operators';
 import {Router} from '@angular/router';
-import {AuthenticationService} from '../login/authentication.service';
+import {AuthenticationService} from '../auth/login/authentication.service';
 import {NotificationService} from './notification.service';
 import {debug} from 'util';
 

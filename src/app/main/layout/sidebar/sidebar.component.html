@@ -1,0 +1,132 @@
+<nav class="sidebar" id="style-1">
+    <!--menu-->
+    <div class="list-group">
+        <div class="sidebar-section">
+            <div class="logo-box">
+                <img src="../../../../assets/images/1.png" class="img-responsive center-block">
+            </div>
+            <a class="list-group-item" [routerLink]="['']">
+                <i class="fa fa-home"></i> Dashboard
+            </a>
+        </div>
+        <div class="nested-menu">
+            <a class="list-group-item" (click)="addExpandClass('account')">
+                <i class="fa fa-cog"></i> account
+                <span class="fa fa-chevron-right"></span>
+            </a>
+            <li class="nested" [class.expand]="showMenu === 'account'">
+                <ul class="submenu">
+                    <li>
+                        <a [routerLink]="['../privacy']">
+                            <i class="fa fa-monument"></i>&nbsp;
+                            <span>Privacy</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a [routerLink]="['../profile']">
+                            <i class="fa fa-monument"></i>&nbsp;
+                            <span>Profile</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a [routerLink]="['../reward-point']">
+                            <i class="fa fa-monument"></i>&nbsp;
+                            <span>Reward Points</span>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+        </div>
+        <div class="sidebar-section">
+            <a class="list-group-item" [routerLink]="['../group']">
+                <i class="fa fa-address-book"></i> Contacts
+            </a>
+        </div>
+        <div class="nested-menu">
+            <a class="list-group-item" (click)="addExpandClass('send')" [routerLink]="['../send-message']">
+                <i class="fa fa-envelope"></i>&nbsp;Send
+                <span class="fa fa-chevron-right"></span>
+            </a>
+            <li class="nested" [class.expand]="showMenu === 'send'">
+                <ul class="submenu">
+                    <li>
+                        <a href="javascript:void(0)">
+                            <i class="fa fa-monument"></i>&nbsp;
+                            <span>Simple</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="javascript:void(0)">
+                            <i class="fa fa-monument"></i>&nbsp;
+                            <span>Schedule</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="javascript:void(0)">
+                            <i class="fa fa-monument"></i>&nbsp;
+                            <span>Event base</span>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+        </div>
+        <div class="sidebar-section">
+            <a class="list-group-item" [routerLink]="['../sms-report-list']">
+                <i class="fa fa-bar-chart-o"></i> Reports
+            </a>
+        </div>
+        <div class="sidebar-section">
+            <a class="list-group-item" [routerLink]="['../report-verification']">
+                <i class="fa fa-check-square"></i> verification
+            </a>
+        </div>
+        <div class="nested-menu">
+            <a class="list-group-item" (click)="addExpandClass('option')">
+                <i class="fa fa-cog"></i> Option
+                <span class="fa fa-chevron-right"></span>
+            </a>
+            <li class="nested" [class.expand]="showMenu === 'option'">
+                <ul class="submenu">
+                    <li>
+                        <a [routerLink]="['../draft-list']">
+                            <i class="fa fa-monument"></i>&nbsp;
+                            <span>Draft</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a [routerLink]="['../schedule-event']">
+                            <i class="fa fa-monument"></i>&nbsp;
+                            <span>schedule,events</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a [routerLink]="['../user-event']">
+                            <i class="fa fa-monument"></i>&nbsp;
+                            <span>event_field</span>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+        </div>
+        <div class="sidebar-section">
+            <a class="list-group-item" [routerLink]="['../billing']">
+                <i class="fa fa-money"></i> Billing
+            </a>
+        </div>
+        <div class="sidebar-section">
+            <a class="list-group-item" [routerLink]="['../plan-list']">
+                <i class="fa fa-dollar"></i> Add Fund
+            </a>
+        </div>
+        <div class="sidebar-section">
+            <a class="list-group-item" [routerLink]="['../ticket-list']">
+                <i class="fa fa-phone-square"></i> support
+            </a>
+        </div>
+        <div class="sidebar-section">
+            <a class="list-group-item" [routerLink]="['../developers']">
+                <i class="fa fa-code"></i> developers
+            </a>
+        </div>
+    </div>
+</nav>
