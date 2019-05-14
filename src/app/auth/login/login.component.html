@@ -2,7 +2,7 @@
   <div class="container text-center">
     <div class="ws-box">
       <div class="img-logo text-center">
-        <img src="../../../assets/images/login.png" class="center-block img-responsive">
+        <img src="../../assets/images/login.png" class="center-block img-responsive">
       </div>
       <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 right-box ws-login-box">
         <div *ngIf="isLoginMode">
@@ -14,8 +14,8 @@
               <span><i class="fa fa-user"></i></span>
               <br>
               <input [(ngModel)]="password" type="password" class="ws-login-input" autofocus autocomplete="off" placeholder="password">
-              <!--<span><i class="fa fa-lock"></i></span>-->
-              <!--<span><i class="fa fa-eye"></i></span>-->
+              <span><i class="fa fa-lock"></i></span>
+              <span><i class="fa fa-eye"></i></span>
             </div>
           </div>
           <div class="col-md-10 btn-login-div col-md-offset-1 col-xs-12">
@@ -33,15 +33,15 @@
           <div class="col-md-10 col-md-offset-1 col-xs-12">
             <div class="input-box v-input-box">
               <input appNumericInput onPaste="return false" [(ngModel)]="mobile" type="text" class="ws-login-input vinput "  autofocus autocomplete="off" placeholder="phone number">
-            <select class="v-input-select">
-              <option><img src="#"> +98</option>
-              <option>English</option>
-              <option>Persian</option>
-            </select>
+              <select class="v-input-select">
+                <option><img src="#"> +98</option>
+                <option>English</option>
+                <option>Persian</option>
+              </select>
             </div>
           </div>
           <div class="col-md-10 col-md-offset-1 col-xs-12">
-            <button (click)="sendVerificationCode()" class="ws-btn login-btn">Send verification code</button>
+            <button (click)="sendVerificationCode()" class="ws-btn login-btn">Register</button>
           </div>
           <div class="col-md-12">
             <hr>
@@ -51,24 +51,25 @@
         <div *ngIf="!isLoginMode && verificationCodeSent">
           <h3>Hello Stranger!</h3>
           <span>Create a free account on <span class="weib">Weiß SMS</span>.</span>
-          <div class="col-md-10 col-md-offset-1 col-xs-12">
-            <div class="input-box-vc">
+          <div class="col-md-10 col-md-offset-1 col-xs-12 detail-box">
+            <div class="col-md-12 no-pad">
               <p class="wrong">your number : <span>{{mobile}}</span> <span (click)="rollbackToFirstStep()"> wrong ? </span></p>
-              <input appNumericInput maxlength="1" [(ngModel)]="verificationCodePart1" (ngModelChange)="setFocus(1,$event)" #verificationCodePart1Element  type="text" class="verification-code-input">
-              <input appNumericInput maxlength="1" [(ngModel)]="verificationCodePart2" (ngModelChange)="setFocus(2,$event)" #verificationCodePart2Element  type="text" class="verification-code-input">
-              <input appNumericInput maxlength="1" [(ngModel)]="verificationCodePart3" (ngModelChange)="setFocus(3,$event)" #verificationCodePart3Element type="text" class="verification-code-input">
-              <input appNumericInput maxlength="1" [(ngModel)]="verificationCodePart4" (ngModelChange)="setFocus(4,$event)" #verificationCodePart4Element type="text" class="verification-code-input">
-              <input appNumericInput maxlength="1" [(ngModel)]="verificationCodePart5" (ngModelChange)="setFocus(5,$event)" #verificationCodePart5Element type="text" class="verification-code-input">
-              <input [(ngModel)]="verificationCode" type="text" class="ws-login-input vcinput" autofocus autocomplete="off" placeholder="verification code">
-              <p class="resend"><img src="../../../assets/images/redo.png"> Resend again</p>
+              <p class="text-left">Inter verification code</p>
             </div>
-          </div>
-          <div class="col-md-10 col-md-offset-1 col-xs-12">
-            <button (click)="verify()" class="ws-btn login-btn">Verify</button>
+            <div class="col-md-12 cinput-box-vc no-pad">
+              <input appNumericInput maxlength="1" [(ngModel)]="verificationCodePart1" (ngModelChange)="setFocus(1,$event)" #verificationCodePart1Element  type="text" class="col-md-2 verification-code-input">
+              <input appNumericInput maxlength="1" [(ngModel)]="verificationCodePart2" (ngModelChange)="setFocus(2,$event)" #verificationCodePart2Element  type="text" class="col-md-2 verification-code-input">
+              <input appNumericInput maxlength="1" [(ngModel)]="verificationCodePart3" (ngModelChange)="setFocus(3,$event)" #verificationCodePart3Element type="text" class="col-md-2 verification-code-input">
+              <input appNumericInput maxlength="1" [(ngModel)]="verificationCodePart4" (ngModelChange)="setFocus(4,$event)" #verificationCodePart4Element type="text" class="col-md-2 verification-code-input">
+              <input appNumericInput maxlength="1" [(ngModel)]="verificationCodePart5" (ngModelChange)="setFocus(5,$event)" #verificationCodePart5Element type="text" class="col-md-2 verification-code-input">
+            </div>
+            <div class="col-md-11 no-pad">
+              <p class="resend"><img src="../../assets/images/redo.png"> Resend again</p>
+            </div>
           </div>
           <div class="col-md-12 no-pad">
             <hr>
-            <p>Don't have an account? <span class="sign-up" (click)="isLoginMode=false" >Sign up</span></p>
+            <p>Already have an account? <span class="sign-in" (click)="rollbackToLoginMode()">Sign in</span></p>
           </div>
         </div>
       </div>
