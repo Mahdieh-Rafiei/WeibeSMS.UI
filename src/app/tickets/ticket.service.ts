@@ -17,8 +17,8 @@ export class TicketService {
   constructor(private apiService: ApiService) {
   }
 
-  getAllTickets(pageNumber: number, pageSize: number): Observable<TicketListResponseModel> {
-    const url = `Ticket`;
+  getAllTickets(pageNumber: number, pageSize: number, phrase: string): Observable<TicketListResponseModel> {
+    const url = `Ticket?pageSize=${pageSize}&pageNumber=${pageNumber}`;
     return this.apiService.get(url, true);
   }
 

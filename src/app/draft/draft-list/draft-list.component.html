@@ -14,8 +14,8 @@
       </div>
       <div class="col-md-6 operation-section">
         <form class="search-wrapper search">
-          <input type="text">
-          <button type="submit"><i class="fa fa-search"></i></button>
+          <input type="text" [(ngModel)]="phrase"  name="filter">
+          <button (click)="getDataWithSearch()" type="submit"><i class="fa fa-search"></i></button>
         </form>
       </div>
     </div>
@@ -31,7 +31,9 @@
         </tr>
         </thead>
         <tbody>
-        <tr *ngFor="let d of drafts">
+        <tr *ngFor="let d of drafts| paginate : {
+                                itemsPerPage : 10, currentPage : pageNumber, totalItems : totalItemsCount
+                                },index as i">
           <td class="text-left">
             <div class="table-head">
               <input type="checkbox">{{d.title}}
@@ -67,16 +69,22 @@
     </div>
   </div>
 
+  <pagination-controls (pageChange)="doPaging($event)"
+                       maxSize="5"
+                       responsive="true"
+                       previousLabel=""
+                       nextLabel=""></pagination-controls>
+
   <!--pagination-->
-  <div class="pagination-section"></div>
-  <div class="pagination">
-    <a class="prev page-numbers">prev</a>
-    <span aria-current="page" class="page-numbers current">1</span>
-    <a class="page-numbers">2</a>
-    <a class="page-numbers">...</a>
-    <a class="page-numbers">10</a>
-    <a class="next page-numbers">next</a>
-  </div>
+  <!--<div class="pagination-section"></div>-->
+  <!--<div class="pagination">-->
+    <!--<a class="prev page-numbers">prev</a>-->
+    <!--<span aria-current="page" class="page-numbers current">1</span>-->
+    <!--<a class="page-numbers">2</a>-->
+    <!--<a class="page-numbers">...</a>-->
+    <!--<a class="page-numbers">10</a>-->
+    <!--<a class="next page-numbers">next</a>-->
+  <!--</div>-->
 
 
 </div>

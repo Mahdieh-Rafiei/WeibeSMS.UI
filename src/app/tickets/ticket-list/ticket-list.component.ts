@@ -11,8 +11,10 @@ import {ItemsTicketListInterface} from './models/items-ticket-list.interface';
 export class TicketListComponent implements OnInit {
 
   tickets: ItemsTicketListInterface[];
-  pageNumber: number;
-  pageSize: number;
+  pageNumber: number = 1;
+  pageSize: number = 10;
+  totalItemsCount: number;
+  phrase = '';
 
   constructor(private ticketService: TicketService) {
   }
@@ -22,9 +24,20 @@ export class TicketListComponent implements OnInit {
   }
 
   getAllTickets() {
-    this.ticketService.getAllTickets(this.pageNumber, this.pageSize)
+    this.ticketService.getAllTickets(this.pageNumber, this.pageSize, this.phrase)
       .subscribe((res: TicketListResponseModel) => {
         this.tickets = res.data.items;
+        this.totalItemsCount = res.data.totalItemsCount;
       });
+  }
+
+  getDataWithSearch() {
+    this.pageNumber = 1;
+    this.getAllTickets();
+  }
+
+  doPaging(e) {
+    this.pageNumber = e;
+    this.getAllTickets();
   }
 }

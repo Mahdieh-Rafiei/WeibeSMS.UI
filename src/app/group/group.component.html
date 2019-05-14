@@ -30,8 +30,8 @@
             </div>
             <div class="col-md-6 operation-section">
                 <form class="search-wrapper search">
-                    <input type="text"  required>
-                    <button type="submit"><i class="fa fa-search"></i></button>
+                    <input type="text" [(ngModel)]="phrase"  name="filter">
+                    <button (click)="getDataWithSearch()" type="submit"><i class="fa fa-search"></i></button>
                 </form>
             </div>
         </div>
@@ -48,7 +48,9 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr *ngFor="let contact of contacts,index as i">
+                    <tr *ngFor="let contact of contacts| paginate : {
+                                itemsPerPage : 10, currentPage : pageNumber, totalItems : totalItemsCount
+                                },index as i">
                       <td class="text-right">
                         <div>
                           <input type="checkbox">
@@ -79,6 +81,11 @@
                 <span><i class="fa fa-arrow-circle-left"></i></span>
                 <span><i class="fa fa-arrow-circle-right"></i></span>
             </div>
+          <pagination-controls (pageChange)="doPaging($event)"
+                               maxSize="5"
+                               responsive="true"
+                               previousLabel=""
+                               nextLabel=""></pagination-controls>
         </div>
     </div>
 </div>

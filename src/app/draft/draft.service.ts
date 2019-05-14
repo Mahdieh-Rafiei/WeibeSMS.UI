@@ -16,7 +16,7 @@ export class DraftService {
   constructor(private apiService: ApiService) {
   }
 
-  getAllDrafts(pageNumber: number, pageSize: number): Observable<DraftInterface> {
+  getAllDrafts(pageNumber: number, pageSize: number, phrase: string): Observable<DraftInterface> {
     const url = `userDraftMessage?pageNumber=${pageNumber}&pageSize=${pageSize}`;
     return this.apiService.get(url, true);
   }

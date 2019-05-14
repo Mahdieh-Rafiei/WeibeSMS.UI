@@ -16,6 +16,10 @@ export class GroupComponent implements OnInit {
   group: any;
   groupId: string;
   contacts: any[];
+  pageNumber: number = 1;
+  pageSize: number = 10;
+  totalItemsCount: number;
+  phrase = '';
 
   constructor(private groupService: GroupService,
               private activatedRoute: ActivatedRoute,
@@ -24,10 +28,15 @@ export class GroupComponent implements OnInit {
 
   ngOnInit() {
     this.groupId = this.activatedRoute.snapshot.paramMap.get('groupId');
-    this.groupService.getGroup(this.groupId)
+    this.getGroup();
+  }
+
+  getGroup() {
+    this.groupService.getGroup(this.groupId, this.pageSize, this.pageNumber, this.phrase)
       .subscribe((res: GroupResponseInterface) => {
         this.group = res.data;
         this.contacts = res.data.contacts.items;
+        this.totalItemsCount = res.data.contacts.totalItemsCount;
       });
   }
 
@@ -37,5 +46,15 @@ export class GroupComponent implements OnInit {
         console.log(res);
         _.remove(this.contacts, c => c.id === contact.id);
       });
+  }
+
+  getDataWithSearch() {
+    this.pageNumber = 1;
+    this.getGroup();
+  }
+
+  doPaging(e) {
+    this.pageNumber = e;
+    this.getGroup();
   }
 }

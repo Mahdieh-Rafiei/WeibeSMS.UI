@@ -14,6 +14,8 @@ export class DraftListComponent implements OnInit {
   drafts: any[] = [];
   pageNumber: number = 1;
   pageSize: number = 10;
+  totalItemsCount: number;
+  phrase = '';
 
   constructor(private draftService: DraftService) {
   }
@@ -23,10 +25,11 @@ export class DraftListComponent implements OnInit {
   }
 
   getAllDrafts() {
-    this.draftService.getAllDrafts(this.pageNumber, this.pageSize)
+    this.draftService.getAllDrafts(this.pageNumber, this.pageSize, this.phrase)
       .subscribe((res: DraftInterface) => {
         console.log(res.data);
         res.data.items.forEach((i: any) => {
+          this.totalItemsCount = res.data.totalItemsCount;
           console.log(i);
           this.drafts.push({
             id: i.id,
@@ -45,6 +48,17 @@ export class DraftListComponent implements OnInit {
         console.log(res);
         _.remove(this.drafts, d => d.id === draft.id);
       });
+  }
+
+
+  getDataWithSearch() {
+    this.pageNumber = 1;
+    this.getAllDrafts();
+  }
+
+  doPaging(e) {
+    this.pageNumber = e;
+    this.getAllDrafts();
   }
 
 }

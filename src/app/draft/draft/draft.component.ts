@@ -61,7 +61,7 @@ export class DraftComponent implements OnInit {
   }
 
   getAllDrafts() {
-    this.draftService.getAllDrafts(1, 1000) // TODO: correct pagination
+    this.draftService.getAllDrafts(1, 1000, '') // TODO: correct pagination
     // TODO: use an api to resolve only names
       .subscribe((res: DraftInterface) => {
         this.drafts = res.data.items;
