@@ -11,6 +11,7 @@ import {SendVerificationCodeInterface} from './models/send-verification-code.int
 import {SendVerificationCodeResponseInterface} from './models/send-verification-code-response.interface';
 import {VerifyMobileInterface} from './models/verify-mobile.interface';
 import {VerifyMobileResponseInterface} from './models/verify-mobile-response.interface';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 
 @Component({
   selector: 'app-login',
@@ -39,15 +40,27 @@ export class LoginComponent implements OnInit {
   verificationCodePart4: string = '';
   verificationCodePart5: string = '';
 
+  signUpForm: FormGroup;
+
 
   constructor(private authService: AuthenticationService,
               private registerService: RegisterService,
               private notificationService: NotificationService,
               private configService: ConfigService,
+              private fb: FormBuilder,
               private router: Router) {
   }
 
   ngOnInit() {
+    this.createForm();
+  }
+
+  createForm() {
+    const pattern = /^(09|9)[0-9]{9}$/ig;
+    this.signUpForm = this.fb.group({
+      mobile: [null, Validators.compose([Validators.required, Validators.pattern(pattern)])],
+      sendVerificationReason: [1]
+    });
   }
 
   login() {
@@ -70,17 +83,16 @@ export class LoginComponent implements OnInit {
   }
 
   sendVerificationCode() {
-    const payload: SendVerificationCodeInterface = {
-      mobile: this.mobile.toString(),
-      sendVerificationReason: 1
-    };
-    this.registerService.sendVerificationCode(payload)
-      .subscribe((res: SendVerificationCodeResponseInterface) => {
-        this.notificationService.success('Verification code sent successfully', '');
-        console.log(res.data);
-        this.verificationCodeSent = true;
-        this.registrationKey = res.data.registrationKey;
-      });
+    if (this.signUpForm.valid) {
+      const payload: SendVerificationCodeInterface = this.signUpForm.value;
+      this.registerService.sendVerificationCode(payload)
+        .subscribe((res: SendVerificationCodeResponseInterface) => {
+          this.notificationService.success('Verification code sent successfully', '');
+          console.log(res.data);
+          this.verificationCodeSent = true;
+          this.registrationKey = res.data.registrationKey;
+        });
+    }
   }
 
   rollbackToFirstStep() {

@@ -26,7 +26,7 @@ export class ForgotPasswordComponent implements OnInit {
   password: string;
   confirmPassword: string;
 
-  forgotPassword: FormGroup;
+  forgotPasswordForm: FormGroup;
 
   @ViewChild('verificationCodePart1Element') verificationCodePart1Element: ElementRef;
   @ViewChild('verificationCodePart2Element') verificationCodePart2Element: ElementRef;
@@ -47,15 +47,15 @@ export class ForgotPasswordComponent implements OnInit {
 
   createForm() {
     const pattern = /^(09|9)[0-9]{9}$/ig;
-    this.forgotPassword = this.fb.group({
+    this.forgotPasswordForm = this.fb.group({
       Mobile: [null, Validators.compose([Validators.required, Validators.pattern(pattern)])],
       SendVerificationReason: [2]
     });
   }
 
   sendVerificationCode() {
-    if (this.forgotPassword.valid) {
-      const payload: SendVerificationCodeInterface = this.forgotPassword.value;
+    if (this.forgotPasswordForm.valid) {
+      const payload: SendVerificationCodeInterface = this.forgotPasswordForm.value;
       this.forgotPasswordService.sendVerificationCode(payload)
         .subscribe(res => {
           console.log(res);
