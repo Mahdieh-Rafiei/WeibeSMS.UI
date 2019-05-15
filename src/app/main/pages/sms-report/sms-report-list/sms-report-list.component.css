@@ -4,3 +4,7 @@ i.fa.fa-sort{
 .green-btn, .blue-btn{
     padding: 5px 15px !important;
 }
+select.light-blue-btn{
+    margin-right: 10px;
+    cursor: pointer;
+}

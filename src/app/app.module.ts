@@ -74,6 +74,8 @@ import { PaymentComponent } from './main/pages/biling/payment/payment.component'
 import { ChangePasswordComponent } from './main/pages/user-account/privacy/change-password/change-password.component';
 import {UserAccountService} from './main/pages/user-account/user-account.service';
 import { BillingAddressComponent } from './main/pages/biling/billing-address/billing-address.component';
+import { FundListComponent } from './main/pages/add-fund/fund-list/fund-list.component';
+import { FundComponent } from './main/pages/add-fund/fund/fund.component';
 
 @NgModule({
     declarations: [
@@ -125,6 +127,8 @@ import { BillingAddressComponent } from './main/pages/biling/billing-address/bil
         LoginLogComponent,
         BillingComponent,
         PaymentComponent,
+        FundListComponent,
+        FundComponent,
   ],
   imports: [
     BrowserModule,

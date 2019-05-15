@@ -25,7 +25,14 @@
 }
 label{
     font-weight: 400;
+    width: 95px;
+}
+label.prefix{
+    font-weight: 400;
     width: 100px;
+}
+select.prefix-select{
+    width: 70%;
 }
 input[type=text]{
     width: 62%;
@@ -40,6 +47,10 @@ select {
 }
 .phone-verify{
     display: inline-flex;
+}
+.verify-input{
+    width: 40% !important;
+    text-align: center !important;
 }
 .blue-btn{
     border-radius: 0 !important;
@@ -71,10 +82,8 @@ select {
     padding: 0;
 }
 .send-again p{
-    text-align: left;
+    text-align: right;
     font-size: 12px;
-    padding-left: 12px;
-    padding-top: 10px;
 }
 .detail-prefix p{
     color: #f5274e;

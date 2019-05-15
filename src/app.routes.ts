@@ -53,6 +53,9 @@ import {CreateTransactionComponent} from './app/main/pages/biling/create-transac
 
 import {PlanListComponent} from './app/main/pages/plan-list/plan-list.component';
 
+import {FundListComponent} from './app/main/pages/add-fund/fund-list/fund-list.component';
+import {FundComponent} from './app/main/pages/add-fund/fund/fund.component';
+
 
 export const APP_ROUTES: Routes = [
   {path: '', component: DashboardComponent, canActivate: [CanActivateRouteGuard]},
@@ -105,7 +108,8 @@ export const APP_ROUTES: Routes = [
   {path: 'add-ticket', component: AddTicketComponent},
   {path: 'ticket-list', component: TicketListComponent},
 
-  {path: 'plan-list', component: PlanListComponent},
+  {path: 'fund-list', component: FundListComponent},
+  {path: 'fund', component: FundComponent},
 
   {path: 'login', component: LoginComponent},
   {path: 'register', component: RegisterComponent},
