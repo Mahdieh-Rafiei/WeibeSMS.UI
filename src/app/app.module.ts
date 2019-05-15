@@ -83,6 +83,7 @@ import {PlanListComponent} from './main/pages/plan/plan-list/plan-list.component
 import {MainComponent} from './main/main.component';
 
 @NgModule({
+
     declarations: [
         AppComponent,
         LoginComponent,
@@ -135,6 +136,8 @@ import {MainComponent} from './main/main.component';
         FundListComponent,
         FundComponent,
         MainComponent
+  
+
     ],
 
 
