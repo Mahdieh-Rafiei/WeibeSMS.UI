@@ -11,6 +11,7 @@ import {SendVerificationCodeInterface} from './models/send-verification-code.int
 import {SendVerificationCodeResponseInterface} from './models/send-verification-code-response.interface';
 import {VerifyMobileInterface} from './models/verify-mobile.interface';
 import {VerifyMobileResponseInterface} from './models/verify-mobile-response.interface';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 
 @Component({
   selector: 'app-login',
@@ -39,48 +40,70 @@ export class LoginComponent implements OnInit {
   verificationCodePart4: string = '';
   verificationCodePart5: string = '';
 
+  signUpForm: FormGroup;
+  signInForm: FormGroup;
+
 
   constructor(private authService: AuthenticationService,
               private registerService: RegisterService,
               private notificationService: NotificationService,
               private configService: ConfigService,
+              private fb: FormBuilder,
               private router: Router) {
   }
 
   ngOnInit() {
+    this.createForm();
+  }
+
+  createForm() {
+    const pattern = /^(09|9)[0-9]{9}$/ig;
+    this.signUpForm = this.fb.group({
+      mobile: [null, Validators.compose([Validators.required, Validators.pattern(pattern)])],
+      sendVerificationReason: [1]
+    });
+    this.signInForm = this.fb.group({
+      username: [null, Validators.required],
+      password: [null, Validators.required]
+    });
   }
 
   login() {
-    if (this.username.length === 0) {
-      this.notificationService.error('username cant be null!', '');
-      return;
+    if (this.signInForm.valid) {
+      const payload: LoginInterface = this.signInForm.value;
+      this.authService.loginViaUsernamePassword(payload)
+        .subscribe((res: LoginResponseInterface) => {
+          this.authService.setToken(res.data.token);
+          this.configService.authenticationChanged.emit(true);
+          this.router.navigateByUrl('');
+        });
     }
-    if (this.password.length === 0) {
-      this.notificationService.error('password cant be null!', '');
-      return;
-    }
+  }
 
-    const data: LoginInterface = {username: this.username, password: this.password};
-    this.authService.loginViaUsernamePassword(data)
-      .subscribe((res: LoginResponseInterface) => {
-        this.authService.setToken(res.data.token);
-        this.configService.authenticationChanged.emit(true);
-        this.router.navigateByUrl('');
-      });
+  keySendVerificationCode(event) {
+    if (event.key === 'Enter') {
+      console.log(event);
+      this.sendVerificationCode();
+    }
   }
 
   sendVerificationCode() {
-    const payload: SendVerificationCodeInterface = {
-      mobile: this.mobile.toString(),
-      sendVerificationReason: 1
-    };
-    this.registerService.sendVerificationCode(payload)
-      .subscribe((res: SendVerificationCodeResponseInterface) => {
-        this.notificationService.success('Verification code sent successfully', '');
-        console.log(res.data);
-        this.verificationCodeSent = true;
-        this.registrationKey = res.data.registrationKey;
-      });
+    if (this.signUpForm.valid) {
+      const payload: SendVerificationCodeInterface = this.signUpForm.value;
+      this.registerService.sendVerificationCode(payload)
+        .subscribe((res: SendVerificationCodeResponseInterface) => {
+          this.notificationService.success('Verification code sent successfully', '');
+          console.log(res.data);
+          this.verificationCodeSent = true;
+          this.registrationKey = res.data.registrationKey;
+        });
+    }
+  }
+
+  getCountDown(event) {
+    if (event) {
+      this.sendVerificationCode();
+    }
   }
 
   rollbackToFirstStep() {
@@ -137,7 +160,48 @@ export class LoginComponent implements OnInit {
 
       case 5:
         console.log(this.verificationCodePart5);
-        this.verify();
+    }
+    if (this.verificationCodePart1 && this.verificationCodePart2 && this.verificationCodePart3 &&
+      this.verificationCodePart4 && this.verificationCodePart5) {
+      this.verify();
+    }
+  }
+
+  changeFocus(elementNumber: number, event) {
+    if (event.key === 'Backspace') {
+      switch (elementNumber) {
+
+        case 2:
+          if (this.verificationCodePart2 === '') {
+            this.verificationCodePart1Element.nativeElement.focus();
+          }
+          this.verificationCodePart2 = '';
+          break;
+
+        case 3:
+          if (this.verificationCodePart3 === '') {
+            this.verificationCodePart2Element.nativeElement.focus();
+          }
+          this.verificationCodePart3 = '';
+          break;
+
+        case 4:
+          if (this.verificationCodePart4 === '') {
+            this.verificationCodePart3Element.nativeElement.focus();
+          }
+          this.verificationCodePart4 = '';
+          break;
+
+        case 5:
+          if (this.verificationCodePart5 === '') {
+            this.verificationCodePart4Element.nativeElement.focus();
+          }
+          this.verificationCodePart5 = '';
+          break;
+
+        case 1:
+          break;
+      }
     }
   }
 }
