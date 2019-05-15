@@ -41,6 +41,7 @@ export class LoginComponent implements OnInit {
   verificationCodePart5: string = '';
 
   signUpForm: FormGroup;
+  signInForm: FormGroup;
 
 
   constructor(private authService: AuthenticationService,
@@ -61,25 +62,29 @@ export class LoginComponent implements OnInit {
       mobile: [null, Validators.compose([Validators.required, Validators.pattern(pattern)])],
       sendVerificationReason: [1]
     });
+    this.signInForm = this.fb.group({
+      username: [null, Validators.required],
+      password: [null, Validators.required]
+    });
   }
 
   login() {
-    if (this.username.length === 0) {
-      this.notificationService.error('username cant be null!', '');
-      return;
+    if (this.signInForm.valid) {
+      const payload: LoginInterface = this.signInForm.value;
+      this.authService.loginViaUsernamePassword(payload)
+        .subscribe((res: LoginResponseInterface) => {
+          this.authService.setToken(res.data.token);
+          this.configService.authenticationChanged.emit(true);
+          this.router.navigateByUrl('');
+        });
     }
-    if (this.password.length === 0) {
-      this.notificationService.error('password cant be null!', '');
-      return;
-    }
+  }
 
-    const data: LoginInterface = {username: this.username, password: this.password};
-    this.authService.loginViaUsernamePassword(data)
-      .subscribe((res: LoginResponseInterface) => {
-        this.authService.setToken(res.data.token);
-        this.configService.authenticationChanged.emit(true);
-        this.router.navigateByUrl('');
-      });
+  keySendVerificationCode(event) {
+    if (event.key === 'Enter') {
+      console.log(event);
+      this.sendVerificationCode();
+    }
   }
 
   sendVerificationCode() {
@@ -92,6 +97,12 @@ export class LoginComponent implements OnInit {
           this.verificationCodeSent = true;
           this.registrationKey = res.data.registrationKey;
         });
+    }
+  }
+
+  getCountDown(event) {
+    if (event) {
+      this.sendVerificationCode();
     }
   }
 
@@ -149,7 +160,48 @@ export class LoginComponent implements OnInit {
 
       case 5:
         console.log(this.verificationCodePart5);
-        this.verify();
+    }
+    if (this.verificationCodePart1 && this.verificationCodePart2 && this.verificationCodePart3 &&
+      this.verificationCodePart4 && this.verificationCodePart5) {
+      this.verify();
+    }
+  }
+
+  changeFocus(elementNumber: number, event) {
+    if (event.key === 'Backspace') {
+      switch (elementNumber) {
+
+        case 2:
+          if (this.verificationCodePart2 === '') {
+            this.verificationCodePart1Element.nativeElement.focus();
+          }
+          this.verificationCodePart2 = '';
+          break;
+
+        case 3:
+          if (this.verificationCodePart3 === '') {
+            this.verificationCodePart2Element.nativeElement.focus();
+          }
+          this.verificationCodePart3 = '';
+          break;
+
+        case 4:
+          if (this.verificationCodePart4 === '') {
+            this.verificationCodePart3Element.nativeElement.focus();
+          }
+          this.verificationCodePart4 = '';
+          break;
+
+        case 5:
+          if (this.verificationCodePart5 === '') {
+            this.verificationCodePart4Element.nativeElement.focus();
+          }
+          this.verificationCodePart5 = '';
+          break;
+
+        case 1:
+          break;
+      }
     }
   }
 }

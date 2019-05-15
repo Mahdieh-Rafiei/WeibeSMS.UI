@@ -75,6 +75,7 @@ import {UserAccountService} from './main/pages/user-account/user-account.service
 import {BillingAddressComponent} from './main/pages/biling/billing-address/billing-address.component';
 import {MainRoutingModule} from './main/main-routing.module';
 import {MainComponent} from './main/main.component';
+import {SharedModule} from './shared/module/shared.module';
 
 @NgModule({
   declarations: [
@@ -144,6 +145,7 @@ import {MainComponent} from './main/main.component';
     FileDropModule,
     NgxPaginationModule,
     MainRoutingModule,
+    SharedModule,
 
     MatButtonModule,
   ],

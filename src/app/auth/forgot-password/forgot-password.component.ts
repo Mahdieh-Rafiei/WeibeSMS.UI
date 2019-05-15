@@ -65,6 +65,62 @@ export class ForgotPasswordComponent implements OnInit {
     }
   }
 
+  keySendVerificationCode(event) {
+    if (event.key === 'Enter') {
+      console.log(event);
+      this.sendVerificationCode();
+    }
+  }
+
+  changeFocus(elementNumber: number, event) {
+    if (event.key === 'Backspace') {
+      switch (elementNumber) {
+
+        case 2:
+          if (this.verificationCodePart2 === '') {
+            this.verificationCodePart1Element.nativeElement.focus();
+          }
+          this.verificationCodePart2 = '';
+          break;
+
+        case 3:
+          if (this.verificationCodePart3 === '') {
+            this.verificationCodePart2Element.nativeElement.focus();
+          }
+          this.verificationCodePart3 = '';
+          break;
+
+        case 4:
+          if (this.verificationCodePart4 === '') {
+            this.verificationCodePart3Element.nativeElement.focus();
+          }
+          this.verificationCodePart4 = '';
+          break;
+
+        case 5:
+          if (this.verificationCodePart5 === '') {
+            this.verificationCodePart4Element.nativeElement.focus();
+          }
+          this.verificationCodePart5 = '';
+          break;
+
+        case 1:
+          break;
+      }
+    }
+  }
+
+  getCountDown(event) {
+    if (event) {
+      this.sendVerificationCode();
+      this.verificationCodePart1 = '';
+      this.verificationCodePart2 = '';
+      this.verificationCodePart3 = '';
+      this.verificationCodePart4 = '';
+      this.verificationCodePart5 = '';
+    }
+  }
+
   verify() {
     const verificationCode = this.verificationCodePart1.concat(this.verificationCodePart2, this.verificationCodePart3,
       this.verificationCodePart4, this.verificationCodePart5);
@@ -115,7 +171,10 @@ export class ForgotPasswordComponent implements OnInit {
 
       case 5:
         console.log(this.verificationCodePart5);
-        this.verify();
+    }
+    if (this.verificationCodePart1 && this.verificationCodePart2 && this.verificationCodePart3 &&
+      this.verificationCodePart4 && this.verificationCodePart5) {
+      this.verify();
     }
   }
 }
