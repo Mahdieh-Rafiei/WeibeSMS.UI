@@ -591,6 +591,9 @@ input.verification-code-input {
 .red-text {
   color: #f4472c;
 }
+.mobile-num{
+  color: #6c7293;
+}
 /*//////// log /////////*/
 .ws-login-input:focus, input.verification-code-input:focus{
   border: 1px solid #2cd9f4;
