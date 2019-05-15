@@ -100,7 +100,7 @@ hr {
 }
 .wrong span:nth-child(2){
     color: #f4472c;
-    font-size: 10px;
+    font-size: 12px;
 }
 
 input.verification-code-input {
