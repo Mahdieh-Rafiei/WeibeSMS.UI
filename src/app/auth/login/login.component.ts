@@ -43,6 +43,7 @@ export class LoginComponent implements OnInit {
   signUpForm: FormGroup;
   signInForm: FormGroup;
 
+  enterPressConfirm: boolean = false;
 
   constructor(private authService: AuthenticationService,
               private registerService: RegisterService,
@@ -97,6 +98,8 @@ export class LoginComponent implements OnInit {
           this.verificationCodeSent = true;
           this.registrationKey = res.data.registrationKey;
         });
+    } else {
+      this.enterPressConfirm = true;
     }
   }
 
