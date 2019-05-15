@@ -34,7 +34,7 @@ h3,
 h4,
 h5,
 h6 {
-  color: #2b2b2b;
+  color: #6c7293;
   margin: 10px 0;
   font-family: 'OpenSans-Regular';
   font-weight: 600;
@@ -519,17 +519,84 @@ i.fa.fa-sort {
 }
 
 .errorMessage {
-  padding-top: 5px;
   display: inline;
   font-size: 12px;
-  color: #e20404;
+  color: #f4472c;
 }
-
-.sign-up, .sign-in {
-  color: #83d2d1;
+/*login*/
+.ws-btn {
+  background: #5867dd;
+  padding: 10px 50px;
   cursor: pointer;
+  transition: .3s;
+  border: none;
+  width: 100%;
+  font-size: 15px;
+  box-shadow: none;
+  color: #fff;
+  border-radius: .5rem;
 }
-
+.ws-btn:hover {
+  background: #384ad7;
+}
+.ws-login-input {
+  display: block;
+  margin: 0 auto 0;
+  width: 100%;
+  background: rgba(235,237,242,.4);
+  color: #778796;
+  height: 42px;
+  padding: 0 30px;
+  font-size: 14px;
+  font-weight: bold;
+  border-radius: .5rem;
+  border: 1px solid #ebedf2;
+  transition: all .5s ease;
+}
+.sign-up, .sign-in {
+  color: #6c7293;
+  cursor: pointer;
+  font-weight: 600;
+}
+.sign-up:hover, .sign-in:hover {
+  color: #384ad7;
+}
+.welcome-text{
+  color: #a7abc3;
+}
+.weib{
+  font-weight: 600;
+  color: #6c7293;
+}
+.footer-weib{
+  padding-top: 10px;
+}
+input.verification-code-input {
+  width: 16%;
+  margin-right: 10px;
+  height: 35px;
+  text-align: center;
+}
+.resend i{
+  animation: turn 1.5s ease-in-out infinite;
+  color: #f4472c;
+}
+.resend{
+  text-align: center;
+  cursor: pointer;
+  color: #f4472c;
+  padding-top: 5px;
+}
+.red-text {
+  color: #f4472c;
+}
+/*//////// log /////////*/
+.ws-login-input:focus, input.verification-code-input:focus{
+  border: 1px solid #2cd9f4;
+}
+.error{
+  color: #f4472c;
+}
 /*----------------------------alert-box--------------------------------*/
 .alert-box-default {
   background-color: #edeef0;
