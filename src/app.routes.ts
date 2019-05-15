@@ -51,7 +51,7 @@ import {BillingAddressComponent} from './app/main/pages/biling/billing-address/b
 import {InvoiceListComponent} from './app/main/pages/biling/invoice-list/invoice-list.component';
 import {CreateTransactionComponent} from './app/main/pages/biling/create-transaction/create-transaction.component';
 
-import {PlanListComponent} from './app/main/pages/plan-list/plan-list.component';
+import {PlanListComponent} from './app/main/pages/plan/plan-list/plan-list.component';
 
 
 export const APP_ROUTES: Routes = [
@@ -105,7 +105,7 @@ export const APP_ROUTES: Routes = [
   {path: 'add-ticket', component: AddTicketComponent},
   {path: 'ticket-list', component: TicketListComponent},
 
-  {path: 'plan-list', component: PlanListComponent},
+  // {path: 'plan-list', component: PlanListComponent},
 
   {path: 'login', component: LoginComponent},
   {path: 'register', component: RegisterComponent},

@@ -26,7 +26,7 @@ export class ForgotPasswordComponent implements OnInit {
   password: string;
   confirmPassword: string;
 
-  forgotPassword: FormGroup;
+  forgotPasswordForm: FormGroup;
 
   @ViewChild('verificationCodePart1Element') verificationCodePart1Element: ElementRef;
   @ViewChild('verificationCodePart2Element') verificationCodePart2Element: ElementRef;
@@ -47,21 +47,77 @@ export class ForgotPasswordComponent implements OnInit {
 
   createForm() {
     const pattern = /^(09|9)[0-9]{9}$/ig;
-    this.forgotPassword = this.fb.group({
+    this.forgotPasswordForm = this.fb.group({
       Mobile: [null, Validators.compose([Validators.required, Validators.pattern(pattern)])],
       SendVerificationReason: [2]
     });
   }
 
   sendVerificationCode() {
-    if (this.forgotPassword.valid) {
-      const payload: SendVerificationCodeInterface = this.forgotPassword.value;
+    if (this.forgotPasswordForm.valid) {
+      const payload: SendVerificationCodeInterface = this.forgotPasswordForm.value;
       this.forgotPasswordService.sendVerificationCode(payload)
         .subscribe(res => {
           console.log(res);
           this.step = 2;
           this.key = res.data.registrationKey;
         });
+    }
+  }
+
+  keySendVerificationCode(event) {
+    if (event.key === 'Enter') {
+      console.log(event);
+      this.sendVerificationCode();
+    }
+  }
+
+  changeFocus(elementNumber: number, event) {
+    if (event.key === 'Backspace') {
+      switch (elementNumber) {
+
+        case 2:
+          if (this.verificationCodePart2 === '') {
+            this.verificationCodePart1Element.nativeElement.focus();
+          }
+          this.verificationCodePart2 = '';
+          break;
+
+        case 3:
+          if (this.verificationCodePart3 === '') {
+            this.verificationCodePart2Element.nativeElement.focus();
+          }
+          this.verificationCodePart3 = '';
+          break;
+
+        case 4:
+          if (this.verificationCodePart4 === '') {
+            this.verificationCodePart3Element.nativeElement.focus();
+          }
+          this.verificationCodePart4 = '';
+          break;
+
+        case 5:
+          if (this.verificationCodePart5 === '') {
+            this.verificationCodePart4Element.nativeElement.focus();
+          }
+          this.verificationCodePart5 = '';
+          break;
+
+        case 1:
+          break;
+      }
+    }
+  }
+
+  getCountDown(event) {
+    if (event) {
+      this.sendVerificationCode();
+      this.verificationCodePart1 = '';
+      this.verificationCodePart2 = '';
+      this.verificationCodePart3 = '';
+      this.verificationCodePart4 = '';
+      this.verificationCodePart5 = '';
     }
   }
 
@@ -115,7 +171,10 @@ export class ForgotPasswordComponent implements OnInit {
 
       case 5:
         console.log(this.verificationCodePart5);
-        this.verify();
+    }
+    if (this.verificationCodePart1 && this.verificationCodePart2 && this.verificationCodePart3 &&
+      this.verificationCodePart4 && this.verificationCodePart5) {
+      this.verify();
     }
   }
 }
