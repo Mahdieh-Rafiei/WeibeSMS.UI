@@ -28,10 +28,13 @@ export class ForgotPasswordComponent implements OnInit {
 
   forgotPasswordForm: FormGroup;
 
+  enterPressConfirm: boolean = false;
+
   @ViewChild('verificationCodePart1Element') verificationCodePart1Element: ElementRef;
   @ViewChild('verificationCodePart2Element') verificationCodePart2Element: ElementRef;
   @ViewChild('verificationCodePart3Element') verificationCodePart3Element: ElementRef;
   @ViewChild('verificationCodePart4Element') verificationCodePart4Element: ElementRef;
+
   @ViewChild('verificationCodePart5Element') verificationCodePart5Element: ElementRef;
 
   constructor(private forgotPasswordService: ForgotPasswordService,
@@ -53,6 +56,11 @@ export class ForgotPasswordComponent implements OnInit {
     });
   }
 
+  test() {
+    console.log(this.forgotPasswordForm.controls['Mobile']);
+
+  }
+
   sendVerificationCode() {
     if (this.forgotPasswordForm.valid) {
       const payload: SendVerificationCodeInterface = this.forgotPasswordForm.value;
@@ -62,6 +70,8 @@ export class ForgotPasswordComponent implements OnInit {
           this.step = 2;
           this.key = res.data.registrationKey;
         });
+    } else {
+      this.enterPressConfirm = true;
     }
   }
 

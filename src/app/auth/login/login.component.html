@@ -64,7 +64,8 @@
                 <p class="errorMessage" *ngIf="signUpForm.hasError('required', 'mobile')">
                   this filed is required!
                 </p>
-                <p class="errorMessage" *ngIf="(signUpForm.controls['mobile'].hasError('pattern'))">
+                <p class="errorMessage"
+                   *ngIf="(signUpForm.controls['mobile'].hasError('pattern')) && (signUpForm.controls['mobile'].touched || enterPressConfirm)">
                   phone number is invalid!
                 </p>
               </div>
@@ -83,7 +84,7 @@
           <span>Create a free account on <span class="weib">Weiß SMS</span>.</span>
           <div class="col-md-10 col-md-offset-1 col-xs-12 detail-box">
             <div class="col-md-12 no-pad">
-              <p class="wrong">your number : <span>{{mobile}}</span> <span
+              <p class="wrong">your number : <span>{{signUpForm['controls'].mobile.value}}</span> <span
                 (click)="rollbackToFirstStep()"> wrong ? </span></p>
               <p class="text-left">Inter verification code</p>
             </div>
