@@ -1,140 +1,141 @@
 <div class="container-fluid">
-    <div class="container text-center">
-        <div class="ws-box">
-            <div class="img-logo text-center">
-                <img src="../../assets/images/LogoLogin.svg" class="center-block img-responsive">
-            </div>
-            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 right-box ws-login-box">
-                <form *ngIf="isLoginMode" [formGroup]="signInForm" #formDir="ngForm">
-                    <h3>Welcome back</h3>
-                    <span class="welcome-text">login to your account here</span>
-                    <div class="col-md-10 col-md-offset-1 col-xs-12">
-                        <div class="input-box">
-                            <input type="text"
-                                   class="ws-login-input"
-                                   formControlName="username"
-                                   autofocus
-                                   autocomplete="off"
-                                   placeholder="username">
-                            <div class="text-left"
-                                 *ngIf="((signInForm.dirty || signInForm.touched || formDir.submitted))">
-                                <p class="errorMessage" *ngIf="signInForm.hasError('required', 'username')">
-                                    this filed is required!
-                                </p>
-                            </div>
-                            <br>
-                            <input type="password"
-                                   class="ws-login-input"
-                                   formControlName="password"
-                                   autofocus autocomplete="off"
-                                   placeholder="password">
-                            <div class="text-left"
-                                 *ngIf="((signInForm.dirty || signInForm.touched || formDir.submitted))">
-                                <p class="errorMessage" *ngIf="signInForm.hasError('required', 'password')">
-                                    this filed is required!
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-10 btn-login-div col-md-offset-1 col-xs-12">
-                        <p [routerLink]="['/forgot-password']" class="forgot-pass welcome-text"> Forgot password ?</p>
-                        <button type="submit" (click)="login()" class="ws-btn login-btn">Login</button>
-                    </div>
-                    <div class="col-md-12 no-pad login-mode">
-                        <hr>
-                        <p class="welcome-text">Don't have an account? <span class="sign-up"
-                                                                             (click)="isLoginMode=false">Sign up</span>
-                        </p>
-                    </div>
-                </form>
-                <form *ngIf="!isLoginMode && !verificationCodeSent" #formDir="ngForm"
-                      (keydown)="keySendVerificationCode($event)">
-                    <h3>Hello Stranger!</h3>
-                    <span class="welcome-text">Create a free account on <span class="weib">Weiß SMS</span>.</span>
-                    <div class="col-md-10 col-md-offset-1 col-xs-12">
-                        <div class="input-box v-input-box" [formGroup]="signUpForm">
-                            <input type="text"
-                                   placeholder="Your phone number"
-                                   class="ws-login-input vinput"
-                                   formControlName="mobile"
-                                   appNumericInput
-                                   autofocus autocomplete="off">
-                            <select class="v-input-select">
-                                <option><img src="#"> +98</option>
-                                <option>English</option>
-                                <option>Persian</option>
-                            </select>
-                            <div class="text-left"
-                                 *ngIf="((signUpForm.dirty || signUpForm.touched || formDir.submitted))">
-                                <p class="errorMessage" *ngIf="signUpForm.hasError('required', 'mobile')">
-                                    this filed is required!
-                                </p>
-                                <p class="errorMessage"
-                                   *ngIf="(signUpForm.controls['mobile'].hasError('pattern')) && (signUpForm.controls['mobile'].touched || enterPressConfirm)">
-                                    phone number is invalid!
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-10 col-md-offset-1 col-xs-12">
-                        <button type="submit" (click)="sendVerificationCode()" class="ws-btn login-btn">Register
-                        </button>
-                    </div>
-                    <div class="col-md-12">
-                        <hr>
-                        <p class="welcome-text">Already have an account? <span class="sign-in"
-                                                                               (click)="rollbackToLoginMode()">Sign in</span>
-                        </p>
-                    </div>
-                </form>
-                <div *ngIf="!isLoginMode && verificationCodeSent">
-                    <h3>Hello Stranger!</h3>
-                    <span class="welcome-text">Create a free account on <span class="sign-in">Weiß SMS</span>.</span>
-                    <div class="col-md-10 col-md-offset-1 col-xs-12 detail-box">
-                        <div class="col-md-12 no-pad">
-                            <p class="wrong welcome-text">your number : <span class="mobile-num">{{signUpForm['controls'].mobile.value}}</span> <span
-                                    (click)="rollbackToFirstStep()"> wrong ? </span></p>
-                            <p class="text-left welcome-text">Enter verification code</p>
-                        </div>
-                        <div class="col-md-12 input-box-vc no-pad">
-                            <input appNumericInput maxlength="1" [(ngModel)]="verificationCodePart1"
-                                   (ngModelChange)="setFocus(1,$event)" (keydown)="changeFocus(1,$event)"
-                                   #verificationCodePart1Element type="text"
-                                   class="col-md-2 verification-code-input" placeholder="-">
-                            <input appNumericInput maxlength="1" [(ngModel)]="verificationCodePart2"
-                                   (ngModelChange)="setFocus(2,$event)" (keydown)="changeFocus(2,$event)"
-                                   #verificationCodePart2Element type="text"
-                                   class="col-md-2 verification-code-input" placeholder="-">
-                            <input appNumericInput maxlength="1" [(ngModel)]="verificationCodePart3"
-                                   (ngModelChange)="setFocus(3,$event)" (keydown)="changeFocus(3,$event)"
-                                   #verificationCodePart3Element type="text"
-                                   class="col-md-2 verification-code-input" placeholder="-">
-                            <input appNumericInput maxlength="1" [(ngModel)]="verificationCodePart4"
-                                   (ngModelChange)="setFocus(4,$event)" (keydown)="changeFocus(4,$event)"
-                                   #verificationCodePart4Element type="text"
-                                   class="col-md-2 verification-code-input" placeholder="-">
-                            <input appNumericInput maxlength="1" [(ngModel)]="verificationCodePart5"
-                                   (ngModelChange)="setFocus(5,$event)" (keydown)="changeFocus(5,$event)"
-                                   #verificationCodePart5Element type="text"
-                                   class="col-md-2 verification-code-input" placeholder="-">
-                        </div>
-                        <div class="col-md-11 no-pad">
-                            <app-countdown (countDownEmit)="getCountDown($event)"></app-countdown>
-                        </div>
-                    </div>
-                    <div class="col-md-12 no-pad">
-                        <hr>
-                        <p class="welcome-text">Already have an account? <span class="sign-in"
-                                                                               (click)="rollbackToLoginMode()">Sign in</span>
-                        </p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-12 col-md-12 footer-weib">
-                <p class="welcome-text">©2019 Weiß SMS. All rights reserved.</p>
-            </div>
+  <div class="container text-center">
+    <div class="ws-box">
+      <div class="img-logo text-center">
+        <img src="../../assets/images/LogoLogin.svg" class="center-block img-responsive">
+      </div>
+      <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 right-box ws-login-box">
+        <form *ngIf="isLoginMode" [formGroup]="signInForm" #formDir="ngForm">
+          <h3>Welcome back</h3>
+          <span class="welcome-text">login to your account here</span>
+          <div class="col-md-10 col-md-offset-1 col-xs-12">
+            <div class="input-box">
+              <input type="text"
+                     class="ws-login-input"
+                     formControlName="username"
 
+                     autocomplete="off"
+                     placeholder="username">
+              <div class="text-left"
+                   *ngIf="((signInForm.controls['username'].dirty || signInForm.controls['username'].touched || formDir.submitted))">
+                <p class="errorMessage" *ngIf="signInForm.hasError('required', 'username')">
+                  this filed is required!
+                </p>
+              </div>
+              <br>
+              <input type="password"
+                     class="ws-login-input"
+                     formControlName="password"
+                     autocomplete="off"
+                     placeholder="password">
+              <div class="text-left"
+                   *ngIf="((signInForm.controls['password'].dirty || signInForm.controls['password'].touched || formDir.submitted))">
+                <p class="errorMessage" *ngIf="signInForm.hasError('required', 'password')">
+                  this filed is required!
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-10 btn-login-div col-md-offset-1 col-xs-12">
+            <p [routerLink]="['/forgot-password']" class="forgot-pass welcome-text"> Forgot password ?</p>
+            <button type="submit" (click)="login()" class="ws-btn login-btn">Login</button>
+          </div>
+          <div class="col-md-12 no-pad login-mode">
+            <hr>
+            <p class="welcome-text">Don't have an account? <span class="sign-up"
+                                                                 (click)="isLoginMode=false">Sign up</span>
+            </p>
+          </div>
+        </form>
+        <form *ngIf="!isLoginMode && !verificationCodeSent" #formDir="ngForm"
+              (keydown)="keySendVerificationCode($event)">
+          <h3>Hello Stranger!</h3>
+          <span class="welcome-text">Create a free account on <span class="weib">Weiß SMS</span>.</span>
+          <div class="col-md-10 col-md-offset-1 col-xs-12">
+            <div class="input-box v-input-box" [formGroup]="signUpForm">
+              <input type="text"
+                     placeholder="Your phone number"
+                     class="ws-login-input vinput"
+                     formControlName="mobile"
+                     appNumericInput
+                     autofocus autocomplete="off">
+              <select class="v-input-select">
+                <option><img src="#"> +98</option>
+                <option>English</option>
+                <option>Persian</option>
+              </select>
+              <div class="text-left"
+                   *ngIf="((signUpForm.dirty || signUpForm.touched || formDir.submitted))">
+                <p class="errorMessage" *ngIf="signUpForm.hasError('required', 'mobile')">
+                  this filed is required!
+                </p>
+                <p class="errorMessage"
+                   *ngIf="(signUpForm.controls['mobile'].hasError('pattern')) && (signUpForm.controls['mobile'].touched || enterPressConfirm)">
+                  phone number is invalid!
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-10 col-md-offset-1 col-xs-12">
+            <button type="submit" (click)="sendVerificationCode()" class="ws-btn login-btn">Register
+            </button>
+          </div>
+          <div class="col-md-12">
+            <hr>
+            <p class="welcome-text">Already have an account? <span class="sign-in"
+                                                                   (click)="rollbackToLoginMode()">Sign in</span>
+            </p>
+          </div>
+        </form>
+        <div *ngIf="!isLoginMode && verificationCodeSent">
+          <h3>Hello Stranger!</h3>
+          <span class="welcome-text">Create a free account on <span class="sign-in">Weiß SMS</span>.</span>
+          <div class="col-md-10 col-md-offset-1 col-xs-12 detail-box">
+            <div class="col-md-12 no-pad">
+              <p class="wrong welcome-text">your number : <span class="mobile-num">{{signUpForm['controls'].mobile.value}}</span>
+                <span
+                  (click)="rollbackToFirstStep()"> wrong ? </span></p>
+              <p class="text-left welcome-text">Enter verification code</p>
+            </div>
+            <div class="col-md-12 input-box-vc no-pad">
+              <input appNumericInput maxlength="1" [(ngModel)]="verificationCodePart1"
+                     (ngModelChange)="setFocus(1,$event)" (keydown)="changeFocus(1,$event)"
+                     #verificationCodePart1Element type="text"
+                     class="col-md-2 verification-code-input" placeholder="-">
+              <input appNumericInput maxlength="1" [(ngModel)]="verificationCodePart2"
+                     (ngModelChange)="setFocus(2,$event)" (keydown)="changeFocus(2,$event)"
+                     #verificationCodePart2Element type="text"
+                     class="col-md-2 verification-code-input" placeholder="-">
+              <input appNumericInput maxlength="1" [(ngModel)]="verificationCodePart3"
+                     (ngModelChange)="setFocus(3,$event)" (keydown)="changeFocus(3,$event)"
+                     #verificationCodePart3Element type="text"
+                     class="col-md-2 verification-code-input" placeholder="-">
+              <input appNumericInput maxlength="1" [(ngModel)]="verificationCodePart4"
+                     (ngModelChange)="setFocus(4,$event)" (keydown)="changeFocus(4,$event)"
+                     #verificationCodePart4Element type="text"
+                     class="col-md-2 verification-code-input" placeholder="-">
+              <input appNumericInput maxlength="1" [(ngModel)]="verificationCodePart5"
+                     (ngModelChange)="setFocus(5,$event)" (keydown)="changeFocus(5,$event)"
+                     #verificationCodePart5Element type="text"
+                     class="col-md-2 verification-code-input" placeholder="-">
+            </div>
+            <div class="col-md-11 no-pad">
+              <app-countdown (countDownEmit)="getCountDown($event)"></app-countdown>
+            </div>
+          </div>
+          <div class="col-md-12 no-pad">
+            <hr>
+            <p class="welcome-text">Already have an account? <span class="sign-in"
+                                                                   (click)="rollbackToLoginMode()">Sign in</span>
+            </p>
+          </div>
         </div>
+      </div>
+      <div class="col-lg-12 col-md-12 footer-weib">
+        <p class="welcome-text">©2019 Weiß SMS. All rights reserved.</p>
+      </div>
 
     </div>
+
+  </div>
 </div>

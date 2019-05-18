@@ -1,5 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {ActivatedRoute} from '@angular/router';
+import {ProfileGetInterface} from './models/profile-get.interface';
+import {ProfileService} from './profile.service';
 
 @Component({
   selector: 'app-profile',
@@ -8,8 +11,15 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 })
 export class ProfileComponent implements OnInit {
   profileForm: FormGroup;
+  profileData: ProfileGetInterface;
 
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: FormBuilder,
+              private route: ActivatedRoute,
+              private ps: ProfileService) {
+    this.route.data
+      .subscribe((data: { profile: ProfileGetInterface }) => {
+        this.profileData = data.profile;
+      });
   }
 
   ngOnInit() {
@@ -22,7 +32,7 @@ export class ProfileComponent implements OnInit {
       lastName: [null, Validators.compose([Validators.required, Validators.maxLength(30)])],
       company: [null],
       email: [null],
-      phone: [null],
+      phone: [this.profileData.data.mobile],
       gender: [null],
       defaultPrefix: [null],
       country: [null],
@@ -31,7 +41,11 @@ export class ProfileComponent implements OnInit {
   }
 
   submit() {
-    console.log(this.profileForm.value);
+    if (this.profileForm.valid) {
+      const payload = this.profileForm.value;
+      this.ps.modifyProfile(payload)
+        .subscribe(res => console.log(res));
+    }
   }
 
 }
