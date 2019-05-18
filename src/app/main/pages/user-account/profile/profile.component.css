@@ -26,10 +26,6 @@
   margin-top: 20px;
 }
 
-.slim-bottom-section {
-  margin-top: 5px;
-}
-
 label {
   font-weight: 400;
   display: block;
@@ -40,9 +36,6 @@ label.prefix {
   width: 100px;
 }
 
-select.prefix-select {
-  width: 70%;
-}
 
 input[type=text] {
   padding: 8px 5px;
@@ -54,7 +47,7 @@ input[type="date"] {
 }
 
 select {
-  width: 75%;
+  width: 100%;
   padding: 8px 5px;
 }
 

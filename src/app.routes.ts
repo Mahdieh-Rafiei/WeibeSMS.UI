@@ -55,6 +55,7 @@ import {PlanListComponent} from './app/main/pages/plan/plan-list/plan-list.compo
 
 import {FundListComponent} from './app/main/pages/add-fund/fund-list/fund-list.component';
 import {FundComponent} from './app/main/pages/add-fund/fund/fund.component';
+import {ProfileResolverService} from './app/main/pages/user-account/profile/profile-resolver.service';
 
 
 export const APP_ROUTES: Routes = [
@@ -97,7 +98,11 @@ export const APP_ROUTES: Routes = [
       {path: 'create-transaction', component: CreateTransactionComponent},
     ]
   },
-  {path: 'profile', component: ProfileComponent},
+  {
+    path: 'profile', component: ProfileComponent, resolve: {
+      profile: ProfileResolverService,
+    },
+  },
   {path: 'reward-point', component: RewardPointComponent},
 
   {path: 'draft', component: DraftComponent},
