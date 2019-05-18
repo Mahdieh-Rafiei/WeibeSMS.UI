@@ -22,7 +22,7 @@ export class AuthenticationService {
   }
 
   setToken(token: string) {
-    localStorage.setItem(this.configService.tokenKeyName, token);
+    localStorage.setItem(this.configService.tokenKeyName, `Bearer ${token}`);
   }
 
   loginViaUsernamePassword(data): Observable<LoginResponseInterface> {

@@ -28,7 +28,7 @@ export class ApiService {
 
   get<T>(url: string, needAuth: boolean): Observable<T> {
     const options = {
-      headers: this.httpOptions.headers.append('token', localStorage.getItem(this.configService.tokenKeyName)),
+      headers: this.httpOptions.headers.append('Authorization', localStorage.getItem(this.configService.tokenKeyName)),
       observe: this.httpOptions.observe
     };
 
@@ -40,7 +40,7 @@ export class ApiService {
 
   post<T>(url: string, payload: T, needAuth: boolean) {
     const options = {
-      headers: this.httpOptions.headers.append('token', localStorage.getItem(this.configService.tokenKeyName)),
+      headers: this.httpOptions.headers.append('Authorization', localStorage.getItem(this.configService.tokenKeyName)),
       observe: this.httpOptions.observe
     };
 
@@ -53,7 +53,7 @@ export class ApiService {
 
   put<T>(url: string, payload: T, needAuth: boolean) {
     const options = {
-      headers: this.httpOptions.headers.append('token', localStorage.getItem(this.configService.tokenKeyName)),
+      headers: this.httpOptions.headers.append('Authorization', localStorage.getItem(this.configService.tokenKeyName)),
       observe: this.httpOptions.observe
     };
 
@@ -70,7 +70,7 @@ export class ApiService {
     };
 
     if (needAuth) {
-      options.headers = options.headers.append('token', localStorage.getItem(this.configService.tokenKeyName));
+      options.headers = options.headers.append('Authorization', localStorage.getItem(this.configService.tokenKeyName));
     }
 
     if (payload) {
