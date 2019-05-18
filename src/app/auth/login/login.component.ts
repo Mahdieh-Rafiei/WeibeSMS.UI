@@ -124,7 +124,7 @@ export class LoginComponent implements OnInit {
       this.verificationCodePart4, this.verificationCodePart5);
     const payload: VerifyMobileInterface = {
       Key: this.registrationKey,
-      Mobile: this.mobile.toString(),
+      Mobile: this.signUpForm.value.mobile,
       VerificationCode: verificationCode.toString()
     };
     this.registerService.verifyMobile(payload)

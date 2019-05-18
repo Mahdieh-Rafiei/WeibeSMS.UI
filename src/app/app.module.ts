@@ -13,6 +13,9 @@ import {ToastrModule} from 'ngx-toastr';
 import {FileDropModule} from 'ngx-file-drop';
 import {NgxPaginationModule} from 'ngx-pagination';
 
+import {MatButtonModule} from '@angular/material/button';
+import {MatSelectModule} from '@angular/material/select';
+
 import {AppComponent} from './app.component';
 import {APP_ROUTES} from '../app.routes';
 import {ApiService} from './shared/api.service';
@@ -81,6 +84,7 @@ import {PlanListComponent} from './main/pages/plan/plan-list/plan-list.component
 import {MainComponent} from './main/main.component';
 
 @NgModule({
+
   declarations: [
     AppComponent,
     LoginComponent,
@@ -133,6 +137,8 @@ import {MainComponent} from './main/main.component';
     FundListComponent,
     FundComponent,
     MainComponent
+
+
   ],
 
 
@@ -154,6 +160,9 @@ import {MainComponent} from './main/main.component';
     NgxPaginationModule,
     MainRoutingModule,
     SharedModule,
+
+    MatButtonModule,
+    MatSelectModule,
   ],
   providers: [
     ApiService,
