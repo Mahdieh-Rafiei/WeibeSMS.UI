@@ -24,15 +24,17 @@ export class RegisterService {
     return this.apiService.post<VerifyMobileInterface>(url, payload, false);
   }
 
-  saveInfo(firstName: string, lastName: string, email: string, userName: string, password: string): Observable<any> {
+  saveInfo(firstName: string, lastName: string, email: string, userName: string, password: string, key: string, mobile: number): Observable<any> {
     let payload = {
       'FirstName': firstName,
       'LastName': lastName,
       'username': userName,
       'Password': password,
-      'email': email
+      'email': email,
+      key,
+      mobile
     };
 
-    return this.apiService.post(`User/SaveInfo`, payload, true);
+    return this.apiService.post(`User/register`, payload, true);
   }
 }

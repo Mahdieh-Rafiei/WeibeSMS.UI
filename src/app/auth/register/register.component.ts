@@ -5,6 +5,7 @@ import {AuthenticationService} from '../login/authentication.service';
 import {ConfigService} from '../../shared/config.service';
 import {NotificationService} from '../../shared/notification.service';
 import {UtilityService} from '../../shared/utility.service';
+import {AuthSharedService} from '../auth-shared.service';
 
 
 @Component({
@@ -26,6 +27,7 @@ export class RegisterComponent implements OnInit {
               private router: Router,
               private configService: ConfigService,
               private notificationService: NotificationService,
+              private authSharedService: AuthSharedService,
               private utilityService: UtilityService) {
   }
 
@@ -66,8 +68,10 @@ export class RegisterComponent implements OnInit {
       this.notificationService.error('Password should has at least 1 digit letter!', '');
       return;
     }
+    const key = this.authSharedService.keyLogin;
+    const mobile = +this.authSharedService.mobile;
 
-    this.registerService.saveInfo(this.firstName, this.lastName, this.email, this.userName, this.password)
+    this.registerService.saveInfo(this.firstName, this.lastName, this.email, this.userName, this.password, key, mobile)
       .subscribe(res => {
         this.configService.authenticationChanged.emit(true);
         this.router.navigateByUrl('');
