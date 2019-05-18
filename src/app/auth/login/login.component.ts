@@ -12,6 +12,7 @@ import {SendVerificationCodeResponseInterface} from './models/send-verification-
 import {VerifyMobileInterface} from './models/verify-mobile.interface';
 import {VerifyMobileResponseInterface} from './models/verify-mobile-response.interface';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {AuthSharedService} from '../auth-shared.service';
 
 @Component({
   selector: 'app-login',
@@ -50,6 +51,7 @@ export class LoginComponent implements OnInit {
               private notificationService: NotificationService,
               private configService: ConfigService,
               private fb: FormBuilder,
+              private authSharedService: AuthSharedService,
               private router: Router) {
   }
 
@@ -90,13 +92,14 @@ export class LoginComponent implements OnInit {
 
   sendVerificationCode() {
     if (this.signUpForm.valid) {
+      this.authSharedService.mobile = this.signUpForm.value.mobile;
       const payload: SendVerificationCodeInterface = this.signUpForm.value;
       this.registerService.sendVerificationCode(payload)
         .subscribe((res: SendVerificationCodeResponseInterface) => {
           this.notificationService.success('Verification code sent successfully', '');
           console.log(res.data);
           this.verificationCodeSent = true;
-          this.registrationKey = res.data.registrationKey;
+          this.registrationKey = res.data.key;
         });
     } else {
       this.enterPressConfirm = true;
@@ -129,7 +132,8 @@ export class LoginComponent implements OnInit {
     };
     this.registerService.verifyMobile(payload)
       .subscribe((res: any) => {
-        this.authService.setToken(res.data.token);
+        this.authService.setToken(res.data);
+        this.authSharedService.keyLogin = res.data;
         this.router.navigateByUrl('/register');
       });
   }
