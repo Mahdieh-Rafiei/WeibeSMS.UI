@@ -14,6 +14,7 @@ import {FileDropModule} from 'ngx-file-drop';
 import {NgxPaginationModule} from 'ngx-pagination';
 
 import {MatButtonModule} from '@angular/material/button';
+import {MatSelectModule} from '@angular/material/select';
 
 import {AppComponent} from './app.component';
 import {APP_ROUTES} from '../app.routes';
@@ -161,6 +162,7 @@ import {MainComponent} from './main/main.component';
         SharedModule,
 
         MatButtonModule,
+        MatSelectModule,
     ],
     providers: [
         ApiService,

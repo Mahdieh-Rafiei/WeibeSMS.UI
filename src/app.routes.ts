@@ -58,7 +58,7 @@ import {FundComponent} from './app/main/pages/add-fund/fund/fund.component';
 
 
 export const APP_ROUTES: Routes = [
-  {path: '', component: DashboardComponent, canActivate: [CanActivateRouteGuard]},
+  {path: 'index', component: DashboardComponent, canActivate: [CanActivateRouteGuard]},
 
   {path: 'group/:groupId', component: GroupComponent, canActivate: [CanActivateRouteGuard]},
   {path: 'group', component: GroupListComponent, canActivate: [CanActivateRouteGuard]},

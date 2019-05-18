@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {FormControl} from '@angular/forms';
 
 
 @Component({
@@ -7,6 +8,9 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./dashboard.component.css']
 })
 export class DashboardComponent implements OnInit {
+
+    toppings = new FormControl();
+    toppingList: string[] = ['search by first name', 'search by mobile', 'search by email', 'search by last name'];
 
   constructor() { }
 
