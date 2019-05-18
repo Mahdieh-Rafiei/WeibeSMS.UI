@@ -10,65 +10,67 @@
       </div>
 
       <form class="col-md-12 profile-input" [formGroup]="profileForm" #formDir="ngForm">
-        <div class="col-md-12 no-pad">
-          <div class="col-md-4 no-pad">
-            <label>Firstname :</label>
-            <input type="text"
-                   placeholder="Enter your Firstname"
-                   formControlName="firstName">
-            <div class="text-left"
-                 *ngIf="(((profileForm.controls['firstName'].dirty || profileForm.controls['firstName'].touched) || formDir.submitted))">
-              <p class="errorMessage" *ngIf="profileForm.hasError('required', 'firstName')">
-                this filed is required!
-              </p>
-              <p class="errorMessage"
-                 *ngIf="(profileForm.controls['firstName'].hasError('maxlength'))">
-                firstname max length is 20 char!
-              </p>
+        <div class="row">
+          <div class="col-md-12">
+            <div class="col-md-4">
+              <label>Firstname :</label>
+              <input type="text"
+                     placeholder="Enter your Firstname"
+                     formControlName="firstName">
+              <div class="text-left"
+                   *ngIf="(((profileForm.controls['firstName'].dirty || profileForm.controls['firstName'].touched) || formDir.submitted))">
+                <p class="errorMessage" *ngIf="profileForm.hasError('required', 'firstName')">
+                  this filed is required!
+                </p>
+                <p class="errorMessage"
+                   *ngIf="(profileForm.controls['firstName'].hasError('maxlength'))">
+                  firstname max length is 20 char!
+                </p>
+              </div>
             </div>
-          </div>
-          <div class="col-md-4 no-pad">
-            <label>Surename :</label>
-            <input type="text"
-                   placeholder="Enter your Surename"
-                   formControlName="lastName">
-            <div class="text-left"
-                 *ngIf="((profileForm.controls['lastName'].dirty || profileForm.controls['lastName'].touched || formDir.submitted))">
-              <p class="errorMessage" *ngIf="profileForm.hasError('required', 'lastName')">
-                this filed is required!
-              </p>
-              <p class="errorMessage"
-                 *ngIf="(profileForm.controls['lastName'].hasError('maxlength')) ">
-                Surename max length is 30 char!
-              </p>
+            <div class="col-md-4">
+              <label>Surename :</label>
+              <input type="text"
+                     placeholder="Enter your Surename"
+                     formControlName="lastName">
+              <div class="text-left"
+                   *ngIf="((profileForm.controls['lastName'].dirty || profileForm.controls['lastName'].touched || formDir.submitted))">
+                <p class="errorMessage" *ngIf="profileForm.hasError('required', 'lastName')">
+                  this filed is required!
+                </p>
+                <p class="errorMessage"
+                   *ngIf="(profileForm.controls['lastName'].hasError('maxlength')) ">
+                  Surename max length is 30 char!
+                </p>
+              </div>
             </div>
-          </div>
-          <div class="col-md-4 no-pad">
-            <label>Gender :</label>
-            <select formControlName="gender">
-              <option>select</option>
-              <option>Female</option>
-              <option>Male</option>
-              <option>Unknown</option>
-            </select>
+            <div class="col-md-4">
+              <label>Gender :</label>
+              <select formControlName="gender">
+                <option>select</option>
+                <option>Female</option>
+                <option>Male</option>
+                <option>Unknown</option>
+              </select>
+            </div>
           </div>
         </div>
         <div class="col-md-12 no-pad bottom-section">
-          <div class="col-md-4 no-pad">
+          <div class="col-md-4">
             <label>Company :</label>
             <input type="text"
                    placeholder="Enter your Company"
                    formControlName="company">
           </div>
-          <div class="col-md-4 no-pad">
+          <div class="col-md-4">
             <label>Email :</label>
             <input type="text"
                    placeholder="Enter your Email"
                    formControlName="email">
           </div>
-          <div class="col-md-4 no-pad">
+          <div class="col-md-4 select">
             <label>Birthday :</label>
-            <input type="date" placeholder="Enter your Birthday">
+            <!--<input type="date" placeholder="Enter your Birthday">-->
             <mat-form-field>
               <input matInput
                      formControlName="birthday"
@@ -80,7 +82,7 @@
           </div>
         </div>
         <div class="col-md-12 no-pad bottom-section">
-          <div class="col-md-4 no-pad">
+          <div class="col-md-4">
             <label>Phone :</label>
             <input type="text"
                    placeholder="Enter your Phone"
