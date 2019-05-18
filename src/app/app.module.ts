@@ -13,8 +13,6 @@ import {ToastrModule} from 'ngx-toastr';
 import {FileDropModule} from 'ngx-file-drop';
 import {NgxPaginationModule} from 'ngx-pagination';
 
-import {MatButtonModule} from '@angular/material/button';
-
 import {AppComponent} from './app.component';
 import {APP_ROUTES} from '../app.routes';
 import {ApiService} from './shared/api.service';
@@ -156,8 +154,6 @@ import {MainComponent} from './main/main.component';
     NgxPaginationModule,
     MainRoutingModule,
     SharedModule,
-
-    MatButtonModule,
   ],
   providers: [
     ApiService,

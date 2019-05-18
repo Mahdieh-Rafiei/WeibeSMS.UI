@@ -5,23 +5,47 @@
         My Profile Setting
       </h3>
       <div class="col-md-12 change-profile-pic">
-          <img src="../../../../../assets/images/user.jpg">
-          <p>Change Avatar - <span> Remove Avatar </span></p>
+        <img src="../../../../../assets/images/user.jpg">
+        <p>Change Avatar - <span> Remove Avatar </span></p>
       </div>
 
-      <div class="col-md-12 profile-input">
+      <form class="col-md-12 profile-input" [formGroup]="profileForm" #formDir="ngForm">
         <div class="col-md-12 no-pad">
           <div class="col-md-4 no-pad">
             <label>Firstname :</label>
-            <input type="text" placeholder="Enter your Firstname">
+            <input type="text"
+                   placeholder="Enter your Firstname"
+                   formControlName="firstName">
+            <div class="text-left"
+                 *ngIf="(((profileForm.controls['firstName'].dirty || profileForm.controls['firstName'].touched) || formDir.submitted))">
+              <p class="errorMessage" *ngIf="profileForm.hasError('required', 'firstName')">
+                this filed is required!
+              </p>
+              <p class="errorMessage"
+                 *ngIf="(profileForm.controls['firstName'].hasError('maxlength'))">
+                firstname max length is 20 char!
+              </p>
+            </div>
           </div>
           <div class="col-md-4 no-pad">
             <label>Surename :</label>
-            <input type="text" placeholder="Enter your Surename">
+            <input type="text"
+                   placeholder="Enter your Surename"
+                   formControlName="lastName">
+            <div class="text-left"
+                 *ngIf="((profileForm.controls['lastName'].dirty || profileForm.controls['lastName'].touched || formDir.submitted))">
+              <p class="errorMessage" *ngIf="profileForm.hasError('required', 'lastName')">
+                this filed is required!
+              </p>
+              <p class="errorMessage"
+                 *ngIf="(profileForm.controls['lastName'].hasError('maxlength')) ">
+                Surename max length is 30 char!
+              </p>
+            </div>
           </div>
           <div class="col-md-4 no-pad">
             <label>Gender :</label>
-            <select>
+            <select formControlName="gender">
               <option>select</option>
               <option>Female</option>
               <option>Male</option>
@@ -31,22 +55,36 @@
         </div>
         <div class="col-md-12 no-pad bottom-section">
           <div class="col-md-4 no-pad">
-          <label>Company :</label>
-          <input type="text" placeholder="Enter your Company">
-        </div>
+            <label>Company :</label>
+            <input type="text"
+                   placeholder="Enter your Company"
+                   formControlName="company">
+          </div>
           <div class="col-md-4 no-pad">
             <label>Email :</label>
-            <input type="text" placeholder="Enter your Email">
+            <input type="text"
+                   placeholder="Enter your Email"
+                   formControlName="email">
           </div>
           <div class="col-md-4 no-pad">
             <label>Birthday :</label>
             <input type="date" placeholder="Enter your Birthday">
+            <mat-form-field>
+              <input matInput
+                     formControlName="birthday"
+                     [matDatepicker]="picker1"
+                     placeholder="Enter your Birthday">
+              <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+              <mat-datepicker #picker1></mat-datepicker>
+            </mat-form-field>
           </div>
         </div>
         <div class="col-md-12 no-pad bottom-section">
           <div class="col-md-4 no-pad">
             <label>Phone :</label>
-            <input type="text" placeholder="Enter your Phone">
+            <input type="text"
+                   placeholder="Enter your Phone"
+                   formControlName="phone">
           </div>
         </div>
         <div class="col-md-12 no-pad slim-bottom-section">
@@ -61,15 +99,15 @@
           </div>
         </div>
         <!--<div class="col-md-12 no-pad send-again">-->
-          <!--<div class="col-md-4 no-pad">-->
-            <!--<p><img src="../../../../../assets/images/redo.png"> Send again</p>-->
-          <!--</div>-->
+        <!--<div class="col-md-4 no-pad">-->
+        <!--<p><img src="../../../../../assets/images/redo.png"> Send again</p>-->
+        <!--</div>-->
 
         <!--</div>-->
         <div class="col-md-12 no-pad bottom-section">
           <div class="col-md-4 no-pad">
             <label class="prefix">Default prefix :</label>
-            <select class="prefix-select">
+            <select class="prefix-select" formControlName="defaultPrefix">
               <option>select</option>
               <option>Female</option>
               <option>Male</option>
@@ -78,7 +116,7 @@
           </div>
           <div class="col-md-4 no-pad">
             <label class="prefix">Country :</label>
-            <select class="prefix-select">
+            <select class="prefix-select" formControlName="country">
               <option>select</option>
               <option>Female</option>
               <option>Male</option>
@@ -100,12 +138,10 @@
             <p>Select a default prefix, that will allow you to upload and use numbers in local format.</p>
           </div>
         </div>
-
-      </div>
-      <div class="col-md-12 btn-save text-right">
-        <button class="green-btn">Save</button>
-      </div>
-
+        <div class="col-md-12 btn-save text-right">
+          <button type="submit" class="green-btn" (click)="submit()">Save</button>
+        </div>
+      </form>
     </div>
   </div>
 </div>
