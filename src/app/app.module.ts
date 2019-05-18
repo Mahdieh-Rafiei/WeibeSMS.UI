@@ -14,6 +14,7 @@ import {FileDropModule} from 'ngx-file-drop';
 import {NgxPaginationModule} from 'ngx-pagination';
 
 import {MatButtonModule} from '@angular/material/button';
+import {MatSelectModule} from '@angular/material/select';
 
 import {AppComponent} from './app.component';
 import {APP_ROUTES} from '../app.routes';
@@ -84,96 +85,97 @@ import {MainComponent} from './main/main.component';
 
 @NgModule({
 
-    declarations: [
-        AppComponent,
-        LoginComponent,
-        RegisterComponent,
-        SidebarComponent,
-        TopNavComponent,
-        DashboardComponent,
-        ForgotPasswordComponent,
-        GroupComponent,
-        GroupListComponent,
-        ContactComponent,
-        AddContactComponent,
-        SingleAddContactComponent,
-        AddContactFromFileComponent,
-        ImportContactFromOtherListsComponent,
-        UserEventComponent,
-        SendMessageComponent,
-        SendMessageFirstStepComponent,
-        SendMessageSecondStepComponent,
-        SendMessageThirdStepComponent,
-        SendMessageScheduleComponent,
-        SendMessageEventComponent,
-        DraftComponent,
-        DraftListComponent,
-        TicketListComponent,
-        TicketComponent,
-        AddTicketComponent,
-        PlanListComponent,
-        InvoiceListComponent,
-        CreateTransactionComponent,
-        SmsReportListComponent,
-        SmsReportComponent,
-        DefinitionScheduleEventComponent,
-        StatusTranslatorPipe,
-        VerificationCodeReportComponent,
-        DevelopersComponent,
-        SlimSidebarComponent,
-        UserNotificationComponent,
-        ProfileComponent,
-        ChangePasswordComponent,
-        BillingAddressComponent,
-        NumericInputDirective,
-        ProfileComponent,
-        PrivacyComponent,
-        RewardPointComponent,
-        DeactiveAccountComponent,
-        LoginLogComponent,
-        BillingComponent,
-        PaymentComponent,
-        FundListComponent,
-        FundComponent,
-        MainComponent
-  
-
-    ],
+  declarations: [
+    AppComponent,
+    LoginComponent,
+    RegisterComponent,
+    SidebarComponent,
+    TopNavComponent,
+    DashboardComponent,
+    ForgotPasswordComponent,
+    GroupComponent,
+    GroupListComponent,
+    ContactComponent,
+    AddContactComponent,
+    SingleAddContactComponent,
+    AddContactFromFileComponent,
+    ImportContactFromOtherListsComponent,
+    UserEventComponent,
+    SendMessageComponent,
+    SendMessageFirstStepComponent,
+    SendMessageSecondStepComponent,
+    SendMessageThirdStepComponent,
+    SendMessageScheduleComponent,
+    SendMessageEventComponent,
+    DraftComponent,
+    DraftListComponent,
+    TicketListComponent,
+    TicketComponent,
+    AddTicketComponent,
+    PlanListComponent,
+    InvoiceListComponent,
+    CreateTransactionComponent,
+    SmsReportListComponent,
+    SmsReportComponent,
+    DefinitionScheduleEventComponent,
+    StatusTranslatorPipe,
+    VerificationCodeReportComponent,
+    DevelopersComponent,
+    SlimSidebarComponent,
+    UserNotificationComponent,
+    ProfileComponent,
+    ChangePasswordComponent,
+    BillingAddressComponent,
+    NumericInputDirective,
+    ProfileComponent,
+    PrivacyComponent,
+    RewardPointComponent,
+    DeactiveAccountComponent,
+    LoginLogComponent,
+    BillingComponent,
+    PaymentComponent,
+    FundListComponent,
+    FundComponent,
+    MainComponent
 
 
-    imports: [
-        BrowserModule,
-        FormsModule,
-        ReactiveFormsModule,
-        HttpClientModule,
-        AngularEditorModule,
-        BsDropdownModule.forRoot(),
-        TabsModule.forRoot(),
-        CollapseModule.forRoot(),
-        RouterModule.forRoot(APP_ROUTES),
-        ToastrModule.forRoot({
-            preventDuplicates: true
-        }),
-        BrowserAnimationsModule,
-        FileDropModule,
-        NgxPaginationModule,
-        MainRoutingModule,
-        SharedModule,
+  ],
 
-        MatButtonModule,
-    ],
-    providers: [
-        ApiService,
-        ConfigService,
-        AuthenticationService,
-        RegisterService,
-        CanActivateRouteGuard,
-        NotificationService,
-        UserEventService,
-        TicketService,
-        UserAccountService
-    ],
-    bootstrap: [AppComponent]
+
+  imports: [
+    BrowserModule,
+    FormsModule,
+    ReactiveFormsModule,
+    HttpClientModule,
+    AngularEditorModule,
+    BsDropdownModule.forRoot(),
+    TabsModule.forRoot(),
+    CollapseModule.forRoot(),
+    RouterModule.forRoot(APP_ROUTES),
+    ToastrModule.forRoot({
+      preventDuplicates: true
+    }),
+    BrowserAnimationsModule,
+    FileDropModule,
+    NgxPaginationModule,
+    MainRoutingModule,
+    SharedModule,
+
+    MatButtonModule,
+    MatSelectModule,
+  ],
+  providers: [
+    ApiService,
+    ConfigService,
+    AuthenticationService,
+    RegisterService,
+    CanActivateRouteGuard,
+    NotificationService,
+    UserEventService,
+    TicketService,
+    UserAccountService
+  ],
+  bootstrap: [AppComponent]
 })
 export class AppModule {
 }
