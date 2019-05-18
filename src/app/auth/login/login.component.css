@@ -1,5 +1,5 @@
 .ws-box{
-    height: 500px;
+    height: 566px;
     position: absolute;
     margin: auto;
     top: -40px;
@@ -92,7 +92,7 @@ hr {
 }
 .wrong{
     text-align: left;
-    padding-bottom: 5px;
+    padding-bottom: 15px;
     cursor: pointer;
 }
 .wrong span:first-child{
