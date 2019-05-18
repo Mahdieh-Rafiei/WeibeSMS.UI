@@ -577,6 +577,12 @@ input.verification-code-input {
   margin-right: 10px;
   height: 35px;
   text-align: center;
+  background: rgba(235,237,242,.4);
+  color: #778796;
+  font-size: 14px;
+  font-weight: bold;
+  border-radius: .5rem;
+  border: 1px solid #ebedf2;
 }
 .resend i{
   animation: turn 1.5s ease-in-out infinite;

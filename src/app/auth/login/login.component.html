@@ -100,23 +100,23 @@
                             <input appNumericInput maxlength="1" [(ngModel)]="verificationCodePart1"
                                    (ngModelChange)="setFocus(1,$event)" (keydown)="changeFocus(1,$event)"
                                    #verificationCodePart1Element type="text"
-                                   class="col-md-2 verification-code-input">
+                                   class="col-md-2 verification-code-input" placeholder="-">
                             <input appNumericInput maxlength="1" [(ngModel)]="verificationCodePart2"
                                    (ngModelChange)="setFocus(2,$event)" (keydown)="changeFocus(2,$event)"
                                    #verificationCodePart2Element type="text"
-                                   class="col-md-2 verification-code-input">
+                                   class="col-md-2 verification-code-input" placeholder="-">
                             <input appNumericInput maxlength="1" [(ngModel)]="verificationCodePart3"
                                    (ngModelChange)="setFocus(3,$event)" (keydown)="changeFocus(3,$event)"
                                    #verificationCodePart3Element type="text"
-                                   class="col-md-2 verification-code-input">
+                                   class="col-md-2 verification-code-input" placeholder="-">
                             <input appNumericInput maxlength="1" [(ngModel)]="verificationCodePart4"
                                    (ngModelChange)="setFocus(4,$event)" (keydown)="changeFocus(4,$event)"
                                    #verificationCodePart4Element type="text"
-                                   class="col-md-2 verification-code-input">
+                                   class="col-md-2 verification-code-input" placeholder="-">
                             <input appNumericInput maxlength="1" [(ngModel)]="verificationCodePart5"
                                    (ngModelChange)="setFocus(5,$event)" (keydown)="changeFocus(5,$event)"
                                    #verificationCodePart5Element type="text"
-                                   class="col-md-2 verification-code-input">
+                                   class="col-md-2 verification-code-input" placeholder="-">
                         </div>
                         <div class="col-md-11 no-pad">
                             <app-countdown (countDownEmit)="getCountDown($event)"></app-countdown>
@@ -131,7 +131,7 @@
                 </div>
             </div>
             <div class="col-lg-12 col-md-12 footer-weib">
-                <p>©2019 Weiß SMS. All rights reserved.</p>
+                <p class="welcome-text">©2019 Weiß SMS. All rights reserved.</p>
             </div>
 
         </div>

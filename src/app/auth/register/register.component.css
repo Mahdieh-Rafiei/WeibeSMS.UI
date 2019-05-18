@@ -18,7 +18,7 @@
 }
 .subject{
     border-bottom: 1px solid #d4d4d4;
-    padding: 15px 0;
+    padding:0 ;
     display: inline-flex;
 }
 .subject-detail h4{
