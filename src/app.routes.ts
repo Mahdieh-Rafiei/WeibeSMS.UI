@@ -51,8 +51,6 @@ import {BillingAddressComponent} from './app/main/pages/biling/billing-address/b
 import {InvoiceListComponent} from './app/main/pages/biling/invoice-list/invoice-list.component';
 import {CreateTransactionComponent} from './app/main/pages/biling/create-transaction/create-transaction.component';
 
-import {PlanListComponent} from './app/main/pages/plan/plan-list/plan-list.component';
-
 import {FundListComponent} from './app/main/pages/add-fund/fund-list/fund-list.component';
 import {FundComponent} from './app/main/pages/add-fund/fund/fund.component';
 import {ProfileResolverService} from './app/main/pages/user-account/profile/profile-resolver.service';
