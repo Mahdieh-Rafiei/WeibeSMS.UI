@@ -374,7 +374,13 @@ i.fa.fa-sort {
   padding: 10px 15px;
   font-size: 12px;
 }
-
+.light-green-btn {
+  background-color: #def6f3;
+  border: 1px solid #def6f3;
+  border-radius: 4px;
+  color: #4dd4c6;
+  font-size: 12px;
+}
 .blue-btn {
   background-color: #4680fe;
   border: 1px solid #4680fe;
