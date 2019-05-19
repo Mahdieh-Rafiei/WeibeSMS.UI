@@ -5,9 +5,7 @@ import {ConfigService} from './config.service';
 import {map} from 'rxjs/operators';
 import {catchError} from 'rxjs/internal/operators';
 import {Router} from '@angular/router';
-import {AuthenticationService} from '../auth/login/authentication.service';
 import {NotificationService} from './notification.service';
-import {debug} from 'util';
 
 @Injectable({
   providedIn: 'root'
@@ -44,10 +42,20 @@ export class ApiService {
       observe: this.httpOptions.observe
     };
 
-    return this.httpClient.post<T>(this.configService.baseUrl + url, payload, needAuth ? options : this.httpOptions)
+    return this.httpClient.post<T>((this.configService.baseUrl) + url, payload, needAuth ? options : this.httpOptions)
       .pipe(
         map((res: any) => res.body),
         catchError(err => this.handleError(err, this.route, this.configService)));
+  }
+
+  postFile<File>(url: string, item: File, needAuth: boolean) {
+    const options = {
+      headers: this.httpOptions.headers.append('Authorization', localStorage.getItem(this.configService.tokenKeyName)),
+      observe: this.httpOptions.observe
+    };
+
+    return this.httpClient.post<File>(url, item, needAuth ? options : this.httpOptions)
+      .pipe();
   }
 
 

@@ -5,10 +5,19 @@
         My Profile Setting
       </h3>
       <div class="change-profile-pic">
-        <img src="../../../../../assets/images/user.jpg">
-        <p>Change Avatar - <span> Remove Avatar </span></p>
+        <app-image-upload
+          [imageSrc]="'../../../../../assets/images/user.jpg'"
+          [imageUrl]="null"
+          [uploadType]="'1'"
+          [apiUrl]="'Upload'"
+          [type]="'circle'"
+          [accept]="['image/png', 'image/jpeg', 'image/jpg']"
+          [sizeValidate]="2"
+          [validateSize]="'max size uploading is 2KB'"
+          [validateFormats]="'PNG, JPG, JEPG Formats is invalid.'"></app-image-upload>
+        <!--<p>Change Avatar - <span> Remove Avatar </span></p>-->
       </div>
-      <form class="profile-input" [formGroup]="profileForm" #formDir="ngForm">
+      <form class="profile-input" [formGroup]="profileForm" #formDir="ngForm" (ngSubmit)="submit()">
         <div class="row">
           <div class="col-12 col-md-4 form-group">
             <label>Firstname :</label>
@@ -45,10 +54,10 @@
           <div class="col-12 col-md-4 form-group">
             <label>Gender :</label>
             <select formControlName="gender">
-              <option>select</option>
-              <option>Female</option>
-              <option>Male</option>
-              <option>Unknown</option>
+              <option value="">select</option>
+              <option *ngFor="let gender of genders" [value]="gender.value">
+                {{gender.title}}
+              </option>
             </select>
           </div>
         </div>
@@ -80,39 +89,16 @@
         </div>
         <div class="row">
           <div class="col-12 col-md-4 form-group">
-            <label>Phone :</label>
-            <input type="text"
-                   placeholder="Enter your Phone"
-                   formControlName="phone">
-          </div>
-          <div class="col-12 col-md-4 form-group">
-            <div *ngIf="false">
-              <span>verify</span>
-            </div>
-            <div>
-              <label>Verify :</label>
-              <input type="text" class="" placeholder="- - - -">
-              <button class="blue-btn">Verify</button>
-            </div>
-          </div>
-        </div>
-
-        <!--<div class="col-md-12  send-again">-->
-        <!--<div class="col-md-4 ">-->
-        <!--<p><img src="../../../../../assets/images/redo.png"> Send again</p>-->
-        <!--</div>-->
-
-        <!--</div>-->
-
-        <div class="row">
-          <div class="col-12 col-md-4 form-group">
             <label>Default prefix :</label>
             <select formControlName="defaultPrefix">
-              <option>select</option>
-              <option>Female</option>
-              <option>Male</option>
-              <option>Unknown</option>
+              <option value="">select</option>
+              <option *ngFor="let gender of genders" [value]="gender.value">
+                {{gender.title}}
+              </option>
             </select>
+            <div class="detail-prefix">
+              <p>Select a default prefix, that will allow you to upload and use numbers in local format.</p>
+            </div>
           </div>
           <div class="col-12 col-md-4 form-group">
             <label>Country :</label>
@@ -123,24 +109,16 @@
               <option>Unknown</option>
             </select>
           </div>
-          <div class="col-12 col-md-4 form-group">
-            <label>Timezone :</label>
-            <select>
-              <option>select</option>
-              <option>Female</option>
-              <option>Male</option>
-              <option>Unknown</option>
-            </select>
-          </div>
         </div>
 
-        <div class="col-md-12  bottom-section">
-          <div class="col-md-3 detail-prefix ">
-            <p>Select a default prefix, that will allow you to upload and use numbers in local format.</p>
-          </div>
-        </div>
+        <!--<div class="col-md-12  send-again">-->
+        <!--<div class="col-md-4 ">-->
+        <!--<p><img src="../../../../../assets/images/redo.png"> Send again</p>-->
+        <!--</div>-->
+
+        <!--</div>-->
         <div class="col-md-12 btn-save text-right">
-          <button type="submit" class="green-btn" (click)="submit()">Save</button>
+          <button type="submit" class="green-btn">Save</button>
         </div>
       </form>
     </div>
