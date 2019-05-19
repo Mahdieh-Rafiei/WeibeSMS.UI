@@ -7,6 +7,7 @@ import {EventEmitter, Injectable, Output} from '@angular/core';
 export class ConfigService {
 
   baseUrl: string;
+  globalUrl: string;
   tokenKeyName: string;
   errorMessages: Map<number, string> = new Map<number, string>();
   sidebarMode: string = 'default';
@@ -20,6 +21,7 @@ export class ConfigService {
     // this.baseUrl = 'https://localhost:44388/appapi/v1/';
     // this.baseUrl = 'http://185.211.58.52/appapi/v1/';
     this.baseUrl = 'http://192.168.1.94:8070/app/api/';
+    this.globalUrl = 'http://192.168.1.94:8070/api/';
 
     this.errorMessages.set(1, 'Entered values are wrong!');
     this.errorMessages.set(2, 'Get verification code again please!');

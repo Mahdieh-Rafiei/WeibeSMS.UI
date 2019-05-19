@@ -48,6 +48,12 @@ h6 {
 select.light-blue-btn {
     margin-right: 10px;
     cursor: pointer;
+    padding-left: 0;
+}
+
+select.light-blue-btn {
+    margin-right: 10px;
+    cursor: pointer;
 }
 
 blockquote {
@@ -121,8 +127,7 @@ article, aside, details, figcaption, figure, footer, header, hgroup, main, menu,
 
 .btn-section {
     padding: 15px 25px;
-    background: #ffffff;
-    margin: 0 0 30px 235px;
+    margin: 0 0 0 235px;
     -ms-overflow-x: hidden;
     overflow-x: hidden;
     overflow-y: scroll;
@@ -633,8 +638,46 @@ input.verification-code-input {
     padding-top: 5px;
 }
 
-.red-text {
+.weib {
+    font-weight: 600;
+    color: #6c7293;
+}
+
+.footer-weib {
+    padding-top: 10px;
+}
+
+input.verification-code-input {
+    width: 16%;
+    margin-right: 10px;
+    height: 35px;
+    text-align: center;
+    background: rgba(235, 237, 242, .4);
+    color: #778796;
+    font-size: 14px;
+    font-weight: bold;
+    border-radius: .5rem;
+    border: 1px solid #ebedf2;
+}
+
+.resend i {
+    animation: turn 1.5s ease-in-out infinite;
     color: #f4472c;
+}
+
+.resend {
+    text-align: center;
+    cursor: pointer;
+    color: #f4472c;
+    padding-top: 5px;
+}
+
+.red-text {
+    color: #fd397a;
+}
+
+.yellow-text {
+    color: #ffbd3d;
 }
 
 .mobile-num {
@@ -643,11 +686,13 @@ input.verification-code-input {
 
 /*//////// log /////////*/
 .ws-login-input:focus, input.verification-code-input:focus {
+
     border: 1px solid #2cd9f4;
 }
 
 .error {
     color: #f4472c;
+    border: 1px solid #2cd9f4;
 }
 
 /*------------------------padding and margin--------------------------*/
@@ -773,4 +818,56 @@ input, select, textarea {
     .search-wrapper {
         width: 100%;
     }
+}
+
+.select .mat-form-field {
+    width: 100%;
+}
+
+.select .mat-form-field-underline {
+    display: none;
+}
+
+.select .mat-form-field-infix {
+    width: 100%;
+    min-height: 40px;
+    padding: 10px;
+    position: relative;
+    z-index: 1;
+    border: 1px solid #ced4da;
+    border-radius: .25rem;
+}
+
+.select .mat-form-field-wrapper {
+    padding-bottom: 0;
+}
+
+.select span {
+    line-height: 20px;
+}
+
+.select label.mat-empty.mat-form-field-empty {
+    padding-left: 8px;
+}
+
+.select label.mat-empty.mat-form-field-empty {
+    top: 20px;
+    display: block !important;
+}
+
+.mat-datepicker-toggle {
+    padding: 6px 7px 9px 7px;
+    border: 1px solid #d6d6e0;
+    border-radius: 3px;
+    margin-right: 4px;
+}
+
+.mat-form-field-label-wrapper label {
+    display: none !important;
+}
+
+.mat-form-field-label-wrapper .mat-form-field-label, .mat-form-field-appearance-legacy.mat-form-field-can-float.mat-form-field-should-float .mat-form-field-label {
+    -webkit-transform: translateY(0) scale(0) perspective(0) translateZ(0);
+    transform: translateY(0) scale(0) perspective(0) translateZ(0);
+    -ms-transform: translateY(0) scale(0);
 }

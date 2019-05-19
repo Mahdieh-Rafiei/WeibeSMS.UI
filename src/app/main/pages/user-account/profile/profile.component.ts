@@ -13,6 +13,8 @@ export class ProfileComponent implements OnInit {
   profileForm: FormGroup;
   profileData: ProfileGetInterface;
 
+  genders = [{title: 'Unknown', value: 1}, {title: 'Female', value: 2}, {title: 'Male', value: 3}];
+
   constructor(private fb: FormBuilder,
               private route: ActivatedRoute,
               private ps: ProfileService) {
@@ -24,6 +26,7 @@ export class ProfileComponent implements OnInit {
 
   ngOnInit() {
     this.createForm();
+    this.fillProfile(this.profileForm);
   }
 
   createForm() {
@@ -32,10 +35,22 @@ export class ProfileComponent implements OnInit {
       lastName: [null, Validators.compose([Validators.required, Validators.maxLength(30)])],
       company: [null],
       email: [null],
-      phone: [this.profileData.data.mobile],
-      gender: [null],
+      gender: [''],
       defaultPrefix: [null],
       country: [null],
+      birthday: [null]
+    });
+  }
+
+  fillProfile(profileForm) {
+    profileForm.patchValue({
+      firstName: this.profileData.data.firstName,
+      lastName: this.profileData.data.lastName,
+      company: this.profileData.data.companyName,
+      email: this.profileData.data.email,
+      gender: this.profileData.data.gender,
+      defaultPrefix: this.profileData.data.defaultPrefix,
+      country: this.profileData.data.countryId,
       birthday: [null]
     });
   }
@@ -43,6 +58,11 @@ export class ProfileComponent implements OnInit {
   submit() {
     if (this.profileForm.valid) {
       const payload = this.profileForm.value;
+      payload['gender'] = +payload['gender'];
+      if (this.profileForm.value.birthday) {
+        const date = new Date(this.profileForm.value.birthday).getTime() / 1000;
+        payload['birthday'] = date;
+      }
       this.ps.modifyProfile(payload)
         .subscribe(res => console.log(res));
     }
