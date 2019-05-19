@@ -59,7 +59,7 @@ import {ProfileResolverService} from './app/main/pages/user-account/profile/prof
 
 
 export const APP_ROUTES: Routes = [
-  {path: '', component: DashboardComponent, canActivate: [CanActivateRouteGuard]},
+  {path: 'index', component: DashboardComponent, canActivate: [CanActivateRouteGuard]},
 
   {path: 'group/:groupId', component: GroupComponent, canActivate: [CanActivateRouteGuard]},
   {path: 'group', component: GroupListComponent, canActivate: [CanActivateRouteGuard]},

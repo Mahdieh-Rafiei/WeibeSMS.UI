@@ -68,4 +68,19 @@
             </div>
         </div>
     </div>
+
+    <div class="col-md-12 div-section">
+        <mat-form-field>
+            <mat-label>Search anything you think :</mat-label>
+            <mat-select [formControl]="toppings" multiple>
+                <mat-option *ngFor="let topping of toppingList" [value]="topping">{{topping}}</mat-option>
+            </mat-select>
+        </mat-form-field>
+    </div>
+
+    <form class="search-wrapper search">
+        <input type="text" [(ngModel)]="phrase"  name="filter">
+        <button (click)="getDataWithSearch()" type="submit"><i class="fa fa-search"></i></button>
+    </form>
 </div>
+
