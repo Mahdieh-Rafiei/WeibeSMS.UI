@@ -1,17 +1,15 @@
 <nav class="sidebar" id="style-1">
     <!--menu-->
     <div class="list-group">
+        <!--Logo-->
         <div class="sidebar-section">
             <div class="logo-box">
-                <img src="../../../../assets/images/1.png" class="img-responsive center-block">
+                <img src="../../../../assets/images/logo-dash.svg" class="img-responsive center-block">
             </div>
-            <a class="list-group-item" [routerLink]="['index']">
-                <i class="fa fa-home"></i> Dashboard
-            </a>
         </div>
         <div class="nested-menu">
             <a class="list-group-item" (click)="addExpandClass('account')">
-                <i class="fa fa-cog"></i> account
+                <i class="fa fa-user"></i> Hi <span>IPE</span>
                 <span class="fa fa-chevron-right"></span>
             </a>
             <li class="nested" [class.expand]="showMenu === 'account'">
@@ -19,23 +17,28 @@
                     <li>
                         <a [routerLink]="['../privacy']">
                             <i class="fa fa-monument"></i>&nbsp;
-                            <span>Privacy</span>
+                            <span><i class="fa fa-circle"></i> Privacy</span>
                         </a>
                     </li>
                     <li>
                         <a [routerLink]="['../profile']">
                             <i class="fa fa-monument"></i>&nbsp;
-                            <span>Profile</span>
+                            <span><i class="fa fa-circle"></i> Profile</span>
                         </a>
                     </li>
                     <li>
                         <a [routerLink]="['../reward-point']">
                             <i class="fa fa-monument"></i>&nbsp;
-                            <span>Reward Points</span>
+                            <span><i class="fa fa-circle"></i> Reward Points</span>
                         </a>
                     </li>
                 </ul>
             </li>
+        </div>
+        <div class="sidebar-section">
+            <a class="list-group-item" [routerLink]="['index']">
+                <i class="fa fa-home"></i> Dashboard
+            </a>
         </div>
         <div class="sidebar-section">
             <a class="list-group-item" [routerLink]="['../group']">
@@ -52,19 +55,19 @@
                     <li>
                         <a href="javascript:void(0)">
                             <i class="fa fa-monument"></i>&nbsp;
-                            <span>Simple</span>
+                            <span><i class="fa fa-circle"></i> Simple</span>
                         </a>
                     </li>
                     <li>
                         <a href="javascript:void(0)">
                             <i class="fa fa-monument"></i>&nbsp;
-                            <span>Schedule</span>
+                            <span><i class="fa fa-circle"></i> Schedule</span>
                         </a>
                     </li>
                     <li>
                         <a href="javascript:void(0)">
                             <i class="fa fa-monument"></i>&nbsp;
-                            <span>Event base</span>
+                            <span><i class="fa fa-circle"></i> Event base</span>
                         </a>
                     </li>
                 </ul>
@@ -90,19 +93,19 @@
                     <li>
                         <a [routerLink]="['../draft-list']">
                             <i class="fa fa-monument"></i>&nbsp;
-                            <span>Draft</span>
+                            <span><i class="fa fa-circle"></i> Draft</span>
                         </a>
                     </li>
                     <li>
                         <a [routerLink]="['../schedule-event']">
                             <i class="fa fa-monument"></i>&nbsp;
-                            <span>schedule,events</span>
+                            <span><i class="fa fa-circle"></i> schedule,events</span>
                         </a>
                     </li>
                     <li>
                         <a [routerLink]="['../user-event']">
                             <i class="fa fa-monument"></i>&nbsp;
-                            <span>event_field</span>
+                            <span><i class="fa fa-circle"></i> event_field</span>
                         </a>
                     </li>
                 </ul>

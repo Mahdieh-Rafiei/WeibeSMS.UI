@@ -40,6 +40,7 @@ import {UserNotificationComponent} from './app/main/pages/user-notification/user
 
 import {PrivacyComponent} from './app/main/pages/user-account/privacy/privacy.component';
 import {ChangePasswordComponent} from './app/main/pages/user-account/privacy/change-password/change-password.component';
+import {ChangeNumberComponent} from './app/main/pages/user-account/privacy/change-number/change-number.component';
 import {DeactiveAccountComponent} from './app/main/pages/user-account/privacy/deactive-account/deactive-account.component';
 import {LoginLogComponent} from './app/main/pages/user-account/privacy/login-log/login-log.component';
 import {ProfileComponent} from './app/main/pages/user-account/profile/profile.component';
@@ -84,6 +85,7 @@ export const APP_ROUTES: Routes = [
   },
   {
     path: 'privacy', component: PrivacyComponent, children: [
+      {path: 'change-number', component: ChangeNumberComponent},
       {path: 'change-password', component: ChangePasswordComponent},
       {path: 'deactive-account', component: DeactiveAccountComponent},
       {path: 'login-log', component: LoginLogComponent},

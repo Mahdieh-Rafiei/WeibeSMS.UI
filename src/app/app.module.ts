@@ -82,6 +82,7 @@ import {SharedModule} from './shared/module/shared.module';
 import {MainRoutingModule} from './main/main-routing.module';
 import {PlanListComponent} from './main/pages/plan/plan-list/plan-list.component';
 import {MainComponent} from './main/main.component';
+import { ChangeNumberComponent } from './main/pages/user-account/privacy/change-number/change-number.component';
 
 @NgModule({
 
@@ -136,7 +137,8 @@ import {MainComponent} from './main/main.component';
         PaymentComponent,
         FundListComponent,
         FundComponent,
-        MainComponent
+        MainComponent,
+        ChangeNumberComponent
   
 
     ],
