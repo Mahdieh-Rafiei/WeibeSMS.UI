@@ -50,7 +50,7 @@ export class ProfileComponent implements OnInit {
       email: this.profileData.data.email,
       gender: this.profileData.data.gender,
       defaultPrefix: this.profileData.data.defaultPrefix,
-      country: this.profileData.data.companyName,
+      country: this.profileData.data.countryId,
       birthday: [null]
     });
   }

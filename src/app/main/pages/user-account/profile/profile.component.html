@@ -74,16 +74,16 @@
                    placeholder="Enter your Email"
                    formControlName="email">
           </div>
-          <div class="col-12 col-md-4 form-group">
+
+          <div class="col-12 col-md-4 form-group select">
             <label>Birthday :</label>
-            <!--<input type="date" placeholder="Enter your Birthday">-->
             <mat-form-field>
               <input matInput
                      formControlName="birthday"
-                     [matDatepicker]="picker1"
+                     [matDatepicker]="picker"
                      placeholder="Enter your Birthday">
-              <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
-              <mat-datepicker #picker1></mat-datepicker>
+              <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+              <mat-datepicker #picker></mat-datepicker>
             </mat-form-field>
           </div>
         </div>
@@ -111,12 +111,6 @@
           </div>
         </div>
 
-        <!--<div class="col-md-12  send-again">-->
-        <!--<div class="col-md-4 ">-->
-        <!--<p><img src="../../../../../assets/images/redo.png"> Send again</p>-->
-        <!--</div>-->
-
-        <!--</div>-->
         <div class="col-md-12 btn-save text-right">
           <button type="submit" class="green-btn">Save</button>
         </div>
