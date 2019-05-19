@@ -60,7 +60,8 @@ import {DefinitionScheduleEventComponent} from './main/pages/definition-schedule
 import {TicketService} from './main/pages/tickets/ticket.service';
 import {StatusTranslatorPipe} from './main/pages/tickets/status-translator.pipe';
 import {VerificationCodeReportComponent} from './main/pages/sms-report/verification-code-report/verification-code-report.component';
-import {DevelopersComponent} from './main/pages/developers/developers.component';
+import { DeveloperListComponent } from './main/pages/developers/developer-list/developer-list.component';
+import { DeveloperComponent } from './main/pages/developers/developer/developer.component';
 import {SlimSidebarComponent} from './main/layout/slim-sidebar/slim-sidebar.component';
 import {UserNotificationComponent} from './main/pages/user-notification/user-notification.component';
 
@@ -82,6 +83,9 @@ import {SharedModule} from './shared/module/shared.module';
 import {MainRoutingModule} from './main/main-routing.module';
 import {PlanListComponent} from './main/pages/plan/plan-list/plan-list.component';
 import {MainComponent} from './main/main.component';
+import { ChangeNumberComponent } from './main/pages/user-account/privacy/change-number/change-number.component';
+import { VerifyNumberComponent } from './main/pages/user-account/privacy/change-number/verify-number/verify-number.component';
+
 
 @NgModule({
 
@@ -120,7 +124,6 @@ import {MainComponent} from './main/main.component';
         DefinitionScheduleEventComponent,
         StatusTranslatorPipe,
         VerificationCodeReportComponent,
-        DevelopersComponent,
         SlimSidebarComponent,
         UserNotificationComponent,
         ProfileComponent,
@@ -136,7 +139,11 @@ import {MainComponent} from './main/main.component';
         PaymentComponent,
         FundListComponent,
         FundComponent,
-        MainComponent
+        MainComponent,
+        ChangeNumberComponent,
+        VerifyNumberComponent,
+        DeveloperListComponent,
+        DeveloperComponent
   
 
     ],
