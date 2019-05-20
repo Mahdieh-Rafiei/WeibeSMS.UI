@@ -106,7 +106,7 @@ export class ApiService {
       errorMessage = `Status Code: ${error.status}\nMessage: ${error.message}\n `;
     }
 
-    let errorCode = parseInt(error.error.Message);
+    let errorCode = parseInt(error.error && error.error.Message);
     let errorNotificationMessage = configService.errorMessages.get(errorCode);
     this.notificationService.error(errorNotificationMessage, 'Error');
     return throwError(errorMessage);

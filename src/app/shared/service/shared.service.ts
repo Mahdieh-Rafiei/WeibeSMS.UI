@@ -3,6 +3,8 @@ import {Observable} from 'rxjs';
 import {ConfigService} from '../config.service';
 import {ApiService} from '../api.service';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
+import {CountryInterface} from '../models/country.interface';
+import {CityInterface} from '../models/city.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -35,5 +37,15 @@ export class SharedService {
   uploadFile(file, apiService) {
     const url = `http://192.168.1.94:8070/app/api/${apiService}`;
     return this.as.postFile<File>(url, file, true);
+  }
+
+  getCountry(): Observable<CountryInterface> {
+    const url = `BaseData/country`;
+    return this.as.get(url, true);
+  }
+
+  getCity(countryId): Observable<CityInterface> {
+    const url = `BaseData/country/${countryId}/city`;
+    return this.as.get(url, true);
   }
 }

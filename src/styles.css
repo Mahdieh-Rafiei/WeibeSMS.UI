@@ -546,9 +546,12 @@ i.fa.fa-sort {
 }
 
 .errorMessage {
+  font-size: 12px;
+  color: #f4472c;
     display: inline;
     font-size: 12px;
     color: #f4472c;
+
 }
 
 /*login*/
@@ -881,3 +884,6 @@ input, select, textarea {
     transform: translateY(0) scale(0) perspective(0) translateZ(0);
     -ms-transform: translateY(0) scale(0);
 }
+ li{
+   list-style-type: none;
+ }

@@ -6,6 +6,9 @@ import {ConfigService} from '../../shared/config.service';
 import {NotificationService} from '../../shared/notification.service';
 import {UtilityService} from '../../shared/utility.service';
 import {AuthSharedService} from '../auth-shared.service';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {Gender} from '../../shared/enums';
+import {RegisterInterface} from './models/register.interface';
 
 
 @Component({
@@ -22,9 +25,18 @@ export class RegisterComponent implements OnInit {
   email: string = '';
   confirmPassword: string = '';
 
+  registerForm: FormGroup;
+  disableButton: boolean = true;
+  digit: boolean = true;
+  notMatch: boolean = false;
+  genders = [{title: 'Unknown', value: 1},
+    {title: 'Female', value: 2},
+    {title: 'Male', value: 3}];
+
   constructor(private registerService: RegisterService,
               private authService: AuthenticationService,
               private router: Router,
+              private fb: FormBuilder,
               private configService: ConfigService,
               private notificationService: NotificationService,
               private authSharedService: AuthSharedService,
@@ -32,54 +44,68 @@ export class RegisterComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.createForm();
   }
 
-  register() {
+  createForm() {
+    this.registerForm = this.fb.group({
+      firstName: [null, Validators.compose([Validators.required, Validators.maxLength(20)])],
+      lastName: [null, Validators.compose([Validators.required, Validators.maxLength(30)])],
+      userName: [null, Validators.compose([Validators.required, Validators.minLength(6)])],
+      password: [null, Validators.compose([Validators.required, Validators.minLength(8),
+        this.utilityService.Digit, this.utilityService.UppercaseLetter, this.utilityService.LowercaseLetter, this.utilityService.Symbol])],
+      email: [null],
+      confirmPassword: [null],
+      companyName: [null],
+      gender: [''],
+      // countryId: [null],
+      // defaultPrefix: [null]
+    });
+  }
 
-    if (this.firstName.length === 0)
-      this.notificationService.error('First name is required!', '');
+  get hasDigit() {
+    return this.registerForm.get('password');
+  }
 
-    if (this.lastName.length === 0) {
-      this.notificationService.error('Last name is required!', '');
-      return;
+  get upperCase() {
+    return this.registerForm.get('password');
+  }
+
+  get lowerCase() {
+    return this.registerForm.get('password');
+  }
+
+  get hasSymbol() {
+    return this.registerForm.get('password');
+  }
+
+  submit() {
+    if (this.registerForm.valid && !this.notMatch) {
+      this.confirmPasswordOut();
+      const key = this.authSharedService.keyLogin;
+      const mobile = +this.authSharedService.mobile;
+      const payload: RegisterInterface = this.registerForm.value;
+      payload['key'] = key;
+      payload['mobile'] = mobile;
+      delete payload['confirmPassword'];
+      this.registerService.saveInfo(payload)
+        .subscribe(res => {
+          this.authService.setToken(res.data.token);
+          this.configService.authenticationChanged.emit(true);
+          this.router.navigateByUrl('index');
+        });
     }
-
-    if (this.userName.length < 6) {
-      this.notificationService.error('User name should has at least 6 characters', '');
-      return;
-    }
-
-    if (this.password.length < 8) {
-      this.notificationService.error('Password should has at least 8 characters', '');
-      return;
-    }
-
-    if (!this.utilityService.hasCapitalLetter(this.password)) {
-      this.notificationService.error('Password should has at least 1 capital letter!', '');
-      return;
-    }
-
-    if (!this.utilityService.hasLowercaseLetter(this.password)) {
-      this.notificationService.error('Password should has at least 1 lowercase letter!', '');
-      return;
-    }
-
-    if (!this.utilityService.hasDigit(this.password)) {
-      this.notificationService.error('Password should has at least 1 digit letter!', '');
-      return;
-    }
-    const key = this.authSharedService.keyLogin;
-    const mobile = +this.authSharedService.mobile;
-
-    this.registerService.saveInfo(this.firstName, this.lastName, this.email, this.userName, this.password, key, mobile)
-      .subscribe(res => {
-        this.configService.authenticationChanged.emit(true);
-        this.router.navigateByUrl('');
-      });
   }
 
   confirmPasswordOut() {
-    if (this.password !== this.confirmPassword)
-      this.notificationService.warning('Confirm value is not correct!');
+    if (this.registerForm.value.password !== this.registerForm.value.confirmPassword) {
+      this.notMatch = true;
+    } else {
+      this.notMatch = false;
+    }
+  }
+
+  confirm(event) {
+    this.disableButton = !event.target.checked;
   }
 }
