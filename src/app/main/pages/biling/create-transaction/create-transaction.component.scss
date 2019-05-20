@@ -18,7 +18,14 @@
   padding: 10px 0 0;
 }
 
-td i{
-  padding: 4px;
-  border-radius: 50%;
+.light-yellow-btn, .light-green-btn {
+  padding: 5px 10px;
+}
+
+i.fa.fa-arrow-up {
+  color: #4dd4c6;
+}
+
+i.fa.fa-arrow-down {
+  color: #fd397a;
 }
