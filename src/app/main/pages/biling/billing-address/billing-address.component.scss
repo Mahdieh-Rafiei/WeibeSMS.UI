@@ -1,0 +1,53 @@
+.div-section {
+  border-radius: 0 0 1rem 1rem;
+}
+
+.profile {
+  h4 {
+    font-weight: 600;
+    line-height: 1;
+    margin-bottom: 0;
+  }
+  p {
+    font-size: 12px;
+    padding-top: 5px;
+  }
+
+  label {
+    display: block;
+    color: #6c7293;
+    font-weight: 600;
+    font-size: 12px;
+  }
+
+  .input-box {
+    padding: 15px 0;
+  }
+
+  input {
+    width: 100%;
+    padding: 8px 5px;
+  }
+  textarea {
+    width: 100%;
+  }
+  select {
+    width: 100%;
+    padding: 8px 5px;
+  }
+  .yellow-text {
+    padding: 0 0 15px;
+  }
+  .mat-label {
+    color: #6c7293;
+    font-size: 12px;
+    font-weight: 400;
+  }
+  .vat-num {
+    margin-top: 10px;
+  }
+  ::placeholder {
+    color: #b5b5b5;
+    font-size: 12px;
+  }
+}

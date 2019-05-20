@@ -76,9 +76,9 @@ export class LoginComponent implements OnInit {
       const payload: LoginInterface = this.signInForm.value;
       this.authService.loginViaUsernamePassword(payload)
         .subscribe((res: LoginResponseInterface) => {
-          // this.authService.setToken(res.data.token);
+          this.router.navigateByUrl('index');
+          this.authService.setToken(res.data.token);
           this.configService.authenticationChanged.emit(true);
-          this.router.navigateByUrl('');
         });
     }
   }

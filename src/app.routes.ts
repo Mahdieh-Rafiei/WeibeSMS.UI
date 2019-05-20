@@ -28,7 +28,9 @@ import {TicketComponent} from './app/main/pages/tickets/ticket/ticket.component'
 import {AddTicketComponent} from './app/main/pages/tickets/add-ticket/add-ticket.component';
 import {TicketListComponent} from './app/main/pages/tickets/ticket-list/ticket-list.component';
 
-import {DevelopersComponent} from './app/main/pages/developers/developers.component';
+import {DeveloperComponent} from './app/main/pages/developers/developer/developer.component';
+import {DeveloperListComponent} from './app/main/pages/developers/developer-list/developer-list.component';
+
 
 import {SmsReportComponent} from './app/main/pages/sms-report/sms-report/sms-report.component';
 import {SmsReportListComponent} from './app/main/pages/sms-report/sms-report-list/sms-report-list.component';
@@ -40,6 +42,7 @@ import {UserNotificationComponent} from './app/main/pages/user-notification/user
 
 import {PrivacyComponent} from './app/main/pages/user-account/privacy/privacy.component';
 import {ChangePasswordComponent} from './app/main/pages/user-account/privacy/change-password/change-password.component';
+import {ChangeNumberComponent} from './app/main/pages/user-account/privacy/change-number/change-number.component';
 import {DeactiveAccountComponent} from './app/main/pages/user-account/privacy/deactive-account/deactive-account.component';
 import {LoginLogComponent} from './app/main/pages/user-account/privacy/login-log/login-log.component';
 import {ProfileComponent} from './app/main/pages/user-account/profile/profile.component';
@@ -54,6 +57,8 @@ import {CreateTransactionComponent} from './app/main/pages/biling/create-transac
 import {FundListComponent} from './app/main/pages/add-fund/fund-list/fund-list.component';
 import {FundComponent} from './app/main/pages/add-fund/fund/fund.component';
 import {ProfileResolverService} from './app/main/pages/user-account/profile/profile-resolver.service';
+import {VerifyNumberComponent} from './app/main/pages/user-account/privacy/change-number/verify-number/verify-number.component';
+import {BillingAddressResolverService} from './app/main/pages/biling/billing-address/billing-address-resolver.service';
 
 
 export const APP_ROUTES: Routes = [
@@ -82,20 +87,28 @@ export const APP_ROUTES: Routes = [
   },
   {
     path: 'privacy', component: PrivacyComponent, children: [
+      {path: 'change-number', component: ChangeNumberComponent},
       {path: 'change-password', component: ChangePasswordComponent},
       {path: 'deactive-account', component: DeactiveAccountComponent},
       {path: 'login-log', component: LoginLogComponent},
 
     ]
   },
+
   {
     path: 'billing', component: BillingComponent, children: [
-      {path: 'billing-address', component: BillingAddressComponent},
+      {
+        path: 'billing-address', component: BillingAddressComponent, resolve: {
+          billingAddress: BillingAddressResolverService,
+        },
+      },
       {path: 'invoice-list', component: InvoiceListComponent},
       {path: 'payment', component: PaymentComponent},
       {path: 'create-transaction', component: CreateTransactionComponent},
+
     ]
   },
+  {path: 'verify-number', component: VerifyNumberComponent},
   {
     path: 'profile', component: ProfileComponent, resolve: {
       profile: ProfileResolverService,
@@ -123,7 +136,8 @@ export const APP_ROUTES: Routes = [
   {path: 'sms-report', component: SmsReportComponent},
   {path: 'report-verification', component: VerificationCodeReportComponent},
 
-  {path: 'developers', component: DevelopersComponent},
+  {path: 'developer', component: DeveloperComponent},
+  {path: 'developer-list', component: DeveloperListComponent},
 
   {path: 'notification', component: UserNotificationComponent},
 
@@ -131,6 +145,8 @@ export const APP_ROUTES: Routes = [
 
   {path: 'user-event', component: UserEventComponent},
 
+  {path: 'developer-list', component: DeveloperListComponent},
+  {path: 'developer', component: DeveloperComponent},
 
   {path: '**', redirectTo: 'notfound'}
 ];
