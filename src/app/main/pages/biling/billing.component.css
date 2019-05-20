@@ -5,24 +5,37 @@
     display: flex;
     border-bottom: 1px solid #e2e5ec;
 }
+.title-tab:first-child{
+    margin: 0 5px 0 0;
+}
 .title-tab{
     cursor: pointer;
+    margin: 0 5px;
 }
 .title-tab p{
     font-weight: 600;
     padding: 5px 15px;
     border-radius: 5px;
-    color: #6c7293;
+    color: #5867dd;
     text-align: center;
 }
 .title-tab p:hover{
-    color: #6c7293 !important;
+    color: #5867dd !important;
     background-color: #f4f5f9;
 }
 .active-tab{
     color: #ffffff !important;
-    background-color: #6c7293;
+    background-color: #5867dd;
 }
-.hover-tab{
 
+@media (max-width: 991px) and (min-width: 768px) {
+    .privacy{
+        display: block;
+    }
+}
+
+@media (max-width: 767px) and (min-width: 320px) {
+    .privacy{
+        display: block;
+    }
 }

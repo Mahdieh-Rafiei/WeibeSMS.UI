@@ -46,14 +46,8 @@ h6 {
 }
 
 select.light-blue-btn {
-    margin-right: 10px;
     cursor: pointer;
     padding-left: 0;
-}
-
-select.light-blue-btn {
-    margin-right: 10px;
-    cursor: pointer;
 }
 
 blockquote {
@@ -613,6 +607,10 @@ i.fa.fa-sort {
     padding-top: 10px;
 }
 
+.export {
+
+}
+
 input.verification-code-input {
     width: 16%;
     margin-right: 10px;
@@ -734,6 +732,18 @@ input.verification-code-input {
 
 .pt-5 {
     padding-top: 20px;
+}
+
+.mr-1 {
+    margin-right: 4px;
+}
+
+.mr-2 {
+    margin-right: 8px;
+}
+
+.mr-3 {
+    margin-right: 12px;
 }
 
 /*----------------------------alert-box--------------------------------*/
