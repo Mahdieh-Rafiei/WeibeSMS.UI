@@ -5,6 +5,8 @@ import {SendVerificationCodeInterface} from '../login/models/send-verification-c
 import {SendVerificationCodeResponseInterface} from '../login/models/send-verification-code-response.interface';
 import {VerifyMobileResponseInterface} from '../login/models/verify-mobile-response.interface';
 import {VerifyMobileInterface} from '../login/models/verify-mobile.interface';
+import {RegisterInterface} from './models/register.interface';
+import {RegisterResponseInterface} from './models/register-response.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -24,17 +26,8 @@ export class RegisterService {
     return this.apiService.post<VerifyMobileInterface>(url, payload, false);
   }
 
-  saveInfo(firstName: string, lastName: string, email: string, userName: string, password: string, key: string, mobile: number): Observable<any> {
-    let payload = {
-      'FirstName': firstName,
-      'LastName': lastName,
-      'username': userName,
-      'Password': password,
-      'email': email,
-      key,
-      mobile
-    };
-
-    return this.apiService.post(`User/register`, payload, true);
+  saveInfo(payload): Observable<RegisterResponseInterface> {
+    const url = `User/register`;
+    return this.apiService.post<RegisterInterface>(url, payload, false);
   }
 }

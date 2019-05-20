@@ -76,7 +76,7 @@ export class LoginComponent implements OnInit {
       const payload: LoginInterface = this.signInForm.value;
       this.authService.loginViaUsernamePassword(payload)
         .subscribe((res: LoginResponseInterface) => {
-          this.authService.setToken(res.data.token);
+          // this.authService.setToken(res.data.token);
           this.configService.authenticationChanged.emit(true);
           this.router.navigateByUrl('');
         });
@@ -132,7 +132,7 @@ export class LoginComponent implements OnInit {
     };
     this.registerService.verifyMobile(payload)
       .subscribe((res: any) => {
-        this.authService.setToken(res.data);
+        // this.authService.setToken(res.data);
         this.authSharedService.keyLogin = res.data;
         this.router.navigateByUrl('/register');
       });

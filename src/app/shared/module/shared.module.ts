@@ -1,5 +1,5 @@
 import {NgModule} from '@angular/core';
-import {CountDownComponent} from '../../auth/count-down';
+import {CountDownComponent} from '../component/count-down/count-down';
 import {CommonModule} from '@angular/common';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {MatCoreModule} from './mat-core-module';

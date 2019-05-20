@@ -98,7 +98,7 @@
               <p class="text-left welcome-text">Enter verification code</p>
             </div>
             <div class="col-md-12 input-box-vc no-pad">
-              <input appNumericInput maxlength="1" [(ngModel)]="verificationCodePart1"
+              <input appNumericInput maxlength="1" autofocus [(ngModel)]="verificationCodePart1"
                      (ngModelChange)="setFocus(1,$event)" (keydown)="changeFocus(1,$event)"
                      #verificationCodePart1Element type="text"
                      class="col-md-2 verification-code-input" placeholder="-">
