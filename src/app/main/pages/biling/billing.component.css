@@ -12,18 +12,18 @@
     cursor: pointer;
     margin: 0 5px;
 }
-.title-tab p{
+.title-tab a{
     font-weight: 600;
     padding: 5px 15px;
     border-radius: 5px;
     color: #5867dd;
     text-align: center;
 }
-.title-tab p:hover{
+.title-tab a:hover{
     color: #5867dd !important;
     background-color: #f4f5f9;
 }
-.active-tab{
+.title-tab a.active{
     color: #ffffff !important;
     background-color: #5867dd;
 }

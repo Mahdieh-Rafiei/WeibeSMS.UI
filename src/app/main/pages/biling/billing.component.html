@@ -1,16 +1,16 @@
 <div class="main-container">
     <div class="col-md-12 privacy">
         <div class="title-tab no-pad">
-            <p class="active-tab" [routerLink]="['invoice-list']">Invoice</p>
+            <a  [routerLink]="['invoice-list']">Invoice</a>
         </div>
         <div class="title-tab no-pad">
-            <p [routerLink]="['payment']">Payment log</p>
+            <a [routerLink]="['payment']">Payment log</a>
         </div>
         <div class="title-tab no-pad">
-            <p class="none-tab" [routerLink]="['create-transaction']">Transaction log</p>
+            <a class="none-tab" [routerLink]="['create-transaction']">Transaction log</a>
         </div>
         <div class="title-tab no-pad">
-            <p class="none-tab" [routerLink]="['billing-address']">Billing address</p>
+            <a class="none-tab" [routerLink]="['billing-address']">Billing address</a>
         </div>
     </div>
     <router-outlet></router-outlet>
