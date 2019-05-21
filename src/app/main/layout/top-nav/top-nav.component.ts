@@ -54,4 +54,11 @@ export class TopNavComponent implements OnInit {
         console.log(res.data);
       });
   }
+
+  deleteAccount() {
+    this.authService.deleteAccount()
+      .subscribe(res => {
+        this.logOut();
+      });
+  }
 }

@@ -60,14 +60,12 @@
               <div class="row">
                 <div class="col-12 col-md-4 form-group">
                   <label>Company name</label>
-                  <br>
                   <input type="text"
                          placeholder="Your Company name"
                          formControlName="companyName">
                 </div>
                 <div class="col-12 col-md-4 form-group">
                   <label>Email</label>
-                  <br>
                   <input type="text"
                          placeholder="User Email"
                          formControlName="email">
@@ -78,8 +76,8 @@
               <div class="row">
                 <div class="col-12 col-md-4 form-group">
                   <label>Username*</label>
-                  <br>
                   <input type="text"
+                         autocomplete="off"
                          placeholder="Your username"
                          formControlName="userName">
                   <div class="text-left"
@@ -99,8 +97,8 @@
               <div class="row">
                 <div class="col-12 col-md-4 form-group">
                   <label>Password*</label>
-                  <br>
                   <input type="password"
+                         autocomplete="off"
                          formControlName="password">
                   <div class="text-left"
                        *ngIf="(((registerForm.controls['password'].touched) || formDir.submitted) &&
@@ -137,9 +135,10 @@
                 </div>
                 <div class="col-12 col-md-4 form-group">
                   <label>Re-enter Password*</label>
-                  <br>
                   <input type="password"
+                         autocomplete="off"
                          placeholder="Confirm Your Password"
+                         (input)="confirmPasswordOut()"
                          (focusout)="confirmPasswordOut()"
                          formControlName="confirmPassword">
                   <div class="text-left">
