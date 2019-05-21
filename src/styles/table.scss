@@ -1,0 +1,93 @@
+/*------------------------------table------------------------------*/
+.table-div {
+  padding: 11px !important;
+}
+
+table {
+  width: 100%;
+  background-color: #ffffff;
+  border-radius: 4px;
+  transition: .3s;
+  outline: none;
+  border: 1px solid #eaecf1;
+}
+
+table thead tr {
+  background: #ebedf2;
+}
+
+table th {
+  font-size: 14px;
+  color: #6c7293;
+  padding: 15px;
+  font-weight: 400;
+  text-align: left;
+}
+
+tbody tr td {
+  padding: 10px 15px;
+  border-top: 1px solid #efefef;
+  text-align: left;
+  color: #212529;
+}
+
+table tbody tr:hover {
+  background-color: #f4f5f9;
+  cursor: pointer;
+}
+
+table tbody tr:hover .actions {
+  opacity: 1;
+}
+
+.actions {
+  opacity: 0;
+  font-size: 13px;
+  text-align: center;
+  transition: .3s;
+}
+
+.actions i {
+  padding: 10px;
+  color: #fff;
+  border-radius: 50%;
+  background-color: #08a5a3;
+  margin-left: 5px;
+}
+
+.actions i:hover {
+  color: #48786a;
+  background-color: #fff;
+}
+
+.manage {
+  color: #185197;
+  text-decoration: underline;
+}
+
+table input[type=checkbox] {
+  margin-right: 7px;
+}
+
+.table-pagination {
+  border-top: 1px solid #efefef;
+  border-left: none;
+  border-right: none;
+  padding: 10px 15px;
+  border-radius: 0 0 4px 4px;
+}
+
+.table-pagination i {
+  font-size: 25px;
+  color: #949494;
+}
+.table-pagination span {
+  margin-left: 5px;
+}
+i.fa.fa-sort {
+  margin-right: 5px;
+}
+.title {
+  color: #949494;
+  font-weight: 600;
+}

@@ -10,7 +10,7 @@ import {AddContactInterface} from './models/add-contact.interface';
 @Component({
   selector: 'app-single-add-contact',
   templateUrl: './single-add-contact.component.html',
-  styleUrls: ['./single-add-contact.component.css']
+  styleUrls: ['./single-add-contact.component.scss']
 })
 export class SingleAddContactComponent implements OnInit {
 

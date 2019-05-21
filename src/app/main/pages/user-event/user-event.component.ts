@@ -13,7 +13,7 @@ import {RemoveUserEventInterface} from './models/remove-user-event.interface';
 @Component({
   selector: 'app-user-event',
   templateUrl: './user-event.component.html',
-  styleUrls: ['./user-event.component.css']
+  styleUrls: ['./user-event.component.scss']
 })
 export class UserEventComponent implements OnInit {
 
