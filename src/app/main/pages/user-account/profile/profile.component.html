@@ -65,7 +65,7 @@
             <label>Company :</label>
             <input type="text"
                    placeholder="Enter your Company"
-                   formControlName="company">
+                   formControlName="companyName">
           </div>
           <div class="col-12 col-md-4 form-group">
             <label>Email :</label>
@@ -73,7 +73,7 @@
                    placeholder="Enter your Email"
                    formControlName="email">
           </div>
-          <div class="col-12 col-md-4 form-group select birthday">
+          <div class="col-12 col-md-4 form-group select">
             <label>Birthday :</label>
             <mat-form-field class="date-picker">
               <input matInput
@@ -89,9 +89,9 @@
           <div class="col-12 col-md-4 form-group">
             <label>Default prefix :</label>
             <select formControlName="defaultPrefix">
-              <option value="">select</option>
-              <option *ngFor="let gender of genders" [value]="gender.value">
-                {{gender.title}}
+              <option hidden value="">select</option>
+              <option *ngFor="let country of countries" [value]="country.prefix">
+                {{country.prefix}}
               </option>
             </select>
             <div class="detail-prefix">
@@ -102,11 +102,9 @@
           </div>
           <div class="col-12 col-md-4 form-group">
             <label>Country :</label>
-            <select formControlName="country">
-              <option>select</option>
-              <option>Female</option>
-              <option>Male</option>
-              <option>Unknown</option>
+            <select formControlName="countryId">
+              <option hidden value="">select</option>
+              <option *ngFor="let country of countries" [value]="country.id">{{country.name}}</option>
             </select>
           </div>
         </div>

@@ -770,14 +770,15 @@ input, select, textarea {
 }
 
 .mat-datepicker-toggle {
-    padding: 6px 7px 9px 7px;
+  padding: 8px 9px 10px 7px;
     border: 1px solid #d6d6e0;
     border-radius: 3px;
-    margin-right: 4px;
 }
-
 .mat-form-field-label-wrapper label {
     display: none !important;
+}
+.mat-form-field-appearance-legacy .mat-form-field-suffix .mat-datepicker-toggle-default-icon {
+  width: 1.5em !important;
 }
 
 .mat-form-field-label-wrapper .mat-form-field-label, .mat-form-field-appearance-legacy.mat-form-field-can-float.mat-form-field-should-float .mat-form-field-label {

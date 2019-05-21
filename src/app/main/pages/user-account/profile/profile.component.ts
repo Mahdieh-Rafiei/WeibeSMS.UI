@@ -3,6 +3,10 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {ActivatedRoute} from '@angular/router';
 import {ProfileGetInterface} from './models/profile-get.interface';
 import {ProfileService} from './profile.service';
+import {CountryInterface} from '../../../../shared/models/country.interface';
+import {SharedService} from '../../../../shared/service/shared.service';
+import {DataCountryInterface} from '../../../../shared/models/data-country.interface';
+import {NotificationService} from '../../../../shared/notification.service';
 
 @Component({
   selector: 'app-profile',
@@ -12,18 +16,21 @@ import {ProfileService} from './profile.service';
 export class ProfileComponent implements OnInit {
   profileForm: FormGroup;
   profileData: ProfileGetInterface;
-
+  countries: DataCountryInterface[];
   genders = [{title: 'Unknown', value: 1},
     {title: 'Female', value: 2},
     {title: 'Male', value: 3}];
 
   constructor(private fb: FormBuilder,
               private route: ActivatedRoute,
-              private ps: ProfileService) {
+              private ps: ProfileService,
+              private notificationService: NotificationService,
+              private shs: SharedService) {
     this.route.data
       .subscribe((data: { profile: ProfileGetInterface }) => {
         this.profileData = data.profile;
       });
+    this.getCountry();
   }
 
   ngOnInit() {
@@ -31,29 +38,41 @@ export class ProfileComponent implements OnInit {
     this.fillProfile(this.profileForm);
   }
 
+  getCountry() {
+    this.shs.getCountry()
+      .subscribe((res: CountryInterface) => this.countries = res.data);
+  }
+
+
   createForm() {
     this.profileForm = this.fb.group({
       firstName: [null, Validators.compose([Validators.required, Validators.maxLength(20)])],
       lastName: [null, Validators.compose([Validators.required, Validators.maxLength(30)])],
-      company: [null],
+      companyName: [null],
       email: [null],
       gender: [''],
-      defaultPrefix: [null],
-      country: [null],
+      defaultPrefix: [''],
+      countryId: [''],
       birthday: [null]
     });
   }
 
   fillProfile(profileForm) {
+    const date = new Date(this.profileData.data.birthday * 1000);
+    const hours = date.getHours();
+    const minutes = '0' + date.getMinutes();
+    const seconds = '0' + date.getSeconds();
+    const formattedTime = hours + ':' + minutes.substr(-2) + ':' + seconds.substr(-2);
+
     profileForm.patchValue({
       firstName: this.profileData.data.firstName,
       lastName: this.profileData.data.lastName,
-      company: this.profileData.data.companyName,
+      companyName: this.profileData.data.companyName,
       email: this.profileData.data.email,
       gender: this.profileData.data.gender,
       defaultPrefix: this.profileData.data.defaultPrefix,
-      country: this.profileData.data.countryId,
-      birthday: [null]
+      countryId: this.profileData.data.countryId,
+      birthday: formattedTime
     });
   }
 
@@ -66,7 +85,9 @@ export class ProfileComponent implements OnInit {
         payload['birthday'] = date;
       }
       this.ps.modifyProfile(payload)
-        .subscribe(res => console.log(res));
+        .subscribe(res => {
+          this.notificationService.success('Update profile successfully', '');
+        });
     }
   }
 
