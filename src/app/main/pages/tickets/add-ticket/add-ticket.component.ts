@@ -8,7 +8,7 @@ import {AddTicketResponseInterface} from './models/add-ticket-response.interface
 @Component({
   selector: 'app-add-ticket',
   templateUrl: './add-ticket.component.html',
-  styleUrls: ['./add-ticket.component.css']
+  styleUrls: ['./add-ticket.component.scss']
 })
 export class AddTicketComponent implements OnInit {
 
