@@ -7,7 +7,7 @@ import {RemoveDraftInterface} from '../draft/models/remove-draft.interface';
 @Component({
   selector: 'app-draft-list',
   templateUrl: './draft-list.component.html',
-  styleUrls: ['./draft-list.component.css']
+  styleUrls: ['./draft-list.component.scss']
 })
 export class DraftListComponent implements OnInit {
 

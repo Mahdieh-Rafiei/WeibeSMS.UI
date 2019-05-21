@@ -7,7 +7,7 @@ import {GetUserNotificationInterface} from './models/get-user-notification.inter
 @Component({
   selector: 'app-user-notification',
   templateUrl: './user-notification.component.html',
-  styleUrls: ['./user-notification.component.css']
+  styleUrls: ['./user-notification.component.scss']
 })
 export class UserNotificationComponent implements OnInit {
 
