@@ -96,11 +96,17 @@ export class LoginComponent implements OnInit {
       const payload: SendVerificationCodeInterface = this.signUpForm.value;
       this.registerService.sendVerificationCode(payload)
         .subscribe((res: SendVerificationCodeResponseInterface) => {
-          this.notificationService.success('Verification code sent successfully', '');
-          console.log(res.data);
-          this.verificationCodeSent = true;
-          this.registrationKey = res.data.key;
-        });
+            this.notificationService.success('Verification code sent successfully', '');
+            localStorage.setItem('k-l', res.data.key);
+            this.verificationCodeSent = true;
+            this.registrationKey = res.data.key;
+          },
+          err => {
+            if (err.error.Message === '4') {
+              console.log(err);
+              this.verificationCodeSent = true;
+            }
+          });
     } else {
       this.enterPressConfirm = true;
     }
@@ -126,7 +132,7 @@ export class LoginComponent implements OnInit {
     const verificationCode = this.verificationCodePart1.concat(this.verificationCodePart2, this.verificationCodePart3,
       this.verificationCodePart4, this.verificationCodePart5);
     const payload: VerifyMobileInterface = {
-      Key: this.registrationKey,
+      Key: this.registrationKey ? this.registrationKey : localStorage.getItem('k-l'),
       Mobile: this.signUpForm.value.mobile,
       VerificationCode: verificationCode.toString()
     };

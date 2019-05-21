@@ -17,17 +17,8 @@ import {RegisterInterface} from './models/register.interface';
   styleUrls: ['./register.component.css']
 })
 export class RegisterComponent implements OnInit {
-
-  firstName: string = '';
-  lastName: string = '';
-  userName: string = '';
-  password: string = '';
-  email: string = '';
-  confirmPassword: string = '';
-
   registerForm: FormGroup;
   disableButton: boolean = true;
-  digit: boolean = true;
   notMatch: boolean = false;
   genders = [{title: 'Unknown', value: 1},
     {title: 'Female', value: 2},
@@ -80,7 +71,10 @@ export class RegisterComponent implements OnInit {
   }
 
   submit() {
-    if (this.registerForm.valid && !this.notMatch) {
+    if (!this.registerForm.value.confirmPassword) {
+      this.confirmPasswordOut();
+    }
+    if (this.registerForm.valid && !this.notMatch && this.registerForm.value.confirmPassword) {
       this.confirmPasswordOut();
       const key = this.authSharedService.keyLogin;
       const mobile = +this.authSharedService.mobile;
@@ -91,6 +85,7 @@ export class RegisterComponent implements OnInit {
       this.registerService.saveInfo(payload)
         .subscribe(res => {
           this.authService.setToken(res.data.token);
+          localStorage.removeItem('k-l');
           this.configService.authenticationChanged.emit(true);
           this.router.navigateByUrl('index');
         });
@@ -100,6 +95,7 @@ export class RegisterComponent implements OnInit {
   confirmPasswordOut() {
     if (this.registerForm.value.password !== this.registerForm.value.confirmPassword) {
       this.notMatch = true;
+      return;
     } else {
       this.notMatch = false;
     }
