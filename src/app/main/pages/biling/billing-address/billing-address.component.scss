@@ -54,9 +54,21 @@
     padding: 10px 30px;
     font-size: 14px;
   }
-
-
-
-
+  input.phone {
+    padding: 8px 5px 5px 100px;
+  }
+  .v-input-box {
+    position: relative;
+  }
+  .v-input-select {
+    position: absolute;
+    top: 23px;
+    left: 16px;
+    border: none;
+    padding: 5px;
+    width: 90px;
+    height: 33px;
+    border-right: 1px solid #f0f0f0;
+  }
 
 }
