@@ -6,6 +6,7 @@ import {ProfileService} from './profile.service';
 import {CountryInterface} from '../../../../shared/models/country.interface';
 import {SharedService} from '../../../../shared/service/shared.service';
 import {DataCountryInterface} from '../../../../shared/models/data-country.interface';
+import {NotificationService} from '../../../../shared/notification.service';
 
 @Component({
   selector: 'app-profile',
@@ -23,6 +24,7 @@ export class ProfileComponent implements OnInit {
   constructor(private fb: FormBuilder,
               private route: ActivatedRoute,
               private ps: ProfileService,
+              private notificationService: NotificationService,
               private shs: SharedService) {
     this.route.data
       .subscribe((data: { profile: ProfileGetInterface }) => {
@@ -46,25 +48,31 @@ export class ProfileComponent implements OnInit {
     this.profileForm = this.fb.group({
       firstName: [null, Validators.compose([Validators.required, Validators.maxLength(20)])],
       lastName: [null, Validators.compose([Validators.required, Validators.maxLength(30)])],
-      company: [null],
+      companyName: [null],
       email: [null],
       gender: [''],
       defaultPrefix: [''],
-      country: [''],
+      countryId: [''],
       birthday: [null]
     });
   }
 
   fillProfile(profileForm) {
+    const date = new Date(this.profileData.data.birthday * 1000);
+    const hours = date.getHours();
+    const minutes = '0' + date.getMinutes();
+    const seconds = '0' + date.getSeconds();
+    const formattedTime = hours + ':' + minutes.substr(-2) + ':' + seconds.substr(-2);
+
     profileForm.patchValue({
       firstName: this.profileData.data.firstName,
       lastName: this.profileData.data.lastName,
-      company: this.profileData.data.companyName,
+      companyName: this.profileData.data.companyName,
       email: this.profileData.data.email,
       gender: this.profileData.data.gender,
       defaultPrefix: this.profileData.data.defaultPrefix,
-      country: this.profileData.data.countryId,
-      birthday: [null]
+      countryId: this.profileData.data.countryId,
+      birthday: formattedTime
     });
   }
 
@@ -77,7 +85,9 @@ export class ProfileComponent implements OnInit {
         payload['birthday'] = date;
       }
       this.ps.modifyProfile(payload)
-        .subscribe(res => console.log(res));
+        .subscribe(res => {
+          this.notificationService.success('Update profile successfully', '');
+        });
     }
   }
 
