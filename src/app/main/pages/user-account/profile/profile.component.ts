@@ -3,6 +3,9 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {ActivatedRoute} from '@angular/router';
 import {ProfileGetInterface} from './models/profile-get.interface';
 import {ProfileService} from './profile.service';
+import {CountryInterface} from '../../../../shared/models/country.interface';
+import {SharedService} from '../../../../shared/service/shared.service';
+import {DataCountryInterface} from '../../../../shared/models/data-country.interface';
 
 @Component({
   selector: 'app-profile',
@@ -12,24 +15,32 @@ import {ProfileService} from './profile.service';
 export class ProfileComponent implements OnInit {
   profileForm: FormGroup;
   profileData: ProfileGetInterface;
-
+  countries: DataCountryInterface[];
   genders = [{title: 'Unknown', value: 1},
     {title: 'Female', value: 2},
     {title: 'Male', value: 3}];
 
   constructor(private fb: FormBuilder,
               private route: ActivatedRoute,
-              private ps: ProfileService) {
+              private ps: ProfileService,
+              private shs: SharedService) {
     this.route.data
       .subscribe((data: { profile: ProfileGetInterface }) => {
         this.profileData = data.profile;
       });
+    this.getCountry();
   }
 
   ngOnInit() {
     this.createForm();
     this.fillProfile(this.profileForm);
   }
+
+  getCountry() {
+    this.shs.getCountry()
+      .subscribe((res: CountryInterface) => this.countries = res.data);
+  }
+
 
   createForm() {
     this.profileForm = this.fb.group({
@@ -38,8 +49,8 @@ export class ProfileComponent implements OnInit {
       company: [null],
       email: [null],
       gender: [''],
-      defaultPrefix: [null],
-      country: [null],
+      defaultPrefix: [''],
+      country: [''],
       birthday: [null]
     });
   }
