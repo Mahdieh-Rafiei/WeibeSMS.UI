@@ -1,11 +1,15 @@
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
-import {FormBuilder, FormGroup} from '@angular/forms';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {SharedService} from '../../../../shared/service/shared.service';
 import {CountryInterface} from '../../../../shared/models/country.interface';
 import {DataCountryInterface} from '../../../../shared/models/data-country.interface';
 import {DataCityInterface} from '../../../../shared/models/data-city.interface';
 import {CityInterface} from '../../../../shared/models/city.interface';
+import {BillingService} from '../billing.service';
+import {NotificationService} from '../../../../shared/notification.service';
+import {BillindAddressResponseInterface} from './models/billind-address-response.interface';
+import {BillingAddressInterface} from './models/billing-address.interface';
 
 @Component({
   selector: 'app-billing-address',
@@ -21,21 +25,42 @@ export class BillingAddressComponent implements OnInit {
 
   constructor(private route: ActivatedRoute,
               private fb: FormBuilder,
+              private bs: BillingService,
+              private notificationService: NotificationService,
               private shs: SharedService) {
     this.route.data
-      .subscribe((data: { billingAddress }) => {
-        this.billingAddressData = data;
+      .subscribe((data: { billingAddress: BillindAddressResponseInterface }) => {
+        this.billingAddressData = data.billingAddress;
       });
     this.getCountry();
   }
 
   ngOnInit() {
     this.createForm();
+    setTimeout(() => {
+      this.fillBillingAddress(this.billingAddressForm);
+    }, 200);
   }
 
   getCountry() {
     this.shs.getCountry()
       .subscribe((res: CountryInterface) => this.countries = res.data);
+  }
+
+  fillBillingAddress(billingAddressForm) {
+    billingAddressForm.patchValue({
+      fullName: this.billingAddressData.data ? this.billingAddressData.data.fullName : null,
+      countryId: this.billingAddressData.data ? this.billingAddressData.data.countryId : '',
+      cityId: this.billingAddressData.data ? this.billingAddressData.data.cityId : '',
+      phone: this.billingAddressData.data ? this.billingAddressData.data.phone : null,
+      address: this.billingAddressData.data ? this.billingAddressData.data.address : null,
+      zipCode: this.billingAddressData.data ? this.billingAddressData.data.zipCode : null,
+      vatNumber: this.billingAddressData.data ? this.billingAddressData.data.vatNumber : null,
+    });
+    if (this.billingAddressData.data.vatNumber) {
+      this.vatNumber = false;
+    }
+
   }
 
   changeVatNumber(event) {
@@ -48,13 +73,13 @@ export class BillingAddressComponent implements OnInit {
 
   createForm() {
     this.billingAddressForm = this.fb.group({
-      fullName: [null],
-      countryId: [''],
-      cityId: [''],
-      phone: [null],
-      address: [null],
-      zipCode: [null],
-      vATNumber: [null],
+      fullName: [null, Validators.required],
+      countryId: ['', Validators.required],
+      cityId: ['', Validators.required],
+      phone: [null, Validators.required],
+      address: [null, Validators.required],
+      zipCode: [null, Validators.required],
+      vatNumber: [null],
     })
     ;
   }
@@ -66,6 +91,10 @@ export class BillingAddressComponent implements OnInit {
   }
 
   submit() {
-    console.log(this.billingAddressForm.value);
+    const payload = this.billingAddressForm.value;
+    this.bs.modifyAddress(payload)
+      .subscribe(res => {
+        this.notificationService.success('save billing address successfully', '');
+      });
   }
 }
