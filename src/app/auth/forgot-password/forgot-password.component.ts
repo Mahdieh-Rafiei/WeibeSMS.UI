@@ -52,7 +52,7 @@ export class ForgotPasswordComponent implements OnInit {
     const pattern = /^(09|9)[0-9]{9}$/ig;
     this.forgotPasswordForm = this.fb.group({
       Mobile: [null, Validators.compose([Validators.required, Validators.pattern(pattern)])],
-      SendVerificationReason: [2]
+      Reason: [2]
     });
   }
 
