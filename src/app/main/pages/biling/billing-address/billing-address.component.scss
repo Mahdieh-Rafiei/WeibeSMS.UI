@@ -1,0 +1,74 @@
+.div-section {
+  border-radius: 0 0 1rem 1rem;
+}
+
+.profile {
+  h4 {
+    font-weight: 600;
+    line-height: 1;
+    margin-bottom: 0;
+  }
+  p {
+    font-size: 12px;
+    padding-top: 5px;
+  }
+
+  label {
+    display: block;
+    color: #6c7293;
+    font-weight: 600;
+    font-size: 12px;
+  }
+
+  .input-box {
+    padding: 15px 0;
+  }
+
+  input {
+    width: 100%;
+    padding: 8px 5px;
+  }
+  textarea {
+    width: 100%;
+  }
+  select {
+    width: 100%;
+    padding: 8px 5px;
+  }
+  .yellow-text {
+    padding: 0 0 15px;
+  }
+  .mat-label {
+    color: #6c7293;
+    font-size: 12px;
+    font-weight: 400;
+  }
+  .vat-num {
+    margin-top: 10px;
+  }
+  ::placeholder {
+    color: #b5b5b5;
+    font-size: 12px;
+  }
+  button.light-green-btn {
+    padding: 10px 30px;
+    font-size: 14px;
+  }
+  input.phone {
+    padding: 8px 5px 5px 100px;
+  }
+  .v-input-box {
+    position: relative;
+  }
+  .v-input-select {
+    position: absolute;
+    top: 23px;
+    left: 16px;
+    border: none;
+    padding: 5px;
+    width: 90px;
+    height: 33px;
+    border-right: 1px solid #f0f0f0;
+  }
+
+}

@@ -5,9 +5,7 @@ import {ConfigService} from './config.service';
 import {map} from 'rxjs/operators';
 import {catchError} from 'rxjs/internal/operators';
 import {Router} from '@angular/router';
-import {AuthenticationService} from '../login/authentication.service';
 import {NotificationService} from './notification.service';
-import {debug} from 'util';
 
 @Injectable({
   providedIn: 'root'
@@ -28,7 +26,7 @@ export class ApiService {
 
   get<T>(url: string, needAuth: boolean): Observable<T> {
     const options = {
-      headers: this.httpOptions.headers.append('token', localStorage.getItem(this.configService.tokenKeyName)),
+      headers: this.httpOptions.headers.append('Authorization', localStorage.getItem(this.configService.tokenKeyName)),
       observe: this.httpOptions.observe
     };
 
@@ -40,20 +38,30 @@ export class ApiService {
 
   post<T>(url: string, payload: T, needAuth: boolean) {
     const options = {
-      headers: this.httpOptions.headers.append('token', localStorage.getItem(this.configService.tokenKeyName)),
+      headers: this.httpOptions.headers.append('Authorization', localStorage.getItem(this.configService.tokenKeyName)),
       observe: this.httpOptions.observe
     };
 
-    return this.httpClient.post<T>(this.configService.baseUrl + url, payload, needAuth ? options : this.httpOptions)
+    return this.httpClient.post<T>((this.configService.baseUrl) + url, payload, needAuth ? options : this.httpOptions)
       .pipe(
         map((res: any) => res.body),
         catchError(err => this.handleError(err, this.route, this.configService)));
   }
 
+  postFile<File>(url: string, item: File, needAuth: boolean) {
+    const options = {
+      headers: this.httpOptions.headers.append('Authorization', localStorage.getItem(this.configService.tokenKeyName)),
+      observe: this.httpOptions.observe
+    };
+
+    return this.httpClient.post<File>(url, item, needAuth ? options : this.httpOptions)
+      .pipe();
+  }
+
 
   put<T>(url: string, payload: T, needAuth: boolean) {
     const options = {
-      headers: this.httpOptions.headers.append('token', localStorage.getItem(this.configService.tokenKeyName)),
+      headers: this.httpOptions.headers.append('Authorization', localStorage.getItem(this.configService.tokenKeyName)),
       observe: this.httpOptions.observe
     };
 
@@ -70,7 +78,7 @@ export class ApiService {
     };
 
     if (needAuth) {
-      options.headers = options.headers.append('token', localStorage.getItem(this.configService.tokenKeyName));
+      options.headers = options.headers.append('Authorization', localStorage.getItem(this.configService.tokenKeyName));
     }
 
     if (payload) {
@@ -98,7 +106,7 @@ export class ApiService {
       errorMessage = `Status Code: ${error.status}\nMessage: ${error.message}\n `;
     }
 
-    let errorCode = parseInt(error.error.Message);
+    let errorCode = parseInt(error.error && error.error.Message);
     let errorNotificationMessage = configService.errorMessages.get(errorCode);
     this.notificationService.error(errorNotificationMessage, 'Error');
     return throwError(errorMessage);

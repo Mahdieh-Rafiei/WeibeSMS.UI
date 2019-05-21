@@ -1,0 +1,118 @@
+<div class="row main-container">
+  <div class="col-12 col-xs-12 div-section">
+    <div class="profile">
+      <h3 class="title">
+        My Profile Setting
+      </h3>
+      <div class="change-profile-pic">
+        <app-image-upload
+          [imageSrc]="'../../../../../assets/images/user.jpg'"
+          [imageUrl]="null"
+          [uploadType]="'1'"
+          [apiUrl]="'Upload'"
+          [type]="'circle'"
+          [accept]="['image/png', 'image/jpeg', 'image/jpg']"
+          [sizeValidate]="2"
+          [validateSize]="'max size uploading is 2KB'"
+          [validateFormats]="'PNG, JPG, JEPG Formats is invalid.'"></app-image-upload>
+      </div>
+      <form class="profile-input" [formGroup]="profileForm" #formDir="ngForm" (ngSubmit)="submit()">
+        <div class="row">
+          <div class="col-12 col-md-4 form-group">
+            <label>Firstname :</label>
+            <input type="text"
+                   placeholder="Enter your Firstname"
+                   formControlName="firstName">
+            <div class="text-left"
+                 *ngIf="(((profileForm.controls['firstName'].dirty || profileForm.controls['firstName'].touched) || formDir.submitted))">
+              <p class="errorMessage" *ngIf="profileForm.hasError('required', 'firstName')">
+                this filed is required!
+              </p>
+              <p class="errorMessage"
+                 *ngIf="(profileForm.controls['firstName'].hasError('maxlength'))">
+                Firstname max length is 20 char!
+              </p>
+            </div>
+          </div>
+          <div class="col-12 col-md-4 form-group">
+            <label>Surename :</label>
+            <input type="text"
+                   placeholder="Enter your Surename"
+                   formControlName="lastName">
+            <div class="text-left"
+                 *ngIf="((profileForm.controls['lastName'].dirty || profileForm.controls['lastName'].touched || formDir.submitted))">
+              <p class="errorMessage" *ngIf="profileForm.hasError('required', 'lastName')">
+                this filed is required!
+              </p>
+              <p class="errorMessage"
+                 *ngIf="(profileForm.controls['lastName'].hasError('maxlength')) ">
+                Surename max length is 30 char!
+              </p>
+            </div>
+          </div>
+          <div class="col-12 col-md-4 form-group">
+            <label>Gender :</label>
+            <select formControlName="gender">
+              <option hidden value="">select</option>
+              <option *ngFor="let gender of genders" [value]="gender.value">
+                {{gender.title}}
+              </option>
+            </select>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-12 col-md-4 form-group">
+            <label>Company :</label>
+            <input type="text"
+                   placeholder="Enter your Company"
+                   formControlName="companyName">
+          </div>
+          <div class="col-12 col-md-4 form-group">
+            <label>Email :</label>
+            <input type="text"
+                   placeholder="Enter your Email"
+                   formControlName="email">
+          </div>
+          <div class="col-12 col-md-4 form-group select">
+            <label>Birthday :</label>
+            <mat-form-field class="date-picker">
+              <input matInput
+                     formControlName="birthday"
+                     [matDatepicker]="picker"
+                     placeholder="Enter your Birthday">
+              <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+              <mat-datepicker #picker></mat-datepicker>
+            </mat-form-field>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-12 col-md-4 form-group">
+            <label>Default prefix :</label>
+            <select formControlName="defaultPrefix">
+              <option hidden value="">select</option>
+              <option *ngFor="let country of countries" [value]="country.prefix">
+                {{country.prefix}}
+              </option>
+            </select>
+            <div class="detail-prefix">
+              <p class="yellow-text">Select a default prefix, that will allow you to upload and use
+                numbers in local
+                format.</p>
+            </div>
+          </div>
+          <div class="col-12 col-md-4 form-group">
+            <label>Country :</label>
+            <select formControlName="countryId">
+              <option hidden value="">select</option>
+              <option *ngFor="let country of countries" [value]="country.id">{{country.name}}</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="col-md-12 btn-save text-right">
+          <button type="submit" class="green-btn">Save</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

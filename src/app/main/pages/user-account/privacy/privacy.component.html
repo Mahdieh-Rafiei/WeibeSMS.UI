@@ -1,0 +1,17 @@
+<div class="main-container">
+  <div class="col-md-12 privacy">
+    <div class="title-tab no-pad">
+      <p class="active-tab" [routerLink]="['change-number']">Change number</p>
+    </div>
+    <div class="title-tab no-pad">
+      <p [routerLink]="['change-password']">Change password</p>
+    </div>
+    <div class="title-tab no-pad">
+      <p [routerLink]="['login-log']">Login log</p>
+    </div>
+    <div class="title-tab no-pad">
+      <p class="none-tab" [routerLink]="['deactive-account']">Deactive account</p>
+    </div>
+  </div>
+  <router-outlet></router-outlet>
+</div>

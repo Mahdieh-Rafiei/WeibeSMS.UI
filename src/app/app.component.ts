@@ -2,7 +2,7 @@ import {Component, HostListener, Injectable, OnInit} from '@angular/core';
 
 import {ConfigService} from './shared/config.service';
 import {Router} from '@angular/router';
-import {AuthenticationService} from './login/authentication.service';
+import {AuthenticationService} from './auth/login/authentication.service';
 import {normalizeDebugBindingName} from '@angular/core/src/util/ng_reflect';
 
 @Component({

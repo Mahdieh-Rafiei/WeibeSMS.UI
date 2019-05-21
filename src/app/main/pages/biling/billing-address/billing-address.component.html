@@ -1,0 +1,88 @@
+<div class="col-md-12 div-section">
+    <div class="col-md-12 profile">
+        <h4>Billing address</h4>
+        <p>Update your account password. Always set a strong password, including uppercase, lowercase, number.</p>
+        <form class="col-md-12 input-box" [formGroup]="billingAddressForm" (ngSubmit)="submit()">
+            <div class="row">
+                <div class="col-md-6 form-group">
+                    <label>Full name :</label>
+                    <input type="text"
+                           placeholder="Enter your Full name"
+                           formControlName="fullName">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-3 form-group v-input-box">
+                    <label>Phone :</label>
+                    <input type="text"
+                           class="phone"
+                           placeholder="Enter your phone number"
+                           formControlName="phone">
+                    <select class="v-input-select">
+                        <option><img src="#"> +98</option>
+                        <option>English</option>
+                        <option>Persian</option>
+                    </select>
+                </div>
+                <div class="col-md-3 form-group">
+                    <label>Country :</label>
+                    <select name="country"
+                            formControlName="countryId"
+                            #country
+                            (change)="countrySelect()">
+                        <option hidden value="">select</option>
+                        <option *ngFor="let country of countries" [value]="country.id">{{country.name}}</option>
+                    </select>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-3 form-group">
+                    <label>City :</label>
+                    <select formControlName="cityId">
+                        <option hidden value="" *ngIf="!country.value">please select Country!</option>
+                        <option hidden value="" *ngIf="cities.length===0">
+                            loading...
+                        </option>
+                        <option hidden value="" *ngIf="country.value && cities.length!==0">select</option>
+                        <option *ngFor="let city of cities" [value]="city.id">{{city.name}}</option>
+                    </select>
+                </div>
+                <div class="col-md-3 form-group">
+                    <label>Zipcode :</label>
+                    <input type="text"
+                           placeholder="Enter zipCode"
+                           formControlName="zipCode">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6 form-group">
+                    <label>Address :</label>
+                    <textarea type="text"
+                              placeholder="Enter your address"
+                              formControlName="address"></textarea>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-3 form-group">
+                    <h4 class="yellow-text">VAT NUMBER</h4>
+                    <mat-radio-group (change)="changeVatNumber($event)" #radioGroup="matRadioGroup">
+                        <mat-radio-button class="mat-label" value="1" [checked]="vatNumber">
+                            I don't have a VAT number
+                        </mat-radio-button>
+                        <br>
+                        <mat-radio-button class="mat-label" value="2" [checked]="!vatNumber">
+                            Enter VAT number
+                        </mat-radio-button>
+                    </mat-radio-group>
+                    <div *ngIf="!vatNumber">
+                        <input type="text" class="vat-num" placeholder="VAT number">
+                    </div>
+                </div>
+            </div>
+            <div class="row btn-save text-right">
+                <button type="submit" class="light-green-btn">Save</button>
+            </div>
+        </form>
+    </div>
+</div>
+

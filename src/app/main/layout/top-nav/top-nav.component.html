@@ -1,0 +1,135 @@
+<nav [ngClass]="{'slim-navbar':configService.sidebarMode=='slim', 'hidden-navbar':configService.sidebarMode=='hidden'}"
+     class="navbar navbar-expand-lg fixed-top">
+    <div class="container-fluid no-pad">
+        <div class="col-md-12 navbar-content no-pad">
+            <div class="">
+                <a (click)="changeSidebarState()" class="toggle-menu"><i class="fa fa-bars"></i></a>
+            </div>
+            <ul class="navbar-nav ml-auto hidden-xs">
+                <li class="nav-item d-none d-xl-block">
+                   <div class="credit">
+                       <span>your credits : $5000</span>
+                       <button class="light-green-btn">Buy Credit</button>
+                   </div>
+                </li>
+                <li class="nav-item">
+                    <div class="btn-group guide" dropdown>
+                        <a mat-button [matMenuTriggerFor]="star">
+                            <i class="fa fa-star"></i>
+                        </a>
+                        <mat-menu #star="matMenu" >
+                            <button mat-menu-item>
+                                1
+                            </button>
+                            <button mat-menu-item>
+                                2
+                            </button>
+                        </mat-menu>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <div class="btn-group guide" dropdown>
+                        <a mat-button [matMenuTriggerFor]="guide">
+                            <i class="fa fa-question-circle"></i>
+                        </a>
+                        <mat-menu #guide="matMenu" >
+                            <button mat-menu-item>
+                                1
+                            </button>
+                            <button mat-menu-item>
+                               2
+                            </button>
+                        </mat-menu>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <div class="btn-group notification" dropdown>
+                        <a mat-button [matMenuTriggerFor]="notification">
+                            <i class="fa fa-bell"></i>
+                        </a>
+                        <div class="notification-alarm">
+                            <span class="wave wave-danger"></span>
+                            <span class="dot"></span>
+                        </div>
+                        <mat-menu #notification="matMenu" >
+                            <button mat-menu-item>
+                               notification 1
+                            </button>
+                            <button mat-menu-item>
+                                <a routerLink="../notification"> more </a>
+                            </button>
+                        </mat-menu>
+                        <!--<ul *ngIf="userNotifications" id="dropdown-notif" class="dropdown-menu dropdown-profile"-->
+                            <!--role="menu" aria-labelledby="button-notif">-->
+                            <!--<div *ngFor="let un of userNotifications">-->
+                                <!--<li role="menuitem"><a class="dropdown-item" (click)="preparingShowNotification(un)">-->
+                                    <!--{{un.title}} </a></li>-->
+                                <!--<li class="divider dropdown-divider"></li>-->
+                            <!--</div>-->
+                            <!--<li role="menuitem"><a class="dropdown-item" routerLink="../notification"> more </a></li>-->
+                        <!--</ul>-->
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <div class="btn-group language" dropdown>
+                        <a mat-button [matMenuTriggerFor]="language">
+                            <img src="../../../../assets/images/flag.png" class="center-block img-responsive">
+                        </a>
+                        <mat-menu #language="matMenu">
+                            <button mat-menu-item [routerLink]="['/profile']">
+                                language 1
+                            </button>
+                            <button mat-menu-item [routerLink]="['/change-password']">
+                                language 2
+                            </button>
+                            <button mat-menu-item [routerLink]="['/billing-address']">
+                                language 3
+                            </button>
+                        </mat-menu>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <div class="btn-group profile" dropdown>
+                        <!--<a id="button-basic" dropdownToggle class="dropdown-toggle" aria-controls="dropdown-basic">-->
+                        <a mat-button [matMenuTriggerFor]="profile">
+                            <i class="fa fa-user"></i>
+                        </a>
+                        <mat-menu #profile="matMenu">
+                            <button mat-menu-item [routerLink]="['/profile']"><i class="fa fa-user"></i> Profile
+                            </button>
+                            <button mat-menu-item [routerLink]="['/change-password']"><i class="fa fa-lock"></i>
+                                Change password
+                            </button>
+                            <button mat-menu-item [routerLink]="['/billing-address']"><i class="fa fa-address-book"></i>
+                                Billing address
+                            </button>
+                            <button mat-menu-item (click)="logOut()"><i class="fa fa-power-off"></i> Log out</button>
+                        </mat-menu>
+                    </div>
+                </li>
+            </ul>
+        </div>
+
+    </div>
+</nav>
+
+<div *ngIf="showNotification" class="modal fade in modal-back" role="dialog" tabindex="-1" style="display: block;"
+     aria-modal="true">
+    <div role="document" class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button (click)="showNotification=false" aria-label="Close" class="close pull-right" type="button">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <div class="modal-body text-center">
+                <div>
+                    <p>{{selectedNotification.title}}</p>
+                    <br>
+                    <p>{{selectedNotification.description}}</p>
+                    <br>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,111 @@
+import {Component, OnInit} from '@angular/core';
+import {RegisterService} from './register.service';
+import {Router} from '@angular/router';
+import {AuthenticationService} from '../login/authentication.service';
+import {ConfigService} from '../../shared/config.service';
+import {NotificationService} from '../../shared/notification.service';
+import {UtilityService} from '../../shared/utility.service';
+import {AuthSharedService} from '../auth-shared.service';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {Gender} from '../../shared/enums';
+import {RegisterInterface} from './models/register.interface';
+
+
+@Component({
+  selector: 'app-register',
+  templateUrl: './register.component.html',
+  styleUrls: ['./register.component.css']
+})
+export class RegisterComponent implements OnInit {
+
+  firstName: string = '';
+  lastName: string = '';
+  userName: string = '';
+  password: string = '';
+  email: string = '';
+  confirmPassword: string = '';
+
+  registerForm: FormGroup;
+  disableButton: boolean = true;
+  digit: boolean = true;
+  notMatch: boolean = false;
+  genders = [{title: 'Unknown', value: 1},
+    {title: 'Female', value: 2},
+    {title: 'Male', value: 3}];
+
+  constructor(private registerService: RegisterService,
+              private authService: AuthenticationService,
+              private router: Router,
+              private fb: FormBuilder,
+              private configService: ConfigService,
+              private notificationService: NotificationService,
+              private authSharedService: AuthSharedService,
+              private utilityService: UtilityService) {
+  }
+
+  ngOnInit() {
+    this.createForm();
+  }
+
+  createForm() {
+    this.registerForm = this.fb.group({
+      firstName: [null, Validators.compose([Validators.required, Validators.maxLength(20)])],
+      lastName: [null, Validators.compose([Validators.required, Validators.maxLength(30)])],
+      userName: [null, Validators.compose([Validators.required, Validators.minLength(6)])],
+      password: [null, Validators.compose([Validators.required, Validators.minLength(8),
+        this.utilityService.Digit, this.utilityService.UppercaseLetter, this.utilityService.LowercaseLetter, this.utilityService.Symbol])],
+      email: [null],
+      confirmPassword: [null],
+      companyName: [null],
+      gender: [''],
+      // countryId: [null],
+      // defaultPrefix: [null]
+    });
+  }
+
+  get hasDigit() {
+    return this.registerForm.get('password');
+  }
+
+  get upperCase() {
+    return this.registerForm.get('password');
+  }
+
+  get lowerCase() {
+    return this.registerForm.get('password');
+  }
+
+  get hasSymbol() {
+    return this.registerForm.get('password');
+  }
+
+  submit() {
+    if (this.registerForm.valid && !this.notMatch) {
+      this.confirmPasswordOut();
+      const key = this.authSharedService.keyLogin;
+      const mobile = +this.authSharedService.mobile;
+      const payload: RegisterInterface = this.registerForm.value;
+      payload['key'] = key;
+      payload['mobile'] = mobile;
+      delete payload['confirmPassword'];
+      this.registerService.saveInfo(payload)
+        .subscribe(res => {
+          this.authService.setToken(res.data.token);
+          this.configService.authenticationChanged.emit(true);
+          this.router.navigateByUrl('index');
+        });
+    }
+  }
+
+  confirmPasswordOut() {
+    if (this.registerForm.value.password !== this.registerForm.value.confirmPassword) {
+      this.notMatch = true;
+    } else {
+      this.notMatch = false;
+    }
+  }
+
+  confirm(event) {
+    this.disableButton = !event.target.checked;
+  }
+}
