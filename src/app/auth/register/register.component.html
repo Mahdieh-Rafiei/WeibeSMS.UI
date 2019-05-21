@@ -100,7 +100,7 @@
                 <div class="col-12 col-md-4 form-group">
                   <label>Password*</label>
                   <br>
-                  <input type="text"
+                  <input type="password"
                          formControlName="password">
                   <div class="text-left"
                        *ngIf="(((registerForm.controls['password'].touched) || formDir.submitted) &&
@@ -138,7 +138,7 @@
                 <div class="col-12 col-md-4 form-group">
                   <label>Re-enter Password*</label>
                   <br>
-                  <input type="text"
+                  <input type="password"
                          placeholder="Confirm Your Password"
                          (focusout)="confirmPasswordOut()"
                          formControlName="confirmPassword">

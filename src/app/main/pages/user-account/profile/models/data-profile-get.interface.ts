@@ -6,7 +6,7 @@ export interface DataProfileGetInterface {
   email: string;
   gender: Gender;
   defaultPrefix: number;
-  birthday: number;
+  birthDay: number;
   companyName: string;
   countryId: number;
   image: any;

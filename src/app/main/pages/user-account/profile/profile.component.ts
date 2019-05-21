@@ -58,12 +58,6 @@ export class ProfileComponent implements OnInit {
   }
 
   fillProfile(profileForm) {
-    const date = new Date(this.profileData.data.birthday * 1000);
-    const hours = date.getHours();
-    const minutes = '0' + date.getMinutes();
-    const seconds = '0' + date.getSeconds();
-    const formattedTime = hours + ':' + minutes.substr(-2) + ':' + seconds.substr(-2);
-
     profileForm.patchValue({
       firstName: this.profileData.data.firstName,
       lastName: this.profileData.data.lastName,
@@ -72,7 +66,7 @@ export class ProfileComponent implements OnInit {
       gender: this.profileData.data.gender,
       defaultPrefix: this.profileData.data.defaultPrefix,
       countryId: this.profileData.data.countryId,
-      birthday: formattedTime
+      birthday: new Date(this.profileData.data.birthDay * 1000)
     });
   }
 
