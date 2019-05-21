@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 @Component({
   selector: 'app-slim-sidebar',
   templateUrl: './slim-sidebar.component.html',
-  styleUrls: ['./slim-sidebar.component.css']
+  styleUrls: ['./slim-sidebar.component.scss']
 })
 export class SlimSidebarComponent implements OnInit {
 

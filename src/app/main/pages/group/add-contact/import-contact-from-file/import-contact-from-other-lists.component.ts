@@ -12,7 +12,7 @@ import {ContactGroupMoveCopyResponseInterface} from './models/contact-group-move
 @Component({
   selector: 'app-import-contact-from-other-lists',
   templateUrl: './import-contact-from-other-lists.component.html',
-  styleUrls: ['./import-contact-from-other-lists.component.css']
+  styleUrls: ['./import-contact-from-other-lists.component.scss']
 })
 export class ImportContactFromOtherListsComponent implements OnInit {
 

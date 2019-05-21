@@ -10,7 +10,7 @@ import {AddContactFormGroupResponseInterface} from './models/add-contact-form-gr
 @Component({
   selector: 'app-add-contact-from-file',
   templateUrl: './add-contact-from-file.component.html',
-  styleUrls: ['./add-contact-from-file.component.css']
+  styleUrls: ['./add-contact-from-file.component.scss']
 })
 export class AddContactFromFileComponent implements OnInit {
 

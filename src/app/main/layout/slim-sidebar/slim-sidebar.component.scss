@@ -34,11 +34,12 @@
 /*---- top section ----*/
 .company-name{
     padding: 10px 0;
+    p{
+        color: #ffffff;
+        font-size: 24px;
+    }
 }
-.company-name p{
-    color: #ffffff;
-    font-size: 24px;
-}
+
 /*---- li a ----*/
 a.list-group-item {
     background-color: #1e262d;
@@ -47,17 +48,18 @@ a.list-group-item {
     color: #E7E7E7;
     font-weight: 500;
     text-align: center;
-}
-a.list-group-item:hover{
-    background-color: rgba(79, 79, 79, 0.66);
-    transition: .5s;
+    :hover{
+        background-color: rgba(79, 79, 79, 0.66);
+        transition: .5s;
+    }
 }
 .list-group-item{
     padding: 12px 0;
+    p{
+        font-size: 10px;
+    }
 }
-.list-group-item p{
-    font-size: 10px;
-}
+
 .fa {
     width: 26px;
     opacity: .99;
@@ -84,12 +86,16 @@ a.list-group-item:hover{
     list-style-type: none;
     height: auto;
     padding-left: 0;
+    li{
+        position: relative;
+    }
+    li a {
+        color: #f9f9f9;
+        padding: 10px;
+        display: block;
+    }
 }
-.nested-menu .expand ul.submenu li a {
-    color: #f9f9f9;
-    padding: 10px;
-    display: block;
-}
+
 .active a span.fa {
     text-align: right!important;
     margin-right: 4px;
@@ -102,12 +108,7 @@ a.list-group-item:hover{
     min-width: inherit;
     color: #C4CFDA;
 }
-.expand{
-    /*border-right: 5px solid #1ABB9C;*/
-}
-.nested-menu .expand ul.submenu li{
-    position: relative;
-}
+
 .nested-menu .expand ul.submenu li:before {
     background: #616161;
     bottom: auto;

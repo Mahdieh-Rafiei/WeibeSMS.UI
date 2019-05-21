@@ -31,14 +31,15 @@ h1 span{
     color: #ffffff;
     margin-bottom: 30px;
     margin-top: 20px;
+    p{
+        font-size: 16px !important;
+        padding: 0 !important;
+    }
+    span{
+        font-size: 16px !important;
+    }
 }
-.plan-details p{
-    font-size: 16px !important;
-    padding: 0 !important;
-}
-.plan-details span{
-    font-size: 16px !important;
-}
+
 .buy-btn{
     background: none;
     border: 1px solid #08a5a3;
@@ -48,13 +49,14 @@ h1 span{
     padding: 5px 20px;
     font-weight: 500;
     transition: .5s;
+    :hover{
+        background: #08a5a3;
+        border: 1px solid #08a5a3;
+        color: #ffffff;
+        transition: .5s;
+    }
 }
-.buy-btn:hover{
-    background: #08a5a3;
-    border: 1px solid #08a5a3;
-    color: #ffffff;
-    transition: .5s;
-}
+
 @media (max-width: 991px) and (min-width: 768px) {
     .plans {
         margin-bottom: 25px;
