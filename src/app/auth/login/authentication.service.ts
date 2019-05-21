@@ -35,4 +35,9 @@ export class AuthenticationService {
     this.configService.authenticationChanged.emit(false);
     this.router.navigateByUrl('/login');
   }
+
+  deleteAccount() {
+    const url = `user/delete`;
+    return this.apiService.delete(url, null,true);
+  }
 }
