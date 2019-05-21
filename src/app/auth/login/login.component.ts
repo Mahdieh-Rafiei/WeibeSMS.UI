@@ -63,7 +63,7 @@ export class LoginComponent implements OnInit {
     const pattern = /^(09|9)[0-9]{9}$/ig;
     this.signUpForm = this.fb.group({
       mobile: [null, Validators.compose([Validators.required, Validators.pattern(pattern)])],
-      sendVerificationReason: [1]
+      reason: [1]
     });
     this.signInForm = this.fb.group({
       username: [null, Validators.required],
