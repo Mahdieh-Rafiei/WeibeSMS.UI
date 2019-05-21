@@ -1,21 +1,23 @@
 <div class="col-md-12 content-box schedule">
-  <h4>Schedule</h4>
-  <p>* Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-  <div class="schedule-field">
-    <input type="checkbox"> <span> Simple </span>  &nbsp;
-    <input type="checkbox"> <span class="input-active"> Advance </span>
-  </div>
-  <div class="schedule-field-input">
-    <label>Name : </label> <input type="text">
-    <br/>
-    <br/>
-    <label>from : </label> <input type="text" placeholder="Date"> - <input type="text" placeholder="Time">
-    <br/>
-    <br/>
-    <label>to : </label> <input type="text" placeholder="Date"> - <input type="text" placeholder="Time">
-    <br/>
-    <br/>
-    <label>interval : </label> <input type="text" placeholder="Date"> - <input type="text" placeholder="Time">
-  </div>
+    <h4>Schedule</h4>
+    <p>* Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
+        magna aliqua.</p>
+    <div class="schedule-field">
+        <mat-radio-group aria-label="Select an option">
+            <mat-radio-button class="select-event" value="1">Simple</mat-radio-button>
+            <mat-radio-button class="select-event" value="2">Advance</mat-radio-button>
+        </mat-radio-group>
+    </div>
+    <div class="schedule-field-input">
+        <label>Name : </label> <input type="text" class="form-group">
+        <label>from : </label> <input type="text" placeholder="Date" class="form-group"> - <input type="text" placeholder="Time" class="form-group">
+        <label>to : </label> <input type="text" placeholder="Date" class="form-group"> - <input type="text" placeholder="Time" class="form-group">
+       <label>Repeat conditions:</label>
+        <select>
+            <option>1</option>
+            <option>1</option>
+            <option>1</option>
+        </select>
+    </div>
 
 </div>
