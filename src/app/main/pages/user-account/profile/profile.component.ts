@@ -13,7 +13,9 @@ export class ProfileComponent implements OnInit {
   profileForm: FormGroup;
   profileData: ProfileGetInterface;
 
-  genders = [{title: 'Unknown', value: 1}, {title: 'Female', value: 2}, {title: 'Male', value: 3}];
+  genders = [{title: 'Unknown', value: 1},
+    {title: 'Female', value: 2},
+    {title: 'Male', value: 3}];
 
   constructor(private fb: FormBuilder,
               private route: ActivatedRoute,

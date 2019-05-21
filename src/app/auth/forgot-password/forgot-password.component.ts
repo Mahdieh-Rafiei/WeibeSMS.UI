@@ -56,11 +56,6 @@ export class ForgotPasswordComponent implements OnInit {
     });
   }
 
-  test() {
-    console.log(this.forgotPasswordForm.controls['Mobile']);
-
-  }
-
   sendVerificationCode() {
     if (this.forgotPasswordForm.valid) {
       const payload: SendVerificationCodeInterface = this.forgotPasswordForm.value;
@@ -139,7 +134,7 @@ export class ForgotPasswordComponent implements OnInit {
       .subscribe(res => {
         console.log(res);
         this.step = 3;
-        this.authService.setToken(res.data.token);
+        // this.authService.setToken(res.data.token);
       });
   }
 

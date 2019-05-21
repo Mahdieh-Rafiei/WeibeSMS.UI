@@ -40,21 +40,69 @@ h6 {
     font-family: 'OpenSans-Regular';
     font-weight: 600;
 }
+/*------------------------padding and margin--------------------------*/
+.mt-1 {
+    margin-top: 4px;
+}
+
+.mt-2 {
+    margin-top: 8px;
+}
+
+.mt-3 {
+    margin-top: 12px;
+}
+
+.mt-4 {
+    margin-top: 16px;
+}
+
+.mt-5 {
+    padding-top: 20px;
+}
+
+.pt-1 {
+    padding-top: 4px;
+}
+
+.pt-2 {
+    padding-top: 8px;
+}
+
+.pt-3 {
+    padding-top: 12px;
+}
+
+.pt-4 {
+    padding-top: 16px;
+}
+
+.pt-5 {
+    padding-top: 20px;
+}
+
+.mr-1 {
+    margin-right: 4px;
+}
+
+.mr-2 {
+    margin-right: 8px;
+}
+
+.mr-3 {
+    margin-right: 12px;
+}
 
 .pl-0 {
     padding-left: 0;
 }
-
+.pr-0 {
+    padding-right: 0;
+}
 select.light-blue-btn {
     cursor: pointer;
     padding-left: 0;
 }
-
-blockquote {
-    border-left: 5px solid #fb9678 !important;
-    border: 1px solid rgba(120, 130, 140, 0.13);
-}
-
 p {
     margin: 0 !important;
     font-family: 'OpenSans-Regular';
@@ -100,15 +148,9 @@ article, aside, details, figcaption, figure, footer, header, hgroup, main, menu,
 .no-pad {
     padding: 0 !important;
 }
-
-.text-white {
-    color: #fff !important;
-}
-
 .img-circle {
     border-radius: 50%;
 }
-
 .main-container {
     margin: 15px 15px 15px 250px;
     padding: 0;
@@ -118,7 +160,6 @@ article, aside, details, figcaption, figure, footer, header, hgroup, main, menu,
     position: relative;
     overflow: hidden;
 }
-
 .btn-section {
     padding: 15px 25px;
     margin: 0 0 0 235px;
@@ -127,14 +168,12 @@ article, aside, details, figcaption, figure, footer, header, hgroup, main, menu,
     overflow-y: scroll;
     overflow: hidden;
 }
-
 .div-section {
     background: #ffffff;
     padding: 2rem;
     border-radius: 1rem;
     box-shadow: 0px 0px 13px 0px rgba(82, 63, 105, 0.05);
 }
-
 .operation-section {
     padding: 5px 10px;
 }
@@ -215,7 +254,6 @@ article, aside, details, figcaption, figure, footer, header, hgroup, main, menu,
 .search-wrapper button:focus {
     background: #8cabc1;
 }
-
 .search-wrapper button:before {
     content: '';
     position: absolute;
@@ -246,7 +284,6 @@ article, aside, details, figcaption, figure, footer, header, hgroup, main, menu,
     border: 1px solid #ffe8ee;
     margin-left: 5px;
 }
-
 .trash i {
     color: #da002b;
 }
@@ -335,15 +372,12 @@ table input[type=checkbox] {
     font-size: 25px;
     color: #949494;
 }
-
 .table-pagination span {
     margin-left: 5px;
 }
-
 i.fa.fa-sort {
     margin-right: 5px;
 }
-
 .title {
     color: #949494;
     font-weight: 600;
@@ -460,95 +494,17 @@ i.fa.fa-sort {
 }
 
 /*--------------------------------End Modal--------------------------*/
-.pending-btn {
-    background-color: #fe9c00;
-    border: 1px solid #fe9c00;
-    color: #ffffff;
-    font-size: 12px;
-    font-weight: 400;
-    padding: 0 5px;
-    border-radius: 4px;
-}
-
-.paid-btn {
-    background-color: #08a5a3;
-    border: 1px solid #08a5a3;
-    color: #ffffff;
-    font-size: 12px;
-    font-weight: 400;
-    padding: 0 5px;
-    border-radius: 4px;
-}
-
-.failed-btn {
-    background-color: #f5274e;
-    border: 1px solid #f5274e;
-    color: #ffffff;
-    font-size: 12px;
-    font-weight: 400;
-    padding: 0 5px;
-    border-radius: 4px;
-}
-
-.white-btn {
-    background-color: #ffffff;
-    border: 1px solid #ffffff;
-    box-shadow: 1px 1px 5px 1px #d6d6d6;
-    color: #000000;
-    font-size: 12px;
-    font-weight: 400;
-    padding: 4px 10px;
-    border-radius: 4px;
-}
-
-.simple-btn {
-    background-color: #2dce89;
-    border: 1px solid #2dce89;
-    color: #ffffff;
-    font-size: 12px;
-    font-weight: 400;
-    padding: 0 5px;
-    border-radius: 4px;
-}
-
-.schedule-btn {
-    background-color: #11cddf;
-    border: 1px solid #11cddf;
-    color: #ffffff;
-    font-size: 12px;
-    font-weight: 400;
-    padding: 0 5px;
-    border-radius: 4px;
-}
-
-.event-btn {
-    background-color: #fb6340;
-    border: 1px solid #fb6340;
-    color: #ffffff;
-    font-size: 12px;
-    font-weight: 400;
-    padding: 0 5px;
-    border-radius: 4px;
-}
-
-.verification-btn {
-    background-color: #f5365c;
-    border: 1px solid #f5365c;
-    color: #ffffff;
-    font-size: 12px;
-    font-weight: 400;
-    padding: 0 5px;
-    border-radius: 4px;
-}
-
 i.fa.fa-sort {
     margin-right: 5px;
 }
 
 .errorMessage {
+  font-size: 12px;
+  color: #f4472c;
     display: inline;
     font-size: 12px;
     color: #f4472c;
+
 }
 
 /*login*/
@@ -605,10 +561,6 @@ i.fa.fa-sort {
 
 .footer-weib {
     padding-top: 10px;
-}
-
-.export {
-
 }
 
 input.verification-code-input {
@@ -681,7 +633,9 @@ input.verification-code-input {
 .mobile-num {
     color: #6c7293;
 }
-
+.text-white {
+    color: #fff !important;
+}
 /*//////// log /////////*/
 .ws-login-input:focus, input.verification-code-input:focus {
 
@@ -693,58 +647,6 @@ input.verification-code-input {
     border: 1px solid #2cd9f4;
 }
 
-/*------------------------padding and margin--------------------------*/
-.mt-1 {
-    margin-top: 4px;
-}
-
-.mt-2 {
-    margin-top: 8px;
-}
-
-.mt-3 {
-    margin-top: 12px;
-}
-
-.mt-4 {
-    margin-top: 16px;
-}
-
-.mt-5 {
-    padding-top: 20px;
-}
-
-.pt-1 {
-    padding-top: 4px;
-}
-
-.pt-2 {
-    padding-top: 8px;
-}
-
-.pt-3 {
-    padding-top: 12px;
-}
-
-.pt-4 {
-    padding-top: 16px;
-}
-
-.pt-5 {
-    padding-top: 20px;
-}
-
-.mr-1 {
-    margin-right: 4px;
-}
-
-.mr-2 {
-    margin-right: 8px;
-}
-
-.mr-3 {
-    margin-right: 12px;
-}
 
 /*----------------------------alert-box--------------------------------*/
 .alert-box-default {
@@ -828,7 +730,9 @@ input, select, textarea {
     .search-wrapper {
         width: 100%;
     }
-}
+    .search-wrapper input {
+        width: 66%;
+    }}
 
 .select .mat-form-field {
     width: 100%;
@@ -881,3 +785,6 @@ input, select, textarea {
     transform: translateY(0) scale(0) perspective(0) translateZ(0);
     -ms-transform: translateY(0) scale(0);
 }
+ li{
+   list-style-type: none;
+ }

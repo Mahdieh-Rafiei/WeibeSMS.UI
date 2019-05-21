@@ -60,8 +60,8 @@ import {DefinitionScheduleEventComponent} from './main/pages/definition-schedule
 import {TicketService} from './main/pages/tickets/ticket.service';
 import {StatusTranslatorPipe} from './main/pages/tickets/status-translator.pipe';
 import {VerificationCodeReportComponent} from './main/pages/sms-report/verification-code-report/verification-code-report.component';
-import { DeveloperListComponent } from './main/pages/developers/developer-list/developer-list.component';
-import { DeveloperComponent } from './main/pages/developers/developer/developer.component';
+import {DeveloperListComponent} from './main/pages/developers/developer-list/developer-list.component';
+import {DeveloperComponent} from './main/pages/developers/developer/developer.component';
 import {SlimSidebarComponent} from './main/layout/slim-sidebar/slim-sidebar.component';
 import {UserNotificationComponent} from './main/pages/user-notification/user-notification.component';
 
@@ -83,106 +83,104 @@ import {SharedModule} from './shared/module/shared.module';
 import {MainRoutingModule} from './main/main-routing.module';
 import {PlanListComponent} from './main/pages/plan/plan-list/plan-list.component';
 import {MainComponent} from './main/main.component';
-import { ChangeNumberComponent } from './main/pages/user-account/privacy/change-number/change-number.component';
-import { VerifyNumberComponent } from './main/pages/user-account/privacy/change-number/verify-number/verify-number.component';
+import {ChangeNumberComponent} from './main/pages/user-account/privacy/change-number/change-number.component';
+import {VerifyNumberComponent} from './main/pages/user-account/privacy/change-number/verify-number/verify-number.component';
 
 
 @NgModule({
 
-    declarations: [
-        AppComponent,
-        LoginComponent,
-        RegisterComponent,
-        SidebarComponent,
-        TopNavComponent,
-        DashboardComponent,
-        ForgotPasswordComponent,
-        GroupComponent,
-        GroupListComponent,
-        ContactComponent,
-        AddContactComponent,
-        SingleAddContactComponent,
-        AddContactFromFileComponent,
-        ImportContactFromOtherListsComponent,
-        UserEventComponent,
-        SendMessageComponent,
-        SendMessageFirstStepComponent,
-        SendMessageSecondStepComponent,
-        SendMessageThirdStepComponent,
-        SendMessageScheduleComponent,
-        SendMessageEventComponent,
-        DraftComponent,
-        DraftListComponent,
-        TicketListComponent,
-        TicketComponent,
-        AddTicketComponent,
-        PlanListComponent,
-        InvoiceListComponent,
-        CreateTransactionComponent,
-        SmsReportListComponent,
-        SmsReportComponent,
-        DefinitionScheduleEventComponent,
-        StatusTranslatorPipe,
-        VerificationCodeReportComponent,
-        SlimSidebarComponent,
-        UserNotificationComponent,
-        ProfileComponent,
-        ChangePasswordComponent,
-        BillingAddressComponent,
-        NumericInputDirective,
-        ProfileComponent,
-        PrivacyComponent,
-        RewardPointComponent,
-        DeactiveAccountComponent,
-        LoginLogComponent,
-        BillingComponent,
-        PaymentComponent,
-        FundListComponent,
-        FundComponent,
-        MainComponent,
-        ChangeNumberComponent,
-        VerifyNumberComponent,
-        DeveloperListComponent,
-        DeveloperComponent
-  
-
-    ],
+  declarations: [
+    AppComponent,
+    LoginComponent,
+    RegisterComponent,
+    SidebarComponent,
+    TopNavComponent,
+    DashboardComponent,
+    ForgotPasswordComponent,
+    GroupComponent,
+    GroupListComponent,
+    ContactComponent,
+    AddContactComponent,
+    SingleAddContactComponent,
+    AddContactFromFileComponent,
+    ImportContactFromOtherListsComponent,
+    UserEventComponent,
+    SendMessageComponent,
+    SendMessageFirstStepComponent,
+    SendMessageSecondStepComponent,
+    SendMessageThirdStepComponent,
+    SendMessageScheduleComponent,
+    SendMessageEventComponent,
+    DraftComponent,
+    DraftListComponent,
+    TicketListComponent,
+    TicketComponent,
+    AddTicketComponent,
+    PlanListComponent,
+    InvoiceListComponent,
+    CreateTransactionComponent,
+    SmsReportListComponent,
+    SmsReportComponent,
+    DefinitionScheduleEventComponent,
+    StatusTranslatorPipe,
+    VerificationCodeReportComponent,
+    SlimSidebarComponent,
+    UserNotificationComponent,
+    ProfileComponent,
+    ChangePasswordComponent,
+    BillingAddressComponent,
+    NumericInputDirective,
+    ProfileComponent,
+    PrivacyComponent,
+    RewardPointComponent,
+    DeactiveAccountComponent,
+    LoginLogComponent,
+    BillingComponent,
+    PaymentComponent,
+    FundListComponent,
+    FundComponent,
+    MainComponent,
+    ChangeNumberComponent,
+    VerifyNumberComponent,
+    DeveloperListComponent,
+    DeveloperComponent
+  ],
 
 
-    imports: [
-        BrowserModule,
-        FormsModule,
-        ReactiveFormsModule,
-        HttpClientModule,
-        AngularEditorModule,
-        BsDropdownModule.forRoot(),
-        TabsModule.forRoot(),
-        CollapseModule.forRoot(),
-        RouterModule.forRoot(APP_ROUTES),
-        ToastrModule.forRoot({
-            preventDuplicates: true
-        }),
-        BrowserAnimationsModule,
-        FileDropModule,
-        NgxPaginationModule,
-        MainRoutingModule,
-        SharedModule,
+  imports: [
+    BrowserModule,
+    FormsModule,
+    ReactiveFormsModule,
+    HttpClientModule,
+    AngularEditorModule,
+    BsDropdownModule.forRoot(),
+    TabsModule.forRoot(),
+    CollapseModule.forRoot(),
+    RouterModule.forRoot(APP_ROUTES),
+    ToastrModule.forRoot({
+      preventDuplicates: true
+    }),
+    BrowserAnimationsModule,
+    FileDropModule,
+    NgxPaginationModule,
+    MainRoutingModule,
+    SharedModule,
 
-        MatButtonModule,
-        MatSelectModule,
-    ],
-    providers: [
-        ApiService,
-        ConfigService,
-        AuthenticationService,
-        RegisterService,
-        CanActivateRouteGuard,
-        NotificationService,
-        UserEventService,
-        TicketService,
-        UserAccountService
-    ],
-    bootstrap: [AppComponent]
+    MatButtonModule,
+    MatSelectModule,
+  ],
+  providers: [
+    ApiService,
+    ConfigService,
+    AuthenticationService,
+    RegisterService,
+    CanActivateRouteGuard,
+    NotificationService,
+    UserEventService,
+    TicketService,
+    UserAccountService
+  ],
+  bootstrap: [AppComponent]
 })
 export class AppModule {
 }
