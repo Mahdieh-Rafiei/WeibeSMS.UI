@@ -84,11 +84,17 @@ export class RegisterComponent implements OnInit {
       delete payload['confirmPassword'];
       this.registerService.saveInfo(payload)
         .subscribe(res => {
-          this.authService.setToken(res.data.token);
-          localStorage.removeItem('k-l');
-          this.configService.authenticationChanged.emit(true);
-          this.router.navigateByUrl('index');
-        });
+            this.authService.setToken(res.data.token);
+            localStorage.removeItem('k-l');
+            this.configService.authenticationChanged.emit(true);
+            this.router.navigateByUrl('index');
+          },
+          err => {
+            if (err.error.Message === '1') {
+              console.log(err);
+              this.router.navigate(['/login']);
+            }
+          });
     }
   }
 
