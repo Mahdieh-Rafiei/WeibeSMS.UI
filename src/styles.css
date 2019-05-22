@@ -158,6 +158,7 @@ article, aside, details, figcaption, figure, footer, header, hgroup, main, menu,
 }
 
 .main-container {
+<<<<<<< HEAD
   margin: 15px 15px 15px 250px;
   padding: 0;
   -ms-overflow-x: hidden;
@@ -166,6 +167,16 @@ article, aside, details, figcaption, figure, footer, header, hgroup, main, menu,
   position: relative;
   overflow: hidden;
   top: 80px;
+=======
+    margin: 15px 15px 15px 250px;
+    padding: 0;
+    top: 80px;
+    -ms-overflow-x: hidden;
+    overflow-x: hidden;
+    overflow-y: scroll;
+    position: relative;
+    overflow: hidden;
+>>>>>>> 074e115dbf257d8db2a6ccbaf12246e2644a0afe
 }
 
 .btn-section {
@@ -408,12 +419,21 @@ i.fa.fa-sort {
 }
 
 .green-btn {
+<<<<<<< HEAD
   background-color: #1dc9b7;
   border: 1px solid #1dc9b7;
   border-radius: 4px;
   color: #ffffff;
   padding: 10px 15px;
   font-size: 12px;
+=======
+    background-color: #1dc9b7;
+    border: 1px solid #1dc9b7;
+    border-radius: 4px;
+    color: #ffffff;
+    padding: 7px 25px;
+    font-size: 14px;
+>>>>>>> 074e115dbf257d8db2a6ccbaf12246e2644a0afe
 }
 
 .light-green-btn {
@@ -425,12 +445,21 @@ i.fa.fa-sort {
 }
 
 .blue-btn {
+<<<<<<< HEAD
   background-color: #5867dd;
   border: 1px solid #5867dd;
   border-radius: 4px;
   color: #ffffff;
   padding: 10px 15px;
   font-size: 12px;
+=======
+    background-color: #5867dd;
+    border: 1px solid #5867dd;
+    border-radius: 4px;
+    color: #ffffff;
+    padding: 7px 25px;
+    font-size: 12px;
+>>>>>>> 074e115dbf257d8db2a6ccbaf12246e2644a0afe
 }
 
 .light-blue-btn {
@@ -451,12 +480,21 @@ i.fa.fa-sort {
 }
 
 .red-btn {
+<<<<<<< HEAD
   background-color: #fd397a;
   border: 1px solid #fd397a;
   border-radius: 4px;
   color: #ffffff;
   padding: 10px 15px;
   font-size: 12px;
+=======
+    background-color: #fd397a;
+    border: 1px solid #fd397a;
+    border-radius: 4px;
+    color: #ffffff;
+    padding: 7px 25px;
+    font-size: 14px;
+>>>>>>> 074e115dbf257d8db2a6ccbaf12246e2644a0afe
 }
 
 .light-red-btn {
@@ -469,12 +507,21 @@ i.fa.fa-sort {
 }
 
 .gray-btn {
+<<<<<<< HEAD
   background-color: #c2c2c2;
   border: 1px solid #c2c2c2;
   border-radius: 4px;
   color: #ffffff;
   padding: 10px 15px;
   font-size: 12px;
+=======
+    background-color: #e2e5ec;
+    border: 1px solid #e2e5ec;
+    border-radius: 4px;
+    color: #495057;
+    padding: 7px 25px;
+    font-size: 14px;
+>>>>>>> 074e115dbf257d8db2a6ccbaf12246e2644a0afe
 }
 
 .warning-box {
@@ -514,12 +561,19 @@ i.fa.fa-sort {
 }
 
 .errorMessage {
+<<<<<<< HEAD
   font-size: 12px;
   color: #f4472c;
   display: inline;
   font-size: 12px;
   color: #f4472c;
 
+=======
+    font-size: 12px;
+    color: #fd397a;
+    display: inline;
+    padding-left: 5px;
+>>>>>>> 074e115dbf257d8db2a6ccbaf12246e2644a0afe
 }
 
 /*login*/
@@ -592,6 +646,7 @@ input.verification-code-input {
 }
 
 .resend i {
+<<<<<<< HEAD
   animation: turn 1.5s ease-in-out infinite;
   color: #f4472c;
 }
@@ -601,6 +656,17 @@ input.verification-code-input {
   cursor: pointer;
   color: #f4472c;
   padding-top: 5px;
+=======
+    animation: turn 1.5s ease-in-out infinite;
+    color:#fd397a;
+}
+
+.resend {
+    text-align: center;
+    cursor: pointer;
+    color: #fd397a;
+    padding-top: 5px;
+>>>>>>> 074e115dbf257d8db2a6ccbaf12246e2644a0afe
 }
 
 .weib {
@@ -626,6 +692,7 @@ input.verification-code-input {
 }
 
 .resend i {
+<<<<<<< HEAD
   animation: turn 1.5s ease-in-out infinite;
   color: #f4472c;
 }
@@ -635,6 +702,17 @@ input.verification-code-input {
   cursor: pointer;
   color: #f4472c;
   padding-top: 5px;
+=======
+    animation: turn 1.5s ease-in-out infinite;
+    color: #fd397a;
+}
+
+.resend {
+    text-align: center;
+    cursor: pointer;
+    color: #fd397a;
+    padding-top: 5px;
+>>>>>>> 074e115dbf257d8db2a6ccbaf12246e2644a0afe
 }
 
 .red-text {
@@ -644,7 +722,9 @@ input.verification-code-input {
 .yellow-text {
   color: #ffbd3d;
 }
-
+.green-text {
+    color: #1dc9b7;
+}
 .mobile-num {
   color: #6c7293;
 }
@@ -655,6 +735,7 @@ input.verification-code-input {
 
 /*//////// log /////////*/
 .ws-login-input:focus, input.verification-code-input:focus {
+<<<<<<< HEAD
 
   border: 1px solid #2cd9f4;
 }
@@ -662,6 +743,14 @@ input.verification-code-input {
 .error {
   color: #f4472c;
   border: 1px solid #2cd9f4;
+=======
+    border: 1px solid #2cd9f4;
+}
+
+.error {
+    color: #fd397a;
+    border: 1px solid #2cd9f4;
+>>>>>>> 074e115dbf257d8db2a6ccbaf12246e2644a0afe
 }
 
 /*----------------------------alert-box--------------------------------*/
@@ -743,6 +832,7 @@ input, select, textarea {
 }
 
 @media (max-width: 767px) and (min-width: 320px) {
+<<<<<<< HEAD
   .search-wrapper {
     width: 100%;
   }
@@ -750,6 +840,15 @@ input, select, textarea {
   .search-wrapper input {
     width: 66%;
   }
+=======
+    .search-wrapper {
+        width: 100%;
+    }
+
+    .search-wrapper input {
+        width: 66%;
+    }
+>>>>>>> 074e115dbf257d8db2a6ccbaf12246e2644a0afe
 }
 
 .select .mat-form-field {
@@ -788,9 +887,15 @@ input, select, textarea {
 }
 
 .mat-datepicker-toggle {
+<<<<<<< HEAD
   padding: 8px 9px 10px 7px;
   border: 1px solid #d6d6e0;
   border-radius: 3px;
+=======
+    padding: 8px 9px 10px 7px;
+    border: 1px solid #d6d6e0;
+    border-radius: 3px;
+>>>>>>> 074e115dbf257d8db2a6ccbaf12246e2644a0afe
 }
 
 .mat-form-field-label-wrapper label {
@@ -798,7 +903,7 @@ input, select, textarea {
 }
 
 .mat-form-field-appearance-legacy .mat-form-field-suffix .mat-datepicker-toggle-default-icon {
-  width: 1.5em !important;
+    width: 1.5em !important;
 }
 
 .mat-form-field-label-wrapper .mat-form-field-label, .mat-form-field-appearance-legacy.mat-form-field-can-float.mat-form-field-should-float .mat-form-field-label {
@@ -810,3 +915,10 @@ input, select, textarea {
 li {
   list-style-type: none;
 }
+<<<<<<< HEAD
+=======
+
+li {
+    list-style-type: none;
+}
+>>>>>>> 074e115dbf257d8db2a6ccbaf12246e2644a0afe
