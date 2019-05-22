@@ -1,23 +1,12 @@
 .content-box{
     background-color: #f9f9f9;
-    border: 1px solid #c2c2c2;
     border-radius: 4px;
     padding: 9px 15px;
     color: #000;
     margin-bottom: 10px;
 }
-h4{
-    color: #555555;
-    font-weight: 600;
-    padding:0 ;
-    margin: 0 !important;
-}
 .schedule p{
     padding: 10px 0 5px 0;
-}
-.schedule-field{
-    padding-top: 10px;
-    padding-left: 15px;
 }
 input[type="radio"], input[type="checkbox"] {
     margin: 0;
@@ -28,9 +17,15 @@ input[type="radio"], input[type="checkbox"] {
 .schedule-field-input{
     padding: 15px;
 }
-label{
-    font-weight: 400;
-    width: 60px;
+label {
+    display: block;
+    color: #6c7293;
+    font-weight: 600;
+    font-size: 12px;
+}
+::placeholder {
+    color: #b5b5b5;
+    font-size: 12px;
 }
 input[type="text"]{
     width: 20%;
@@ -45,7 +40,10 @@ input[type="text"]{
     color: #9f9f9f;
     padding-left: 5px;
 }
-
+.select-event{
+    padding: 10px 10px 0 0;
+    font-size: 13px;
+}
 
 @media (max-width: 991px) and (min-width: 768px) {
     input[type="text"] {

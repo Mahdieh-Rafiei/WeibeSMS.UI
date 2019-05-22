@@ -1,58 +1,101 @@
-<div class="col-md-12 content-box originator">
-  <p>Originator</p>
-  <p>choose your originator :
-      <select>
+<div class="col-md-12 content-box originator no-pad">
+    <h4>Originator</h4>
+    <h5>choose your originator :</h5>
+    <select>
         <option>100000</option>
         <option>3000000</option>
         <option>50000 sms</option>
-      </select>
-  </p>
+    </select>
 </div>
 
-<div class="col-md-12 content-box recipient">
-  <p>Recipients</p>
-  <div class="col-md-12 filter-section">
-    <div class="col-md-6 no-pad select text-left">
-      <input type="checkbox"> SELECT ALL
+<div class="col-md-12 content-box recipient no-pad">
+    <h4>Recipients</h4>
+    <div class="col-md-12 recipient-section no-pad">
+        <div class="col-md-3 list-section">
+            <button class="light-blue-btn" mat-button [matMenuTriggerFor]="menu">My List <i
+                    class="fa fa-angle-down"></i></button>
+            <mat-menu #menu="matMenu">
+                <button mat-menu-item>Item 1</button>
+                <button mat-menu-item>Item 2</button>
+            </mat-menu>
+            <div class="check-list">
+                <p>
+                    <mat-checkbox></mat-checkbox> Test <span class="red-text">show</span>
+                </p>
+                <p>
+                    <mat-checkbox></mat-checkbox> Test <span class="red-text">show</span>
+                </p>
+            </div>
+
+        </div>
+        <div class="col-md-9">
+            <div class="col-md-12 search-box text-right">
+                <div class="input-group" id="adv-search">
+                    <input type="text" class="form-control" placeholder="Search anything you think" />
+                    <div class="input-group-btn">
+                        <div class="btn-group" role="group">
+                            <div class="dropdown dropdown-lg">
+                                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><span class="caret"></span></button>
+                                <div class="dropdown-menu dropdown-menu-right" role="menu">
+                                    <form class="form-horizontal" role="form">
+                                        <div class="form-group">
+                                            <mat-radio-button value="1">search by first name</mat-radio-button>
+                                        </div>
+                                        <div class="form-group">
+                                            <mat-radio-button value="2">search by last name</mat-radio-button>
+                                        </div>
+                                        <div class="form-group">
+                                            <mat-radio-button value="3">search by mobile</mat-radio-button>
+                                        </div>
+                                        <div class="form-group">
+                                            <mat-radio-button value="4">search by email</mat-radio-button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                            <button type="button" class="btn search-btn"><span class="fa fa-search" aria-hidden="true"></span></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-12 table-box">
+                <table class="index-table text-left">
+                    <thead>
+                    <tr>
+                        <th class="text-left"><i class="fa fa-sort"></i>#</th>
+                        <th class="text-left"><i class="fa fa-sort"></i>Name</th>
+                        <th class="text-left"><i class="fa fa-sort"></i>Surename</th>
+                        <th class="text-left"><i class="fa fa-sort"></i>Recipient Number</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td class="text-left">
+                            <mat-checkbox>01</mat-checkbox>
+                        </td>
+                        <td class="text-left">Test</td>
+                        <td class="text-left">Test</td>
+                        <td class="text-left">+989197514700</td>
+                    </tr>
+                    <tr>
+                        <td class="text-left">
+                            <mat-checkbox>02</mat-checkbox>
+                        </td>
+                        <td class="text-left">Test</td>
+                        <td class="text-left">Test</td>
+                        <td class="text-left">+989197514700</td>
+                    </tr>
+                    </tbody>
+                </table>
+                <div class="table-pagination text-right">
+                    <span><i class="fa fa-arrow-circle-left"></i></span>
+                    <span><i class="fa fa-arrow-circle-right"></i></span>
+                </div>
+            </div>
+
+        </div>
     </div>
-    <div class="col-md-6 operation no-pad text-right">
-      <div class="search">
-        <input type="text" class="form-control" placeholder="Search Group">
-        <button class="btn btn-secondary search-icon" type="button">
-          <i class="fa fa-search"></i>
-        </button>
-      </div>
-      <button class="gray-btn op-btn">
-        <i class="fa fa-filter"></i> Filter
-      </button>
-      <button class="gray-btn op-btn">
-        <i class="fa fa-sort"></i> Sort
-      </button>
+    <div class="col-md-9 col-md-offset-3 recipient-count">
+        recipient: 1
     </div>
-  </div>
-  <div class="col-md-12 recipient-table no-pad table-responsive">
-    <table>
-      <tr>
-        <td align="left"><input type="checkbox">Test 01</td>
-        <td align="right">Recipient 01</td>
-      </tr>
-    </table>
-    <table class="space-table">
-      <tr>
-        <td align="left"><input type="checkbox">Test 01</td>
-        <td align="right">Recipient 01</td>
-      </tr>
-    </table>
-    <table class="space-table">
-      <tr>
-        <td align="left"><input type="checkbox">Test 01</td>
-        <td align="right">Recipient 01</td>
-      </tr>
-    </table>
-    <table class="space-table">
-      <tr>
-        <td align="right">Recipient: 0</td>
-      </tr>
-    </table>
-  </div>
 </div>
