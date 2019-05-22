@@ -59,6 +59,7 @@ import {FundComponent} from './app/main/pages/add-fund/fund/fund.component';
 import {ProfileResolverService} from './app/main/pages/user-account/profile/profile-resolver.service';
 import {VerifyNumberComponent} from './app/main/pages/user-account/privacy/change-number/verify-number/verify-number.component';
 import {BillingAddressResolverService} from './app/main/pages/biling/billing-address/billing-address-resolver.service';
+import {DeveloperListResolverService} from './app/main/pages/developers/developer-list/developer-list-resolver.service';
 
 
 export const APP_ROUTES: Routes = [
@@ -137,7 +138,11 @@ export const APP_ROUTES: Routes = [
   {path: 'report-verification', component: VerificationCodeReportComponent},
 
   {path: 'developer', component: DeveloperComponent},
-  {path: 'developer-list', component: DeveloperListComponent},
+  {
+    path: 'developer-list', component: DeveloperListComponent, resolve: {
+      developersList: DeveloperListResolverService,
+    },
+  },
 
   {path: 'notification', component: UserNotificationComponent},
 
