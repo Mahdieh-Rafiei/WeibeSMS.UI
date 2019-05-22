@@ -1,4 +1,4 @@
 export interface VerifyMobileResponseInterface {
-  Data: string;
+  data: string;
   Message: string;
 }

@@ -109,6 +109,6 @@ export class ApiService {
     let errorCode = parseInt(error.error && error.error.Message);
     let errorNotificationMessage = configService.errorMessages.get(errorCode);
     this.notificationService.error(errorNotificationMessage, 'Error');
-    return throwError(errorMessage);
+    return throwError(error);
   }
 }

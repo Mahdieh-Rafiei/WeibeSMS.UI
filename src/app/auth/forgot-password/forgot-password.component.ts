@@ -5,6 +5,8 @@ import {AuthenticationService} from '../login/authentication.service';
 import {ConfigService} from '../../shared/config.service';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {SendVerificationCodeInterface} from '../login/models/send-verification-code.interface';
+import {VerifyMobileInterface} from '../login/models/verify-mobile.interface';
+import {ChangePasswordInterface} from './models/change-password.interface';
 
 
 @Component({
@@ -23,6 +25,7 @@ export class ForgotPasswordComponent implements OnInit {
   verificationCodePart4: string = '';
   verificationCodePart5: string = '';
   key: string;
+  verifyKey: string;
   password: string;
   confirmPassword: string;
 
@@ -61,10 +64,15 @@ export class ForgotPasswordComponent implements OnInit {
       const payload: SendVerificationCodeInterface = this.forgotPasswordForm.value;
       this.forgotPasswordService.sendVerificationCode(payload)
         .subscribe(res => {
-          console.log(res);
-          this.step = 2;
-          this.key = res.data.registrationKey;
-        });
+            console.log(res);
+            this.step = 2;
+            this.key = res.data.key;
+            localStorage.setItem('k-f', res.data.key);
+          },
+          err => {
+            console.log(err);
+            this.step = 2;
+          });
     } else {
       this.enterPressConfirm = true;
     }
@@ -129,21 +137,36 @@ export class ForgotPasswordComponent implements OnInit {
   verify() {
     const verificationCode = this.verificationCodePart1.concat(this.verificationCodePart2, this.verificationCodePart3,
       this.verificationCodePart4, this.verificationCodePart5);
+    const payload: VerifyMobileInterface = {
+      Key: this.key ? this.key : localStorage.getItem('k-f'),
+      Mobile: this.forgotPasswordForm.value.Mobile,
+      VerificationCode: verificationCode
+    };
 
-    this.forgotPasswordService.verify(this.mobile, verificationCode, this.key)
+    this.forgotPasswordService.verify(payload)
       .subscribe(res => {
         console.log(res);
         this.step = 3;
-        // this.authService.setToken(res.data.token);
+        localStorage.setItem('k-v-f', res.data);
+        this.verifyKey = res.data;
       });
   }
 
   changePassword() {
-    this.forgotPasswordService.changePassword(this.password)
+    const payload = {
+      Password: this.password,
+      key: this.verifyKey ? this.verifyKey : localStorage.getItem('k-v-f'),
+      mobile: this.forgotPasswordForm.value.Mobile
+    };
+    this.forgotPasswordService.changePassword(payload)
       .subscribe(res => {
         console.log(res);
         this.configService.authenticationChanged.emit(true);
-        this.router.navigateByUrl('');
+        localStorage.removeItem('k-f');
+        localStorage.removeItem('k-v-f');
+        this.router.navigate(['/index']);
+        this.authService.setToken(res.data.token);
+        this.configService.authenticationChanged.emit(true);
       });
   }
 
