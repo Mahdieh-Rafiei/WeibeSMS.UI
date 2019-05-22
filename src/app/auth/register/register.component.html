@@ -2,7 +2,7 @@
     <div class="container">
         <div class="col-12 col-xs-12 ws-box">
             <div class="right-box ws-login-box">
-                <div class="subject text-left">
+                <div class="col-md-12 subject text-left">
                     <img src="../../../assets/images/LogoLogin.svg" class="img-responsive">
                     <div class="subject-detail">
                         <h4>Lets go!</h4>
@@ -129,9 +129,7 @@
                                             </li>
                                         </ul>
                                     </div>
-                                    <!--<p class="red-text">Password min length is 8 characters</p>-->
-                                    <!--<p class="red-text"> Password needs to have at least one uppercase, one digit, and one-->
-                                    <!--special character</p>-->
+                                 
                                 </div>
                                 <div class="col-12 col-md-4 form-group">
                                     <label>Re-enter Password*</label>
@@ -150,10 +148,10 @@
                             </div>
                         </div>
                         <div class="col-md-12 privacy">
-                            <input type="checkbox" (change)="confirm($event)" id="confirm">
-                            <label for="confirm">I have read and agree to Weiß SMS terms and <span
-                                    class="sign-in">conditions</span>
-                                and the <span class="sign-in">privacy policy</span>.</label>
+                            <mat-checkbox type="checkbox" class="mat-privacy" (change)="confirm($event)" id="confirm"></mat-checkbox>
+                            <label for="confirm" class="privacy-label">I have read and agree to Weiß SMS terms and <span
+                                    class="green-text">conditions</span>
+                                and the <span class="green-text">privacy policy</span>.</label>
                         </div>
                         <div class="col-md-12 text-center btn-save">
                             <button [disabled]="disableButton"

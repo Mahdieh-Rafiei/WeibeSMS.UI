@@ -158,9 +158,9 @@ article, aside, details, figcaption, figure, footer, header, hgroup, main, menu,
 }
 
 .main-container {
-    margin: 15px 15px 15px 250px;
+    margin: 75px 15px 15px 250px;
     padding: 0;
-    top: 80px;
+    height: 100vh;
     -ms-overflow-x: hidden;
     overflow-x: hidden;
     overflow-y: scroll;
@@ -169,8 +169,8 @@ article, aside, details, figcaption, figure, footer, header, hgroup, main, menu,
 }
 
 .btn-section {
-    padding: 15px 25px;
-    margin: 0 0 0 235px;
+    /*padding: 15px 25px;*/
+    /*margin: 70px 0 0 235px;*/
     -ms-overflow-x: hidden;
     overflow-x: hidden;
     overflow-y: scroll;
@@ -185,7 +185,7 @@ article, aside, details, figcaption, figure, footer, header, hgroup, main, menu,
 }
 
 .operation-section {
-    padding: 5px 10px;
+    /*padding: 5px 10px;*/
 }
 
 /*---------------------------Search-----------------------*/
@@ -303,7 +303,7 @@ article, aside, details, figcaption, figure, footer, header, hgroup, main, menu,
 /*----------------------------End Search---------------------------*/
 /*------------------------------table------------------------------*/
 .table-div {
-    padding: 11px !important;
+    /*padding: 11px !important;*/
 }
 
 table {
@@ -808,4 +808,8 @@ input, select, textarea {
 
 li {
     list-style-type: none;
+}
+
+.mat-form-field-wrapper {
+    padding-bottom: 0;
 }
