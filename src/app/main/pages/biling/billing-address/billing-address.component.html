@@ -32,19 +32,25 @@
                   this filed is required!
                 </p>
               </div>
-              <select class="v-input-select">
+              <select class="v-input-select" formControlName="prefix">
                 <option hidden value="">select</option>
                 <option *ngFor="let country of countries" [value]="country.prefix">
                   {{country.prefix}}
                 </option>
               </select>
+              <div class="text-left"
+                   *ngIf="(((billingAddressForm.controls['prefix'].dirty || billingAddressForm.controls['prefix'].touched) || formDir.submitted))">
+                <p class="errorMessage" *ngIf="billingAddressForm.hasError('required', 'prefix')">
+                  this filed is required!
+                </p>
+              </div>
             </div>
             <div class="col-12 col-md-6 form-group">
               <label>Country :</label>
               <select name="country"
                       formControlName="countryId"
                       #country
-                      (change)="countrySelect()">
+                      (change)="countrySelect(null)">
                 <option hidden value="">select</option>
                 <option *ngFor="let country of countries" [value]="country.id">{{country.name}}</option>
               </select>

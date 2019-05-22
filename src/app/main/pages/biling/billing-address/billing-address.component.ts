@@ -48,6 +48,9 @@ export class BillingAddressComponent implements OnInit {
   }
 
   fillBillingAddress(billingAddressForm) {
+    if (this.billingAddressData.data && this.billingAddressData.data.countryId) {
+      this.countrySelect(this.billingAddressData.data.countryId);
+    }
     billingAddressForm.patchValue({
       fullName: this.billingAddressData.data ? this.billingAddressData.data.fullName : null,
       countryId: this.billingAddressData.data ? this.billingAddressData.data.countryId : '',
@@ -55,9 +58,10 @@ export class BillingAddressComponent implements OnInit {
       phone: this.billingAddressData.data ? this.billingAddressData.data.phone : null,
       address: this.billingAddressData.data ? this.billingAddressData.data.address : null,
       zipCode: this.billingAddressData.data ? this.billingAddressData.data.zipCode : null,
+      prefix: this.billingAddressData.data ? this.billingAddressData.data.prefix : null,
       vatNumber: this.billingAddressData.data ? this.billingAddressData.data.vatNumber : null,
     });
-    if (this.billingAddressData.data.vatNumber) {
+    if (this.billingAddressData.data && this.billingAddressData.data.vatNumber) {
       this.vatNumber = false;
     }
 
@@ -79,19 +83,23 @@ export class BillingAddressComponent implements OnInit {
       phone: [null, Validators.required],
       address: [null, Validators.required],
       zipCode: [null, Validators.required],
+      prefix: [null, Validators.required],
       vatNumber: [null],
     })
     ;
   }
 
-  countrySelect() {
-    const countryId = this.billingAddressForm.get('countryId').value;
+  countrySelect(id) {
+    const countryId = id ? id : this.billingAddressForm.get('countryId').value;
     this.shs.getCity(countryId)
       .subscribe((res: CityInterface) => this.cities = res.data);
   }
 
   submit() {
     const payload = this.billingAddressForm.value;
+    if (!payload['vatNumber']) {
+      delete payload['vatNumber'];
+    }
     this.bs.modifyAddress(payload)
       .subscribe(res => {
         this.notificationService.success('save billing address successfully', '');
