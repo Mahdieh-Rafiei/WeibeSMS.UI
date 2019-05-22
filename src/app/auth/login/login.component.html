@@ -40,7 +40,7 @@
             <p [routerLink]="['/forgot-password']" class="forgot-pass welcome-text"> Forgot password ?</p>
             <button type="submit" (click)="login()" class="ws-btn login-btn">Login</button>
           </div>
-          <div class="col-md-12 no-pad login-mode">
+          <div class="col-md-12 col-sm-12 col-xs-12 no-pad login-mode">
             <hr>
             <p class="welcome-text">Don't have an account? <span class="sign-up"
                                                                  (click)="isLoginMode=false">Sign up</span>
@@ -64,7 +64,7 @@
                 <option>English</option>
                 <option>Persian</option>
               </select>
-              <div class="text-left"
+               <div class="text-left"
                    *ngIf="((signUpForm.dirty || signUpForm.touched || formDir.submitted))">
                 <p class="errorMessage" *ngIf="signUpForm.hasError('required', 'mobile')">
                   this filed is required!
@@ -76,11 +76,11 @@
               </div>
             </div>
           </div>
-          <div class="col-md-10 col-md-offset-1 col-xs-12">
+          <div class="col-md-10 col-md-offset-1 col-sm-12 col-xs-12 btn-register">
             <button type="submit" (click)="sendVerificationCode()" class="ws-btn login-btn">Register
             </button>
           </div>
-          <div class="col-md-12">
+          <div class="col-md-12 col-sm-12 col-xs-12">
             <hr>
             <p class="welcome-text">Already have an account? <span class="sign-in"
                                                                    (click)="rollbackToLoginMode()">Sign in</span>
@@ -90,7 +90,7 @@
         <div *ngIf="!isLoginMode && verificationCodeSent">
           <h3>Hello Stranger!</h3>
           <span class="welcome-text">Create a free account on <span class="sign-in">Weiß SMS</span>.</span>
-          <div class="col-md-10 col-md-offset-1 col-xs-12 detail-box">
+          <div class="col-md-10 col-md-offset-1 col-sm-12 col-xs-12 detail-box">
             <div class="col-md-12 no-pad">
               <p class="wrong welcome-text">your number : <span class="mobile-num">{{signUpForm['controls'].mobile.value}}</span>
                 <span
@@ -123,7 +123,7 @@
               <app-countdown (countDownEmit)="getCountDown($event)"></app-countdown>
             </div>
           </div>
-          <div class="col-md-12 no-pad">
+          <div class="col-md-12 col-sm-12 col-xs-12 no-pad">
             <hr>
             <p class="welcome-text">Already have an account? <span class="sign-in"
                                                                    (click)="rollbackToLoginMode()">Sign in</span>
@@ -131,7 +131,7 @@
           </div>
         </div>
       </div>
-      <div class="col-lg-12 col-md-12 footer-weib">
+      <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 footer-weib">
         <p class="welcome-text">©2019 Weiß SMS. All rights reserved.</p>
       </div>
 
