@@ -8,7 +8,7 @@
         <form *ngIf="isLoginMode" [formGroup]="signInForm" #formDir="ngForm">
           <h3>Welcome back</h3>
           <span class="welcome-text">login to your account here</span>
-          <div class="col-md-10 col-md-offset-1 col-xs-12">
+          <div class="col-md-10 offset-md-1 col-xs-12">
             <div class="input-box">
               <input type="text"
                      class="ws-login-input"
@@ -36,7 +36,7 @@
               </div>
             </div>
           </div>
-          <div class="col-md-10 btn-login-div col-md-offset-1 col-xs-12">
+          <div class="col-md-10 btn-login-div offset-md-1 col-xs-12">
             <p [routerLink]="['/forgot-password']" class="forgot-pass welcome-text"> Forgot password ?</p>
             <button type="submit" (click)="login()" class="ws-btn login-btn">Login</button>
           </div>
@@ -51,7 +51,7 @@
               (keydown)="keySendVerificationCode($event)">
           <h3>Hello Stranger!</h3>
           <span class="welcome-text">Create a free account on <span class="weib">Weiß SMS</span>.</span>
-          <div class="col-md-10 col-md-offset-1 col-xs-12">
+          <div class="col-md-10 offset-md-1 col-xs-12">
             <div class="input-box v-input-box" [formGroup]="signUpForm">
               <input type="text"
                      placeholder="Your phone number"
@@ -76,7 +76,7 @@
               </div>
             </div>
           </div>
-          <div class="col-md-10 col-md-offset-1 col-xs-12">
+          <div class="col-md-10 offset-md-1 col-xs-12">
             <button type="submit" (click)="sendVerificationCode()" class="ws-btn login-btn">Register
             </button>
           </div>
@@ -90,7 +90,7 @@
         <div *ngIf="!isLoginMode && verificationCodeSent">
           <h3>Hello Stranger!</h3>
           <span class="welcome-text">Create a free account on <span class="sign-in">Weiß SMS</span>.</span>
-          <div class="col-md-10 col-md-offset-1 col-xs-12 detail-box">
+          <div class="col-md-10 offset-md-1 col-xs-12 detail-box">
             <div class="col-md-12 no-pad">
               <p class="wrong welcome-text">your number : <span class="mobile-num">{{signUpForm['controls'].mobile.value}}</span>
                 <span
