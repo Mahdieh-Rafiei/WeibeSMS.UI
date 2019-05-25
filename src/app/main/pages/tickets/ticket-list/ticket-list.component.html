@@ -1,62 +1,61 @@
-<div class="btn-section text-right">
-  <div class="col-md-12 no-pad text-right">
-    <button class="green-btn" [routerLink]="['/add-ticket']">
-      <i class="fa fa-plus">
-      </i> New Ticket
-    </button>
-  </div>
-</div>
-<div class="main-container">
-  <div class="col-md-12 div-section">
-    <!--operation-->
-    <div class="col-md-12 no-pad operation">
-      <div class="col-md-6 operation-section">
-        <button class="light-blue-btn">
-          <i class="fa fa-filter"></i> Filter
-        </button>
-      </div>
-      <div class="col-md-6 operation-section">
-        <form class="search-wrapper search">
-          <input type="text" [(ngModel)]="phrase"  name="filter">
-          <button (click)="getDataWithSearch()" type="submit"><i class="fa fa-search"></i></button>
-        </form>
-      </div>
+<div>
+    <div class="btn-section text-right">
+        <div class="col-md-12 no-pad text-right">
+            <button class="green-btn" [routerLink]="['/add-ticket']">
+                <i class="fa fa-plus">
+                </i> New Ticket
+            </button>
+        </div>
     </div>
-    <!--table-->
-    <div class="col-md-12 table-div table-responsive">
-      <table class="index-table text-left">
-        <thead>
-        <tr>
-          <th class="text-left"><i class="fa fa-sort"></i>Title</th>
-          <th class="text-left"><i class="fa fa-sort"></i>Date</th>
-          <th class="text-left"><i class="fa fa-sort"></i>Status</th>
-          <th></th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr *ngFor="let t of tickets | paginate : {
+    <div class="div-section">
+        <!--operation-->
+        <div class="row">
+            <div class="col-md-6 operation-section form-group">
+                <button class="light-blue-btn">
+                    <i class="fa fa-filter"></i> Filter
+                </button>
+            </div>
+            <div class="col-md-6 operation-section form-group">
+                <app-search [params]="[{title: 'device'}, {title: 'location'}]"></app-search>
+            </div>
+        </div>
+        <!--table-->
+        <div class="table-div table-responsive">
+            <table class="index-table text-left">
+                <thead>
+                <tr>
+                    <th class="text-left"><i class="fa fa-sort"></i>Title</th>
+                    <th class="text-left"><i class="fa fa-sort"></i>Date</th>
+                    <th class="text-left"><i class="fa fa-sort"></i>Status</th>
+                    <th></th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr *ngFor="let t of tickets | paginate : {
                                 itemsPerPage : 10, currentPage : pageNumber, totalItems : totalItemsCount
                                 },index as i">
-          <td class="text-left">{{t.title}}</td>
-          <td class="text-left">{{t.date}}</td>
-          <td class="text-left">{{t.status | statusTranslator}}</td>
-          <td class="td-single text-left actions-container">
-            <div class="actions">
-              <a [routerLink]="['../ticket',t.id]"><i class="fa fa-eye"></i></a>
+                    <td class="text-left">{{t.title}}</td>
+                    <td class="text-left">{{t.date}}</td>
+                    <td class="text-left">{{t.status | statusTranslator}}</td>
+                    <td class="td-single text-left actions-container">
+                        <div class="actions">
+                            <a [routerLink]="['../ticket',t.id]"><i class="fa fa-eye"></i></a>
+                        </div>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+            <div class="table-pagination text-right">
+                <span><i class="fa fa-arrow-circle-left"></i></span>
+                <span><i class="fa fa-arrow-circle-right"></i></span>
             </div>
-          </td>
-        </tr>
-        </tbody>
-      </table>
-      <div class="table-pagination text-right">
-        <span><i class="fa fa-arrow-circle-left"></i></span>
-        <span><i class="fa fa-arrow-circle-right"></i></span>
-      </div>
-      <pagination-controls (pageChange)="doPaging($event)"
-                           maxSize="5"
-                           responsive="true"
-                           previousLabel=""
-                           nextLabel=""></pagination-controls>
+            <pagination-controls (pageChange)="doPaging($event)"
+                                 maxSize="5"
+                                 responsive="true"
+                                 previousLabel=""
+                                 nextLabel=""></pagination-controls>
+        </div>
     </div>
-  </div>
+
+
 </div>

@@ -1,5 +1,5 @@
 .ws-box {
-  height: 680px;
+  height: 709px;
   position: absolute;
   margin: auto;
   top: -40px;
@@ -12,7 +12,7 @@
 .ws-login-box {
   background: #fff;
   box-shadow: 0 1px 6px 0 rgba(32, 33, 36, 0.28);
-  padding: 2rem;
+  padding: 1rem;
 }
 
 .ws-btn {
@@ -25,7 +25,6 @@
   display: inline-flex;
   img {
     width: 130px;
-    padding-left: 20px;
   }
 }
 
@@ -83,7 +82,15 @@ select {
 
 .privacy-label {
   padding-left: 10px;
+}
+
+label.mat-checkbox-layout {
   margin-bottom: 0;
+}
+
+.privacy-label {
+  padding-left: 10px;
+
 }
 
 .ws-login-input:focus, input.verification-code-input:focus {
@@ -97,7 +104,7 @@ select {
 
 ul {
   padding-left: 0;
-  ul{
+  ul {
     display: inline;
   }
 }

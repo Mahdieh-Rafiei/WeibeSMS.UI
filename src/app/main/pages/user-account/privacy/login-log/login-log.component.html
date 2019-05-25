@@ -1,24 +1,24 @@
-<div class="col-md-12 div-section">
-    <div class="col-md-12 change-password">
-        <h4>Login Log</h4>
+<div class="div-section">
+    <div class="change-password">
+        <h5>Login Log</h5>
         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
             magna aliqua.</p>
     </div>
-    <div class="col-md-12 operation">
-        <div class="col-md-6 operation-section">
-            <button class="light-blue-btn">
-                <i class="fa fa-filter"></i> Filter
-            </button>
+    <div class="operation">
+        <div class="row">
+            <div class="col-md-6 operation-section form-group">
+                <button class="light-blue-btn filter-btn">
+                    <i class="fa fa-filter"></i> Filter
+                </button>
+            </div>
+            <div class="col-md-6 operation-section form-group">
+                <app-search [params]="[{title: 'device'}, {title: 'location'}]"></app-search>
+            </div>
         </div>
-        <div class="col-md-6 operation-section">
-            <form class="search-wrapper search">
-                <input name="filter" [(ngModel)]="phrase" type="text">
-                <button (click)="getDataWithSearch()" type="submit"><i class="fa fa-search"></i></button>
-            </form>
-        </div>
+
     </div>
     <!--table-->
-    <div class="col-md-12 table-div table-responsive">
+    <div class="table-div table-responsive">
         <table class="index-table text-left">
             <thead>
             <tr>

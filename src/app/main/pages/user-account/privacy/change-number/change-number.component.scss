@@ -1,7 +1,7 @@
 .div-section {
   border-radius: 0 0 1rem 1rem;
+  padding: 1rem
 }
-
 .change-password {
   h4 {
     font-weight: 600;
@@ -26,18 +26,18 @@ label {
   position: relative;
   .v-input-select {
     position: absolute;
-    top: 38px;
+    top: 42px;
     left: 1px;
     border: none;
     padding: 5px;
     width: 90px;
-    height: 40px;
+    height: 37px;
     border-right: 1px solid #f0f0f0;
   }
 }
 
 input {
-  padding: 12px 5px 8px 100px;
+  padding: 8px 5px 8px 100px;
   margin-bottom: 10px;
   width: 31%;
 }
