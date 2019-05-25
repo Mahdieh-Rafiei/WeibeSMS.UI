@@ -102,6 +102,10 @@ h6 {
   padding-right: 0;
 }
 
+.pl-1 {
+  padding-left: 4px;
+}
+
 select.light-blue-btn {
   cursor: pointer;
   padding-left: 0;
@@ -158,7 +162,7 @@ article, aside, details, figcaption, figure, footer, header, hgroup, main, menu,
 }
 
 .main-container {
-  margin: 15px 15px 15px 250px;
+  margin: 0 15px 15px 250px;
   padding: 0;
   -ms-overflow-x: hidden;
   overflow-x: hidden;
@@ -590,7 +594,7 @@ input.verification-code-input {
 
 .resend i {
   animation: turn 1.5s ease-in-out infinite;
-  color:#fd397a;
+  color: #fd397a;
 }
 
 .resend {
@@ -641,9 +645,11 @@ input.verification-code-input {
 .yellow-text {
   color: #ffbd3d;
 }
+
 .green-text {
   color: #1dc9b7;
 }
+
 .mobile-num {
   color: #6c7293;
 }

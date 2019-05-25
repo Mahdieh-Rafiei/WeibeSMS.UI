@@ -60,6 +60,7 @@ import {ProfileResolverService} from './app/main/pages/user-account/profile/prof
 import {VerifyNumberComponent} from './app/main/pages/user-account/privacy/change-number/verify-number/verify-number.component';
 import {BillingAddressResolverService} from './app/main/pages/biling/billing-address/billing-address-resolver.service';
 import {DeveloperListResolverService} from './app/main/pages/developers/developer-list/developer-list-resolver.service';
+import {DeveloperResolverService} from './app/main/pages/developers/developer/developer-resolver.service';
 
 
 export const APP_ROUTES: Routes = [
@@ -137,21 +138,22 @@ export const APP_ROUTES: Routes = [
   {path: 'sms-report', component: SmsReportComponent},
   {path: 'report-verification', component: VerificationCodeReportComponent},
 
-  {path: 'developer', component: DeveloperComponent},
-  {
-    path: 'developer-list', component: DeveloperListComponent, resolve: {
-      developersList: DeveloperListResolverService,
-    },
-  },
-
   {path: 'notification', component: UserNotificationComponent},
 
   {path: 'schedule-event', component: DefinitionScheduleEventComponent},
 
   {path: 'user-event', component: UserEventComponent},
 
-  {path: 'developer-list', component: DeveloperListComponent},
-  {path: 'developer', component: DeveloperComponent},
+  {
+    path: 'developer-list', component: DeveloperListComponent, resolve: {
+      developersList: DeveloperListResolverService,
+    }
+  },
+  {
+    path: 'developer/:id', component: DeveloperComponent, resolve: {
+      keyData: DeveloperResolverService,
+    }
+  },
 
   {path: '**', redirectTo: 'notfound'}
 ];

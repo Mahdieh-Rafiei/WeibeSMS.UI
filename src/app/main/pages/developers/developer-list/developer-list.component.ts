@@ -1,9 +1,9 @@
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
-import {DeveloperListInterface} from './models/developer-list.interface';
 import {NotificationService} from '../../../../shared/notification.service';
 import {CreateKeyComponent} from './create-key/create-key.component';
 import {MatDialog} from '@angular/material';
+import {DataDeveloperListInterface} from './models/data-developer-list.interface';
 
 @Component({
   selector: 'app-developer-list',
@@ -11,15 +11,15 @@ import {MatDialog} from '@angular/material';
   styleUrls: ['./developer-list.component.scss']
 })
 export class DeveloperListComponent implements OnInit {
-  keys: DeveloperListInterface;
+  keys: DataDeveloperListInterface[] = [];
   showAuthKey: boolean = false;
 
   constructor(private route: ActivatedRoute,
               private ns: NotificationService,
               private dialog: MatDialog) {
     this.route.data
-      .subscribe((data: { developersList: DeveloperListInterface }) => {
-        this.keys = data.developersList;
+      .subscribe((data: { developersList }) => {
+        this.keys = data.developersList.data;
       });
   }
 
@@ -39,8 +39,12 @@ export class DeveloperListComponent implements OnInit {
 
 
   createKey() {
-    this.openDialog('400px', 'auto', '',
-      {});
+    if (this.keys.length < 10) {
+      this.openDialog('400px', 'auto', '',
+        {});
+    } else {
+      this.ns.warning('You can add Maximum 10 authentication keys!', '');
+    }
   }
 
 
@@ -55,10 +59,14 @@ export class DeveloperListComponent implements OnInit {
     dialogRef.afterClosed()
       .subscribe(result => {
         if (result && result.createKey) {
+          this.keys.unshift({
+            id: result.createKey.data.id,
+            key: result.createKey.data.key,
+            title: result.createKey.data.title,
+            isActive: true
+          });
           this.ns.success('create key successfully!', '');
         }
       });
   }
-
-
 }
