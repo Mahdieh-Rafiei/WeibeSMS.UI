@@ -54,22 +54,6 @@ export class RegisterComponent implements OnInit {
     });
   }
 
-  get hasDigit() {
-    return this.registerForm.get('password');
-  }
-
-  get upperCase() {
-    return this.registerForm.get('password');
-  }
-
-  get lowerCase() {
-    return this.registerForm.get('password');
-  }
-
-  get hasSymbol() {
-    return this.registerForm.get('password');
-  }
-
   submit() {
     if (!this.registerForm.value.confirmPassword) {
       this.confirmPasswordOut();
@@ -84,11 +68,17 @@ export class RegisterComponent implements OnInit {
       delete payload['confirmPassword'];
       this.registerService.saveInfo(payload)
         .subscribe(res => {
-          this.authService.setToken(res.data.token);
-          localStorage.removeItem('k-l');
-          this.configService.authenticationChanged.emit(true);
-          this.router.navigateByUrl('index');
-        });
+            this.authService.setToken(res.data.token);
+            localStorage.removeItem('k-l');
+            this.configService.authenticationChanged.emit(true);
+            this.router.navigateByUrl('index');
+          },
+          err => {
+            if (err.error.Message === '1') {
+              console.log(err);
+              this.router.navigate(['/login']);
+            }
+          });
     }
   }
 

@@ -85,9 +85,7 @@ import {PlanListComponent} from './main/pages/plan/plan-list/plan-list.component
 import {MainComponent} from './main/main.component';
 import {ChangeNumberComponent} from './main/pages/user-account/privacy/change-number/change-number.component';
 import {VerifyNumberComponent} from './main/pages/user-account/privacy/change-number/verify-number/verify-number.component';
-import {MatAutocompleteModule, MatInputModule} from "@angular/material";
-
-// import { SearchComponent } from './shared/component/search/search.component';
+import {CreateKeyComponent} from './main/pages/developers/developer-list/create-key/create-key.component';
 
 
 @NgModule({
@@ -147,9 +145,9 @@ import {MatAutocompleteModule, MatInputModule} from "@angular/material";
         VerifyNumberComponent,
         DeveloperListComponent,
         DeveloperComponent,
-        // SearchComponent
+        CreateKeyComponent
     ],
-
+    entryComponents: [CreateKeyComponent],
 
     imports: [
         BrowserModule,
@@ -172,8 +170,6 @@ import {MatAutocompleteModule, MatInputModule} from "@angular/material";
 
         MatButtonModule,
         MatSelectModule,
-        MatInputModule,
-        MatAutocompleteModule
     ],
     providers: [
         ApiService,
