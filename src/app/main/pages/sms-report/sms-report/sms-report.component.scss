@@ -5,11 +5,11 @@
   border-radius: 4px 12px 12px 12px;
   margin-bottom: 20px;
   span {
-    color: #878e94;
-    font-weight: 600;
+    color: #969ca2;
+    font-size: 12px;
   }
   p {
-    padding: 10px 15px;
+    padding: 10px 0;
   }
 }
 
@@ -20,10 +20,11 @@
 .send-again {
   text-align: right;
   padding: 0 !important;
+  display: unset;
   a {
-    color: #08a5a3;
     text-decoration: none;
     cursor: pointer;
+    float: right;
   }
 }
 

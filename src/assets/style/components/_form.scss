@@ -1,0 +1,101 @@
+@import '../helper/variables';
+@import '../helper/mixins';
+
+.input {
+  position: relative;
+
+  &__box {
+    min-height: 38px;
+    padding: 10px;
+    position: relative;
+    z-index: 1;
+    @include content-holder(100%);
+    @include border($from-border);
+    @include border-radius(8px);
+    font-family: $font-family-number;
+
+    &:focus {
+      @include border($color-purple);
+
+      ~ .input__title {
+        top: -10px;
+        opacity: 1;
+        right: 8%;
+        color: $color-purple;
+
+        &:after {
+          visibility: visible;
+          @include content-holder(100%);
+          left: 0;
+        }
+      }
+    }
+  }
+
+  &__title {
+    position: absolute;
+    top: 15px;
+    z-index: 2;
+    color: $color-gray;
+    cursor: text;
+    transition: 0.2s ease all;
+    margin: 0;
+    font-size: 11px;
+    right: 8%;
+    width: auto;
+    background-color: $color-white;
+
+    &--not-empty {
+      top: -10px;
+      opacity: 1;
+      right: 8%;
+
+      &:after {
+        visibility: visible;
+        @include content-holder(100%);
+        left: 0;
+      }
+    }
+
+    &--large {
+      @extend .input__title;
+      right: 4% !important;
+    }
+  }
+
+  &__icon {
+    position: absolute;
+    top: 10px;
+    z-index: 2;
+    color: $color-gray;
+    cursor: text;
+    transition: 0.2s ease all;
+    margin: 0;
+    font-size: 12px;
+    left: 2%;
+    width: auto;
+    background-color: $color-white;
+  }
+}
+
+app-control-messages div, .errorMessage {
+  padding-top: 5px;
+  display: inline;
+  @include font-style($font-family-number, 10px, $color-error-red);
+  font-family: unset;
+}
+
+// invalid input value or required input
+.red-border, .input__box.ng-invalid.ng-touched {
+  border: 1px solid $color-error-red;
+  color: $color-error-red;
+}
+
+.input__title--error {
+  color: $color-error-red !important;
+}
+
+.check-box__title {
+  padding-right: 15px;
+  @include font-style($font-family-bold, 12px, $color-gray);
+}

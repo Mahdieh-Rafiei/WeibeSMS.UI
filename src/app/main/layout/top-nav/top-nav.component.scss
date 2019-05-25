@@ -4,6 +4,7 @@
   border-radius: 0 !important;
   margin-bottom: 0;
   box-shadow: 5px 0 10px rgba(0, 0, 0, .5);
+  padding: 0;
 }
 
 .slim-navbar {
@@ -46,7 +47,7 @@ a.toggle-menu {
   min-height: 60px;
   font-size: 25px;
   color: #6c7293;
-  cursor: pointer;
+  cursor: pointer !important;
 }
 
 .right-nav span {
@@ -71,9 +72,6 @@ a.toggle-menu {
 
 /*profile*/
 .profile {
-  padding: 0 14px;
-  line-height: 60px;
-  min-height: 60px;
   i {
     font-size: 22px;
     background: #5867dd;
@@ -87,7 +85,7 @@ a.toggle-menu {
 
 .language {
   a {
-    padding: 13px 15px 6px;
+    line-height: 62px;
     img {
       border-radius: 50%;
       width: 32px;
@@ -95,10 +93,16 @@ a.toggle-menu {
     }
   }
 }
+.profile{
+  a{
+    padding: 0;
+    line-height: 62px;
+  }
+}
 
 .notification, .guide {
   a {
-    line-height: 59px;
+    line-height: 62px;
     i {
       color: #6c7293;
       font-size: 20px;

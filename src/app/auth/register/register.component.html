@@ -1,4 +1,172 @@
 <div class="container-fluid">
+<<<<<<< HEAD
+    <div class="container">
+        <div class="col-12 col-xs-12 ws-box">
+            <div class="right-box ws-login-box">
+                <div class="col-md-12 subject text-left">
+                    <img src="../../../assets/images/LogoLogin.svg" class="img-responsive">
+                    <div class="subject-detail">
+                        <h4>Lets go!</h4>
+                        <p class="welcome-text">complete your information to create account.</p>
+                    </div>
+                </div>
+                <form class="register-input" [formGroup]="registerForm" #formDir="ngForm" (ngSubmit)="submit()">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="row">
+                                <div class="col-12 col-md-4 form-group">
+                                    <label>Name*</label>
+                                    <input type="text"
+                                           placeholder="Your Name"
+                                           formControlName="firstName">
+                                    <div class="text-left"
+                                         *ngIf="(((registerForm.controls['firstName'].dirty || registerForm.controls['firstName'].touched) || formDir.submitted))">
+                                        <p class="errorMessage" *ngIf="registerForm.hasError('required', 'firstName')">
+                                            this filed is required!
+                                        </p>
+                                        <p class="errorMessage"
+                                           *ngIf="(registerForm.controls['firstName'].hasError('maxlength'))">
+                                            Firstname max length is 20 char!
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="col-12 col-md-4 form-group">
+                                    <label>Surname*</label>
+                                    <input type="text"
+                                           placeholder="Your Surname"
+                                           formControlName="lastName">
+                                    <div class="text-left"
+                                         *ngIf="(((registerForm.controls['lastName'].dirty || registerForm.controls['lastName'].touched) || formDir.submitted))">
+                                        <p class="errorMessage" *ngIf="registerForm.hasError('required', 'lastName')">
+                                            this filed is required!
+                                        </p>
+                                        <p class="errorMessage"
+                                           *ngIf="(registerForm.controls['lastName'].hasError('maxlength'))">
+                                            Surename max length is 30 char!
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="col-12 col-md-4 form-group">
+                                    <label>Gender :</label>
+                                    <select formControlName="gender">
+                                        <option hidden value="">select</option>
+                                        <option *ngFor="let gender of genders" [value]="gender.value">
+                                            {{gender.title}}
+                                        </option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="row">
+                                <div class="col-12 col-md-4 form-group">
+                                    <label>Company name</label>
+                                    <input type="text"
+                                           placeholder="Your Company name"
+                                           formControlName="companyName">
+                                </div>
+                                <div class="col-12 col-md-4 form-group">
+                                    <label>Email</label>
+                                    <input type="text"
+                                           placeholder="User Email"
+                                           formControlName="email">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="row">
+                                <div class="col-12 col-md-4 form-group">
+                                    <label>Username*</label>
+                                    <input type="text"
+                                           autocomplete="off"
+                                           placeholder="Your username"
+                                           formControlName="userName">
+                                    <div class="text-left"
+                                         *ngIf="(((registerForm.controls['userName'].touched) || formDir.submitted))">
+                                        <p class="errorMessage" *ngIf="registerForm.hasError('required', 'userName')">
+                                            this filed is required!
+                                        </p>
+                                        <p class="errorMessage"
+                                           *ngIf="(registerForm.controls['userName'].hasError('minlength'))">
+                                            Username min length is 6 char!
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="row">
+                                <div class="col-12 col-md-4 form-group">
+                                    <label>Password*</label>
+                                    <input type="password"
+                                           autocomplete="off"
+                                           formControlName="password">
+                                    <div class="text-left"
+                                         *ngIf="(((registerForm.controls['password'].touched) || formDir.submitted) &&
+                       hasDigit.errors && upperCase.errors && lowerCase.errors && hasSymbol.errors)">
+                                        <ul class="pl-0 pt-1">
+                                            <li class="errorMessage" *ngIf="registerForm.hasError('required', 'password')">
+                                                this filed is required!
+                                            </li>
+                                            <li class="errorMessage"
+                                                *ngIf="(registerForm.controls['password'].hasError('minlength'))">
+                                                min length is 8 char!
+                                            </li>
+                                            <li class="errorMessage"
+                                                *ngIf="(hasDigit.errors.invalidHasDigit)">
+                                                least one Digit letter!
+                                            </li>
+                                            <li class="errorMessage"
+                                                *ngIf="(upperCase.errors.invalidUpperCase)">
+                                                least one uppercase letter!
+                                            </li>
+                                            <li class="errorMessage"
+                                                *ngIf="(lowerCase.errors.invalidLowerCase)">
+                                                least one LowerCase letter!
+                                            </li>
+                                            <li class="errorMessage"
+                                                *ngIf="(hasSymbol.errors.invalidHasSymbol)">
+                                                least one Symbol letter!
+                                            </li>
+                                        </ul>
+                                    </div>
+                                 
+                                </div>
+                                <div class="col-12 col-md-4 form-group">
+                                    <label>Re-enter Password*</label>
+                                    <input type="password"
+                                           autocomplete="off"
+                                           placeholder="Confirm Your Password"
+                                           (input)="confirmPasswordOut()"
+                                           (focusout)="confirmPasswordOut()"
+                                           formControlName="confirmPassword">
+                                    <div class="text-left">
+                                        <p class="errorMessage" *ngIf="notMatch">
+                                            Confirm value is not correct!
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-12 privacy">
+                            <mat-checkbox type="checkbox" class="mat-privacy" (change)="confirm($event)" id="confirm"></mat-checkbox>
+                            <label for="confirm" class="privacy-label">I have read and agree to Weiß SMS terms and <span
+                                    class="green-text">conditions</span>
+                                and the <span class="green-text">privacy policy</span>.</label>
+                        </div>
+                        <div class="col-md-12 text-center btn-save">
+                            <button [disabled]="disableButton"
+                                    [ngStyle]="{'color' : disableButton? '#ffffff': '', 'background-color': disableButton? '#a0a7eb': ''}"
+                                    class="ws-btn">
+                                <i class="fa fa-spinner fa-spin"
+                                   style="display: none;">
+                                </i>
+                                CREATE ACCOUNT
+                            </button>
+                        </div>
+                    </div>
+                </form>
+=======
   <div class="container">
     <div class="col-12 col-xs-12 ws-box">
       <div class="right-box ws-login-box">
@@ -55,6 +223,7 @@
                   </select>
                 </div>
               </div>
+>>>>>>> db68e3e101094c2cd2d45eb98562ed27cfd08cd6
             </div>
             <div class="col-md-12">
               <div class="row">
