@@ -44,7 +44,7 @@ label {
   font-size: 12px;
 }
 
-input[type=text], input[type=password]{
+input[type=text], input[type=password] {
   width: 100%;
   padding: 5px;
 }
@@ -81,7 +81,7 @@ select {
   padding-left: 0;
 }
 
-.privacy-label{
+.privacy-label {
   padding-left: 10px;
   margin-bottom: 0;
 }
@@ -89,10 +89,19 @@ select {
 .ws-login-input:focus, input.verification-code-input:focus {
   border: 1px solid #2cd9f4;
 }
-.mat-privacy{
+
+.mat-privacy {
   margin-bottom: 0;
   line-height: 25px;
 }
+
+ul {
+  padding-left: 0;
+  ul{
+    display: inline;
+  }
+}
+
 @media (min-width: 1600px) {
   .ws-box {
     width: 75%;
@@ -112,6 +121,7 @@ select {
     margin-top: 20px;
   }
 }
+
 @media (max-width: 767px) and (min-width: 320px) {
   .ws-btn {
     width: 100%;

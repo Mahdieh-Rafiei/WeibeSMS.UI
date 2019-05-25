@@ -101,31 +101,28 @@
                          autocomplete="off"
                          formControlName="password">
                   <div class="text-left"
-                       *ngIf="(((registerForm.controls['password'].touched) || formDir.submitted) && registerForm.get('password').errors)">
+                       *ngIf="(((registerForm.controls['password'].touched) || formDir.submitted))">
                     <ul class="pl-0 pt-1">
                       <li class="errorMessage pl-0" *ngIf="registerForm.hasError('required', 'password')">
                         <i class="fa fa-check-circle"></i><span class="pl-1">this filed is required!</span>
                       </li>
-                      <li class="errorMessage"
-                          *ngIf="registerForm.controls['password'].hasError('minlength')">
-                        <i class="fa fa-check-circle"></i><span class="pl-1"> min length is 8 char!</span>
-                      </li>
-                      <li class="errorMessage"
-                          *ngIf="registerForm.controls['password'].hasError('invalidHasDigit')">
-                        <i class="fa fa-check-circle"></i><span class="pl-1">least one Digit letter!</span>
-                      </li>
-                      <li class="errorMessage"
-                          *ngIf="registerForm.controls['password'].hasError('invalidUpperCase')">
-                        <i class="fa fa-check-circle"></i><span class="pl-1">least one uppercase letter!</span>
-                      </li>
-                      <li class="errorMessage"
-                          *ngIf="registerForm.controls['password'].hasError('invalidLowerCase')">
-                        <i class="fa fa-check-circle"></i><span class="pl-1">least one LowerCase letter!</span>
-                      </li>
-                      <li class="errorMessage"
-                          *ngIf="registerForm.controls['password'].hasError('invalidHasSymbol')">
-                        <i class="fa fa-check-circle"></i><span class="pl-1">least one Symbol letter!</span>
-                      </li>
+                      <ul *ngIf="registerForm.controls['password'].hasError('pattern')">
+                        <li class="errorMessage pl-0">
+                          <i class="fa fa-check-circle"></i><span class="pl-1"> min length is 8 char!</span>
+                        </li>
+                        <li class="errorMessage">
+                          <i class="fa fa-check-circle"></i><span class="pl-1">least one Digit letter!</span>
+                        </li>
+                        <li class="errorMessage">
+                          <i class="fa fa-check-circle"></i><span class="pl-1">least one uppercase letter!</span>
+                        </li>
+                        <li class="errorMessage">
+                          <i class="fa fa-check-circle"></i><span class="pl-1">least one LowerCase letter!</span>
+                        </li>
+                        <li class="errorMessage">
+                          <i class="fa fa-check-circle"></i><span class="pl-1">least one Symbol letter!</span>
+                        </li>
+                      </ul>
                     </ul>
                   </div>
                   <!--<p class="red-text">Password min length is 8 characters</p>-->
