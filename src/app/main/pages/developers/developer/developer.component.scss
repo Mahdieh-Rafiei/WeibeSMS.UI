@@ -1,8 +1,8 @@
-.api-detail{
+.api-detail {
   padding: 0;
 }
+
 .additional-security {
-  padding: 15px 0;
   h4 {
     font-weight: 600;
     line-height: 1;
@@ -13,6 +13,7 @@
     padding-top: 5px;
   }
 }
+
 .green-btn, .red-btn {
   margin-left: 10px;
   font-size: 14px;
@@ -33,21 +34,16 @@ label {
 }
 
 input {
-  padding: 9px;
-  margin-bottom: 10px;
+  width: 100%;
 }
 
-input.title-input {
-  width: 25%;
-}
-
-input.Authentication-input {
-  width: 50%;
-}
-
-::placeholder {
-  color: #b5b5b5;
-  font-size: 12px;
+.radio {
+  label {
+    display: inline;
+  }
+  input {
+    width: unset
+  }
 }
 
 p.yellow-text {
@@ -58,18 +54,14 @@ p.yellow-text {
 mat-radio-button#mat-radio-3 {
   margin-left: 30px;
 }
-.white-list{
-  padding: 20px 0;
-  input{
-    width: 100%;
-  }
-}
-.blue-btn{
+
+.blue-btn {
   width: 100%;
 }
-table.security-table{
+
+table.security-table {
   margin-bottom: 10px;
-  i{
+  i {
     color: #fd397a;
   }
 }

@@ -21,11 +21,11 @@
         <th></th>
         <th class="text-center"><i class="fa fa-sort"></i> Status</th>
         <!--<th class="text-left"><i class="fa fa-sort"></i> DateTime</th>-->
-        <!--<th></th>-->
+        <th></th>
       </tr>
       </thead>
       <tbody>
-      <tr *ngFor="let developer of keys.data, index as i">
+      <tr *ngFor="let developer of keys, index as i">
         <td class="text-left">
           <div class="table-head">
             <span>#{{i+1}}</span>
@@ -56,9 +56,13 @@
         </td>
         <td class="text-center">
           <div class="table-head">
-            Disable
+            <span *ngIf="!developer.isActive">Disable</span>
+            <span *ngIf="developer.isActive">Enable</span>
           </div>
         </td>
+        <div class="table-head">
+          <span [routerLink]="['/developer', developer.id]"><i class="fa fa-eye light-green-btn"></i></span>
+        </div>
         <!--<td class="text-left">-->
         <!--<div class="table-head">-->
         <!--<span>11:08, 20-04-2019</span>-->

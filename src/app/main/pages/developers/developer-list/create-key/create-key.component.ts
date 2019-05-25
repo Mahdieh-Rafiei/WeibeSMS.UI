@@ -29,7 +29,8 @@ export class CreateKeyComponent implements OnInit {
     const payload: AddKeyInterface = {title: this.title};
     this.ds.addKey(payload)
       .subscribe(res => {
-        this.dialogRef.close({createKey: {index: this.optionIndex}});
+        const data = {id: res.data.id, key: res.data.key, title: this.title};
+        this.dialogRef.close({createKey: {data}});
       });
   }
 

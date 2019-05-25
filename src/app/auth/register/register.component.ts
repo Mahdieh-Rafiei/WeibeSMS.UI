@@ -54,22 +54,6 @@ export class RegisterComponent implements OnInit {
     });
   }
 
-  get hasDigit() {
-    return this.registerForm.get('password');
-  }
-
-  get upperCase() {
-    return this.registerForm.get('password');
-  }
-
-  get lowerCase() {
-    return this.registerForm.get('password');
-  }
-
-  get hasSymbol() {
-    return this.registerForm.get('password');
-  }
-
   submit() {
     if (!this.registerForm.value.confirmPassword) {
       this.confirmPasswordOut();
