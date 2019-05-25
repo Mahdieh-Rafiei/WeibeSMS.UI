@@ -80,6 +80,10 @@ select {
   padding-left: 0;
 }
 
+.privacy-label {
+  padding-left: 10px;
+}
+
 label.mat-checkbox-layout {
   margin-bottom: 0;
 }
@@ -96,6 +100,13 @@ label.mat-checkbox-layout {
 .mat-privacy {
   margin-bottom: 0;
   line-height: 25px;
+}
+
+ul {
+  padding-left: 0;
+  ul {
+    display: inline;
+  }
 }
 
 @media (min-width: 1600px) {

@@ -30,8 +30,7 @@ export class RegisterComponent implements OnInit {
               private fb: FormBuilder,
               private configService: ConfigService,
               private notificationService: NotificationService,
-              private authSharedService: AuthSharedService,
-              private utilityService: UtilityService) {
+              private authSharedService: AuthSharedService) {
   }
 
   ngOnInit() {
@@ -43,8 +42,8 @@ export class RegisterComponent implements OnInit {
       firstName: [null, Validators.compose([Validators.required, Validators.maxLength(20)])],
       lastName: [null, Validators.compose([Validators.required, Validators.maxLength(30)])],
       userName: [null, Validators.compose([Validators.required, Validators.minLength(6)])],
-      password: [null, Validators.compose([Validators.required, Validators.minLength(8),
-        this.utilityService.Digit, this.utilityService.UppercaseLetter, this.utilityService.LowercaseLetter, this.utilityService.Symbol])],
+      password: [null, Validators.compose([Validators.required,
+        Validators.pattern(/^(?=^.{8,}$)(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?!.*\s)[0-9a-zA-Z!@#$%^&*()]*$/)])],
       email: [null],
       confirmPassword: [null],
       companyName: [null],
@@ -94,4 +93,5 @@ export class RegisterComponent implements OnInit {
   confirm(event) {
     this.disableButton = !event.checked;
   }
+
 }
