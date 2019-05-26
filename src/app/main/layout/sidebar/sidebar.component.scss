@@ -154,3 +154,7 @@ a.list-group-item:active span.fa {
   transition: all 0.3s ease;
   transform: rotate(90deg);
 }
+
+a:not([href]) {
+  color: #E7E7E7 !important;
+}

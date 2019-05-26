@@ -11,8 +11,6 @@ const routes: Routes = [
         path: 'plan',
         loadChildren: '.\/pages\/plan\/plan.module#PlanModule',
       },
-
-
     ]
   }
 ];
