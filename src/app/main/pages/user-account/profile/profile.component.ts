@@ -2,11 +2,11 @@ import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {ActivatedRoute} from '@angular/router';
 import {ProfileGetInterface} from './models/profile-get.interface';
-import {ProfileService} from './profile.service';
 import {CountryInterface} from '../../../../shared/models/country.interface';
 import {SharedService} from '../../../../shared/service/shared.service';
 import {DataCountryInterface} from '../../../../shared/models/data-country.interface';
 import {NotificationService} from '../../../../shared/notification.service';
+import {UserAccountService} from '../user-account.service';
 
 @Component({
   selector: 'app-profile',
@@ -23,7 +23,7 @@ export class ProfileComponent implements OnInit {
 
   constructor(private fb: FormBuilder,
               private route: ActivatedRoute,
-              private ps: ProfileService,
+              private uas: UserAccountService,
               private notificationService: NotificationService,
               private shs: SharedService) {
     this.route.data
@@ -78,7 +78,7 @@ export class ProfileComponent implements OnInit {
         const date = new Date(this.profileForm.value.birthday).getTime() / 1000;
         payload['birthday'] = date;
       }
-      this.ps.modifyProfile(payload)
+      this.uas.modifyProfile(payload)
         .subscribe(res => {
           this.notificationService.success('Update profile successfully', '');
         });
