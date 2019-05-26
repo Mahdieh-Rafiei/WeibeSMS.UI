@@ -65,14 +65,19 @@ a.list-group-item {
   color: #E7E7E7;
   font-weight: 500;
   margin: 10px 15px 0;
-  :hover {
-    background-color: rgba(200, 200, 200, .1) !important;
-    transition: .1s;
-    border-radius: 5px !important;
-  }
-  :active {
-    background-color: #5867dd;
-  }
+}
+
+a.list-group-item:hover {
+  background-color: rgba(200, 200, 200, .1) !important;
+  transition: .1s;
+  border-radius: 5px !important;
+}
+
+a.list-group-item:active {
+  background-color: #5867dd;
+}
+a:not([href]) {
+  color: #E7E7E7 !important;
 }
 
 .fa {
