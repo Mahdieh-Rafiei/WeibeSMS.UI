@@ -1,0 +1,102 @@
+﻿@import './_funcs.scss';
+
+/* ========== font ========== */
+$font-family-ultra-light: 'iran-sans-ultra-light';
+$font-family-number: 'iran-sans-number';
+$font-family-main: 'iran-sans', Tahoma;
+$font-family-light: 'iran-sans-light';
+$font-family-bold: 'iran-sans-bold';
+$font-family-material: 'Material-icons';
+$font-family-medium: 'iran-sans-medium';
+
+
+$font-size-default: 14px;
+
+$font-weight-ultra-light: 200;
+$font-weight-regular: 400;
+$font-weight-medium: 500;
+$font-weight-light: 300;
+$font-weight-bold: 600;
+
+$font-color-h2: #acaec4;
+$font-color-gray: #767676;
+$font-color-dark: #4d4d4e;
+$font-color-light: #acbac4;
+$font-color-select: #4a4a4a;
+
+$font-size-xsmall: font-size(.65);
+$font-size-small: font-size(.85);
+$font-size-base: font-size(1);
+$font-size-medium: font-size(1.25);
+$font-size-large: font-size(1.5);
+$font-size-xlarge: font-size(2);
+$font-size-xxlarge: font-size(4);
+
+/* ========== color ========== */
+$color-dialog: #707070;
+
+$color-body-background: #f4f6f9;
+$color-light-gray: #f2f2f2;
+$color-background-gray: #ebebeb;
+
+$color-table-approved: #4caf50;
+$color-table-waiting: #ffb300;
+$color-table-denied: #e61314;
+$color-table-chip: #f2f3f9;
+
+$color-border-gray: #ececec;
+$color-border-gray--light: #ebedf2;
+$color-purple: #7e57c2;
+$color-white: #ffffff;
+$color-gray:#767676;
+$color-Orange : #fe8469;
+$color-blue: #1d98f6;
+
+$color-error-red: #e20404;
+
+$gradient-start-color-pink: #f84073;
+$gradient-start-color-red: #fd746c;
+$gradient-start-color-blue: #18abe0;
+$gradient-end-color-red-orange: #fc584a;
+$gradient-end-color-orange: #fc584a;
+$gradient-end-color-green: #2bd1af;
+
+$default-line-height: 25px;
+
+/*buttons*/
+$color__button-text--blue: #4a90e2;
+$color__button--gray: #c5c5c5;
+$color__button--dark-gray: #ececf0;
+
+/*mat slider*/
+$color-wild-watermelon:#ff5f6d;
+$color-gray-suit:#928dab;
+
+/*mat form field*/
+$input-border-bottom: #ebebeb;
+
+/* ========== shadow ========== */
+$shadow-key-umbra-opacity: 0.2 !default;
+$shadow-key-penumbra-opacity: 0.14 !default;
+$shadow-ambient-shadow-opacity: 0.12 !default;
+
+/* ========== icon-circle ========== */
+$circle__large--width: 45px;
+$circle__large--height: 45px;
+$circle__large-size: $circle__large--width, $circle__large--height;
+
+$circle__small--width: 30px;
+$circle__small--height: 30px;
+$circle__small-size: $circle__small--width, $circle__small--height;
+
+/* ========== pages ========== */
+/*layout*/
+$side-nav--width: 198px;
+$body-container--vertical-margin: 40px;
+$body-container--horizontal-margin: 30px;
+$body-container--margin: $body-container--vertical-margin  $body-container--horizontal-margin;
+$body-container--width: $side-nav--width + $body-container--vertical-margin;
+
+/*add page*/
+$from-border: #ececec;
+

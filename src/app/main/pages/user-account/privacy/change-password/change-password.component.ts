@@ -1,8 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {UserAccountService} from '../../user-account.service';
 import {NotificationService} from '../../../../../shared/notification.service';
 import {UtilityService} from '../../../../../shared/utility.service';
-import {Router} from '@angular/router';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {ChangePasswordInterface} from './models/change-password.interface';
+import {ChangePasswordResponseInterface} from './models/change-password-response.interface';
 
 @Component({
   selector: 'app-change-password',
@@ -10,58 +12,49 @@ import {Router} from '@angular/router';
   styleUrls: ['./change-password.component.scss']
 })
 export class ChangePasswordComponent implements OnInit {
+  changePassForm: FormGroup;
+  notMatch: boolean = false;
 
-  oldPassword:string='';
-  newPassword:string='';
-  confirmPassword:string='';
-
-  constructor(private userService:UserAccountService,
-              private notificationService:NotificationService,
-              private utilityService:UtilityService,
-              private router:Router) { }
-
-  ngOnInit() {
+  constructor(private userService: UserAccountService,
+              private notificationService: NotificationService,
+              private utilityService: UtilityService,
+              private fb: FormBuilder) {
   }
 
-  changePassword(){
+  ngOnInit() {
+    this.createForm();
+  }
 
-    debugger;
-    //TODO : move password validation to utility service
-    if (this.oldPassword.length == 0){
-      this.notificationService.error('Please enter your current password!','');
-      return;
+  createForm() {
+    this.changePassForm = this.fb.group({
+      oldPassword: [null, Validators.required],
+      newPassword: [null, Validators.compose([Validators.required,
+        Validators.pattern(/^(?=^.{8,}$)(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?!.*\s)[0-9a-zA-Z!@#$%^&*()]*$/)])],
+      confirmPassword: [null]
+    });
+  }
+
+  submit() {
+    if (!this.changePassForm.value.confirmPassword) {
+      this.confirmPasswordOut();
     }
-
-    if (this.newPassword != this.confirmPassword){
-      this.notificationService.error('The password confirmation does not match!','');
-      return;
+    if (this.changePassForm.valid && !this.notMatch && this.changePassForm.value.confirmPassword) {
+      this.confirmPasswordOut();
+      const payload: ChangePasswordInterface = this.changePassForm.value;
+      delete payload['confirmPassword'];
+      this.userService.changePassword(payload)
+        .subscribe((res: ChangePasswordResponseInterface) => {
+          this.notificationService.success('Password changed successfully!', '');
+        });
     }
+  }
 
-    if(this.newPassword.length < 8){
-      this.notificationService.error('Password should has at least 8 characters','');
+  confirmPasswordOut() {
+    if (this.changePassForm.value.newPassword !== this.changePassForm.value.confirmPassword) {
+      this.notMatch = true;
       return;
+    } else {
+      this.notMatch = false;
     }
-
-    if(!this.utilityService.hasCapitalLetter(this.newPassword)){
-      this.notificationService.error('Password should has at least 1 capital letter!','');
-      return;
-    }
-
-    if(!this.utilityService.hasLowercaseLetter(this.newPassword)){
-      this.notificationService.error('Password should has at least 1 lowercase letter!','');
-      return;
-    }
-
-    if (!this.utilityService.hasDigit(this.newPassword)){
-      this.notificationService.error('Password should has at least 1 digit letter!','');
-      return;
-    }
-
-    this.userService.changePassword(this.oldPassword,this.newPassword)
-      .subscribe(res=>{
-        console.log(res);
-        this.notificationService.success('Password changed successfully','');
-        this.router.navigateByUrl('');
-      });
   }
 }

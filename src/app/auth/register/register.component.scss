@@ -1,18 +1,18 @@
 .ws-box {
-  height: 561px;
-  position: absolute;
+  height: 709px;
+  //position: absolute;
   margin: auto;
   top: -40px;
   right: 0;
   bottom: 0;
   left: 0;
-  width: 90%;
+  //width: 90%;
 }
 
 .ws-login-box {
   background: #fff;
   box-shadow: 0 1px 6px 0 rgba(32, 33, 36, 0.28);
-  padding: 2rem;
+  padding: 1rem;
 }
 
 .ws-btn {
@@ -23,25 +23,19 @@
   border-bottom: 1px solid #d4d4d4;
   padding: 0;
   display: inline-flex;
+  img {
+    width: 130px;
+  }
 }
 
 .subject-detail h4 {
   padding-top: 40px;
 }
 
-.subject img {
-  width: 130px;
-  padding-left: 20px;
-}
-
 label {
   font-weight: 400;
   color: #6c7293;
   font-size: 13px;
-  display: block;
-}
-.privacy label{
-  display: inline;
 }
 
 ::placeholder {
@@ -57,9 +51,6 @@ input[type=text], input[type=password] {
 select {
   width: 100%;
   padding: 5px;
-}
-li{
-  display: block;
 }
 
 .register-input .col-md-4 {
@@ -89,6 +80,35 @@ li{
   padding-left: 0;
 }
 
+.privacy-label {
+  padding-left: 10px;
+}
+
+label.mat-checkbox-layout {
+  margin-bottom: 0;
+}
+
+.privacy-label {
+  padding-left: 10px;
+
+}
+
+.ws-login-input:focus, input.verification-code-input:focus {
+  border: 1px solid #2cd9f4;
+}
+
+.mat-privacy {
+  margin-bottom: 0;
+  line-height: 25px;
+}
+
+ul {
+  padding-left: 0;
+  ul {
+    display: inline;
+  }
+}
+
 @media (min-width: 1600px) {
   .ws-box {
     width: 75%;
@@ -106,5 +126,16 @@ li{
 
   .affiliate-register-form {
     margin-top: 20px;
+  }
+}
+
+@media (max-width: 767px) and (min-width: 320px) {
+  .ws-btn {
+    width: 100%;
+    padding: 10px 0;
+  }
+  .privacy {
+    padding: 20px 5px;
+    display: inline-flex;
   }
 }

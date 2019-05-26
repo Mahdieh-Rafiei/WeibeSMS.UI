@@ -1,0 +1,186 @@
+﻿@import './_variables.scss';
+@import './_mixins.scss';
+
+/*general settings*/
+body {
+  color: $font-color-dark;
+  font-size: $font-size-default;
+  font-family: $font-family-main;
+  font-weight: $font-weight-light;
+  background-color: $color-body-background;
+}
+
+::selection {
+  background: $color-purple;
+  color: $color-white;
+}
+
+::-moz-selection {
+  background: $color-purple;
+  color: $color-white;
+}
+
+%no-margin-padding {
+  margin: 0;
+  padding: 0;
+}
+
+.section-title {
+  margin: 50px 0 30px;
+}
+
+.padding-top {
+  padding-top: 30px;
+}
+
+.left-align {
+  text-align: left;
+}
+
+/*fonts-style*/
+h1 {
+  @extend %no-margin-padding;
+  font-weight: $font-weight-bold;
+  line-height: $default-line-height+5;
+  @include font-style($font-family-ultra-light, 24px, $color-purple);
+}
+
+h2 {
+  @extend %no-margin-padding;
+  font-weight: $font-weight-regular;
+  line-height: $default-line-height+5;
+  @include font-style($font-family-number, 16px, $font-color-h2);
+}
+
+h3 {
+  font-size: 14px;
+  @extend %no-margin-padding;
+  font-family: $font-family-main;
+  font-weight: $font-weight-bold;
+  line-height: $default-line-height;
+  color: darken($font-color-dark, 20%);
+}
+
+h4 {
+  line-height: 30px;
+  @extend %no-margin-padding;
+  font-family: $font-family-main;
+  font-weight: $font-weight-light;
+  font-size: $font-size-default*1.08;
+  color: darken($font-color-dark, 20%);
+}
+
+p {
+  @extend %no-margin-padding;
+  font-size: $font-size-default;
+  font-family: $font-family-main;
+  line-height: $default-line-height;
+  font-weight: $font-weight-ultra-light;
+}
+
+span {
+  font-family: $font-family-main;
+  font-size: $font-size-default*0.9;
+  line-height: $default-line-height;
+  font-weight: $font-weight-ultra-light;
+}
+
+figcaption {
+  color: $font-color-gray;
+  font-size: $font-size-default;
+  font-weight: $font-weight-light;
+  line-height: $default-line-height;
+}
+
+.persian-number {
+  font-family: $font-family-number !important;
+}
+
+.english-number {
+  font-family: Arial !important;
+}
+
+/*textarea & input general styles*/
+textarea {
+  line-height: 15px;
+  font-family: $font-family-number;
+}
+
+input, select {
+  font-size: $font-size-default*.85;
+}
+
+/*padding & margin reset*/
+.no-padding {
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+}
+
+.no-margin {
+  margin-left: 0;
+  margin-right: 0;
+}
+.no-margin-top{
+  margin-top: 0;
+}
+/*shadows*/
+.shadow--default {
+  @include shadow-3dp();
+}
+
+.shadow--hover {
+  @include shadow-8dp();
+}
+
+.no-box-shadow {
+  box-shadow: none !important;
+}
+
+.box-shadow {
+  .slimscroll-wrapper {
+    width: 100% !important;
+    margin: 0 0 0 5px !important;
+    box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.06) !important;
+    @include border-radius(8px);
+  }
+}
+
+/*user picture circle*/
+.user-pic {
+  @include circle-creator(60px, 60px);
+}
+
+.user-pic--small {
+  @include circle-creator(40px, 40px);
+}
+
+.user-pic--large {
+  @include circle-creator(90px, 90px);
+}
+
+/*material menu customization*/
+.menu {
+  &_icon {
+    position: absolute;
+    top: 15px;
+    left: 15px;
+  }
+
+  &_button {
+    min-width: 160px !important;
+    position: relative !important;
+  }
+
+  &_text {
+    margin-left: 40px;
+  }
+}
+
+/*angular google maps*/
+agm-map {
+  height: 100%
+}
+
+.left-align {
+  text-align: left;
+}

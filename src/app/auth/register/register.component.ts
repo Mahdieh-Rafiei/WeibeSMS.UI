@@ -14,7 +14,7 @@ import {RegisterInterface} from './models/register.interface';
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
-  styleUrls: ['./register.component.css']
+  styleUrls: ['./register.component.scss']
 })
 export class RegisterComponent implements OnInit {
   registerForm: FormGroup;
@@ -30,8 +30,7 @@ export class RegisterComponent implements OnInit {
               private fb: FormBuilder,
               private configService: ConfigService,
               private notificationService: NotificationService,
-              private authSharedService: AuthSharedService,
-              private utilityService: UtilityService) {
+              private authSharedService: AuthSharedService) {
   }
 
   ngOnInit() {
@@ -43,8 +42,8 @@ export class RegisterComponent implements OnInit {
       firstName: [null, Validators.compose([Validators.required, Validators.maxLength(20)])],
       lastName: [null, Validators.compose([Validators.required, Validators.maxLength(30)])],
       userName: [null, Validators.compose([Validators.required, Validators.minLength(6)])],
-      password: [null, Validators.compose([Validators.required, Validators.minLength(8),
-        this.utilityService.Digit, this.utilityService.UppercaseLetter, this.utilityService.LowercaseLetter, this.utilityService.Symbol])],
+      password: [null, Validators.compose([Validators.required,
+        Validators.pattern(/^(?=^.{8,}$)(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?!.*\s)[0-9a-zA-Z!@#$%^&*()]*$/)])],
       email: [null],
       confirmPassword: [null],
       companyName: [null],
@@ -52,22 +51,6 @@ export class RegisterComponent implements OnInit {
       // countryId: [null],
       // defaultPrefix: [null]
     });
-  }
-
-  get hasDigit() {
-    return this.registerForm.get('password');
-  }
-
-  get upperCase() {
-    return this.registerForm.get('password');
-  }
-
-  get lowerCase() {
-    return this.registerForm.get('password');
-  }
-
-  get hasSymbol() {
-    return this.registerForm.get('password');
   }
 
   submit() {
@@ -84,11 +67,17 @@ export class RegisterComponent implements OnInit {
       delete payload['confirmPassword'];
       this.registerService.saveInfo(payload)
         .subscribe(res => {
-          this.authService.setToken(res.data.token);
-          localStorage.removeItem('k-l');
-          this.configService.authenticationChanged.emit(true);
-          this.router.navigateByUrl('index');
-        });
+            this.authService.setToken(res.data.token);
+            localStorage.removeItem('k-l');
+            this.configService.authenticationChanged.emit(true);
+            this.router.navigateByUrl('index');
+          },
+          err => {
+            if (err.error.Message === '1') {
+              console.log(err);
+              this.router.navigate(['/login']);
+            }
+          });
     }
   }
 
@@ -104,4 +93,5 @@ export class RegisterComponent implements OnInit {
   confirm(event) {
     this.disableButton = !event.target.checked;
   }
+
 }

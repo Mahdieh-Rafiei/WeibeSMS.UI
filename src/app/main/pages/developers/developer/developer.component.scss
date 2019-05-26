@@ -1,8 +1,4 @@
-.api-detail{
-  padding: 0;
-}
 .additional-security {
-  padding: 15px 0;
   h4 {
     font-weight: 600;
     line-height: 1;
@@ -13,17 +9,6 @@
     padding-top: 5px;
   }
 }
-.green-btn, .red-btn {
-  margin-left: 10px;
-  font-size: 14px;
-  padding: 8px 20px;
-}
-
-.light-green-btn {
-  margin-left: 5px;
-  padding: 8px 20px;
-  font-size: 14px;
-}
 
 label {
   display: block;
@@ -33,43 +18,61 @@ label {
 }
 
 input {
-  padding: 9px;
-  margin-bottom: 10px;
+  width: 100%;
 }
 
-input.title-input {
-  width: 25%;
-}
-
-input.Authentication-input {
-  width: 50%;
-}
-
-::placeholder {
-  color: #b5b5b5;
-  font-size: 12px;
+.radio {
+  label {
+    display: inline;
+  }
+  input {
+    width: unset
+  }
 }
 
 p.yellow-text {
   padding: 10px 0 12px;
-  font-weight: 600;
 }
 
 mat-radio-button#mat-radio-3 {
   margin-left: 30px;
 }
-.white-list{
-  padding: 20px 0;
-  input{
-    width: 100%;
+
+.blue-btn {
+  width: 100%;
+  padding: 11px 25px;
+}
+
+table.security-table {
+  margin-bottom: 10px;
+  i {
+    color: #fd397a;
   }
 }
-.blue-btn{
+
+.copy-btn{
+  margin-top: 25px;
+  padding: 11px 25px;
   width: 100%;
 }
-table.security-table{
-  margin-bottom: 10px;
-  i{
-    color: #fd397a;
+
+.btn-div{
+  text-align: right;
+}
+
+@media (max-width: 991px) and (min-width: 768px) {
+  .copy-btn {
+    margin-top: 0;
+  }
+  .btn-div{
+    text-align: center;
+  }
+}
+@media (max-width: 767px) and (min-width: 320px) {
+  .copy-btn {
+    margin-top: 0;
+  }
+  .btn-div{
+    text-align: center;
   }
 }

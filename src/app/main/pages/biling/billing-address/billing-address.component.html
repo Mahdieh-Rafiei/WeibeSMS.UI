@@ -1,6 +1,6 @@
-<div class="col-md-12 div-section">
-  <div class="col-md-12 profile">
-    <h4>Billing address</h4>
+<div class="div-section">
+  <div class="profile">
+    <h5>Billing address</h5>
     <p>Update your account password. Always set a strong password, including uppercase, lowercase, number.</p>
     <form class="col-md-12 input-box" [formGroup]="billingAddressForm" (ngSubmit)="submit()" #formDir="ngForm">
       <div class="row">
@@ -32,19 +32,25 @@
                   this filed is required!
                 </p>
               </div>
-              <select class="v-input-select">
+              <select class="v-input-select" formControlName="prefix">
                 <option hidden value="">select</option>
                 <option *ngFor="let country of countries" [value]="country.prefix">
                   {{country.prefix}}
                 </option>
               </select>
+              <div class="text-left"
+                   *ngIf="(((billingAddressForm.controls['prefix'].dirty || billingAddressForm.controls['prefix'].touched) || formDir.submitted))">
+                <p class="errorMessage" *ngIf="billingAddressForm.hasError('required', 'prefix')">
+                  this filed is required!
+                </p>
+              </div>
             </div>
             <div class="col-12 col-md-6 form-group">
               <label>Country :</label>
               <select name="country"
                       formControlName="countryId"
                       #country
-                      (change)="countrySelect()">
+                      (change)="countrySelect(null)">
                 <option hidden value="">select</option>
                 <option *ngFor="let country of countries" [value]="country.id">{{country.name}}</option>
               </select>
@@ -117,7 +123,7 @@
           </div>
         </div>
       </div>
-      <div class="row btn-save text-right">
+      <div class="col-md-12 btn-save text-right">
         <button type="submit" class="light-green-btn">Save</button>
       </div>
     </form>

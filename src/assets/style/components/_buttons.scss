@@ -1,0 +1,179 @@
+@import '../helper/_variables';
+@import '../helper/_mixins';
+
+.button {
+  &--save{
+    float: left;
+  }
+  &--action-btn {
+    border: 1px solid #ececec !important;
+    color: #767676;
+    background-color: transparent !important;
+    border-radius: 3px;
+    width: 100%;
+    box-sizing: border-box;
+    position: relative;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    cursor: pointer;
+    outline: 0;
+    -webkit-tap-highlight-color: transparent;
+    display: inline-block;
+    vertical-align: baseline;
+    text-align: center;
+    margin: 0;
+    line-height: 38px;
+    padding: 0 -1px;
+    overflow: visible;
+  }
+
+  &--action-btn:hover {
+    background-color: #ededed !important;
+
+  }
+
+  &--square-white {
+    min-width: 40px !important;
+    padding: 2px 8px !important;
+  }
+
+  &--basic-blur {
+    &-small {
+      padding: 2px 8px !important;
+      background-color: rgba(255, 255, 255, 0.38) !important;
+      color: $color-white !important;
+      min-width: 85px !important;
+    }
+
+    &-large {
+      padding: 2px 8px !important;
+      background-color: rgba(255, 255, 255, 0.38) !important;
+      color: $color-white !important;
+      min-width: 185px !important;
+    }
+  }
+
+  &--basic-white {
+    padding: 2px 1px !important;
+    min-width: 114px !important;
+
+    span {
+      padding: 0 10px !important;
+    }
+  }
+
+  &--basic-gradient {
+    min-width: 114px !important;
+    padding: 2px 18px !important;
+    color: $color-white !important;
+    @include gradient(-76deg, $gradient-start-color-pink 0%, $gradient-end-color-orange 100%);
+    transition: all ease 200ms !important;
+
+    span {
+      padding: 0 10px !important;
+    }
+  }
+
+  &--basic-gray-large {
+    background-color: $color__button--dark-gray !important;
+    min-width: 114px !important;
+    padding: 2px 18px !important;
+    color: $color-gray !important;
+    transition: all ease 200ms !important;
+
+    span {
+      padding: 0 10px !important;
+    }
+  }
+
+  &--basic-gray {
+    background-color: $color__button--gray;
+
+    &-blue-text {
+      color: $color__button-text--blue;
+    }
+  }
+
+  &--circle-gradient {
+
+    img {
+      @include content-holder(20px);
+    }
+
+    &-small {
+      @include gradient(-48deg, $gradient-start-color-pink 0%, $gradient-end-color-orange 100%);
+      .mat-icon {
+        position: relative;
+        bottom: 4.8px;
+      }
+      z-index: 5;
+      width: 15px !important;
+      height: 15px !important;
+      animation: fade-out 500ms;
+
+      @keyframes fade-out {
+        from {
+          opacity: 0;
+        }
+        to {
+          opacity: 1;
+        }
+      }
+    }
+
+    &-large {
+      @include gradient(-48deg, #2739c1 0%, #5867dd 100%);
+      .mat-icon {
+        position: relative;
+        bottom: 4.8px;
+      }
+      z-index: 5;
+      width: 30px !important;
+      height: 30px !important;
+    }
+
+    &-remove {
+      position: absolute;
+      top: -7.5px;
+      left: 30px;
+      height: 15px !important;
+      overflow: hidden;
+
+      .mat-icon {
+        color: $color-white;
+        font-size: $font-size-small;
+        padding: 2px;
+        margin: 0;
+        position: absolute;
+        top: 0.1px;
+        left: 0.1px;
+        @include content-holder(0, 0);
+      }
+    }
+  }
+
+  &--standard {
+    min-width: 100px;
+  }
+
+  &--copy {
+    background-color: transparent;
+    color: $color-_button--gray;
+    cursor: pointer;
+    border: none;
+
+    i {
+      font-size: 1.3rem !important;
+    }
+  }
+
+  &__show-filter {
+    border: unset;
+    background-color: #fff;
+    color: #aaacb1;
+    cursor: pointer;
+  }
+}
+

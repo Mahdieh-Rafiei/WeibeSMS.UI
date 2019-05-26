@@ -1,71 +1,84 @@
 <div class="btn-section text-right">
-  <div class="col-md-6 no-pad text-left">
-    <button class="previous-btn"> <i class="fa fa-arrow-left"></i> Previous </button>
-  </div>
-  <div class="col-md-6 no-pad text-right">
-    <button class="red-btn" disabled> <i class="fa fa-trash"></i> Delete </button>
-  </div>
-</div>
-<div class="main-container">
-  <div class="col-md-12 div-section">
-    <div class="col-md-12 sms-report">
-      <div class="col-md-12 message-report">
-        <span>MESSAGE : </span>
-        <span>2019-4-05 , 11:08:35</span>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-        <p class="send-again"><a><i class="fa fa-undo"></i> send text again</a></p>
-      </div>
-      <!--operation-->
-      <div class="col-md-12 no-pad operation">
-        <div class="col-md-6 operation-section">
-          <select class="light-blue-btn" style="margin-right: 10px">
-            <option> Export </option>
-            <option> Test 1 </option>
-            <option> Test 1 </option>
-          </select>
-          <button class="light-blue-btn">
-            <i class="fa fa-filter"></i> Filter
-          </button>
+    <div class="row">
+        <div class="col-12 col-md-6 col-sm-6 col-xs-6 text-left">
+            <button class="previous-btn"><i class="fa fa-arrow-left"></i> Previous</button>
         </div>
-        <div class="col-md-6 operation-section">
-          <form class="search-wrapper search">
-            <input type="text"  required>
-            <button type="submit"><i class="fa fa-search"></i></button>
-          </form>
+        <div class="col-12 col-md-6 col-sm-6 col-xs-6 text-right">
+            <button class="red-btn" disabled><i class="fa fa-trash"></i> Delete report</button>
         </div>
-      </div>
-      <!--table-->
-      <div class="col-md-12 table-div table-responsive">
-        <table class="index-table text-left">
-          <thead>
-          <tr>
-            <th class="text-left"><i class="fa fa-sort"></i>Recipient</th>
-            <th class="text-cleft"><i class="fa fa-sort"></i>PhoneNumber</th>
-            <th class="text-cleft"><i class="fa fa-sort"></i>Status</th>
-            <th class="text-cleft"><i class="fa fa-sort"></i>DateTime</th>
-          </tr>
-          </thead>
-          <tbody>
-          <tr>
-            <td class="text-left">Mehmet Ali Kelly</td>
-            <td class="text-left">+989197514700</td>
-            <td class="text-left">DELIVERD</td>
-            <td class="text-left">2019-12-5, 11:08</td>
-          </tr>
-          <tr>
-            <td class="text-left">Mehmet Ali Kelly</td>
-            <td class="text-left">+989197514700</td>
-            <td class="text-left">DELIVERD</td>
-            <td class="text-left">2019-12-5, 11:08</td>
-          </tr>
-          </tbody>
-        </table>
-        <div class="table-pagination text-right">
-          <span><i class="fa fa-arrow-circle-left"></i></span>
-          <span><i class="fa fa-arrow-circle-right"></i></span>
-        </div>
-      </div>
     </div>
-  </div>
 </div>
+    <div class="div-section">
+        <div class="sms-report">
+            <h5>Your message : </h5>
+            <div class="col-md-12 message-report">
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore
+                    et dolore magna aliqua.</p>
+                <p class="send-again">
+                    <span>2019-4-05 , 11:08:35</span>
+                    <a class="green-text"><i class="fa fa-undo"></i> send text again</a>
+                </p>
+            </div>
+            <!--operation-->
+            <div class="title form-group">
+                <h5>Report for this message: </h5>
+            </div>
+            <div class="row">
+                <div class="col-md-6 operation-section form-group">
+                    <select class="light-blue-btn mr-2">
+                        <option> Export</option>
+                        <option> Test 1</option>
+                        <option> Test 1</option>
+                    </select>
+                    <button class="light-blue-btn">
+                        <i class="fa fa-filter"></i> Filter
+                    </button>
+                </div>
+                <div class="col-md-6 operation-section form-group">
+                    <app-search [params]="[{title: 'device'}, {title: 'location'}]"></app-search>
+                </div>
+            </div>
+            <!--table-->
+            <div class="table-div table-responsive">
+                <table class="index-table text-left">
+                    <thead>
+                    <tr>
+                        <th class="text-left"><i class="fa fa-sort"></i>ID</th>
+                        <th class="text-cleft"><i class="fa fa-sort"></i>Recipient number</th>
+                        <th class="text-cleft"><i class="fa fa-sort"></i>Recipient Name</th>
+                        <th class="text-cleft"><i class="fa fa-sort"></i>Recipient sureName</th>
+                        <th class="text-cleft"><i class="fa fa-sort"></i>Status</th>
+                        <th class="text-cleft"><i class="fa fa-sort"></i>DateTime</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td class="text-left">#1</td>
+                        <td class="text-left">+989197514700</td>
+                        <td class="text-left">
+                            <button class="blue-btn"> Schedule</button>
+                        </td>
+                        <td class="text-left">+989197514700</td>
+                        <td class="text-left">35</td>
+                        <td class="text-left">Sent</td>
+                    </tr>
+                    <tr>
+                        <td class="text-left">#1</td>
+                        <td class="text-left">+989197514700</td>
+                        <td class="text-left">
+                            <button class="green-btn"> Event</button>
+                        </td>
+                        <td class="text-left">+989197514700</td>
+                        <td class="text-left">35</td>
+                        <td class="text-left">Sent</td>
+                    </tr>
+                    </tbody>
+                </table>
+                <div class="table-pagination text-right">
+                    <span><i class="fa fa-arrow-circle-left"></i></span>
+                    <span><i class="fa fa-arrow-circle-right"></i></span>
+                </div>
+            </div>
+        </div>
+    </div>
 

@@ -101,32 +101,28 @@
                          autocomplete="off"
                          formControlName="password">
                   <div class="text-left"
-                       *ngIf="(((registerForm.controls['password'].touched) || formDir.submitted) &&
-                       hasDigit.errors && upperCase.errors && lowerCase.errors && hasSymbol.errors)">
+                       *ngIf="(((registerForm.controls['password'].touched) || formDir.submitted))">
                     <ul class="pl-0 pt-1">
-                      <li class="errorMessage" *ngIf="registerForm.hasError('required', 'password')">
-                        this filed is required!
+                      <li class="errorMessage pl-0" *ngIf="registerForm.hasError('required', 'password')">
+                        <i class="fa fa-check-circle"></i><span class="pl-1">this filed is required!</span>
                       </li>
-                      <li class="errorMessage"
-                          *ngIf="(registerForm.controls['password'].hasError('minlength'))">
-                        min length is 8 char!
-                      </li>
-                      <li class="errorMessage"
-                          *ngIf="(hasDigit.errors.invalidHasDigit)">
-                        least one Digit letter!
-                      </li>
-                      <li class="errorMessage"
-                          *ngIf="(upperCase.errors.invalidUpperCase)">
-                        least one uppercase letter!
-                      </li>
-                      <li class="errorMessage"
-                          *ngIf="(lowerCase.errors.invalidLowerCase)">
-                        least one LowerCase letter!
-                      </li>
-                      <li class="errorMessage"
-                          *ngIf="(hasSymbol.errors.invalidHasSymbol)">
-                        least one Symbol letter!
-                      </li>
+                      <ul *ngIf="registerForm.controls['password'].hasError('pattern')">
+                        <li class="errorMessage pl-0">
+                          <i class="fa fa-check-circle"></i><span class="pl-1"> min length is 8 char!</span>
+                        </li>
+                        <li class="errorMessage">
+                          <i class="fa fa-check-circle"></i><span class="pl-1">least one Digit letter!</span>
+                        </li>
+                        <li class="errorMessage">
+                          <i class="fa fa-check-circle"></i><span class="pl-1">least one uppercase letter!</span>
+                        </li>
+                        <li class="errorMessage">
+                          <i class="fa fa-check-circle"></i><span class="pl-1">least one LowerCase letter!</span>
+                        </li>
+                        <li class="errorMessage">
+                          <i class="fa fa-check-circle"></i><span class="pl-1">least one Symbol letter!</span>
+                        </li>
+                      </ul>
                     </ul>
                   </div>
                   <!--<p class="red-text">Password min length is 8 characters</p>-->
@@ -171,48 +167,3 @@
     </div>
   </div>
 </div>
-
-
-<!--<div class="register-page">-->
-<!--<div class="col-md-6 col-md-offset-3 register-page-div">-->
-<!--<div class="white-box">-->
-<!--<div class="user-bg"><img width="100%" alt="user" src="../../assets/images/user.jpg">-->
-<!--<div class="overlay-box">-->
-<!--<div class="user-content">-->
-<!--<a><img src="../../assets/images/user.jpg" class="thumb-lg img-circle" alt="img"></a>-->
-<!--<h4 class="text-white">{{firstName}}  {{lastName}}</h4>-->
-<!--</div>-->
-<!--</div>-->
-<!--</div>-->
-<!--</div>-->
-<!--<div class="profile-bg col-md-12">-->
-<!--<div class="form-group col-md-6">-->
-<!--<input [(ngModel)]="firstName" type="text" class="form-control" placeholder="First Name * ">-->
-<!--</div>-->
-
-<!--<div class="form-group col-md-6">-->
-<!--<input [(ngModel)]="lastName" type="text" class="form-control" placeholder="Last Name *">-->
-<!--</div>-->
-
-<!--<div class="form-group col-md-6">-->
-<!--<input [(ngModel)]="email" type="email" class="form-control" placeholder="Email">-->
-<!--</div>-->
-
-<!--<div class="form-group col-md-6">-->
-<!--<input [(ngModel)]="userName" type="text" class="form-control" placeholder="Username *">-->
-<!--</div>-->
-
-<!--<div class="form-group col-md-6">-->
-<!--<input [(ngModel)]="password" maxlength="12" type="text" class="form-control" placeholder="Password *">-->
-<!--</div>-->
-
-<!--<div class="form-group col-md-6">-->
-<!--<input (focusout)="confirmPasswordOut()" [(ngModel)]="confirmPassword" maxlength="12" type="text" class="form-control" placeholder="Confirm Password *">-->
-<!--</div>-->
-
-<!--<button (click)="register()" class="btn btn-success full-width"><i class="fa fa-spinner fa-spin" style="display: none;"></i>-->
-<!--Register-->
-<!--</button>-->
-<!--</div>-->
-<!--</div>-->
-<!--</div>-->

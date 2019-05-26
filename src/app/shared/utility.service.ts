@@ -23,53 +23,6 @@ export class UtilityService {
     return regex.test(phrase);
   }
 
-  UppercaseLetter(
-    control: AbstractControl
-  ): { [key: string]: any } | null {
-    const regex = /^(?=.*[A-Z])/;
-    if (!regex.test(control.value)) {
-      return {invalidUpperCase: true};
-    } else {
-      return null;
-    }
-  }
-
-  LowercaseLetter(
-    control: AbstractControl
-  ): { [key: string]: any } | null {
-    const regex = /^(?=.*[a-z])/;
-    if (!regex.test(control.value)) {
-      return {invalidLowerCase: true};
-    } else {
-      return null;
-    }
-  }
-
-
-  Digit(
-    control: AbstractControl
-  ): { [key: string]: any } | null {
-    const regex = /\d/g;
-    if (!regex.test(control.value)) {
-      return {invalidHasDigit: true};
-    } else {
-      return null;
-    }
-
-  }
-
-  Symbol(
-    control: AbstractControl
-  ): { [key: string]: any } | null {
-    const regex = /[-!@#$%^&*()_+|~=`{}\[\]:";'<>?,.\/]/;
-    if (!regex.test(control.value)) {
-      return {invalidHasSymbol: true};
-    } else {
-      return null;
-    }
-
-  }
-
   filterByExpression(sourceCollection: any[], filteredCollection: any[], columnName, expression) {
 
     _.remove(filteredCollection);

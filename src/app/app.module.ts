@@ -84,6 +84,7 @@ import {MainRoutingModule} from './main/main-routing.module';
 import {MainComponent} from './main/main.component';
 import {ChangeNumberComponent} from './main/pages/user-account/privacy/change-number/change-number.component';
 import {VerifyNumberComponent} from './main/pages/user-account/privacy/change-number/verify-number/verify-number.component';
+import {CreateKeyComponent} from './main/pages/developers/developer-list/create-key/create-key.component';
 
 
 @NgModule({
@@ -141,9 +142,10 @@ import {VerifyNumberComponent} from './main/pages/user-account/privacy/change-nu
     ChangeNumberComponent,
     VerifyNumberComponent,
     DeveloperListComponent,
-    DeveloperComponent
+    DeveloperComponent,
+    CreateKeyComponent
   ],
-
+  entryComponents: [CreateKeyComponent],
 
   imports: [
     BrowserModule,
