@@ -1,41 +1,24 @@
 .content-box {
   background-color: #f9f9f9;
-  border: 1px solid #c2c2c2;
   border-radius: 4px;
-  padding: 9px 15px;
   color: #000;
   margin-bottom: 10px;
 }
-
-h4 {
-  color: #555555;
-  font-weight: 600;
-  padding: 0;
-  margin: 0 !important;
-}
-
 .event {
   p {
-    padding: 10px 0 5px 0;
+    font-size: 13px;
   }
 }
 
 .event-field-input {
-  padding: 15px 0;
-}
-
-.from-to {
-  padding: 15px 64px 0;
+  font-size: 13px;
 }
 
 label {
-  font-weight: 400;
-  width: 60px;
-}
-
-input[type="text"] {
-  width: 15%;
-  padding: 0 5px;
+  display: block;
+  color: #6c7293;
+  font-weight: 600;
+  font-size: 12px;
 }
 
 ::placeholder {
@@ -43,6 +26,12 @@ input[type="text"] {
   color: #9f9f9f;
   padding-left: 5px;
 }
+
+.select-event {
+  padding: 10px 10px 0 0;
+  font-size: 13px;
+}
+
 
 @media (max-width: 991px) and (min-width: 768px) {
   .from-to {

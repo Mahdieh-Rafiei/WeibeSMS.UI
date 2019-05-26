@@ -85,6 +85,7 @@ import {MainComponent} from './main/main.component';
 import {ChangeNumberComponent} from './main/pages/user-account/privacy/change-number/change-number.component';
 import {VerifyNumberComponent} from './main/pages/user-account/privacy/change-number/verify-number/verify-number.component';
 import {CreateKeyComponent} from './main/pages/developers/developer-list/create-key/create-key.component';
+import { FilterComponent } from './shared/component/filter/filter.component';
 
 
 @NgModule({
@@ -143,7 +144,8 @@ import {CreateKeyComponent} from './main/pages/developers/developer-list/create-
         VerifyNumberComponent,
         DeveloperListComponent,
         DeveloperComponent,
-        CreateKeyComponent
+        CreateKeyComponent,
+        FilterComponent
     ],
     entryComponents: [CreateKeyComponent],
 

@@ -1,20 +1,16 @@
 .content-box {
   background-color: #f9f9f9;
-  padding: 9px 15px;
   color: #000;
   margin-bottom: 10px;
-}
-
-.originator {
-  select {
-    width: 17%;
-    padding: 8px;
-  }
 }
 
 .recipient-section {
   border: 1px solid #e2e5ec;
   border-radius: 4px;
+}
+
+select {
+  width: 100%;
 }
 
 .list-section {
@@ -41,11 +37,12 @@
   display: inline-table;
 }
 
-.search-box{
+.search-box {
   padding: 15px;
 }
+
 .table-box {
-  padding:0 15px;
+  padding: 0 15px;
 }
 
 //search

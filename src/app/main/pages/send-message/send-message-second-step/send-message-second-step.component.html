@@ -1,17 +1,19 @@
-<div class="col-md-12 content-box originator no-pad">
-    <h4>Originator</h4>
-    <h5>choose your originator :</h5>
-    <select>
-        <option>100000</option>
-        <option>3000000</option>
-        <option>50000 sms</option>
-    </select>
+<div class="content-box originator">
+    <h5 class="mb-4">Originator</h5>
+    <h6>choose your originator :</h6>
+    <div class="col-md-4 pl-0 form-group">
+        <select>
+            <option>100000</option>
+            <option>3000000</option>
+            <option>50000 sms</option>
+        </select>
+    </div>
 </div>
 
-<div class="col-md-12 content-box recipient no-pad">
-    <h4>Recipients</h4>
-    <div class="col-md-12 recipient-section no-pad">
-        <div class="col-md-3 list-section">
+<div class="col-md-12 content-box recipient">
+    <h5>Recipients</h5>
+    <div class="row recipient-section">
+        <div class="col-md-3 list-section form-group">
             <button class="light-blue-btn" mat-button [matMenuTriggerFor]="menu">My List <i
                     class="fa fa-angle-down"></i></button>
             <mat-menu #menu="matMenu">
@@ -28,37 +30,11 @@
             </div>
 
         </div>
-        <div class="col-md-9">
-            <div class="col-md-12 search-box text-right">
-                <div class="input-group" id="adv-search">
-                    <input type="text" class="form-control" placeholder="Search anything you think" />
-                    <div class="input-group-btn">
-                        <div class="btn-group" role="group">
-                            <div class="dropdown dropdown-lg">
-                                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><span class="caret"></span></button>
-                                <div class="dropdown-menu dropdown-menu-right" role="menu">
-                                    <form class="form-horizontal" role="form">
-                                        <div class="form-group">
-                                            <mat-radio-button value="1">search by first name</mat-radio-button>
-                                        </div>
-                                        <div class="form-group">
-                                            <mat-radio-button value="2">search by last name</mat-radio-button>
-                                        </div>
-                                        <div class="form-group">
-                                            <mat-radio-button value="3">search by mobile</mat-radio-button>
-                                        </div>
-                                        <div class="form-group">
-                                            <mat-radio-button value="4">search by email</mat-radio-button>
-                                        </div>
-                                    </form>
-                                </div>
-                            </div>
-                            <button type="button" class="btn search-btn"><span class="fa fa-search" aria-hidden="true"></span></button>
-                        </div>
-                    </div>
-                </div>
+        <div class="col-md-9 form-group">
+            <div class="search-box">
+                <app-search [params]="[{title: 'device'}, {title: 'location'}]"></app-search>
             </div>
-            <div class="col-md-12 table-box">
+            <div class="table-box table-responsive">
                 <table class="index-table text-left">
                     <thead>
                     <tr>
