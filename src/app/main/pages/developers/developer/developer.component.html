@@ -1,68 +1,72 @@
-<div class=" row btn-section text-right">
-  <div class="col-12 col-md-6 no-pad text-left">
-    <button class="previous-btn"><i class="fa fa-arrow-left"></i> Previous</button>
-  </div>
-  <div class="col-12 col-md-6 no-pad text-right">
-    <button class="red-btn" (click)="removeApiKey()">Delete</button>
-    <!--<button class="green-btn">Save</button>-->
-  </div>
-</div>
-<form class="main-container" [formGroup]="developerForm">
-  <div class="div-section api-detail">
-    <div class="col-9">
-      <div class="row">
-        <div class="col-12 form-group">
-          <h4>API Details</h4>
-          <label>Title : </label>
-          <input
-            type="text"
-            class="title-input"
-            formControlName="title"
-            placeholder="This is test & can edit">
-        </div>
-        <div class="col-12 form-group">
-          <label>Authentication key :</label>
-          <input type="text"
-                 class="Authentication-input"
-                 formControlName="key"
-                 #key
-                 placeholder="ThYDTcGQEu0PR8o2cbY2af5MXrwBmdIgyhYDTcGQEu0PR8o2cbY2af5MXrwBmdIgy">
-          <button class="light-green-btn" (click)="copyText(key.value)"><i class="fa fa-copy"></i> Copy</button>
-        </div>
-        <div class="col-12 form-group radio">
-
-          <p class="yellow-text">You can change your api key status : </p>
-          <input type="radio" id="true" (change)="changeStatus(true)" formControlName="isActive" [value]="true"> <label for="true">Enable</label>
-          <input type="radio" id="false" (change)="changeStatus(false)" formControlName="isActive" [value]="false"> <label for="false">Disable</label>
-        </div>
-        <div class="col-12 additional-security">
-          <h4>ADDITIONAL SECURITY</h4>
-          <p>System will accepts requests only from allowed IPs, and all other requests from any random IPs will be
-            discarded.</p>
-          <div class="row white-list">
-            <div class="col-md-5">
-              <input type="text"
-                     name="ip"
-                     formControlName="ip"
-                     placeholder="192.168.1.1">
-            </div>
-            <div>
-              <button type="button" (dblclick)="addIp()" class="blue-btn">Whitelist</button>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-md-5">
-              <table class="security-table">
-                <tr *ngFor="let validIp of validIps; let i=index">
-                  <td>#{{i+1}}</td>
-                  <td>{{validIp.ip}}</td>
-                  <td><i (click)="removeIp(validIp.id, i)" class="fa fa-trash"></i></td>
-                </tr>
-              </table>
-            </div>
-          </div>
-        </div>
-      </div>
+<div class="row">
+    <div class="col-12 col-md-6 text-left form-group">
+        <button class="previous-btn"><i class="fa fa-arrow-left"></i> Previous</button>
     </div>
-  </div>
+    <div class="col-12 col-md-6 text-right form-group">
+        <button class="red-btn" (click)="removeApiKey()">Delete</button>
+    </div>
+</div>
+<form [formGroup]="developerForm">
+    <div class="div-section">
+        <div class="col-9">
+            <div class="row">
+                <div class="col-12 col-md-12 col-sm-6 col-xs-12 form-group">
+                    <h5>API Details</h5>
+                    <label>Title : </label>
+                    <input
+                            type="text"
+                            class="title-input"
+                            formControlName="title"
+                            placeholder="This is test & can edit">
+                </div>
+                <div class="col-10 col-sm-10 col-xs-10 form-group">
+                    <label>Authentication key :</label>
+                    <input type="text"
+                           class="Authentication-input"
+                           formControlName="key"
+                           #key
+                           placeholder="ThYDTcGQEu0PR8o2cbY2af5MXrwBmdIgyhYDTcGQEu0PR8o2cbY2af5MXrwBmdIgy">
+                </div>
+                <div class="col-2 col-sm-2 col-xs-2 form-group">
+                    <button class="light-green-btn" (click)="copyText(key.value)"><i class="fa fa-copy"></i> Copy </button>
+                </div>
+                <div class="col-12 form-group radio">
+
+                    <p class="yellow-text">You can change your api key status : </p>
+                    <input type="radio" id="true" (change)="changeStatus(true)" formControlName="isActive"
+                           [value]="true"> <label for="true">Enable</label>
+                    <input type="radio" id="false" (change)="changeStatus(false)" formControlName="isActive"
+                           [value]="false"> <label for="false">Disable</label>
+                </div>
+                <div class="col-12 additional-security">
+                    <h4>ADDITIONAL SECURITY</h4>
+                    <p>System will accepts requests only from allowed IPs, and all other requests from any random IPs
+                        will be
+                        discarded.</p>
+                    <div class="row white-list">
+                        <div class="col-md-5">
+                            <input type="text"
+                                   name="ip"
+                                   formControlName="ip"
+                                   placeholder="192.168.1.1">
+                        </div>
+                        <div>
+                            <button type="button" (dblclick)="addIp()" class="blue-btn">Whitelist</button>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-5">
+                            <table class="security-table">
+                                <tr *ngFor="let validIp of validIps; let i=index">
+                                    <td>#{{i+1}}</td>
+                                    <td>{{validIp.ip}}</td>
+                                    <td><i (click)="removeIp(validIp.id, i)" class="fa fa-trash"></i></td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </form>

@@ -1,66 +1,68 @@
 .details {
-    padding-top: 0px;
-    padding-bottom: 10px;
-h4 {
+  padding-top: 0px;
+  padding-bottom: 10px;
+  h4 {
     margin: 0;
-}
-p {
+  }
+  p {
     color: #495057;
-}
-i {
+  }
+  i {
     padding: 0 10px;
-}
-span {
+  }
+  span {
     color: #2786fb;
     text-decoration: underline;
+  }
 }
+
+.table-head i {
+  padding: 4px;
+  border-radius: 50%
 }
-.table-head i{
-    padding: 4px;
-    border-radius: 50%
-}
+
 .light-yellow-btn {
-    margin-right: 20px;
-    padding: 5px 10px;
+  margin-right: 20px;
+  padding: 5px 10px;
 }
 
 .light-red-btn {
-    border-radius: 50%;
-    padding: 6px;
+  border-radius: 50%;
+  padding: 6px;
 }
 
 .div-section {
-    margin-bottom: 15px;
+  margin-bottom: 15px;
 }
 
 ::placeholder {
-    color: #a7abc3;
+  color: #a7abc3;
 }
 
 .input-box {
-    position: relative;
-i {
+  position: relative;
+  i {
     position: absolute;
     right: 25px;
     top: 10px;
     font-size: 16px;
     color: #fd397a;
-}
+  }
 }
 
 input[type=text] {
-    width: 100%;
-    padding: 8px 5px;
+  width: 100%;
+  padding: 8px 5px;
 }
 
 @media (max-width: 991px) and (min-width: 768px) {
-    input[type=text] {
-        width: 100%;
-    }
+  input[type=text] {
+    width: 100%;
+  }
 }
 
 @media (max-width: 767px) and (min-width: 320px) {
-    input[type=text] {
-        width: 100%;
-    }
+  input[type=text] {
+    width: 100%;
+  }
 }
