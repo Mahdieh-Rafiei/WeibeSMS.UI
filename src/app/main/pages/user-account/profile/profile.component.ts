@@ -66,7 +66,8 @@ export class ProfileComponent implements OnInit {
       gender: this.profileData.data.gender,
       defaultPrefix: this.profileData.data.defaultPrefix,
       countryId: this.profileData.data.countryId,
-      birthday: new Date(this.profileData.data.birthDay * 1000)
+      birthday: new Date(this.profileData.data.birthDay * 1000),
+      image: this.profileData.data.image
     });
   }
 

@@ -1,12 +1,14 @@
 <div class="image-container">
   <div class="image-container__circle"
        [ngClass]="{'image-container__circle':type === 'circle', 'image-container__rect':type === 'rect'}">
-    <input class="image-container__browse"
-           type='file'
-           (change)="readURL($event);"
+    <input #file class="image-container__browse"
+           type="file"
+           (change)="uploadFile(file.files);"
            (click)="onClickImage()"
            [accept]="accept" #avatar/>
     <img class="image-container__icon" [src]="imageSrc" alt="تصویر کاربر"/>
+
+
   </div>
   <div class="image-container__add-button">
     <button class="button--circle-gradient-large" mat-mini-fab
