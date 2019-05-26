@@ -7,6 +7,7 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {SendVerificationCodeInterface} from '../login/models/send-verification-code.interface';
 import {VerifyMobileInterface} from '../login/models/verify-mobile.interface';
 import {ChangePasswordInterface} from './models/change-password.interface';
+import {ChangePasswordResponseInterface} from '../../main/pages/user-account/privacy/change-password/models/change-password-response.interface';
 
 
 @Component({
@@ -30,7 +31,8 @@ export class ForgotPasswordComponent implements OnInit {
   confirmPassword: string;
 
   forgotPasswordForm: FormGroup;
-
+  resetPassForm: FormGroup;
+  notMatch: boolean = false;
   enterPressConfirm: boolean = false;
 
   @ViewChild('verificationCodePart1Element') verificationCodePart1Element: ElementRef;
@@ -56,6 +58,11 @@ export class ForgotPasswordComponent implements OnInit {
     this.forgotPasswordForm = this.fb.group({
       Mobile: [null, Validators.compose([Validators.required, Validators.pattern(pattern)])],
       Reason: [2]
+    });
+    this.resetPassForm = this.fb.group({
+      password: [null, Validators.compose([Validators.required,
+        Validators.pattern(/^(?=^.{8,}$)(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?!.*\s)[0-9a-zA-Z!@#$%^&*()]*$/)])],
+      confirmPassword: [null]
     });
   }
 
@@ -153,21 +160,34 @@ export class ForgotPasswordComponent implements OnInit {
   }
 
   changePassword() {
-    const payload = {
-      Password: this.password,
-      key: this.verifyKey ? this.verifyKey : localStorage.getItem('k-v-f'),
-      mobile: this.forgotPasswordForm.value.Mobile
-    };
-    this.forgotPasswordService.changePassword(payload)
-      .subscribe(res => {
-        console.log(res);
-        this.configService.authenticationChanged.emit(true);
-        localStorage.removeItem('k-f');
-        localStorage.removeItem('k-v-f');
-        this.router.navigate(['/index']);
-        this.authService.setToken(res.data.token);
-        this.configService.authenticationChanged.emit(true);
-      });
+    if (!this.resetPassForm.value.confirmPassword) {
+      this.confirmPasswordOut();
+    }
+    if (this.resetPassForm.valid && !this.notMatch && this.resetPassForm.value.confirmPassword) {
+      this.confirmPasswordOut();
+      const payload: ChangePasswordInterface = this.resetPassForm.value;
+      delete payload['confirmPassword'];
+      payload['key'] = this.verifyKey ? this.verifyKey : localStorage.getItem('k-v-f');
+      payload['mobile'] = this.forgotPasswordForm.value.Mobile;
+      this.forgotPasswordService.changePassword(payload)
+        .subscribe(res => {
+          this.configService.authenticationChanged.emit(true);
+          localStorage.removeItem('k-f');
+          localStorage.removeItem('k-v-f');
+          this.router.navigate(['/index']);
+          this.authService.setToken(res.data.token);
+          this.configService.authenticationChanged.emit(true);
+        });
+    }
+  }
+
+  confirmPasswordOut() {
+    if (this.resetPassForm.value.password !== this.resetPassForm.value.confirmPassword) {
+      this.notMatch = true;
+      return;
+    } else {
+      this.notMatch = false;
+    }
   }
 
   setFocus(elementNumber: number, value) {
