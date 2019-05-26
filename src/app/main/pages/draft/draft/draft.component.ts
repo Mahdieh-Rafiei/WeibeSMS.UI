@@ -21,7 +21,7 @@ export class DraftComponent implements OnInit {
   draft: any = {
     Id: 0,
     Title: '',
-    MessageText: ''
+    messageText: ''
   };
 
   drafts: any[];
@@ -37,7 +37,7 @@ export class DraftComponent implements OnInit {
   }
 
   ngOnInit() {
-    let strId = this.activatedRoute.snapshot.paramMap.get('id');
+    const strId = this.activatedRoute.snapshot.paramMap.get('id');
     if (strId == null) {
       this.isAddMode = true;
     } else {
