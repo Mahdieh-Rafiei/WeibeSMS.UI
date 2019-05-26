@@ -1,10 +1,13 @@
 <div>
-    <div class="col-md-12 warning-box" *ngIf="ticket && isClosed">
+    <div class="col-md-12 warning-box form-group" *ngIf="ticket && isClosed">
         <p>support request closed. u can open that with sending reply.</p>
     </div>
     <div class="btn-section">
         <div class="row">
-            <div class="col-md-12 text-right">
+            <div class="col-md-6 text-left">
+                <button class="previous-btn" [routerLink]="['/ticket-list']"> <i class="fa fa-arrow-left"></i> Previous </button>
+            </div>
+            <div class="col-md-6 text-right">
                 <button [innerText]="isClosed ? 'Closed' : 'Close this ticket'" (click)="closeTicket()"
                         [disabled]="isClosed" [ngClass]="[isClosed ? 'gray-btn red-btn' : 'btn red-btn']">
                 </button>

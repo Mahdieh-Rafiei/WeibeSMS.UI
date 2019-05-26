@@ -174,7 +174,7 @@ article, aside, details, figcaption, figure, footer, header, hgroup, main, menu,
 }
 
 .main-container {
-  margin: 75px 15px 15px 250px;
+  margin: 90px 15px 15px 250px;
   padding: 0;
   /*height: 100vh;*/
   -ms-overflow-x: hidden;
@@ -185,7 +185,7 @@ article, aside, details, figcaption, figure, footer, header, hgroup, main, menu,
 }
 
 .btn-section {
-  padding: 15px 0;
+  padding:0 0 15px;
   -ms-overflow-x: hidden;
   overflow-x: hidden;
   overflow-y: scroll;
