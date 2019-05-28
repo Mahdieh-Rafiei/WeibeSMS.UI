@@ -1,38 +1,31 @@
-<div class="col-md-12 section-div from-file">
-  <div class="col-md-8 text-center no-pad">
-    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor .</p>
-    <!--<div [draggable]="true" (dragend)="onDrag($eve)" class="upload-file text-center">-->
-      <!--<p><i class="fa fa-upload"></i></p>-->
-      <!--<p>click or drag and  drog file here.</p>-->
-      <!--<p>( allowed file : .xls )</p>-->
-    <!--</div>-->
-    <file-drop dropZoneLabel="Drop files here" (onFileDrop)="dropped($event)">
-               <!--(onFileOver)="fileOver($event)" (onFileLeave)="fileLeave($event)">-->
-      <span>optional content (don't set dropZoneLabel then)</span>
-    </file-drop>
+<div class="section-div from-file">
+    <div class="title form-group">
+        <h5 class="mb-4">Add Contact</h5>
+        <p> You can Download  Exel Template  <i class="fa fa-arrow-circle-right"></i>  <span class="download" (click)="downloadSample()"> Download </span> </p>
+    </div>
+    <div class="col-md-12 text-center no-pad">
+        <file-drop dropZoneLabel="Drop files here" (onFileDrop)="dropped($event)">
+            <!--(onFileOver)="fileOver($event)" (onFileLeave)="fileLeave($event)">-->
+            <p>click or drag and drog file here.</p><br/>
 
-  </div>
-  <div class="col-md-4 upload-file-icon text-center">
-    <i class="fa fa-file"></i>
-    <p (click)="downloadSample()" style="cursor: pointer" >
-      <i class="fa fa-upload"></i> excel template
-    </p>
-  </div>
+        </file-drop>
+    </div>
 </div>
 
 
-<div *ngIf="resultView"  class="modal fade in modal-back" role="dialog" tabindex="-1" style="display: block;" aria-modal="true">
-  <div role="document" class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button (click)="close()" aria-label="Close" class="close pull-right" type="button">
-          <span aria-hidden="true">×</span>
-        </button>
-      </div>
+<div *ngIf="resultView" class="modal fade in modal-back" role="dialog" tabindex="-1" style="display: block;"
+     aria-modal="true">
+    <div role="document" class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button (click)="close()" aria-label="Close" class="close pull-right" type="button">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
 
-      <pre>
+            <pre>
         {{result | json}}
       </pre>
+        </div>
     </div>
-  </div>
 </div>
