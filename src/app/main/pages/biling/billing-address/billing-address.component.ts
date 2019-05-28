@@ -58,7 +58,7 @@ export class BillingAddressComponent implements OnInit {
       phone: this.billingAddressData.data ? this.billingAddressData.data.phone : null,
       address: this.billingAddressData.data ? this.billingAddressData.data.address : null,
       zipCode: this.billingAddressData.data ? this.billingAddressData.data.zipCode : null,
-      prefix: this.billingAddressData.data ? this.billingAddressData.data.prefix : null,
+      defaultPrefixNumberId: this.billingAddressData.data ? this.billingAddressData.data.defaultPrefixNumberId : '',
       vatNumber: this.billingAddressData.data ? this.billingAddressData.data.vatNumber : null,
     });
     if (this.billingAddressData.data && this.billingAddressData.data.vatNumber) {
@@ -83,7 +83,7 @@ export class BillingAddressComponent implements OnInit {
       phone: [null, Validators.required],
       address: [null, Validators.required],
       zipCode: [null, Validators.required],
-      prefix: [null, Validators.required],
+      defaultPrefixNumberId: ['', Validators.required],
       vatNumber: [null],
     })
     ;
@@ -96,13 +96,15 @@ export class BillingAddressComponent implements OnInit {
   }
 
   submit() {
-    const payload = this.billingAddressForm.value;
-    if (!payload['vatNumber']) {
-      delete payload['vatNumber'];
+    if (this.billingAddressForm.valid) {
+      const payload = this.billingAddressForm.value;
+      if (!payload['vatNumber']) {
+        delete payload['vatNumber'];
+      }
+      this.bs.modifyAddress(payload)
+        .subscribe(res => {
+          this.notificationService.success('save billing address successfully', '');
+        });
     }
-    this.bs.modifyAddress(payload)
-      .subscribe(res => {
-        this.notificationService.success('save billing address successfully', '');
-      });
   }
 }

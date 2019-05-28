@@ -1,7 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {UserNotificationService} from './user-notification.service';
-import _ from 'node_modules/lodash/lodash.js';
 import {NotificationResponseInterface} from './models/notification-response.interface';
+import {MatDialog} from '@angular/material';
+import {ShowNotificationComponent} from './show-notification/show-notification.component';
 import {GetUserNotificationInterface} from './models/get-user-notification.interface';
 
 @Component({
@@ -16,8 +17,10 @@ export class UserNotificationComponent implements OnInit {
   pageSize: number = 10;
   showNotification: boolean = false;
   selectedUserNotification: any;
+  totalItemsCount: number;
 
-  constructor(private userNotificationService: UserNotificationService) {
+  constructor(private userNotificationService: UserNotificationService,
+              private dialog: MatDialog) {
   }
 
   ngOnInit() {
@@ -28,16 +31,38 @@ export class UserNotificationComponent implements OnInit {
     this.userNotificationService.getAllUserNotifications(pageNumber, pageSize, onlyUnread)
       .subscribe((res: NotificationResponseInterface) => {
         this.userNotifications = res.data.items;
+        this.totalItemsCount = res.data.totalItemsCount;
       });
   }
 
   preparingShowNotification(userNotification) {
-    this.selectedUserNotification = userNotification;
-    this.showNotification = true;
-    this.userNotificationService.getUserNotification(userNotification.id)
-      .subscribe((res: GetUserNotificationInterface) => {
-        console.log(res.data);
-        userNotification.isRead = true;
+    this.openDialog('600px', 'auto', '', {userNotification});
+  }
+
+  openDialog(width, height, panelClass, data): void {
+    const dialogRef = this.dialog.open(ShowNotificationComponent, {
+      width,
+      height,
+      panelClass,
+      data
+    });
+
+    dialogRef.afterClosed()
+      .subscribe(result => {
+        if (result && result.showNotify) {
+          const userNotification = result.showNotify.userNotification;
+          this.userNotificationService.getUserNotification(userNotification.id)
+            .subscribe((res: GetUserNotificationInterface) => {
+              console.log(res.data);
+              userNotification.isRead = true;
+            });
+        }
       });
   }
+
+  doPaging(e) {
+    this.pageNumber = e;
+    this.getAllUserNotifications(this.pageNumber, this.pageSize, false);
+  }
+
 }
