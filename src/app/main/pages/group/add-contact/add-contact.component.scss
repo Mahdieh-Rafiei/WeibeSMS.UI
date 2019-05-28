@@ -1,28 +1,18 @@
-/*tab*/
-.add-contact-tab {
-  margin-bottom: 10px;
+.add-contact-tab{
+  background-color: #ffffff;
+  padding: 15px 15px 0;
+  border-bottom: 1px solid #e2e5ec;
+  border-radius: 10px 10px 0 0;
 }
 
 .add-contact-div {
-  background: #f9f9f9;
-  padding: 10px;
-  font-size: 16px;
-  margin-bottom: 0;
-  line-height: 2;
-  cursor: pointer;
-  transition: .4s;
-  z-index: 99;
-  :hover {
-    box-shadow: 1px 2px 20px rgb(217, 224, 238);
-    transition: .4s;
-  }
+  padding: 15px;
   img {
     margin: 0 auto;
     display: block;
     height: 85px;
   }
 }
-
 .type-add {
   font-size: 15px;
   color: #ed4952;

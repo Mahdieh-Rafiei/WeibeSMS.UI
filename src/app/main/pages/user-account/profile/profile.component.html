@@ -3,10 +3,13 @@
         <h3 class="title">
             My Profile Setting
         </h3>
+        <div >
+          <img width="200px;" src="{{profileData.data.image}}" alt="">
+        </div>
         <div class="change-profile-pic">
             <app-image-upload
                     [imageSrc]="'../../../../../assets/images/user.jpg'"
-                    [imageUrl]="null"
+                    [imageUrl]=""
                     [uploadType]="'1'"
                     [apiUrl]="'Upload'"
                     [type]="'circle'"
