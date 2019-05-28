@@ -27,23 +27,23 @@
                      placeholder="Enter your phone number"
                      formControlName="phone">
               <div class="text-left"
-                   *ngIf="(((billingAddressForm.controls['phone'].dirty || billingAddressForm.controls['phone'].touched) || formDir.submitted))">
-                <p class="errorMessage" *ngIf="billingAddressForm.hasError('required', 'phone')">
+                   *ngIf="(((billingAddressForm.controls['phone'].dirty || billingAddressForm.controls['phone'].touched) || formDir.submitted)) || (((billingAddressForm.controls['defaultPrefixNumberId'].dirty || billingAddressForm.controls['defaultPrefixNumberId'].touched) || formDir.submitted))">
+                <p class="errorMessage" *ngIf="billingAddressForm.hasError('required', 'phone') || billingAddressForm.hasError('required', 'defaultPrefixNumberId')">
                   this filed is required!
                 </p>
               </div>
-              <select class="v-input-select" formControlName="prefix">
+              <select class="v-input-select" formControlName="defaultPrefixNumberId">
                 <option hidden value="">select</option>
-                <option *ngFor="let country of countries" [value]="country.prefix">
-                  {{country.prefix}}
+                <option *ngFor="let country of countries" [value]="country.id">
+                  {{country.prefixNumber}}
                 </option>
               </select>
-              <div class="text-left"
-                   *ngIf="(((billingAddressForm.controls['prefix'].dirty || billingAddressForm.controls['prefix'].touched) || formDir.submitted))">
-                <p class="errorMessage" *ngIf="billingAddressForm.hasError('required', 'prefix')">
-                  this filed is required!
-                </p>
-              </div>
+              <!--<div class="text-left"-->
+                   <!--*ngIf="(((billingAddressForm.controls['defaultPrefixNumberId'].dirty || billingAddressForm.controls['defaultPrefixNumberId'].touched) || formDir.submitted))">-->
+                <!--<p class="errorMessage" *ngIf="billingAddressForm.hasError('required', 'defaultPrefixNumberId')">-->
+                  <!--this filed is required!-->
+                <!--</p>-->
+              <!--</div>-->
             </div>
             <div class="col-12 col-md-6 form-group">
               <label>Country :</label>
@@ -85,6 +85,12 @@
               <input type="text"
                      placeholder="Enter zipCode"
                      formControlName="zipCode">
+              <div class="text-left"
+                   *ngIf="(((billingAddressForm.controls['zipCode'].dirty || billingAddressForm.controls['zipCode'].touched) || formDir.submitted))">
+                <p class="errorMessage" *ngIf="billingAddressForm.hasError('required', 'zipCode')">
+                  this filed is required!
+                </p>
+              </div>
             </div>
           </div>
           <div class="row">

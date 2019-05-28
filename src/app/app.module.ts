@@ -85,6 +85,8 @@ import {MainComponent} from './main/main.component';
 import {ChangeNumberComponent} from './main/pages/user-account/privacy/change-number/change-number.component';
 import {VerifyNumberComponent} from './main/pages/user-account/privacy/change-number/verify-number/verify-number.component';
 import {CreateKeyComponent} from './main/pages/developers/developer-list/create-key/create-key.component';
+import {ShowNotificationComponent} from './main/pages/user-notification/show-notification/show-notification.component';
+import {DateTimePipe} from './shared/pipe/date-time.pipe';
 
 
 @NgModule({
@@ -143,9 +145,11 @@ import {CreateKeyComponent} from './main/pages/developers/developer-list/create-
     VerifyNumberComponent,
     DeveloperListComponent,
     DeveloperComponent,
-    CreateKeyComponent
+    CreateKeyComponent,
+    ShowNotificationComponent,
+    DateTimePipe
   ],
-  entryComponents: [CreateKeyComponent],
+  entryComponents: [CreateKeyComponent, ShowNotificationComponent],
 
   imports: [
     BrowserModule,
