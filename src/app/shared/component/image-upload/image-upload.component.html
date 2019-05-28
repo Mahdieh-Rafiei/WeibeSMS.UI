@@ -7,21 +7,31 @@
            (click)="onClickImage()"
            [accept]="accept" #avatar/>
     <img class="image-container__icon" [src]="imageSrc" alt="تصویر کاربر"/>
-
+    <!--<button style="position: absolute" class="btn">Change Avatar</button>-->
+    <!-- - -->
+    <!--<button class="btn"> Remove Avatar</button>-->
 
   </div>
-  <div class="image-container__add-button">
-    <button class="button--circle-gradient-large" mat-mini-fab
-            (click)="avatar.click()">
-      <mat-icon *ngIf="picture === undefined">add</mat-icon>
-      <mat-icon *ngIf="picture !== undefined">edit</mat-icon>
-    </button>
-    <button class="button--circle-gradient-large delete" mat-mini-fab
-            (click)="onDelete()"
-            *ngIf="showDelete">
-      <mat-icon *ngIf="picture === undefined">delete</mat-icon>
-    </button>
-  </div>
+  <!--<div class="image-container__add-button">-->
+  <!--<button class="button&#45;&#45;circle-gradient-large" mat-mini-fab-->
+  <!--(click)="avatar.click()">-->
+  <!--<mat-icon *ngIf="picture === undefined">add</mat-icon>-->
+  <!--<mat-icon *ngIf="picture !== undefined">edit</mat-icon>-->
+  <!--</button>-->
+  <!--<button class="button&#45;&#45;circle-gradient-large delete" mat-mini-fab-->
+  <!--(click)="onDelete()"-->
+  <!--*ngIf="showDelete">-->
+  <!--<mat-icon *ngIf="picture === undefined">delete</mat-icon>-->
+  <!--</button>-->
+  <!--</div>-->
+</div>
+<div *ngIf="hasAvatar">
+  <p style="position: absolute" (click)="avatar.click()">Change Avatar</p>
+  -
+  <p style="position: absolute ;left: 100px"> Remove Avatar</p>
+</div>
+<div *ngIf="!hasAvatar">
+  <p style="position: absolute" (click)="avatar.click()">Add Avatar</p>
 </div>
 
 <div *ngIf="AvatarSizeValidate || AvatarTypeValidate">

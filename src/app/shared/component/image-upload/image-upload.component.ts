@@ -6,6 +6,8 @@ import {SharedService} from '../../service/shared.service';
 import {HttpClient, HttpEventType, HttpHeaders} from '@angular/common/http';
 import {FormBuilder, FormGroup} from '@angular/forms';
 import {any} from 'codelyzer/util/function';
+import {UploadInterface} from './models/upload.interface';
+import {ApiService} from '../../api.service';
 
 @Component({
   selector: 'app-image-upload',
@@ -40,38 +42,25 @@ export class ImageUploadComponent implements OnInit {
   @Output() image: EventEmitter<any> = new EventEmitter();
   @Output() loading: EventEmitter<any> = new EventEmitter();
 
-  uploadForm: FormGroup;
+  hasAvatar: boolean = false;
 
   constructor(private router: Router,
               private http: HttpClient,
               private fb: FormBuilder,
-              private toastrService: ToastrService,
-              private sharedService: SharedService) {
+              private as: ApiService) {
   }
 
   ngOnInit() {
     this.storeImageSrc = this.imageSrc;
     this.getPicture();
-    this.createForm();
-  }
-
-  createForm() {
-    this.uploadForm = this.fb.group({
-      file: [null]
-    });
   }
 
   getPicture() {
     if (this.imageUrl) {
       this.showDelete = true;
-      this.imageSrc = null;
+      this.imageSrc = this.imageUrl;
+      this.hasAvatar = true;
     }
-  }
-
-  prepareSave(): any {
-    const file = new FormData();
-    file.append('', this.uploadForm.get('file').value);
-    return file;
   }
 
 
@@ -121,22 +110,21 @@ export class ImageUploadComponent implements OnInit {
     //     this.AvatarTypeValidate = false;
     //   }
 
-    debugger;
     if (files.length === 0) {
       return;
     }
 
-    let fileToUpload = <File> files[0];
+    const fileToUpload = <File> files[0];
     const formData = new FormData();
     formData.append('file', fileToUpload);
     formData.append('type', '1');
 
-    this.http.post('https://localhost:44315/app/api/upload', formData,{
-      reportProgress : true,
-      observe: 'events',
-      headers : new HttpHeaders({'Authorization': localStorage.getItem('jwt-sms')})
-    })
-      .subscribe(res => console.log(res));
+    this.as.postFile(this.apiUrl, formData)
+      .subscribe(res => {
+        if (res && res.data) {
+          this.imageSrc = res.data;
+        }
+      });
   }
 
   onClickImage() {
