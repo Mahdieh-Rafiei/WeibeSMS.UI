@@ -20,6 +20,7 @@ export class ProfileComponent implements OnInit {
   genders = [{title: 'Unknown', value: 1},
     {title: 'Female', value: 2},
     {title: 'Male', value: 3}];
+  imageUrl: string = null;
 
   constructor(private fb: FormBuilder,
               private route: ActivatedRoute,
@@ -58,6 +59,7 @@ export class ProfileComponent implements OnInit {
   }
 
   fillProfile(profileForm) {
+    this.imageUrl = this.profileData.data.image ? this.profileData.data.image : null;
     profileForm.patchValue({
       firstName: this.profileData.data.firstName,
       lastName: this.profileData.data.lastName,
@@ -67,7 +69,6 @@ export class ProfileComponent implements OnInit {
       defaultPrefixNumberId: this.profileData.data.defaultPrefixNumberId,
       countryId: this.profileData.data.countryId,
       birthday: new Date(this.profileData.data.birthDay * 1000),
-      image: this.profileData.data.image
     });
   }
 
