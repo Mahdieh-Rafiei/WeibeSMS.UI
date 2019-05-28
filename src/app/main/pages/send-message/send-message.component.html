@@ -1,4 +1,4 @@
-<div class="btn-section form-group">
+<div class="btn-section">
     <div class="row">
         <div class="col-12 col-md-6 col-sm-6 col-xs-6 text-left">
             <button class="gray-btn"><i class="fa fa-times-circle"></i> Exit</button>
@@ -8,17 +8,19 @@
         </div>
     </div>
 </div>
-<div class="col-md-12 div-section">
-    <div class="steps-send text-center">
-        <a class="active" [routerLink]="['first-step']">1.Content</a>
-        <span class="active"><i class="fa fa-arrow-circle-right"></i></span>
-        <a [routerLink]="['second-step']">2.Originator & Recipients</a>
-        <span><i class="fa fa-arrow-circle-right"></i></span>
-        <a [routerLink]="['schedule']">3.Send Config</a>
-        <span><i class="fa fa-arrow-circle-right"></i></span>
-        <!--<a [routerLink]="['event']">3.Send Config</a>-->
+<div class="div-section">
 
-        <a class="current" [routerLink]="['third-step']">4.Verify & Send</a>
-    </div>
-    <router-outlet></router-outlet>
+        <div class="steps-send text-center">
+            <a class="active" [routerLink]="['first-step']">1.Content</a>
+            <span class="active"><i class="fa fa-arrow-circle-right"></i></span>
+            <a [routerLink]="['second-step']">2.Originator & Recipients</a>
+            <span><i class="fa fa-arrow-circle-right"></i></span>
+            <a [routerLink]="['schedule']">3.Send Config</a>
+            <span><i class="fa fa-arrow-circle-right"></i></span>
+            <a [routerLink]="['event']">3.Send Config</a>
+
+            <a class="current" [routerLink]="['third-step']">4.Verify & Send</a>
+        </div>
+        <router-outlet></router-outlet>
+
 </div>
