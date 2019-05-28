@@ -840,6 +840,7 @@ li {
     border-top: none;
 }
 
+
 .ngx-file-drop__drop-zone {
     border: 2px dotted #e2e5ec !important;
     border-radius: 5px !important;
@@ -847,3 +848,4 @@ li {
 .ngx-file-drop__content {
     color: #a7abc3 !important;
 }
+

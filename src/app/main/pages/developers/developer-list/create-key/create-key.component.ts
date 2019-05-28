@@ -17,6 +17,7 @@ export class CreateKeyComponent implements OnInit {
   constructor(public dialogRef: MatDialogRef<CreateKeyComponent>,
               @Inject(MAT_DIALOG_DATA) public data: any,
               private ds: DevelopersService) {
+    dialogRef.disableClose = true;
     this.modalType = data.type;
     this.optionIndex = data.index;
 

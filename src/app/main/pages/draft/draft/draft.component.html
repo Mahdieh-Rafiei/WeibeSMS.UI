@@ -1,45 +1,57 @@
 <div>
-    <div class="btn-section text-right">
-        <div class="row">
-            <div class="col-md-6 col-sm-6 col-xs-6 text-left">
-                <button class="previous-btn"><i class="fa fa-arrow-left"></i> Previous</button>
-            </div>
-            <div class="col-md-6 col-sm-6 col-xs-6 text-right">
-                <button (click)="addOrUpdateDraft()" class="green-btn"><i class="fa fa-plus"></i> Save Template</button>
-            </div>
-        </div>
+  <div class="btn-section text-right">
+    <div class="row">
+      <div class="col-md-6 col-sm-6 col-xs-6 text-left">
+        <button class="previous-btn"><i class="fa fa-arrow-left"></i> Previous</button>
+      </div>
+      <div class="col-md-6 col-sm-6 col-xs-6 text-right">
+        <button (click)="addOrUpdateDraft()" class="green-btn"><i class="fa fa-plus"></i> Save Template</button>
+      </div>
     </div>
+  </div>
 
-    <div class="div-section">
-        <div class="col-md-12 draft">
-            <div class="row">
-                <input [(ngModel)]="draft.title" type="text" placeholder="name" class="input-name">
-            </div>
-            <div class="row">
-                <div class="col-md-8 padding">
+  <div class="div-section">
+    <div class="col-md-12 draft">
+      <div class="row">
+        <input [(ngModel)]="draft.title" #title type="text" placeholder="name" class="input-name">
+        <div class="text-left">
+          <p class="errorMessage" *ngIf="!title.value && titleValue">
+            this filed is required!
+          </p>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-8 padding">
                 <textarea placeholder="Message |" (input)="onMessageTextChange()" [(ngModel)]="draft.messageText"
-                          rows="9" class="content-box"></textarea>
-                    <div class="count-sms">
-                        <span>{{localSmsLen}} / {{container}}</span> | <span>{{smsCount}} SMS</span>
-                    </div>
-                </div>
-                <div class="col-md-4 padding">
-                    <div class="content-box personalize">
-                        <h5>Personalize</h5>
-                        <p class="yellow-text">* To use the field dynamically</p>
-                        <p class="green-text" (click)="addSegment(1)"><i class="fa fa-plus-circle"></i> Name</p>
-                        <p class="green-text" (click)="addSegment(2)"><i class="fa fa-plus-circle"></i> Surname</p>
-                        <p class="green-text" (click)="addSegment(3)"><i class="fa fa-plus-circle"></i> Phone number</p>
-                    </div>
-                    <div class="template">
-                        <select (change)="test($event)" class="content-box">
-                            <option [innerText]="d.Title" [value]="d.Id" *ngFor="let d of drafts">
-                            </option>
-                        </select>
-                    </div>
-                </div>
-
-            </div>
+                          rows="9" class="content-box" #message></textarea>
+          <div class="text-left">
+            <p class="errorMessage" *ngIf="!message.value && messageValue">
+              this filed is required!
+            </p>
+          </div>
+          <div class="count-sms">
+            <span>{{localSmsLen}} / {{container}}</span> | <span>{{smsCount}} SMS</span>
+          </div>
         </div>
+        <div class="col-md-4 padding">
+          <div class="content-box personalize">
+            <h5>Personalize</h5>
+            <p class="yellow-text">* To use the field dynamically</p>
+            <p class="green-text" (click)="addSegment(1)"><i class="fa fa-plus-circle"></i> Name</p>
+            <p class="green-text" (click)="addSegment(2)"><i class="fa fa-plus-circle"></i> Surname</p>
+            <p class="green-text" (click)="addSegment(3)"><i class="fa fa-plus-circle"></i> Phone number</p>
+          </div>
+          <div class="template">
+            <select class="content-box" (change)="selectTemplate($event)">
+              <option hidden *ngIf="drafts?.length===0">No Template</option>
+              <option hidden *ngIf="drafts?.length>0">Select Template</option>
+              <option [innerText]="d.title" [value]="d.id" *ngFor="let d of drafts">
+              </option>
+            </select>
+          </div>
+        </div>
+
+      </div>
     </div>
+  </div>
 </div>

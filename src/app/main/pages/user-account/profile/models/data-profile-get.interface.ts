@@ -5,7 +5,7 @@ export interface DataProfileGetInterface {
   lastName: string;
   email: string;
   gender: Gender;
-  defaultPrefix: number;
+  defaultPrefixNumberId: number;
   birthDay: number;
   companyName: string;
   countryId: number;

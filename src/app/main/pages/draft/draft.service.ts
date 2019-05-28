@@ -17,27 +17,27 @@ export class DraftService {
   }
 
   getAllDrafts(pageNumber: number, pageSize: number, phrase: string): Observable<DraftInterface> {
-    const url = `userDraftMessage?pageNumber=${pageNumber}&pageSize=${pageSize}`;
+    const url = `DraftMessage?pageNumber=${pageNumber}&pageSize=${pageSize}`;
     return this.apiService.get(url, true);
   }
 
   getDraft(id: number): Observable<GetDraftInterface> {
-    const url = `UserDraftMessage/${id}`;
+    const url = `DraftMessage/${id}`;
     return this.apiService.get(url, true);
   }
 
   addDraft(payload): Observable<AddDraftResponseInterface> {
-    const url = `UserDraftMessage`;
+    const url = `DraftMessage`;
     return this.apiService.post<AddDraftInterface>(url, payload, true);
   }
 
   modifyDraft(id: number, payload): Observable<EditDraftResponseInterface> {
-    const url = `UserDraftMessage/${id}`;
+    const url = `DraftMessage/${id}`;
     return this.apiService.put(url, payload, true);
   }
 
   removeDraft(id: number): Observable<RemoveDraftInterface> {
-    const url = `UserDraftMessage/${id}`;
+    const url = `DraftMessage/${id}`;
     return this.apiService.delete(url, null, true);
   }
 }
