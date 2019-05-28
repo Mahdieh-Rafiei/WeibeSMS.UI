@@ -10,7 +10,7 @@
         <!--item menu-->
         <div class="nested-menu" *ngFor="let item of menuItems">
             <a class="list-group-item" (click)="item.link ? navigateRoute(item.link) : addExpandClass(item.title)">
-                <i class="fa fa-user"></i>&nbsp;{{item.title}}
+                <i class="fa fa-{{item.icon}}"></i>&nbsp;{{item.title}}
                 <span *ngIf="item.subMenu && !subMenuIcon" class="fa fa-chevron-right"></span>
                 <span *ngIf="item.subMenu && subMenuIcon" class="fa fa-chevron-down"></span>
             </a>

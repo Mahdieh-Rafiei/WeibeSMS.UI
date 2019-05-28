@@ -60,7 +60,7 @@ export class SidebarComponent implements OnInit {
                 }]
         },{
             title: 'Option',
-            icon: 'envelope',
+            icon: 'cog',
             link: null,
             subMenu: [{
                 title: 'Template',
@@ -118,11 +118,12 @@ export class SidebarComponent implements OnInit {
 
     // subMenu
     addExpandClass(element: any) {
-        this.subMenuIcon = true;
         if (element === this.showMenu) {
+            this.subMenuIcon = false;
             this.showMenu = '0';
         } else {
             this.showMenu = element;
+            this.subMenuIcon = true;
         }
     }
 

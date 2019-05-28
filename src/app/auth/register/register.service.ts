@@ -9,25 +9,26 @@ import {RegisterInterface} from './models/register.interface';
 import {RegisterResponseInterface} from './models/register-response.interface';
 
 @Injectable({
-  providedIn: 'root'
+    providedIn: 'root'
 })
 export class RegisterService {
 
-  constructor(private apiService: ApiService) {
-  }
+    constructor(private apiService: ApiService) {
 
-  sendVerificationCode(payload): Observable<SendVerificationCodeResponseInterface> {
-    const url = `User/SendVerificationCode`;
-    return this.apiService.post<SendVerificationCodeInterface>(url, payload, false);
-  }
+    }
 
-  verifyMobile(payload): Observable<VerifyMobileResponseInterface> {
-    const url = `User/VerifyMobile`;
-    return this.apiService.post<VerifyMobileInterface>(url, payload, false);
-  }
+    sendVerificationCode(payload): Observable<SendVerificationCodeResponseInterface> {
+        const url = `Guest/SendVerificationCode`;
+        return this.apiService.post<SendVerificationCodeInterface>(url, payload, false);
+    }
 
-  saveInfo(payload): Observable<RegisterResponseInterface> {
-    const url = `User/register`;
-    return this.apiService.post<RegisterInterface>(url, payload, false);
-  }
+    verifyMobile(payload): Observable<VerifyMobileResponseInterface> {
+        const url = `Guest/VerifyMobile`;
+        return this.apiService.post<VerifyMobileInterface>(url, payload, false);
+    }
+
+    saveInfo(payload): Observable<RegisterResponseInterface> {
+        const url = `Guest/register`;
+        return this.apiService.post<RegisterInterface>(url, payload, false);
+    }
 }

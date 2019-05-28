@@ -134,6 +134,7 @@ export class LoginComponent implements OnInit {
     const payload: VerifyMobileInterface = {
       Key: this.registrationKey ? this.registrationKey : localStorage.getItem('k-l'),
       Mobile: this.signUpForm.value.mobile,
+        Reason: 1,
       VerificationCode: verificationCode.toString()
     };
     this.registerService.verifyMobile(payload)
