@@ -51,7 +51,7 @@ export class ProfileComponent implements OnInit {
       companyName: [null],
       email: [null],
       gender: [''],
-      defaultPrefix: [''],
+      defaultPrefixNumberId: [''],
       countryId: [''],
       birthday: [null]
     });
@@ -64,7 +64,7 @@ export class ProfileComponent implements OnInit {
       companyName: this.profileData.data.companyName,
       email: this.profileData.data.email,
       gender: this.profileData.data.gender,
-      defaultPrefix: this.profileData.data.defaultPrefix,
+      defaultPrefixNumberId: this.profileData.data.defaultPrefixNumberId,
       countryId: this.profileData.data.countryId,
       birthday: new Date(this.profileData.data.birthDay * 1000),
       image: this.profileData.data.image
