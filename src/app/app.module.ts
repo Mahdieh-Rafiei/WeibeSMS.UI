@@ -87,7 +87,9 @@ import {VerifyNumberComponent} from './main/pages/user-account/privacy/change-nu
 import {CreateKeyComponent} from './main/pages/developers/developer-list/create-key/create-key.component';
 import {ShowNotificationComponent} from './main/pages/user-notification/show-notification/show-notification.component';
 import {DateTimePipe} from './shared/pipe/date-time.pipe';
+
 import { FooterComponent } from './main/layout/footer/footer.component';
+
 
 
 @NgModule({
@@ -148,8 +150,9 @@ import { FooterComponent } from './main/layout/footer/footer.component';
         DeveloperComponent,
         CreateKeyComponent,
         ShowNotificationComponent,
-        DateTimePipe,
-        FooterComponent
+            DateTimePipe,
+        FooterComponent,
+            DateTimePipe
     ],
     entryComponents: [CreateKeyComponent, ShowNotificationComponent],
 
