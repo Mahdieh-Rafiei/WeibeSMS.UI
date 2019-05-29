@@ -9,7 +9,8 @@ import {ItemsDefintionInterface} from './models/items-defintion.interface';
   styleUrls: ['./definition-schedule-event.component.scss']
 })
 export class DefinitionScheduleEventComponent implements OnInit {
-  definitions: ItemsDefintionInterface[] = [];
+  //Todo: definitions Model
+  definitions: any = [];
 
   constructor(private route: ActivatedRoute) {
     this.route.data

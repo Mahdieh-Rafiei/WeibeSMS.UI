@@ -6,7 +6,7 @@ import {Injectable} from '@angular/core';
 export class AuthSharedService {
   keyLogin: string;
   mobile: string;
-  countryId: number;
+  prefixNumberId: number;
 
   constructor() {
   }

@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {ActivatedRoute, Router} from '@angular/router';
 
 @Component({
   selector: 'app-privacy',
@@ -7,9 +8,25 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PrivacyComponent implements OnInit {
 
-  constructor() { }
+  items = [
+    {title: 'Change number', link: 'change-number'},
+    {title: 'Change password', link: 'change-password'},
+    {title: 'Login log', link: 'login-log'},
+    {title: 'Deactive account', link: 'deactive-account'}
+  ];
 
-  ngOnInit() {
+  active: string = null;
+
+  constructor(private router: Router) {
   }
 
+  ngOnInit() {
+    this.onClick('change-number');
+  }
+
+  onClick(link) {
+    this.active = link;
+    this.router.navigate(['./privacy/' + link]);
+
+  }
 }

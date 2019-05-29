@@ -74,7 +74,7 @@ export class LoginComponent implements OnInit {
     this.signUpForm = this.fb.group({
       mobile: [null, Validators.compose([Validators.required, Validators.pattern(pattern)])],
       reason: [1],
-      countryId: ['', Validators.required]
+      prefixNumberId: ['', Validators.required]
     });
     this.signInForm = this.fb.group({
       username: [null, Validators.required],
@@ -103,13 +103,9 @@ export class LoginComponent implements OnInit {
 
   sendVerificationCode() {
     if (this.signUpForm.valid) {
-      const countryId = this.countries.find(item => item.id === +this.signUpForm.value.countryId);
-      this.authSharedService.mobile = countryId.prefixNumber + this.signUpForm.value.mobile;
-      this.authSharedService.countryId = +this.signUpForm.value.countryId;
-      const payload: SendVerificationCodeInterface = {
-        mobile: +countryId.prefixNumber + this.signUpForm.value.mobile,
-        reason: this.signUpForm.value.reason
-      };
+      this.authSharedService.mobile = this.signUpForm.value.mobile;
+      this.authSharedService.prefixNumberId = +this.signUpForm.value.prefixNumberId;
+      const payload: SendVerificationCodeInterface = this.signUpForm.value;
       this.registerService.sendVerificationCode(payload)
         .subscribe((res: SendVerificationCodeResponseInterface) => {
             this.notificationService.success('Verification code sent successfully', '');
@@ -149,7 +145,8 @@ export class LoginComponent implements OnInit {
       this.verificationCodePart4, this.verificationCodePart5);
     const payload: VerifyMobileInterface = {
       Key: this.registrationKey ? this.registrationKey : localStorage.getItem('k-l'),
-      Mobile: +this.authSharedService.mobile,
+      Mobile: this.signUpForm.value.mobile,
+      prefixNumberId: this.signUpForm.value.prefixNumberId,
       VerificationCode: +verificationCode,
       reason: 1
     };

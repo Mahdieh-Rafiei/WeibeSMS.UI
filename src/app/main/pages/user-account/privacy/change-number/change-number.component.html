@@ -1,0 +1,32 @@
+<form class="col-md-12 div-section" [formGroup]="changeNumberForm" #formDir="ngForm" (ngSubmit)="submit()">
+  <div class="change-password">
+    <h5>Phone number</h5>
+    <p>you can change your phone number, but you should verify it.</p>
+    <div class="input-box">
+      <label>Your phone number: </label>
+      <input type="text"
+             formControlName="mobile"
+             placeholder="Enter your new number">
+      <select class="v-input-select" formControlName="countryId">
+        <option hidden value="">select</option>
+        <option *ngFor="let country of countries" [value]="country.id">
+          {{country.prefixNumber}}
+        </option>
+      </select>
+      <div class="text-left"
+           *ngIf="((changeNumberForm.dirty || changeNumberForm.touched || formDir.submitted))">
+        <p class="errorMessage"
+           *ngIf="changeNumberForm.hasError('required', 'mobile') || changeNumberForm.hasError('required', 'countryId')">
+          this filed is required!
+        </p>
+        <p class="errorMessage"
+           *ngIf="(changeNumberForm.controls['mobile'].hasError('pattern')) && (changeNumberForm.controls['mobile'].touched)">
+          phone number is invalid!
+        </p>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-12 text-right">
+    <button type="submit" class="light-blue-btn">Verify</button>
+  </div>
+</form>
