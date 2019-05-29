@@ -88,6 +88,9 @@ import {CreateKeyComponent} from './main/pages/developers/developer-list/create-
 import {ShowNotificationComponent} from './main/pages/user-notification/show-notification/show-notification.component';
 import {DateTimePipe} from './shared/pipe/date-time.pipe';
 
+import { FooterComponent } from './main/layout/footer/footer.component';
+
+
 
 @NgModule({
 
@@ -147,7 +150,9 @@ import {DateTimePipe} from './shared/pipe/date-time.pipe';
         DeveloperComponent,
         CreateKeyComponent,
         ShowNotificationComponent,
-        DateTimePipe
+            DateTimePipe,
+        FooterComponent,
+            DateTimePipe
     ],
     entryComponents: [CreateKeyComponent, ShowNotificationComponent],
 

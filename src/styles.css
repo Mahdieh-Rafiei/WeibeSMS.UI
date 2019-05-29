@@ -194,7 +194,7 @@ article, aside, details, figcaption, figure, footer, header, hgroup, main, menu,
 
 .div-section {
     background: #ffffff;
-    padding: 1rem;
+    padding: .5rem;
     border-radius: 1rem;
     box-shadow: 0px 0px 13px 0px rgba(82, 63, 105, 0.05);
 }
@@ -839,7 +839,10 @@ li {
     padding: 0;
     border-top: none;
 }
+<<<<<<< HEAD
+=======
 
+>>>>>>> f952ce2cea4507e03ed763c0858e6f20b0a4a2d6
 
 .ngx-file-drop__drop-zone {
     border: 2px dotted #e2e5ec !important;
