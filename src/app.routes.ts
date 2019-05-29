@@ -38,7 +38,7 @@ import {VerificationCodeReportComponent} from './app/main/pages/sms-report/verif
 
 import {DefinitionScheduleEventComponent} from './app/main/pages/definition-schedule-event/definition-schedule-event.component';
 
-import {UserNotificationComponent} from './app/main/pages/user-notification/user-notification.component';
+// import {UserNotificationComponent} from './app/main/pages/user-notification/list/user-notification.component';
 
 import {PrivacyComponent} from './app/main/pages/user-account/privacy/privacy.component';
 import {ChangePasswordComponent} from './app/main/pages/user-account/privacy/change-password/change-password.component';
@@ -138,11 +138,11 @@ export const APP_ROUTES: Routes = [
     {path: 'sms-report', component: SmsReportComponent},
     {path: 'report-verification', component: VerificationCodeReportComponent},
 
-    {path: 'notification', component: UserNotificationComponent},
+    // {path: 'notification', component: UserNotificationComponent},
 
     {path: 'schedule-event', component: DefinitionScheduleEventComponent},
 
-    {path: 'user-event', component: UserEventComponent},
+    // {path: 'user-event', component: UserEventComponent},
 
     {
         path: 'developer-list', component: DeveloperListComponent, resolve: {

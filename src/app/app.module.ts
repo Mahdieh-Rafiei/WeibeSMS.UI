@@ -11,7 +11,7 @@ import {CollapseModule} from 'ngx-bootstrap';
 import {TabsModule} from 'ngx-bootstrap';
 import {ToastrModule} from 'ngx-toastr';
 import {FileDropModule} from 'ngx-file-drop';
-import {NgxPaginationModule} from 'ngx-pagination';
+// import {NgxPaginationModule} from 'ngx-pagination';
 
 import {MatButtonModule} from '@angular/material/button';
 import {MatSelectModule} from '@angular/material/select';
@@ -39,8 +39,8 @@ import {AddContactComponent} from './main/pages/group/add-contact/add-contact.co
 import {SingleAddContactComponent} from './main/pages/group/add-contact/single-add-contact/single-add-contact.component';
 import {AddContactFromFileComponent} from './main/pages/group/add-contact/add-contact-from-file/add-contact-from-file.component';
 import {ImportContactFromOtherListsComponent} from './main/pages/group/add-contact/import-contact-from-file/import-contact-from-other-lists.component';
-import {UserEventComponent} from './main/pages/user-event/user-event.component';
-import {UserEventService} from './main/pages/user-event/user-event.service';
+// import {UserEventComponent} from './main/pages/user-event/user-event.component';
+// import {UserEventService} from './main/pages/user-event/user-event.service';
 import {SendMessageComponent} from './main/pages/send-message/send-message.component';
 import {SendMessageFirstStepComponent} from './main/pages/send-message/send-message-first-step/send-message-first-step.component';
 import {SendMessageSecondStepComponent} from './main/pages/send-message/send-message-second-step/send-message-second-step.component';
@@ -63,7 +63,7 @@ import {VerificationCodeReportComponent} from './main/pages/sms-report/verificat
 import {DeveloperListComponent} from './main/pages/developers/developer-list/developer-list.component';
 import {DeveloperComponent} from './main/pages/developers/developer/developer.component';
 import {SlimSidebarComponent} from './main/layout/slim-sidebar/slim-sidebar.component';
-import {UserNotificationComponent} from './main/pages/user-notification/user-notification.component';
+// import {UserNotificationComponent} from './main/pages/user-notification/list/user-notification.component';
 
 import {PrivacyComponent} from './main/pages/user-account/privacy/privacy.component';
 import {ProfileComponent} from './main/pages/user-account/profile/profile.component';
@@ -85,11 +85,10 @@ import {MainComponent} from './main/main.component';
 import {ChangeNumberComponent} from './main/pages/user-account/privacy/change-number/change-number.component';
 import {VerifyNumberComponent} from './main/pages/user-account/privacy/change-number/verify-number/verify-number.component';
 import {CreateKeyComponent} from './main/pages/developers/developer-list/create-key/create-key.component';
-import {ShowNotificationComponent} from './main/pages/user-notification/show-notification/show-notification.component';
-import {DateTimePipe} from './shared/pipe/date-time.pipe';
+// import {ShowNotificationComponent} from './main/pages/user-notification/show/show-notification.component';
+// import {DateTimePipe} from './shared/pipe/date-time.pipe';
 
-import { FooterComponent } from './main/layout/footer/footer.component';
-
+import {FooterComponent} from './main/layout/footer/footer.component';
 
 
 @NgModule({
@@ -109,7 +108,7 @@ import { FooterComponent } from './main/layout/footer/footer.component';
         SingleAddContactComponent,
         AddContactFromFileComponent,
         ImportContactFromOtherListsComponent,
-        UserEventComponent,
+        // UserEventComponent,
         SendMessageComponent,
         SendMessageFirstStepComponent,
         SendMessageSecondStepComponent,
@@ -129,7 +128,7 @@ import { FooterComponent } from './main/layout/footer/footer.component';
         StatusTranslatorPipe,
         VerificationCodeReportComponent,
         SlimSidebarComponent,
-        UserNotificationComponent,
+        // UserNotificationComponent,
         ProfileComponent,
         ChangePasswordComponent,
         BillingAddressComponent,
@@ -149,12 +148,13 @@ import { FooterComponent } from './main/layout/footer/footer.component';
         DeveloperListComponent,
         DeveloperComponent,
         CreateKeyComponent,
-        ShowNotificationComponent,
-            DateTimePipe,
+        // ShowNotificationComponent,
         FooterComponent,
-            DateTimePipe
     ],
-    entryComponents: [CreateKeyComponent, ShowNotificationComponent],
+    entryComponents: [
+        CreateKeyComponent,
+        // ShowNotificationComponent
+    ],
 
     imports: [
         BrowserModule,
@@ -171,7 +171,6 @@ import { FooterComponent } from './main/layout/footer/footer.component';
         }),
         BrowserAnimationsModule,
         FileDropModule,
-        NgxPaginationModule,
         MainRoutingModule,
         SharedModule,
 
@@ -185,7 +184,7 @@ import { FooterComponent } from './main/layout/footer/footer.component';
         RegisterService,
         CanActivateRouteGuard,
         NotificationService,
-        UserEventService,
+        // UserEventService,
         TicketService,
         UserAccountService
     ],
