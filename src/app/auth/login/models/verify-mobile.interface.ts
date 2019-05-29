@@ -3,4 +3,5 @@ export interface VerifyMobileInterface {
   Mobile: number;
   VerificationCode: number;
   reason: number;
+  prefixNumberId: number;
 }

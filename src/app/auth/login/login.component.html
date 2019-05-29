@@ -60,7 +60,7 @@
                      formControlName="mobile"
                      appNumericInput
                      autofocus autocomplete="off">
-              <select class="v-input-select"  formControlName="countryId">
+              <select class="v-input-select"  formControlName="prefixNumberId">
                 <option hidden value="">select</option>
                 <option *ngFor="let country of countries" [value]="country.id">
                   {{country.prefixNumber}}
@@ -68,7 +68,7 @@
               </select>
               <div class="text-left"
                    *ngIf="((signUpForm.dirty || signUpForm.touched || formDir.submitted))">
-                <p class="errorMessage" *ngIf="signUpForm.hasError('required', 'mobile') || signUpForm.hasError('required', 'countryId')">
+                <p class="errorMessage" *ngIf="signUpForm.hasError('required', 'mobile') || signUpForm.hasError('required', 'prefixNumberId')">
                   this filed is required!
                 </p>
                 <p class="errorMessage"
