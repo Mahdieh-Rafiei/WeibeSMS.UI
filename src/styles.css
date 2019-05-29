@@ -174,7 +174,7 @@ article, aside, details, figcaption, figure, footer, header, hgroup, main, menu,
 }
 
 .main-container {
-    margin: 90px 15px 15px 250px;
+    margin: 90px 15px 90px 250px;
     padding: 0;
     /*height: 100vh;*/
     -ms-overflow-x: hidden;
@@ -839,10 +839,6 @@ li {
     padding: 0;
     border-top: none;
 }
-<<<<<<< HEAD
-=======
-
->>>>>>> f952ce2cea4507e03ed763c0858e6f20b0a4a2d6
 
 .ngx-file-drop__drop-zone {
     border: 2px dotted #e2e5ec !important;

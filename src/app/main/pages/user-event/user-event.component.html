@@ -18,36 +18,11 @@
                     <i class="fa fa-filter"></i> Filter
                 </button>
             </div>
+            <!--search-->
             <div class="col-md-6 operation-section form-group">
-                <app-search [params]="[{title: 'device'}, {title: 'location'}]"></app-search>
+                <!--<app-search [params]="[{title: 'device'}, {title: 'location'}]"></app-search>-->
             </div>
         </div>
-
-        <!--<div class="table-div">-->
-        <!--<table class="index-table text-left table-responsive">-->
-        <!--<thead>-->
-        <!--<tr>-->
-        <!--<th class="text-left"><i class="fa fa-sort"></i> Id</th>-->
-        <!--<th class="text-left"><i class="fa fa-sort"></i> Title</th>-->
-        <!--<th class="text-left"><i class="fa fa-sort"></i> DateTime</th>-->
-        <!--<th></th>-->
-        <!--</tr>-->
-        <!--</thead>-->
-        <!--<tbody>-->
-        <!--<tr *ngFor="let ue of filteredUserEvents,index as i">-->
-        <!--<td class="text-left">{{i + 1}}</td>-->
-        <!--<td class="text-left">{{ue.name}}</td>-->
-        <!--<td class="td-single text-left actions-container">-->
-        <!--<div class="actions">-->
-        <!--<a (click)="removeUserEvent(ue)"><i class="fa fa-trash"></i></a>-->
-        <!--<a (click)="setModifyMode(ue)"> <i class="fa fa-pencil"></i></a>-->
-        <!--</div>-->
-        <!--</td>-->
-        <!--</tr>-->
-        <!--</tbody>-->
-        <!--</table>-->
-        <!--</div>-->
-
         <div class="table-div table-responsive">
             <table class="index-table text-left">
                 <thead>

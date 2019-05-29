@@ -1,6 +1,6 @@
 import {Component, Inject, OnInit} from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material';
-import {ItemsNotificationInterface} from '../models/items-notification.interface';
+import {ItemsNotificationInterface} from '../list/models/items-notification.interface';
 
 @Component({
   selector: 'app-dialog',

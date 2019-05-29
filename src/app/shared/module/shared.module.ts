@@ -5,6 +5,8 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {MatCoreModule} from './mat-core-module';
 import {ImageUploadComponent} from '../component/image-upload/image-upload.component';
 import {SearchComponent} from "../component/search/search.component";
+import {NgxPaginationModule} from "ngx-pagination";
+import {DateTimePipe} from "../pipe/date-time.pipe";
 
 @NgModule({
     imports: [
@@ -12,20 +14,24 @@ import {SearchComponent} from "../component/search/search.component";
         FormsModule,
         ReactiveFormsModule,
         MatCoreModule,
+        NgxPaginationModule,
     ],
     declarations: [
         CountDownComponent,
         ImageUploadComponent,
-        SearchComponent
+        SearchComponent,
+        DateTimePipe,
     ],
     exports: [
         CommonModule,
         FormsModule,
         ReactiveFormsModule,
         MatCoreModule,
+        NgxPaginationModule,
         CountDownComponent,
         ImageUploadComponent,
-        SearchComponent
+        SearchComponent,
+        DateTimePipe,
     ]
 })
 export class SharedModule {
