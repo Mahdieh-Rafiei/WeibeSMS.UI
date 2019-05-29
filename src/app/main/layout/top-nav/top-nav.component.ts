@@ -3,8 +3,8 @@ import {ConfigService} from '../../../shared/config.service';
 import {AuthenticationService} from '../../../auth/login/authentication.service';
 import {UserNotificationService} from '../../pages/user-notification/user-notification.service';
 import _ from 'node_modules/lodash/lodash.js';
-import {NotificationResponseInterface} from '../../pages/user-notification/models/notification-response.interface';
-import {GetUserNotificationInterface} from '../../pages/user-notification/models/get-user-notification.interface';
+import {NotificationResponseInterface} from '../../pages/user-notification/list/models/notification-response.interface';
+import {GetUserNotificationInterface} from '../../pages/user-notification/list/models/get-user-notification.interface';
 
 @Component({
   selector: 'app-top-nav',

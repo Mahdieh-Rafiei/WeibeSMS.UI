@@ -7,7 +7,7 @@
             </button>
         </div>
         <div class="col-md-6 operation-section form-group">
-            <app-search [params]="[{title: 'device'}, {title: 'location'}]"></app-search>
+            <!--<app-search [params]="[{title: 'device'}, {title: 'location'}]"></app-search>-->
         </div>
     </div>
     <!--table-->
@@ -23,8 +23,8 @@
             </tr>
             </thead>
             <tbody>
-            <tr [routerLink]="['/sms-report']">
-                <td class="text-left">Test 01</td>
+            <tr [routerLink]="['/sms-report']" *ngFor="let definition of   definitions.data">
+                <td class="text-left">{{definition.title}}</td>
                 <td class="text-left">
                     <button class="green-btn"> Event</button>
                 </td>

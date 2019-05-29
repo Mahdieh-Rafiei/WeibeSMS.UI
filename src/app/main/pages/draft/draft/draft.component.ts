@@ -21,7 +21,7 @@ export class DraftComponent implements OnInit {
   draft: any = {
     Id: 0,
     Title: '',
-    MessageText: ''
+    messageText: ''
   };
 
   drafts: any[];
@@ -30,6 +30,9 @@ export class DraftComponent implements OnInit {
   localSmsLen: number = 0;
   container: number = 160;
 
+  titleValue: boolean = false;
+  messageValue: boolean = false;
+
   constructor(private draftService: DraftService,
               private activatedRoute: ActivatedRoute,
               private notificationService: NotificationService,
@@ -37,12 +40,12 @@ export class DraftComponent implements OnInit {
   }
 
   ngOnInit() {
-    let strId = this.activatedRoute.snapshot.paramMap.get('id');
+    const strId = this.activatedRoute.snapshot.paramMap.get('id');
     if (strId == null) {
       this.isAddMode = true;
     } else {
       this.id = parseInt(strId);
-      this.getDraft();
+      this.getDraft(this.id);
     }
 
     console.log(this.id);
@@ -51,8 +54,8 @@ export class DraftComponent implements OnInit {
     this.getAllDrafts();
   }
 
-  getDraft() {
-    this.draftService.getDraft(this.id)
+  getDraft(id) {
+    this.draftService.getDraft(id)
       .subscribe((res: GetDraftInterface) => {
         console.log(res);
         this.draft = res.data;
@@ -70,6 +73,13 @@ export class DraftComponent implements OnInit {
   }
 
   addOrUpdateDraft() {
+    if (!this.draft.title) {
+      this.titleValue = true;
+    }
+    if (!this.draft.title) {
+      this.messageValue = true;
+      return;
+    }
     if (this.isAddMode) {
       const payload: AddDraftInterface = {
         Title: this.draft.title,
@@ -148,5 +158,9 @@ export class DraftComponent implements OnInit {
     let selectedId = e.target.value;
     let selectedDraft = _.find(this.drafts, d => d.Id == selectedId);
     this.draft.messageText = selectedDraft.messageText;
+  }
+
+  selectTemplate(event) {
+    this.getDraft(event.target.value);
   }
 }

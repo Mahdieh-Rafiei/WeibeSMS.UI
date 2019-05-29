@@ -48,14 +48,14 @@ export class ApiService {
         catchError(err => this.handleError(err, this.route, this.configService)));
   }
 
-  postFile<File>(url: string, item: File, needAuth: boolean) {
-    const options = {
-      headers: this.httpOptions.headers.append('Authorization', localStorage.getItem(this.configService.tokenKeyName)),
-      observe: this.httpOptions.observe
-    };
-
-    return this.httpClient.post<File>(url, item, needAuth ? options : this.httpOptions)
-      .pipe();
+  postFile(url: string, file) {
+    return this.httpClient.post(this.configService.baseUrl + url, file, {
+      reportProgress: true,
+      observe: 'events',
+      headers: new HttpHeaders({Authorization: localStorage.getItem('jwt-sms')})
+    }).pipe(
+      map((res: any) => res.body),
+    );
   }
 
 

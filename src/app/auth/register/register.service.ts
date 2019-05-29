@@ -17,17 +17,17 @@ export class RegisterService {
   }
 
   sendVerificationCode(payload): Observable<SendVerificationCodeResponseInterface> {
-    const url = `User/SendVerificationCode`;
+    const url = `guest/SendVerificationCode`;
     return this.apiService.post<SendVerificationCodeInterface>(url, payload, false);
   }
 
   verifyMobile(payload): Observable<VerifyMobileResponseInterface> {
-    const url = `User/VerifyMobile`;
+    const url = `guest/VerifyMobile`;
     return this.apiService.post<VerifyMobileInterface>(url, payload, false);
   }
 
   saveInfo(payload): Observable<RegisterResponseInterface> {
-    const url = `User/register`;
+    const url = `guest/register`;
     return this.apiService.post<RegisterInterface>(url, payload, false);
   }
 }

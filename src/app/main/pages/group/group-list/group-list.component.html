@@ -5,18 +5,19 @@
     </button>
 </div>
 <div class="div-section">
-    <div class="col-md-12 no-pad operation">
-        <div class="col-md-6 operation-section">
+    <!--operation-->
+    <div class="row">
+        <div class="col-md-6 operation-section form-group">
             <button class="light-blue-btn">
                 <i class="fa fa-filter"></i> Filter
             </button>
         </div>
-        <div class="col-md-4 col-md-offset-2 operation-section">
-
+        <div class="col-md-6 operation-section form-group">
+            <app-search [params]="[{title: 'device'}, {title: 'location'}]"></app-search>
         </div>
     </div>
     <!--table-->
-    <div class="col-md-12 table-div table-responsive">
+    <div class="table-div table-responsive">
         <table class="index-table text-left">
             <thead>
             <tr>
@@ -45,9 +46,9 @@
                 </td>
                 <td class="td-single text-right actions-container">
                     <div class="actions">
-                        <a (click)="removeGroup(group)"><i class="fa fa-trash"></i></a>
-                        <a (click)="setEditMode(group)"> <i class="fa fa-pencil"></i></a>
-                        <a [routerLink]="[group.id]"><i class="fa fa-eye"></i></a>
+                        <a (click)="removeGroup(group)" ><i class="fa fa-trash light-red-btn"></i></a>
+                        <a (click)="setEditMode(group)"> <i class="fa fa-pencil light-green-btn"></i></a>
+                        <a [routerLink]="[group.id]"><i class="fa fa-eye light-green-btn"></i></a>
                     </div>
                 </td>
             </tr>
@@ -58,52 +59,7 @@
             <span><i class="fa fa-arrow-circle-right"></i></span>
         </div>
     </div>
-    <div class="col-md-3">
-        <div class="filtering">
-            <ul class="filtering-menu">
-                <li>
-                    <a href="#">
-                        <p> Lorem ipsum dolor sit amet.</p>
-                        <select>
-                            <option>select</option>
-                            <option>Test 02</option>
-                            <option>Test 03</option>
-                        </select>
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-                        <p> Lorem ipsum dolor sit amet.</p>
-                        <label>from :</label> <input type="date"><br>
-                        <label>to :</label> <input type="date">
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-                        <p> Lorem ipsum dolor sit amet.</p>
-                        <label>from :</label> <input type="date"> <br>
-                        <label>to :</label> <input type="date">
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-                        <p> Lorem ipsum dolor sit amet.</p>
-                        <select>
-                            <option>select</option>
-                            <option>Test 02</option>
-                            <option>Test 03</option>
-                        </select>
-                    </a>
-                </li>
-                <li class="text-center">
-                    <a href="#">
-                        <button class="green-btn">Apply</button>
-                        <button class="gray-btn">Cancel</button>
-                    </a>
-                </li>
-            </ul>
-        </div>
-    </div>
+
 
 
     <pagination-controls (pageChange)="doPaging($event)"

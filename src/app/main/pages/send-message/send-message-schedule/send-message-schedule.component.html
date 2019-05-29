@@ -1,23 +1,41 @@
-<div class="col-md-12 content-box schedule">
-    <h4>Schedule</h4>
+<div class="content-box schedule">
+    <h5>Schedule</h5>
     <p>* Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
         magna aliqua.</p>
-    <div class="schedule-field">
+    <div class="schedule-field form-group">
         <mat-radio-group aria-label="Select an option">
             <mat-radio-button class="select-event" value="1">Simple</mat-radio-button>
             <mat-radio-button class="select-event" value="2">Advance</mat-radio-button>
         </mat-radio-group>
     </div>
     <div class="schedule-field-input">
-        <label>Name : </label> <input type="text" class="form-group">
-        <label>from : </label> <input type="text" placeholder="Date" class="form-group"> - <input type="text" placeholder="Time" class="form-group">
-        <label>to : </label> <input type="text" placeholder="Date" class="form-group"> - <input type="text" placeholder="Time" class="form-group">
-       <label>Repeat conditions:</label>
-        <select>
-            <option>1</option>
-            <option>1</option>
-            <option>1</option>
-        </select>
+        <div class="row">
+            <div class="col-md-3">
+                <label>Name : </label>
+                <input type="text" class="form-group">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <label>from : </label>
+                <input type="text" placeholder="Date" class="form-group"> - <input type="text" width="49%" placeholder="Time" class="form-group">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <label>to : </label>
+                <input type="text" placeholder="Date" class="form-group"> - <input type="text" placeholder="Time" class="form-group">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-3">
+                <label>Repeat conditions:</label>
+                <select>
+                    <option>1</option>
+                    <option>1</option>
+                    <option>1</option>
+                </select>
+            </div>
+        </div>
     </div>
-
 </div>

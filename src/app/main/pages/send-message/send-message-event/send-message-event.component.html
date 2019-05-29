@@ -1,25 +1,51 @@
-<div class="col-md-12 content-box event">
-  <h4>Event</h4>
-  <p>* Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+<div class="content-box event">
+    <h5>Event</h5>
+    <p>* Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
+        magna aliqua.</p>
 
-  <div class="event-field-input">
-    <label>Name : </label> <input class="name-input" type="text">
-    <br/>
-    <br/>
-    <div class="event-field">
-      <label>Repeat: </label><input type="checkbox"> <span> Forever </span>  &nbsp;
-      <input type="checkbox"> <span class="input-active"> Limited </span>
+    <div class="event-field-input">
+        <div class="row">
+            <div class="col-md-3">
+                <label>Name : </label>
+                <input type="text" class="form-group">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <h6 class="yellow-text">Lorem ipsum: </h6>
+                <mat-radio-group #radioGroup="matRadioGroup">
+                    <mat-radio-button class="mat-label" value="1">
+                       forever
+                    </mat-radio-button>
+                    <br>
+                    <mat-radio-button class="mat-label" value="2">
+                        limited
+                    </mat-radio-button>
+                </mat-radio-group>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <label>from : </label>
+                <input type="text" placeholder="Date" class="form-group"> - <input type="text"
+                                                                                   placeholder="Time"
+                                                                                   class="form-group">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <label>to : </label>
+                <input type="text" placeholder="Date" class="form-group"> - <input type="text" placeholder="Time"
+                                                                                   class="form-group">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <label>interval :</label>
+                <input type="text" placeholder="Date" class="form-group"> - <input type="text" placeholder="Time"
+                                                                                   class="form-group">
+            </div>
+        </div>
     </div>
-    <div class="from-to">
-      <label>from : </label> <input type="text" placeholder="Date"> - <input type="text" placeholder="Time">
-      <br/>
-      <br/>
-      <label>to : </label> <input type="text" placeholder="Date"> - <input type="text" placeholder="Time">
-      <br/>
-      <br/>
-    </div>
-
-    <label>interval : </label> <input type="text" placeholder="Date"> - <input type="text" placeholder="Time">
-  </div>
 
 </div>

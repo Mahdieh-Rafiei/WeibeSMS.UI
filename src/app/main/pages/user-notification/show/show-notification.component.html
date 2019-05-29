@@ -1,0 +1,31 @@
+<div class="dialog">
+  <div class="row">
+    <div class="col-12 form-group">
+      <h5>Show Notification</h5>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12">
+      <div class="form-group">
+        <label>Title</label>
+        <p>{{userNotification.title}}</p>
+      </div>
+      <div class="form-group">
+        <label>Message</label>
+        <p>{{userNotification.message}}</p>
+      </div>
+      <br>
+    </div>
+  </div>
+
+
+  <div class="row">
+    <div class="col-12 mt-3">
+      <div class="text-center" dir="ltr">
+        <button class="btn btn-secondary ml-1 mt-1" (click)="onSubmit()">
+          ok
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

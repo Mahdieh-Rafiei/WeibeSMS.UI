@@ -85,7 +85,7 @@ a.toggle-menu {
 
 .language {
   a {
-    line-height: 62px;
+    line-height: 70px;
     img {
       border-radius: 50%;
       width: 32px;
@@ -96,13 +96,13 @@ a.toggle-menu {
 .profile{
   a{
     padding: 0;
-    line-height: 62px;
+    line-height: 70px;
   }
 }
 
 .notification, .guide {
   a {
-    line-height: 62px;
+    line-height: 70px;
     i {
       color: #6c7293;
       font-size: 20px;
@@ -142,7 +142,9 @@ a.toggle-menu {
   border-radius: 30px;
   background-color: #fab63f;
 }
-
+.fixed-top {
+  z-index: 1;
+}
 @keyframes wave {
   0% {
     -webkit-transform: scale(0);
