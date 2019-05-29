@@ -807,7 +807,7 @@ input, select, textarea {
 }
 
 .mat-datepicker-toggle {
-    padding: 8px 9px 10px 7px;
+    padding: 8px;
     border: 1px solid #d6d6e0;
     border-radius: 3px;
 }

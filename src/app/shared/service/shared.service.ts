@@ -11,10 +11,6 @@ import {CityInterface} from '../models/city.interface';
 })
 
 export class SharedService {
-  httpOptions: any = {
-    headers: new HttpHeaders({'Content-Type': 'application/json'}),
-    observe: 'response'
-  };
 
   constructor(private as: ApiService,
               private cs: ConfigService,
@@ -24,7 +20,7 @@ export class SharedService {
 
   getCountry(): Observable<CountryInterface> {
     const url = `BaseData/country`;
-    return this.as.get(url, true);
+    return this.as.get(url, false);
   }
 
   getCity(countryId): Observable<CityInterface> {

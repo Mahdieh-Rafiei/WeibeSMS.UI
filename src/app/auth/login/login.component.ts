@@ -3,16 +3,17 @@ import {RegisterService} from '../register/register.service';
 import {Router} from '@angular/router';
 import {AuthenticationService} from './authentication.service';
 import {NotificationService} from '../../shared/notification.service';
-import _ from 'node_modules/lodash/lodash.js';
 import {LoginResponseInterface} from './models/login-response.interface';
 import {ConfigService} from '../../shared/config.service';
 import {LoginInterface} from './models/login.interface';
 import {SendVerificationCodeInterface} from './models/send-verification-code.interface';
 import {SendVerificationCodeResponseInterface} from './models/send-verification-code-response.interface';
 import {VerifyMobileInterface} from './models/verify-mobile.interface';
-import {VerifyMobileResponseInterface} from './models/verify-mobile-response.interface';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {AuthSharedService} from '../auth-shared.service';
+import {CountryInterface} from '../../shared/models/country.interface';
+import {SharedService} from '../../shared/service/shared.service';
+import {DataCountryInterface} from '../../shared/models/data-country.interface';
 
 @Component({
   selector: 'app-login',
@@ -45,6 +46,7 @@ export class LoginComponent implements OnInit {
   signInForm: FormGroup;
 
   enterPressConfirm: boolean = false;
+  countries: DataCountryInterface[];
 
   constructor(private authService: AuthenticationService,
               private registerService: RegisterService,
@@ -52,18 +54,27 @@ export class LoginComponent implements OnInit {
               private configService: ConfigService,
               private fb: FormBuilder,
               private authSharedService: AuthSharedService,
+              private shs: SharedService,
               private router: Router) {
   }
 
   ngOnInit() {
     this.createForm();
+    this.getCountry();
+  }
+
+
+  getCountry() {
+    this.shs.getCountry()
+      .subscribe((res: CountryInterface) => this.countries = res.data);
   }
 
   createForm() {
     const pattern = /^(09|9)[0-9]{9}$/ig;
     this.signUpForm = this.fb.group({
       mobile: [null, Validators.compose([Validators.required, Validators.pattern(pattern)])],
-      reason: [1]
+      reason: [1],
+      countryId: ['', Validators.required]
     });
     this.signInForm = this.fb.group({
       username: [null, Validators.required],
@@ -92,8 +103,13 @@ export class LoginComponent implements OnInit {
 
   sendVerificationCode() {
     if (this.signUpForm.valid) {
-      this.authSharedService.mobile = this.signUpForm.value.mobile;
-      const payload: SendVerificationCodeInterface = this.signUpForm.value;
+      const countryId = this.countries.find(item => item.id === +this.signUpForm.value.countryId);
+      this.authSharedService.mobile = countryId.prefixNumber + this.signUpForm.value.mobile;
+      this.authSharedService.countryId = +this.signUpForm.value.countryId;
+      const payload: SendVerificationCodeInterface = {
+        mobile: +countryId.prefixNumber + this.signUpForm.value.mobile,
+        reason: this.signUpForm.value.reason
+      };
       this.registerService.sendVerificationCode(payload)
         .subscribe((res: SendVerificationCodeResponseInterface) => {
             this.notificationService.success('Verification code sent successfully', '');
@@ -133,9 +149,9 @@ export class LoginComponent implements OnInit {
       this.verificationCodePart4, this.verificationCodePart5);
     const payload: VerifyMobileInterface = {
       Key: this.registrationKey ? this.registrationKey : localStorage.getItem('k-l'),
-      Mobile: this.signUpForm.value.mobile,
-        Reason: 1,
-      VerificationCode: verificationCode.toString()
+      Mobile: +this.authSharedService.mobile,
+      VerificationCode: +verificationCode,
+      reason: 1
     };
     this.registerService.verifyMobile(payload)
       .subscribe((res: any) => {
