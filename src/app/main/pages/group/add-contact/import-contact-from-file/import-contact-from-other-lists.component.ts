@@ -23,7 +23,7 @@ export class ImportContactFromOtherListsComponent implements OnInit {
   contactPageNumber: number = 1;
   contactPageSize: number = 10;
   filterExpression: string = '';
-  groups: any[] = [];
+  groups = [];
   ContactTotalItemsCount: number;
   clickedGroup: any;
 
