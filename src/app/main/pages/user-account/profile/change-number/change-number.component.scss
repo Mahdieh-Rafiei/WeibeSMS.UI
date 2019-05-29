@@ -3,9 +3,7 @@
   padding: 1rem
 }
 .change-password {
-  h4 {
-    font-weight: 600;
-    line-height: 1;
+  h5 {
     margin-bottom: 0;
   }
   p {
@@ -26,8 +24,8 @@ label {
   position: relative;
   .v-input-select {
     position: absolute;
-    top: 42px;
-    left: 1px;
+    top: 27px;
+    left: 16px;
     border: none;
     padding: 5px;
     width: 90px;
@@ -38,8 +36,7 @@ label {
 
 input {
   padding: 8px 5px 8px 100px;
-  margin-bottom: 10px;
-  width: 31%;
+  width: 100%;
 }
 
 ::placeholder {

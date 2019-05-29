@@ -32,7 +32,7 @@ import {DeveloperListComponent} from './app/main/pages/developers/developer-list
 
 import {PrivacyComponent} from './app/main/pages/user-account/privacy/privacy.component';
 import {ChangePasswordComponent} from './app/main/pages/user-account/privacy/change-password/change-password.component';
-import {ChangeNumberComponent} from './app/main/pages/user-account/privacy/change-number/change-number.component';
+import {ChangeNumberComponent} from './app/main/pages/user-account/profile/change-number/change-number.component';
 import {DeactiveAccountComponent} from './app/main/pages/user-account/privacy/deactive-account/deactive-account.component';
 import {LoginLogComponent} from './app/main/pages/user-account/privacy/login-log/login-log.component';
 import {ProfileComponent} from './app/main/pages/user-account/profile/profile.component';
@@ -47,14 +47,13 @@ import {CreateTransactionComponent} from './app/main/pages/biling/create-transac
 import {FundListComponent} from './app/main/pages/add-fund/fund-list/fund-list.component';
 import {FundComponent} from './app/main/pages/add-fund/fund/fund.component';
 import {ProfileResolverService} from './app/main/pages/user-account/profile/profile-resolver.service';
-import {VerifyNumberComponent} from './app/main/pages/user-account/privacy/change-number/verify-number/verify-number.component';
+import {VerifyNumberComponent} from './app/main/pages/user-account/profile/change-number/verify-number/verify-number.component';
 import {BillingAddressResolverService} from './app/main/pages/biling/billing-address/billing-address-resolver.service';
 import {DeveloperListResolverService} from './app/main/pages/developers/developer-list/developer-list-resolver.service';
 import {DeveloperResolverService} from './app/main/pages/developers/developer/developer-resolver.service';
-
-import {BuyNumbersComponent} from "./app/main/pages/buy-numbers/buy-numbers.component";
-import {BuyNumbersListComponent} from "./app/main/pages/buy-numbers/buy-numbers-list/buy-numbers-list.component";
-import {BuyNumbersShowComponent} from "./app/main/pages/buy-numbers/buy-numbers-show/buy-numbers-show.component";
+import {SenderIdComponent} from "./app/main/pages/user-account/profile/sender-id/sender-id.component";
+import {ChangeEmailComponent} from "./app/main/pages/user-account/profile/change-email/change-email.component";
+import {InfoComponent} from "./app/main/pages/user-account/profile/info/info.component";
 
 
 export const APP_ROUTES: Routes = [
@@ -83,20 +82,26 @@ export const APP_ROUTES: Routes = [
     },
     {
         path: 'privacy', component: PrivacyComponent, children: [
-            {path: 'change-number', component: ChangeNumberComponent},
             {path: 'change-password', component: ChangePasswordComponent},
             {path: 'deactive-account', component: DeactiveAccountComponent},
             {path: 'login-log', component: LoginLogComponent},
 
         ]
     },
-    // {
-    //     path: 'buy-numbers', component: BuyNumbersComponent, children: [
-    //         {path: 'buy-number-list', component: BuyNumbersListComponent},
-    //         {path: 'buy-number-show', component: BuyNumbersShowComponent},
-    //
-    //     ]
-    // },
+
+    {
+        path: 'profile', component: ProfileComponent, children: [
+
+            {path: 'info', component: InfoComponent},
+            {path: 'change-number', component: ChangeNumberComponent},
+            {path: 'change-email', component: ChangeEmailComponent},
+            {path: 'sender-id', component: SenderIdComponent},
+            {path: 'verify-number', component: VerifyNumberComponent},
+
+        ], resolve: {
+            profile: ProfileResolverService,
+        },
+    },
 
     {
         path: 'billing', component: BillingComponent, children: [
@@ -111,12 +116,10 @@ export const APP_ROUTES: Routes = [
 
         ]
     },
+
     {path: 'verify-number', component: VerifyNumberComponent},
-    {
-        path: 'profile', component: ProfileComponent, resolve: {
-            profile: ProfileResolverService,
-        },
-    },
+
+
     {path: 'reward-point', component: RewardPointComponent},
 
     {path: 'draft', component: DraftComponent},

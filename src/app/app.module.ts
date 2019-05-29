@@ -78,16 +78,17 @@ import {FundComponent} from './main/pages/add-fund/fund/fund.component';
 import {SharedModule} from './shared/module/shared.module';
 import {MainRoutingModule} from './main/main-routing.module';
 import {MainComponent} from './main/main.component';
-import {ChangeNumberComponent} from './main/pages/user-account/privacy/change-number/change-number.component';
-import {VerifyNumberComponent} from './main/pages/user-account/privacy/change-number/verify-number/verify-number.component';
+
+import {ChangeNumberComponent} from './main/pages/user-account/profile/change-number/change-number.component';
+import {VerifyNumberComponent} from './main/pages/user-account/profile/change-number/verify-number/verify-number.component';
+
 import {CreateKeyComponent} from './main/pages/developers/developer-list/create-key/create-key.component';
 
 
 import {FooterComponent} from './main/layout/footer/footer.component';
-// import { BuyNumbersComponent } from './main/pages/buy-numbers/buy-numbers.component';
-// import { BuyNumbersListComponent } from './main/pages/buy-numbers/buy-numbers-list/buy-numbers-list.component';
-// import { BuyNumbersShowComponent } from './main/pages/buy-numbers/buy-numbers-show/buy-numbers-show.component';
-
+import { InfoComponent } from './main/pages/user-account/profile/info/info.component';
+import { ChangeEmailComponent } from './main/pages/user-account/profile/change-email/change-email.component';
+import { SenderIdComponent } from './main/pages/user-account/profile/sender-id/sender-id.component';
 
 @NgModule({
 
@@ -141,9 +142,10 @@ import {FooterComponent} from './main/layout/footer/footer.component';
         DeveloperComponent,
         CreateKeyComponent,
         FooterComponent,
-        // BuyNumbersComponent,
-        // BuyNumbersListComponent,
-        // BuyNumbersShowComponent,
+        InfoComponent,
+        ChangeEmailComponent,
+        SenderIdComponent,
+
     ],
     entryComponents: [
         CreateKeyComponent,
