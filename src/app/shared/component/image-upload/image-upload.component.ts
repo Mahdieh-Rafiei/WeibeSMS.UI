@@ -76,6 +76,7 @@ export class ImageUploadComponent implements OnInit {
 
 
   uploadFile(files) {
+
     // this.AvatarSizeValidate = false;
     // this.AvatarTypeValidate = false;
     // this.typeValidate = false;
