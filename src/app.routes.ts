@@ -61,6 +61,7 @@ import {VerifyNumberComponent} from './app/main/pages/user-account/privacy/chang
 import {BillingAddressResolverService} from './app/main/pages/biling/billing-address/billing-address-resolver.service';
 import {DeveloperListResolverService} from './app/main/pages/developers/developer-list/developer-list-resolver.service';
 import {DeveloperResolverService} from './app/main/pages/developers/developer/developer-resolver.service';
+import {DefinitionResolverService} from './app/main/pages/definition-schedule-event/definition-resolver.service';
 
 
 export const APP_ROUTES: Routes = [
@@ -140,7 +141,9 @@ export const APP_ROUTES: Routes = [
 
     {path: 'notification', component: UserNotificationComponent},
 
-    {path: 'schedule-event', component: DefinitionScheduleEventComponent},
+    {path: 'schedule-event', component: DefinitionScheduleEventComponent, resolve: {
+        definitions: DefinitionResolverService,
+      }},
 
     {path: 'user-event', component: UserEventComponent},
 

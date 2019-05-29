@@ -64,6 +64,7 @@ export class RegisterComponent implements OnInit {
       const payload: RegisterInterface = this.registerForm.value;
       payload['key'] = key;
       payload['mobile'] = mobile;
+      payload['countryId'] = this.authSharedService.countryId;
       delete payload['confirmPassword'];
       this.registerService.saveInfo(payload)
         .subscribe(res => {

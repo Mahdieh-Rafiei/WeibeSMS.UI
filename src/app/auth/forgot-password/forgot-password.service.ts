@@ -14,17 +14,17 @@ export class ForgotPasswordService {
   }
 
   sendVerificationCode(payload): Observable<SendVerificationCodeResponseInterface> {
-    const url = `user/sendVerificationCode`;
+    const url = `guest/sendVerificationCode`;
     return this.apiService.post(url, payload, false);
   }
 
   verify(payload): Observable<VerifyMobileResponseInterface> {
-    const url = `user/verifyMobile`;
+    const url = `guest/verifyMobile`;
     return this.apiService.post(url, payload, false);
   }
 
   changePassword(payload): Observable<any> {
-    const url = `user/password`;
+    const url = `guest/password`;
     return this.apiService.post(url, payload, false);
   }
 }

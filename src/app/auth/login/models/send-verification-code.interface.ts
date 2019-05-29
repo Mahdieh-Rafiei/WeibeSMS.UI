@@ -1,4 +1,4 @@
 export interface SendVerificationCodeInterface {
-  mobile: string;
+  mobile: number;
   reason: number;
 }
