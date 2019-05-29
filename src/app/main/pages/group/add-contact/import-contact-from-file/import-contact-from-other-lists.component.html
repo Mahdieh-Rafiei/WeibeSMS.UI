@@ -14,16 +14,18 @@
                     </mat-menu>
                     <div>
                         <div class="collapse-list">
-                            <p *ngFor="let g of groups">
+                            <div   *ngFor="let g of groups">
                                 <input (ngModelChange)="groupCheckedChanged($event,g)" [(ngModel)]="g.isSelected"
                                        type="checkbox">
                                 <span (click)="loadContacts(g)">{{g.groupName}}  ({{g.contactsCount}})</span>
-                            </p>
-                        </div>
-                        <p>
+
+                          <p>
                             <mat-checkbox></mat-checkbox>
                             Test <span class="red-text" (click)="loadContacts(g)">{{g.groupName}}  ({{g.contactsCount}})>show</span>
-                        </p>
+                          </p>
+                            </div>
+                        </div>
+
                         <p>
                             <mat-checkbox></mat-checkbox>
                             Test <span class="red-text">show</span>
