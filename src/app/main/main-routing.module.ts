@@ -15,6 +15,10 @@ const routes: Routes = [
                 path: 'notification',
                 loadChildren: '.\/pages\/user-notification\/user-notification.module#UserNotificationModule',
             },
+            {
+                path: 'user-event',
+                loadChildren: '.\/pages\/user-event\/user-event.module#UserEventModule',
+            },
         ]
     }
 ];

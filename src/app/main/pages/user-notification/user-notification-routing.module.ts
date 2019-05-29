@@ -8,7 +8,7 @@ const routes: Routes = [{
     path: '',
     component: UserNotificationComponent,
     data: {
-        title: 'add-found',
+        title: 'User notification',
         num: 1
     },
 }];

@@ -142,7 +142,7 @@ export const APP_ROUTES: Routes = [
 
     {path: 'schedule-event', component: DefinitionScheduleEventComponent},
 
-    {path: 'user-event', component: UserEventComponent},
+    // {path: 'user-event', component: UserEventComponent},
 
     {
         path: 'developer-list', component: DeveloperListComponent, resolve: {
