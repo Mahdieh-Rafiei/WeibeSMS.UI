@@ -23,6 +23,8 @@ export class RegisterComponent implements OnInit {
   genders = [{title: 'Unknown', value: 1},
     {title: 'Female', value: 2},
     {title: 'Male', value: 3}];
+  emailUnique: boolean = false;
+  userNameUnique: boolean = false;
 
   constructor(private registerService: RegisterService,
               private authService: AuthenticationService,
@@ -44,7 +46,7 @@ export class RegisterComponent implements OnInit {
       userName: [null, Validators.compose([Validators.required, Validators.minLength(6)])],
       password: [null, Validators.compose([Validators.required,
         Validators.pattern(/^(?=^.{8,}$)(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?!.*\s)[0-9a-zA-Z!@#$%^&*()]*$/)])],
-      email: [null],
+      email: [null, Validators.required],
       confirmPassword: [null],
       companyName: [null],
       gender: [''],
@@ -57,14 +59,14 @@ export class RegisterComponent implements OnInit {
     if (!this.registerForm.value.confirmPassword) {
       this.confirmPasswordOut();
     }
-    if (this.registerForm.valid && !this.notMatch && this.registerForm.value.confirmPassword) {
+    if (this.registerForm.valid && !this.notMatch && this.registerForm.value.confirmPassword && !this.emailUnique && !this.userNameUnique) {
       this.confirmPasswordOut();
       const key = this.authSharedService.keyLogin;
       const mobile = +this.authSharedService.mobile;
       const payload: RegisterInterface = this.registerForm.value;
       payload['key'] = key;
       payload['mobile'] = mobile;
-      payload['countryId'] = this.authSharedService.countryId;
+      payload['prefixNumberId'] = this.authSharedService.prefixNumberId;
       delete payload['confirmPassword'];
       this.registerService.saveInfo(payload)
         .subscribe(res => {
@@ -93,6 +95,28 @@ export class RegisterComponent implements OnInit {
 
   confirm(event) {
     this.disableButton = !event.target.checked;
+  }
+
+  checkUnique(key: number, value: string) {
+    if (key === 1 ? value.length > 5 : value.length > 0) {
+      const payload = {key, value};
+      this.registerService.checkUnique(payload)
+        .subscribe((res: any) => {
+          if (!res.data) {
+            if (key === 1) {
+              this.userNameUnique = false;
+            } else if (key === 2) {
+              this.emailUnique = false;
+            }
+          } else {
+            if (key === 1) {
+              this.userNameUnique = true;
+            } else if (key === 2) {
+              this.emailUnique = true;
+            }
+          }
+        });
+    }
   }
 
 }
