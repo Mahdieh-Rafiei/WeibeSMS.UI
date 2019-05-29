@@ -10,67 +10,88 @@
     </div>
 </div>
 
-<div class="col-md-12 content-box recipient">
+<div class="content-box recipient">
     <h5>Recipients</h5>
     <div class="row recipient-section">
-        <div class="col-md-3 list-section form-group">
-            <button class="light-blue-btn" mat-button [matMenuTriggerFor]="menu">My List <i
-                    class="fa fa-angle-down"></i></button>
-            <mat-menu #menu="matMenu">
-                <button mat-menu-item>Item 1</button>
-                <button mat-menu-item>Item 2</button>
-            </mat-menu>
-            <div class="check-list">
-                <p>
-                    <mat-checkbox></mat-checkbox> Test <span class="red-text">show</span>
-                </p>
-                <p>
-                    <mat-checkbox></mat-checkbox> Test <span class="red-text">show</span>
-                </p>
+        <div class="col-md-3">
+            <div class="border other-list form-group" id="style-1">
+                <button class="light-blue-btn" mat-button [matMenuTriggerFor]="menu">My List <i
+                        class="fa fa-angle-down"></i></button>
+                <mat-menu #menu="matMenu">
+                    <button mat-menu-item>Item 1</button>
+                    <button mat-menu-item>Item 2</button>
+                </mat-menu>
+                <div>
+                    <p>
+                        <mat-checkbox></mat-checkbox> Test
+                    </p>
+                    <p>
+                        <mat-checkbox></mat-checkbox> Test
+                    </p>
+                </div>
             </div>
         </div>
         <div class="col-md-9 form-group">
-            <div class="search-box">
-                <app-search [params]="[{title: 'device'}, {title: 'location'}]"></app-search>
-            </div>
-            <div class="table-box table-responsive">
-                <table class="index-table text-left">
-                    <thead>
-                    <tr>
-                        <th class="text-left"><i class="fa fa-sort"></i>#</th>
-                        <th class="text-left"><i class="fa fa-sort"></i>Name</th>
-                        <th class="text-left"><i class="fa fa-sort"></i>Surename</th>
-                        <th class="text-left"><i class="fa fa-sort"></i>Recipient Number</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr>
-                        <td class="text-left">
-                            <mat-checkbox>01</mat-checkbox>
-                        </td>
-                        <td class="text-left">Test</td>
-                        <td class="text-left">Test</td>
-                        <td class="text-left">+989197514700</td>
-                    </tr>
-                    <tr>
-                        <td class="text-left">
-                            <mat-checkbox>02</mat-checkbox>
-                        </td>
-                        <td class="text-left">Test</td>
-                        <td class="text-left">Test</td>
-                        <td class="text-left">+989197514700</td>
-                    </tr>
-                    </tbody>
-                </table>
-                <div class="table-pagination text-right">
-                    <span><i class="fa fa-arrow-circle-left"></i></span>
-                    <span><i class="fa fa-arrow-circle-right"></i></span>
+            <div class="border right-section other-list" id="style-2">
+                <!--operation-->
+                <div class="row">
+                    <div class="offset-md-6 col-md-6 operation-section form-group">
+                        <app-search [params]="[{title: 'device'}, {title: 'location'}]"></app-search>
+                    </div>
+                </div>
+                <!--table-->
+                <div class="table-div table-responsive">
+                    <table class="index-table text-left">
+                        <thead>
+                        <tr>
+                            <th class="text-left"><i class="fa fa-sort"></i> #</th>
+                            <th class="text-center"><i class="fa fa-sort"></i> Name</th>
+                            <th class="text-center"><i class="fa fa-sort"></i> SureName</th>
+                            <th class="text-center"><i class="fa fa-sort"></i> Recipient number</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td class="text-left">
+                                <div class="table-head">
+                                    <mat-checkbox></mat-checkbox>
+                                   gzh
+                                </div>
+                            </td>
+                            <td class=" text-center">
+                               ewgh
+                            </td>
+                            <td class=" text-center">
+                               cvnbbesr
+                            </td>
+                            <td class="td-single text-right actions-container">
+                              asdgb
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                    <div class="table-pagination text-right">
+                        <span><i class="fa fa-arrow-circle-left"></i></span>
+                        <span><i class="fa fa-arrow-circle-right"></i></span>
+                    </div>
+
+                    <pagination-controls (pageChange)="doPaging($event)"
+                                         maxSize="5"
+                                         responsive="true"
+                                         previousLabel=""
+                                         nextLabel=""></pagination-controls>
                 </div>
             </div>
-
         </div>
     </div>
-    <div class="col-md-9 col-md-offset-3 recipient-count">
-        recipient: 1
+    <div class="recipient-div text-right col-md-12 form-group">
+        <div class="row">
+            <div class="col-md-6 text-left">
+                test (10), test(10)
+            </div>
+            <div class="col-md-6 text-right">
+                Total contacts selected : {{totalContactsSelectedCount}}
+            </div>
+        </div>
     </div>
 </div>
