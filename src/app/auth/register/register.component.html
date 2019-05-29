@@ -67,8 +67,19 @@
                 <div class="col-12 col-md-4 form-group">
                   <label>Email</label>
                   <input type="text"
+                         #email
                          placeholder="User Email"
+                         (change)="checkUnique(2, email?.value)"
                          formControlName="email">
+                  <div class="text-left"
+                       *ngIf="(((registerForm.controls['email'].dirty || registerForm.controls['email'].touched) || formDir.submitted) || emailUnique)">
+                    <p class="errorMessage" *ngIf="registerForm.hasError('required', 'email')">
+                      this filed is required!
+                    </p>
+                    <p class="errorMessage" *ngIf="emailUnique">
+                      this email is already taken!
+                    </p>
+                  </div>
                 </div>
               </div>
             </div>
@@ -79,6 +90,8 @@
                   <input type="text"
                          autocomplete="off"
                          placeholder="Your username"
+                         #userName
+                         (change)="checkUnique(1, userName?.value)"
                          formControlName="userName">
                   <div class="text-left"
                        *ngIf="(((registerForm.controls['userName'].touched) || formDir.submitted))">
@@ -88,6 +101,9 @@
                     <p class="errorMessage"
                        *ngIf="(registerForm.controls['userName'].hasError('minlength'))">
                       Username min length is 6 char!
+                    </p>
+                    <p class="errorMessage" *ngIf="userNameUnique">
+                      this user name is already taken!
                     </p>
                   </div>
                 </div>

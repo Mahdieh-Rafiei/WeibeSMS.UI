@@ -73,7 +73,7 @@ export class ForgotPasswordComponent implements OnInit {
     this.forgotPasswordForm = this.fb.group({
       Mobile: [null, Validators.compose([Validators.required, Validators.pattern(pattern)])],
       Reason: [2],
-      countryId: ['', Validators.required]
+      prefixNumberId: ['', Validators.required]
     });
     this.resetPassForm = this.fb.group({
       password: [null, Validators.compose([Validators.required,
@@ -84,13 +84,10 @@ export class ForgotPasswordComponent implements OnInit {
 
   sendVerificationCode() {
     if (this.forgotPasswordForm.valid) {
-      const countryId = this.countries.find(item => item.id === +this.forgotPasswordForm.value.countryId);
-      this.authSharedService.mobile = countryId.prefixNumber + this.forgotPasswordForm.value.Mobile;
-      this.authSharedService.countryId = +this.forgotPasswordForm.value.countryId;
-      const payload: SendVerificationCodeInterface = {
-        mobile: +countryId.prefixNumber + this.forgotPasswordForm.value.Mobile,
-        reason: this.forgotPasswordForm.value.Reason
-      };
+      this.authSharedService.mobile = this.forgotPasswordForm.value.Mobile;
+      this.authSharedService.prefixNumberId = +this.forgotPasswordForm.value.countryId;
+      const payload: SendVerificationCodeInterface = this.forgotPasswordForm.value;
+
       // const payload: SendVerificationCodeInterface = this.forgotPasswordForm.value;
       this.forgotPasswordService.sendVerificationCode(payload)
         .subscribe(res => {
@@ -170,6 +167,7 @@ export class ForgotPasswordComponent implements OnInit {
     const payload: VerifyMobileInterface = {
       Key: this.key ? this.key : localStorage.getItem('k-f'),
       Mobile: +this.authSharedService.mobile,
+      prefixNumberId: +this.forgotPasswordForm.value.prefixNumberId,
       VerificationCode: +this.verificationCode,
       reason: 2
     };
@@ -193,6 +191,7 @@ export class ForgotPasswordComponent implements OnInit {
       delete payload['confirmPassword'];
       payload['key'] = this.verifyKey ? this.verifyKey : localStorage.getItem('k-v-f');
       payload['mobile'] = +this.authSharedService.mobile;
+      payload['prefixNumberId'] = this.forgotPasswordForm.value.prefixNumberId,
       payload['verificationCode'] = +this.verificationCode,
         this.forgotPasswordService.changePassword(payload)
           .subscribe(res => {
