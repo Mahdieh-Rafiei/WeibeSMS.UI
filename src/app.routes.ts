@@ -12,7 +12,6 @@ import {AddContactComponent} from './app/main/pages/group/add-contact/add-contac
 import {SingleAddContactComponent} from './app/main/pages/group/add-contact/single-add-contact/single-add-contact.component';
 import {AddContactFromFileComponent} from './app/main/pages/group/add-contact/add-contact-from-file/add-contact-from-file.component';
 import {ImportContactFromOtherListsComponent} from './app/main/pages/group/add-contact/import-contact-from-file/import-contact-from-other-lists.component';
-import {UserEventComponent} from './app/main/pages/user-event/user-event.component';
 
 import {SendMessageComponent} from './app/main/pages/send-message/send-message.component';
 import {SendMessageFirstStepComponent} from './app/main/pages/send-message/send-message-first-step/send-message-first-step.component';
@@ -30,15 +29,6 @@ import {TicketListComponent} from './app/main/pages/tickets/ticket-list/ticket-l
 
 import {DeveloperComponent} from './app/main/pages/developers/developer/developer.component';
 import {DeveloperListComponent} from './app/main/pages/developers/developer-list/developer-list.component';
-
-
-import {SmsReportComponent} from './app/main/pages/sms-report/sms-report/sms-report.component';
-import {SmsReportListComponent} from './app/main/pages/sms-report/sms-report-list/sms-report-list.component';
-import {VerificationCodeReportComponent} from './app/main/pages/sms-report/verification-code-report/verification-code-report.component';
-
-import {DefinitionScheduleEventComponent} from './app/main/pages/definition-schedule-event/definition-schedule-event.component';
-
-// import {UserNotificationComponent} from './app/main/pages/user-notification/list/user-notification.component';
 
 import {PrivacyComponent} from './app/main/pages/user-account/privacy/privacy.component';
 import {ChangePasswordComponent} from './app/main/pages/user-account/privacy/change-password/change-password.component';
@@ -61,7 +51,10 @@ import {VerifyNumberComponent} from './app/main/pages/user-account/privacy/chang
 import {BillingAddressResolverService} from './app/main/pages/biling/billing-address/billing-address-resolver.service';
 import {DeveloperListResolverService} from './app/main/pages/developers/developer-list/developer-list-resolver.service';
 import {DeveloperResolverService} from './app/main/pages/developers/developer/developer-resolver.service';
-import {DefinitionResolverService} from './app/main/pages/definition-schedule-event/definition-resolver.service';
+
+import {BuyNumbersComponent} from "./app/main/pages/buy-numbers/buy-numbers.component";
+import {BuyNumbersListComponent} from "./app/main/pages/buy-numbers/buy-numbers-list/buy-numbers-list.component";
+import {BuyNumbersShowComponent} from "./app/main/pages/buy-numbers/buy-numbers-show/buy-numbers-show.component";
 
 
 export const APP_ROUTES: Routes = [
@@ -97,6 +90,13 @@ export const APP_ROUTES: Routes = [
 
         ]
     },
+    // {
+    //     path: 'buy-numbers', component: BuyNumbersComponent, children: [
+    //         {path: 'buy-number-list', component: BuyNumbersListComponent},
+    //         {path: 'buy-number-show', component: BuyNumbersShowComponent},
+    //
+    //     ]
+    // },
 
     {
         path: 'billing', component: BillingComponent, children: [
@@ -134,18 +134,6 @@ export const APP_ROUTES: Routes = [
     {path: 'login', component: LoginComponent},
     {path: 'register', component: RegisterComponent},
     {path: 'forgot-password', component: ForgotPasswordComponent},
-
-    {path: 'sms-report-list', component: SmsReportListComponent},
-    {path: 'sms-report', component: SmsReportComponent},
-    {path: 'report-verification', component: VerificationCodeReportComponent},
-
-    // {path: 'notification', component: UserNotificationComponent},
-
-    {path: 'schedule-event', component: DefinitionScheduleEventComponent, resolve: {
-        definitions: DefinitionResolverService,
-      }},
-
-    // {path: 'user-event', component: UserEventComponent},
 
     {
         path: 'developer-list', component: DeveloperListComponent, resolve: {

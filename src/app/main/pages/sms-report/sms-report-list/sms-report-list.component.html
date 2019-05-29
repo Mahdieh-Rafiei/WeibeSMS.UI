@@ -12,7 +12,7 @@
             </button>
         </div>
         <div class="col-md-6 operation-section form-group">
-            <app-search [params]="[{title: 'device'}, {title: 'location'}]"></app-search>
+            <!--<app-search [params]="[{title: 'device'}, {title: 'location'}]"></app-search>-->
         </div>
     </div>
     <!--table-->
@@ -30,9 +30,9 @@
             </tr>
             </thead>
             <tbody>
-            <tr [routerLink]="['/sms-report']">
+            <tr [routerLink]="['/sms-report/show']">
                 <td class="text-left">#1</td>
-                <td class="text-left">Lorem ipsum dolor sit amet<span style="color: #f5274e"> . . .</span></td>
+                <td class="text-left">Lorem ipsum dolor sit amet<span class="red-text"> . . .</span></td>
                 <td class="text-left">
                     <button class="green-btn"> Simple</button>
                 </td>

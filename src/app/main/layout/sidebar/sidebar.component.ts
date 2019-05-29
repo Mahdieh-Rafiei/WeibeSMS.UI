@@ -21,15 +21,15 @@ export class SidebarComponent implements OnInit {
                 icon: 'circle',
                 link: '/privacy'
             },
-            {
-                title: 'Profile',
-                icon: 'circle',
-                link: '/profile'
-            }, {
-                title: 'Point',
-                icon: 'circle',
-                link: '/reward-point'
-            }]
+                {
+                    title: 'Profile',
+                    icon: 'circle',
+                    link: '/profile'
+                }, {
+                    title: 'Point',
+                    icon: 'circle',
+                    link: '/reward-point'
+                }]
         }, {
             title: 'Dashboard',
             icon: 'home',
@@ -40,7 +40,7 @@ export class SidebarComponent implements OnInit {
             icon: 'address-book',
             link: '/group',
             subMenu: null
-        },{
+        }, {
             title: 'Send',
             icon: 'envelope',
             link: null,
@@ -58,7 +58,7 @@ export class SidebarComponent implements OnInit {
                     icon: 'circle',
                     link: '/send-message'
                 }]
-        },{
+        }, {
             title: 'Option',
             icon: 'cog',
             link: null,
@@ -70,7 +70,7 @@ export class SidebarComponent implements OnInit {
                 {
                     title: 'schedule,events',
                     icon: 'circle',
-                    link: '/schedule-event'
+                    link: '/definition-schedule-event'
                 }, {
                     title: 'event_field',
                     icon: 'circle',
@@ -79,7 +79,7 @@ export class SidebarComponent implements OnInit {
         }, {
             title: 'Reports',
             icon: 'bar-chart-o',
-            link: '/sms-report-list',
+            link: 'sms-report/list',
             subMenu: null
         }, {
             title: 'Verification',
@@ -105,6 +105,11 @@ export class SidebarComponent implements OnInit {
             title: 'Developer',
             icon: 'code',
             link: '/developer-list',
+            subMenu: null
+        }, {
+            title: 'Buy number',
+            icon: 'shopping-basket',
+            link: '/buy-numbers',
             subMenu: null
         }
     ];
