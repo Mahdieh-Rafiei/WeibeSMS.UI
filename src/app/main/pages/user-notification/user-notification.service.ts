@@ -1,8 +1,8 @@
 import {Injectable} from '@angular/core';
 import {ApiService} from '../../../shared/api.service';
 import {Observable} from 'rxjs';
-import {NotificationResponseInterface} from './models/notification-response.interface';
-import {GetUserNotificationInterface} from './models/get-user-notification.interface';
+import {NotificationResponseInterface} from './list/models/notification-response.interface';
+import {GetUserNotificationInterface} from './list/models/get-user-notification.interface';
 
 @Injectable({
   providedIn: 'root'

@@ -1,8 +1,8 @@
 import {Component, OnInit} from '@angular/core';
-import {UserNotificationService} from './user-notification.service';
+import {UserNotificationService} from '../user-notification.service';
 import {NotificationResponseInterface} from './models/notification-response.interface';
 import {MatDialog} from '@angular/material';
-import {ShowNotificationComponent} from './show-notification/show-notification.component';
+import {ShowNotificationComponent} from '../show/show-notification.component';
 import {GetUserNotificationInterface} from './models/get-user-notification.interface';
 
 @Component({
