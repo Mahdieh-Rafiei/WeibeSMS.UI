@@ -11,7 +11,6 @@ import {CollapseModule} from 'ngx-bootstrap';
 import {TabsModule} from 'ngx-bootstrap';
 import {ToastrModule} from 'ngx-toastr';
 import {FileDropModule} from 'ngx-file-drop';
-// import {NgxPaginationModule} from 'ngx-pagination';
 
 import {MatButtonModule} from '@angular/material/button';
 import {MatSelectModule} from '@angular/material/select';
@@ -54,16 +53,13 @@ import {TicketComponent} from './main/pages/tickets/ticket/ticket.component';
 import {AddTicketComponent} from './main/pages/tickets/add-ticket/add-ticket.component';
 import {CreateTransactionComponent} from './main/pages/biling/create-transaction/create-transaction.component';
 import {InvoiceListComponent} from './main/pages/biling/invoice-list/invoice-list.component';
-import {SmsReportListComponent} from './main/pages/sms-report/sms-report-list/sms-report-list.component';
-import {SmsReportComponent} from './main/pages/sms-report/sms-report/sms-report.component';
-import {DefinitionScheduleEventComponent} from './main/pages/definition-schedule-event/definition-schedule-event.component';
+
 import {TicketService} from './main/pages/tickets/ticket.service';
 import {StatusTranslatorPipe} from './main/pages/tickets/status-translator.pipe';
-import {VerificationCodeReportComponent} from './main/pages/sms-report/verification-code-report/verification-code-report.component';
+
 import {DeveloperListComponent} from './main/pages/developers/developer-list/developer-list.component';
 import {DeveloperComponent} from './main/pages/developers/developer/developer.component';
 import {SlimSidebarComponent} from './main/layout/slim-sidebar/slim-sidebar.component';
-// import {UserNotificationComponent} from './main/pages/user-notification/list/user-notification.component';
 
 import {PrivacyComponent} from './main/pages/user-account/privacy/privacy.component';
 import {ProfileComponent} from './main/pages/user-account/profile/profile.component';
@@ -82,14 +78,17 @@ import {FundComponent} from './main/pages/add-fund/fund/fund.component';
 import {SharedModule} from './shared/module/shared.module';
 import {MainRoutingModule} from './main/main-routing.module';
 import {MainComponent} from './main/main.component';
-import {ChangeNumberComponent} from './main/pages/user-account/privacy/change-number/change-number.component';
-import {VerifyNumberComponent} from './main/pages/user-account/privacy/change-number/verify-number/verify-number.component';
+
+import {ChangeNumberComponent} from './main/pages/user-account/profile/change-number/change-number.component';
+import {VerifyNumberComponent} from './main/pages/user-account/profile/change-number/verify-number/verify-number.component';
+
 import {CreateKeyComponent} from './main/pages/developers/developer-list/create-key/create-key.component';
-// import {ShowNotificationComponent} from './main/pages/user-notification/show/show-notification.component';
-// import {DateTimePipe} from './shared/pipe/date-time.pipe';
+
 
 import {FooterComponent} from './main/layout/footer/footer.component';
-
+import { InfoComponent } from './main/pages/user-account/profile/info/info.component';
+import { ChangeEmailComponent } from './main/pages/user-account/profile/change-email/change-email.component';
+import { SenderIdComponent } from './main/pages/user-account/profile/sender-id/sender-id.component';
 
 @NgModule({
 
@@ -108,7 +107,6 @@ import {FooterComponent} from './main/layout/footer/footer.component';
         SingleAddContactComponent,
         AddContactFromFileComponent,
         ImportContactFromOtherListsComponent,
-        // UserEventComponent,
         SendMessageComponent,
         SendMessageFirstStepComponent,
         SendMessageSecondStepComponent,
@@ -122,13 +120,8 @@ import {FooterComponent} from './main/layout/footer/footer.component';
         AddTicketComponent,
         InvoiceListComponent,
         CreateTransactionComponent,
-        SmsReportListComponent,
-        SmsReportComponent,
-        DefinitionScheduleEventComponent,
         StatusTranslatorPipe,
-        VerificationCodeReportComponent,
         SlimSidebarComponent,
-        // UserNotificationComponent,
         ProfileComponent,
         ChangePasswordComponent,
         BillingAddressComponent,
@@ -148,12 +141,14 @@ import {FooterComponent} from './main/layout/footer/footer.component';
         DeveloperListComponent,
         DeveloperComponent,
         CreateKeyComponent,
-        // ShowNotificationComponent,
         FooterComponent,
+        InfoComponent,
+        ChangeEmailComponent,
+        SenderIdComponent,
+
     ],
     entryComponents: [
         CreateKeyComponent,
-        // ShowNotificationComponent
     ],
 
     imports: [
@@ -184,7 +179,6 @@ import {FooterComponent} from './main/layout/footer/footer.component';
         RegisterService,
         CanActivateRouteGuard,
         NotificationService,
-        // UserEventService,
         TicketService,
         UserAccountService
     ],

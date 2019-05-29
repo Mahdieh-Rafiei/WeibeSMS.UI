@@ -194,7 +194,7 @@ article, aside, details, figcaption, figure, footer, header, hgroup, main, menu,
 
 .div-section {
     background: #ffffff;
-    padding: .5rem;
+    padding: 1rem;
     border-radius: 1rem;
     box-shadow: 0px 0px 13px 0px rgba(82, 63, 105, 0.05);
 }
@@ -410,7 +410,14 @@ i.fa.fa-sort {
     font-size: 14px;
     line-height: 37px;
 }
-
+.yellow-btn {
+    background-color: #ffb822;
+    border: 1px solid #ffb822;
+    border-radius: 4px;
+    color: #ffffff;
+    padding: 7px 25px;
+    font-size: 14px;
+}
 .green-btn {
     background-color: #1dc9b7;
     border: 1px solid #1dc9b7;
