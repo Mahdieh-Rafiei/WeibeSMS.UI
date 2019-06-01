@@ -1,7 +1,7 @@
 import {NgModule} from '@angular/core';
 import {UserNotificationRoutingModule, routedComponents} from './user-notification-routing.module';
-import {ShowNotificationComponent} from "./show/show-notification.component";
-import {SharedModule} from "../../../shared/module/shared.module";
+import {SharedModule} from '../../../shared/module/shared.module';
+import {ShowNotificationComponent} from './show/show-notification.component';
 
 @NgModule({
     imports: [

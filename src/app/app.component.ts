@@ -1,4 +1,4 @@
-import {Component, HostListener, Injectable, OnInit} from '@angular/core';
+import {Component, HostListener, Injectable, OnInit, ViewChild} from '@angular/core';
 
 import {ConfigService} from './shared/config.service';
 import {Router} from '@angular/router';
@@ -14,17 +14,19 @@ import {normalizeDebugBindingName} from '@angular/core/src/util/ng_reflect';
 @Injectable()
 export class AppComponent implements OnInit {
 
-  constructor(private authService:AuthenticationService
-              ,public configService:ConfigService
-              ,private router:Router
-  ){  }
+  constructor(private authService: AuthenticationService
+    , public configService: ConfigService
+    , private router: Router
+  ) {
+  }
 
   title = 'WeibeSMS';
-  isAuthenticated:boolean;
+  isAuthenticated: boolean;
 
   public innerWidth: any;
 
   ngOnInit() {
+
     this.configService.authenticationChanged.subscribe(res => {
       this.isAuthenticated = res;
     });
@@ -43,10 +45,10 @@ export class AppComponent implements OnInit {
   @HostListener('window:resize', ['$event'])
   onResize(event) {
     this.innerWidth = window.innerWidth;
-    if (this.innerWidth <768 ){
-      this.configService.sidebarMode = 'hidden'
+    if (this.innerWidth < 768) {
+      this.configService.sidebarMode = 'hidden';
     } else if (this.innerWidth >= 768 && this.innerWidth <= 991) {
-      this.configService.sidebarMode = 'slim'
+      this.configService.sidebarMode = 'slim';
     }
     else {
       this.configService.sidebarMode = 'default';

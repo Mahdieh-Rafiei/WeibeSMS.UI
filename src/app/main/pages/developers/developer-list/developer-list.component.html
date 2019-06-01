@@ -38,18 +38,18 @@
         </td>
         <td class="text-left">
           <div class="table-head">
-            <p *ngIf="showAuthKey">{{developer.key}}</p>
+            <p *ngIf="showAuthKey[i]">{{developer.key}}</p>
             <!--<p *ngIf="showAuthKey">{{developer.key| slice:(developer.key.length/2)}}</p>-->
-            <span *ngIf="!showAuthKey">{{developer.key|slice:0:4}}</span>
-            <span *ngIf="!showAuthKey">**********</span>
-            <span *ngIf="!showAuthKey">{{developer.key|slice:developer.key.length-4}}</span>
+            <span *ngIf="!showAuthKey[i]">{{developer.key|slice:0:4}}</span>
+            <span *ngIf="!showAuthKey[i]">**********</span>
+            <span *ngIf="!showAuthKey[i]">{{developer.key|slice:developer.key.length-4}}</span>
           </div>
         </td>
         <td class="text-left">
           <div class="table-head">
-            <button (click)="showAuthKey = !showAuthKey" class="light-yellow-btn">
-              <span *ngIf="showAuthKey"><i class="fa fa-eye-slash"></i> Hide</span>
-              <span *ngIf="!showAuthKey"><i class="fa fa-eye"></i> Show</span>
+            <button (click)="showAuthKey[i] = !showAuthKey[i]" class="light-yellow-btn">
+              <span *ngIf="showAuthKey[i]"><i class="fa fa-eye-slash"></i> Hide</span>
+              <span *ngIf="!showAuthKey[i]"><i class="fa fa-eye"></i> Show</span>
             </button>
             <button (click)="copyText(developer.key)" class="light-green-btn"><i class="fa fa-copy"></i> Copy</button>
           </div>

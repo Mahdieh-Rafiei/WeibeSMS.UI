@@ -93,12 +93,20 @@ export class ForgotPasswordComponent implements OnInit {
         .subscribe(res => {
             console.log(res);
             this.step = 2;
+            setTimeout(() => {
+              this.verificationCodePart1Element.nativeElement.focus();
+            }, 500);
             this.key = res.data.key;
             localStorage.setItem('k-f', res.data.key);
           },
           err => {
-            console.log(err);
-            this.step = 2;
+            if (err.error.Message === '4') {
+              console.log(err);
+              this.step = 2;
+              setTimeout(() => {
+                this.verificationCodePart1Element.nativeElement.focus();
+              }, 500);
+            }
           });
     } else {
       this.enterPressConfirm = true;
@@ -192,7 +200,7 @@ export class ForgotPasswordComponent implements OnInit {
       payload['key'] = this.verifyKey ? this.verifyKey : localStorage.getItem('k-v-f');
       payload['mobile'] = +this.authSharedService.mobile;
       payload['prefixNumberId'] = this.forgotPasswordForm.value.prefixNumberId,
-      payload['verificationCode'] = +this.verificationCode,
+        payload['verificationCode'] = +this.verificationCode,
         this.forgotPasswordService.changePassword(payload)
           .subscribe(res => {
             this.configService.authenticationChanged.emit(true);

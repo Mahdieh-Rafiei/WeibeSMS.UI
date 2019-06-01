@@ -9,10 +9,6 @@ const routes: Routes = [
         component: MainComponent,
         children: [
             {
-                path: 'plan',
-                loadChildren: '.\/pages\/plan\/plan.module#UserNotificationModule',
-            },
-            {
                 path: 'notification',
                 loadChildren: '.\/pages\/user-notification\/user-notification.module#UserNotificationModule',
             },

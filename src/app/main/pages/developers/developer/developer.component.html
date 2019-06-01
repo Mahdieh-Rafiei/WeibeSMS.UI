@@ -1,96 +1,101 @@
 <div class="row">
-    <div class="col-12 col-md-6 text-left form-group">
-        <button class="previous-btn"><i class="fa fa-arrow-left"></i> Previous</button>
-    </div>
+  <div class="col-12 col-md-6 text-left form-group">
+    <button class="previous-btn"><i class="fa fa-arrow-left"></i> Previous</button>
+  </div>
 </div>
-<form [formGroup]="developerForm">
-    <div class="div-section">
+<form [formGroup]="developerForm" #formDir="ngForm" (ngSubmit)="submit()">
+  <div class="div-section">
+    <div class="row">
+      <!--API Details-->
+      <div class="col-12 api-details">
         <div class="row">
-            <!--API Details-->
-            <div class="col-12 api-details">
-                <div class="row">
-                    <div class="col-12 form-group">
-                        <h5>API Details</h5>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-12 col-md-3 form-group">
-                        <label>Title : </label>
-                        <input
-                                type="text"
-                                class="title-input"
-                                formControlName="title"
-                                placeholder="This is test & can edit">
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-12 col-md-6 form-group">
-                        <label>Authentication key :</label>
-                        <input type="text"
-                               class="Authentication-input"
-                               formControlName="key"
-                               #key
-                               placeholder="ThYDTcGQEu0PR8o2cbY2af5MXrwBmdIgyhYDTcGQEu0PR8o2cbY2af5MXrwBmdIgy">
-                    </div>
-                    <div class="col-12 col-md-2 form-group">
-                        <button class="light-green-btn copy-btn" (click)="copyText(key.value)"><i class="fa fa-copy"></i>
-                            Copy
-                        </button>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-12 form-group radio">
-                <p class="yellow-text">You can change your api key status : </p>
-                <!--<input type="radio" id="true" (change)="changeStatus(true)" formControlName="isActive"-->
-                       <!--[value]="true"> <label for="true">Enable</label>-->
-                <!--<input type="radio" id="false" (change)="changeStatus(false)" formControlName="isActive"-->
-                       <!--[value]="false"> <label for="false">Disable</label>-->
-                <mat-radio-group aria-label="Select an option">
-                    <mat-radio-button value="1">Enable</mat-radio-button>
-                    <mat-radio-button value="2">Disable</mat-radio-button>
-                </mat-radio-group>
-
-            </div>
-
-            <div class="col-12 additional-security">
-                <h5>ADDITIONAL SECURITY</h5>
-                <p>System will accepts requests only from allowed IPs, and all other requests from any random
-                    IPs
-                    will be
-                    discarded.</p>
-                <div class="row form-group mt-2">
-                    <div class="col-12 col-md-4 form-group">
-                        <input type="text"
-                               name="ip"
-                               formControlName="ip"
-                               placeholder="192.168.1.1">
-                    </div>
-                    <div class="col-12 col-md-2 form-group">
-                        <button type="button" (dblclick)="addIp()" class="blue-btn">Whitelist</button>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-12 col-md-5 form-group">
-                        <table class="security-table mt-lg-2">
-                            <tr *ngFor="let validIp of validIps; let i=index">
-                                <td>#{{i+1}}</td>
-                                <td>{{validIp.ip}}</td>
-                                <td><i (click)="removeIp(validIp.id, i)" class="fa fa-trash"></i></td>
-                            </tr>
-                        </table>
-                    </div>
-                </div>
-            </div>
-            <div class="col-12">
-                <div class="row">
-                    <div class="col-12 col-md-12 btn-div form-group">
-                        <button class="light-red-btn" (click)="removeApiKey()">Delete</button>
-                        <button class="light-green-btn ml-2">Save</button>
-                    </div>
-                </div>
-            </div>
-
+          <div class="col-12 form-group">
+            <h5>API Details</h5>
+          </div>
         </div>
+        <div class="row">
+          <div class="col-12 col-md-3 form-group">
+            <label>Title : </label>
+            <input
+              type="text"
+              class="title-input"
+              formControlName="title"
+              placeholder="This is test & can edit">
+            <div class="text-left"
+                 *ngIf="(((developerForm.controls['title'].dirty || developerForm.controls['title'].touched) || formDir.submitted))">
+              <p class="errorMessage" *ngIf="developerForm.hasError('required', 'title')">
+                this filed is required!
+              </p>
+              <p class="errorMessage"
+                 *ngIf="(developerForm.controls['title'].hasError('maxlength'))">
+                title max length is 16 char!
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-12 col-md-6 form-group">
+            <label>Authentication key :</label>
+            <input type="text"
+                   class="Authentication-input"
+                   formControlName="key"
+                   #key
+                   placeholder="ThYDTcGQEu0PR8o2cbY2af5MXrwBmdIgyhYDTcGQEu0PR8o2cbY2af5MXrwBmdIgy">
+          </div>
+          <div class="col-12 col-md-2 form-group">
+            <button class="light-green-btn copy-btn" (click)="copyText(key.value)"><i class="fa fa-copy"></i>
+              Copy
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-12 form-group radio">
+        <p class="yellow-text">You can change your api key status : </p>
+        <mat-radio-group aria-label="Select an option" formControlName="isActive">
+          <mat-radio-button [value]="true">Enable</mat-radio-button>
+          <mat-radio-button [value]="false">Disable</mat-radio-button>
+        </mat-radio-group>
+      </div>
+
+      <div class="col-12 additional-security">
+        <h5>ADDITIONAL SECURITY</h5>
+        <p>System will accepts requests only from allowed IPs, and all other requests from any random
+          IPs
+          will be
+          discarded.</p>
+        <div class="row form-group mt-2">
+          <div class="col-12 col-md-4 form-group">
+            <input type="text"
+                   name="ip"
+                   formControlName="ip"
+                   placeholder="192.168.1.1">
+          </div>
+          <div class="col-12 col-md-2 form-group">
+            <button type="button" (dblclick)="addIp()" class="blue-btn">Whitelist</button>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-12 col-md-5 form-group">
+            <table class="security-table mt-lg-2">
+              <tr *ngFor="let validIp of validIps; let i=index">
+                <td>#{{i+1}}</td>
+                <td>{{validIp.ip}}</td>
+                <td><i (click)="removeIp(validIp.id, i)" class="fa fa-trash"></i></td>
+              </tr>
+            </table>
+          </div>
+        </div>
+      </div>
+      <div class="col-12">
+        <div class="row">
+          <div class="col-12 col-md-12 btn-div form-group">
+            <button class="light-red-btn" (click)="removeApiKey()">Delete</button>
+            <button type="submit" class="light-green-btn ml-2">Save</button>
+          </div>
+        </div>
+      </div>
+
     </div>
+  </div>
 </form>

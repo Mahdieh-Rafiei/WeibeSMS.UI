@@ -51,7 +51,7 @@ export class DevelopersService {
     return this.apiService.delete(url, null, true);
   }
 
-  changeStatus(id, payload): Observable<ChangeStatusInterface> {
+  modifyKey(id, payload): Observable<ChangeStatusInterface> {
     const url = `UserApiKey/${id}`;
     return this.apiService.put(url, payload, true);
   }
