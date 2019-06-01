@@ -1,0 +1,47 @@
+.div-section {
+  border-radius: 0 0 1rem 1rem;
+  padding: 1rem
+}
+.change-password {
+  h5 {
+    margin-bottom: 0;
+  }
+  p {
+    font-size: 12px;
+    padding-top: 5px;
+  }
+}
+
+label {
+  display: block;
+  color: #6c7293;
+  font-weight: 600;
+  font-size: 12px;
+}
+
+.input-box {
+  padding: 15px 0;
+  position: relative;
+}
+
+input {
+  padding: 3px 5px 8px;
+  width: 100%;
+}
+
+::placeholder {
+  color: #b5b5b5;
+  font-size: 12px;
+}
+
+@media (max-width: 991px) and (min-width: 768px) {
+  input {
+    width: 100%;
+  }
+}
+
+@media (max-width: 767px) and (min-width: 320px) {
+  input {
+    width: 100%;
+  }
+}

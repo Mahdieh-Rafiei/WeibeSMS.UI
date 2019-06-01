@@ -47,7 +47,6 @@ export class LoginComponent implements OnInit {
 
   enterPressConfirm: boolean = false;
   countries: DataCountryInterface[];
-
   constructor(private authService: AuthenticationService,
               private registerService: RegisterService,
               private notificationService: NotificationService,
@@ -111,12 +110,18 @@ export class LoginComponent implements OnInit {
             this.notificationService.success('Verification code sent successfully', '');
             localStorage.setItem('k-l', res.data.key);
             this.verificationCodeSent = true;
+            setTimeout(() => {
+              this.verificationCodePart1Element.nativeElement.focus();
+            }, 500);
             this.registrationKey = res.data.key;
           },
           err => {
             if (err.error.Message === '4') {
               console.log(err);
               this.verificationCodeSent = true;
+              setTimeout(() => {
+                this.verificationCodePart1Element.nativeElement.focus();
+              }, 500);
             }
           });
     } else {
