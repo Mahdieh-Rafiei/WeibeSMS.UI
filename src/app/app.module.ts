@@ -57,8 +57,6 @@ import {InvoiceListComponent} from './main/pages/biling/invoice-list/invoice-lis
 import {TicketService} from './main/pages/tickets/ticket.service';
 import {StatusTranslatorPipe} from './main/pages/tickets/status-translator.pipe';
 
-import {DeveloperListComponent} from './main/pages/developers/developer-list/developer-list.component';
-import {DeveloperComponent} from './main/pages/developers/developer/developer.component';
 import {SlimSidebarComponent} from './main/layout/slim-sidebar/slim-sidebar.component';
 
 import {PrivacyComponent} from './main/pages/user-account/privacy/privacy.component';
@@ -139,8 +137,6 @@ import {DialogComponent} from './shared/component/dialog/dialog.component';
     MainComponent,
     ChangeNumberComponent,
     VerifyNumberComponent,
-    DeveloperListComponent,
-    DeveloperComponent,
     CreateKeyComponent,
     FooterComponent,
     InfoComponent,

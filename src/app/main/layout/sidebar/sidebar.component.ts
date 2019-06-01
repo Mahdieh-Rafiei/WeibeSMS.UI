@@ -104,7 +104,7 @@ export class SidebarComponent implements OnInit {
         }, {
             title: 'Developer',
             icon: 'code',
-            link: '/developer-list',
+            link: '/developer/list',
             subMenu: null
         }, {
             title: 'Buy number',

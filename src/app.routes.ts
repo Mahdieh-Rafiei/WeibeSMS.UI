@@ -27,9 +27,6 @@ import {TicketComponent} from './app/main/pages/tickets/ticket/ticket.component'
 import {AddTicketComponent} from './app/main/pages/tickets/add-ticket/add-ticket.component';
 import {TicketListComponent} from './app/main/pages/tickets/ticket-list/ticket-list.component';
 
-import {DeveloperComponent} from './app/main/pages/developers/developer/developer.component';
-import {DeveloperListComponent} from './app/main/pages/developers/developer-list/developer-list.component';
-
 import {PrivacyComponent} from './app/main/pages/user-account/privacy/privacy.component';
 import {ChangePasswordComponent} from './app/main/pages/user-account/privacy/change-password/change-password.component';
 import {ChangeNumberComponent} from './app/main/pages/user-account/profile/change-number/change-number.component';
@@ -49,11 +46,9 @@ import {FundComponent} from './app/main/pages/add-fund/fund/fund.component';
 import {ProfileResolverService} from './app/main/pages/user-account/profile/profile-resolver.service';
 import {VerifyNumberComponent} from './app/main/pages/user-account/profile/change-number/verify-number/verify-number.component';
 import {BillingAddressResolverService} from './app/main/pages/biling/billing-address/billing-address-resolver.service';
-import {DeveloperListResolverService} from './app/main/pages/developers/developer-list/developer-list-resolver.service';
-import {DeveloperResolverService} from './app/main/pages/developers/developer/developer-resolver.service';
-import {SenderIdComponent} from "./app/main/pages/user-account/profile/sender-id/sender-id.component";
-import {ChangeEmailComponent} from "./app/main/pages/user-account/profile/change-email/change-email.component";
-import {InfoComponent} from "./app/main/pages/user-account/profile/info/info.component";
+import {SenderIdComponent} from './app/main/pages/user-account/profile/sender-id/sender-id.component';
+import {ChangeEmailComponent} from './app/main/pages/user-account/profile/change-email/change-email.component';
+import {InfoComponent} from './app/main/pages/user-account/profile/info/info.component';
 
 
 export const APP_ROUTES: Routes = [
@@ -137,17 +132,6 @@ export const APP_ROUTES: Routes = [
     {path: 'login', component: LoginComponent},
     {path: 'register', component: RegisterComponent},
     {path: 'forgot-password', component: ForgotPasswordComponent},
-
-    {
-        path: 'developer-list', component: DeveloperListComponent, resolve: {
-            developersList: DeveloperListResolverService,
-        }
-    },
-    {
-        path: 'developer/:id', component: DeveloperComponent, resolve: {
-            keyData: DeveloperResolverService,
-        }
-    },
 
     {path: '**', redirectTo: 'notfound'}
 ];

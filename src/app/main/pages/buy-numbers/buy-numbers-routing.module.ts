@@ -2,8 +2,8 @@ import {NgModule} from '@angular/core';
 import {Routes, RouterModule} from '@angular/router';
 
 import {BuyNumbersListComponent} from './buy-numbers-list/buy-numbers-list.component';
-import {BuyNumbersShowComponent} from "./buy-numbers-show/buy-numbers-show.component";
 import {BuyNumbersComponent} from './buy-numbers.component';
+import {BuyNumbersShowComponent} from './buy-numbers-show/buy-numbers-show.component';
 
 const routes: Routes = [{
     path: '',
