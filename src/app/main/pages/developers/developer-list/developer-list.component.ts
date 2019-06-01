@@ -12,7 +12,7 @@ import {DataDeveloperListInterface} from './models/data-developer-list.interface
 })
 export class DeveloperListComponent implements OnInit {
   keys: DataDeveloperListInterface[] = [];
-  showAuthKey: boolean = false;
+  showAuthKey = [];
 
   constructor(private route: ActivatedRoute,
               private ns: NotificationService,

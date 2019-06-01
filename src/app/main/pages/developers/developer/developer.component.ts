@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {BillindAddressResponseInterface} from '../../biling/billing-address/models/billind-address-response.interface';
-import {FormBuilder, FormGroup} from '@angular/forms';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {DeveloperInterface} from './models/developer.interface';
 import {NotificationService} from '../../../../shared/notification.service';
 import {DevelopersService} from '../developers.service';
@@ -10,6 +10,9 @@ import {AddIpInterface} from './models/add-ip.interface';
 import {RemoveKeyInterface} from './models/remove-key.interface';
 import {RemoveIpinterface} from './models/remove-ipinterface';
 import {ChangeStatusInterface} from './models/change-status.interface';
+import {CreateKeyComponent} from '../developer-list/create-key/create-key.component';
+import {MatDialog} from '@angular/material';
+import {DialogComponent} from '../../../../shared/component/dialog/dialog.component';
 
 @Component({
   selector: 'app-developer',
@@ -26,6 +29,7 @@ export class DeveloperComponent implements OnInit {
               private ns: NotificationService,
               private ds: DevelopersService,
               private router: Router,
+              private dialog: MatDialog,
               private fb: FormBuilder) {
     this.route.params
       .subscribe(item => this.id = item.id);
@@ -45,7 +49,7 @@ export class DeveloperComponent implements OnInit {
 
   creteForm() {
     this.developerForm = this.fb.group({
-      title: [{value: null, disabled: true}],
+      title: [null, Validators.compose([Validators.required, Validators.maxLength(16)])],
       key: [{value: null, disabled: true}],
       isActive: [null],
       ip: [null],
@@ -80,10 +84,29 @@ export class DeveloperComponent implements OnInit {
   }
 
   removeApiKey() {
-    this.ds.removeKey(this.id)
-      .subscribe((res: RemoveKeyInterface) => {
-        this.ns.success('api key removed successfully!', '');
-        this.router.navigate(['/developer-list']);
+    this.openDialog('auto', 'auto', '', {modalType: 'apiKey', modalText: 'are you sure to remove this api key?'});
+  }
+
+
+  openDialog(width, height, panelClass, data): void {
+    const dialogRef = this.dialog.open(DialogComponent, {
+      width,
+      height,
+      panelClass,
+      data
+    });
+
+    dialogRef.afterClosed()
+      .subscribe(result => {
+        if (result && result.remove) {
+          if (result.remove.modalType) {
+            this.ds.removeKey(this.id)
+              .subscribe((res: RemoveKeyInterface) => {
+                this.ns.success('api key removed successfully!', '');
+                this.router.navigate(['/developer-list']);
+              });
+          }
+        }
       });
   }
 
@@ -95,11 +118,13 @@ export class DeveloperComponent implements OnInit {
       });
   }
 
-  changeStatus(status) {
-    const payload = status;
-    this.ds.changeStatus(this.id, payload)
+  submit() {
+    const payload = this.developerForm.value;
+    delete payload['ip'];
+    this.ds.modifyKey(this.id, payload)
       .subscribe((res: ChangeStatusInterface) => {
         this.ns.success('change Status successfully!', '');
+        this.router.navigate(['/developer-list']);
       });
   }
 }
