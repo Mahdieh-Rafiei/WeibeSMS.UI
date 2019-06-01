@@ -79,7 +79,7 @@ export class SlimSidebarComponent implements OnInit {
         }, {
             title: 'Reports',
             icon: 'bar-chart-o',
-            link: '/sms-report-list',
+            link: '/show-list',
             subMenu: null
         }, {
             title: 'Verification',
