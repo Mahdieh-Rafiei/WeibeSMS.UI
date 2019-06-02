@@ -94,7 +94,7 @@ export class RegisterComponent implements OnInit {
   }
 
   confirm(event) {
-    this.disableButton = !event.target.checked;
+    this.disableButton = !event.checked;
   }
 
   checkUnique(key: number, value: string) {

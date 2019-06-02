@@ -1,4 +1,4 @@
-import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
+import {Component, ElementRef, OnInit, ViewChild, ViewEncapsulation} from '@angular/core';
 import {RegisterService} from '../register/register.service';
 import {Router} from '@angular/router';
 import {AuthenticationService} from './authentication.service';
@@ -18,7 +18,8 @@ import {DataCountryInterface} from '../../shared/models/data-country.interface';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss']
+  styleUrls: ['./login.component.scss'],
+  encapsulation: ViewEncapsulation.None
 })
 
 export class LoginComponent implements OnInit {
