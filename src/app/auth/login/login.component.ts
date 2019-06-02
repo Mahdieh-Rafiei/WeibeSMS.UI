@@ -48,6 +48,8 @@ export class LoginComponent implements OnInit {
 
   enterPressConfirm: boolean = false;
   countries: DataCountryInterface[];
+  showSpinner: boolean = false;
+
   constructor(private authService: AuthenticationService,
               private registerService: RegisterService,
               private notificationService: NotificationService,
@@ -84,13 +86,18 @@ export class LoginComponent implements OnInit {
 
   login() {
     if (this.signInForm.valid) {
+      this.showSpinner = true;
       const payload: LoginInterface = this.signInForm.value;
       this.authService.loginViaUsernamePassword(payload)
         .subscribe((res: LoginResponseInterface) => {
-          this.router.navigateByUrl('index');
-          this.authService.setToken(res.data.token);
-          this.configService.authenticationChanged.emit(true);
-        });
+            this.showSpinner = false;
+            this.router.navigateByUrl('index');
+            this.authService.setToken(res.data.token);
+            this.configService.authenticationChanged.emit(true);
+          },
+          err => {
+            this.showSpinner = false;
+          });
     }
   }
 
@@ -103,11 +110,13 @@ export class LoginComponent implements OnInit {
 
   sendVerificationCode() {
     if (this.signUpForm.valid) {
+      this.showSpinner = true;
       this.authSharedService.mobile = this.signUpForm.value.mobile;
       this.authSharedService.prefixNumberId = +this.signUpForm.value.prefixNumberId;
       const payload: SendVerificationCodeInterface = this.signUpForm.value;
       this.registerService.sendVerificationCode(payload)
         .subscribe((res: SendVerificationCodeResponseInterface) => {
+            this.showSpinner = false;
             this.notificationService.success('Verification code sent successfully', '');
             localStorage.setItem('k-l', res.data.key);
             this.verificationCodeSent = true;
@@ -117,6 +126,7 @@ export class LoginComponent implements OnInit {
             this.registrationKey = res.data.key;
           },
           err => {
+            this.showSpinner = false;
             if (err.error.Message === '4') {
               console.log(err);
               this.verificationCodeSent = true;
@@ -149,6 +159,7 @@ export class LoginComponent implements OnInit {
   verify() {
     const verificationCode = this.verificationCodePart1.concat(this.verificationCodePart2, this.verificationCodePart3,
       this.verificationCodePart4, this.verificationCodePart5);
+    this.showSpinner = true;
     const payload: VerifyMobileInterface = {
       Key: this.registrationKey ? this.registrationKey : localStorage.getItem('k-l'),
       Mobile: this.signUpForm.value.mobile,
@@ -158,10 +169,14 @@ export class LoginComponent implements OnInit {
     };
     this.registerService.verifyMobile(payload)
       .subscribe((res: any) => {
-        // this.authService.setToken(res.data);
-        this.authSharedService.keyLogin = res.data;
-        this.router.navigateByUrl('/register');
-      });
+          this.showSpinner = false;
+          // this.authService.setToken(res.data);
+          this.authSharedService.keyLogin = res.data;
+          this.router.navigateByUrl('/register');
+        },
+        err => {
+          this.showSpinner = false;
+        });
   }
 
   setFocus(elementNumber: number, value) {

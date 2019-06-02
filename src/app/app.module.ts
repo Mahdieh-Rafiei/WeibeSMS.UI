@@ -6,9 +6,6 @@ import {RouterModule} from '@angular/router';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {AngularEditorModule} from '@kolkov/angular-editor';
 
-import {BsDropdownModule} from 'ngx-bootstrap';
-import {CollapseModule} from 'ngx-bootstrap';
-import {TabsModule} from 'ngx-bootstrap';
 import {ToastrModule} from 'ngx-toastr';
 import {FileDropModule} from 'ngx-file-drop';
 
@@ -38,8 +35,7 @@ import {AddContactComponent} from './main/pages/group/add-contact/add-contact.co
 import {SingleAddContactComponent} from './main/pages/group/add-contact/single-add-contact/single-add-contact.component';
 import {AddContactFromFileComponent} from './main/pages/group/add-contact/add-contact-from-file/add-contact-from-file.component';
 import {ImportContactFromOtherListsComponent} from './main/pages/group/add-contact/import-contact-from-file/import-contact-from-other-lists.component';
-// import {UserEventComponent} from './main/pages/user-event/user-event.component';
-// import {UserEventService} from './main/pages/user-event/user-event.service';
+
 import {SendMessageComponent} from './main/pages/send-message/send-message.component';
 import {SendMessageFirstStepComponent} from './main/pages/send-message/send-message-first-step/send-message-first-step.component';
 import {SendMessageSecondStepComponent} from './main/pages/send-message/send-message-second-step/send-message-second-step.component';
@@ -156,9 +152,6 @@ import {DialogComponent} from './shared/component/dialog/dialog.component';
     ReactiveFormsModule,
     HttpClientModule,
     AngularEditorModule,
-    BsDropdownModule.forRoot(),
-    TabsModule.forRoot(),
-    CollapseModule.forRoot(),
     RouterModule.forRoot(APP_ROUTES),
     ToastrModule.forRoot({
       preventDuplicates: true
