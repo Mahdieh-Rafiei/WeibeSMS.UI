@@ -8,6 +8,7 @@ import {SearchComponent} from '../component/search/search.component';
 import {NgxPaginationModule} from 'ngx-pagination';
 import {DateTimePipe} from '../pipe/date-time.pipe';
 import {FilterComponent} from '../component/filter/filter.component';
+import {LoadingSpinnerComponent} from '../component/loading-spinner/loading-spinner.component';
 
 @NgModule({
   imports: [
@@ -22,7 +23,11 @@ import {FilterComponent} from '../component/filter/filter.component';
     ImageUploadComponent,
     SearchComponent,
     DateTimePipe,
-    FilterComponent
+    FilterComponent,
+    LoadingSpinnerComponent
+  ],
+  entryComponents: [
+    LoadingSpinnerComponent
   ],
   exports: [
     CommonModule,
@@ -34,7 +39,8 @@ import {FilterComponent} from '../component/filter/filter.component';
     ImageUploadComponent,
     SearchComponent,
     DateTimePipe,
-    FilterComponent
+    FilterComponent,
+    LoadingSpinnerComponent
   ]
 })
 export class SharedModule {

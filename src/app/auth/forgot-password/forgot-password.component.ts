@@ -40,6 +40,7 @@ export class ForgotPasswordComponent implements OnInit {
   enterPressConfirm: boolean = false;
   verificationCode: string;
   countries: DataCountryInterface[];
+  showSpinner: boolean = false;
 
   @ViewChild('verificationCodePart1Element') verificationCodePart1Element: ElementRef;
   @ViewChild('verificationCodePart2Element') verificationCodePart2Element: ElementRef;
@@ -88,10 +89,11 @@ export class ForgotPasswordComponent implements OnInit {
       this.authSharedService.prefixNumberId = +this.forgotPasswordForm.value.countryId;
       const payload: SendVerificationCodeInterface = this.forgotPasswordForm.value;
 
+      this.showSpinner = true;
       // const payload: SendVerificationCodeInterface = this.forgotPasswordForm.value;
       this.forgotPasswordService.sendVerificationCode(payload)
         .subscribe(res => {
-            console.log(res);
+            this.showSpinner = false;
             this.step = 2;
             setTimeout(() => {
               this.verificationCodePart1Element.nativeElement.focus();
@@ -100,6 +102,7 @@ export class ForgotPasswordComponent implements OnInit {
             localStorage.setItem('k-f', res.data.key);
           },
           err => {
+            this.showSpinner = false;
             if (err.error.Message === '4') {
               console.log(err);
               this.step = 2;
@@ -179,13 +182,16 @@ export class ForgotPasswordComponent implements OnInit {
       VerificationCode: +this.verificationCode,
       reason: 2
     };
-
+    this.showSpinner = true;
     this.forgotPasswordService.verify(payload)
       .subscribe(res => {
+        this.showSpinner = false;
         console.log(res);
         this.step = 3;
         localStorage.setItem('k-v-f', res.data);
         this.verifyKey = res.data;
+      }, err => {
+        this.showSpinner = true;
       });
   }
 
@@ -195,6 +201,7 @@ export class ForgotPasswordComponent implements OnInit {
     }
     if (this.resetPassForm.valid && !this.notMatch && this.resetPassForm.value.confirmPassword) {
       this.confirmPasswordOut();
+      this.showSpinner = true;
       const payload: ChangePasswordInterface = this.resetPassForm.value;
       delete payload['confirmPassword'];
       payload['key'] = this.verifyKey ? this.verifyKey : localStorage.getItem('k-v-f');
@@ -203,12 +210,15 @@ export class ForgotPasswordComponent implements OnInit {
         payload['verificationCode'] = +this.verificationCode,
         this.forgotPasswordService.changePassword(payload)
           .subscribe(res => {
+            this.showSpinner = false;
             this.configService.authenticationChanged.emit(true);
             localStorage.removeItem('k-f');
             localStorage.removeItem('k-v-f');
             this.router.navigate(['/index']);
             this.authService.setToken(res.data.token);
             this.configService.authenticationChanged.emit(true);
+          }, err => {
+            this.showSpinner = false;
           });
     }
   }
