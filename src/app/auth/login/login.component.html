@@ -92,13 +92,23 @@
           <!--</div>-->
           <div class="mt-3 mb-3">
             <div class="flex-group" [formGroup]="signUpForm">
-              <select class="form-control" formControlName="prefixNumberId">
-                <option hidden value="">select</option>
-                <option [value]="country.id" *ngFor="let country of countries">
-                  <span>{{country.prefixNumber}}</span>
+              <!--<select class="form-control" formControlName="prefixNumberId">-->
+              <!--<option hidden value="">select</option>-->
+              <!--<option class="test" [value]="country.id" *ngFor="let country of countries">-->
+              <!--<img [src]="'data:image/jpg;base64,'+country.flag"/>-->
+              <!--<span>{{country.name}}</span>-->
+              <!--(<span>{{country.prefixNumber}}</span>)-->
+              <!--</option>-->
+              <!--</select>-->
+              <mat-select class="form-control" formControlName="prefixNumberId"
+                         name="bodyStyle">
+                <mat-option hidden value=""></mat-option>
+                <mat-option [value]="country.id" *ngFor="let country of countries">
+                  <img class="mr-2" width="20" [src]="'data:image/jpg;base64,'+country.flag"/>
                   <span>{{country.name}}</span>
-                </option>
-              </select>
+                  (<span>{{country.prefixNumber}}</span>)
+                </mat-option>
+              </mat-select>
               <input type="text"
                      placeholder="Your phone number"
                      class="form-control"
