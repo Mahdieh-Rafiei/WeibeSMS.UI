@@ -910,12 +910,12 @@ li {
   align-items: center;
   justify-content: center;
 
-  select {
+  mat-select {
     width: 100px;
     border-right: none;
     border-radius: 0.25rem 0 0 0.25rem;
   }
-  select:focus {
+  mat-option:focus {
     border-right: none;
     border-color: #ced4da;
     outline: none;
