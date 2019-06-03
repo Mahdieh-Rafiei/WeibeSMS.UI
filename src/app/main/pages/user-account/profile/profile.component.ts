@@ -1,6 +1,5 @@
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
-import {DataCountryInterface} from '../../../../shared/models/data-country.interface';
 
 @Component({
   selector: 'app-profile',

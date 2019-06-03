@@ -538,11 +538,24 @@ i.fa.fa-sort {
   margin-right: 5px;
 }
 
+.error-place {
+  display: flex;
+  height: 20px;
+  padding-top: 2px;
+
+}
+
+.border-error {
+  border: 1px solid #fd397a;
+  transition: .3s;
+}
+
 .errorMessage {
-  font-size: 12px;
+  font-size: 13px;
   color: #fd397a;
-  display: inline;
-  padding-left: 5px;
+  display: flow-root;
+  padding-left: 2px;
+  align-items: center;
 }
 
 /*login*/
@@ -591,6 +604,11 @@ i.fa.fa-sort {
 .welcome-text {
   color: #a7abc3;
   font-size: 14px;
+}
+
+.copyright {
+  color: #a7abc3;
+  font-size: 13px;
 }
 
 .weib {
@@ -705,6 +723,12 @@ input, select, textarea {
   border: 1px solid #e2e5ec;
   font-size: 14px;
   color: #495057;
+}
+
+.form-control:focus {
+  box-shadow: none;
+  border: 1px solid #2cd9f4;
+  transition: .3s;
 }
 
 /*----------------------------Loading--------------------------------*/
@@ -879,4 +903,24 @@ li {
 .light-blue-btn:hover {
   background-color: #2786fb;
   color: #fff;
+}
+
+.flex-group {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  select {
+    width: 100px;
+    border-right: none;
+    border-radius: 0.25rem 0 0 0.25rem;
+  }
+  select:focus {
+    border-right: none;
+    border-color: #ced4da;
+    outline: none;
+  }
+  input {
+    border-radius: 0 0.25rem 0.25rem 0;
+  }
 }
