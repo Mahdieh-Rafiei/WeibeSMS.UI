@@ -6,17 +6,17 @@ import {ChangeNumberComponent} from './change-number/change-number.component';
 import {ChangeEmailComponent} from './change-email/change-email.component';
 import {SenderIdComponent} from './sender-id/sender-id.component';
 import {VerifyNumberComponent} from './change-number/verify-number/verify-number.component';
-import {ProfileResolverService} from './profile-resolver.service';
+import {InfoResolverService} from './info/info-resolver.service';
 
 const routes: Routes = [{
   path: '',
   component: ProfileComponent,
-  resolve: {
-    profile: ProfileResolverService,
-  },
   children: [{
     path: 'info',
     component: InfoComponent,
+    resolve: {
+      info: InfoResolverService,
+    },
     data: {
       title: 'info profile',
       num: 1
@@ -42,8 +42,7 @@ const routes: Routes = [{
       title: 'sender id',
       num: 1
     },
-  }
-  , {
+  }, {
     path: 'verify-number',
     component: VerifyNumberComponent,
     data: {

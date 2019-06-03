@@ -14,26 +14,14 @@ import {AuthSharedService} from '../auth-shared.service';
 import {CountryInterface} from '../../shared/models/country.interface';
 import {SharedService} from '../../shared/service/shared.service';
 import {DataCountryInterface} from '../../shared/models/data-country.interface';
-import {animate, style, transition, trigger} from '@angular/animations';
+import {errorAnimation} from '../../shared/component/animation/error-animation';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss'],
-
   animations: [
-    trigger(
-      'errorAnimation', [
-        transition(':enter', [
-          style({transform: 'translateY(-20%)', opacity: 0}),
-          animate('.3s cubic-bezier(.25,.46,.45,.94)', style({transform: 'translateY(0%)',opacity: 1}))
-        ]),
-        transition(':leave', [
-          style({transform: 'translateY(0)', opacity: 1}),
-          animate('.3s cubic-bezier(.25,.46,.45,.94)', style({transform: 'translateY(-20%)', opacity: 0}))
-        ])
-      ]
-    )
+    errorAnimation()
   ],
   encapsulation: ViewEncapsulation.None
 })
@@ -82,6 +70,7 @@ export class LoginComponent implements OnInit {
   }
 
 
+
   getCountry() {
     this.shs.getCountry()
       .subscribe((res: CountryInterface) => this.countries = res.data);
@@ -92,7 +81,7 @@ export class LoginComponent implements OnInit {
     this.signUpForm = this.fb.group({
       mobile: [null, Validators.compose([Validators.required, Validators.pattern(pattern)])],
       reason: [1],
-      prefixNumberId: ['', Validators.required]
+      prefixNumberId: [1, Validators.required]
     });
     this.signInForm = this.fb.group({
       username: [null, Validators.required],
@@ -107,7 +96,7 @@ export class LoginComponent implements OnInit {
       this.authService.loginViaUsernamePassword(payload)
         .subscribe((res: LoginResponseInterface) => {
             this.showSpinner = false;
-            this.router.navigateByUrl('index');
+            this.router.navigateByUrl('');
             this.authService.setToken(res.data.token);
             this.configService.authenticationChanged.emit(true);
           },

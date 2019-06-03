@@ -34,7 +34,7 @@ export class SidebarComponent implements OnInit {
     }, {
       title: 'Dashboard',
       icon: 'home',
-      link: 'index',
+      link: '/',
       subMenu: null
     }, {
       title: 'Contacts',

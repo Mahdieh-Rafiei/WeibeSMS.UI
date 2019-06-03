@@ -3,12 +3,10 @@ import {Component, HostListener, Injectable, OnInit, ViewChild} from '@angular/c
 import {ConfigService} from './shared/config.service';
 import {Router} from '@angular/router';
 import {AuthenticationService} from './auth/login/authentication.service';
-import {normalizeDebugBindingName} from '@angular/core/src/util/ng_reflect';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
 })
 
 @Injectable()

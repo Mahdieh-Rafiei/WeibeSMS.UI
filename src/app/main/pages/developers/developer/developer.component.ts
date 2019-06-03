@@ -145,7 +145,7 @@ export class DeveloperComponent implements OnInit {
     this.ds.modifyKey(this.id, payload)
       .subscribe((res: ChangeStatusInterface) => {
         this.ns.success('change Status successfully!', '');
-        this.router.navigate(['/developer-list']);
+        this.router.navigate(['/developer/list']);
       });
   }
 

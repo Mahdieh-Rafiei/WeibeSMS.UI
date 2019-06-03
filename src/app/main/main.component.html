@@ -1,4 +1,6 @@
-<div class="main-container">
-  <router-outlet></router-outlet>
-</div>
-
+<section
+  [ngClass]="{'slim-navbar':configService.sidebarMode=='slim', 'hidden-navbar':configService.sidebarMode=='hidden'}">
+  <div class="main-container" [@routerAnimation]="getRouteAnimation(router)">
+    <router-outlet></router-outlet>
+  </div>
+</section>

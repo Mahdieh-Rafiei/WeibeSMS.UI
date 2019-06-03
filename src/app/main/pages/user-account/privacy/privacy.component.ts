@@ -9,7 +9,6 @@ import {ActivatedRoute, Router} from '@angular/router';
 export class PrivacyComponent implements OnInit {
 
   items = [
-    {title: 'Change number', link: 'change-number'},
     {title: 'Change password', link: 'change-password'},
     {title: 'Login log', link: 'login-log'},
     {title: 'Deactive account', link: 'deactive-account'}
@@ -21,7 +20,7 @@ export class PrivacyComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.onClick('change-number');
+    this.onClick('change-password');
   }
 
   onClick(link) {

@@ -5,6 +5,7 @@ import {ApiService} from '../api.service';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {CountryInterface} from '../models/country.interface';
 import {CityInterface} from '../models/city.interface';
+import {IpInterface} from '../models/ip.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -12,9 +13,7 @@ import {CityInterface} from '../models/city.interface';
 
 export class SharedService {
 
-  constructor(private as: ApiService,
-              private cs: ConfigService,
-              private http: HttpClient) {
+  constructor(private as: ApiService) {
 
   }
 
@@ -26,5 +25,10 @@ export class SharedService {
   getCity(countryId): Observable<CityInterface> {
     const url = `BaseData/country/${countryId}/city`;
     return this.as.get(url, true);
+  }
+
+  checkUnique(payload) {
+    const url = `User/isDuplicateValue?key=${payload.key}&value=${payload.value}`;
+    return this.as.get(url, false);
   }
 }

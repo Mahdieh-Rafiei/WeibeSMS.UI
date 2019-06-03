@@ -9,6 +9,10 @@ const routes: Routes = [
     component: MainComponent,
     children: [
       {
+        path: '',
+        loadChildren: '.\/pages\/dashboard\/dashboard.module#DashboardModule',
+      },
+      {
         path: 'notification',
         loadChildren: '.\/pages\/user-notification\/user-notification.module#UserNotificationModule',
       },
@@ -35,6 +39,10 @@ const routes: Routes = [
       {
         path: 'profile',
         loadChildren: '.\/pages\/user-account\/profile\/profile.module#ProfileModule',
+      },
+      {
+        path: 'privacy',
+        loadChildren: '.\/pages\/user-account\/privacy\/privacy.module#PrivacyModule',
       },
     ]
   }

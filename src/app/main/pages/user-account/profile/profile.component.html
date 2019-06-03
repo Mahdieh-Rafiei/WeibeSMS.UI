@@ -1,20 +1,8 @@
-<div>
-    <div class="buy-number">
-        <div class="title-tab no-pad">
-            <p class="active" [routerLink]="['info']">Profile</p>
-        </div>
-        <div class="title-tab no-pad">
-            <p [routerLink]="['change-number']">Change number</p>
-        </div>
-        <div class="title-tab no-pad">
-            <p [routerLink]="['change-email']">Change email</p>
-        </div>
-        <div class="title-tab no-pad">
-            <p [routerLink]="['sender-id']">Sender ID</p>
-        </div>
-        <div class="title-tab no-pad">
-            <p [routerLink]="['verify-number']">Verify number</p>
-        </div>
-    </div>
-    <router-outlet></router-outlet>
+<div class="col-md-12 profile">
+  <div class="title-tab" *ngFor="let item of items">
+    <p [ngClass]="{'active': item.link === active}" (click)="onClick(item.link)">
+      {{item.title}}</p>
+  </div>
 </div>
+<router-outlet></router-outlet>
+
