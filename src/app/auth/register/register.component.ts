@@ -79,7 +79,7 @@ export class RegisterComponent implements OnInit {
             this.authService.setToken(res.data.token);
             localStorage.removeItem('k-l');
             this.configService.authenticationChanged.emit(true);
-            this.router.navigateByUrl('index');
+            this.router.navigateByUrl('');
           },
           err => {
             this.showSpinner = false;

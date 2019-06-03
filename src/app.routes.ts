@@ -1,6 +1,5 @@
 import {Routes} from '@angular/router';
 import {LoginComponent} from './app/auth/login/login.component';
-import {DashboardComponent} from './app/main/pages/dashboard/dashboard.component';
 import {RegisterComponent} from './app/auth/register/register.component';
 import {CanActivateRouteGuard} from './app/shared/canActivateRouteGuard';
 import {ForgotPasswordComponent} from './app/auth/forgot-password/forgot-password.component';
@@ -38,10 +37,9 @@ import {CreateTransactionComponent} from './app/main/pages/biling/create-transac
 import {FundListComponent} from './app/main/pages/add-fund/fund-list/fund-list.component';
 import {FundComponent} from './app/main/pages/add-fund/fund/fund.component';
 import {BillingAddressResolverService} from './app/main/pages/biling/billing-address/billing-address-resolver.service';
+import {AuthGuard} from './app/shared/auth.guard';
 
 export const APP_ROUTES: Routes = [
-  // {path: 'index', component: DashboardComponent, canActivate: [CanActivateRouteGuard]},
-
   {path: 'group/:groupId', component: GroupComponent, canActivate: [CanActivateRouteGuard]},
   {path: 'group', component: GroupListComponent, canActivate: [CanActivateRouteGuard]},
   {path: 'group/:groupId/contact/:contactId', component: ContactComponent},
@@ -91,9 +89,10 @@ export const APP_ROUTES: Routes = [
   {path: 'fund', component: FundComponent},
 
 
-  {path: 'login', component: LoginComponent},
-  {path: 'register', component: RegisterComponent},
-  {path: 'forgot-password', component: ForgotPasswordComponent},
+  {path: 'login', component: LoginComponent, canActivate: [AuthGuard]},
+  {path: 'register', component: RegisterComponent, canActivate: [AuthGuard]},
+  {path: 'forgot-password', component: ForgotPasswordComponent, canActivate: [AuthGuard]},
 
-  {path: '**', redirectTo: 'notfound'}
+  {path: '**', redirectTo: 'notfound'},
+
 ];

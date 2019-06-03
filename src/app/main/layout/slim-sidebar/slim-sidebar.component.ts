@@ -33,7 +33,7 @@ export class SlimSidebarComponent implements OnInit {
         }, {
             title: 'Dashboard',
             icon: 'home',
-            link: 'index',
+            link: '/',
             subMenu: null
         }, {
             title: 'Contacts',

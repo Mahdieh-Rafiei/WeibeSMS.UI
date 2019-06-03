@@ -17,12 +17,11 @@ export class InfoResolverService implements Resolve<InfoGetInterface> {
   constructor(private uas: UserAccountService) {
   }
 
-  resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<InfoGetInterface> {
-
+  resolve(rout: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<InfoGetInterface> {
     return this.uas.getProfile().pipe(
-      mergeMap(profile => {
-        if (profile) {
-          return of(profile);
+      mergeMap(info => {
+        if (info) {
+          return of(info);
         } else {
           return EMPTY;
         }
@@ -30,3 +29,4 @@ export class InfoResolverService implements Resolve<InfoGetInterface> {
     );
   }
 }
+

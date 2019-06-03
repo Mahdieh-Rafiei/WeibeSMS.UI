@@ -15,7 +15,7 @@ const routes: Routes = [{
     path: 'info',
     component: InfoComponent,
     resolve: {
-      profile: InfoResolverService,
+      info: InfoResolverService,
     },
     data: {
       title: 'info profile',

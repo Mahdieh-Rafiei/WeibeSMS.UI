@@ -8,10 +8,6 @@ import {AngularEditorModule} from '@kolkov/angular-editor';
 
 import {ToastrModule} from 'ngx-toastr';
 import {FileDropModule} from 'ngx-file-drop';
-
-import {MatButtonModule} from '@angular/material/button';
-import {MatSelectModule} from '@angular/material/select';
-
 import {AppComponent} from './app.component';
 import {APP_ROUTES} from '../app.routes';
 import {ApiService} from './shared/api.service';
@@ -24,7 +20,6 @@ import {LoginComponent} from './auth/login/login.component';
 import {RegisterComponent} from './auth/register/register.component';
 import {SidebarComponent} from './main/layout/sidebar/sidebar.component';
 import {TopNavComponent} from './main/layout/top-nav/top-nav.component';
-// import {DashboardComponent} from './main/pages/dashboard/dashboard.component';
 import {AuthenticationService} from './auth/login/authentication.service';
 import {RegisterService} from './auth/register/register.service';
 import {ForgotPasswordComponent} from './auth/forgot-password/forgot-password.component';
@@ -72,6 +67,7 @@ import {CreateKeyComponent} from './main/pages/developers/developer-list/create-
 
 import {FooterComponent} from './main/layout/footer/footer.component';
 import {DialogComponent} from './shared/component/dialog/dialog.component';
+import {AuthGuard} from './shared/auth.guard';
 
 @NgModule({
 
@@ -81,7 +77,6 @@ import {DialogComponent} from './shared/component/dialog/dialog.component';
     RegisterComponent,
     SidebarComponent,
     TopNavComponent,
-    // DashboardComponent,
     ForgotPasswordComponent,
     GroupComponent,
     GroupListComponent,
@@ -138,13 +133,12 @@ import {DialogComponent} from './shared/component/dialog/dialog.component';
     MainRoutingModule,
     SharedModule,
 
-    MatButtonModule,
-    MatSelectModule,
   ],
   providers: [
     ApiService,
     ConfigService,
     AuthenticationService,
+    AuthGuard,
     RegisterService,
     CanActivateRouteGuard,
     NotificationService,

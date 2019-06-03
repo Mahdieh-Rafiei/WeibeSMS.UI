@@ -15,7 +15,7 @@ import {UserAccountService} from '../../user-account.service';
 })
 export class InfoComponent implements OnInit {
     profileForm: FormGroup;
-    profileData: InfoGetInterface;
+  infoData: InfoGetInterface;
     countries: DataCountryInterface[];
     genders = [{title: 'Unknown', value: 1},
         {title: 'Female', value: 2},
@@ -28,8 +28,8 @@ export class InfoComponent implements OnInit {
                 private notificationService: NotificationService,
                 private shs: SharedService) {
         this.route.data
-            .subscribe((data: { profile: InfoGetInterface }) => {
-                this.profileData = data.profile;
+            .subscribe((data: { info: InfoGetInterface }) => {
+                this.infoData = data.info;
             });
         this.getCountry();
     }
@@ -59,16 +59,16 @@ export class InfoComponent implements OnInit {
     }
 
     fillProfile(profileForm) {
-        this.imageUrl = this.profileData.data.image ? this.profileData.data.image : null;
+        this.imageUrl = this.infoData.data.image ? this.infoData.data.image : null;
         profileForm.patchValue({
-            firstName: this.profileData.data.firstName,
-            lastName: this.profileData.data.lastName,
-            companyName: this.profileData.data.companyName,
-            email: this.profileData.data.email,
-            gender: this.profileData.data.gender,
-            defaultPrefixNumberId: this.profileData.data.defaultPrefixNumberId,
-            countryId: this.profileData.data.countryId,
-            birthday: new Date(this.profileData.data.birthDay * 1000),
+            firstName: this.infoData.data.firstName,
+            lastName: this.infoData.data.lastName,
+            companyName: this.infoData.data.companyName,
+            email: this.infoData.data.email,
+            gender: this.infoData.data.gender,
+            defaultPrefixNumberId: this.infoData.data.defaultPrefixNumberId,
+            countryId: this.infoData.data.countryId,
+            birthday: new Date(this.infoData.data.birthDay * 1000),
         });
     }
 
