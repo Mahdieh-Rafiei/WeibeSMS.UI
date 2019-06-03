@@ -3,7 +3,7 @@
     <button class="previous-btn"><i class="fa fa-arrow-left"></i> Previous</button>
   </div>
 </div>
-<form [formGroup]="developerForm" #formDir="ngForm" (ngSubmit)="submit()">
+<form [formGroup]="developerForm" #formDir="ngForm">
   <div class="div-section">
     <div class="row">
       <!--API Details-->
@@ -54,7 +54,7 @@
         <p class="yellow-text">You can change your api key status : </p>
         <mat-radio-group aria-label="Select an option" formControlName="isActive">
           <mat-radio-button [value]="true">Enable</mat-radio-button>
-          <mat-radio-button [value]="false">Disable</mat-radio-button>
+          <mat-radio-button class="pl-1" [value]="false">Disable</mat-radio-button>
         </mat-radio-group>
       </div>
 
@@ -68,12 +68,31 @@
           <div class="col-12 col-md-4 form-group">
             <input type="text"
                    name="ip"
+                   #ip
+                   (input)="changeIp()"
                    formControlName="ip"
                    placeholder="192.168.1.1">
+            <div class="text-left"
+                 *ngIf="((developerForm.dirty || developerForm.touched))">
+              <p class="errorMessage"
+                 *ngIf="(developerForm.controls['ip'].hasError('pattern')) && (developerForm.controls['ip'].touched)">
+                ip is invalid!
+              </p>
+            </div>
+            <div class="text-left">
+              <p class="errorMessage" *ngIf="duplicateIp">
+                this ip is duplicate!
+              </p>
+            </div>
           </div>
           <div class="col-12 col-md-2 form-group">
-            <button type="button" (dblclick)="addIp()" class="blue-btn">Whitelist</button>
+            <button type="button"
+                    [ngClass]="{ 'disable-btn': !developerForm['controls'].ip.valid || !ip.value}"
+                    [disabled]="!developerForm['controls'].ip.valid || !ip.value" (click)="addIp(ip.value)" class="blue-btn">
+              Whitelist
+            </button>
           </div>
+
         </div>
         <div class="row">
           <div class="col-12 col-md-5 form-group">
@@ -91,7 +110,7 @@
         <div class="row">
           <div class="col-12 col-md-12 btn-div form-group">
             <button class="light-red-btn" (click)="removeApiKey()">Delete</button>
-            <button type="submit" class="light-green-btn ml-2">Save</button>
+            <button (click)="submit()" type="submit" class="light-green-btn ml-2">Save</button>
           </div>
         </div>
       </div>
@@ -99,3 +118,4 @@
     </div>
   </div>
 </form>
+

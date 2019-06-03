@@ -6,9 +6,6 @@ import {RouterModule} from '@angular/router';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {AngularEditorModule} from '@kolkov/angular-editor';
 
-import {BsDropdownModule} from 'ngx-bootstrap';
-import {CollapseModule} from 'ngx-bootstrap';
-import {TabsModule} from 'ngx-bootstrap';
 import {ToastrModule} from 'ngx-toastr';
 import {FileDropModule} from 'ngx-file-drop';
 
@@ -38,8 +35,7 @@ import {AddContactComponent} from './main/pages/group/add-contact/add-contact.co
 import {SingleAddContactComponent} from './main/pages/group/add-contact/single-add-contact/single-add-contact.component';
 import {AddContactFromFileComponent} from './main/pages/group/add-contact/add-contact-from-file/add-contact-from-file.component';
 import {ImportContactFromOtherListsComponent} from './main/pages/group/add-contact/import-contact-from-file/import-contact-from-other-lists.component';
-// import {UserEventComponent} from './main/pages/user-event/user-event.component';
-// import {UserEventService} from './main/pages/user-event/user-event.service';
+
 import {SendMessageComponent} from './main/pages/send-message/send-message.component';
 import {SendMessageFirstStepComponent} from './main/pages/send-message/send-message-first-step/send-message-first-step.component';
 import {SendMessageSecondStepComponent} from './main/pages/send-message/send-message-second-step/send-message-second-step.component';
@@ -57,12 +53,9 @@ import {InvoiceListComponent} from './main/pages/biling/invoice-list/invoice-lis
 import {TicketService} from './main/pages/tickets/ticket.service';
 import {StatusTranslatorPipe} from './main/pages/tickets/status-translator.pipe';
 
-import {DeveloperListComponent} from './main/pages/developers/developer-list/developer-list.component';
-import {DeveloperComponent} from './main/pages/developers/developer/developer.component';
 import {SlimSidebarComponent} from './main/layout/slim-sidebar/slim-sidebar.component';
 
 import {PrivacyComponent} from './main/pages/user-account/privacy/privacy.component';
-import {ProfileComponent} from './main/pages/user-account/profile/profile.component';
 import {RewardPointComponent} from './main/pages/user-account/reward-point/reward-point.component';
 import {DeactiveAccountComponent} from './main/pages/user-account/privacy/deactive-account/deactive-account.component';
 import {LoginLogComponent} from './main/pages/user-account/privacy/login-log/login-log.component';
@@ -79,17 +72,11 @@ import {SharedModule} from './shared/module/shared.module';
 import {MainRoutingModule} from './main/main-routing.module';
 import {MainComponent} from './main/main.component';
 
-import {ChangeNumberComponent} from './main/pages/user-account/profile/change-number/change-number.component';
-import {VerifyNumberComponent} from './main/pages/user-account/profile/change-number/verify-number/verify-number.component';
-
 import {CreateKeyComponent} from './main/pages/developers/developer-list/create-key/create-key.component';
 
-
 import {FooterComponent} from './main/layout/footer/footer.component';
-import {InfoComponent} from './main/pages/user-account/profile/info/info.component';
-import {ChangeEmailComponent} from './main/pages/user-account/profile/change-email/change-email.component';
-import {SenderIdComponent} from './main/pages/user-account/profile/sender-id/sender-id.component';
 import {DialogComponent} from './shared/component/dialog/dialog.component';
+import {VerifyNumberComponent} from './main/pages/user-account/profile/change-number/verify-number/verify-number.component';
 
 @NgModule({
 
@@ -123,11 +110,9 @@ import {DialogComponent} from './shared/component/dialog/dialog.component';
     CreateTransactionComponent,
     StatusTranslatorPipe,
     SlimSidebarComponent,
-    ProfileComponent,
     ChangePasswordComponent,
     BillingAddressComponent,
     NumericInputDirective,
-    ProfileComponent,
     PrivacyComponent,
     RewardPointComponent,
     DeactiveAccountComponent,
@@ -137,16 +122,10 @@ import {DialogComponent} from './shared/component/dialog/dialog.component';
     FundListComponent,
     FundComponent,
     MainComponent,
-    ChangeNumberComponent,
-    VerifyNumberComponent,
-    DeveloperListComponent,
-    DeveloperComponent,
     CreateKeyComponent,
     FooterComponent,
-    InfoComponent,
-    ChangeEmailComponent,
-    SenderIdComponent,
-    DialogComponent
+    DialogComponent,
+    VerifyNumberComponent
 
   ],
   entryComponents: [
@@ -160,9 +139,6 @@ import {DialogComponent} from './shared/component/dialog/dialog.component';
     ReactiveFormsModule,
     HttpClientModule,
     AngularEditorModule,
-    BsDropdownModule.forRoot(),
-    TabsModule.forRoot(),
-    CollapseModule.forRoot(),
     RouterModule.forRoot(APP_ROUTES),
     ToastrModule.forRoot({
       preventDuplicates: true

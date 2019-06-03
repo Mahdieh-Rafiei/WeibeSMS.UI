@@ -1,6 +1,5 @@
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
-import {BillindAddressResponseInterface} from '../../biling/billing-address/models/billind-address-response.interface';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {DeveloperInterface} from './models/developer.interface';
 import {NotificationService} from '../../../../shared/notification.service';
@@ -10,7 +9,6 @@ import {AddIpInterface} from './models/add-ip.interface';
 import {RemoveKeyInterface} from './models/remove-key.interface';
 import {RemoveIpinterface} from './models/remove-ipinterface';
 import {ChangeStatusInterface} from './models/change-status.interface';
-import {CreateKeyComponent} from '../developer-list/create-key/create-key.component';
 import {MatDialog} from '@angular/material';
 import {DialogComponent} from '../../../../shared/component/dialog/dialog.component';
 
@@ -24,6 +22,8 @@ export class DeveloperComponent implements OnInit {
   keyData: DeveloperInterface;
   developerForm: FormGroup;
   validIps: ValidIpsInterface[];
+  duplicateIp: boolean = false;
+  ip: string;
 
   constructor(private route: ActivatedRoute,
               private ns: NotificationService,
@@ -52,7 +52,7 @@ export class DeveloperComponent implements OnInit {
       title: [null, Validators.compose([Validators.required, Validators.maxLength(16)])],
       key: [{value: null, disabled: true}],
       isActive: [null],
-      ip: [null],
+      ip: [null, Validators.pattern(/^(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$/)],
     });
   }
 
@@ -75,12 +75,31 @@ export class DeveloperComponent implements OnInit {
     this.ns.success('Authentication key coped', '');
   }
 
-  addIp() {
-    const payload: AddIpInterface = {ip: this.developerForm.value.ip};
-    this.ds.addIp(this.id, payload)
-      .subscribe(res => {
-        this.validIps.unshift({id: res.data, ip: this.developerForm.value.ip});
-      });
+  addIp(ip: string) {
+    this.ip = ip;
+    if (this.developerForm.get('ip').valid) {
+      for (const item of this.validIps) {
+        if (item.ip === this.developerForm.value.ip) {
+          this.duplicateIp = true;
+          return;
+        } else {
+          this.duplicateIp = false;
+        }
+      }
+      if (!this.duplicateIp) {
+        const payload: AddIpInterface = {ip: this.developerForm.value.ip};
+        this.ds.addIp(this.id, payload)
+          .subscribe(res => {
+            this.validIps.unshift({id: res.data, ip: this.developerForm.value.ip});
+          });
+      }
+    }
+  }
+
+  changeIp() {
+    if (this.ip !== this.developerForm.value.ip) {
+      this.duplicateIp = false;
+    }
   }
 
   removeApiKey() {
@@ -99,11 +118,17 @@ export class DeveloperComponent implements OnInit {
     dialogRef.afterClosed()
       .subscribe(result => {
         if (result && result.remove) {
-          if (result.remove.modalType) {
+          if (result.remove.modalType === 'apiKey') {
             this.ds.removeKey(this.id)
               .subscribe((res: RemoveKeyInterface) => {
                 this.ns.success('api key removed successfully!', '');
-                this.router.navigate(['/developer-list']);
+                this.router.navigate(['/developer/list']);
+              });
+          } else if (result.remove.modalType === 'ip') {
+            this.ds.removeIp(this.id, result.remove.data.id)
+              .subscribe((res: RemoveIpinterface) => {
+                this.validIps.splice(result.remove.data.index, 1);
+                this.ns.success('ip removed successfully!', '');
               });
           }
         }
@@ -111,11 +136,7 @@ export class DeveloperComponent implements OnInit {
   }
 
   removeIp(ipId, index) {
-    this.ds.removeIp(this.id, ipId)
-      .subscribe((res: RemoveIpinterface) => {
-        this.validIps.splice(index, 1);
-        this.ns.success('ip removed successfully!', '');
-      });
+    this.openDialog('auto', 'auto', '', {modalType: 'ip', modalText: 'are you sure to remove this ip?', id: ipId, index});
   }
 
   submit() {
@@ -127,4 +148,5 @@ export class DeveloperComponent implements OnInit {
         this.router.navigate(['/developer-list']);
       });
   }
+
 }

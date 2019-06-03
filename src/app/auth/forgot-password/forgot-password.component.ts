@@ -48,6 +48,12 @@ export class ForgotPasswordComponent implements OnInit {
 
   @ViewChild('verificationCodePart5Element') verificationCodePart5Element: ElementRef;
 
+
+  foods = [
+    {value: 'steak-0', viewValue: 'Steak'},
+    {value: 'pizza-1', viewValue: 'Pizza'},
+    {value: 'tacos-2', viewValue: 'Tacos'}
+  ];
   constructor(private forgotPasswordService: ForgotPasswordService,
               private router: Router,
               private fb: FormBuilder,

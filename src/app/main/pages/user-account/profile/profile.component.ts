@@ -17,9 +17,6 @@ export class ProfileComponent implements OnInit {
   profileForm: FormGroup;
   profileData: ProfileGetInterface;
   countries: DataCountryInterface[];
-  genders = [{title: 'Unknown', value: 1},
-    {title: 'Female', value: 2},
-    {title: 'Male', value: 3}];
   imageUrl: string = null;
 
   constructor(private fb: FormBuilder,
