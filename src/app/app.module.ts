@@ -56,7 +56,6 @@ import {StatusTranslatorPipe} from './main/pages/tickets/status-translator.pipe'
 import {SlimSidebarComponent} from './main/layout/slim-sidebar/slim-sidebar.component';
 
 import {PrivacyComponent} from './main/pages/user-account/privacy/privacy.component';
-import {ProfileComponent} from './main/pages/user-account/profile/profile.component';
 import {RewardPointComponent} from './main/pages/user-account/reward-point/reward-point.component';
 import {DeactiveAccountComponent} from './main/pages/user-account/privacy/deactive-account/deactive-account.component';
 import {LoginLogComponent} from './main/pages/user-account/privacy/login-log/login-log.component';
@@ -73,18 +72,10 @@ import {SharedModule} from './shared/module/shared.module';
 import {MainRoutingModule} from './main/main-routing.module';
 import {MainComponent} from './main/main.component';
 
-import {ChangeNumberComponent} from './main/pages/user-account/profile/change-number/change-number.component';
-import {VerifyNumberComponent} from './main/pages/user-account/profile/change-number/verify-number/verify-number.component';
-
 import {CreateKeyComponent} from './main/pages/developers/developer-list/create-key/create-key.component';
 
-
 import {FooterComponent} from './main/layout/footer/footer.component';
-import {InfoComponent} from './main/pages/user-account/profile/info/info.component';
-import {ChangeEmailComponent} from './main/pages/user-account/profile/change-email/change-email.component';
-import {SenderIdComponent} from './main/pages/user-account/profile/sender-id/sender-id.component';
 import {DialogComponent} from './shared/component/dialog/dialog.component';
-
 @NgModule({
 
   declarations: [
@@ -117,11 +108,9 @@ import {DialogComponent} from './shared/component/dialog/dialog.component';
     CreateTransactionComponent,
     StatusTranslatorPipe,
     SlimSidebarComponent,
-    ProfileComponent,
     ChangePasswordComponent,
     BillingAddressComponent,
     NumericInputDirective,
-    ProfileComponent,
     PrivacyComponent,
     RewardPointComponent,
     DeactiveAccountComponent,
@@ -131,14 +120,10 @@ import {DialogComponent} from './shared/component/dialog/dialog.component';
     FundListComponent,
     FundComponent,
     MainComponent,
-    ChangeNumberComponent,
-    VerifyNumberComponent,
+
     CreateKeyComponent,
     FooterComponent,
-    InfoComponent,
-    ChangeEmailComponent,
-    SenderIdComponent,
-    DialogComponent
+    DialogComponent,
 
   ],
   entryComponents: [

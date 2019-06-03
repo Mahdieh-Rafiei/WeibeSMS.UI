@@ -21,7 +21,7 @@
                   <div class="text-left"
                        *ngIf="(((registerForm.controls['firstName'].dirty || registerForm.controls['firstName'].touched) || formDir.submitted))">
                     <p class="errorMessage" *ngIf="registerForm.hasError('required', 'firstName')">
-                      this filed is required!
+                      <i class="fas fa-exclamation-circle"></i> this filed is required!
                     </p>
                     <p class="errorMessage"
                        *ngIf="(registerForm.controls['firstName'].hasError('maxlength'))">
