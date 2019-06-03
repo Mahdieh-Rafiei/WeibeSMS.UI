@@ -49,12 +49,6 @@ export class ForgotPasswordComponent implements OnInit {
 
   @ViewChild('verificationCodePart5Element') verificationCodePart5Element: ElementRef;
 
-
-  foods = [
-    {value: 'steak-0', viewValue: 'Steak'},
-    {value: 'pizza-1', viewValue: 'Pizza'},
-    {value: 'tacos-2', viewValue: 'Tacos'}
-  ];
   constructor(private forgotPasswordService: ForgotPasswordService,
               private router: Router,
               private fb: FormBuilder,
@@ -80,7 +74,7 @@ export class ForgotPasswordComponent implements OnInit {
     this.forgotPasswordForm = this.fb.group({
       Mobile: [null, Validators.compose([Validators.required, Validators.pattern(pattern)])],
       Reason: [2],
-      prefixNumberId: ['', Validators.required]
+      prefixNumberId: [1, Validators.required]
     });
     this.resetPassForm = this.fb.group({
       password: [null, Validators.compose([Validators.required,

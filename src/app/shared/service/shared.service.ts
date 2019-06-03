@@ -5,6 +5,7 @@ import {ApiService} from '../api.service';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {CountryInterface} from '../models/country.interface';
 import {CityInterface} from '../models/city.interface';
+import {IpInterface} from '../models/ip.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -12,9 +13,7 @@ import {CityInterface} from '../models/city.interface';
 
 export class SharedService {
 
-  constructor(private as: ApiService,
-              private cs: ConfigService,
-              private http: HttpClient) {
+  constructor(private as: ApiService) {
 
   }
 

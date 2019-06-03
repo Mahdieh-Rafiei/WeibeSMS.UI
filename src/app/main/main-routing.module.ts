@@ -40,6 +40,10 @@ const routes: Routes = [
         path: 'privacy',
         loadChildren: '.\/pages\/user-account\/privacy\/privacy.module#PrivacyModule',
       },
+      {
+        path: 'index',
+        loadChildren: '.\/pages\/dashboard\/dashboard.module#DashboardModule',
+      },
     ]
   }
 ];

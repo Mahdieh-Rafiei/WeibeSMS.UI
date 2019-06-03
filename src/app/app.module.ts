@@ -24,7 +24,7 @@ import {LoginComponent} from './auth/login/login.component';
 import {RegisterComponent} from './auth/register/register.component';
 import {SidebarComponent} from './main/layout/sidebar/sidebar.component';
 import {TopNavComponent} from './main/layout/top-nav/top-nav.component';
-import {DashboardComponent} from './main/pages/dashboard/dashboard.component';
+// import {DashboardComponent} from './main/pages/dashboard/dashboard.component';
 import {AuthenticationService} from './auth/login/authentication.service';
 import {RegisterService} from './auth/register/register.service';
 import {ForgotPasswordComponent} from './auth/forgot-password/forgot-password.component';
@@ -81,7 +81,7 @@ import {DialogComponent} from './shared/component/dialog/dialog.component';
     RegisterComponent,
     SidebarComponent,
     TopNavComponent,
-    DashboardComponent,
+    // DashboardComponent,
     ForgotPasswordComponent,
     GroupComponent,
     GroupListComponent,

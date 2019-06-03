@@ -15,6 +15,8 @@ import {CountryInterface} from '../../shared/models/country.interface';
 import {SharedService} from '../../shared/service/shared.service';
 import {DataCountryInterface} from '../../shared/models/data-country.interface';
 import {animate, style, transition, trigger} from '@angular/animations';
+import {HttpClient} from '@angular/common/http';
+import {IpInterface} from '../../shared/models/ip.interface';
 
 @Component({
   selector: 'app-login',
@@ -26,7 +28,7 @@ import {animate, style, transition, trigger} from '@angular/animations';
       'errorAnimation', [
         transition(':enter', [
           style({transform: 'translateY(-20%)', opacity: 0}),
-          animate('.3s cubic-bezier(.25,.46,.45,.94)', style({transform: 'translateY(0%)',opacity: 1}))
+          animate('.3s cubic-bezier(.25,.46,.45,.94)', style({transform: 'translateY(0%)', opacity: 1}))
         ]),
         transition(':leave', [
           style({transform: 'translateY(0)', opacity: 1}),
@@ -82,6 +84,7 @@ export class LoginComponent implements OnInit {
   }
 
 
+
   getCountry() {
     this.shs.getCountry()
       .subscribe((res: CountryInterface) => this.countries = res.data);
@@ -92,7 +95,7 @@ export class LoginComponent implements OnInit {
     this.signUpForm = this.fb.group({
       mobile: [null, Validators.compose([Validators.required, Validators.pattern(pattern)])],
       reason: [1],
-      prefixNumberId: ['', Validators.required]
+      prefixNumberId: [1, Validators.required]
     });
     this.signInForm = this.fb.group({
       username: [null, Validators.required],

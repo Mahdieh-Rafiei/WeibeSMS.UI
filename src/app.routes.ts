@@ -40,7 +40,7 @@ import {FundComponent} from './app/main/pages/add-fund/fund/fund.component';
 import {BillingAddressResolverService} from './app/main/pages/biling/billing-address/billing-address-resolver.service';
 
 export const APP_ROUTES: Routes = [
-  {path: 'index', component: DashboardComponent, canActivate: [CanActivateRouteGuard]},
+  // {path: 'index', component: DashboardComponent, canActivate: [CanActivateRouteGuard]},
 
   {path: 'group/:groupId', component: GroupComponent, canActivate: [CanActivateRouteGuard]},
   {path: 'group', component: GroupListComponent, canActivate: [CanActivateRouteGuard]},

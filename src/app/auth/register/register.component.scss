@@ -10,7 +10,8 @@
   justify-content: center;
   display: flex;
   flex-flow: column wrap;
-  width: 1001px;
+  max-width: 1001px;
+  width: 100%;
 }
 
 //.ws-box {
@@ -35,7 +36,6 @@
 }
 
 .subject {
-  border-bottom: 1px solid #d4d4d4;
   padding: 0;
   display: inline-flex;
   img {
