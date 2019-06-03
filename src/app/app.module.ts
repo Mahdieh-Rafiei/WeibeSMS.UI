@@ -76,8 +76,6 @@ import {CreateKeyComponent} from './main/pages/developers/developer-list/create-
 
 import {FooterComponent} from './main/layout/footer/footer.component';
 import {DialogComponent} from './shared/component/dialog/dialog.component';
-import {VerifyNumberComponent} from './main/pages/user-account/profile/change-number/verify-number/verify-number.component';
-
 @NgModule({
 
   declarations: [
@@ -122,10 +120,10 @@ import {VerifyNumberComponent} from './main/pages/user-account/profile/change-nu
     FundListComponent,
     FundComponent,
     MainComponent,
+
     CreateKeyComponent,
     FooterComponent,
     DialogComponent,
-    VerifyNumberComponent
 
   ],
   entryComponents: [

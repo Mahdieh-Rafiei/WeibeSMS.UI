@@ -1,13 +1,28 @@
-.ws-box {
-  height: 709px;
-  //position: absolute;
-  margin: auto;
-  top: -40px;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  //width: 90%;
+.flex-container {
+  justify-content: center;
+  display: flex;
+  flex-flow: row wrap;
+  align-items: center;
+  height: 100vh;
 }
+
+.flex-container-child {
+  justify-content: center;
+  display: flex;
+  flex-flow: column wrap;
+  width: 1001px;
+}
+
+//.ws-box {
+//  height: 709px;
+//  //position: absolute;
+//  margin: auto;
+//  top: -40px;
+//  right: 0;
+//  bottom: 0;
+//  left: 0;
+//  //width: 90%;
+//}
 
 .ws-login-box {
   background: #fff;
@@ -110,15 +125,15 @@ ul {
 }
 
 @media (min-width: 1600px) {
-  .ws-box {
-    width: 75%;
-  }
+  //.ws-box {
+  //  width: 75%;
+  //}
 }
 
 @media (max-width: 768px) {
-  .ws-box {
-    width: 95%;
-  }
+  //.ws-box {
+  //  width: 95%;
+  //}
 
   .vb-content {
     width: calc(100% + -30px) !important;
@@ -130,10 +145,10 @@ ul {
 }
 
 @media (max-width: 767px) and (min-width: 320px) {
-  .ws-btn {
-    width: 100%;
-    padding: 10px 0;
-  }
+  //.ws-btn {
+  //  width: 100%;
+  //  padding: 10px 0;
+  //}
   .privacy {
     padding: 20px 5px;
     display: inline-flex;

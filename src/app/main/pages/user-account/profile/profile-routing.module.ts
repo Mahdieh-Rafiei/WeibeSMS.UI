@@ -43,14 +43,14 @@ const routes: Routes = [{
       num: 1
     },
   }
-  // , {
-  //   path: 'verify-number',
-  //   component: VerifyNumberComponent,
-  //   data: {
-  //     title: 'verify number',
-  //     num: 1
-  //   },
-  // }
+  , {
+    path: 'verify-number',
+    component: VerifyNumberComponent,
+    data: {
+      title: 'verify number',
+      num: 1
+    },
+  }
   ],
 }];
 
@@ -67,5 +67,5 @@ export const routedComponents = [
   ChangeNumberComponent,
   ChangeEmailComponent,
   SenderIdComponent,
-  // VerifyNumberComponent,
+  VerifyNumberComponent,
 ];

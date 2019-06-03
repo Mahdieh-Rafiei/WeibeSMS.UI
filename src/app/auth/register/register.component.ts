@@ -26,6 +26,8 @@ export class RegisterComponent implements OnInit {
   emailUnique: boolean = false;
   userNameUnique: boolean = false;
 
+  showSpinner: boolean = false;
+
   constructor(private registerService: RegisterService,
               private authService: AuthenticationService,
               private router: Router,
@@ -61,6 +63,7 @@ export class RegisterComponent implements OnInit {
     }
     if (this.registerForm.valid && !this.notMatch && this.registerForm.value.confirmPassword && !this.emailUnique && !this.userNameUnique) {
       this.confirmPasswordOut();
+      this.showSpinner = true;
       const key = this.authSharedService.keyLogin;
       const mobile = +this.authSharedService.mobile;
       const payload: RegisterInterface = this.registerForm.value;
@@ -70,12 +73,14 @@ export class RegisterComponent implements OnInit {
       delete payload['confirmPassword'];
       this.registerService.saveInfo(payload)
         .subscribe(res => {
+            this.showSpinner = false;
             this.authService.setToken(res.data.token);
             localStorage.removeItem('k-l');
             this.configService.authenticationChanged.emit(true);
             this.router.navigateByUrl('index');
           },
           err => {
+            this.showSpinner = false;
             if (err.error.Message === '1') {
               console.log(err);
               this.router.navigate(['/login']);
@@ -94,7 +99,7 @@ export class RegisterComponent implements OnInit {
   }
 
   confirm(event) {
-    this.disableButton = !event.target.checked;
+    this.disableButton = !event.checked;
   }
 
   checkUnique(key: number, value: string) {

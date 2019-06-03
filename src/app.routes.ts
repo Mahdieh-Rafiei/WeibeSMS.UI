@@ -29,10 +29,8 @@ import {TicketListComponent} from './app/main/pages/tickets/ticket-list/ticket-l
 
 import {PrivacyComponent} from './app/main/pages/user-account/privacy/privacy.component';
 import {ChangePasswordComponent} from './app/main/pages/user-account/privacy/change-password/change-password.component';
-import {ChangeNumberComponent} from './app/main/pages/user-account/profile/change-number/change-number.component';
 import {DeactiveAccountComponent} from './app/main/pages/user-account/privacy/deactive-account/deactive-account.component';
 import {LoginLogComponent} from './app/main/pages/user-account/privacy/login-log/login-log.component';
-import {ProfileComponent} from './app/main/pages/user-account/profile/profile.component';
 import {RewardPointComponent} from './app/main/pages/user-account/reward-point/reward-point.component';
 
 import {BillingComponent} from './app/main/pages/biling/billing.component';
@@ -43,12 +41,7 @@ import {CreateTransactionComponent} from './app/main/pages/biling/create-transac
 
 import {FundListComponent} from './app/main/pages/add-fund/fund-list/fund-list.component';
 import {FundComponent} from './app/main/pages/add-fund/fund/fund.component';
-import {ProfileResolverService} from './app/main/pages/user-account/profile/profile-resolver.service';
-import {VerifyNumberComponent} from './app/main/pages/user-account/profile/change-number/verify-number/verify-number.component';
 import {BillingAddressResolverService} from './app/main/pages/biling/billing-address/billing-address-resolver.service';
-import {SenderIdComponent} from './app/main/pages/user-account/profile/sender-id/sender-id.component';
-import {ChangeEmailComponent} from './app/main/pages/user-account/profile/change-email/change-email.component';
-import {InfoComponent} from './app/main/pages/user-account/profile/info/info.component';
 
 
 export const APP_ROUTES: Routes = [
@@ -83,22 +76,6 @@ export const APP_ROUTES: Routes = [
 
         ]
     },
-
-    // {
-    //     path: 'profile', component: ProfileComponent, children: [
-    //
-    //         {path: 'info', component: InfoComponent},
-    //         {path: 'change-number', component: ChangeNumberComponent},
-    //         {path: 'change-email', component: ChangeEmailComponent},
-    //         {path: 'sender-id', component: SenderIdComponent},
-    //         {path: 'verify-number', component: VerifyNumberComponent},
-    //
-    //     ]
-    //   , resolve: {
-    //         profile: ProfileResolverService,
-    //     },
-    // },
-
     {
         path: 'billing', component: BillingComponent, children: [
             {
@@ -113,7 +90,6 @@ export const APP_ROUTES: Routes = [
         ]
     },
 
-    {path: 'verify-number', component: VerifyNumberComponent},
 
 
     {path: 'reward-point', component: RewardPointComponent},

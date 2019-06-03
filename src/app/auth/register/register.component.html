@@ -1,6 +1,6 @@
-<div class="container-fluid">
-  <div class="container">
-    <div class="col-12 col-xs-12 ws-box">
+<app-loading-spinner *ngIf="showSpinner"></app-loading-spinner>
+<div class="flex-container">
+    <div class="flex-container-child">
       <div class="right-box ws-login-box">
         <div class="subject text-left">
           <img src="../../../assets/images/LogoLogin.svg" class="img-responsive">
@@ -141,9 +141,6 @@
                       </ul>
                     </ul>
                   </div>
-                  <!--<p class="red-text">Password min length is 8 characters</p>-->
-                  <!--<p class="red-text"> Password needs to have at least one uppercase, one digit, and one-->
-                  <!--special character</p>-->
                 </div>
                 <div class="col-12 col-md-4 form-group">
                   <label>Re-enter Password*</label>
@@ -162,10 +159,9 @@
               </div>
             </div>
             <div class="col-md-12 privacy">
-              <input type="checkbox" (change)="confirm($event)" id="confirm">
-              <label for="confirm">I have read and agree to Weiß SMS terms and <span
+              <mat-checkbox (change)="confirm($event)">I have read and agree to Weiß SMS terms and <span
                 class="sign-in">conditions</span>
-                and the <span class="sign-in">privacy policy</span>.</label>
+                and the <span class="sign-in">privacy policy</span>.</mat-checkbox>
             </div>
             <div class="col-md-12 text-center btn-save">
               <button [disabled]="disableButton"
@@ -181,5 +177,4 @@
         </form>
       </div>
     </div>
-  </div>
 </div>
