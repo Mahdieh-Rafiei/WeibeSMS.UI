@@ -7,17 +7,17 @@ import {
 import {Observable, of, EMPTY} from 'rxjs';
 import {mergeMap} from 'rxjs/operators';
 
-import {ProfileGetInterface} from './models/profile-get.interface';
-import {UserAccountService} from '../user-account.service';
+import {InfoGetInterface} from './models/info-get.interface';
+import {UserAccountService} from '../../user-account.service';
 
 @Injectable({
   providedIn: 'root',
 })
-export class ProfileResolverService implements Resolve<ProfileGetInterface> {
+export class InfoResolverService implements Resolve<InfoGetInterface> {
   constructor(private uas: UserAccountService) {
   }
 
-  resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<ProfileGetInterface> {
+  resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<InfoGetInterface> {
 
     return this.uas.getProfile().pipe(
       mergeMap(profile => {

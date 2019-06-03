@@ -1,6 +1,6 @@
 import {Gender} from './gender.enum';
 
-export interface DataProfileGetInterface {
+export interface DataInfoGetInterface {
   firstName: string;
   lastName: string;
   email: string;

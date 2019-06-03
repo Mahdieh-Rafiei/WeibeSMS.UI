@@ -27,12 +27,6 @@ import {TicketComponent} from './app/main/pages/tickets/ticket/ticket.component'
 import {AddTicketComponent} from './app/main/pages/tickets/add-ticket/add-ticket.component';
 import {TicketListComponent} from './app/main/pages/tickets/ticket-list/ticket-list.component';
 
-import {PrivacyComponent} from './app/main/pages/user-account/privacy/privacy.component';
-import {ChangePasswordComponent} from './app/main/pages/user-account/privacy/change-password/change-password.component';
-import {ChangeNumberComponent} from './app/main/pages/user-account/profile/change-number/change-number.component';
-import {DeactiveAccountComponent} from './app/main/pages/user-account/privacy/deactive-account/deactive-account.component';
-import {LoginLogComponent} from './app/main/pages/user-account/privacy/login-log/login-log.component';
-import {ProfileComponent} from './app/main/pages/user-account/profile/profile.component';
 import {RewardPointComponent} from './app/main/pages/user-account/reward-point/reward-point.component';
 
 import {BillingComponent} from './app/main/pages/biling/billing.component';
@@ -43,97 +37,63 @@ import {CreateTransactionComponent} from './app/main/pages/biling/create-transac
 
 import {FundListComponent} from './app/main/pages/add-fund/fund-list/fund-list.component';
 import {FundComponent} from './app/main/pages/add-fund/fund/fund.component';
-import {ProfileResolverService} from './app/main/pages/user-account/profile/profile-resolver.service';
-import {VerifyNumberComponent} from './app/main/pages/user-account/profile/change-number/verify-number/verify-number.component';
 import {BillingAddressResolverService} from './app/main/pages/biling/billing-address/billing-address-resolver.service';
-import {SenderIdComponent} from './app/main/pages/user-account/profile/sender-id/sender-id.component';
-import {ChangeEmailComponent} from './app/main/pages/user-account/profile/change-email/change-email.component';
-import {InfoComponent} from './app/main/pages/user-account/profile/info/info.component';
-
 
 export const APP_ROUTES: Routes = [
-    {path: 'index', component: DashboardComponent, canActivate: [CanActivateRouteGuard]},
+  {path: 'index', component: DashboardComponent, canActivate: [CanActivateRouteGuard]},
 
-    {path: 'group/:groupId', component: GroupComponent, canActivate: [CanActivateRouteGuard]},
-    {path: 'group', component: GroupListComponent, canActivate: [CanActivateRouteGuard]},
-    {path: 'group/:groupId/contact/:contactId', component: ContactComponent},
+  {path: 'group/:groupId', component: GroupComponent, canActivate: [CanActivateRouteGuard]},
+  {path: 'group', component: GroupListComponent, canActivate: [CanActivateRouteGuard]},
+  {path: 'group/:groupId/contact/:contactId', component: ContactComponent},
 
-    {
-        path: 'group/:groupId/add-contact', component: AddContactComponent, children: [
-            {path: 'from-file', component: AddContactFromFileComponent},
-            {path: 'single-contact', component: SingleAddContactComponent},
-            {path: 'from-list', component: ImportContactFromOtherListsComponent},
-        ]
-    },
+  {
+    path: 'group/:groupId/add-contact', component: AddContactComponent, children: [
+      {path: 'from-file', component: AddContactFromFileComponent},
+      {path: 'single-contact', component: SingleAddContactComponent},
+      {path: 'from-list', component: ImportContactFromOtherListsComponent},
+    ]
+  },
 
-    {
-        path: 'send-message', component: SendMessageComponent, children: [
-            {path: 'first-step', component: SendMessageFirstStepComponent},
-            {path: 'second-step', component: SendMessageSecondStepComponent},
-            {path: 'third-step', component: SendMessageThirdStepComponent},
-            {path: 'schedule', component: SendMessageScheduleComponent},
-            {path: 'event', component: SendMessageEventComponent},
-        ]
-    },
-    {
-        path: 'privacy', component: PrivacyComponent, children: [
-            {path: 'change-password', component: ChangePasswordComponent},
-            {path: 'deactive-account', component: DeactiveAccountComponent},
-            {path: 'login-log', component: LoginLogComponent},
-
-        ]
-    },
-
-    {
-        path: 'profile', component: ProfileComponent, children: [
-
-            {path: 'info', component: InfoComponent},
-            {path: 'change-number', component: ChangeNumberComponent},
-            {path: 'change-email', component: ChangeEmailComponent},
-            {path: 'sender-id', component: SenderIdComponent},
-            {path: 'verify-number', component: VerifyNumberComponent},
-
-        ], resolve: {
-            profile: ProfileResolverService,
+  {
+    path: 'send-message', component: SendMessageComponent, children: [
+      {path: 'first-step', component: SendMessageFirstStepComponent},
+      {path: 'second-step', component: SendMessageSecondStepComponent},
+      {path: 'third-step', component: SendMessageThirdStepComponent},
+      {path: 'schedule', component: SendMessageScheduleComponent},
+      {path: 'event', component: SendMessageEventComponent},
+    ]
+  },
+  {
+    path: 'billing', component: BillingComponent, children: [
+      {
+        path: 'billing-address', component: BillingAddressComponent, resolve: {
+          billingAddress: BillingAddressResolverService,
         },
-    },
+      },
+      {path: 'invoice-list', component: InvoiceListComponent},
+      {path: 'payment', component: PaymentComponent},
+      {path: 'create-transaction', component: CreateTransactionComponent},
 
-    {
-        path: 'billing', component: BillingComponent, children: [
-            {
-                path: 'billing-address', component: BillingAddressComponent, resolve: {
-                    billingAddress: BillingAddressResolverService,
-                },
-            },
-            {path: 'invoice-list', component: InvoiceListComponent},
-            {path: 'payment', component: PaymentComponent},
-            {path: 'create-transaction', component: CreateTransactionComponent},
+    ]
+  },
 
-        ]
-    },
+  {path: 'reward-point', component: RewardPointComponent},
 
-    {path: 'verify-number', component: VerifyNumberComponent},
+  {path: 'draft', component: DraftComponent},
+  {path: 'draft/:id', component: DraftComponent},
+  {path: 'draft-list', component: DraftListComponent},
 
+  {path: 'ticket/:id', component: TicketComponent},
+  {path: 'add-ticket', component: AddTicketComponent},
+  {path: 'ticket-list', component: TicketListComponent},
 
-    {path: 'reward-point', component: RewardPointComponent},
-
-    {path: 'draft', component: DraftComponent},
-    {path: 'draft/:id', component: DraftComponent},
-    {path: 'draft-list', component: DraftListComponent},
-
-    {path: 'ticket/:id', component: TicketComponent},
-    {path: 'add-ticket', component: AddTicketComponent},
-    {path: 'ticket-list', component: TicketListComponent},
-
-    {path: 'fund-list', component: FundListComponent},
-    {path: 'fund', component: FundComponent},
+  {path: 'fund-list', component: FundListComponent},
+  {path: 'fund', component: FundComponent},
 
 
-    {path: 'login', component: LoginComponent},
-    {path: 'register', component: RegisterComponent},
-    {path: 'forgot-password', component: ForgotPasswordComponent},
+  {path: 'login', component: LoginComponent},
+  {path: 'register', component: RegisterComponent},
+  {path: 'forgot-password', component: ForgotPasswordComponent},
 
-    {path: '**', redirectTo: 'notfound'}
+  {path: '**', redirectTo: 'notfound'}
 ];
-
-

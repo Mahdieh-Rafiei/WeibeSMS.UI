@@ -27,4 +27,9 @@ export class SharedService {
     const url = `BaseData/country/${countryId}/city`;
     return this.as.get(url, true);
   }
+
+  checkUnique(payload) {
+    const url = `User/isDuplicateValue?key=${payload.key}&value=${payload.value}`;
+    return this.as.get(url, false);
+  }
 }

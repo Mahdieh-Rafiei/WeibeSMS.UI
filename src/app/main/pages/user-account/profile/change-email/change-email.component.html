@@ -2,16 +2,34 @@
   <div class="change-password">
     <h5>Email</h5>
     <p>You can change your email before verify it.</p>
-    <div class="input-box">
-      <div class="row">
-        <div class="col-md-3">
+    <div class="mt-3 mb-3">
+      <form class="row" [formGroup]="changeEmailForm" #formDir="ngForm" (ngSubmit)="submit()">
+        <div class="col-md-4">
 
-          <input type="password" placeholder="Enter your new number">
+          <input type="text"
+                 class="form-control"
+                 #email
+                 (change)="checkUnique(2, email?.value)"
+                 formControlName="email"
+                 placeholder="Enter your Email">
+          <div class="text-left"
+               *ngIf="((changeEmailForm.controls['email'].dirty || changeEmailForm.controls['email'].touched || formDir.submitted) || emailUnique)">
+            <p class="errorMessage" *ngIf="changeEmailForm.hasError('required', 'email')">
+              this filed is required!
+            </p>
+            <p class="errorMessage"
+               *ngIf="(changeEmailForm.controls['email'].hasError('email')) ">
+              email is invalid!
+            </p>
+            <p class="errorMessage" *ngIf="emailUnique">
+              this email is already taken!
+            </p>
+          </div>
         </div>
-        <div class="col-md-1">
-          <button class="light-blue-btn">Get link</button>
-        </div>
-      </div>
+        <button [disabled]="disableButton" type="submit" class="light-blue-btn">Get link</button>
+        <!--<div class="col-md-1">-->
+        <!--</div>-->
+      </form>
     </div>
   </div>
 </div>

@@ -31,8 +31,4 @@ export class RegisterService {
     return this.apiService.post<RegisterInterface>(url, payload, false);
   }
 
-  checkUnique(payload) {
-    const url = `User/isDuplicateValue?key=${payload.key}&value=${payload.value}`;
-    return this.apiService.get(url, false);
-  }
 }

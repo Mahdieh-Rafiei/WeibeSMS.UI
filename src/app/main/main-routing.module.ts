@@ -32,6 +32,14 @@ const routes: Routes = [
         path: 'developer',
         loadChildren: '.\/pages\/developers\/developers.module#DevelopersModule',
       },
+      {
+        path: 'profile',
+        loadChildren: '.\/pages\/user-account\/profile\/profile.module#ProfileModule',
+      },
+      {
+        path: 'privacy',
+        loadChildren: '.\/pages\/user-account\/privacy\/privacy.module#PrivacyModule',
+      },
     ]
   }
 ];

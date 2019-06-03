@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {ActivatedRoute} from '@angular/router';
-import {ProfileGetInterface} from '../models/profile-get.interface';
+import {InfoGetInterface} from './models/info-get.interface';
 import {CountryInterface} from '../../../../../shared/models/country.interface';
 import {SharedService} from '../../../../../shared/service/shared.service';
 import {DataCountryInterface} from '../../../../../shared/models/data-country.interface';
@@ -15,7 +15,7 @@ import {UserAccountService} from '../../user-account.service';
 })
 export class InfoComponent implements OnInit {
     profileForm: FormGroup;
-    profileData: ProfileGetInterface;
+    profileData: InfoGetInterface;
     countries: DataCountryInterface[];
     genders = [{title: 'Unknown', value: 1},
         {title: 'Female', value: 2},
@@ -28,7 +28,7 @@ export class InfoComponent implements OnInit {
                 private notificationService: NotificationService,
                 private shs: SharedService) {
         this.route.data
-            .subscribe((data: { profile: ProfileGetInterface }) => {
+            .subscribe((data: { profile: InfoGetInterface }) => {
                 this.profileData = data.profile;
             });
         this.getCountry();

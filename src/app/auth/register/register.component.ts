@@ -9,6 +9,7 @@ import {AuthSharedService} from '../auth-shared.service';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {Gender} from '../../shared/enums';
 import {RegisterInterface} from './models/register.interface';
+import {SharedService} from '../../shared/service/shared.service';
 
 
 @Component({
@@ -32,6 +33,7 @@ export class RegisterComponent implements OnInit {
               private authService: AuthenticationService,
               private router: Router,
               private fb: FormBuilder,
+              private shs: SharedService,
               private configService: ConfigService,
               private notificationService: NotificationService,
               private authSharedService: AuthSharedService) {
@@ -105,7 +107,7 @@ export class RegisterComponent implements OnInit {
   checkUnique(key: number, value: string) {
     if (key === 1 ? value.length > 5 : value.length > 0) {
       const payload = {key, value};
-      this.registerService.checkUnique(payload)
+      this.shs.checkUnique(payload)
         .subscribe((res: any) => {
           if (!res.data) {
             if (key === 1) {
