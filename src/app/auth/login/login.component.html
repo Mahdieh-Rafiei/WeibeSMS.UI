@@ -70,11 +70,10 @@
               <div class="btn-group">
                 <button class="form-control dropdown-toggle btn-default btn-select" type="button" data-toggle="dropdown" role="button"  aria-expanded="true">
                   <img class="mr-2" width="20" [src]="'data:image/jpg;base64,'+countryFlag"/>
-
                 </button>
                 <div class="custom-dropdown">
                   <ul class="dropdown-menu" role="listbox" aria-expanded="true">
-                    <li class="dropdown-item" *ngFor="let country of countries" (click)="selectCountry(country)">
+                    <li class="dropdown-item" *ngFor="let country of countries" (click)="selectCountry(2, country)">
                       <img class="ml-2 mr-2" width="20" [src]="'data:image/jpg;base64,'+country.flag"/>
                       <span>{{country.name}}</span>
                       (<span>{{country.prefixNumber}}</span>)
@@ -83,9 +82,11 @@
                 </div>
               </div>
               <input type="text"
+                     #mobileInput
                      placeholder="Your phone number"
                      class="form-control"
                      formControlName="mobile"
+                     (input)="changeMobile(mobileInput.value)"
                      appNumericInput
                      [ngClass]="{'border-error' : (signUpForm.controls['mobile'].hasError('pattern')) && (signUpForm.controls['mobile'].touched || enterPressConfirm)}"
                      autofocus autocomplete="off">
