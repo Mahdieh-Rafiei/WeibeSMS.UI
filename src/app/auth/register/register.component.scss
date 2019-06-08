@@ -14,17 +14,6 @@
   width: 100%;
 }
 
-//.ws-box {
-//  height: 709px;
-//  //position: absolute;
-//  margin: auto;
-//  top: -40px;
-//  right: 0;
-//  bottom: 0;
-//  left: 0;
-//  //width: 90%;
-//}
-
 .ws-login-box {
   background: #fff;
   box-shadow: 0 1px 6px 0 rgba(32, 33, 36, 0.28);
@@ -47,26 +36,6 @@
   padding-top: 40px;
 }
 
-label {
-  font-weight: 400;
-  color: #6c7293;
-  font-size: 13px;
-}
-
-::placeholder {
-  color: #a7abc3;
-  font-size: 12px;
-}
-
-input[type=text], input[type=password] {
-  width: 100%;
-  padding: 5px;
-}
-
-select {
-  width: 100%;
-  padding: 5px;
-}
 
 .register-input .col-md-4 {
   padding: 6px 15px;
