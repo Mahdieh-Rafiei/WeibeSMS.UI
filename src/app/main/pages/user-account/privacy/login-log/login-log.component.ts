@@ -3,6 +3,7 @@ import {ActivatedRoute} from '@angular/router';
 import {LoginLogInterface} from './models/login-log.interface';
 import {DraftInterface} from '../../../draft/draft/models/draft.interface';
 import {UserAccountService} from '../../user-account.service';
+import {PrivacyService} from '../privacy.service';
 
 @Component({
   selector: 'app-login-log',
@@ -17,7 +18,7 @@ export class LoginLogComponent implements OnInit {
   phrase = '';
 
   constructor(private route: ActivatedRoute,
-              private uas: UserAccountService) {
+              private ps: PrivacyService) {
     this.route.data
       .subscribe((data: { loginLog: LoginLogInterface }) => {
         this.loginLogs = data.loginLog;
@@ -30,7 +31,7 @@ export class LoginLogComponent implements OnInit {
   }
 
   getAllDrafts() {
-    this.uas.loginLog(this.pageNumber, this.pageSize, this.phrase)
+    this.ps.loginLog(this.pageNumber, this.pageSize, this.phrase)
       .subscribe((res: LoginLogInterface) => {
         this.totalItemsCount = res.data.totalItemsCount;
         this.loginLogs = res;

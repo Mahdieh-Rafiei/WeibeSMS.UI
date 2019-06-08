@@ -5,6 +5,7 @@ import {LoginLogComponent} from './login-log/login-log.component';
 import {DeactiveAccountComponent} from './deactive-account/deactive-account.component';
 import {PrivacyComponent} from './privacy.component';
 import {LoginLogResolverService} from './login-log/login-log-resolver.service';
+import {DeleteAccountComponent} from './deactive-account/delete-acount/delete-account.component';
 
 const routes: Routes = [{
   path: '',
@@ -48,5 +49,6 @@ export const routedComponents = [
   PrivacyComponent,
   ChangePasswordComponent,
   LoginLogComponent,
-  DeactiveAccountComponent
+  DeactiveAccountComponent,
+  DeleteAccountComponent
 ];

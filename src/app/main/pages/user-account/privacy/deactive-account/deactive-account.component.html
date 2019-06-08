@@ -1,22 +1,35 @@
 <div class="div-section">
-    <div class="hange-password">
-        <h5>Deactive</h5>
-        <p>Update your account password. Always set a strong password, including uppercase, lowercase, number.</p>
-        <div class="col-md-4 input-box">
+  <div class="hange-password">
+    <h5>Deactive</h5>
+    <p>Update your account password. Always set a strong password, including uppercase, lowercase, number.</p>
+    <form class="row" [formGroup]="deActiveForm" #formDir="ngForm" (ngSubmit)="submit()">
+      <div class="col-12 col-md-4">
+        <div class="row">
+          <div class="col-12 form-group">
             <label>why are you deactivate your account: </label>
-            <select>
-                <option>select</option>
-                <option>select</option>
-                <option>select</option>
+            <select class="form-control" formControlName="reason">
+              <option hidden value="">select</option>
+              <option [value]="reason.value" *ngFor="let reason of reasons">{{reason.title}}</option>
             </select>
-            <textarea rows="8"></textarea>
+            <div class="text-left"
+                 *ngIf="(((deActiveForm.controls['reason'].dirty || deActiveForm.controls['reason'].touched) || formDir.submitted))">
+              <p class="errorMessage" *ngIf="deActiveForm.hasError('required', 'reason')">
+                this filed is required!
+              </p>
+            </div>
+          </div>
+          <div class="col-12 form-group">
+            <textarea formControlName="description" rows="8"></textarea>
+          </div>
         </div>
-        <!--<div class="col-md-4 no-pad textarea-answer">-->
-            <!--<textarea rows="8"></textarea>-->
-        <!--</div>-->
-        <div class="col-md-12 text-right">
-            <button class="light-red-btn">Deactive your account ?</button>
-        </div>
-    </div>
+      </div>
+      <!--<div class="col-md-4 no-pad textarea-answer">-->
+      <!--<textarea rows="8"></textarea>-->
+      <!--</div>-->
+      <div class="col-md-12 text-right">
+        <button type="submit" class="light-red-btn">DeActive your account ?</button>
+      </div>
+    </form>
+  </div>
 
 </div>

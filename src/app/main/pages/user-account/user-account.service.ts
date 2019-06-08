@@ -7,6 +7,8 @@ import {ChangePasswordResponseInterface} from './privacy/change-password/models/
 import {ChangeEmailInterface} from './profile/change-email/models/change-email.interface';
 import {SenderIdResponseInterface} from './profile/sender-id/models/sender-id-response.interface';
 import {LoginLogInterface} from './privacy/login-log/models/login-log.interface';
+import {RemoveGroupNameResponseInterface} from '../group/group-list/models/remove-group-name-response.interface';
+import {DeleteAccountInterface} from './privacy/deactive-account/delete-acount/models/delete-account.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -46,8 +48,4 @@ export class UserAccountService {
     return this.apiService.put(url, payload, true);
   }
 
-  loginLog(pageNumber: number, pageSize: number, phrase: string): Observable<LoginLogInterface> {
-    const url = `User/login?pageNumber=${pageNumber}&pageSize=${pageSize}`;
-    return this.apiService.get(url, true);
-  }
 }
