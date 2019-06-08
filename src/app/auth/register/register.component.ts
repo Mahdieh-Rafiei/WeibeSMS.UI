@@ -10,12 +10,16 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {Gender} from '../../shared/enums';
 import {RegisterInterface} from './models/register.interface';
 import {SharedService} from '../../shared/service/shared.service';
+import {errorAnimation} from '../../shared/component/animation/error-animation';
 
 
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
-  styleUrls: ['./register.component.scss']
+  styleUrls: ['./register.component.scss'],
+  animations: [
+    errorAnimation()
+  ]
 })
 export class RegisterComponent implements OnInit {
   registerForm: FormGroup;

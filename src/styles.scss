@@ -910,17 +910,37 @@ li {
   align-items: center;
   justify-content: center;
 
-  mat-select {
-    width: 100px;
+  .btn-select {
+    width: 70px;
     border-right: none;
     border-radius: 0.25rem 0 0 0.25rem;
   }
-  mat-option:focus {
+  .btn-select:focus {
     border-right: none;
-    border-color: #ced4da;
+    border-color: #2cd9f4;
+    box-shadow: none;
     outline: none;
   }
   input {
     border-radius: 0 0.25rem 0.25rem 0;
   }
+}
+
+.custom-dropdown {
+  ul {
+    padding-left: 0;
+    max-height: 200px;
+    overflow-y: scroll;
+    min-width: 280px;
+  }
+  .dropdown-item{
+    cursor: pointer;
+  }
+}
+
+label {
+  display: block;
+  color: #6c7293;
+  font-weight: 600;
+  font-size: 15px;
 }

@@ -14,41 +14,50 @@
           <div class="row">
             <div class="col-md-12">
               <div class="row">
-                <div class="col-12 col-md-4 form-group">
+                <div class="col-12 col-md-4">
                   <label>Name*</label>
                   <input type="text"
+                         [ngClass]="{'border-error' : ((registerForm.controls['firstName'].dirty || registerForm.controls['firstName'].touched) || formDir.submitted)}"
+                         class="form-control"
                          placeholder="Your Name"
                          formControlName="firstName">
-                  <div class="text-left"
-                       *ngIf="(((registerForm.controls['firstName'].dirty || registerForm.controls['firstName'].touched) || formDir.submitted))">
-                    <p class="errorMessage" *ngIf="registerForm.hasError('required', 'firstName')">
-                      <i class="fas fa-exclamation-circle"></i> this filed is required!
-                    </p>
-                    <p class="errorMessage"
-                       *ngIf="(registerForm.controls['firstName'].hasError('maxlength'))">
-                      Firstname max length is 20 char!
-                    </p>
+                  <div class="error-place">
+                    <div class="text-left"
+                         *ngIf="(((registerForm.controls['firstName'].dirty || registerForm.controls['firstName'].touched) || formDir.submitted))">
+                      <p class="errorMessage" *ngIf="registerForm.hasError('required', 'firstName')" [@errorAnimation]>
+                        <i class="far fa-exclamation-circle"></i>  Enter first name!
+                      </p>
+                      <p class="errorMessage"
+                         *ngIf="(registerForm.controls['firstName'].hasError('maxlength'))" [@errorAnimation]>
+                        <i class="far fa-exclamation-circle"></i>  Firstname max length is 20 char!
+                      </p>
+                    </div>
                   </div>
                 </div>
-                <div class="col-12 col-md-4 form-group">
+                <div class="col-12 col-md-4">
                   <label>Surname*</label>
                   <input type="text"
+                         [ngClass]="{'border-error' : ((registerForm.controls['lastName'].dirty || registerForm.controls['lastName'].touched) || formDir.submitted)}"
+                         class="form-control"
                          placeholder="Your Surname"
                          formControlName="lastName">
-                  <div class="text-left"
-                       *ngIf="(((registerForm.controls['lastName'].dirty || registerForm.controls['lastName'].touched) || formDir.submitted))">
-                    <p class="errorMessage" *ngIf="registerForm.hasError('required', 'lastName')">
-                      this filed is required!
-                    </p>
-                    <p class="errorMessage"
-                       *ngIf="(registerForm.controls['lastName'].hasError('maxlength'))">
-                      Surename max length is 30 char!
-                    </p>
+                  <div class="error-place">
+                    <div class="text-left"
+                         *ngIf="(((registerForm.controls['lastName'].dirty || registerForm.controls['lastName'].touched) || formDir.submitted))">
+                      <p class="errorMessage" *ngIf="registerForm.hasError('required', 'lastName')" [@errorAnimation]>
+                        <i class="far fa-exclamation-circle"></i> Enter last name!
+                      </p>
+                      <p class="errorMessage"
+                         *ngIf="(registerForm.controls['lastName'].hasError('maxlength'))" [@errorAnimation]>
+                        <i class="far fa-exclamation-circle"></i> lastname max length is 30 char!
+                      </p>
+                    </div>
                   </div>
+
                 </div>
-                <div class="col-12 col-md-4 form-group">
+                <div class="col-12 col-md-4">
                   <label>Gender :</label>
-                  <select formControlName="gender">
+                  <select formControlName="gender" class="form-control">
                     <option hidden value="">select</option>
                     <option *ngFor="let gender of genders" [value]="gender.value">
                       {{gender.title}}
@@ -59,62 +68,73 @@
             </div>
             <div class="col-md-12">
               <div class="row">
-                <div class="col-12 col-md-4 form-group">
+                <div class="col-12 col-md-4">
                   <label>Company name</label>
                   <input type="text"
+                         class="form-control"
                          placeholder="Your Company name"
                          formControlName="companyName">
                 </div>
-                <div class="col-12 col-md-4 form-group">
-                  <label>Email</label>
+                <div class="col-12 col-md-4">
+                  <label>Email*</label>
                   <input type="text"
+                         class="form-control"
+                         [ngClass]="{'border-error' : ((registerForm.controls['email'].dirty || registerForm.controls['email'].touched) || formDir.submitted)}"
                          #email
                          placeholder="User Email"
                          (change)="checkUnique(2, email?.value)"
                          formControlName="email">
-                  <div class="text-left"
+                  <div class="error-place">
+                     <div class="text-left"
                        *ngIf="(((registerForm.controls['email'].dirty || registerForm.controls['email'].touched) || formDir.submitted) || emailUnique)">
-                    <p class="errorMessage" *ngIf="registerForm.hasError('required', 'email')">
-                      this filed is required!
+                    <p class="errorMessage" *ngIf="registerForm.hasError('required', 'email')" [@errorAnimation]>
+                      <i class="far fa-exclamation-circle"></i>  Enter your email!
                     </p>
-                    <p class="errorMessage" *ngIf="emailUnique">
-                      this email is already taken!
+                    <p class="errorMessage" *ngIf="emailUnique" [@errorAnimation]>
+                      <i class="far fa-exclamation-circle"></i>  this email is already taken!
                     </p>
+                  </div>
                   </div>
                 </div>
               </div>
             </div>
             <div class="col-md-12">
               <div class="row">
-                <div class="col-12 col-md-4 form-group">
+                <div class="col-12 col-md-4">
                   <label>Username*</label>
                   <input type="text"
+                         [ngClass]="{'border-error' : ((registerForm.controls['userName'].dirty || registerForm.controls['userName'].touched) || formDir.submitted)}"
                          autocomplete="off"
+                         class="form-control"
                          placeholder="Your username"
                          #userName
                          (change)="checkUnique(1, userName?.value)"
                          formControlName="userName">
-                  <div class="text-left"
-                       *ngIf="(((registerForm.controls['userName'].touched) || formDir.submitted))">
+                  <div class="error-place">
+                    <div class="text-left"
+                       *ngIf="(((registerForm.controls['userName'].touched) || formDir.submitted))" [@errorAnimation]>
                     <p class="errorMessage" *ngIf="registerForm.hasError('required', 'userName')">
-                      this filed is required!
+                      <i class="far fa-exclamation-circle"></i> please choose your username!
                     </p>
                     <p class="errorMessage"
-                       *ngIf="(registerForm.controls['userName'].hasError('minlength'))">
-                      Username min length is 6 char!
+                       *ngIf="(registerForm.controls['userName'].hasError('minlength'))" [@errorAnimation]>
+                      <i class="far fa-exclamation-circle"></i>  Username min length is 6 char!
                     </p>
-                    <p class="errorMessage" *ngIf="userNameUnique">
-                      this user name is already taken!
+                    <p class="errorMessage" *ngIf="userNameUnique" [@errorAnimation]>
+                      <i class="far fa-exclamation-circle"></i>  this user name is already taken!
                     </p>
+                  </div>
                   </div>
                 </div>
               </div>
             </div>
             <div class="col-md-12">
               <div class="row">
-                <div class="col-12 col-md-4 form-group">
+                <div class="col-12 col-md-4">
                   <label>Password*</label>
                   <input type="password"
+                         placeholder="Enter Your Password"
+                         class="form-control"
                          autocomplete="off"
                          formControlName="password">
                   <div class="text-left"
@@ -143,9 +163,10 @@
                     </ul>
                   </div>
                 </div>
-                <div class="col-12 col-md-4 form-group">
+                <div class="col-12 col-md-4">
                   <label>Re-enter Password*</label>
                   <input type="password"
+                         class="form-control"
                          autocomplete="off"
                          placeholder="Confirm Your Password"
                          (input)="confirmPasswordOut()"

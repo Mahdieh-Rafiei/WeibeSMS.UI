@@ -64,42 +64,39 @@
           <span class="welcome-text">Create a free account on <span class="weib">Weiß SMS</span>.</span>
         </div>
         <div>
-          <div class="mt-3 mb-3">
-            <div class="flex-group" [formGroup]="signUpForm">
-              <button type="button" class="btn dropdown-toggle btn-default"
-                      data-toggle="dropdown" role="button"
-                      title="Afghanistan" aria-expanded="true">
-                <img class="mr-2" width="20" [src]="'data:image/jpg;base64,'+countryFlag"/>
-                {{countryPrefix}}
-              </button>
-              <div class="custom-dropdown">
-                <ul class="dropdown-menu inner" role="listbox" aria-expanded="true">
-                  <li *ngFor="let country of countries" (click)="selectCountry(country)">
-                    <img class="mr-2" width="20" [src]="'data:image/jpg;base64,'+country.flag"/>
-                    <span>{{country.name}}</span>
-                    (<span>{{country.prefixNumber}}</span>)
-                  </li>
-                </ul>
-              </div>
+          <div class="mt-3 mb-2">
 
+            <div class="flex-group" [formGroup]="signUpForm">
+              <div class="btn-group">
+                <button class="form-control dropdown-toggle btn-default btn-select" type="button" data-toggle="dropdown" role="button"  aria-expanded="true">
+                  <img class="mr-2" width="20" [src]="'data:image/jpg;base64,'+countryFlag"/>
+
+                </button>
+                <div class="custom-dropdown">
+                  <ul class="dropdown-menu" role="listbox" aria-expanded="true">
+                    <li class="dropdown-item" *ngFor="let country of countries" (click)="selectCountry(country)">
+                      <img class="ml-2 mr-2" width="20" [src]="'data:image/jpg;base64,'+country.flag"/>
+                      <span>{{country.name}}</span>
+                      (<span>{{country.prefixNumber}}</span>)
+                    </li>
+                  </ul>
+                </div>
+              </div>
               <input type="text"
                      placeholder="Your phone number"
                      class="form-control"
                      formControlName="mobile"
                      appNumericInput
-                     [ngClass]="{'border-error' : (signUpForm.controls['mobile'].dirty || signUpForm.controls['mobile'].touched || formDir.submitted) && (signUpForm.hasError('required', 'mobile') || signUpForm.controls['mobile'].hasError('pattern'))}"
+                     [ngClass]="{'border-error' : (signUpForm.controls['mobile'].hasError('pattern')) && (signUpForm.controls['mobile'].touched || enterPressConfirm)}"
                      autofocus autocomplete="off">
             </div>
-            <div class="text-left"
-                 *ngIf="((signUpForm.dirty || signUpForm.touched || formDir.submitted))">
-              <p class="errorMessage"
-                 *ngIf="signUpForm.hasError('required', 'mobile')">
-                <i class="fas fa-exclamation-circle"></i> this filed is required!
-              </p>
-              <p class="errorMessage"
-                 *ngIf="(signUpForm.controls['mobile'].hasError('pattern')) && (signUpForm.controls['mobile'].touched || enterPressConfirm)">
-                phone number is invalid!
-              </p>
+            <div class="error-place">
+              <div class="text-left"
+                   *ngIf="((signUpForm.dirty || signUpForm.touched || formDir.submitted))">
+                <p class="errorMessage" *ngIf="(signUpForm.controls['mobile'].hasError('pattern')) && (signUpForm.controls['mobile'].touched || enterPressConfirm)" [@errorAnimation]>
+                  <i class="far fa-exclamation-circle"></i>  phone number is invalid!
+                </p>
+              </div>
             </div>
           </div>
         </div>
