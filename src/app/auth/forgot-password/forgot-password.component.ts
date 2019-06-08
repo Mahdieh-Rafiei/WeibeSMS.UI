@@ -42,6 +42,9 @@ export class ForgotPasswordComponent implements OnInit {
   countries: DataCountryInterface[];
   showSpinner: boolean = false;
 
+  countryPrefix;
+  countryFlag;
+
   @ViewChild('verificationCodePart1Element') verificationCodePart1Element: ElementRef;
   @ViewChild('verificationCodePart2Element') verificationCodePart2Element: ElementRef;
   @ViewChild('verificationCodePart3Element') verificationCodePart3Element: ElementRef;
@@ -66,7 +69,11 @@ export class ForgotPasswordComponent implements OnInit {
 
   getCountry() {
     this.shs.getCountry()
-      .subscribe((res: CountryInterface) => this.countries = res.data);
+      .subscribe((res: CountryInterface) => {
+        this.countries = res.data;
+        this.countryPrefix = this.countries[0].prefixNumber;
+        this.countryFlag = this.countries[0].flag;
+      });
   }
 
   createForm() {
@@ -82,6 +89,15 @@ export class ForgotPasswordComponent implements OnInit {
       confirmPassword: [null]
     });
   }
+
+  selectCountry(country) {
+    this.countryPrefix = country.prefixNumber;
+    this.countryFlag = country.flag;
+    this.forgotPasswordForm.patchValue({
+      prefixNumberId: country.id
+    });
+  }
+
 
   sendVerificationCode() {
     if (this.forgotPasswordForm.valid) {
