@@ -1,3 +1,3 @@
 export interface AddGroupNameInterface {
-  GroupName: string;
+  groupName: string;
 }

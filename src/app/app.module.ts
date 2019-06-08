@@ -68,6 +68,7 @@ import {CreateKeyComponent} from './main/pages/developers/developer-list/create-
 import {FooterComponent} from './main/layout/footer/footer.component';
 import {DialogComponent} from './shared/component/dialog/dialog.component';
 import {AuthGuard} from './shared/auth.guard';
+import {AddEditGroupComponent} from './main/pages/group/group-list/add-edit/add-edit-group.component';
 
 @NgModule({
 
@@ -111,11 +112,13 @@ import {AuthGuard} from './shared/auth.guard';
     CreateKeyComponent,
     FooterComponent,
     DialogComponent,
+    AddEditGroupComponent
 
   ],
   entryComponents: [
     CreateKeyComponent,
     DialogComponent,
+    AddEditGroupComponent
   ],
 
   imports: [
