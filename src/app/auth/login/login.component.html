@@ -64,56 +64,30 @@
           <span class="welcome-text">Create a free account on <span class="weib">Weiß SMS</span>.</span>
         </div>
         <div>
-
-          <!--<div class="input-box v-input-box form-group" [formGroup]="signUpForm">-->
-          <!--<input type="text"-->
-          <!--placeholder="Your phone number"-->
-          <!--class="ws-login-input vinput"-->
-          <!--formControlName="mobile"-->
-          <!--appNumericInput-->
-          <!--autofocus autocomplete="off">-->
-          <!--<select class="v-input-select" formControlName="prefixNumberId">-->
-          <!--<option hidden value="">select</option>-->
-          <!--<option [value]="country.id" *ngFor="let country of countries">-->
-          <!--{{country.prefixNumber}}-->
-          <!--</option>-->
-          <!--</select>-->
-          <!--<div class="text-left"-->
-          <!--*ngIf="((signUpForm.dirty || signUpForm.touched || formDir.submitted))">-->
-          <!--<p class="errorMessage"-->
-          <!--*ngIf="signUpForm.hasError('required', 'mobile') || signUpForm.hasError('required', 'prefixNumberId')">-->
-          <!--<i class="fas fa-exclamation-circle"></i> this filed is required!-->
-          <!--</p>-->
-          <!--<p class="errorMessage"-->
-          <!--*ngIf="(signUpForm.controls['mobile'].hasError('pattern')) && (signUpForm.controls['mobile'].touched || enterPressConfirm)">-->
-          <!--phone number is invalid!-->
-          <!--</p>-->
-          <!--</div>-->
-          <!--</div>-->
           <div class="mt-3 mb-3">
             <div class="flex-group" [formGroup]="signUpForm">
-              <!--<select class="form-control" formControlName="prefixNumberId">-->
-              <!--<option hidden value="">select</option>-->
-              <!--<option class="test" [value]="country.id" *ngFor="let country of countries">-->
-              <!--<img [src]="'data:image/jpg;base64,'+country.flag"/>-->
-              <!--<span>{{country.name}}</span>-->
-              <!--(<span>{{country.prefixNumber}}</span>)-->
-              <!--</option>-->
-              <!--</select>-->
-              <mat-select class="form-control" formControlName="prefixNumberId"
-                         name="bodyStyle">
-                <mat-option hidden value=""></mat-option>
-                <mat-option [value]="country.id" *ngFor="let country of countries">
-                  <img class="mr-2" width="20" [src]="'data:image/jpg;base64,'+country.flag"/>
-                  <span>{{country.name}}</span>
-                  (<span>{{country.prefixNumber}}</span>)
-                </mat-option>
-              </mat-select>
+              <button type="button" class="btn dropdown-toggle btn-default"
+                      data-toggle="dropdown" role="button"
+                      title="Afghanistan" aria-expanded="true">
+                <img class="mr-2" width="20" [src]="'data:image/jpg;base64,'+countryFlag"/>
+                {{countryPrefix}}
+              </button>
+              <div class="custom-dropdown">
+                <ul class="dropdown-menu inner" role="listbox" aria-expanded="true">
+                  <li *ngFor="let country of countries" (click)="selectCountry(country)">
+                    <img class="mr-2" width="20" [src]="'data:image/jpg;base64,'+country.flag"/>
+                    <span>{{country.name}}</span>
+                    (<span>{{country.prefixNumber}}</span>)
+                  </li>
+                </ul>
+              </div>
+
               <input type="text"
                      placeholder="Your phone number"
                      class="form-control"
                      formControlName="mobile"
                      appNumericInput
+                     [ngClass]="{'border-error' : (signUpForm.controls['mobile'].dirty || signUpForm.controls['mobile'].touched || formDir.submitted) && (signUpForm.hasError('required', 'mobile') || signUpForm.controls['mobile'].hasError('pattern'))}"
                      autofocus autocomplete="off">
             </div>
             <div class="text-left"

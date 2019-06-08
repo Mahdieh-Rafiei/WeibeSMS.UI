@@ -53,6 +53,8 @@ export class LoginComponent implements OnInit {
   enterPressConfirm: boolean = false;
   countries: DataCountryInterface[];
   showSpinner: boolean = false;
+  countryPrefix;
+  countryFlag;
 
   constructor(private authService: AuthenticationService,
               private registerService: RegisterService,
@@ -70,10 +72,13 @@ export class LoginComponent implements OnInit {
   }
 
 
-
   getCountry() {
     this.shs.getCountry()
-      .subscribe((res: CountryInterface) => this.countries = res.data);
+      .subscribe((res: CountryInterface) => {
+        this.countries = res.data;
+        this.countryPrefix = this.countries[0].prefixNumber;
+        this.countryFlag = this.countries[0].flag;
+      });
   }
 
   createForm() {
@@ -104,6 +109,14 @@ export class LoginComponent implements OnInit {
             this.showSpinner = false;
           });
     }
+  }
+
+  selectCountry(country) {
+    this.countryPrefix = country.prefixNumber;
+    this.countryFlag = country.flag;
+    this.signUpForm.patchValue({
+      prefixNumberId: country.id
+    });
   }
 
   keySendVerificationCode(event) {
