@@ -41,6 +41,8 @@ export class LoginComponent implements OnInit {
   @ViewChild('verificationCodePart4Element') verificationCodePart4Element: ElementRef;
   @ViewChild('verificationCodePart5Element') verificationCodePart5Element: ElementRef;
 
+  @ViewChild('mobileInput') mobileInput: ElementRef;
+
   verificationCodePart1: string = '';
   verificationCodePart2: string = '';
   verificationCodePart3: string = '';
@@ -55,6 +57,8 @@ export class LoginComponent implements OnInit {
   showSpinner: boolean = false;
   countryPrefix;
   countryFlag;
+
+  mobileValue;
 
   constructor(private authService: AuthenticationService,
               private registerService: RegisterService,
@@ -76,15 +80,16 @@ export class LoginComponent implements OnInit {
     this.shs.getCountry()
       .subscribe((res: CountryInterface) => {
         this.countries = res.data;
-        this.countryPrefix = this.countries[0].prefixNumber;
-        this.countryFlag = this.countries[0].flag;
+        this.selectCountry(1, this.countries[0]);
       });
   }
 
   createForm() {
-    const pattern = /^(09|9)[0-9]{9}$/ig;
+    // const pattern = /^(09|9)[0-9]{9}$/ig;
     this.signUpForm = this.fb.group({
-      mobile: [null, Validators.compose([Validators.required, Validators.pattern(pattern)])],
+      mobile: [null, Validators.compose([Validators.required,
+        // Validators.pattern(pattern)
+      ])],
       reason: [1],
       prefixNumberId: [1, Validators.required]
     });
@@ -92,6 +97,11 @@ export class LoginComponent implements OnInit {
       username: [null, Validators.required],
       password: [null, Validators.required]
     });
+  }
+
+
+  changeMobile(mobile: string) {
+    this.countries.forEach(item => mobile === item.prefixNumber ? this.selectCountry(2, item) : null);
   }
 
   login() {
@@ -111,12 +121,16 @@ export class LoginComponent implements OnInit {
     }
   }
 
-  selectCountry(country) {
+  selectCountry(index, country) {
     this.countryPrefix = country.prefixNumber;
     this.countryFlag = country.flag;
     this.signUpForm.patchValue({
-      prefixNumberId: country.id
+      prefixNumberId: country.id,
+      mobile: country.prefixNumber
     });
+    if (index === 2) {
+      this.mobileInput.nativeElement.focus();
+    }
   }
 
   keySendVerificationCode(event) {
@@ -129,9 +143,16 @@ export class LoginComponent implements OnInit {
   sendVerificationCode() {
     if (this.signUpForm.valid) {
       this.showSpinner = true;
-      this.authSharedService.mobile = this.signUpForm.value.mobile;
+      this.countries.forEach(item => {
+        if (this.signUpForm.value.prefixNumberId === item.id) {
+          this.mobileValue = this.signUpForm.value.mobile.substring(item.prefixNumber.length);
+        }
+      });
+      console.log(this.mobileValue);
+      this.authSharedService.mobile = this.mobileValue;
       this.authSharedService.prefixNumberId = +this.signUpForm.value.prefixNumberId;
       const payload: SendVerificationCodeInterface = this.signUpForm.value;
+      payload['mobile'] = this.mobileValue;
       this.registerService.sendVerificationCode(payload)
         .subscribe((res: SendVerificationCodeResponseInterface) => {
             this.showSpinner = false;

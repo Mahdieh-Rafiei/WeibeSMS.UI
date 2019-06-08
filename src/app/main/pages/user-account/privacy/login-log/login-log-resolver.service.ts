@@ -4,17 +4,18 @@ import {UserAccountService} from '../../user-account.service';
 import {mergeMap} from 'rxjs/operators';
 import {EMPTY, Observable, of} from 'rxjs';
 import {LoginLogInterface} from './models/login-log.interface';
+import {PrivacyService} from '../privacy.service';
 
 @Injectable({
   providedIn: 'root'
 })
 
 export class LoginLogResolverService implements Resolve<LoginLogInterface> {
-  constructor(private uas: UserAccountService) {
+  constructor(private ps: PrivacyService) {
   }
 
   resolve(rout: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<LoginLogInterface> {
-    return this.uas.loginLog(1, 10, '').pipe(
+    return this.ps.loginLog(1, 10, '').pipe(
       mergeMap(loginLog => {
         if (loginLog) {
           return of(loginLog);

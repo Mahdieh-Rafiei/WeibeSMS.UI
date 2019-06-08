@@ -1,65 +1,65 @@
-<div class="btn-section text-right">
-    <button class="green-btn" (click)="setAddMode()">
-        <i class="fa fa-plus">
-        </i> New Group
+<div class="main-container">
+  <div class="btn-section text-right">
+    <button class="green-btn" (click)="addEditGroup(null)">
+      <i class="fa fa-plus">
+      </i> New Group
     </button>
-</div>
-<div class="div-section">
+  </div>
+  <div class="div-section">
     <!--operation-->
     <div class="row">
-        <div class="col-md-6 operation-section form-group">
-            <button class="light-blue-btn">
-                <i class="fa fa-filter"></i> Filter
-            </button>
-        </div>
-        <div class="col-md-6 operation-section form-group">
-            <app-search [params]="[{title: 'device'}, {title: 'location'}]"></app-search>
-        </div>
+      <div class="col-md-6 operation-section form-group">
+        <button class="light-blue-btn">
+          <i class="fa fa-filter"></i> Filter
+        </button>
+      </div>
+      <div class="col-md-6 operation-section form-group">
+        <!--<app-search [params]="[{title: 'device'}, {title: 'location'}]"></app-search>-->
+      </div>
     </div>
     <!--table-->
     <div class="table-div table-responsive">
-        <table class="index-table text-left">
-            <thead>
-            <tr>
-                <th class="text-left"><i class="fa fa-sort"></i> Id</th>
-                <th class="text-left"><i class="fa fa-sort"></i> Title</th>
-                <th class="text-center"><i class="fa fa-sort"></i> Recipient</th>
-                <th></th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr *ngFor="let group of groups | paginate : {
+      <table class="index-table text-left">
+        <thead>
+        <tr>
+          <th class="text-left"><i class="fa fa-sort"></i> Id</th>
+          <th class="text-left"><i class="fa fa-sort"></i> Title</th>
+          <th class="text-center"><i class="fa fa-sort"></i> Recipient</th>
+          <th></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let group of groups | paginate : {
                     itemsPerPage : 10, currentPage : pageNumber, totalItems : totalItemsCount
                     },index as i">
-                <td class="text-left">
-                    <div class="table-head">
-                        <span>{{i + 1}}</span>
-                    </div>
-                </td>
-                <td class="text-left">
-                    <div class="table-head">
-                        <span>{{group.groupName}}</span>
-                    </div>
-                </td>
-                <td class=" text-center">
-                    <div>{{group.contactsCount}}</div>
-                </td>
-                <td class="td-single text-right actions-container">
-                    <div class="actions">
-                        <a (click)="removeGroup(group)" ><i class="fa fa-trash light-red-btn"></i></a>
-                        <a (click)="setEditMode(group)"> <i class="fa fa-pencil light-green-btn"></i></a>
-                        <a [routerLink]="[group.id]"><i class="fa fa-eye light-green-btn"></i></a>
-                    </div>
-                </td>
-            </tr>
-            </tbody>
-        </table>
-        <div class="table-pagination text-right">
-            <span><i class="fa fa-arrow-circle-left"></i></span>
-            <span><i class="fa fa-arrow-circle-right"></i></span>
-        </div>
+          <td class="text-left">
+            <div class="table-head">
+              <span>{{i + 1}}</span>
+            </div>
+          </td>
+          <td class="text-left">
+            <div class="table-head">
+              <span>{{group.groupName}}</span>
+            </div>
+          </td>
+          <td class=" text-center">
+            <div>{{group.contactsCount}}</div>
+          </td>
+          <td class="td-single text-right actions-container">
+            <div class="actions">
+              <a (click)="removeGroup(i, group)"><i class="fa fa-trash light-red-btn"></i></a>
+              <a (click)="addEditGroup(group)"> <i class="fa fa-pencil light-green-btn"></i></a>
+              <a [routerLink]="[group.id]"><i class="fa fa-eye light-green-btn"></i></a>
+            </div>
+          </td>
+        </tr>
+        </tbody>
+      </table>
+      <div class="table-pagination text-right">
+        <span><i class="fa fa-arrow-circle-left"></i></span>
+        <span><i class="fa fa-arrow-circle-right"></i></span>
+      </div>
     </div>
-
 
 
     <pagination-controls (pageChange)="doPaging($event)"
@@ -68,46 +68,6 @@
                          previousLabel=""
                          nextLabel=""></pagination-controls>
 
+  </div>
+
 </div>
-
-
-<div *ngIf="showState == 'add'" class="modal fade in modal-back" role="dialog" tabindex="-1" style="display: block;"
-     aria-modal="true">
-    <div role="document" class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button (click)="showState = 'default'" aria-label="Close" class="close pull-right" type="button">
-                    <span aria-hidden="true">×</span>
-                </button>
-            </div>
-            <div class="modal-body text-center">
-                <div>
-                    <input [(ngModel)]="groupName" class="ws-login-input" type="text" placeholder="name">
-                    <br>
-                    <button class="ws-btn modal-btn green-btn" (click)="saveNewGroup()">Save</button>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-<div *ngIf="showState == 'edit'" class="modal fade in modal-back" role="dialog" tabindex="-1" style="display: block;"
-     aria-modal="true">
-    <div role="document" class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button (click)="showState = 'default'" aria-label="Close" class="close pull-right" type="button">
-                    <span aria-hidden="true">×</span>
-                </button>
-            </div>
-            <div class="modal-body text-center">
-                <div>
-                    <input [(ngModel)]="groupName" class="ws-login-input" type="text" placeholder="group name">
-                    <br>
-                    <button class="ws-btn modal-btn" (click)="modifyGroup()">Modify</button>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
-
