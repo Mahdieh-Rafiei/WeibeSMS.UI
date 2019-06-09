@@ -4,7 +4,7 @@
             <button class="previous-btn"><i class="fa fa-arrow-left"></i> Previous</button>
         </div>
         <div class="col-12 col-md-6 col-sm-6 col-xs-6 text-right">
-            <button [routerLink]="['add-contact','single-contact']" class="green-btn"> Add Contact</button>
+            <button [routerLink]="['add-contact']" class="green-btn"> Add Contact</button>
         </div>
     </div>
 </div>
@@ -28,7 +28,7 @@
             </button>
         </div>
         <div class="col-md-6 operation-section form-group">
-            <app-search [params]="[{title: 'device'}, {title: 'location'}]"></app-search>
+            <!--<app-search [params]="[{title: 'device'}, {title: 'location'}]"></app-search>-->
         </div>
     </div>
     <!--table-->
@@ -47,14 +47,14 @@
             <tr *ngFor="let contact of contacts| paginate : {
                                 itemsPerPage : 10, currentPage : pageNumber, totalItems : totalItemsCount
                                 },index as i">
-                <td class=" text-cleft">
+              <td class="text-left">
+                <div>
+                  <mat-checkbox></mat-checkbox>
+                  {{i + 1}}
+                </div>
+              </td>
+              <td class=" text-cleft">
                     <div>{{contact.mobile}}</div>
-                </td>
-                <td class="text-left">
-                    <div>
-                        <mat-checkbox></mat-checkbox>
-                        {{i + 1}}
-                    </div>
                 </td>
                 <td class="text-left">
                     <div class="table-head">

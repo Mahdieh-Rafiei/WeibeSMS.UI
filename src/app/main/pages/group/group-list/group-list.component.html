@@ -1,4 +1,4 @@
-<div class="main-container">
+<div>
   <div class="btn-section text-right">
     <button class="green-btn" (click)="addEditGroup(null)">
       <i class="fa fa-plus">
@@ -49,7 +49,7 @@
             <div class="actions">
               <a (click)="removeGroup(i, group)"><i class="fa fa-trash light-red-btn"></i></a>
               <a (click)="addEditGroup(group)"> <i class="fa fa-pencil light-green-btn"></i></a>
-              <a [routerLink]="[group.id]"><i class="fa fa-eye light-green-btn"></i></a>
+              <a [routerLink]="['../',group.id]"><i class="fa fa-eye light-green-btn"></i></a>
             </div>
           </td>
         </tr>
@@ -69,5 +69,4 @@
                          nextLabel=""></pagination-controls>
 
   </div>
-
 </div>

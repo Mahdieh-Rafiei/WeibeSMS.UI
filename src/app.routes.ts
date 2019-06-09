@@ -1,11 +1,8 @@
 import {Routes} from '@angular/router';
 import {LoginComponent} from './app/auth/login/login.component';
 import {RegisterComponent} from './app/auth/register/register.component';
-import {CanActivateRouteGuard} from './app/shared/canActivateRouteGuard';
 import {ForgotPasswordComponent} from './app/auth/forgot-password/forgot-password.component';
 
-import {GroupComponent} from './app/main/pages/group/group.component';
-import {GroupListComponent} from './app/main/pages/group/group-list/group-list.component';
 import {ContactComponent} from './app/main/pages/group/contact/contact.component';
 import {AddContactComponent} from './app/main/pages/group/add-contact/add-contact.component';
 import {SingleAddContactComponent} from './app/main/pages/group/add-contact/single-add-contact/single-add-contact.component';
@@ -40,8 +37,8 @@ import {BillingAddressResolverService} from './app/main/pages/biling/billing-add
 import {AuthGuard} from './app/shared/auth.guard';
 
 export const APP_ROUTES: Routes = [
-  {path: 'group/:groupId', component: GroupComponent, canActivate: [CanActivateRouteGuard]},
-  {path: 'group', component: GroupListComponent, canActivate: [CanActivateRouteGuard]},
+  // {path: 'group/:groupId', component: SubGroupComponent, canActivate: [CanActivateRouteGuard]},
+  // {path: 'group', component: GroupListComponent, canActivate: [CanActivateRouteGuard]},
   {path: 'group/:groupId/contact/:contactId', component: ContactComponent},
 
   {
