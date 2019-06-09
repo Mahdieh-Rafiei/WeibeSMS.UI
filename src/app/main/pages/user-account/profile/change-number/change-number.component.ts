@@ -1,9 +1,13 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {Router} from '@angular/router';
 import {CountryInterface} from '../../../../../shared/models/country.interface';
 import {SharedService} from '../../../../../shared/service/shared.service';
 import {DataCountryInterface} from '../../../../../shared/models/data-country.interface';
+import {SendVerificationCodeInterface} from '../../../../../auth/login/models/send-verification-code.interface';
+import {UserAccountService} from '../../user-account.service';
+import {log} from 'util';
+import {ChangeNumberInterface} from './models/change-number.interface';
 
 @Component({
   selector: 'app-change-number',
@@ -11,12 +15,18 @@ import {DataCountryInterface} from '../../../../../shared/models/data-country.in
   styleUrls: ['./change-number.component.scss']
 })
 export class ChangeNumberComponent implements OnInit {
+  @ViewChild('mobileInput') mobileInput: ElementRef;
+
   changeNumberForm: FormGroup;
   countries: DataCountryInterface[];
+  countryPrefix;
+  countryFlag;
+  mobileValue;
 
   constructor(private fb: FormBuilder,
               private shs: SharedService,
-              private router: Router) {
+              private router: Router,
+              private uas: UserAccountService) {
   }
 
   ngOnInit() {
@@ -27,22 +37,67 @@ export class ChangeNumberComponent implements OnInit {
 
   getCountry() {
     this.shs.getCountry()
-      .subscribe((res: CountryInterface) => this.countries = res.data);
+      .subscribe((res: CountryInterface) => {
+        this.countries = res.data;
+        this.selectCountry(1, this.countries[0]);
+      });
   }
 
-  createForm() {
-    const pattern = /^(09|9)[0-9]{9}$/ig;
-    this.changeNumberForm = this.fb.group({
-      mobile: [null, Validators.compose([Validators.required, Validators.pattern(pattern)])],
-      reason: [1],
-      countryId: ['', Validators.required]
+  selectCountry(index, country) {
+    this.countryPrefix = country.prefixNumber;
+    this.countryFlag = country.flag;
+    if (index === 2) {
+      this.mobileInput.nativeElement.focus();
+      this.countries.forEach(item => {
+        if (this.changeNumberForm.value.prefixNumberId === item.id) {
+          this.mobileValue = this.changeNumberForm.value.mobile.substring(item.prefixNumber.length);
+        }
+      });
+      this.changeNumberForm.patchValue({
+        mobile: country.prefixNumber + this.mobileValue
+      });
+    } else {
+      this.changeNumberForm.patchValue({
+        mobile: country.prefixNumber
+      });
+    }
+    this.changeNumberForm.patchValue({
+      prefixNumberId: country.id,
     });
   }
 
+  createForm() {
+    this.changeNumberForm = this.fb.group({
+      mobile: [null, Validators.required],
+      reason: [3],
+      prefixNumberId: [1, Validators.required]
+    });
+  }
+
+  changeMobile(mobile: string) {
+    this.countries.forEach(item => mobile === item.prefixNumber ? this.selectCountry(2, item) : null);
+  }
+
   submit() {
-    console.log(this.changeNumberForm.value);
     if (this.changeNumberForm.valid) {
-      this.router.navigate(['./privacy/verify-number']);
+      this.countries.forEach(item => {
+        if (this.changeNumberForm.value.prefixNumberId === item.id) {
+          this.mobileValue = this.changeNumberForm.value.mobile.substring(item.prefixNumber.length);
+        }
+      });
+      const payload: SendVerificationCodeInterface = this.changeNumberForm.value;
+      payload['mobile'] = this.mobileValue;
+      this.shs.data = payload;
+      this.uas.sendVerificationCode(payload)
+        .subscribe((res: ChangeNumberInterface) => {
+            this.router.navigate(['/profile/verify-number']);
+            this.shs.data['key'] = res.data.key;
+          },
+          err => {
+            if (err.error.Message === '4') {
+              this.router.navigate(['/profile/verify-number']);
+            }
+          });
     }
   }
 }

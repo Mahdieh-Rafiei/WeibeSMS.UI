@@ -1,17 +1,15 @@
 import {Injectable} from '@angular/core';
 import {Observable} from 'rxjs';
-import {ConfigService} from '../config.service';
 import {ApiService} from '../api.service';
-import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {CountryInterface} from '../models/country.interface';
 import {CityInterface} from '../models/city.interface';
-import {IpInterface} from '../models/ip.interface';
 
 @Injectable({
   providedIn: 'root'
 })
 
 export class SharedService {
+  data;
 
   constructor(private as: ApiService) {
 
