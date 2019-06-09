@@ -2,9 +2,9 @@ import {Injectable} from '@angular/core';
 import {ApiService} from '../../../shared/api.service';
 import {Observable} from 'rxjs';
 import {UserEventResponseInterface} from './models/user-event-response.interface';
-import {AddUserEventInterface} from './models/add-user-event.interface';
-import {EditUserEventResponseInterface} from './models/edit-user-event-response.interface';
-import {AddUserEventResponseInterface} from './models/add-user-event-response.interface';
+import {AddUserEventInterface} from './add-edit/models/add-user-event.interface';
+import {EditUserEventResponseInterface} from './add-edit/models/edit-user-event-response.interface';
+import {AddUserEventResponseInterface} from './add-edit/models/add-user-event-response.interface';
 import {RemoveUserEventInterface} from './models/remove-user-event.interface';
 import {RemoveUserEventResponseInterface} from './models/remove-user-event-response.interface';
 

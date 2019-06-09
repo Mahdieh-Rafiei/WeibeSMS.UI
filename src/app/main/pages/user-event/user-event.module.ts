@@ -1,6 +1,7 @@
 import {NgModule} from '@angular/core';
 import {UserEventRoutingModule, routedComponents} from './user-event-routing.module';
-import {SharedModule} from "../../../shared/module/shared.module";
+import {SharedModule} from '../../../shared/module/shared.module';
+import {AddEditUserEventComponent} from './add-edit/add-edit-user-event.component';
 
 @NgModule({
     imports: [
@@ -10,6 +11,9 @@ import {SharedModule} from "../../../shared/module/shared.module";
     declarations: [
         ...routedComponents
     ],
+  entryComponents: [
+    AddEditUserEventComponent
+  ]
 
 })
 export class UserEventModule {
