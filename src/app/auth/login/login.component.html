@@ -1,167 +1,173 @@
 <app-loading-spinner *ngIf="showSpinner"></app-loading-spinner>
-<div class="flex-container login">
-  <div class="flex-container-child">
-    <div class="img-logo text-center">
-      <img src="../../assets/images/LogoLogin.svg" class="center-block img-responsive">
-    </div>
-    <div class="flex-content right-box">
-      <form class="form-content" *ngIf="isLoginMode" [formGroup]="signInForm" #formDir="ngForm">
-        <div>
-          <div class="text-center">
-            <h5>Welcome back</h5>
-            <span class="welcome-text">login to your account here</span>
-          </div>
-          <div>
-            <div class="input-box pt-2">
-              <input type="text"
-                     [ngClass]="{'border-error' : (signInForm.controls['username'].dirty || signInForm.controls['username'].touched || formDir.submitted) && signInForm.hasError('required', 'username')}"
-                     class="form-control"
-                     formControlName="username"
-                     autocomplete="off"
-                     placeholder="username">
-              <div class="error-place">
-                <div class="text-left"
-                     *ngIf="((signInForm.controls['username'].dirty || signInForm.controls['username'].touched || formDir.submitted))">
-                  <p class="errorMessage" *ngIf="signInForm.hasError('required', 'username')" [@errorAnimation]>
-                    <i class="far fa-exclamation-circle"></i> this filed is required!
-                  </p>
+<div *ngIf="!showSpinner" class="flex-container login">
+    <div class="flex-container-child">
+        <div class="img-logo text-center">
+            <img src="../../assets/images/LogoLogin.svg" class="center-block img-responsive pb-3">
+        </div>
+        <div class="flex-content pt-3">
+            <form class="form-content pr-4 pl-4 pb-3" *ngIf="isLoginMode" [formGroup]="signInForm" #formDir="ngForm">
+                <div>
+                    <div class="text-center">
+                        <h5>Welcome back</h5>
+                        <span class="welcome-text">login to your account here</span>
+                    </div>
+                    <div>
+                        <div class="input-box pt-2">
+                            <input type="text"
+                                   [ngClass]="{'border-error' : (signInForm.controls['username'].dirty || signInForm.controls['username'].touched || formDir.submitted) && signInForm.hasError('required', 'username')}"
+                                   class="form-control"
+                                   formControlName="username"
+                                   autocomplete="off"
+                                   placeholder="username">
+                            <div class="error-place">
+                                <div class="text-left"
+                                     *ngIf="((signInForm.controls['username'].dirty || signInForm.controls['username'].touched || formDir.submitted))">
+                                    <p class="errorMessage" *ngIf="signInForm.hasError('required', 'username')"
+                                       [@errorAnimation]>
+                                        <i class="far fa-exclamation-circle"></i> this filed is required!
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="input-box pt-1">
+                            <input type="password"
+                                   [ngClass]="{'border-error' : (signInForm.controls['password'].dirty || signInForm.controls['password'].touched || formDir.submitted) && signInForm.hasError('required', 'password')}"
+                                   class="form-control"
+                                   formControlName="password"
+                                   autocomplete="off"
+                                   placeholder="password">
+                            <div class="error-place">
+                                <div class="text-left"
+                                     *ngIf="((signInForm.controls['password'].dirty || signInForm.controls['password'].touched || formDir.submitted))">
+                                    <p class="errorMessage" *ngIf="signInForm.hasError('required', 'password')"
+                                       [@errorAnimation]>
+                                        <i class="far fa-exclamation-circle"></i> this filed is required!
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="btn-login-div">
+                        <p [routerLink]="['/forgot-password']" class="forgot-pass welcome-text"> Forgot password ?</p>
+                        <button type="submit" (click)="login()" class="ws-btn login-btn">Login</button>
+                    </div>
                 </div>
-              </div>
-            </div>
-            <div class="input-box pt-1">
-              <input type="password"
-                     [ngClass]="{'border-error' : (signInForm.controls['password'].dirty || signInForm.controls['password'].touched || formDir.submitted) && signInForm.hasError('required', 'password')}"
-                     class="form-control"
-                     formControlName="password"
-                     autocomplete="off"
-                     placeholder="password">
-              <div class="error-place">
-                <div class="text-left"
-                     *ngIf="((signInForm.controls['password'].dirty || signInForm.controls['password'].touched || formDir.submitted))">
-                  <p class="errorMessage" *ngIf="signInForm.hasError('required', 'password')" [@errorAnimation]>
-                    <i class="far fa-exclamation-circle"></i> this filed is required!
-                  </p>
+                <div class="text-center">
+                    <hr>
+                    <p class="welcome-text">Don't have an account?
+                        <span class="sign-fill" (click)="isLoginMode=false">Sign up</span>
+                    </p>
                 </div>
-              </div>
-            </div>
-          </div>
-          <div class="btn-login-div">
-            <p [routerLink]="['/forgot-password']" class="forgot-pass welcome-text"> Forgot password ?</p>
-            <button type="submit" (click)="login()" class="ws-btn login-btn">Login</button>
-          </div>
-        </div>
-        <div class="text-center">
-          <hr>
-          <p class="welcome-text">Don't have an account?
-            <span class="sign-up" (click)="isLoginMode=false">Sign up</span>
-          </p>
-        </div>
-      </form>
-      <form class="form-content" *ngIf="!isLoginMode && !verificationCodeSent" #formDir="ngForm"
-            (keydown)="keySendVerificationCode($event)">
-        <div class="text-center">
-          <h5>Hello Stranger!</h5>
-          <span class="welcome-text">Create a free account on <span class="weib">Weiß SMS</span>.</span>
-        </div>
-        <div>
-          <div class="mt-3 mb-2">
-
-            <div class="flex-group" [formGroup]="signUpForm">
-              <div class="btn-group">
-                <button class="form-control dropdown-toggle btn-default btn-select" type="button" data-toggle="dropdown" role="button"  aria-expanded="true">
-                  <img class="mr-2" width="20" [src]="'data:image/jpg;base64,'+countryFlag"/>
-                </button>
-                <div class="custom-dropdown">
-                  <ul class="dropdown-menu" role="listbox" aria-expanded="true">
-                    <li class="dropdown-item" *ngFor="let country of countries" (click)="selectCountry(2, country)">
-                      <img class="ml-2 mr-2" width="20" [src]="'data:image/jpg;base64,'+country.flag"/>
-                      <span>{{country.name}}</span>
-                      (<span>{{country.prefixNumber}}</span>)
-                    </li>
-                  </ul>
+            </form>
+            <form class="form-content pr-4 pl-4 pb-3" *ngIf="!isLoginMode && !verificationCodeSent" #formDir="ngForm"
+                  (keydown)="keySendVerificationCode($event)">
+                <div class="text-center">
+                    <h5>Hello Stranger!</h5>
+                    <span class="welcome-text">Create a free account on <span class="weib">Weiß SMS</span>.</span>
                 </div>
-              </div>
-              <input type="text"
-                     #mobileInput
-                     placeholder="Your phone number"
-                     class="form-control"
-                     formControlName="mobile"
-                     (input)="changeMobile(mobileInput.value)"
-                     appNumericInput
-                     [ngClass]="{'border-error' : (signUpForm.controls['mobile'].hasError('pattern')) && (signUpForm.controls['mobile'].touched || enterPressConfirm)}"
-                     autofocus autocomplete="off">
+                <div>
+                    <div class="mt-3 mb-2">
+                        <div class="flex-group" [formGroup]="signUpForm">
+                            <div class="btn-group">
+                                <button class="form-control dropdown-toggle btn-default btn-select" type="button"
+                                        data-toggle="dropdown" role="button" aria-expanded="true">
+                                    <img class="mr-2" width="20" [src]="'data:image/jpg;base64,'+countryFlag"/>
+                                </button>
+                                <div class="custom-dropdown">
+                                    <ul class="dropdown-menu" role="listbox" aria-expanded="true">
+                                        <li class="dropdown-item" *ngFor="let country of countries"
+                                            (click)="selectCountry(2, country)">
+                                            <img class="ml-2 mr-2" width="20"
+                                                 [src]="'data:image/jpg;base64,'+country.flag"/>
+                                            <span>{{country.name}}</span>
+                                            (<span>{{country.prefixNumber}}</span>)
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <input type="text"
+                                   #mobileInput
+                                   placeholder="Your phone number"
+                                   class="form-control"
+                                   formControlName="mobile"
+                                   (input)="changeMobile(mobileInput.value)"
+                                   appNumericInput
+                                   [ngClass]="{'border-error' : (signUpForm.controls['mobile'].hasError('pattern')) && (signUpForm.controls['mobile'].touched || enterPressConfirm)}"
+                                   autofocus autocomplete="off">
+                        </div>
+                        <div class="error-place">
+                            <div class="text-left"
+                                 *ngIf="((signUpForm.dirty || signUpForm.touched || formDir.submitted))">
+                                <p class="errorMessage"
+                                   *ngIf="(signUpForm.controls['mobile'].hasError('pattern')) && (signUpForm.controls['mobile'].touched || enterPressConfirm)"
+                                   [@errorAnimation]>
+                                    <i class="far fa-exclamation-circle"></i> phone number is invalid!
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <button type="submit" (click)="sendVerificationCode()" class="ws-btn login-btn">Register
+                    </button>
+                </div>
+                <div class="text-center">
+                    <hr>
+                    <p class="welcome-text">Already have an account? <span class="sign-fill"
+                                                                           (click)="rollbackToLoginMode()">Sign in</span>
+                    </p>
+                </div>
+            </form>
+            <div class="pr-4 pl-4 pb-3" *ngIf="!isLoginMode && verificationCodeSent">
+                <div class="text-center">
+                    <h5>Hello Stranger!</h5>
+                    <span class="welcome-text">Create a free account on <span class="sign-fill">Weiß SMS</span>.</span>
+                </div>
+                <div>
+                    <div>
+                        <p class="wrong welcome-text">your number : <span
+                                class="mobile-num">{{signUpForm['controls'].mobile.value}}</span>
+                            <span
+                                    (click)="rollbackToFirstStep()"> wrong ? </span></p>
+                        <p class="text-left welcome-text">Enter verification code</p>
+                    </div>
+                    <div>
+                        <input appNumericInput maxlength="1" autofocus [(ngModel)]="verificationCodePart1"
+                               (ngModelChange)="setFocus(1,$event)" (keydown)="changeFocus(1,$event)"
+                               #verificationCodePart1Element type="text"
+                               class=" verification-code-input" placeholder="-">
+                        <input appNumericInput maxlength="1" [(ngModel)]="verificationCodePart2"
+                               (ngModelChange)="setFocus(2,$event)" (keydown)="changeFocus(2,$event)"
+                               #verificationCodePart2Element type="text"
+                               class=" verification-code-input" placeholder="-">
+                        <input appNumericInput maxlength="1" [(ngModel)]="verificationCodePart3"
+                               (ngModelChange)="setFocus(3,$event)" (keydown)="changeFocus(3,$event)"
+                               #verificationCodePart3Element type="text"
+                               class=" verification-code-input" placeholder="-">
+                        <input appNumericInput maxlength="1" [(ngModel)]="verificationCodePart4"
+                               (ngModelChange)="setFocus(4,$event)" (keydown)="changeFocus(4,$event)"
+                               #verificationCodePart4Element type="text"
+                               class=" verification-code-input" placeholder="-">
+                        <input appNumericInput maxlength="1" [(ngModel)]="verificationCodePart5"
+                               (ngModelChange)="setFocus(5,$event)" (keydown)="changeFocus(5,$event)"
+                               #verificationCodePart5Element type="text"
+                               class="col-2 verification-code-input" placeholder="-">
+                    </div>
+                    <div>
+                        <app-countdown (countDownEmit)="getCountDown($event)"></app-countdown>
+                    </div>
+                </div>
+                <div class="text-center">
+                    <hr>
+                    <p class="welcome-text">Already have an account? <span class="sign-fill"
+                                                                           (click)="rollbackToLoginMode()">Sign in</span>
+                    </p>
+                </div>
             </div>
-            <div class="error-place">
-              <div class="text-left"
-                   *ngIf="((signUpForm.dirty || signUpForm.touched || formDir.submitted))">
-                <p class="errorMessage" *ngIf="(signUpForm.controls['mobile'].hasError('pattern')) && (signUpForm.controls['mobile'].touched || enterPressConfirm)" [@errorAnimation]>
-                  <i class="far fa-exclamation-circle"></i>  phone number is invalid!
-                </p>
-              </div>
-            </div>
-          </div>
         </div>
-        <div>
-          <button type="submit" (click)="sendVerificationCode()" class="ws-btn login-btn">Register
-          </button>
+        <div class="footer-weib text-center">
+            <p class="copyright">©2019 Weiß SMS. All rights reserved.</p>
         </div>
-        <div class="text-center">
-          <hr>
-          <p class="welcome-text">Already have an account? <span class="sign-in"
-                                                                 (click)="rollbackToLoginMode()">Sign in</span>
-          </p>
-        </div>
-      </form>
-      <div *ngIf="!isLoginMode && verificationCodeSent">
-        <div class="text-center">
-          <h5>Hello Stranger!</h5>
-          <span class="welcome-text">Create a free account on <span class="sign-in">Weiß SMS</span>.</span>
-        </div>
-        <div class="detail-box">
-          <div>
-            <p class="wrong welcome-text">your number : <span
-              class="mobile-num">{{signUpForm['controls'].mobile.value}}</span>
-              <span
-                (click)="rollbackToFirstStep()"> wrong ? </span></p>
-            <p class="text-left welcome-text">Enter verification code</p>
-          </div>
-          <div class="input-box-vc">
-            <input appNumericInput maxlength="1" autofocus [(ngModel)]="verificationCodePart1"
-                   (ngModelChange)="setFocus(1,$event)" (keydown)="changeFocus(1,$event)"
-                   #verificationCodePart1Element type="text"
-                   class=" verification-code-input" placeholder="-">
-            <input appNumericInput maxlength="1" [(ngModel)]="verificationCodePart2"
-                   (ngModelChange)="setFocus(2,$event)" (keydown)="changeFocus(2,$event)"
-                   #verificationCodePart2Element type="text"
-                   class=" verification-code-input" placeholder="-">
-            <input appNumericInput maxlength="1" [(ngModel)]="verificationCodePart3"
-                   (ngModelChange)="setFocus(3,$event)" (keydown)="changeFocus(3,$event)"
-                   #verificationCodePart3Element type="text"
-                   class=" verification-code-input" placeholder="-">
-            <input appNumericInput maxlength="1" [(ngModel)]="verificationCodePart4"
-                   (ngModelChange)="setFocus(4,$event)" (keydown)="changeFocus(4,$event)"
-                   #verificationCodePart4Element type="text"
-                   class=" verification-code-input" placeholder="-">
-            <input appNumericInput maxlength="1" [(ngModel)]="verificationCodePart5"
-                   (ngModelChange)="setFocus(5,$event)" (keydown)="changeFocus(5,$event)"
-                   #verificationCodePart5Element type="text"
-                   class="col-2 verification-code-input" placeholder="-">
-          </div>
-          <div>
-            <app-countdown (countDownEmit)="getCountDown($event)"></app-countdown>
-          </div>
-        </div>
-        <div class="text-center">
-          <hr>
-          <p class="welcome-text">Already have an account? <span class="sign-in"
-                                                                 (click)="rollbackToLoginMode()">Sign in</span>
-          </p>
-        </div>
-      </div>
     </div>
-    <div class="footer-weib text-center">
-      <p class="copyright">©2019 Weiß SMS. All rights reserved.</p>
-    </div>
-  </div>
 </div>
 

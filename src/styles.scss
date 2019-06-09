@@ -45,6 +45,10 @@ h6 {
   font-weight: 600;
 }
 
+ul {
+  padding-left: 0;
+}
+
 /*------------------------padding and margin--------------------------*/
 .mt-1 {
   margin-top: 4px;
@@ -63,26 +67,6 @@ h6 {
 }
 
 .mt-5 {
-  padding-top: 20px;
-}
-
-.pt-1 {
-  padding-top: 4px;
-}
-
-.pt-2 {
-  padding-top: 8px;
-}
-
-.pt-3 {
-  padding-top: 12px;
-}
-
-.pt-4 {
-  padding-top: 16px;
-}
-
-.pt-5 {
   padding-top: 20px;
 }
 
@@ -159,13 +143,18 @@ a:focus {
   clear: both;
 }
 
-#wrapper {
-  width: 100%;
-  overflow: hidden;
-}
+//#wrapper {
+//  width: 100%;
+//  overflow: hidden;
+//}
 
 article, aside, details, figcaption, figure, footer, header, hgroup, main, menu, nav, section, summary {
   display: block;
+}
+
+::placeholder {
+  color: #a7abc3;
+  font-size: 12px;
 }
 
 /*-----------------------------Div-----------------------------*/
@@ -177,6 +166,7 @@ article, aside, details, figcaption, figure, footer, header, hgroup, main, menu,
   border-radius: 50%;
 }
 
+/*---------------------------Main Div--------------------------*/
 .main-container {
   margin: 90px 15px 90px 245px;
   padding: 0;
@@ -207,10 +197,6 @@ article, aside, details, figcaption, figure, footer, header, hgroup, main, menu,
   padding: 1rem;
   border-radius: 1rem;
   box-shadow: 0px 0px 13px 0px rgba(82, 63, 105, 0.05);
-}
-
-.operation-section {
-  /*padding: 5px 10px;*/
 }
 
 /*---------------------------Search-----------------------*/
@@ -537,21 +523,19 @@ i.fa.fa-sort {
 i.fa.fa-sort {
   margin-right: 5px;
 }
-
+/*--------------------- Login & register & forgot pass ---------------*/
 .error-place {
   display: flex;
   height: 20px;
   padding-top: 2px;
 
 }
-
 .border-error {
   border: 1px solid #fd397a;
   transition: .3s;
 }
-
 .errorMessage {
-  font-size: 13px;
+  font-size: 12px;
   color: #fd397a;
   display: flow-root;
   padding-left: 2px;
@@ -576,6 +560,12 @@ i.fa.fa-sort {
   background: #384ad7;
 }
 
+.img-logo {
+  img {
+    width: 200px;
+  }
+}
+
 .ws-login-input {
   display: block;
   margin: 0 auto 0;
@@ -591,13 +581,13 @@ i.fa.fa-sort {
   transition: all .5s ease;
 }
 
-.sign-up, .sign-in {
+.sign-fill {
   color: #6c7293;
   cursor: pointer;
   font-weight: 600;
 }
 
-.sign-up:hover, .sign-in:hover {
+.sign-fill:hover {
   color: #384ad7;
 }
 
@@ -611,6 +601,21 @@ i.fa.fa-sort {
   font-size: 13px;
 }
 
+.wrong {
+  text-align: left;
+  padding-bottom: 15px;
+  cursor: pointer;
+}
+
+.wrong span:first-child {
+  font-weight: 600;
+}
+
+.wrong span:nth-child(2) {
+  color: #f4472c;
+  font-size: 12px;
+}
+
 .weib {
   font-weight: 600;
   color: #6c7293;
@@ -621,6 +626,7 @@ i.fa.fa-sort {
 }
 
 input.verification-code-input {
+  width: 4rem;
   margin-right: 8px;
   height: 35px;
   text-align: center;
@@ -630,6 +636,17 @@ input.verification-code-input {
   font-weight: bold;
   border-radius: 3px;
   border: 1px solid #ebedf2;
+}
+
+p.forgot-pass {
+  cursor: pointer;
+  text-align: right;
+  font-size: 13px;
+  padding: 8px 0;
+}
+
+p.forgot-pass:hover {
+  color: #384ad7;
 }
 
 .resend i {
@@ -642,11 +659,6 @@ input.verification-code-input {
   cursor: pointer;
   color: #fd397a;
   padding-top: 5px;
-}
-
-.weib {
-  font-weight: 600;
-  color: #6c7293;
 }
 
 .footer-weib {
@@ -672,7 +684,15 @@ input.verification-code-input {
   color: #fd397a;
   padding-top: 5px;
 }
+.ws-login-input:focus, input.verification-code-input:focus {
+  border: 1px solid #2cd9f4;
+}
 
+.error {
+  color: #fd397a;
+  border: 1px solid #2cd9f4;
+}
+/*------------------- End Login & register & forgot pass ------------*/
 .red-text {
   color: #fd397a;
 }
@@ -696,17 +716,6 @@ input.verification-code-input {
 .text-white {
   color: #fff !important;
 }
-
-/*//////// log /////////*/
-.ws-login-input:focus, input.verification-code-input:focus {
-  border: 1px solid #2cd9f4;
-}
-
-.error {
-  color: #fd397a;
-  border: 1px solid #2cd9f4;
-}
-
 /*----------------------------alert-box--------------------------------*/
 .alert-box-default {
   background-color: #edeef0;
@@ -933,7 +942,7 @@ li {
     overflow-y: scroll;
     min-width: 280px;
   }
-  .dropdown-item{
+  .dropdown-item {
     cursor: pointer;
   }
 }
