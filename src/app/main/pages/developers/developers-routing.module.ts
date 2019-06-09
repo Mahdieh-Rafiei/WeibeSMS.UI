@@ -5,6 +5,7 @@ import {DeveloperListComponent} from './developer-list/developer-list.component'
 import {DeveloperComponent} from './developer/developer.component';
 import {DeveloperListResolverService} from './developer-list/developer-list-resolver.service';
 import {DeveloperResolverService} from './developer/developer-resolver.service';
+import {CreateKeyComponent} from './developer-list/create-key/create-key.component';
 
 const routes: Routes = [{
   path: '',
@@ -42,5 +43,6 @@ export class DevelopersRoutingModule {
 export const routedComponents = [
   DevelopersComponent,
   DeveloperListComponent,
-  DeveloperComponent
+  DeveloperComponent,
+  CreateKeyComponent
 ];

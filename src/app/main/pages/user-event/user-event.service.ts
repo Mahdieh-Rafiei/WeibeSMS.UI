@@ -17,22 +17,22 @@ export class UserEventService {
   }
 
   getUserEvents(): Observable<UserEventResponseInterface> {
-    const url = `UserEvent`;
+    const url = `EventUser`;
     return this.apiService.get(url, true);
   }
 
   addUserEvent(payload): Observable<AddUserEventResponseInterface> {
-    const url = `UserEvent`;
+    const url = `EventUser`;
     return this.apiService.post<AddUserEventInterface>(url, payload, true);
   }
 
   modifyUserEvent(id: number, payload): Observable<EditUserEventResponseInterface> {
-    const url = `UserEvent/${id}`;
+    const url = `EventUser/${id}`;
     return this.apiService.put(url, payload, true);
   }
 
   removeUserEvent(id: number, payload): Observable<RemoveUserEventResponseInterface> {
-    const url = `UserEvent/${id}`;
+    const url = `EventUser/${id}`;
     return this.apiService.delete<RemoveUserEventInterface>(url, payload, true);
   }
 }
