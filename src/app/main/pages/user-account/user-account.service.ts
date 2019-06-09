@@ -6,9 +6,10 @@ import {InfoInterface} from './profile/info/models/info.interface';
 import {ChangePasswordResponseInterface} from './privacy/change-password/models/change-password-response.interface';
 import {ChangeEmailInterface} from './profile/change-email/models/change-email.interface';
 import {SenderIdResponseInterface} from './profile/sender-id/models/sender-id-response.interface';
-import {LoginLogInterface} from './privacy/login-log/models/login-log.interface';
-import {RemoveGroupNameResponseInterface} from '../group/group-list/models/remove-group-name-response.interface';
-import {DeleteAccountInterface} from './privacy/deactive-account/delete-acount/models/delete-account.interface';
+import {SendVerificationCodeResponseInterface} from '../../../auth/login/models/send-verification-code-response.interface';
+import {SendVerificationCodeInterface} from '../../../auth/login/models/send-verification-code.interface';
+import {ChangeNumberInterface} from './profile/change-number/models/change-number.interface';
+import {VerifyMobileInterface} from './profile/change-number/verify-number/models/verify-mobile.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -46,6 +47,16 @@ export class UserAccountService {
   modifySenderId(payload: string): Observable<any> {
     const url = `User/senderName`;
     return this.apiService.put(url, payload, true);
+  }
+
+  sendVerificationCode(payload): Observable<ChangeNumberInterface> {
+    const url = `user/SendVerificationCode`;
+    return this.apiService.post<SendVerificationCodeInterface>(url, payload, true);
+  }
+
+  verifyMobile(payload): Observable<any> {
+    const url = `user/verifyMobile`;
+    return this.apiService.post<VerifyMobileInterface>(url, payload, true);
   }
 
 }

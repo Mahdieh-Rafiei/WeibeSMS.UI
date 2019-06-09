@@ -1,20 +1,42 @@
-<div class="col-md-12 div-section">
+<div class="col-md-12 div-section" *ngIf="countries">
   <div class="change-password">
     <h5>Phone number</h5>
     <p>you can change your phone number, but you should verify it.</p>
     <div class="input-box">
-      <div class="row">
-        <div class="col-md-4">
+      <form class="row" (ngSubmit)="submit()" [formGroup]="changeNumberForm">
+        <div class="col-12 col-md-4">
           <label>Your phone number: </label>
-          <input type="password" placeholder="Enter your new number">
-          <select class="v-input-select">
-            <option><img src="#"> +98</option>
-            <option>English</option>
-            <option>Persian</option>
-          </select>
+          <div class="flex-group">
+            <div class="btn-group">
+              <button class="form-control dropdown-toggle btn-default btn-select" type="button"
+                      data-toggle="dropdown" role="button" aria-expanded="true">
+                <img class="mr-2" width="20" [src]="'data:image/jpg;base64,'+countryFlag"/>
+              </button>
+              <div class="custom-dropdown">
+                <ul class="dropdown-menu" role="listbox" aria-expanded="true">
+                  <li class="dropdown-item" *ngFor="let country of countries"
+                      (click)="selectCountry(2, country)">
+                    <img class="ml-2 mr-2" width="20"
+                         [src]="'data:image/jpg;base64,'+country.flag"/>
+                    <span>{{country.name}}</span>
+                    (<span>{{country.prefixNumber}}</span>)
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <input type="text"
+                   #mobileInput
+                   placeholder="Your phone number"
+                   class="form-control"
+                   formControlName="mobile"
+                   (input)="changeMobile(mobileInput.value)"
+                   appNumericInput
+                   [ngClass]="{'border-error' : (changeNumberForm.controls['mobile'].hasError('pattern')) && (changeNumberForm.controls['mobile'].touched || changeNumberForm.controls['mobile'].dirty )}"
+                   autofocus autocomplete="off">
+          </div>
         </div>
-        <button class="light-blue-btn mt-4">Verification Code</button>
-      </div>
+        <button type="submit" class="light-blue-btn mt-4">Verification Code</button>
+      </form>
     </div>
   </div>
 </div>
