@@ -7,7 +7,6 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {SendVerificationCodeInterface} from '../login/models/send-verification-code.interface';
 import {VerifyMobileInterface} from '../login/models/verify-mobile.interface';
 import {ChangePasswordInterface} from './models/change-password.interface';
-import {ChangePasswordResponseInterface} from '../../main/pages/user-account/privacy/change-password/models/change-password-response.interface';
 import {CountryInterface} from '../../shared/models/country.interface';
 import {SharedService} from '../../shared/service/shared.service';
 import {DataCountryInterface} from '../../shared/models/data-country.interface';
@@ -95,17 +94,28 @@ export class ForgotPasswordComponent implements OnInit {
         this.countries.forEach(item => mobile === item.prefixNumber ? this.selectCountry(2, item) : null);
     }
 
-    selectCountry(index, country) {
-        this.countryPrefix = country.prefixNumber;
-        this.countryFlag = country.flag;
-        this.forgotPasswordForm.patchValue({
-            prefixNumberId: country.id,
-            Mobile: country.prefixNumber
-        });
-        if (index === 2) {
-            this.mobileInput.nativeElement.focus();
+  selectCountry(index, country) {
+    this.countryPrefix = country.prefixNumber;
+    this.countryFlag = country.flag;
+    if (index === 2) {
+      this.mobileInput.nativeElement.focus();
+      this.countries.forEach(item => {
+        if (this.forgotPasswordForm.value.prefixNumberId === item.id) {
+          this.mobileValue = this.forgotPasswordForm.value.Mobile.substring(item.prefixNumber.length);
         }
+      });
+      this.forgotPasswordForm.patchValue({
+        Mobile: country.prefixNumber + this.mobileValue
+      });
+    } else {
+      this.forgotPasswordForm.patchValue({
+        Mobile: country.prefixNumber
+      });
     }
+    this.forgotPasswordForm.patchValue({
+      prefixNumberId: country.id,
+    });
+  }
 
 
     sendVerificationCode() {
