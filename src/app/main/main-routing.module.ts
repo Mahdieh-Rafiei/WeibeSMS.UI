@@ -44,6 +44,10 @@ const routes: Routes = [
         path: 'privacy',
         loadChildren: '.\/pages\/user-account\/privacy\/privacy.module#PrivacyModule',
       },
+      {
+        path: 'group',
+        loadChildren: '.\/pages\/group\/group.module#GroupModule',
+      },
     ]
   }
 ];

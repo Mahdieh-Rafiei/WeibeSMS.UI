@@ -1,0 +1,38 @@
+<div class="dialog">
+  <div class="row">
+    <div class="col-12 form-group">
+      <h5 *ngIf="!userEventData">Add User Event</h5>
+      <h5 *ngIf="userEventData">Edit User Event</h5>
+    </div>
+  </div>
+  <form [formGroup]="userEventForm" #formDir="ngForm">
+    <div class="row">
+      <div class="col-12 form-group">
+        <input formControlName="name"
+               class="form-control"
+               type="text"
+               placeholder="name">
+        <div class="text-left"
+             *ngIf="(((userEventForm.controls['name'].dirty || userEventForm.controls['name'].touched) || formDir.submitted))">
+          <p class="errorMessage" *ngIf="userEventForm.hasError('required', 'name')">
+            this filed is required!
+          </p>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="row">
+      <div class="col-12 mt-3">
+        <div class="text-center" dir="ltr">
+          <button type="submit" class="btn btn-gradient ml-1 mt-1" (click)="onSubmit()">
+            submit
+          </button>
+          <button class="btn btn-secondary ml-1 mt-1" (click)="closeDialog()">
+            cancel
+          </button>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>

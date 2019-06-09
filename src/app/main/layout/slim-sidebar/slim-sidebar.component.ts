@@ -38,7 +38,7 @@ export class SlimSidebarComponent implements OnInit {
         }, {
             title: 'Contacts',
             icon: 'address-book',
-            link: '/group',
+            link: '/group/list',
             subMenu: null
         },{
             title: 'Send',

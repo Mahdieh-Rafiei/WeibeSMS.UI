@@ -23,8 +23,6 @@ import {TopNavComponent} from './main/layout/top-nav/top-nav.component';
 import {AuthenticationService} from './auth/login/authentication.service';
 import {RegisterService} from './auth/register/register.service';
 import {ForgotPasswordComponent} from './auth/forgot-password/forgot-password.component';
-import {GroupComponent} from './main/pages/group/group.component';
-import {GroupListComponent} from './main/pages/group/group-list/group-list.component';
 import {ContactComponent} from './main/pages/group/contact/contact.component';
 import {AddContactComponent} from './main/pages/group/add-contact/add-contact.component';
 import {SingleAddContactComponent} from './main/pages/group/add-contact/single-add-contact/single-add-contact.component';
@@ -63,12 +61,9 @@ import {SharedModule} from './shared/module/shared.module';
 import {MainRoutingModule} from './main/main-routing.module';
 import {MainComponent} from './main/main.component';
 
-import {CreateKeyComponent} from './main/pages/developers/developer-list/create-key/create-key.component';
-
 import {FooterComponent} from './main/layout/footer/footer.component';
 import {DialogComponent} from './shared/component/dialog/dialog.component';
 import {AuthGuard} from './shared/auth.guard';
-import {AddEditGroupComponent} from './main/pages/group/group-list/add-edit/add-edit-group.component';
 
 @NgModule({
 
@@ -79,8 +74,6 @@ import {AddEditGroupComponent} from './main/pages/group/group-list/add-edit/add-
     SidebarComponent,
     TopNavComponent,
     ForgotPasswordComponent,
-    GroupComponent,
-    GroupListComponent,
     ContactComponent,
     AddContactComponent,
     SingleAddContactComponent,
@@ -109,16 +102,13 @@ import {AddEditGroupComponent} from './main/pages/group/group-list/add-edit/add-
     FundListComponent,
     FundComponent,
     MainComponent,
-    CreateKeyComponent,
     FooterComponent,
     DialogComponent,
-    AddEditGroupComponent
+
 
   ],
   entryComponents: [
-    CreateKeyComponent,
     DialogComponent,
-    AddEditGroupComponent
   ],
 
   imports: [
