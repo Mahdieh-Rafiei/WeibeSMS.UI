@@ -126,10 +126,21 @@ export class LoginComponent implements OnInit {
     this.countryFlag = country.flag;
     this.signUpForm.patchValue({
       prefixNumberId: country.id,
-      mobile: country.prefixNumber
     });
     if (index === 2) {
       this.mobileInput.nativeElement.focus();
+      this.countries.forEach(item => {
+        if (this.signUpForm.value.prefixNumberId === item.id) {
+          this.mobileValue = this.signUpForm.value.mobile.substring(item.prefixNumber.length);
+        }
+      });
+      this.signUpForm.patchValue({
+        mobile: country.prefixNumber + this.mobileValue
+      });
+    } else {
+      this.signUpForm.patchValue({
+        mobile: country.prefixNumber
+      });
     }
   }
 
