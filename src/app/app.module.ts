@@ -105,6 +105,7 @@ import {AuthGuard} from './shared/auth.guard';
     FooterComponent,
     DialogComponent,
 
+
   ],
   entryComponents: [
     DialogComponent,
