@@ -3,4 +3,5 @@ export interface DataDeveloperListInterface {
   key: string;
   title: string;
   isActive: boolean;
+  lastModifiedDateTime: number;
 }

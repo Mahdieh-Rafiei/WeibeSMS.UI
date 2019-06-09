@@ -79,22 +79,22 @@ export class SidebarComponent implements OnInit {
         }]
     }, {
       title: 'Reports',
-      icon: 'bar-chart-o',
+      icon: 'chart-bar',
       link: 'sms-report/list',
       subMenu: null
     }, {
       title: 'Verification',
       icon: 'check-square',
-      link: '/report-verification',
+      link: '/sms-report/verification-code',
       subMenu: null
     }, {
       title: 'Billing',
-      icon: 'money',
+      icon: 'money-bill',
       link: '/billing',
       subMenu: null
     }, {
       title: 'Add fund',
-      icon: 'dollar',
+      icon: 'dollar-sign',
       link: '/fund-list',
       subMenu: null
     }, {
