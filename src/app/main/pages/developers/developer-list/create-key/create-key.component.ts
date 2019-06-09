@@ -1,41 +1,48 @@
-import {Component, Inject, OnInit} from '@angular/core';
+import {Component, Inject, OnInit, ViewEncapsulation} from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material';
 import {DevelopersService} from '../../developers.service';
 import {AddKeyInterface} from './models/add-key.interface';
 
 @Component({
-  selector: 'app-dialog',
-  templateUrl: './create-key.component.html',
-  styleUrls: ['./create-key.component.scss']
+    selector: 'app-dialog',
+    templateUrl: './create-key.component.html',
+    styleUrls: ['./create-key.component.scss'],
+    encapsulation: ViewEncapsulation.None
 })
 export class CreateKeyComponent implements OnInit {
 
-  modalType: string;
-  optionIndex: number;
-  title = '';
+    modalType: string;
+    optionIndex: number;
+    title = '';
 
-  constructor(public dialogRef: MatDialogRef<CreateKeyComponent>,
-              @Inject(MAT_DIALOG_DATA) public data: any,
-              private ds: DevelopersService) {
-    dialogRef.disableClose = true;
-    this.modalType = data.type;
-    this.optionIndex = data.index;
+    constructor(public dialogRef: MatDialogRef<CreateKeyComponent>,
+                @Inject(MAT_DIALOG_DATA) public data: any,
+                private ds: DevelopersService) {
+        dialogRef.disableClose = true;
+        this.modalType = data.type;
+        this.optionIndex = data.index;
 
-  }
+    }
 
-  ngOnInit() {
-  }
+    ngOnInit() {
+    }
 
-  onSubmit() {
-    const payload: AddKeyInterface = {title: this.title};
-    this.ds.addKey(payload)
-      .subscribe(res => {
-        const data = {id: res.data.id, key: res.data.key, title: this.title};
-        this.dialogRef.close({createKey: {data}});
-      });
-  }
+    onSubmit() {
+        const payload: AddKeyInterface = {title: this.title};
+        this.ds.addKey(payload)
+            .subscribe(res => {
+                const data = {id: res.data.id, key: res.data.key, title: this.title};
+                this.dialogRef.close({createKey: {data}});
+            });
+    }
 
-  closeDialog() {
-    this.dialogRef.close();
-  }
+    closeDialog() {
+        this.dialogRef.close();
+    }
+
+    keySendVerificationCode(event) {
+        if (event.key === 'Enter') {
+            this.onSubmit();
+        }
+    }
 }

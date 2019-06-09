@@ -1,21 +1,18 @@
-<div class="dialog" dir="rtl">
-  <div class="row">
-    <div class="col-12">
-      <p class="title">{{modalText}}</p>
+<div class="dialog">
+    <div class="col-12 form-group modal-header p-2">
+        <h5>Header test</h5>
     </div>
-  </div>
-
-
-  <div class="row">
-    <div class="col-12 mt-3">
-      <div class="text-center" dir="ltr">
-        <button class="btn btn-gradient ml-1 mt-1" (click)="onSubmit()">
-          Submit
-        </button>
-        <button class="btn btn-secondary ml-1 mt-1" (click)="closeDialog()">
-          cancel
-        </button>
-      </div>
+    <div class="col-12 form-group">
+        <p class="title">{{modalText}}</p>
     </div>
-  </div>
+    <div class="col-12 pb-3">
+        <div class="text-center" dir="ltr">
+            <button  class="green-btn mr-2" (click)="onSubmit()">
+                Submit
+            </button>
+            <button class="gray-btn" (click)="closeDialog()">
+                cancel
+            </button>
+        </div>
+    </div>
 </div>

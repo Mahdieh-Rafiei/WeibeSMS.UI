@@ -43,6 +43,7 @@ h6 {
   margin: 10px 0;
   font-family: 'OpenSans-Regular';
   font-weight: 600;
+  letter-spacing: 1px;
 }
 
 ul {
@@ -143,10 +144,10 @@ a:focus {
   clear: both;
 }
 
-//#wrapper {
-//  width: 100%;
-//  overflow: hidden;
-//}
+#wrapper {
+  width: 100%;
+  overflow: hidden;
+}
 
 article, aside, details, figcaption, figure, footer, header, hgroup, main, menu, nav, section, summary {
   display: block;
@@ -166,6 +167,10 @@ article, aside, details, figcaption, figure, footer, header, hgroup, main, menu,
   border-radius: 50%;
 }
 
+.description{
+  font-size: 15px;
+  color: #495057;
+}
 /*---------------------------Main Div--------------------------*/
 .main-container {
   margin: 90px 15px 90px 245px;
@@ -195,7 +200,7 @@ article, aside, details, figcaption, figure, footer, header, hgroup, main, menu,
 .div-section {
   background: #ffffff;
   padding: 1rem;
-  border-radius: 1rem;
+  border-radius: .4rem;
   box-shadow: 0px 0px 13px 0px rgba(82, 63, 105, 0.05);
 }
 
@@ -334,15 +339,15 @@ table th {
   font-size: 14px;
   color: #6c7293;
   padding: 15px;
-  font-weight: 400;
-  text-align: left;
+  font-weight: 600;
 }
 
 tbody tr td {
   padding: 10px 15px;
   border-top: 1px solid #efefef;
   text-align: left;
-  color: #212529;
+  color: #495057;
+  font-size: 14px;
 }
 
 table tbody tr:hover {
@@ -426,14 +431,18 @@ i.fa.fa-sort {
 }
 
 .light-green-btn {
-  background-color: #def6f3;
-  border: 1px solid #def6f3;
-  border-radius: 4px;
+  background-color: #1dc9b71a;
+  border: 1px solid #e8f9f8;
   color: #4dd4c6;
-  padding: 5px 25px;
+  border-radius: .25rem !important;
+  padding: .5rem .75rem;;
   font-size: 14px;
 }
-
+.light-green-btn:hover{
+  background-color: #1dc9b7;
+  border-color:  #1dc9b7;
+  color: #ffffff;
+}
 .blue-btn {
   background-color: #5867dd;
   border: 1px solid #5867dd;
@@ -446,18 +455,18 @@ i.fa.fa-sort {
 .light-blue-btn {
   background-color: #e9f3ff;
   border: 1px solid #e9f3ff;
-  border-radius: 4px;
   color: #2786fb;
-  padding: 5px 18px;
+  border-radius: .25rem !important;
+  padding: .5rem .75rem;;
   font-size: 14px;
 }
 
 .light-yellow-btn {
   background-color: #fff8e8;
   border: 1px solid #fff8e8;
-  border-radius: 4px;
   color: #ffb822;
-  padding: 5px 25px;
+  border-radius: .25rem !important;
+  padding: .5rem .75rem;;
   font-size: 14px;
 }
 
@@ -473,19 +482,23 @@ i.fa.fa-sort {
 .light-red-btn {
   background-color: #f5e2ec;
   border: 1px solid #f5e2ec;
-  border-radius: 4px;
   color: #fd397a;
-  padding: 5px 25px;
+  border-radius: .25rem !important;
+  padding: .5rem .75rem;;
   font-size: 14px;
 }
 
 .gray-btn {
-  background-color: #e2e5ec;
+  background-color: transparent;
   border: 1px solid #e2e5ec;
-  border-radius: 4px;
-  color: #495057;
-  padding: 7px 25px;
+  color: #6c7293;
+  border-radius: .25rem !important;
+  padding: .5rem .75rem;;
   font-size: 14px;
+}
+
+.gray-btn:hover {
+  background-color: #e2e5ec;
 }
 
 .warning-box {
@@ -715,6 +728,10 @@ input.verification-code-input {
 
 .text-white {
   color: #fff !important;
+}
+
+.black-text{
+  color: #495057;
 }
 /*----------------------------alert-box--------------------------------*/
 .alert-box-default {
@@ -951,5 +968,22 @@ label {
   display: block;
   color: #6c7293;
   font-weight: 600;
+  font-size: 15px;
+}
+
+//font
+.fo-0{
+  font-size: 12px;
+}
+.fo-1{
+  font-size: 13px;
+}
+.fo-2{
+  font-size: 14px;
+}
+.fo-3{
+   font-size: 14px;
+ }
+.fo-4{
   font-size: 15px;
 }

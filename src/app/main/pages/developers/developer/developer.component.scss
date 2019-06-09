@@ -5,7 +5,6 @@
     margin-bottom: 0;
   }
   p {
-    font-size: 12px;
     padding-top: 5px;
   }
 }
@@ -14,17 +13,6 @@
   color: #ffffff;
   background-color: #a0a7eb;
   border-color: #a0a7eb ;
-}
-
-label {
-  display: block;
-  color: #6c7293;
-  font-weight: 600;
-  font-size: 12px;
-}
-
-input {
-  width: 100%;
 }
 
 .radio {
@@ -36,17 +24,8 @@ input {
   }
 }
 
-p.yellow-text {
-  padding: 10px 0 12px;
-}
-
 mat-radio-button#mat-radio-3 {
   margin-left: 30px;
-}
-
-.blue-btn {
-  width: 100%;
-  padding: 11px 25px;
 }
 
 table.security-table {
@@ -55,15 +34,8 @@ table.security-table {
     color: #fd397a;
   }
 }
-
-.copy-btn{
-  margin-top: 25px;
-  padding: 11px 25px;
-  width: 100%;
-}
-
-.btn-div{
-  text-align: right;
+.auth-div{
+  width: 50%;
 }
 
 @media (max-width: 991px) and (min-width: 768px) {
@@ -73,6 +45,9 @@ table.security-table {
   .btn-div{
     text-align: center;
   }
+  .auth-div{
+    width: 100%;
+  }
 }
 @media (max-width: 767px) and (min-width: 320px) {
   .copy-btn {
@@ -80,5 +55,8 @@ table.security-table {
   }
   .btn-div{
     text-align: center;
+  }
+  .auth-div{
+    width: 100%;
   }
 }

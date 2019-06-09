@@ -1,17 +1,5 @@
 .details {
-  padding-top: 0px;
-  padding-bottom: 10px;
-  h4 {
-    margin: 0;
-  }
-  p {
-    color: #495057;
-  }
-  i {
-    padding: 0 10px;
-  }
   span {
-    color: #2786fb;
     text-decoration: underline;
   }
 }
@@ -35,9 +23,6 @@
   margin-bottom: 15px;
 }
 
-::placeholder {
-  color: #a7abc3;
-}
 
 .input-box {
   position: relative;

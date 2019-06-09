@@ -1,26 +1,19 @@
-<div class="dialog">
-  <div class="row">
+<div class="dialog" (keydown)="keySendVerificationCode($event)">
+    <div class="col-12 form-group modal-header p-2">
+        <h5>Create Key</h5>
+    </div>
     <div class="col-12 form-group">
-      <h5>Create Key</h5>
+        <p class="fo-3 black-text pb-2">please choice api key name:</p>
+        <input class="form-control" [(ngModel)]="title" placeholder="enter api key name">
     </div>
-  </div>
-  <div class="row">
-    <div class="col-12 form-group">
-      <input class="form-control" [(ngModel)]="title">
+    <div class="col-12 pb-3">
+        <div class="text-center" dir="ltr">
+            <button type="submit" class="green-btn mr-2" (click)="onSubmit()">
+                submit
+            </button>
+            <button class="gray-btn" (click)="closeDialog()">
+                cancel
+            </button>
+        </div>
     </div>
-  </div>
-
-
-  <div class="row">
-    <div class="col-12 mt-3">
-      <div class="text-center" dir="ltr">
-        <button class="btn btn-gradient ml-1 mt-1" (click)="onSubmit()">
-          submit
-        </button>
-        <button class="btn btn-secondary ml-1 mt-1" (click)="closeDialog()">
-          cancel
-        </button>
-      </div>
-    </div>
-  </div>
 </div>
