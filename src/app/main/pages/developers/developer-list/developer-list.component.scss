@@ -2,6 +2,9 @@
   span {
     text-decoration: underline;
   }
+  i{
+    animation: move-forward 1s infinite ease-in;
+  }
 }
 
 .table-head i {
