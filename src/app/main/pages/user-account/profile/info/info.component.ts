@@ -7,11 +7,15 @@ import {SharedService} from '../../../../../shared/service/shared.service';
 import {DataCountryInterface} from '../../../../../shared/models/data-country.interface';
 import {NotificationService} from '../../../../../shared/notification.service';
 import {UserAccountService} from '../../user-account.service';
+import {errorAnimation} from "../../../../../shared/component/animation/error-animation";
 
 @Component({
     selector: 'app-info',
     templateUrl: './info.component.html',
-    styleUrls: ['./info.component.scss']
+    styleUrls: ['./info.component.scss'],
+    animations: [
+        errorAnimation()
+    ]
 })
 export class InfoComponent implements OnInit {
     profileForm: FormGroup;

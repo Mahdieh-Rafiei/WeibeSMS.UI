@@ -107,7 +107,7 @@ export class DeveloperComponent implements OnInit {
     }
 
     removeApiKey() {
-        this.openDialog('auto', 'auto', '', {modalType: 'apiKey', modalText: 'are you sure to remove this api key?', modalHeader: 'Delete'});
+        this.openDialog('480px', 'auto', '', {modalType: 'apiKey', modalText: 'are you sure to remove this api key?', modalHeader: 'Delete'});
     }
 
 
@@ -140,7 +140,7 @@ export class DeveloperComponent implements OnInit {
     }
 
     removeIp(ipId, index) {
-        this.openDialog('auto', 'auto', '', {
+        this.openDialog('480px', 'auto', '', {
             modalType: 'ip',
             modalHeader:'Delete IP',
             modalText: 'are you sure to remove this ip?',
