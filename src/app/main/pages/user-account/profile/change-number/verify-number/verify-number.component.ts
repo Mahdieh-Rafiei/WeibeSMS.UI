@@ -53,7 +53,7 @@ export class VerifyNumberComponent implements OnInit {
   submit() {
     if (this.verifyNumberForm.valid) {
       this.verifyNumberForm.patchValue({
-        key: this.shs.data.key,
+        key: this.shs.data.key ? this.shs.data.key : localStorage.getItem('k-u'),
         prefixNumberId: this.shs.data.prefixNumberId,
         mobile: this.shs.data.mobile,
       });
@@ -61,6 +61,7 @@ export class VerifyNumberComponent implements OnInit {
       this.uas.verifyMobile(payload)
         .subscribe((res: VerifyMobileResponseInterafce) => {
           this.ns.success('change number successfully', '');
+          localStorage.removeItem('k-u');
           this.router.navigate(['/profile/change-number']);
         });
     }

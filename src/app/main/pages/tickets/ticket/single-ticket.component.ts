@@ -28,7 +28,6 @@ export class SingleTicketComponent implements OnInit {
   }
 
   ngOnInit() {
-    console.log(222);
     this.id = parseInt(this.activatedRoute.snapshot.paramMap.get('id'));
     this.getTicket(this.id);
   }
@@ -71,7 +70,7 @@ export class SingleTicketComponent implements OnInit {
       .subscribe((res: CloseTicketInterface) => {
         this.notificationService.success('Ticket closed successfully', '');
         this.isClosed = true;
-        this.router.navigateByUrl('ticket-list');
+        this.router.navigateByUrl('ticket/list');
       });
   }
 }

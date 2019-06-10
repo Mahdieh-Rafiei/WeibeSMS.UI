@@ -92,6 +92,7 @@ export class ChangeNumberComponent implements OnInit {
         .subscribe((res: ChangeNumberInterface) => {
             this.router.navigate(['/profile/verify-number']);
             this.shs.data['key'] = res.data.key;
+            localStorage.setItem('k-u', res.data.key);
           },
           err => {
             if (err.error.Message === '4') {
