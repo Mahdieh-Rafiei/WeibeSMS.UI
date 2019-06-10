@@ -50,7 +50,6 @@ export class InfoComponent implements OnInit {
             firstName: [null, Validators.compose([Validators.required, Validators.maxLength(20)])],
             lastName: [null, Validators.compose([Validators.required, Validators.maxLength(30)])],
             companyName: [null],
-            email: [null],
             gender: [''],
             defaultPrefixNumberId: [''],
             countryId: [''],

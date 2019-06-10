@@ -8,10 +8,10 @@ import {RemoveContactFormGroupInterface} from '../models/remove-contact-form-gro
 
 @Component({
   selector: 'app-sub-group',
-  templateUrl: './sub-group.component.html',
-  styleUrls: ['./sub-group.component.css']
+  templateUrl: './single-group.component.html',
+  styleUrls: ['./single-group.component.css']
 })
-export class SubGroupComponent implements OnInit {
+export class SingleGroupComponent implements OnInit {
 
   group: any;
   groupId: string;

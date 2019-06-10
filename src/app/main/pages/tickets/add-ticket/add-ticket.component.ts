@@ -43,7 +43,7 @@ export class AddTicketComponent implements OnInit {
     this.ticketService.addTicket(payload)
       .subscribe((res: AddTicketResponseInterface) => {
         this.notificationService.success('Ticket added successfully', '');
-        this.router.navigateByUrl('ticket-list');
+        this.router.navigateByUrl('/ticket/list');
       });
   }
 }

@@ -5,7 +5,7 @@
     <div class="btn-section">
         <div class="row">
             <div class="col-md-6 text-left">
-                <button class="previous-btn" [routerLink]="['/ticket-list']"> <i class="fa fa-arrow-left"></i> Previous </button>
+                <button class="previous-btn" [routerLink]="['/ticket/list']"> <i class="fa fa-arrow-left"></i> Previous </button>
             </div>
             <div class="col-md-6 text-right">
                 <button [innerText]="isClosed ? 'Closed' : 'Close this ticket'" (click)="closeTicket()"

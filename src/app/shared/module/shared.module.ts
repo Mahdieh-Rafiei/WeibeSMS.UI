@@ -9,6 +9,7 @@ import {NgxPaginationModule} from 'ngx-pagination';
 import {DateTimePipe} from '../pipe/date-time.pipe';
 import {FilterComponent} from '../component/filter/filter.component';
 import {LoadingSpinnerComponent} from '../component/loading-spinner/loading-spinner.component';
+import {AngularEditorModule} from '@kolkov/angular-editor';
 
 @NgModule({
   imports: [
@@ -17,6 +18,7 @@ import {LoadingSpinnerComponent} from '../component/loading-spinner/loading-spin
     ReactiveFormsModule,
     MatCoreModule,
     NgxPaginationModule,
+    AngularEditorModule
   ],
   declarations: [
     CountDownComponent,
@@ -35,6 +37,7 @@ import {LoadingSpinnerComponent} from '../component/loading-spinner/loading-spin
     ReactiveFormsModule,
     MatCoreModule,
     NgxPaginationModule,
+    AngularEditorModule,
     CountDownComponent,
     ImageUploadComponent,
     SearchComponent,

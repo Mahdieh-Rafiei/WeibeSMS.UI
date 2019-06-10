@@ -44,8 +44,8 @@ export class UserEventComponent implements OnInit {
   }
 
 
-  addEditUserEvent(data: DataUserEventInterface) {
-    this.openDialog('400px', 'auto', '', {data});
+  addEditUserEvent(data: DataUserEventInterface, index: number) {
+    this.openDialog('400px', 'auto', '', {data, index});
   }
 
 
@@ -59,10 +59,13 @@ export class UserEventComponent implements OnInit {
 
     dialogRef.afterClosed()
       .subscribe(result => {
-        if (result && result.addEditUserEvent) {
+        if (result && result.addUserEvent) {
           this.userEvents.unshift({id: result.addEditUserEvent.id, name: result.addEditUserEvent.name});
           this.ns.success('New group added successfully', '');
+        } else if (result && result.editUserEvent) {
+          this.userEvents[result.editUserEvent.index].name = result.editUserEvent.name;
         }
+
       });
   }
 }

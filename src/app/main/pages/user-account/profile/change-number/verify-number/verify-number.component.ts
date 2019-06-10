@@ -3,6 +3,9 @@ import {FormBuilder, FormGroup} from '@angular/forms';
 import {SharedService} from '../../../../../../shared/service/shared.service';
 import {UserAccountService} from '../../../user-account.service';
 import {VerifyMobileResponseInterafce} from './models/verify-mobile-response.interafce';
+import {ChangeNumberInterface} from '../models/change-number.interface';
+import {Router} from '@angular/router';
+import {NotificationService} from '../../../../../../shared/notification.service';
 
 @Component({
   selector: 'app-verify-number',
@@ -14,6 +17,8 @@ export class VerifyNumberComponent implements OnInit {
 
   constructor(private fb: FormBuilder,
               private uas: UserAccountService,
+              private router: Router,
+              private ns: NotificationService,
               private shs: SharedService) {
   }
 
@@ -31,6 +36,20 @@ export class VerifyNumberComponent implements OnInit {
     });
   }
 
+  getCountDown(event) {
+    if (event) {
+      const payload = {
+        mobile: this.shs.data.mobile,
+        prefixNumberId: this.shs.data.prefixNumberId,
+        reason: 3
+      };
+      this.uas.sendVerificationCode(payload)
+        .subscribe((res: ChangeNumberInterface) => {
+          this.shs.data['key'] = res.data.key;
+        });
+    }
+  }
+
   submit() {
     if (this.verifyNumberForm.valid) {
       this.verifyNumberForm.patchValue({
@@ -40,7 +59,10 @@ export class VerifyNumberComponent implements OnInit {
       });
       const payload = this.verifyNumberForm.value;
       this.uas.verifyMobile(payload)
-        .subscribe((res: VerifyMobileResponseInterafce) => console.log(res));
+        .subscribe((res: VerifyMobileResponseInterafce) => {
+          this.ns.success('change number successfully', '');
+          this.router.navigate(['/profile/change-number']);
+        });
     }
   }
 
