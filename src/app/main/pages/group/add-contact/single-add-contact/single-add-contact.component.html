@@ -1,59 +1,163 @@
-<div class="section-div single-add-contact">
-    <div class="add-contact">
-        <div class="title">
-            <h5 class="mb-4">Add Contact</h5>
-        </div>
-        <div class="row">
-            <div class="col-md-4 form-group">
-                <label>First Name</label>
-                <input [(ngModel)]="firstName" type="text" placeholder="Name :">
-            </div>
-            <div class="col-md-4 form-group">
-                <label>Surename</label>
-                <input [(ngModel)]="lastName" type="text" placeholder="Surname :">
-            </div>
-            <div class="col-md-4 form-group">
-                <label>Phone Number</label>
-                <input [(ngModel)]="mobile" type="text" placeholder="Phone Number :">
-            </div>
-            <div class="col-md-4 form-group">
-                <label>Email</label>
-                <input [(ngModel)]="email" type="text" placeholder="Enter recipient Email :">
-            </div>
-            <div class="col-md-4 form-group">
-                <label>Gender</label>
-                <select [(ngModel)]="gender" placeholder="gender">
-                    <option value="1">Female</option>
-                    <option value="2">Male</option>
-                    <option value="3">Unknown</option>
-                </select>
-            </div>
-        </div>
+<!--<div class="section-div single-add-contact">-->
+<!--<div class="add-contact">-->
+<!--<div class="title">-->
+<!--<h5 class="mb-4">Add Contact</h5>-->
+<!--</div>-->
+<!--<div class="row">-->
+<!--<div class="col-md-4 form-group">-->
+<!--<label>First Name</label>-->
+<!--<input [(ngModel)]="firstName" type="text" placeholder="Name :">-->
+<!--</div>-->
+<!--<div class="col-md-4 form-group">-->
+<!--<label>Surename</label>-->
+<!--<input [(ngModel)]="lastName" type="text" placeholder="Surname :">-->
+<!--</div>-->
+<!--<div class="col-md-4 form-group">-->
+<!--<label>Phone Number</label>-->
+<!--<input [(ngModel)]="mobile" type="text" placeholder="Phone Number :">-->
+<!--</div>-->
+<!--<div class="col-md-4 form-group">-->
+<!--<label>Email</label>-->
+<!--<input [(ngModel)]="email" type="text" placeholder="Enter recipient Email :">-->
+<!--</div>-->
+<!--<div class="col-md-4 form-group">-->
+<!--<label>Gender</label>-->
+<!--<select [(ngModel)]="gender" placeholder="gender">-->
+<!--<option value="1">Female</option>-->
+<!--<option value="2">Male</option>-->
+<!--<option value="3">Unknown</option>-->
+<!--</select>-->
+<!--</div>-->
+<!--</div>-->
+<!--</div>-->
+<!--<div class="field border-top">-->
+<!--<div class="title form-group">-->
+<!--<h5 class="yellow-text">Recipient field</h5>-->
+<!--<p>you can go <span class="red-text">"Option>event field"</span>  and create field for <span class="font-weight-bold">event</span> send sms.</p>-->
+<!--</div>-->
+<!--<div class="row">-->
+<!--<div class="col-md-12">-->
+<!--<label>Select field</label>-->
+<!--</div>-->
+<!--<div class="col-md-4">-->
+<!--<select>-->
+<!--<option *ngFor="let ue of userEvents" [value]="ue.id">{{ue.name}}</option>-->
+<!--</select>-->
+<!--</div>-->
+<!--<div class="col-md-2">-->
+<!--<input type="text" class="date-value" placeholder="value">-->
+<!--</div>-->
+<!--<div class="col-md-2 btn-operation">-->
+<!--<span class="operation-fa light-green-btn mr-2"><i class="fa fa-plus green-text"></i> Add</span>-->
+<!--<span class="operation-fa light-red-btn"><i class="fa fa-trash red-text"></i> Delete</span>-->
+<!--</div>-->
+<!--</div>-->
+<!--<div class="col-md-12 text-right">-->
+<!--<button (click)="addContact()" class="blue-btn">Add</button>-->
+<!--</div>-->
+<!--</div>-->
+<!--</div>-->
+
+<form class="section-div single-add-contact" *ngIf="countries"
+      [formGroup]="singleContactForm" #formDir="ngForm" (ngSubmit)="submit()">
+  <div class="add-contact">
+    <div class="title">
+      <h5 class="mb-4">Add Contact</h5>
     </div>
-    <div class="field border-top">
-        <div class="title form-group">
-            <h5 class="yellow-text">Recipient field</h5>
-            <p>you can go <span class="red-text">"Option>event field"</span>  and create field for <span class="font-weight-bold">event</span> send sms.</p>
+    <div class="row">
+      <div class="col-md-4 form-group">
+        <label>First Name</label>
+        <input type="text"
+               class="form-control"
+               formControlName="firstName"
+               placeholder="Name :">
+      </div>
+      <div class="col-md-4 form-group">
+        <label>Surename</label>
+        <input type="text"
+               class="form-control"
+               formControlName="lastName"
+               placeholder="Surname :">
+      </div>
+      <div class="col-md-4 form-group">
+        <label>Phone Number</label>
+        <div class="flex-group">
+          <div class="btn-group">
+            <button class="form-control dropdown-toggle btn-default btn-select" type="button"
+                    data-toggle="dropdown" role="button" aria-expanded="true">
+              <img class="mr-2" width="20" [src]="'data:image/jpg;base64,'+countryFlag"/>
+            </button>
+            <div class="custom-dropdown">
+              <ul class="dropdown-menu" role="listbox" aria-expanded="true">
+                <li class="dropdown-item" *ngFor="let country of countries"
+                    (click)="selectCountry(2, country)">
+                  <img class="ml-2 mr-2" width="20"
+                       [src]="'data:image/jpg;base64,'+country.flag"/>
+                  <span>{{country.name}}</span>
+                  (<span>{{country.prefixNumber}}</span>)
+                </li>
+              </ul>
+            </div>
+          </div>
+          <input type="text"
+                 #mobileInput
+                 placeholder="Your phone number"
+                 class="form-control"
+                 formControlName="mobile"
+                 (input)="changeMobile(mobileInput.value)"
+                 appNumericInput
+                 [ngClass]="{'border-error' :(singleContactForm.controls['mobile'].touched || singleContactForm.controls['mobile'].dirty )}"
+                 autofocus autocomplete="off">
         </div>
-        <div class="row">
-            <div class="col-md-12">
-                <label>Select field</label>
-            </div>
-            <div class="col-md-4">
-                <select>
-                    <option *ngFor="let ue of userEvents" [value]="ue.id">{{ue.name}}</option>
-                </select>
-            </div>
-            <div class="col-md-2">
-                <input type="text" class="date-value" placeholder="value">
-            </div>
-            <div class="col-md-2 btn-operation">
-                <span class="operation-fa light-green-btn mr-2"><i class="fa fa-plus green-text"></i> Add</span>
-                <span class="operation-fa light-red-btn"><i class="fa fa-trash red-text"></i> Delete</span>
-            </div>
+      </div>
+      <div class="col-md-4 form-group">
+        <label>Email</label>
+        <input type="text"
+               class="form-control"
+               formControlName="email"
+               placeholder="Enter recipient Email :">
+        <div class="text-left"
+             *ngIf="(((singleContactForm.controls['email'].dirty || singleContactForm.controls['email'].touched) || formDir.submitted))">
+          <p class="errorMessage"
+             *ngIf="(singleContactForm.controls['email'].hasError('email'))">
+            email is invalid!
+          </p>
         </div>
-        <div class="col-md-12 text-right">
-            <button (click)="addContact()" class="blue-btn">Add</button>
-        </div>
+      </div>
+      <div class="col-md-4 form-group">
+        <label>Gender</label>
+        <select formControlName="gender">
+          <option hidden value="">Select</option>
+          <option [value]="gender.value" *ngFor="let gender of genders">{{gender.title}}</option>
+        </select>
+      </div>
     </div>
-</div>
+  </div>
+  <div class="field border-top">
+    <div class="title form-group">
+      <h5 class="yellow-text">Recipient field</h5>
+      <p>you can go <span class="red-text">"Option>event field"</span> and create field for <span
+        class="font-weight-bold">event</span> send sms.</p>
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+        <label>Select field</label>
+      </div>
+      <div class="col-md-4">
+        <select>
+          <option *ngFor="let ue of userEvents" [value]="ue.id">{{ue.name}}</option>
+        </select>
+      </div>
+      <div class="col-md-2">
+        <input type="text" class="date-value" placeholder="value">
+      </div>
+      <div class="col-md-2 btn-operation">
+        <span class="operation-fa light-green-btn mr-2"><i class="fa fa-plus green-text"></i> Add</span>
+        <span class="operation-fa light-red-btn"><i class="fa fa-trash red-text"></i> Delete</span>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-12 text-right">
+    <button type="submit" class="blue-btn">Add</button>
+  </div>
+</form>
