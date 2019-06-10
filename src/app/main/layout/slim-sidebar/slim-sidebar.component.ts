@@ -99,7 +99,7 @@ export class SlimSidebarComponent implements OnInit {
         }, {
             title: 'Support',
             icon: 'phone-square',
-            link: '../ticket-list',
+            link: '/ticket/list',
             subMenu: null
         }, {
             title: 'Developer',

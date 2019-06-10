@@ -15,6 +15,7 @@ import {DataUserEventInterface} from '../models/data-user-event.interface';
 export class AddEditUserEventComponent implements OnInit {
   userEventData: DataUserEventInterface;
   userEventForm: FormGroup;
+  index: number;
 
   constructor(public dialogRef: MatDialogRef<AddEditUserEventComponent>,
               @Inject(MAT_DIALOG_DATA) public data: any,
@@ -22,6 +23,7 @@ export class AddEditUserEventComponent implements OnInit {
               private fb: FormBuilder) {
     dialogRef.disableClose = true;
     this.userEventData = data.data;
+    this.index = data.index;
   }
 
   ngOnInit() {
@@ -49,13 +51,13 @@ export class AddEditUserEventComponent implements OnInit {
         const payload: AddEditUserEventComponent = this.userEventForm.value;
         this.ues.addUserEvent(payload)
           .subscribe((res: AddUserEventResponseInterface) => {
-            this.dialogRef.close({addEditUserEvent: {id: res.data, name: this.userEventForm.value.name}});
+            this.dialogRef.close({addUserEvent: {id: res.data, name: this.userEventForm.value.name}});
           });
       } else {
         const payload: EditUserEventInterface = this.userEventForm.value;
         this.ues.modifyUserEvent(this.userEventData.id, payload)
           .subscribe((res: EditUserEventResponseInterface) => {
-            this.dialogRef.close({addEditUserEvent: {id: this.userEventData.id, name: this.userEventForm.value.name}});
+            this.dialogRef.close({editUserEvent: {id: this.userEventData.id, name: this.userEventForm.value.name, index: this.index}});
           });
       }
     }

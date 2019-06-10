@@ -48,6 +48,10 @@ const routes: Routes = [
         path: 'group',
         loadChildren: '.\/pages\/group\/group.module#GroupModule',
       },
+      {
+        path: 'ticket',
+        loadChildren: '.\/pages\/tickets\/ticket.module#TicketModule',
+      },
     ]
   }
 ];

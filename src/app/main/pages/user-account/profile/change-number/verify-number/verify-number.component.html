@@ -10,7 +10,7 @@
                  class="form-control"
                  formControlName="verificationCode"
                  placeholder="Enter verification code">
-          <p class="text-right"><img src="../../../../../../../assets/images/redo.png"> Resend again</p>
+          <app-countdown (countDownEmit)="getCountDown($event)"></app-countdown>
         </div>
         <div class="col-md-1">
           <button type="submit" class="light-green-btn mt-4">Verify</button>

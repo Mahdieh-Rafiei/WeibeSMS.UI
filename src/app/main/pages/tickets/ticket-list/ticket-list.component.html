@@ -1,7 +1,7 @@
 <div>
     <div class="btn-section text-right">
         <div class="col-md-12 no-pad text-right">
-            <button class="green-btn" [routerLink]="['/add-ticket']">
+            <button class="green-btn" [routerLink]="['/ticket/add']">
                 <i class="fa fa-plus">
                 </i> New Ticket
             </button>
@@ -39,7 +39,7 @@
                     <td class="text-left">{{t.status | statusTranslator}}</td>
                     <td class="td-single text-left actions-container">
                         <div class="actions">
-                            <a [routerLink]="['../ticket',t.id]"><i class="fa fa-eye"></i></a>
+                            <a [routerLink]="['../modify',t.id]"><i class="fa fa-eye"></i></a>
                         </div>
                     </td>
                 </tr>

@@ -71,8 +71,8 @@ export class GroupListComponent implements OnInit {
     this.getAllGroupList();
   }
 
-  addEditGroup(data: ItemsGroupListInterface) {
-    this.openDialog('400px', 'auto', '', {data});
+  addEditGroup(data: ItemsGroupListInterface, index) {
+    this.openDialog('400px', 'auto', '', {data, index});
   }
 
 
@@ -86,10 +86,13 @@ export class GroupListComponent implements OnInit {
 
     dialogRef.afterClosed()
       .subscribe(result => {
-        if (result && result.addEditGroup) {
-          const id = result.addEditGroup.id;
+        if (result && result.addGroup) {
+          const id = result.addGroup.id;
           this.notificationService.success('New group added successfully', '');
           this.router.navigateByUrl(`group/${id}/add-contact/single-contact`);
+        } else if (result && result.editGroup) {
+          this.groups[result.editGroup.index].groupName = result.editGroup.groupName;
+          this.notificationService.success('Group modified successfully', '');
         }
       });
   }

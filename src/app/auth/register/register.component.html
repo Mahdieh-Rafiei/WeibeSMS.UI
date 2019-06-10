@@ -37,7 +37,7 @@
               <div class="col-12 col-md-4">
                 <label>Surname*</label>
                 <input type="text"
-                       [ngClass]="{'border-error' : ((registerForm.controls['lastName'].dirty || registerForm.controls['lastName'].touched) || formDir.submitted)}"
+                       [ngClass]="{'border-error' : (((registerForm.controls['lastName'].dirty || registerForm.controls['lastName'].touched) && registerForm.hasError('required', 'lastName')) || formDir.submitted)}"
                        class="form-control"
                        placeholder="Your Surname"
                        formControlName="lastName">
@@ -133,6 +133,7 @@
               <div class="col-12 col-md-4">
                 <label>Password*</label>
                 <input type="password"
+                       [matTooltip]="registerForm.controls['password'].touched? 'asdfgh': null"
                        placeholder="Enter Your Password"
                        class="form-control"
                        autocomplete="off"

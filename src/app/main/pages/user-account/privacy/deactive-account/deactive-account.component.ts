@@ -15,8 +15,15 @@ import {AuthenticationService} from '../../../../../auth/login/authentication.se
 export class DeactiveAccountComponent implements OnInit {
   deActiveForm: FormGroup;
   reasons: TitleValueInterface[] = [
-    {title: ':)', value: 1},
-    {title: ':(', value: 2}
+    {title: 'I have a privacy concern', value: 1},
+    {title: 'I\'m not getting any value from my membership' , value: 2},
+    {title: 'I\'m getting too many sms', value: 3},
+    {title: 'I\'m moving to a new panel', value: 4},
+    {title: 'I\'m not using the system', value: 5},
+    {title: 'I\'m not not happy with the amount', value: 6},
+    {title: 'I can\'t use panel easily', value: 7},
+    {title: 'Other', value: 8},
+
   ];
 
   constructor(private fb: FormBuilder,

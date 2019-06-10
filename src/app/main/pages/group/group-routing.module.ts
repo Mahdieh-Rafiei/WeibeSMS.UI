@@ -4,7 +4,7 @@ import {Routes, RouterModule} from '@angular/router';
 import {GroupComponent} from './group.component';
 import {GroupListComponent} from './group-list/group-list.component';
 import {AddEditGroupComponent} from './group-list/add-edit/add-edit-group.component';
-import {SubGroupComponent} from './sub-group/sub-group.component';
+import {SingleGroupComponent} from './single-group/single-group.component';
 
 const routes: Routes = [{
   path: '',
@@ -20,7 +20,7 @@ const routes: Routes = [{
     },
     {
       path: ':groupId',
-      component: SubGroupComponent,
+      component: SingleGroupComponent,
       data: {
         title: 'sub group',
         num: 1
@@ -38,6 +38,6 @@ export class GroupRoutingModule {
 export const routedComponents = [
   GroupComponent,
   GroupListComponent,
-  SubGroupComponent,
+  SingleGroupComponent,
   AddEditGroupComponent,
 ];

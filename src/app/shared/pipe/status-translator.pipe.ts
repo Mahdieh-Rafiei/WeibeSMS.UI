@@ -1,4 +1,4 @@
-import { Pipe, PipeTransform } from '@angular/core';
+import {Pipe, PipeTransform} from '@angular/core';
 
 @Pipe({
   name: 'statusTranslator'
@@ -13,7 +13,7 @@ export class StatusTranslatorPipe implements PipeTransform {
         break;
 
       case 3:
-        result='Pending';
+        result = 'Pending';
         break;
 
       case 6:

@@ -1,8 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
 import {LoginLogInterface} from './models/login-log.interface';
-import {DraftInterface} from '../../../draft/draft/models/draft.interface';
-import {UserAccountService} from '../../user-account.service';
 import {PrivacyService} from '../privacy.service';
 
 @Component({

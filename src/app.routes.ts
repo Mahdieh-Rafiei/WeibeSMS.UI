@@ -19,10 +19,6 @@ import {SendMessageEventComponent} from './app/main/pages/send-message/send-mess
 import {DraftComponent} from './app/main/pages/draft/draft/draft.component';
 import {DraftListComponent} from './app/main/pages/draft/draft-list/draft-list.component';
 
-import {TicketComponent} from './app/main/pages/tickets/ticket/ticket.component';
-import {AddTicketComponent} from './app/main/pages/tickets/add-ticket/add-ticket.component';
-import {TicketListComponent} from './app/main/pages/tickets/ticket-list/ticket-list.component';
-
 import {RewardPointComponent} from './app/main/pages/user-account/reward-point/reward-point.component';
 
 import {BillingComponent} from './app/main/pages/biling/billing.component';
@@ -37,7 +33,7 @@ import {BillingAddressResolverService} from './app/main/pages/biling/billing-add
 import {AuthGuard} from './app/shared/auth.guard';
 
 export const APP_ROUTES: Routes = [
-  // {path: 'group/:groupId', component: SubGroupComponent, canActivate: [CanActivateRouteGuard]},
+  // {path: 'group/:groupId', component: SingleGroupComponent, canActivate: [CanActivateRouteGuard]},
   // {path: 'group', component: GroupListComponent, canActivate: [CanActivateRouteGuard]},
   {path: 'group/:groupId/contact/:contactId', component: ContactComponent},
 
@@ -77,10 +73,6 @@ export const APP_ROUTES: Routes = [
   {path: 'draft', component: DraftComponent},
   {path: 'draft/:id', component: DraftComponent},
   {path: 'draft-list', component: DraftListComponent},
-
-  {path: 'ticket/:id', component: TicketComponent},
-  {path: 'add-ticket', component: AddTicketComponent},
-  {path: 'ticket-list', component: TicketListComponent},
 
   {path: 'fund-list', component: FundListComponent},
   {path: 'fund', component: FundComponent},
