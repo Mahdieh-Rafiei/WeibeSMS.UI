@@ -1,6 +1,6 @@
 <div>
   <div class="btn-section text-right">
-    <button class="green-btn" (click)="addEditGroup(null)">
+    <button class="green-btn" (click)="addEditGroup(null, null)">
       <i class="fa fa-plus">
       </i> New Group
     </button>
@@ -48,7 +48,7 @@
           <td class="td-single text-right actions-container">
             <div class="actions">
               <a (click)="removeGroup(i, group)"><i class="fa fa-trash light-red-btn"></i></a>
-              <a (click)="addEditGroup(group)"> <i class="fa fa-pencil light-green-btn"></i></a>
+              <a (click)="addEditGroup(group, i)"> <i class="fa fa-pencil light-green-btn"></i></a>
               <a [routerLink]="['../',group.id]"><i class="fa fa-eye light-green-btn"></i></a>
             </div>
           </td>

@@ -37,14 +37,10 @@ import {SendMessageScheduleComponent} from './main/pages/send-message/send-messa
 import {SendMessageEventComponent} from './main/pages/send-message/send-message-event/send-message-event.component';
 import {DraftComponent} from './main/pages/draft/draft/draft.component';
 import {DraftListComponent} from './main/pages/draft/draft-list/draft-list.component';
-import {TicketListComponent} from './main/pages/tickets/ticket-list/ticket-list.component';
-import {TicketComponent} from './main/pages/tickets/ticket/ticket.component';
-import {AddTicketComponent} from './main/pages/tickets/add-ticket/add-ticket.component';
 import {CreateTransactionComponent} from './main/pages/biling/create-transaction/create-transaction.component';
 import {InvoiceListComponent} from './main/pages/biling/invoice-list/invoice-list.component';
 
 import {TicketService} from './main/pages/tickets/ticket.service';
-import {StatusTranslatorPipe} from './main/pages/tickets/status-translator.pipe';
 
 import {SlimSidebarComponent} from './main/layout/slim-sidebar/slim-sidebar.component';
 
@@ -87,12 +83,8 @@ import {AuthGuard} from './shared/auth.guard';
     SendMessageEventComponent,
     DraftComponent,
     DraftListComponent,
-    TicketListComponent,
-    TicketComponent,
-    AddTicketComponent,
     InvoiceListComponent,
     CreateTransactionComponent,
-    StatusTranslatorPipe,
     SlimSidebarComponent,
     BillingAddressComponent,
     NumericInputDirective,
@@ -104,8 +96,6 @@ import {AuthGuard} from './shared/auth.guard';
     MainComponent,
     FooterComponent,
     DialogComponent,
-
-
   ],
   entryComponents: [
     DialogComponent,
