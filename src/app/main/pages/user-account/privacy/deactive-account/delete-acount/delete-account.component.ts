@@ -3,55 +3,59 @@ import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {DeleteAccountInterface} from './models/delete-account.interface';
 import {PrivacyService} from '../../privacy.service';
+import {errorAnimation} from "../../../../../../shared/component/animation/error-animation";
 
 @Component({
-  selector: 'app-dialog',
-  templateUrl: './delete-account.component.html',
-  styleUrls: ['./delete-account.component.scss']
+    selector: 'app-dialog',
+    templateUrl: './delete-account.component.html',
+    styleUrls: ['./delete-account.component.scss'],
+    animations: [
+        errorAnimation()
+    ]
 })
 export class DeleteAccountComponent implements OnInit {
 
-  modalType: string;
-  optionIndex: number;
+    modalType: string;
+    optionIndex: number;
 
-  deleteAccountForm: FormGroup;
-  deActiveAccount: DeleteAccountInterface;
+    deleteAccountForm: FormGroup;
+    deActiveAccount: DeleteAccountInterface;
 
-  constructor(public dialogRef: MatDialogRef<DeleteAccountComponent>,
-              @Inject(MAT_DIALOG_DATA) public data: any,
-              private fb: FormBuilder,
-              private ps: PrivacyService) {
-    dialogRef.disableClose = true;
-    this.modalType = data.type;
-    this.optionIndex = data.index;
-    this.deActiveAccount = data.data;
+    constructor(public dialogRef: MatDialogRef<DeleteAccountComponent>,
+                @Inject(MAT_DIALOG_DATA) public data: any,
+                private fb: FormBuilder,
+                private ps: PrivacyService) {
+        dialogRef.disableClose = true;
+        this.modalType = data.type;
+        this.optionIndex = data.index;
+        this.deActiveAccount = data.data;
 
-  }
+    }
 
-  ngOnInit() {
-    this.createFrom();
-  }
+    ngOnInit() {
+        this.createFrom();
+    }
 
-  createFrom() {
-    this.deleteAccountForm = this.fb.group({
-      password: [null, Validators.required]
-    });
-  }
-
-  onSubmit() {
-    if (this.deleteAccountForm.valid) {
-      const payload = this.deleteAccountForm.value;
-      payload['reason'] = +this.deActiveAccount.reason;
-      payload['description'] = this.deActiveAccount.description;
-
-      this.ps.deleteAccount(payload)
-        .subscribe(res => {
-          this.dialogRef.close({deleteAccount: {res}});
+    createFrom() {
+        this.deleteAccountForm = this.fb.group({
+            password: [null, Validators.required]
         });
     }
-  }
 
-  closeDialog() {
-    this.dialogRef.close();
-  }
+    onSubmit() {
+        if (this.deleteAccountForm.valid) {
+            const payload = this.deleteAccountForm.value;
+            payload['reason'] = +this.deActiveAccount.reason;
+            payload['description'] = this.deActiveAccount.description;
+
+            this.ps.deleteAccount(payload)
+                .subscribe(res => {
+                    this.dialogRef.close({deleteAccount: {res}});
+                });
+        }
+    }
+
+    closeDialog() {
+        this.dialogRef.close();
+    }
 }

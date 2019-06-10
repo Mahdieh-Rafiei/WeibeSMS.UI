@@ -1,74 +1,25 @@
 .div-section {
-  border-radius: 0 0 1rem 1rem;
+  border-radius: 0 0 .4rem .4rem;
   padding: 1rem
 }
 
 .profile {
-  .change-profile-pic {
-    display: inline-flex;
-    img {
-      border-radius: 50%;
-    }
-    p {
-      padding: 60px 0 0 15px;
-      color: #08a5a3;
-      font-size: 16px;
-      span {
-        color: #f5274e;
-      }
-    }
+  .mat-form-field-infix {
+    padding: 0 !important;
+    min-height: unset !important;
+  }
+  .select .mat-form-field-infix {
+    padding: 0 !important;
   }
   .profile-input {
     border-top: 1px solid #dfdfdf;
-    padding-top: 20px;
-    margin-top: 20px;
-    label {
-      display: block;
-      color: #6c7293;
-      font-weight: 600;
-      font-size: 12px;
-    }
-    ::placeholder {
-      color: #b5b5b5;
-      font-size: 12px;
-    }
   }
 
-  label {
-    font-weight: 400;
-    display: block;
-  }
-  label.prefix {
-    font-weight: 400;
-    width: 100px;
-  }
-  select.prefix-select {
-    width: 100%;
-  }
-  input[type=text] {
-    width: 100%;
-    padding: 8px 5px;
-  }
-  input[type="date"] {
-    width: 100%;
-  }
-  select {
-    width: 100%;
-    padding: 8px 5px;
-  }
   .phone-verify {
     display: inline-flex;
   }
-  .verify-input {
-    width: 40% !important;
-    text-align: center !important;
-  }
-  .blue-btn {
-    border-radius: 0 !important;
-    margin-left: 5px;
-    font-size: 13px;
-    padding: 10px 21px;
-  }
+
+
   .sms-verification-multiple {
     margin: 0 0 0 100px;
     width: 59%;
@@ -76,20 +27,20 @@
     height: 40px;
     text-align: center;
     padding-top: 5px;
-    input {
-      border: none;
-      font-size: 14px;
-      width: 25px;
-      height: 20px;
-      margin: 0 13px;
-      -webkit-appearance: none;
-      background: transparent;
-      color: #000;
-      overflow: hidden;
-      border-bottom: 1px solid #a9a9a9;
-      text-align: center;
-      padding: 0;
-    }
+    //input {
+    //  border: none;
+    //  font-size: 14px;
+    //  width: 25px;
+    //  height: 20px;
+    //  margin: 0 13px;
+    //  -webkit-appearance: none;
+    //  background: transparent;
+    //  color: #000;
+    //  overflow: hidden;
+    //  border-bottom: 1px solid #a9a9a9;
+    //  text-align: center;
+    //  padding: 0;
+    //}
   }
   .send-again p {
     text-align: right;
