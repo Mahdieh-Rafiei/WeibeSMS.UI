@@ -19,6 +19,7 @@ export class SingleTicketComponent implements OnInit {
   isClosed: boolean = false;
   isReplyMode: boolean = false;
   replys: any[] = [];
+  messageRequired: boolean = false;
 
   constructor(private ticketService: TicketService,
               private activatedRoute: ActivatedRoute,
@@ -27,7 +28,6 @@ export class SingleTicketComponent implements OnInit {
   }
 
   ngOnInit() {
-    console.log(222)
     this.id = parseInt(this.activatedRoute.snapshot.paramMap.get('id'));
     this.getTicket(this.id);
   }
@@ -45,7 +45,7 @@ export class SingleTicketComponent implements OnInit {
 
 
     if (this.replyText.length === 0) {
-      this.notificationService.error('Reply text cant be null!', '');
+      this.messageRequired = true;
       return;
     }
     const payload = {
@@ -70,7 +70,7 @@ export class SingleTicketComponent implements OnInit {
       .subscribe((res: CloseTicketInterface) => {
         this.notificationService.success('Ticket closed successfully', '');
         this.isClosed = true;
-        this.router.navigateByUrl('ticket-list');
+        this.router.navigateByUrl('ticket/list');
       });
   }
 }
