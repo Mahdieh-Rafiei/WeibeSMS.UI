@@ -3,6 +3,7 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {UserAccountService} from '../../user-account.service';
 import {SharedService} from '../../../../../shared/service/shared.service';
 import {ChangeEmailInterface} from './models/change-email.interface';
+import {NotificationService} from '../../../../../shared/notification.service';
 
 @Component({
   selector: 'app-change-email',
@@ -16,6 +17,7 @@ export class ChangeEmailComponent implements OnInit {
 
   constructor(private fb: FormBuilder,
               private shs: SharedService,
+              private ns: NotificationService,
               private uas: UserAccountService) {
   }
 
@@ -35,6 +37,7 @@ export class ChangeEmailComponent implements OnInit {
       this.uas.verifyEmail(payload)
         .subscribe(res => {
           this.disableButton = true;
+          this.ns.success('send Email successfully', '');
         });
     }
   }

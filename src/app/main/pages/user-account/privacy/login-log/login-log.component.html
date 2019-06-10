@@ -1,4 +1,3 @@
-
 <div class="div-section">
   <div class="change-password">
     <h5>Login Log</h5>
@@ -43,7 +42,7 @@
           {{loginLog.location}}
         </td>
         <td class="text-left">
-          {{loginLog.creationDateTime | dateTime}}
+          {{loginLog.creationDateTime | dateTime: 'YYYY-DD-MM HH:mm:ss'}}
         </td>
       </tr>
       </tbody>

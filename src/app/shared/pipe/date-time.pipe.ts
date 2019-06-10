@@ -6,8 +6,8 @@ import * as moment from 'moment';
 })
 export class DateTimePipe implements PipeTransform {
   transform(value: any, args?: any): any {
-    if (moment(new Date(value)).isValid()) {
-      return moment(value).format(args);
+    if (moment(new Date(value * 1000)).isValid()) {
+      return moment(new Date(value * 1000)).format(args);
     }
   }
 }

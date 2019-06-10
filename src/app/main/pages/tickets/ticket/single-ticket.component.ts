@@ -8,10 +8,10 @@ import {CloseTicketInterface} from './models/close-ticket.interface';
 
 @Component({
   selector: 'app-ticket',
-  templateUrl: './ticket.component.html',
-  styleUrls: ['./ticket.component.scss']
+  templateUrl: './single-ticket.component.html',
+  styleUrls: ['./single-ticket.component.scss']
 })
-export class TicketComponent implements OnInit {
+export class SingleTicketComponent implements OnInit {
 
   ticket: any;
   id: number;
@@ -27,6 +27,7 @@ export class TicketComponent implements OnInit {
   }
 
   ngOnInit() {
+    console.log(222)
     this.id = parseInt(this.activatedRoute.snapshot.paramMap.get('id'));
     this.getTicket(this.id);
   }

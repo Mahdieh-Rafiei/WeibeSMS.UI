@@ -15,6 +15,7 @@ import {ModifyGroupNameResponseInterface} from '../models/modify-group-name-resp
 export class AddEditGroupComponent implements OnInit {
   GroupNameData: ItemsGroupListInterface;
   groupNameForm: FormGroup;
+  index: number;
 
   constructor(public dialogRef: MatDialogRef<AddEditGroupComponent>,
               @Inject(MAT_DIALOG_DATA) public data: any,
@@ -22,6 +23,7 @@ export class AddEditGroupComponent implements OnInit {
               private fb: FormBuilder) {
     dialogRef.disableClose = true;
     this.GroupNameData = data.data;
+    this.index = data.index;
   }
 
   ngOnInit() {
@@ -49,12 +51,12 @@ export class AddEditGroupComponent implements OnInit {
       if (!this.GroupNameData) {
         this.gs.addGroup(payload)
           .subscribe((res: AddGroupNameResponseInterface) => {
-            this.dialogRef.close({addEditGroup: {id: res.data}});
+            this.dialogRef.close({addGroup: {id: res.data}});
           });
       } else {
         this.gs.modifyGroup(this.GroupNameData.id, payload)
           .subscribe((res: ModifyGroupNameResponseInterface) => {
-            this.dialogRef.close({addEditGroup: {id: this.GroupNameData.id}});
+            this.dialogRef.close({editGroup: {groupName: this.groupNameForm.value.groupName, index: this.index}});
           });
       }
     }

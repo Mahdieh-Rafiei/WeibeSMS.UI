@@ -2,7 +2,7 @@
   <div class="btn-section text-right">
     <div class="col-md-12 no-pad text-right">
       <button class="green-btn"><i class="fa fa-plus"></i> Send Event SMS</button>
-      <button class="green-btn" (click)="addEditUserEvent(null)" style="margin-left: 10px"><i class="fa fa-plus"></i>
+      <button class="green-btn" (click)="addEditUserEvent(null, null)" style="margin-left: 10px"><i class="fa fa-plus"></i>
         New Fields
       </button>
     </div>
@@ -30,7 +30,6 @@
         <tr>
           <th class="text-left"><i class="fa fa-sort"></i>Id</th>
           <th class="text-left"><i class="fa fa-sort"></i>Title</th>
-          <th class="text-left"><i class="fa fa-sort"></i>DateTime</th>
           <th></th>
         </tr>
         </thead>
@@ -38,11 +37,10 @@
         <tr *ngFor="let userEvent of userEvents; let i= index">
           <td class="text-left">#{{i+1}}</td>
           <td class="text-left">{{userEvent.name}}</td>
-          <td></td>
           <td class="td-single text-right actions-container">
             <div class="actions">
               <a><i (click)="removeUserEvent(i, userEvent.id)" class="fa fa-trash light-red-btn"></i></a>
-              <a (click)="addEditUserEvent(userEvent)"> <i class="fa fa-pencil light-green-btn"></i></a>
+              <a (click)="addEditUserEvent(userEvent, i)"> <i class="fa fa-pencil light-green-btn"></i></a>
             </div>
           </td>
         </tr>

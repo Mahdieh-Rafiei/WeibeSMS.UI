@@ -39,14 +39,16 @@ export class DeleteAccountComponent implements OnInit {
   }
 
   onSubmit() {
-    const payload = this.deleteAccountForm.value;
-    payload['reason'] = +this.deActiveAccount.reason;
-    payload['description'] = this.deActiveAccount.description;
+    if (this.deleteAccountForm.valid) {
+      const payload = this.deleteAccountForm.value;
+      payload['reason'] = +this.deActiveAccount.reason;
+      payload['description'] = this.deActiveAccount.description;
 
-    this.ps.deleteAccount(payload)
-      .subscribe(res => {
-        this.dialogRef.close({deleteAccount: {res}});
-      });
+      this.ps.deleteAccount(payload)
+        .subscribe(res => {
+          this.dialogRef.close({deleteAccount: {res}});
+        });
+    }
   }
 
   closeDialog() {
