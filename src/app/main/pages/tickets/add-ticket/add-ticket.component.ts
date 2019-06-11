@@ -4,11 +4,15 @@ import {NotificationService} from '../../../../shared/notification.service';
 import {Router} from '@angular/router';
 import {AddTicketInterface} from './models/add-ticket.interface';
 import {AddTicketResponseInterface} from './models/add-ticket-response.interface';
+import {errorAnimation} from '../../../../shared/component/animation/error-animation';
 
 @Component({
   selector: 'app-add-ticket',
   templateUrl: './add-ticket.component.html',
-  styleUrls: ['./add-ticket.component.scss']
+  styleUrls: ['./add-ticket.component.scss'],
+  animations: [
+    errorAnimation()
+  ]
 })
 export class AddTicketComponent implements OnInit {
 

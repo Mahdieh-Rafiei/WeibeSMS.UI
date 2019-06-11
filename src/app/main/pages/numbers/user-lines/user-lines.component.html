@@ -1,7 +1,7 @@
 <div class="div-section">
     <div class="change-password form-group">
         <h5>Your numbers</h5>
-        <p>Manage your virtual phone numbers and configure their settings.</p>
+        <p class="fo-4 black-text">Manage your virtual phone numbers and configure their settings.</p>
     </div>
     <!--operation-->
     <div class="row">
@@ -11,7 +11,8 @@
             </button>
         </div>
         <div class="col-md-6 operation-section form-group">
-            <!--<app-search [params]="[{title: 'device'}, {title: 'location'}]"></app-search>-->
+            <!--<app-search [params]="[{title: 'device'}, {title: 'location'}]"></app-search>--> search
+            <!--TODO: search-->
         </div>
     </div>
     <!--table-->
@@ -37,17 +38,27 @@
                 <td class="text-left">{{userLine.creationDateTime | dateTime: 'YYYY-DD-MM'}}</td>
                 <td class="text-left">{{userLine.cost}}€</td>
                 <td class="text-left">
-                    <button (click)="modifyUserLine(userLine,i)" class="yellow-btn">Upgrade balance</button>
+                    <button (click)="modifyUserLine(userLine,i)" class="light-yellow-btn"> <i class="fa fa-cog"></i> </button>
                 </td>
             </tr>
 
             </tbody>
         </table>
+        <!--pagination-->
+        <div class="col-12 pagination-div">
+            <div class="row pt-1 pb-1">
+                <div class="col-12 col-md-6 text-left fo-3 black-text font-weight-bold">Displaying 1-10 of
+                    {{totalItems}} records
+                </div>
+                <div class="col-12 col-md-6 text-right">
+                    <pagination-controls (pageChange)="doPaging($event)"
+                                         maxSize="5"
+                                         responsive="true"
+                                         previousLabel=""
+                                         nextLabel=""></pagination-controls>
+                </div>
+            </div>
+        </div>
 
-      <pagination-controls (pageChange)="doPaging($event)"
-                           maxSize="5"
-                           responsive="true"
-                           previousLabel=""
-                           nextLabel=""></pagination-controls>
     </div>
 </div>
