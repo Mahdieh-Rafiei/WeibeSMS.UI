@@ -11,45 +11,11 @@
   .select .mat-form-field-infix {
     padding: 0 !important;
   }
-  .profile-input {
-    border-top: 1px solid #dfdfdf;
+
+  .profile-input span:first-child {
+    font-weight: 400;
   }
 
-  .phone-verify {
-    display: inline-flex;
-  }
-
-
-  .sms-verification-multiple {
-    margin: 0 0 0 100px;
-    width: 59%;
-    border: 1px solid darkgrey;
-    height: 40px;
-    text-align: center;
-    padding-top: 5px;
-    //input {
-    //  border: none;
-    //  font-size: 14px;
-    //  width: 25px;
-    //  height: 20px;
-    //  margin: 0 13px;
-    //  -webkit-appearance: none;
-    //  background: transparent;
-    //  color: #000;
-    //  overflow: hidden;
-    //  border-bottom: 1px solid #a9a9a9;
-    //  text-align: center;
-    //  padding: 0;
-    //}
-  }
-  .send-again p {
-    text-align: right;
-    font-size: 12px;
-  }
-  .btn-save {
-    margin-top: 20px;
-    padding: 0;
-  }
   .date-picker {
     position: relative;
   }
@@ -58,25 +24,27 @@
     top: -23px;
     right: -4px;
   }
-  button.green-btn {
-    font-size: 14px;
-    padding: 10px 30px;
+  .mat-datepicker-toggle {
+    padding: 11px;
   }
-  .yellow-text {
-    font-size: 12px;
+  .mat-input-element {
+    font: 14px;
+    background: 0 0;
+    color: currentColor;
+    border: none;
+    outline: 0;
+    padding: 0.65rem 1rem;
+    margin: 0;
+    width: 100%;
+    max-width: 100%;
+    vertical-align: bottom;
+    text-align: inherit;
   }
+
   @media (max-width: 991px) and (min-width: 768px) {
 
-    .sms-verification-multiple {
-      margin: 0 0 0 0;
-
-    }
   }
   @media (max-width: 767px) and (min-width: 320px) {
 
-    .sms-verification-multiple {
-      margin: 0 0 0 0;
-      width: 100%;
-    }
   }
 }

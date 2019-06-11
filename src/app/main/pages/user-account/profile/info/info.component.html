@@ -1,54 +1,65 @@
 <div class="div-section">
     <div class="profile">
-        <div class="change-profile-pic pb-5">
+        <div class="change-profile-pic pb-3">
             <app-image-upload
                     [imageSrc]="'../../../../../assets/images/user.jpg'"
                     [imageUrl]="imageUrl"
                     [uploadType]="'1'"
                     [apiUrl]="'upload'"
                     [type]="'circle'"
+                    [deleteAvatar]="deleteAvatar"
                     [accept]="['image/png', 'image/jpeg', 'image/jpg']"
                     [sizeValidate]="2"
                     [validateSize]="'max size uploading is 2KB'"
-                    [validateFormats]="'PNG, JPG, JEPG Formats is invalid.'"></app-image-upload>
+                    [validateFormats]="'PNG, JPG, JEPG Formats is invalid.'"
+                    (removeAvatar)="getData($event)">
+
+            </app-image-upload>
         </div>
 
         <form class="profile-input" [formGroup]="profileForm" #formDir="ngForm" (ngSubmit)="submit()">
+            <div class="row">
+                <div class="col-12 col-md-4 form-group">
+                    <label>Username : <span class="gray-text">Mprince7</span></label>
+                </div>
+            </div>
             <div class="row">
                 <div class="col-12 col-md-4 form-group">
                     <label>Firstname :</label>
                     <input type="text"
                            placeholder="Enter your Firstname"
                            formControlName="firstName" class="form-control">
-                    <div class="error-place">
-                        <div class="text-left"
-                             *ngIf="(((profileForm.controls['firstName'].dirty || profileForm.controls['firstName'].touched) || formDir.submitted))"
-                             [@errorAnimation]>
-                            <p class="errorMessage" *ngIf="profileForm.hasError('required', 'firstName')">
-                                this filed is required!
-                            </p>
-                            <p class="errorMessage"
-                               *ngIf="(profileForm.controls['firstName'].hasError('maxlength'))">
-                                Firstname max length is 20 char!
-                            </p>
+                        <div class="error-place">
+                            <div class="text-left"
+                                 *ngIf="(((profileForm.controls['firstName'].dirty || profileForm.controls['firstName'].touched) || formDir.submitted))"
+                                 [@errorAnimation]>
+                                <p class="errorMessage" *ngIf="profileForm.hasError('required', 'firstName')">
+                                    <i class="far fa-exclamation-circle"></i> this filed is required!
+                                </p>
+                                <p class="errorMessage"
+                                   *ngIf="(profileForm.controls['firstName'].hasError('maxlength'))" [@errorAnimation]>
+                                    <i class="far fa-exclamation-circle"></i> Firstname max length is 20 char!
+                                </p>
+                            </div>
                         </div>
-                    </div>
                 </div>
                 <div class="col-12 col-md-4 form-group">
                     <label>Surename :</label>
                     <input type="text"
                            placeholder="Enter your Surename"
                            formControlName="lastName" class="form-control">
-                    <div class="text-left"
-                         *ngIf="((profileForm.controls['lastName'].dirty || profileForm.controls['lastName'].touched || formDir.submitted))">
-                        <p class="errorMessage" *ngIf="profileForm.hasError('required', 'lastName')">
-                            this filed is required!
-                        </p>
-                        <p class="errorMessage"
-                           *ngIf="(profileForm.controls['lastName'].hasError('maxlength')) ">
-                            Surename max length is 30 char!
-                        </p>
-                    </div>
+                   <div class="error-place">
+                       <div class="text-left"
+                            *ngIf="((profileForm.controls['lastName'].dirty || profileForm.controls['lastName'].touched || formDir.submitted))" [@errorAnimation]>
+                           <p class="errorMessage" *ngIf="profileForm.hasError('required', 'lastName')">
+                               <i class="far fa-exclamation-circle"></i> this filed is required!
+                           </p>
+                           <p class="errorMessage"
+                              *ngIf="(profileForm.controls['lastName'].hasError('maxlength')) " [@errorAnimation]>
+                               <i class="far fa-exclamation-circle"></i> Surename max length is 30 char!
+                           </p>
+                       </div>
+                   </div>
                 </div>
                 <div class="col-12 col-md-4 form-group">
                     <label>Gender :</label>
@@ -89,7 +100,7 @@
                         </option>
                     </select>
                     <div class="detail-prefix">
-                        <p class="yellow-text">Select a default prefix, that will allow you to upload and use
+                        <p class="yellow-text fo-1 pt-1">Select a default prefix, that will allow you to upload and use
                             numbers in local
                             format.</p>
                     </div>
@@ -102,7 +113,6 @@
                     </select>
                 </div>
             </div>
-
             <div class="col-md-12 btn-save text-right">
                 <button type="submit" class="green-btn">Save</button>
             </div>

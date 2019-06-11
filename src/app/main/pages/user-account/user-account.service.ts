@@ -12,51 +12,56 @@ import {ChangeNumberInterface} from './profile/change-number/models/change-numbe
 import {VerifyMobileInterface} from './profile/change-number/verify-number/models/verify-mobile.interface';
 
 @Injectable({
-  providedIn: 'root'
+    providedIn: 'root'
 })
 export class UserAccountService {
 
-  constructor(private apiService: ApiService) {
-  }
+    constructor(private apiService: ApiService) {
+    }
 
-  changePassword(payload): Observable<ChangePasswordResponseInterface> {
-    const url = `User/password`;
-    return this.apiService.put(url, payload, true);
-  }
+    changePassword(payload): Observable<ChangePasswordResponseInterface> {
+        const url = `User/password`;
+        return this.apiService.put(url, payload, true);
+    }
 
-  getProfile(): Observable<InfoGetInterface> {
-    const url = `User/profile`;
-    return this.apiService.get(url, true);
-  }
+    getProfile(): Observable<InfoGetInterface> {
+        const url = `User/profile`;
+        return this.apiService.get(url, true);
+    }
 
-  modifyProfile(payload): Observable<any> {
-    const url = `User`;
-    return this.apiService.put<InfoInterface>(url, payload, true);
-  }
+    modifyProfile(payload): Observable<any> {
+        const url = `User`;
+        return this.apiService.put<InfoInterface>(url, payload, true);
+    }
 
-  verifyEmail(payload): Observable<any> {
-    const url = `User/sendVerificationUrl`;
-    return this.apiService.post<ChangeEmailInterface>(url, payload, true);
-  }
+    removeAvatar() {
+        const url = `user/profile/image`;
+        return this.apiService.delete(url, null, true)
+    }
 
-  getSenderId(): Observable<SenderIdResponseInterface> {
-    const url = `User/senderName`;
-    return this.apiService.get(url, true);
-  }
+    verifyEmail(payload): Observable<any> {
+        const url = `User/sendVerificationUrl`;
+        return this.apiService.post<ChangeEmailInterface>(url, payload, true);
+    }
 
-  modifySenderId(payload: string): Observable<any> {
-    const url = `User/senderName`;
-    return this.apiService.put(url, payload, true);
-  }
+    getSenderId(): Observable<SenderIdResponseInterface> {
+        const url = `User/senderName`;
+        return this.apiService.get(url, true);
+    }
 
-  sendVerificationCode(payload): Observable<ChangeNumberInterface> {
-    const url = `user/SendVerificationCode`;
-    return this.apiService.post<SendVerificationCodeInterface>(url, payload, true);
-  }
+    modifySenderId(payload: string): Observable<any> {
+        const url = `User/senderName`;
+        return this.apiService.put(url, payload, true);
+    }
 
-  verifyMobile(payload): Observable<any> {
-    const url = `user/verifyMobile`;
-    return this.apiService.post<VerifyMobileInterface>(url, payload, true);
-  }
+    sendVerificationCode(payload): Observable<ChangeNumberInterface> {
+        const url = `user/SendVerificationCode`;
+        return this.apiService.post<SendVerificationCodeInterface>(url, payload, true);
+    }
+
+    verifyMobile(payload): Observable<any> {
+        const url = `user/verifyMobile`;
+        return this.apiService.post<VerifyMobileInterface>(url, payload, true);
+    }
 
 }

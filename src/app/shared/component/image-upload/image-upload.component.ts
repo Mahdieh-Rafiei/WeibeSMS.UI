@@ -37,10 +37,12 @@ export class ImageUploadComponent implements OnInit {
     @Input() imageUrl: string;
     @Input() imageSrc: any;
     @Input() uploadType: string;
+    @Input() deleteAvatar: boolean;
 
 
     @Output() image: EventEmitter<any> = new EventEmitter();
     @Output() loading: EventEmitter<any> = new EventEmitter();
+    @Output() removeAvatar: EventEmitter<boolean> = new EventEmitter();
 
     hasAvatar: boolean = false;
 
@@ -53,6 +55,9 @@ export class ImageUploadComponent implements OnInit {
     ngOnInit() {
         this.storeImageSrc = this.imageSrc;
         this.getPicture();
+        if (this.deleteAvatar) {
+            this.imageSrc = this.storeImageSrc
+        }
     }
 
     getPicture() {
@@ -131,6 +136,10 @@ export class ImageUploadComponent implements OnInit {
 
     onClickImage() {
         this.responseImage = null;
+    }
+
+    remove() {
+        this.removeAvatar.emit(true);
     }
 }
 

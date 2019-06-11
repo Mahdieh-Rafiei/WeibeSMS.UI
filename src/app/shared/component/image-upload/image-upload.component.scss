@@ -1,43 +1,51 @@
-.image-container {
-  position: relative;
-  &__circle {
-    width: 100px;
-    height: 100px;
-    text-align: center;
-    background-color: #EBEBEB;
-    overflow: hidden;
-    border-radius: 50%;
-  }
-  &__rect{
-    width: 180px;
-    height: 120px;
-    text-align: center;
-    background-color: #EBEBEB;
-    overflow: hidden;
-    border-radius: 2%;
-  }
+.upload-image{
+  display: inline-flex;
+  .image-container {
+    position: relative;
+    &__circle {
+      width: 100px;
+      height: 100px;
+      text-align: center;
+      background-color: #EBEBEB;
+      overflow: hidden;
+      border-radius: 50%;
+    }
+    &__rect{
+      width: 180px;
+      height: 120px;
+      text-align: center;
+      background-color: #EBEBEB;
+      overflow: hidden;
+      border-radius: 2%;
+    }
 
-  &__icon {
-    width: 100%;
-    height: 100%;
-  }
+    &__icon {
+      width: 100%;
+      height: 100%;
+    }
 
-  &__browse {
-    width: 0.1px;
-    height: 0.1px;
-    opacity: 0;
-    overflow: hidden;
-    position: absolute;
-    z-index: -1;
-  }
+    &__browse {
+      width: 0.1px;
+      height: 0.1px;
+      opacity: 0;
+      overflow: hidden;
+      position: absolute;
+      z-index: -1;
+    }
 
-  &__add-button {
-    position: absolute !important;
-    top: 5px;
-    cursor: pointer !important;
+    &__add-button {
+      position: absolute !important;
+      top: 5px;
+      cursor: pointer !important;
 
-    .mat-button-wrapper {
-      padding: 2px 0 !important;
+      .mat-button-wrapper {
+        padding: 2px 0 !important;
+      }
     }
   }
+  .btn-container{
+    display: flex;
+    align-items: center;
+  }
 }
+
