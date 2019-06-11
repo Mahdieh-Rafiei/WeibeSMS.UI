@@ -60,7 +60,7 @@ export class UserEventComponent implements OnInit {
     dialogRef.afterClosed()
       .subscribe(result => {
         if (result && result.addUserEvent) {
-          this.userEvents.unshift({id: result.addEditUserEvent.id, name: result.addEditUserEvent.name});
+          this.userEvents.unshift({id: result.addUserEvent.id, name: result.addUserEvent.name});
           this.ns.success('New group added successfully', '');
         } else if (result && result.editUserEvent) {
           this.userEvents[result.editUserEvent.index].name = result.editUserEvent.name;
