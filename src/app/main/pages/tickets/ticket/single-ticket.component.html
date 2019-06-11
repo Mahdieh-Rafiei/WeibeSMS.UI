@@ -17,7 +17,8 @@
     <div class="div-section">
         <div class="col-md-12 subject-ticket">
             <h5 *ngIf="ticket">Title :{{ticket.title}}</h5>
-            <p class="red-text">Department: <span class="">supporter</span> - Priority: <span class="">here is priority</span></p>
+            <p class="red-text">Department: <span class="font-weight-bold">supporter</span> - Priority: <span class="font-weight-bold">here is priority</span></p>
+            <!--TODO : dynamic above text-->
         </div>
         <div class="row rtl-div">
             <div class="col-md-1 text-center profile-pic float-right form-group">
@@ -30,7 +31,7 @@
                     <span *ngIf="ticket">{{ticket.date}}</span>
                 </p>
                 <div class="customer-ticket">
-                    <p class="errorMessage" *ngIf="ticket" [innerHTML]="ticket.message"></p>
+                    <p *ngIf="ticket" [innerHTML]="ticket.message"></p>
                 </div>
             </div>
         </div>
