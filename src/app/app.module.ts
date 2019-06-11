@@ -35,8 +35,6 @@ import {SendMessageSecondStepComponent} from './main/pages/send-message/send-mes
 import {SendMessageThirdStepComponent} from './main/pages/send-message/send-message-third-step/send-message-third-step.component';
 import {SendMessageScheduleComponent} from './main/pages/send-message/send-message-schedule/send-message-schedule.component';
 import {SendMessageEventComponent} from './main/pages/send-message/send-message-event/send-message-event.component';
-import {DraftComponent} from './main/pages/draft/draft/draft.component';
-import {DraftListComponent} from './main/pages/draft/draft-list/draft-list.component';
 import {CreateTransactionComponent} from './main/pages/biling/create-transaction/create-transaction.component';
 import {InvoiceListComponent} from './main/pages/biling/invoice-list/invoice-list.component';
 
@@ -81,8 +79,6 @@ import {AuthGuard} from './shared/auth.guard';
     SendMessageThirdStepComponent,
     SendMessageScheduleComponent,
     SendMessageEventComponent,
-    DraftComponent,
-    DraftListComponent,
     InvoiceListComponent,
     CreateTransactionComponent,
     SlimSidebarComponent,

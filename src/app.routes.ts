@@ -16,7 +16,7 @@ import {SendMessageThirdStepComponent} from './app/main/pages/send-message/send-
 import {SendMessageScheduleComponent} from './app/main/pages/send-message/send-message-schedule/send-message-schedule.component';
 import {SendMessageEventComponent} from './app/main/pages/send-message/send-message-event/send-message-event.component';
 
-import {DraftComponent} from './app/main/pages/draft/draft/draft.component';
+import {SingleDraftComponent} from './app/main/pages/draft/draft/single.draft.component';
 import {DraftListComponent} from './app/main/pages/draft/draft-list/draft-list.component';
 
 import {RewardPointComponent} from './app/main/pages/user-account/reward-point/reward-point.component';
@@ -69,10 +69,6 @@ export const APP_ROUTES: Routes = [
   },
 
   {path: 'reward-point', component: RewardPointComponent},
-
-  {path: 'draft', component: DraftComponent},
-  {path: 'draft/:id', component: DraftComponent},
-  {path: 'draft-list', component: DraftListComponent},
 
   {path: 'fund-list', component: FundListComponent},
   {path: 'fund', component: FundComponent},

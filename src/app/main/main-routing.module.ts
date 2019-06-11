@@ -29,8 +29,8 @@ const routes: Routes = [
         loadChildren: '.\/pages\/sms-report\/sms-report.module#SmsReportModule',
       },
       {
-        path: 'buy-numbers',
-        loadChildren: '.\/pages\/buy-numbers\/buy-numbers.module#BuyNumbersModule',
+        path: 'lines',
+        loadChildren: '.\/pages\/numbers\/numbers.module#NumbersModule',
       },
       {
         path: 'developer',
@@ -51,6 +51,10 @@ const routes: Routes = [
       {
         path: 'ticket',
         loadChildren: '.\/pages\/tickets\/ticket.module#TicketModule',
+      },
+      {
+        path: 'draft',
+        loadChildren: '.\/pages\/draft\/draft.module#DraftModule',
       },
     ]
   }

@@ -1,4 +1,4 @@
-<div class="main-container">
+<div>
   <div class="btn-section text-right">
     <div class="col-md-12 text-right">
       <button class="green-btn" [routerLink]="['/draft']"><i class="fa fa-plus"></i> Create template</button>
@@ -54,7 +54,7 @@
           <td class="td-single text-right actions-container">
             <div class="actions">
               <a><i (click)="removeDraft(d)" class="fa fa-trash"></i></a>
-              <a><i [routerLink]="['../draft/',d.id]" class="fa fa-pencil"></i></a>
+              <a><i [routerLink]="['../',d.id]" class="fa fa-pencil"></i></a>
             </div>
           </td>
         </tr>
