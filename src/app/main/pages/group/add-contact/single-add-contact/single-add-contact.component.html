@@ -1,63 +1,3 @@
-<!--<div class="section-div single-add-contact">-->
-<!--<div class="add-contact">-->
-<!--<div class="title">-->
-<!--<h5 class="mb-4">Add Contact</h5>-->
-<!--</div>-->
-<!--<div class="row">-->
-<!--<div class="col-md-4 form-group">-->
-<!--<label>First Name</label>-->
-<!--<input [(ngModel)]="firstName" type="text" placeholder="Name :">-->
-<!--</div>-->
-<!--<div class="col-md-4 form-group">-->
-<!--<label>Surename</label>-->
-<!--<input [(ngModel)]="lastName" type="text" placeholder="Surname :">-->
-<!--</div>-->
-<!--<div class="col-md-4 form-group">-->
-<!--<label>Phone Number</label>-->
-<!--<input [(ngModel)]="mobile" type="text" placeholder="Phone Number :">-->
-<!--</div>-->
-<!--<div class="col-md-4 form-group">-->
-<!--<label>Email</label>-->
-<!--<input [(ngModel)]="email" type="text" placeholder="Enter recipient Email :">-->
-<!--</div>-->
-<!--<div class="col-md-4 form-group">-->
-<!--<label>Gender</label>-->
-<!--<select [(ngModel)]="gender" placeholder="gender">-->
-<!--<option value="1">Female</option>-->
-<!--<option value="2">Male</option>-->
-<!--<option value="3">Unknown</option>-->
-<!--</select>-->
-<!--</div>-->
-<!--</div>-->
-<!--</div>-->
-<!--<div class="field border-top">-->
-<!--<div class="title form-group">-->
-<!--<h5 class="yellow-text">Recipient field</h5>-->
-<!--<p>you can go <span class="red-text">"Option>event field"</span>  and create field for <span class="font-weight-bold">event</span> send sms.</p>-->
-<!--</div>-->
-<!--<div class="row">-->
-<!--<div class="col-md-12">-->
-<!--<label>Select field</label>-->
-<!--</div>-->
-<!--<div class="col-md-4">-->
-<!--<select>-->
-<!--<option *ngFor="let ue of userEvents" [value]="ue.id">{{ue.name}}</option>-->
-<!--</select>-->
-<!--</div>-->
-<!--<div class="col-md-2">-->
-<!--<input type="text" class="date-value" placeholder="value">-->
-<!--</div>-->
-<!--<div class="col-md-2 btn-operation">-->
-<!--<span class="operation-fa light-green-btn mr-2"><i class="fa fa-plus green-text"></i> Add</span>-->
-<!--<span class="operation-fa light-red-btn"><i class="fa fa-trash red-text"></i> Delete</span>-->
-<!--</div>-->
-<!--</div>-->
-<!--<div class="col-md-12 text-right">-->
-<!--<button (click)="addContact()" class="blue-btn">Add</button>-->
-<!--</div>-->
-<!--</div>-->
-<!--</div>-->
-
 <form class="section-div single-add-contact" *ngIf="countries"
       [formGroup]="singleContactForm" #formDir="ngForm" (ngSubmit)="submit()">
   <div class="add-contact">
@@ -65,20 +5,6 @@
       <h5 class="mb-4">Add Contact</h5>
     </div>
     <div class="row">
-      <div class="col-md-4 form-group">
-        <label>First Name</label>
-        <input type="text"
-               class="form-control"
-               formControlName="firstName"
-               placeholder="Name :">
-      </div>
-      <div class="col-md-4 form-group">
-        <label>Surename</label>
-        <input type="text"
-               class="form-control"
-               formControlName="lastName"
-               placeholder="Surname :">
-      </div>
       <div class="col-md-4 form-group">
         <label>Phone Number</label>
         <div class="flex-group">
@@ -100,15 +26,36 @@
             </div>
           </div>
           <input type="text"
-                 #mobileInput
                  placeholder="Your phone number"
                  class="form-control"
+                 #mobileInput
                  formControlName="mobile"
                  (input)="changeMobile(mobileInput.value)"
                  appNumericInput
-                 [ngClass]="{'border-error' :(singleContactForm.controls['mobile'].touched || singleContactForm.controls['mobile'].dirty )}"
+                 [ngClass]="{'border-error' :(singleContactForm.controls['mobile'].touched || singleContactForm.controls['mobile'].dirty ) && !mobileValue}"
                  autofocus autocomplete="off">
         </div>
+        <div class="text-left"
+             *ngIf="formDir.submitted">
+          <p class="errorMessage"
+             *ngIf="(!mobileValue)">
+            This filed is required!
+          </p>
+        </div>
+      </div>
+      <div class="col-md-4 form-group">
+        <label>First Name</label>
+        <input type="text"
+               class="form-control"
+               formControlName="firstName"
+               placeholder="Name :">
+      </div>
+      <div class="col-md-4 form-group">
+        <label>Surename</label>
+        <input type="text"
+               class="form-control"
+               formControlName="lastName"
+               placeholder="Surname :">
       </div>
       <div class="col-md-4 form-group">
         <label>Email</label>
@@ -143,17 +90,48 @@
       <div class="col-md-12">
         <label>Select field</label>
       </div>
-      <div class="col-md-4">
-        <select>
+    </div>
+    <div class="row" *ngFor="let eventUser of userEvent.controls; let i=index"
+         [formGroup]="eventUser">
+      <div class="col-md-4 form-group">
+        <select formControlName="id" #select class="form-control">
+          <option hidden value="">Select</option>
           <option *ngFor="let ue of userEvents" [value]="ue.id">{{ue.name}}</option>
         </select>
+        <div class="text-left"
+             *ngIf="id[i] && !select.value">
+          <p class="errorMessage">
+            this filed is required!
+          </p>
+        </div>
       </div>
-      <div class="col-md-2">
-        <input type="text" class="date-value" placeholder="value">
+      <div class="col-md-3 form-group select">
+        <mat-form-field class="date-picker">
+          <input matInput class="form-control"
+                 formControlName="value"
+                 #pickerValue
+                 [matDatepicker]="picker"
+                 placeholder="Enter your Birthday">
+          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+        <div class="text-left"
+             *ngIf="val[i] && !pickerValue.value">
+          <p class="errorMessage">
+            this filed is required!
+          </p>
+        </div>
       </div>
-      <div class="col-md-2 btn-operation">
-        <span class="operation-fa light-green-btn mr-2"><i class="fa fa-plus green-text"></i> Add</span>
-        <span class="operation-fa light-red-btn"><i class="fa fa-trash red-text"></i> Delete</span>
+      <div class="col-md-3 form-group btn-operation">
+        <span *ngIf="userEvent.length>1" (click)="deleteEventUser(i)" class="operation-fa light-red-btn"><i
+          class="fa fa-trash red-text"></i> Delete</span>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-12 col-md-10 text-right">
+        <span *ngIf="userEvent.length<userEvents.length" (click)="addUserEvent()"
+              class="operation-fa light-green-btn mr-2"><i
+          class="fa fa-plus green-text"></i> Add</span>
       </div>
     </div>
   </div>
