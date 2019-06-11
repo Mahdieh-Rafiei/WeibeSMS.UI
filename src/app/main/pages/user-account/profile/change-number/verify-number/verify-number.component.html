@@ -1,21 +1,23 @@
 <div class="col-md-12 div-section">
-  <div class="change-password">
-    <h5>Verify phone number</h5>
-    <p>Please enter the code that we have sent to your phone.</p>
-    <div class="mt-4">
-      <form class="row" [formGroup]="verifyNumberForm" (ngSubmit)="submit()">
-        <div class="col-12 col-md-3">
-          <label>Verification code: </label>
-          <input type="number"
-                 class="form-control"
-                 formControlName="verificationCode"
-                 placeholder="Enter verification code">
-          <app-countdown (countDownEmit)="getCountDown($event)"></app-countdown>
+    <div class="change-password">
+        <h5>Verify phone number</h5>
+        <p class="fo-4 black-text">Please enter the code that we have sent to your phone.</p>
+        <div class="col-md-4">
+            <form class="row" [formGroup]="verifyNumberForm" (ngSubmit)="submit()">
+                <label>Verification code: </label>
+                <div class="input-group pt-3">
+                    <input type="number"
+                           class="form-control"
+                           formControlName="verificationCode"
+                           placeholder="Enter verification code">
+                    <div class="input-group-append">
+                        <button type="submit" id="basic-addon2" class="light-blue-btn ml-2">Verify</button>
+                    </div>
+                </div>
+                <app-countdown (countDownEmit)="getCountDown($event)"></app-countdown>
+            </form>
         </div>
-        <div class="col-md-1">
-          <button type="submit" class="light-green-btn mt-4">Verify</button>
-        </div>
-      </form>
     </div>
-  </div>
 </div>
+
+

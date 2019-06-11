@@ -31,6 +31,7 @@ body {
   overflow-x: hidden;
   font-family: 'OpenSans-Regular';
   font-weight: 300;
+  height: 81vh;
 }
 
 h1,
@@ -176,12 +177,11 @@ article, aside, details, figcaption, figure, footer, header, hgroup, main, menu,
 .main-container {
   margin: 90px 15px 90px 245px;
   padding: 0;
-  /*height: 100vh;*/
   -ms-overflow-x: hidden;
-  overflow-x: hidden;
-  overflow-y: scroll;
+  //overflow-x: hidden;
+  //overflow-y: scroll;
   position: relative;
-  overflow: hidden;
+  //overflow: hidden;
 }
 
 @media (max-width: 767px) {
@@ -460,7 +460,7 @@ i.fa.fa-sort {
   border: 1px solid #e9f3ff;
   color: #2786fb;
   border-radius: .25rem !important;
-  padding: 0.375rem 0.75rem;
+  padding: .5rem .75rem;;
   font-size: 14px;
 }
 
@@ -469,7 +469,7 @@ i.fa.fa-sort {
   border: 1px solid #fff8e8;
   color: #ffb822;
   border-radius: .25rem !important;
-  padding: 0.375rem 0.75rem;
+  padding: .5rem .75rem;;
   font-size: 14px;
 }
 
@@ -487,10 +487,14 @@ i.fa.fa-sort {
   border: 1px solid #f5e2ec;
   color: #fd397a;
   border-radius: .25rem !important;
-  padding: 0.375rem 0.75rem;
+  padding: .5rem .75rem;;
   font-size: 14px;
 }
-
+.light-red-btn:hover {
+  background-color: #fd397a;
+  border-color: #fd397a;
+  color: #ffffff;
+}
 .gray-btn {
   background-color: transparent;
   border: 1px solid #e2e5ec;
@@ -726,6 +730,10 @@ input.verification-code-input {
   color: #fd397a;
 }
 
+.gray-text {
+  color: #a7abc3;
+}
+
 .blue-text {
   color: #5867dd;
 }
@@ -939,10 +947,6 @@ li {
   font-size: 12px;
 }
 
-.light-blue-btn {
-  max-height: 38px;
-}
-
 .light-blue-btn:hover {
   background-color: #2786fb;
   color: #fff;
@@ -1069,15 +1073,15 @@ label {
   animation: shake 2.5s ease-in;
 
 }
+
 //svg warning
-.question-st0{
-  fill:#FFB822;
+.question-st0 {
+  fill: #FFB822;
 }
 
-.question path{
+.question path {
   animation: shake 2.5s ease-in;
 }
-
 
 @keyframes shake {
   10%, 90% {
@@ -1097,8 +1101,6 @@ label {
   }
 }
 
-
-
 //forward arrow
 @keyframes move-forward {
   0% {
@@ -1112,6 +1114,11 @@ label {
   }
 }
 
-textarea{
+textarea {
   resize: none;
+}
+
+.form-control {
+  height: calc(1.5em + 1.3rem + 2px);
+  font-size: 14px;
 }
