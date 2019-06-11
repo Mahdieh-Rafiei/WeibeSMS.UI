@@ -1,15 +1,8 @@
-<<<<<<< HEAD
 <div>
-  <div class="btn-section text-right">
-    <div class="col-md-12 text-right">
-      <button class="green-btn" [routerLink]="['/draft']"><i class="fa fa-plus"></i> Create template</button>
-=======
-<div class="main-container">
     <div class="btn-section text-right">
         <div class="col-md-12 text-right">
             <button class="green-btn" [routerLink]="['/draft']"><i class="fa fa-plus"></i> Create template</button>
         </div>
->>>>>>> 499c6311446c40bad2ed597f9d7349aab3e42e5f
     </div>
 
     <div class="div-section">
@@ -21,16 +14,8 @@
                 </button>
             </div>
             <div class="col-md-6 operation-section form-group">
-                <!--<app-search [params]="[{title: 'device'}, {title: 'location'}]"></app-search>--> search
-                <!--TODO: SEARCH -->
+                <!--<app-search [params]="[{title: 'device'}, {title: 'location'}]"></app-search>-->
             </div>
-<<<<<<< HEAD
-          </td>
-          <td class="td-single text-right actions-container">
-            <div class="actions">
-              <a><i (click)="removeDraft(d)" class="fa fa-trash"></i></a>
-              <a><i [routerLink]="['../',d.id]" class="fa fa-pencil"></i></a>
-=======
         </div>
         <!--table-->
         <div class="table-div table-responsive">
@@ -38,8 +23,8 @@
                 <thead>
                 <tr>
                     <th class="text-left"><i class="fa fa-sort"></i> Name</th>
-                    <th class="text-left"><i class="fa fa-sort"></i> MESSAGE</th>
-                    <th class="text-left">Send Action</th>
+                    <th class="text-center"><i class="fa fa-sort"></i> MESSAGE</th>
+                    <th class="text-center">Send Action</th>
                     <th></th>
                 </tr>
                 </thead>
@@ -52,12 +37,12 @@
                             {{d.title}}
                         </div>
                     </td>
-                    <td class="text-left">
+                    <td class=" text-center">
                         <div>
                             {{d.summary}} <a><span [title]="d.messageText" style="color: #f5274e;">. . .</span></a>
                         </div>
                     </td>
-                    <td class="text-left">
+                    <td class="text-center">
                         <div>
                             <select class="select-send">
                                 <option>Simple send</option>
@@ -66,36 +51,26 @@
                             </select>
                         </div>
                     </td>
-                    <td class="td-single text-left actions-container">
+                    <td class="td-single text-right actions-container">
                         <div class="actions">
-                            <a><i (click)="removeDraft(d)" class="fa fa-trash light-red-btn"></i></a>
-                            <!--TODO: modal for delete -->
-                            <a><i [routerLink]="['../draft/',d.id]" class="fa fa-pencil light-green-btn"></i></a>
+                            <a><i (click)="removeDraft(d)" class="fa fa-trash"></i></a>
+                            <a><i [routerLink]="['../',d.id]" class="fa fa-pencil"></i></a>
                         </div>
                     </td>
                 </tr>
                 </tbody>
             </table>
-            <!--pagination-->
-            <div class="col-12 pagination-div">
-                <div class="row pt-1 pb-1">
-                    <div class="col-12 col-md-6 text-left fo-3 black-text font-weight-bold">Displaying 1-10 of
-                        {{totalItems}} records
-                    </div>
-                    <div class="col-12 col-md-6 text-right">
-                        <pagination-controls (pageChange)="doPaging($event)"
-                                             maxSize="5"
-                                             responsive="true"
-                                             previousLabel=""
-                                             nextLabel=""></pagination-controls>
-                    </div>
-                </div>
->>>>>>> 499c6311446c40bad2ed597f9d7349aab3e42e5f
+            <div class="table-pagination text-right">
+                <span><i class="fa fa-arrow-circle-left"></i></span>
+                <span><i class="fa fa-arrow-circle-right"></i></span>
             </div>
         </div>
     </div>
 
+    <pagination-controls (pageChange)="doPaging($event)"
+                         maxSize="5"
+                         responsive="true"
+                         previousLabel=""
+                         nextLabel=""></pagination-controls>
+
 </div>
-
-
-
