@@ -1,0 +1,44 @@
+<div class="div-section">
+    <div class="change-password form-group">
+        <h5>Buy numbers</h5>
+        <p>Buy virtual phone Numbers to send or receive messages.</p>
+    </div>
+    <div class="country">
+        <div class="row">
+            <div class="col-md-3 form-group">
+                <label>Country</label>
+              <select class="content-box" (change)="countryChanged($event)">
+                <option [innerText]="c.name" [value]="c.id" *ngFor="let c of countries"></option>
+              </select>
+            </div>
+            <div class="col-md-1 form-group">
+                <button class="light-green-btn search-btn">search</button>
+            </div>
+        </div>
+        <div class="row">
+          <div>
+            <div class="col-md-2 text-center" >
+              <button (click)="selectedLine = l" *ngFor="let l of lines" class="light-blue-btn mt-2 mb-2">{{l.number}}</button>
+            </div>
+          </div>
+        </div>
+    </div>
+    <div class="country-number" *ngIf="selectedLine">
+        <div class="change-password form-group mt-4 mb-4">
+            <h5>Country Number Monthly</h5>
+        </div>
+        <div class="row">
+            <div class="col-md-3">
+                <div class="country-number-div">
+                    <p class="font-weight-bold pb-2">Setup Fee: <span>{{selectedLine.cost}}$</span></p>
+                    <p class="font-weight-bold pb-2">Recurring Fee: <span>{{selectedLine.cost}}$ (Every 1 month)</span></p>
+                    <p class="font-weight-bold pb-2">Inbound SMS Fee: <span>0.02$</span></p>
+                    <input [(ngModel)]="hasAutoExtension" type="checkbox"><span>auto extension</span>
+                    <div class="country-number-btn text-center mt-4">
+                        <button (click)="buyLine()" class="light-green-btn">Buy with your Balance</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

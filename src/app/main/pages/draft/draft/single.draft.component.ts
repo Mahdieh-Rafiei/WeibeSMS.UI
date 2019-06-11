@@ -13,13 +13,13 @@ import {errorAnimation} from "../../../../shared/component/animation/error-anima
 
 @Component({
   selector: 'app-draft',
-  templateUrl: './draft.component.html',
-  styleUrls: ['./draft.component.scss'],
+  templateUrl: './single.draft.component.html',
+  styleUrls: ['./single.draft.component.scss'],
     animations: [
         errorAnimation()
     ],
 })
-export class DraftComponent implements OnInit {
+export class SingleDraftComponent implements OnInit {
 
   id: number;
   draft: any = {

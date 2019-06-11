@@ -66,7 +66,7 @@ export class SidebarComponent implements OnInit {
       subMenu: [{
         title: 'Template',
         icon: 'circle',
-        link: '/draft-list'
+        link: '/draft/list'
       },
         {
           title: 'schedule,events',
@@ -108,9 +108,9 @@ export class SidebarComponent implements OnInit {
       link: '/developer/list',
       subMenu: null
     }, {
-      title: 'Buy number',
+      title: 'Lines',
       icon: 'shopping-basket',
-      link: '/buy-numbers',
+      link: '/lines/my-lines',
       subMenu: null
     }
   ];

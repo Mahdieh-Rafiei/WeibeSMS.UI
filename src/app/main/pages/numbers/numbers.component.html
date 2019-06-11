@@ -1,0 +1,11 @@
+<div>
+    <div class="buy-number">
+        <div class="title-tab no-pad">
+            <p [ngClass]="{'active':numberService.mode==='yourNumbers'}" (click)="numberService.mode='yourNumbers'" [routerLink]="['my-lines']">Your numbers</p>
+        </div>
+        <div class="title-tab no-pad">
+            <p [ngClass]="{'active':numberService.mode==='buyNumbers'}" (click)="numberService.mode='buyNumbers'" [routerLink]="['buy-lines']">Buy Numbers</p>
+        </div>
+    </div>
+    <router-outlet></router-outlet>
+</div>
