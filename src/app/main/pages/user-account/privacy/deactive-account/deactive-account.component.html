@@ -1,9 +1,9 @@
 <div class="div-section">
   <div class="hange-password">
     <h5>Deactive</h5>
-    <p>Update your account password. Always set a strong password, including uppercase, lowercase, number.</p>
+    <p class="fo-4 black-text">Update your account password. Always set a strong password, including uppercase, lowercase, number.</p>
     <form class="row" [formGroup]="deActiveForm" #formDir="ngForm" (ngSubmit)="submit()">
-      <div class="col-12 col-md-4">
+      <div class="col-12 col-md-4 pt-2">
         <div class="row">
           <div class="col-12 form-group">
             <label>why are you deactivate your account: </label>
@@ -13,21 +13,18 @@
             </select>
             <div class="text-left"
                  *ngIf="(((deActiveForm.controls['reason'].dirty || deActiveForm.controls['reason'].touched) || formDir.submitted))">
-              <p class="errorMessage" *ngIf="deActiveForm.hasError('required', 'reason')">
-                this filed is required!
+              <p class="errorMessage" *ngIf="deActiveForm.hasError('required', 'reason')" [@errorAnimation]>
+                <i class="far fa-exclamation-circle"></i> this filed is required!
               </p>
             </div>
           </div>
           <div class="col-12 form-group">
-            <textarea formControlName="description" rows="8"></textarea>
+            <textarea class="form-control" formControlName="description" rows="8"></textarea>
           </div>
         </div>
       </div>
-      <!--<div class="col-md-4 no-pad textarea-answer">-->
-      <!--<textarea rows="8"></textarea>-->
-      <!--</div>-->
       <div class="col-md-12 text-right">
-        <button type="submit" class="light-red-btn">DeActive your account ?</button>
+        <button type="submit" class="red-btn">DeActive your account ?</button>
       </div>
     </form>
   </div>

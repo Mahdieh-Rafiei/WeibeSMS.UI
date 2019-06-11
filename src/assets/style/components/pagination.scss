@@ -1,0 +1,83 @@
+.pagination-div {
+  border: 1px solid #eaecf1;
+  border-top: none;
+}
+
+.pagination-div .col-md-6.text-left {
+  line-height: 46px;
+}
+
+.pagination-div .col-md-6.text-right {
+  margin-top: 7px;
+}
+
+.ngx-pagination {
+  margin-left: 0;
+  margin-bottom: 0 !important;
+}
+
+.ngx-pagination li {
+  padding-right: .25rem !important;
+  padding-left: .25rem !important;
+}
+
+a.ng-star-inserted {
+  cursor: pointer;
+  background: #ebedf2;
+  border-radius: 50% !important;
+  width: 30px;
+  height: 30px;
+  padding: 0 !important;
+  text-align: center;
+  color: #6c7293 !important;
+  font-weight: 600 !important;
+}
+
+.ngx-pagination .pagination-next a::after, .ngx-pagination .pagination-next.disabled::after {
+  content: '»';
+  display: inline-block;
+  margin-left: 0 !important;
+}
+
+.ngx-pagination .current {
+  padding: 0 !important;
+  background: #6c7293 !important;
+  color: #fefefe;
+  cursor: default;
+  border-radius: 50% !important;
+  width: 30px;
+  height: 30px;
+  text-align: center;
+}
+.ngx-pagination .disabled {
+  background: #ebedf2;
+  border-radius: 50% !important;
+  width: 30px;
+  height: 30px;
+  padding: 0 !important;
+  text-align: center;
+  color: #6c7293 !important;
+  font-weight: 600 !important;
+}
+span.ng-star-inserted{
+  font-size: 15px;
+  line-height: 29px !important;
+}
+a.ng-star-inserted span{
+  font-size: 15px;
+  line-height: 29px !important;
+}
+.ngx-pagination .pagination-previous a::before, .ngx-pagination .pagination-previous.disabled::before {
+  content: '«';
+  display: inline-block;
+  margin-right: 0 !important;
+}
+.ngx-pagination .disabled {
+  padding: 0.1875rem 0.625rem;
+  color: #cacaca;
+  cursor: default;
+  margin-right: 0.5rem !important;
+}
+.ngx-pagination .disabled:hover {
+  background: #ebedf2 !important;
+}

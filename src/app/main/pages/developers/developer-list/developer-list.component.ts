@@ -41,7 +41,7 @@ export class DeveloperListComponent implements OnInit {
 
     createKey() {
         if (this.keys.length < 10) {
-            this.openDialog('400px', 'auto', '',
+            this.openDialog('480px', 'auto', '',
                 {});
         } else {
             this.ns.warning('You can add Maximum 10 authentication keys!', '');

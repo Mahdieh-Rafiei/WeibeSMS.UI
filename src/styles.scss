@@ -31,6 +31,7 @@ body {
   overflow-x: hidden;
   font-family: 'OpenSans-Regular';
   font-weight: 300;
+  height: 81vh;
 }
 
 h1,
@@ -167,20 +168,20 @@ article, aside, details, figcaption, figure, footer, header, hgroup, main, menu,
   border-radius: 50%;
 }
 
-.description{
+.description {
   font-size: 15px;
   color: #495057;
 }
+
 /*---------------------------Main Div--------------------------*/
 .main-container {
   margin: 90px 15px 90px 245px;
   padding: 0;
-  /*height: 100vh;*/
   -ms-overflow-x: hidden;
-  overflow-x: hidden;
-  overflow-y: scroll;
+  //overflow-x: hidden;
+  //overflow-y: scroll;
   position: relative;
-  overflow: hidden;
+  //overflow: hidden;
 }
 
 @media (max-width: 767px) {
@@ -438,18 +439,20 @@ i.fa.fa-sort {
   padding: .5rem .75rem;;
   font-size: 14px;
 }
-.light-green-btn:hover{
+
+.light-green-btn:hover {
   background-color: #1dc9b7;
-  border-color:  #1dc9b7;
+  border-color: #1dc9b7;
   color: #ffffff;
 }
+
 .blue-btn {
   background-color: #5867dd;
   border: 1px solid #5867dd;
-  border-radius: 4px;
   color: #ffffff;
-  padding: 5px 25px;
-  font-size: 12px;
+  border-radius: .25rem !important;
+  padding: .5rem .75rem;;
+  font-size: 14px;
 }
 
 .light-blue-btn {
@@ -487,7 +490,11 @@ i.fa.fa-sort {
   padding: .5rem .75rem;;
   font-size: 14px;
 }
-
+.light-red-btn:hover {
+  background-color: #fd397a;
+  border-color: #fd397a;
+  color: #ffffff;
+}
 .gray-btn {
   background-color: transparent;
   border: 1px solid #e2e5ec;
@@ -536,6 +543,7 @@ i.fa.fa-sort {
 i.fa.fa-sort {
   margin-right: 5px;
 }
+
 /*--------------------- Login & register & forgot pass ---------------*/
 .error-place {
   display: flex;
@@ -543,13 +551,23 @@ i.fa.fa-sort {
   padding-top: 2px;
 
 }
+
 .border-error {
   border: 1px solid #fd397a;
   transition: .3s;
 }
+
 .errorMessage {
   font-size: 12px;
   color: #fd397a;
+  display: flow-root;
+  padding-left: 2px;
+  align-items: center;
+}
+
+.strong-password {
+  font-size: 12px;
+  color: #1dc9b7;
   display: flow-root;
   padding-left: 2px;
   align-items: center;
@@ -697,6 +715,7 @@ input.verification-code-input {
   color: #fd397a;
   padding-top: 5px;
 }
+
 .ws-login-input:focus, input.verification-code-input:focus {
   border: 1px solid #2cd9f4;
 }
@@ -705,9 +724,14 @@ input.verification-code-input {
   color: #fd397a;
   border: 1px solid #2cd9f4;
 }
+
 /*------------------- End Login & register & forgot pass ------------*/
 .red-text {
   color: #fd397a;
+}
+
+.gray-text {
+  color: #a7abc3;
 }
 
 .blue-text {
@@ -730,9 +754,10 @@ input.verification-code-input {
   color: #fff !important;
 }
 
-.black-text{
+.black-text {
   color: #495057;
 }
+
 /*----------------------------alert-box--------------------------------*/
 .alert-box-default {
   background-color: #edeef0;
@@ -922,10 +947,6 @@ li {
   font-size: 12px;
 }
 
-.light-blue-btn {
-  max-height: 38px;
-}
-
 .light-blue-btn:hover {
   background-color: #2786fb;
   color: #fff;
@@ -971,19 +992,133 @@ label {
   font-size: 15px;
 }
 
-//font
-.fo-0{
+/*-------------------------------------------font---------------------------------------*/
+.fo-0 {
   font-size: 12px;
 }
-.fo-1{
+
+.fo-1 {
   font-size: 13px;
 }
-.fo-2{
+
+.fo-2 {
   font-size: 14px;
 }
-.fo-3{
-   font-size: 14px;
- }
-.fo-4{
+
+.fo-3 {
+  font-size: 14px;
+}
+
+.fo-4 {
   font-size: 15px;
+}
+
+/*-----------------------------------------Modal SVG--------------------------------*/
+.modal-header {
+  display: block;
+  border: none;
+  padding-bottom: 0 !important;
+  svg {
+    width: 70px;
+  }
+}
+
+.cdk-overlay-dark-backdrop {
+  background: rgba(0, 0, 0, 0.5);
+}
+
+//svg create
+.create-st0 {
+  fill: #1DC9B7;
+}
+
+.creat path {
+  fill: #1DC9B7;
+  stroke: #1DC9B7;
+  fill-opacity: 1;
+  stroke-width: 0;
+  stroke-dasharray: 100% 0;
+  animation: stroke-offset 2.5s ease-in;
+}
+
+@keyframes stroke-offset {
+  0% {
+    fill-opacity: 0;
+    stroke-width: 0;
+    stroke-dasharray: 0% 100%;
+  }
+  25% {
+    stroke-width: 2px;
+  }
+  50% {
+    fill-opacity: 0;
+  }
+  75% {
+    stroke-width: 2px;
+  }
+  80% {
+    stroke-width: 0;
+  }
+  100% {
+    stroke-width: 0;
+  }
+}
+
+//svg delete
+.delete-st0 {
+  fill: #FD397A;
+}
+
+.trash path {
+  animation: shake 2.5s ease-in;
+
+}
+
+//svg warning
+.question-st0 {
+  fill: #FFB822;
+}
+
+.question path {
+  animation: shake 2.5s ease-in;
+}
+
+@keyframes shake {
+  10%, 90% {
+    transform: translate3d(-1px, 0, 0);
+  }
+
+  20%, 80% {
+    transform: translate3d(2px, 0, 0);
+  }
+
+  30%, 50%, 70% {
+    transform: translate3d(-4px, 0, 0);
+  }
+
+  40%, 60% {
+    transform: translate3d(4px, 0, 0);
+  }
+}
+
+//forward arrow
+@keyframes move-forward {
+  0% {
+    transform: translateX(0)
+  }
+  50% {
+    transform: translateX(-3px)
+  }
+  100% {
+    transform: translateX(0px)
+  }
+}
+
+textarea {
+  resize: none;
+}
+
+.form-control {
+  height: calc(1.5em + 1.3rem + 2px);
+  font-size: 14px;
 }

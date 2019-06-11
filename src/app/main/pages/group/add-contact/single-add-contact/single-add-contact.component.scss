@@ -5,39 +5,19 @@
   border-radius: 0 0 10px 10px;
 }
 
-.add-contact {
-  padding: 15px;
+.mat-form-field-infix {
+  padding: 0 !important;
+  min-height: unset !important;
 }
-
-.field {
-  padding: 15px;
+.select .mat-form-field-infix {
+  padding: 0 !important;
 }
-
-input {
-  width: 100%;
+.date-picker {
+  position: relative;
 }
-
-label {
-  display: block;
-  color: #6c7293;
-  font-weight: 600;
-  font-size: 12px;
-}
-
-select {
-  width: 100%;
-}
-
-::placeholder {
-  color: #b5b5b5;
-  font-size: 12px;
-}
-
-.btn-operation {
-  line-height: 3;
-}
-
-button.blue-btn {
-  font-size: 16px;
+mat-datepicker-toggle.mat-datepicker-toggle {
+  //position: absolute;
+  top: -23px;
+  right: -4px;
 }
 

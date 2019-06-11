@@ -1,27 +1,40 @@
 <div class="div-section">
-    <div class="form-group">
-        <input [(ngModel)]="title" type="text" placeholder="title" class="ws form-control has-tooltip">
+  <div class="form-group">
+    <input [(ngModel)]="title"
+           type="text"
+           placeholder="title"
+           class="ws form-control has-tooltip">
+    <div class="text-left">
+      <p class="errorMessage" *ngIf="titleRequired && title.length===0">
+        this filed is required!
+      </p>
     </div>
-    <div class="row">
-        <div class="col-12 col-md-3 col-xs-6 form-group">
-            <select [(ngModel)]="departmentId" class="ws form-control has-tooltip">
-                <option value="1">Support</option>
-                <option value="2">Developer</option>
-                <option value="3">Sale</option>
-            </select>
-        </div>
-        <div class="col-12 col-md-9 col-xs-6 form-group">
-            <select [(ngModel)]="priorityId" class="ws form-control">
-                <option value="1">Low</option>
-                <option value="2">Medium</option>
-                <option value="3">High</option>
-            </select>
-        </div>
+  </div>
+  <div class="row">
+    <div class="col-12 col-md-3 col-xs-6 form-group">
+      <select [(ngModel)]="departmentId" class="ws form-control has-tooltip">
+        <option value="1">Support</option>
+        <option value="2">Developer</option>
+        <option value="3">Sale</option>
+      </select>
     </div>
-    <angular-editor [(ngModel)]="message"></angular-editor>
-    <div class="form-group">
-        <button (click)="addNewTicket()" class="ticket-submit">Submit</button>
+    <div class="col-12 col-md-9 col-xs-6 form-group">
+      <select [(ngModel)]="priorityId" class="ws form-control">
+        <option value="1">Low</option>
+        <option value="2">Medium</option>
+        <option value="3">High</option>
+      </select>
     </div>
+  </div>
+  <angular-editor [(ngModel)]="message"></angular-editor>
+  <div class="text-left">
+    <p class="errorMessage" *ngIf="messageRequired && message.length===0">
+      this filed is required!
+    </p>
+  </div>
+  <div class="form-group">
+    <button (click)="addNewTicket()" class="ticket-submit">Submit</button>
+  </div>
 </div>
 
 

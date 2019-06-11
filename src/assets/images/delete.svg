@@ -1,6 +1,4 @@
-<div class="dialog">
-    <div class="col-12 modal-header p-2 text-center">
-        <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
 	 viewBox="0 0 435.3 432.9"  xml:space="preserve">
 	<g class="circle">
 				<path class="delete-st0" d="M216.7,9c-114.9,0-208,93.1-208,208s93.1,208,208,208s208-93.1,208-208S331.6,9,216.7,9z M397.9,217
@@ -16,19 +14,3 @@
 
 	</g>
 </svg>
-        <h5 class="red-text">{{modalHeader}}</h5>
-    </div>
-    <div class="col-12 form-group">
-        <p class="title text-center">{{modalText}}</p>
-    </div>
-    <div class="col-12 pb-3">
-        <div class="text-center" dir="ltr">
-            <button  class="red-btn mr-2" (click)="onSubmit()">
-                delete
-            </button>
-            <button class="gray-btn" (click)="closeDialog()">
-                cancel
-            </button>
-        </div>
-    </div>
-</div>

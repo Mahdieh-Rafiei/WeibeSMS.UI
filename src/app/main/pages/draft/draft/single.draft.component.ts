@@ -9,11 +9,15 @@ import {AddDraftInterface} from './models/add-draft.interface';
 import {GetDraftInterface} from './models/get-draft.interface';
 import {EditDraftResponseInterface} from './models/edit-draft-response.interface';
 import {EditDraftInterface} from './models/edit-draft.interface';
+import {errorAnimation} from "../../../../shared/component/animation/error-animation";
 
 @Component({
   selector: 'app-draft',
   templateUrl: './single.draft.component.html',
-  styleUrls: ['./single.draft.component.scss']
+  styleUrls: ['./single.draft.component.scss'],
+    animations: [
+        errorAnimation()
+    ],
 })
 export class SingleDraftComponent implements OnInit {
 

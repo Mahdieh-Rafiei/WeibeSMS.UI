@@ -10,126 +10,136 @@ import {UploadInterface} from './models/upload.interface';
 import {ApiService} from '../../api.service';
 
 @Component({
-  selector: 'app-image-upload',
-  templateUrl: './image-upload.component.html',
-  styleUrls: ['./image-upload.component.scss'],
-  encapsulation: ViewEncapsulation.None,
+    selector: 'app-image-upload',
+    templateUrl: './image-upload.component.html',
+    styleUrls: ['./image-upload.component.scss'],
+    encapsulation: ViewEncapsulation.None,
 })
 export class ImageUploadComponent implements OnInit {
-  showSpinner = false;
-  avatar: File;
-  responseImage;
+    showSpinner = false;
+    avatar: File;
+    responseImage;
 
-  picture;
+    picture;
 
-  AvatarSizeValidate = false;
-  AvatarTypeValidate = false;
-  typeValidate = false;
-  showDelete: boolean = false;
-  storeImageSrc: string;
+    AvatarSizeValidate = false;
+    AvatarTypeValidate = false;
+    typeValidate = false;
+    showDelete: boolean = false;
+    storeImageSrc: string;
 
-  @Input() type;
-  @Input() accept;
-  @Input() sizeValidate;
-  @Input() validateFormats;
-  @Input() validateSize;
-  @Input() apiUrl: string;
-  @Input() imageUrl: string;
-  @Input() imageSrc: any;
-  @Input() uploadType: string;
-
-
-  @Output() image: EventEmitter<any> = new EventEmitter();
-  @Output() loading: EventEmitter<any> = new EventEmitter();
-
-  hasAvatar: boolean = false;
-
-  constructor(private router: Router,
-              private http: HttpClient,
-              private fb: FormBuilder,
-              private as: ApiService) {
-  }
-
-  ngOnInit() {
-    this.storeImageSrc = this.imageSrc;
-    this.getPicture();
-  }
-
-  getPicture() {
-    if (this.imageUrl) {
-      this.showDelete = true;
-      this.imageSrc = this.imageUrl;
-      this.hasAvatar = true;
-    }
-  }
+    @Input() type;
+    @Input() accept;
+    @Input() sizeValidate;
+    @Input() validateFormats;
+    @Input() validateSize;
+    @Input() apiUrl: string;
+    @Input() imageUrl: string;
+    @Input() imageSrc: any;
+    @Input() uploadType: string;
+    @Input() deleteAvatar: boolean;
 
 
-  uploadFile(files) {
+    @Output() image: EventEmitter<any> = new EventEmitter();
+    @Output() loading: EventEmitter<any> = new EventEmitter();
+    @Output() removeAvatar: EventEmitter<boolean> = new EventEmitter();
 
-    // this.AvatarSizeValidate = false;
-    // this.AvatarTypeValidate = false;
-    // this.typeValidate = false;
-    // if (this.accept) {
-    //   for (let i = 0; i < this.accept.length; i++) {
-    //     if (event.target.files[0].type === this.accept[i]) {
-    //       this.typeValidate = true;
-    //     }
-    //   }
-    // }
-    // if (event.target.files && event.target.files[0]) {
-    //   if (this.typeValidate === false) {
-    //     this.AvatarTypeValidate = true;
-    //   } else if (event.target.files[0].size < (this.sizeValidate * 1024)) {
-    //     this.AvatarSizeValidate = true;
-    //   } else {
-    //
-    //     const reader = new FileReader();
-    //     reader.onload = (e: any) => {
-    //       this.avatar = <File> event.target.files[0];
-    //       this.uploadForm.get('file').setValue(this.avatar);
-    //       //
-    //       // const fd = new FormData();
-    //       // fd.append('', this.avatar);
-    //       // fd.append('type', this.uploadType);
-    //
-    //       const formModel = this.prepareSave();
-    //
-    //       this.loading.emit(true);
-    //       this.sharedService.uploadFile(formModel, this.apiUrl)
-    //         .subscribe(
-    //           (response: any) => {
-    //             this.showSpinner = false;
-    //             this.showDelete = true;
-    //             this.imageSrc = reader.result;
-    //             this.responseImage = response;
-    //             this.loading.emit(false);
-    //             this.image.emit(response);
-    //           });
-    //     };
-    //     reader.readAsDataURL(event.target.files[0]);
-    //     this.AvatarSizeValidate = false;
-    //     this.AvatarTypeValidate = false;
-    //   }
+    hasAvatar: boolean = false;
 
-    if (files.length === 0) {
-      return;
+    constructor(private router: Router,
+                private http: HttpClient,
+                private fb: FormBuilder,
+                private as: ApiService) {
     }
 
-    const fileToUpload = <File> files[0];
-    const formData = new FormData();
-    formData.append('file', fileToUpload);
-    formData.append('type', '1');
-
-    this.as.postFile(this.apiUrl, formData)
-      .subscribe(res => {
-        if (res && res.data) {
-          this.imageSrc = res.data;
+    ngOnInit() {
+        this.storeImageSrc = this.imageSrc;
+        this.getPicture();
+        if (this.deleteAvatar) {
+            this.imageSrc = this.storeImageSrc
         }
-      });
-  }
+    }
 
-  onClickImage() {
-    this.responseImage = null;
-  }
+    getPicture() {
+        if (this.imageUrl) {
+            this.showDelete = true;
+            this.imageSrc = this.imageUrl;
+            this.hasAvatar = true;
+        }
+    }
+
+
+    uploadFile(files) {
+
+        // this.AvatarSizeValidate = false;
+        // this.AvatarTypeValidate = false;
+        // this.typeValidate = false;
+        // if (this.accept) {
+        //   for (let i = 0; i < this.accept.length; i++) {
+        //     if (event.target.files[0].type === this.accept[i]) {
+        //       this.typeValidate = true;
+        //     }
+        //   }
+        // }
+        // if (event.target.files && event.target.files[0]) {
+        //   if (this.typeValidate === false) {
+        //     this.AvatarTypeValidate = true;
+        //   } else if (event.target.files[0].size < (this.sizeValidate * 1024)) {
+        //     this.AvatarSizeValidate = true;
+        //   } else {
+        //
+        //     const reader = new FileReader();
+        //     reader.onload = (e: any) => {
+        //       this.avatar = <File> event.target.files[0];
+        //       this.uploadForm.get('file').setValue(this.avatar);
+        //       //
+        //       // const fd = new FormData();
+        //       // fd.append('', this.avatar);
+        //       // fd.append('type', this.uploadType);
+        //
+        //       const formModel = this.prepareSave();
+        //
+        //       this.loading.emit(true);
+        //       this.sharedService.uploadFile(formModel, this.apiUrl)
+        //         .subscribe(
+        //           (response: any) => {
+        //             this.showSpinner = false;
+        //             this.showDelete = true;
+        //             this.imageSrc = reader.result;
+        //             this.responseImage = response;
+        //             this.loading.emit(false);
+        //             this.image.emit(response);
+        //           });
+        //     };
+        //     reader.readAsDataURL(event.target.files[0]);
+        //     this.AvatarSizeValidate = false;
+        //     this.AvatarTypeValidate = false;
+        //   }
+
+        if (files.length === 0) {
+            return;
+        }
+
+        const fileToUpload = <File> files[0];
+        const formData = new FormData();
+        formData.append('file', fileToUpload);
+        formData.append('type', '1');
+
+        this.as.postFile(this.apiUrl, formData)
+            .subscribe(res => {
+                if (res && res.data) {
+                    this.imageSrc = res.data;
+                    this.hasAvatar = true;
+                }
+            });
+    }
+
+    onClickImage() {
+        this.responseImage = null;
+    }
+
+    remove() {
+        this.removeAvatar.emit(true);
+    }
 }
 

@@ -1,7 +1,7 @@
 <div class="div-section">
   <div class="change-password">
     <h5>Login Log</h5>
-    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
+    <p class="fo-4 black-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
       magna aliqua.</p>
   </div>
   <div class="operation">
@@ -12,7 +12,7 @@
         </button>
       </div>
       <div class="col-md-6 operation-section form-group">
-        <!--<app-search [params]="[{title: 'device'}, {title: 'location'}]"></app-search>-->
+        <!--<app-search [params]="[{title: 'device'}, {title: 'location'}]"></app-search>--> search
       </div>
     </div>
 
@@ -47,15 +47,22 @@
       </tr>
       </tbody>
     </table>
-    <div class="table-pagination text-right">
-      <span><i class="fa fa-arrow-circle-left"></i></span>
-      <span><i class="fa fa-arrow-circle-right"></i></span>
+    <!--pagination-->
+    <div class="col-12 pagination-div">
+      <div class="row pt-1 pb-1">
+        <div class="col-12 col-md-6 text-left fo-3 black-text font-weight-bold">Displaying 1-10 of {{totalItems}} records</div>
+        <div class="col-12 col-md-6 text-right">
+          <pagination-controls (pageChange)="doPaging($event)"
+                               maxSize="5"
+                               responsive="true"
+                               previousLabel=""
+                               nextLabel="">
+          </pagination-controls>
+        </div>
+      </div>
     </div>
+
   </div>
-  <pagination-controls (pageChange)="doPaging($event)"
-                       maxSize="5"
-                       responsive="true"
-                       previousLabel=""
-                       nextLabel=""></pagination-controls>
+
 </div>
 

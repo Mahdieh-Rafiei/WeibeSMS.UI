@@ -11,6 +11,7 @@ export class DialogComponent implements OnInit {
     optionIndex: number;
     modalText: string;
     modalType: string;
+    modalHeader: string;
     id: string;
 
     constructor(public dialogRef: MatDialogRef<DialogComponent>,
@@ -18,6 +19,7 @@ export class DialogComponent implements OnInit {
         this.optionIndex = data.index;
         this.modalText = data.modalText;
         this.modalType = data.modalType;
+        this.modalHeader = data.modalHeader;
         this.id = data.id;
 
     }

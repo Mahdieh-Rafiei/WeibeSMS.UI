@@ -2,7 +2,6 @@ import {Component, OnInit} from '@angular/core';
 import {GroupService} from '../group.service';
 import {ActivatedRoute, Router} from '@angular/router';
 import {ContactService} from '../contact/contact.service';
-import _ from 'node_modules/lodash/lodash.js';
 import {GroupResponseInterface} from '../models/group-response.interface';
 import {RemoveContactFormGroupInterface} from '../models/remove-contact-form-group.interface';
 
@@ -40,11 +39,11 @@ export class SingleGroupComponent implements OnInit {
       });
   }
 
-  removeFromGroup(contact) {
+  removeFromGroup(contact, index) {
     this.contactService.removeContactFromGroup(this.group.id, contact.id)
       .subscribe((res: RemoveContactFormGroupInterface) => {
         console.log(res);
-        _.remove(this.contacts, c => c.id === contact.id);
+        this.contacts.splice(index, 1);
       });
   }
 

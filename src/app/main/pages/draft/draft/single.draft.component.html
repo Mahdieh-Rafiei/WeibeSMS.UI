@@ -2,7 +2,8 @@
   <div class="btn-section text-right">
     <div class="row">
       <div class="col-md-6 col-sm-6 col-xs-6 text-left">
-        <button class="previous-btn"><i class="fa fa-arrow-left"></i> Previous</button>
+        <button class="previous-btn" [routerLink]="['../../draft-list']"><i class="fa fa-arrow-left"></i> Previous</button>
+          <!--TODO: LAZY LOADING-->
       </div>
       <div class="col-md-6 col-sm-6 col-xs-6 text-right">
         <button (click)="addOrUpdateDraft()" class="green-btn"><i class="fa fa-plus"></i> Save Template</button>
@@ -12,37 +13,35 @@
 
   <div class="div-section">
     <div class="col-md-12 draft">
-      <div class="row">
-        <input [(ngModel)]="draft.title" #title type="text" placeholder="name" class="input-name">
-        <div class="text-left">
-          <p class="errorMessage" *ngIf="!title.value && titleValue">
-            this filed is required!
-          </p>
+      <div class="row pb-2">
+        <input [(ngModel)]="draft.title" #title type="text" placeholder="name" class="form-control">
+        <div class="error-place">
+            <div class="text-left">
+                <p class="errorMessage" *ngIf="!title.value && titleValue" [@errorAnimation]>
+                    <!--to do-->
+                    <i class="far fa-exclamation-circle"></i> this filed is required!
+                </p>
+            </div>
         </div>
       </div>
       <div class="row">
-        <div class="col-md-8 padding">
+        <div class="col-md-8 pr-2 pl-0 content-box">
                 <textarea placeholder="Message |" (input)="onMessageTextChange()" [(ngModel)]="draft.messageText"
-                          rows="9" class="content-box" #message></textarea>
-          <div class="text-left">
-            <p class="errorMessage" *ngIf="!message.value && messageValue">
-              this filed is required!
-            </p>
-          </div>
+                          rows="9"  #message></textarea>
           <div class="count-sms">
             <span>{{localSmsLen}} / {{container}}</span> | <span>{{smsCount}} SMS</span>
           </div>
         </div>
-        <div class="col-md-4 padding">
-          <div class="content-box personalize">
+        <div class="col-md-4 pl-2 pr-0">
+          <div class="content-box personalize mb-3">
             <h5>Personalize</h5>
-            <p class="yellow-text">* To use the field dynamically</p>
-            <p class="green-text" (click)="addSegment(1)"><i class="fa fa-plus-circle"></i> Name</p>
-            <p class="green-text" (click)="addSegment(2)"><i class="fa fa-plus-circle"></i> Surname</p>
-            <p class="green-text" (click)="addSegment(3)"><i class="fa fa-plus-circle"></i> Phone number</p>
+            <p class="yellow-text fo-3 pt-1 pb-1 font-weight-bold">* To use the field dynamically</p>
+            <p class="green-text fo-2 pt-2" (click)="addSegment(1)"><i class="fa fa-plus-circle"></i> Name</p>
+            <p class="green-text fo-2 pt-2" (click)="addSegment(2)"><i class="fa fa-plus-circle"></i> Surname</p>
+            <p class="green-text fo-2 pt-2" (click)="addSegment(3)"><i class="fa fa-plus-circle"></i> Phone number</p>
           </div>
           <div class="template">
-            <select class="content-box" (change)="selectTemplate($event)">
+            <select class="form-control" (change)="selectTemplate($event)">
               <option hidden *ngIf="drafts?.length===0">No Template</option>
               <option hidden *ngIf="drafts?.length>0">Select Template</option>
               <option [innerText]="d.title" [value]="d.id" *ngFor="let d of drafts">
@@ -50,8 +49,14 @@
             </select>
           </div>
         </div>
-
       </div>
+        <div class="error-place">
+            <div class="text-left">
+                <p class="errorMessage" *ngIf="!message.value && messageValue" [@errorAnimation]>
+                    <i class="far fa-exclamation-circle"></i> this filed is required!
+                </p>
+            </div>
+        </div>
     </div>
   </div>
 </div>

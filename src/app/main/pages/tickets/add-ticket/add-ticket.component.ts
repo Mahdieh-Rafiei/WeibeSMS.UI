@@ -16,23 +16,22 @@ export class AddTicketComponent implements OnInit {
   title: string = '';
   departmentId: number = 1;
   priorityId: number = 1;
+  titleRequired: boolean = false;
+  messageRequired: boolean = false;
 
   constructor(private ticketService: TicketService,
               private notificationService: NotificationService,
               private router: Router) {
   }
 
-  ngOnInit() {
-  }
-
   addNewTicket() {
     if (this.message.length === 0) {
-      this.notificationService.error('Ticket text cant be null!', '');
-      return;
+      this.messageRequired = true;
+      // this.notificationService.error('Ticket text cant be null!', '');
     }
     if (this.title.length === 0) {
-      this.notificationService.error('Title cant be null!', '');
-      return;
+      this.titleRequired = true;
+      // this.notificationService.error('Title cant be null!', '');
     }
     const payload: AddTicketInterface = {
       Title: this.title,
@@ -40,10 +39,15 @@ export class AddTicketComponent implements OnInit {
       DepartmentId: this.departmentId,
       Priority: this.priorityId
     };
-    this.ticketService.addTicket(payload)
-      .subscribe((res: AddTicketResponseInterface) => {
-        this.notificationService.success('Ticket added successfully', '');
-        this.router.navigateByUrl('/ticket/list');
-      });
+    if (this.title.length > 0 && this.message.length > 0) {
+      this.ticketService.addTicket(payload)
+        .subscribe((res: AddTicketResponseInterface) => {
+          this.notificationService.success('Ticket added successfully', '');
+          this.router.navigateByUrl('/ticket/list');
+        });
+    }
+  }
+
+  ngOnInit() {
   }
 }

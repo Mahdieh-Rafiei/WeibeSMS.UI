@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, ViewEncapsulation} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {ActivatedRoute} from '@angular/router';
 import {InfoGetInterface} from './models/info-get.interface';
@@ -7,20 +7,26 @@ import {SharedService} from '../../../../../shared/service/shared.service';
 import {DataCountryInterface} from '../../../../../shared/models/data-country.interface';
 import {NotificationService} from '../../../../../shared/notification.service';
 import {UserAccountService} from '../../user-account.service';
+import {errorAnimation} from "../../../../../shared/component/animation/error-animation";
 
 @Component({
     selector: 'app-info',
     templateUrl: './info.component.html',
-    styleUrls: ['./info.component.scss']
+    styleUrls: ['./info.component.scss'],
+    encapsulation: ViewEncapsulation.None,
+    animations: [
+        errorAnimation()
+    ]
 })
 export class InfoComponent implements OnInit {
     profileForm: FormGroup;
-  infoData: InfoGetInterface;
+    infoData: InfoGetInterface;
     countries: DataCountryInterface[];
     genders = [{title: 'Unknown', value: 1},
         {title: 'Female', value: 2},
         {title: 'Male', value: 3}];
     imageUrl: string = null;
+    deleteAvatar: boolean = false;
 
     constructor(private fb: FormBuilder,
                 private route: ActivatedRoute,
@@ -55,6 +61,15 @@ export class InfoComponent implements OnInit {
             countryId: [''],
             birthday: [null]
         });
+    }
+
+    getData(event) {
+        if (event) {
+            this.uas.removeAvatar()
+                .subscribe(res => {
+                    this.deleteAvatar = true;
+                })
+        }
     }
 
     fillProfile(profileForm) {
