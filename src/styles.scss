@@ -5,6 +5,7 @@
   url('assets/fonts/OpenSans-Regular.woff') format('woff'),
   url('assets/fonts/OpenSans-Regular.ttf') format('truetype');
 }
+
 * {
   outline: none !important;
   font-family: 'OpenSans-Regular';
@@ -560,6 +561,14 @@ i.fa.fa-sort {
   align-items: center;
 }
 
+.strong-password {
+  font-size: 12px;
+  color: #1dc9b7;
+  display: flow-root;
+  padding-left: 2px;
+  align-items: center;
+}
+
 /*login*/
 .ws-btn {
   background: #5867dd;
@@ -1052,13 +1061,24 @@ label {
 }
 
 //svg delete
-.delete-st0{
-  fill:#FD397A;
+.delete-st0 {
+  fill: #FD397A;
 }
-.trash path{
-  animation: shake 2.5s ease-in ;
+
+.trash path {
+  animation: shake 2.5s ease-in;
 
 }
+//svg warning
+.question-st0{
+  fill:#FFB822;
+}
+
+.question path{
+  animation: shake 2.5s ease-in;
+}
+
+
 @keyframes shake {
   10%, 90% {
     transform: translate3d(-1px, 0, 0);
@@ -1077,8 +1097,21 @@ label {
   }
 }
 
+
+
+//forward arrow
 @keyframes move-forward {
-  0%{transform: translateX(0)}
-  50%{transform: translateX(-3px)}
-  100%{transform: translateX(0px)}
+  0% {
+    transform: translateX(0)
+  }
+  50% {
+    transform: translateX(-3px)
+  }
+  100% {
+    transform: translateX(0px)
+  }
+}
+
+textarea{
+  resize: none;
 }
