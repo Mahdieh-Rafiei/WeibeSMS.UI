@@ -7,7 +7,7 @@ import {AddContactFormGroupResponseInterface} from '../models/add-contact-form-g
 @Component({
   selector: 'app-confirmation-add-contact-from-file',
   templateUrl: './confirmation-add-contact-from-file.component.html',
-  styleUrls: ['./confirmation-add-contact-from-file.component.css']
+  styleUrls: ['./confirmation-add-contact-from-file.component.scss']
 })
 export class ConfirmationAddContactFromFileComponent implements OnInit {
 

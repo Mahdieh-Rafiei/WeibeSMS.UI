@@ -1,8 +1,8 @@
 .content-box{
   border: 1px solid #ced4da;
-  border-radius: 4px;
+  border-radius: 0.25rem;
   padding: 9px 15px;
-  color: #000;
+  color: #495057;
 }
 
 textarea{
@@ -12,17 +12,14 @@ textarea{
 .count-sms{
   position: absolute;
   right: 10px;
-  bottom: 5px
+  bottom: 5px;
+  font-size: 15px;
+  color: #49505780;
 }
 select{
   width: 100%;
 }
-.personalize p:nth-child(2){
-  font-size: 12px;
-  //line-height: 2;
-}
 .personalize p:nth-child(3), p:nth-child(4), p:nth-child(5){
-  //line-height: 2;
   cursor: pointer;
 }
 @media (max-width: 991px) and (min-width: 768px){
@@ -31,4 +28,3 @@ select{
 @media (max-width: 767px) and (min-width: 320px){
 
 }
-

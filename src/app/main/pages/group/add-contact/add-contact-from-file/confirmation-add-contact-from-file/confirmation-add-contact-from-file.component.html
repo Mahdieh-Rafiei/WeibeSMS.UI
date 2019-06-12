@@ -1,30 +1,43 @@
 <div class="dialog">
-  <div class="col-12 form-group modal-header p-2">
-    <h5>Auto extension</h5>
-  </div>
-  <div class="col-12 form-group">
-    <p class="fo-3 black-text pb-2">add count:</p>
-    <p>{{contactData.addCount}}</p>
-    <p class="fo-3 black-text pb-2">distinct count:</p>
-    <p>{{contactData.distinctCount}}</p>
-    <p class="fo-3 black-text pb-2">duplicate count:</p>
-    <p>{{contactData.duplicateCount}}</p>
-    <p class="fo-3 black-text pb-2">exists contact count:</p>
-    <p>{{contactData.existsContactCount}}</p>
-    <p class="fo-3 black-text pb-2">total count:</p>
-    <p>{{contactData.totalCount}}</p>
-    <p class="fo-3 black-text pb-2">wrong numbers count:</p>
-    <p>{{contactData.wrongNumber}}</p>
-    <br>
-  </div>
-  <div class="col-12 pb-3">
-    <div class="text-center" dir="ltr">
-      <button type="submit" class="green-btn mr-2" (click)="onSubmit()">
-        submit
-      </button>
-      <button class="gray-btn" (click)="closeDialog()">
-        cancel
-      </button>
+    <div class="col-12 modal-header p-2 text-center">
+        <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 435.3 432.9" xml:space="preserve">
+	<g class="circle">
+		<path class="create-st0" d="M216.7,9c-114.9,0-208,93.1-208,208s93.1,208,208,208s208-93.1,208-208S331.6,9,216.7,9z M397.9,217
+			c0,99.6-80.6,181.2-181.2,181.2c-99.6,0-181.2-80.6-181.2-181.2c0-99.6,80.6-181.2,181.2-181.2C316.3,35.8,397.9,116.4,397.9,217z"/>
+	</g>
+	<g class="creat">
+		<path class="create-st0" d="M345.8,211.6v12c0,6.6-5.4,12-12,12h-98v98c0,6.6-5.4,12-12,12h-12c-6.6,0-12-5.4-12-12v-98h-98
+					c-6.6,0-12-5.4-12-12v-12c0-6.6,5.4-12,12-12h98v-98c0-6.6,5.4-12,12-12h12c6.6,0,12,5.4,12,12v98h98
+					C340.4,199.6,345.8,205,345.8,211.6z"/>
+	</g>
+
+</svg>
+        <h5 class="green-text">Preview</h5>
     </div>
-  </div>
+    <div class="col-12 form-group">
+        <label class="fo-3 black-text pb-2">add count:</label>
+        <p>{{contactData.addCount}}</p>
+        <label class="fo-3 black-text pb-2">distinct count:</label>
+        <p>{{contactData.distinctCount}}</p>
+        <label class="fo-3 black-text pb-2">duplicate count:</label>
+        <p>{{contactData.duplicateCount}}</p>
+        <label class="fo-3 black-text pb-2">exists contact count:</label>
+        <p>{{contactData.existsContactCount}}</p>
+        <label class="fo-3 black-text pb-2">total count:</label>
+        <p>{{contactData.totalCount}}</p>
+        <label class="fo-3 black-text pb-2">wrong numbers count:</label>
+        <p>{{contactData.wrongNumber}}</p>
+        <br>
+    </div>
+    <div class="col-12 pb-3">
+        <div class="text-center" dir="ltr">
+            <button type="submit" class="green-btn mr-2" (click)="onSubmit()">
+                submit
+            </button>
+            <button class="gray-btn" (click)="closeDialog()">
+                cancel
+            </button>
+        </div>
+    </div>
 </div>

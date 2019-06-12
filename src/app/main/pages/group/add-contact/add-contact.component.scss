@@ -2,20 +2,18 @@
   background-color: #ffffff;
   padding: 15px 15px 0;
   border-bottom: 1px solid #e2e5ec;
-  border-radius: 10px 10px 0 0;
+  border-radius: .4rem .4rem 0 0;
 }
 
 .add-contact-div {
   padding: 15px;
-  img {
+  svg{
     margin: 0 auto;
     display: block;
     height: 85px;
   }
 }
-.type-add {
-  font-size: 15px;
-  color: #ed4952;
+.chang-fill{
+  fill:#1DC9B7;
 }
-
 

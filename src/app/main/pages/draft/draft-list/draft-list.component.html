@@ -1,69 +1,18 @@
 <div>
-<<<<<<< HEAD
-  <div class="btn-section text-right">
-    <div class="col-md-12 text-right">
-      <button class="green-btn" [routerLink]="['/draft']"><i class="fa fa-plus"></i> Create template</button>
-=======
     <div class="btn-section text-right">
         <div class="col-md-12 text-right">
             <button class="green-btn" [routerLink]="['/draft']"><i class="fa fa-plus"></i> Create template</button>
         </div>
->>>>>>> 994891994a3f2a50862d5e086347a6fe65eea78b
     </div>
-  </div>
 
-  <div class="div-section">
-    <!--operation-->
-    <div class="row">
-      <div class="col-md-6 operation-section form-group">
-        <button class="light-blue-btn">
-          <i class="fa fa-filter"></i> Filter
-        </button>
-      </div>
-      <div class="col-md-6 operation-section form-group">
-        <!--<app-search [params]="[{title: 'device'}, {title: 'location'}]"></app-search>-->
-      </div>
-    </div>
-    <!--table-->
-    <div class="table-div table-responsive">
-      <table class="index-table text-left">
-        <thead>
-        <tr>
-          <th class="text-left"><i class="fa fa-sort"></i> Name</th>
-          <th class="text-center"><i class="fa fa-sort"></i> MESSAGE</th>
-          <th class="text-center">Send Action</th>
-          <th></th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr *ngFor="let d of drafts| paginate : {
-                                itemsPerPage : 10, currentPage : pageNumber, totalItems : totalItemsCount
-                                },index as i">
-          <td class="text-left">
-            <div class="table-head">
-              {{d.title}}
+    <div class="div-section">
+        <!--operation-->
+        <div class="row">
+            <div class="col-md-6 operation-section form-group">
+                <button class="light-blue-btn">
+                    <i class="fa fa-filter"></i> Filter
+                </button>
             </div>
-          </td>
-          <td class=" text-center">
-            <div>
-              {{d.summary}} <a><span [title]="d.messageText" style="color: #f5274e;">. . .</span></a>
-            </div>
-<<<<<<< HEAD
-          </td>
-          <td class="text-center">
-            <div>
-              <select class="select-send">
-                <option>Simple send</option>
-                <option>Scheduled send</option>
-                <option>Event send</option>
-              </select>
-            </div>
-          </td>
-          <td class="td-single text-right actions-container">
-            <div class="actions">
-              <a><i (click)="removeDraft(d)" class="fa fa-trash"></i></a>
-              <a><i [routerLink]="['../',d.id]" class="fa fa-pencil"></i></a>
-=======
             <div class="col-md-6 operation-section form-group">
                 <!--<app-search [params]="[{title: 'device'}, {title: 'location'}]"></app-search>-->
             </div>
@@ -74,8 +23,8 @@
                 <thead>
                 <tr>
                     <th class="text-left"><i class="fa fa-sort"></i> Name</th>
-                    <th class="text-center"><i class="fa fa-sort"></i> MESSAGE</th>
-                    <th class="text-center">Send Action</th>
+                    <th class="text-left"><i class="fa fa-sort"></i> MESSAGE</th>
+                    <th class="text-left">Send Action</th>
                     <th></th>
                 </tr>
                 </thead>
@@ -88,12 +37,12 @@
                             {{d.title}}
                         </div>
                     </td>
-                    <td class=" text-center">
+                    <td class=" text-left">
                         <div>
                             {{d.summary}} <a><span [title]="d.messageText" style="color: #f5274e;">. . .</span></a>
                         </div>
                     </td>
-                    <td class="text-center">
+                    <td class="text-left">
                         <div>
                             <select class="select-send">
                                 <option>Simple send</option>
@@ -103,7 +52,7 @@
                         </div>
                     </td>
                     <td class="td-single text-right actions-container">
-                        <div class="actions">
+                        <div class="actions text-right">
                             <a><i (click)="removeDraft(d)" class="fa fa-trash light-red-btn"></i></a>
                             <a><i [routerLink]="['../',d.id]" class="fa fa-pencil light-green-btn"></i></a>
                         </div>
@@ -111,12 +60,6 @@
                 </tr>
                 </tbody>
             </table>
-<<<<<<< HEAD
-            <div class="table-pagination text-right">
-                <span><i class="fa fa-arrow-circle-left"></i></span>
-                <span><i class="fa fa-arrow-circle-right"></i></span>
->>>>>>> 994891994a3f2a50862d5e086347a6fe65eea78b
-=======
             <!--pagination-->
             <div class="col-12 pagination-div">
                 <div class="row pt-1 pb-1">
@@ -128,27 +71,13 @@
                                              maxSize="5"
                                              responsive="true"
                                              previousLabel=""
-                                             nextLabel=""></pagination-controls>
+                                             nextLabel="">
+                        </pagination-controls>
                     </div>
                 </div>
->>>>>>> e2e051e0e59aebef21a600d81ef7020831c11eef
             </div>
-          </td>
-        </tr>
-        </tbody>
-      </table>
-      <div class="table-pagination text-right">
-        <span><i class="fa fa-arrow-circle-left"></i></span>
-        <span><i class="fa fa-arrow-circle-right"></i></span>
-      </div>
+        </div>
     </div>
-  </div>
-
-  <pagination-controls (pageChange)="doPaging($event)"
-                       maxSize="5"
-                       responsive="true"
-                       previousLabel=""
-                       nextLabel=""></pagination-controls>
 
 
 </div>

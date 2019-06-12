@@ -10,7 +10,7 @@ import {ExtendUserLineResponseInterface} from '../models/extend-user-line-respon
 @Component({
   selector: 'app-edit-user-lines',
   templateUrl: './edit-user-lines.component.html',
-  styleUrls: ['./edit-user-lines.component.css']
+  styleUrls: ['./edit-user-lines.component.scss']
 })
 export class EditUserLinesComponent implements OnInit {
 

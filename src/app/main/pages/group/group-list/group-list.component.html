@@ -14,7 +14,8 @@
         </button>
       </div>
       <div class="col-md-6 operation-section form-group">
-        <!--<app-search [params]="[{title: 'device'}, {title: 'location'}]"></app-search>-->
+        <!--<app-search [params]="[{title: 'device'}, {title: 'location'}]"></app-search>--> search
+          <!--TODO: SEARCH-->
       </div>
     </div>
     <!--table-->
@@ -46,7 +47,7 @@
             <div>{{group.contactsCount}}</div>
           </td>
           <td class="td-single text-right actions-container">
-            <div class="actions">
+            <div class="actions text-right">
               <a (click)="removeGroup(i, group)"><i class="fa fa-trash light-red-btn"></i></a>
               <a (click)="addEditGroup(group, i)"> <i class="fa fa-pencil light-green-btn"></i></a>
               <a [routerLink]="['../',group.id]"><i class="fa fa-eye light-green-btn"></i></a>
@@ -55,18 +56,23 @@
         </tr>
         </tbody>
       </table>
-      <div class="table-pagination text-right">
-        <span><i class="fa fa-arrow-circle-left"></i></span>
-        <span><i class="fa fa-arrow-circle-right"></i></span>
-      </div>
+        <!--pagination-->
+        <div class="col-12 pagination-div">
+            <div class="row pt-1 pb-1">
+                <div class="col-12 col-md-6 text-left fo-3 black-text font-weight-bold">Displaying 1-10 of
+                    {{totalItems}} records
+                </div>
+                <div class="col-12 col-md-6 text-right">
+                    <pagination-controls (pageChange)="doPaging($event)"
+                                         maxSize="5"
+                                         responsive="true"
+                                         previousLabel=""
+                                         nextLabel="">
+                    </pagination-controls>
+                </div>
+            </div>
+        </div>
     </div>
-
-
-    <pagination-controls (pageChange)="doPaging($event)"
-                         maxSize="5"
-                         responsive="true"
-                         previousLabel=""
-                         nextLabel=""></pagination-controls>
 
   </div>
 </div>
