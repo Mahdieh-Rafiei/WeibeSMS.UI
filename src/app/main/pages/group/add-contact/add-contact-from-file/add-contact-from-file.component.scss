@@ -1,14 +1,17 @@
 .section-div {
   background-color: #ffffff;
-  border-radius: 4px;
+  border-radius: 0 0 .4rem .4rem;
   padding: 10px 15px;
   font-size: 12px;
   margin-bottom: 15px;
 }
-.download{
+
+.download {
   text-decoration: underline;
-  color: #2786fb;
 }
-.title p{
-  font-size: 14px;
+
+.title {
+  i {
+    animation: move-forward 1s infinite ease-in;
+  }
 }

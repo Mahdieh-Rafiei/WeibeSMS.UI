@@ -7,7 +7,7 @@ import {ActivatedRoute} from '@angular/router';
   styleUrls: ['./add-contact.component.scss']
 })
 export class AddContactComponent implements OnInit {
-
+  addTypeSelected:string='single';
   constructor(private activatedRoute: ActivatedRoute) {
   }
 
