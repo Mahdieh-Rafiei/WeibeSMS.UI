@@ -1,5 +1,5 @@
 
-<div class="dialog" (keydown)="keySendVerificationCode($event)">
+<div class="dialog">
     <div class="col-12 modal-header p-2 text-center">
         <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
 	 viewBox="0 0 435.3 432.9" xml:space="preserve">
@@ -18,9 +18,7 @@
     </div>
     <div class="col-12 form-group text-center">
         <p class="fo-3 black-text pb-2 text-center">Auto extension:</p>
-        <!--<input type="checkbox" class="form-control" [(ngModel)]="userLineData.hasAutoExtension">-->
-        <mat-checkbox></mat-checkbox>
-        <!--TODO: checkbox-->
+        <mat-checkbox [(ngModel)]="userLineData.hasAutoExtension"></mat-checkbox>
         <br>
         <button [disabled]="!userLineData.isSuspended" (click)="extendUserLine()" class="light-yellow-btn">Extend</button>
     </div>
@@ -33,6 +31,5 @@
                 cancel
             </button>
         </div>
-
     </div>
 </div>

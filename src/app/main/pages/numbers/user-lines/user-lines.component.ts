@@ -60,11 +60,11 @@ export class UserLinesComponent implements OnInit {
 
     dialogRef.afterClosed()
       .subscribe(result => {
-        if (result) {
+        if (result && result.status == 2) {
           this.userLines.splice(this.currentIndex,1);
-          this.userLines.push(result);
+          this.userLines.push(result.data);
           this.notificationService.success('Line extended successfully', '');
-        }else {
+        }else if (result && result.status == 1 ) {
           this.notificationService.success('Payment management modified successfully', '');
         }
       });
