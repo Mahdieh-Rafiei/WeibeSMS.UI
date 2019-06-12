@@ -48,8 +48,8 @@ import {PaymentComponent} from './main/pages/biling/payment/payment.component';
 import {UserAccountService} from './main/pages/user-account/user-account.service';
 
 import {BillingAddressComponent} from './main/pages/biling/billing-address/billing-address.component';
-import {FundListComponent} from './main/pages/add-fund/fund-list/fund-list.component';
-import {FundComponent} from './main/pages/add-fund/fund/fund.component';
+// import {FundListComponent} from './main/pages/add-fund/fund-list/fund-list.component';
+// import {FundComponent} from './main/pages/add-fund/fund/fund.component';
 
 import {SharedModule} from './shared/module/shared.module';
 import {MainRoutingModule} from './main/main-routing.module';
@@ -87,8 +87,8 @@ import {AuthGuard} from './shared/auth.guard';
     RewardPointComponent,
     BillingComponent,
     PaymentComponent,
-    FundListComponent,
-    FundComponent,
+    // FundListComponent,
+    // FundComponent,
     MainComponent,
     FooterComponent,
     DialogComponent,

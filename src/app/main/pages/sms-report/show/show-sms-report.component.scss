@@ -1,16 +1,15 @@
 .message-report {
-  background-color: #e4f2ff;
-  border: 1px solid #beddff;
-  padding: 10px;
-  border-radius: 4px 12px 12px 12px;
-  margin-bottom: 20px;
+  background-color: #5867dd1a;
+  border-radius: 0 .4rem .4rem;
+  padding: 15px;
+  font-size: 14px !important;
   span {
     color: #969ca2;
     font-size: 12px;
   }
-  p {
-    padding: 10px 0;
-  }
+  //p {
+  //  padding: 10px 0;
+  //}
 }
 
 .message-report span:nth-child(2) {

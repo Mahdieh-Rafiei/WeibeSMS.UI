@@ -95,7 +95,7 @@ export class SidebarComponent implements OnInit {
     }, {
       title: 'Add fund',
       icon: 'dollar-sign',
-      link: '/fund-list',
+      link: '/add-fund/list',
       subMenu: null
     }, {
       title: 'Support',

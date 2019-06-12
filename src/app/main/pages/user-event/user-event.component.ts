@@ -45,7 +45,7 @@ export class UserEventComponent implements OnInit {
 
 
   addEditUserEvent(data: DataUserEventInterface, index: number) {
-    this.openDialog('400px', 'auto', '', {data, index});
+    this.openDialog('480px', 'auto', '', {data, index});
   }
 
 
