@@ -1,69 +1,81 @@
 <div class="div-section">
-  <div class="change-password form-group">
-    <h5>Transaction log</h5>
-    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
-      magna aliqua.</p>
-  </div>
-  <!--operation-->
-  <div class="row">
-    <div class="col-md-6 operation-section form-group">
-      <select class="light-blue-btn mr-3">
-        <option> Export</option>
-        <option> Test 1</option>
-        <option> Test 1</option>
-      </select>
-      <button class="light-blue-btn">
-        <i class="fa fa-filter"></i> Filter
-      </button>
+    <div class="change-password form-group">
+        <h5>Transaction log</h5>
+        <p class="fo-4 black-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+            incididunt ut labore et dolore
+            magna aliqua.</p>
     </div>
-    <div class="col-md-6 operation-section form-group">
-      <app-search [params]="[{title: 'device'}, {title: 'location'}]"></app-search>
+    <!--operation-->
+    <div class="row">
+        <div class="col-md-6 operation-section form-group">
+            <select class="light-blue-btn mr-3">
+                <option> Export</option>
+                <option> Test 1</option>
+                <option> Test 1</option>
+            </select>
+            <button class="light-blue-btn">
+                <i class="fa fa-filter"></i> Filter
+            </button>
+        </div>
+        <div class="col-md-6 operation-section form-group">
+            <!--<app-search [params]="[{title: 'device'}, {title: 'location'}]"></app-search>--> search
+            <!--TODO: SEARCH-->
+        </div>
     </div>
-  </div>
-  <!--table-->
-  <div class="table-div table-responsive">
-    <table class="index-table text-left">
-      <thead>
-      <tr>
-        <th class="text-left"><i class="fa fa-sort"></i>Id</th>
-        <th class="text-left"><i class="fa fa-sort"></i>Description</th>
-        <th class="text-left"><i class="fa fa-sort"></i>Type</th>
-        <th class="text-left"><i class="fa fa-sort"></i>Use credits</th>
-        <th class="text-left"><i class="fa fa-sort"></i>Remain credit</th>
-        <th class="text-left"><i class="fa fa-sort"></i>Datetime</th>
-      </tr>
-      </thead>
-      <tbody>
-      <tr>
-        <td class="text-left">#1</td>
-        <td class="text-left">1000 credit for 1400$</td>
-        <td class="text-left">
-          <button class="light-green-btn">simple</button> &nbsp;
-        </td>
-        <td class="text-left">
-          60$ <i class="fa fa-arrow-down"></i>
-        </td>
-        <td class="text-left">$500</td>
-        <td class="text-left">98/2/8, 11:08</td>
-      </tr>
-      <tr>
-        <td class="text-left">#2</td>
-        <td class="text-left">1000 credit for 1400$</td>
-        <td class="text-left">
-          <button class="light-blue-btn">schedule</button> &nbsp;
-        </td>
-        <td class="text-left">
-          60$ <i class="fa fa-arrow-up"></i>
-        </td>
-        <td class="text-left">$400</td>
-        <td class="text-left">98/2/8, 11:08</td>
-      </tr>
-      </tbody>
-    </table>
-    <div class="table-pagination text-right">
-      <span><i class="fa fa-arrow-circle-left"></i></span>
-      <span><i class="fa fa-arrow-circle-right"></i></span>
+    <!--table-->
+    <div class="table-div table-responsive">
+        <table class="index-table text-left">
+            <thead>
+            <tr>
+                <th class="text-left"><i class="fa fa-sort"></i>Id</th>
+                <th class="text-left"><i class="fa fa-sort"></i>Description</th>
+                <th class="text-left"><i class="fa fa-sort"></i>Type</th>
+                <th class="text-left"><i class="fa fa-sort"></i>Use credits</th>
+                <th class="text-left"><i class="fa fa-sort"></i>Remain credit</th>
+                <th class="text-left"><i class="fa fa-sort"></i>Datetime</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td class="text-left">#1</td>
+                <td class="text-left">1000 credit for 1400$</td>
+                <td class="text-left">
+                    <button class="light-green-btn">simple</button> &nbsp;
+                </td>
+                <td class="text-left">
+                    60$ <i class="fa fa-arrow-down"></i>
+                </td>
+                <td class="text-left">$500</td>
+                <td class="text-left">98/2/8, 11:08</td>
+            </tr>
+            <tr>
+                <td class="text-left">#2</td>
+                <td class="text-left">1000 credit for 1400$</td>
+                <td class="text-left">
+                    <button class="light-blue-btn">schedule</button> &nbsp;
+                </td>
+                <td class="text-left">
+                    60$ <i class="fa fa-arrow-up"></i>
+                </td>
+                <td class="text-left">$400</td>
+                <td class="text-left">98/2/8, 11:08</td>
+            </tr>
+            </tbody>
+        </table>
+        <!--pagination-->
+        <div class="col-12 pagination-div">
+            <div class="row pt-1 pb-1">
+                <div class="col-12 col-md-6 text-left fo-3 black-text font-weight-bold">Displaying 1-10 of {{totalItems}} records</div>
+                <div class="col-12 col-md-6 text-right">
+                    <pagination-controls (pageChange)="doPaging($event)"
+                                         maxSize="5"
+                                         responsive="true"
+                                         previousLabel=""
+                                         nextLabel="">
+                    </pagination-controls>
+                </div>
+            </div>
+        </div>
     </div>
-  </div>
 </div>
 
