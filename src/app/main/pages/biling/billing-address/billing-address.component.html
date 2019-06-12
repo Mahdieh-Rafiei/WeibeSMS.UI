@@ -7,7 +7,7 @@
             <div class="row">
                 <div class="col-12 col-md-9">
                     <div class="row">
-                        <div class="col-12 col-md-6 pt-3 pb-1">
+                        <div class="col-12 col-md-8 pt-3 pb-1">
                             <label>Full name :</label>
                             <input type="text"
                                    placeholder="Enter your Full name"
@@ -24,7 +24,7 @@
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-12 col-md-3 form-group v-input-box">
+                        <div class="col-12 col-md-4">
                             <label>Phone :</label>
                             <div class="flex-group">
                                 <div class="btn-group">
@@ -55,7 +55,7 @@
                                        autofocus autocomplete="off">
                             </div>
                         </div>
-                        <div class="col-12 col-md-3 form-group">
+                        <div class="col-12 col-md-4">
                             <label>Country :</label>
                             <select name="country"
                                     class="form-control"
@@ -76,7 +76,7 @@
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-12 col-md-3 form-group">
+                        <div class="col-12 col-md-4">
                             <label>City :</label>
                             <select formControlName="cityId" class="form-control">
                                 <option hidden value="" *ngIf="!country.value">please select Country!</option>
@@ -95,7 +95,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-12 col-md-3 form-group">
+                        <div class="col-12 col-md-4">
                             <label>Zipcode :</label>
                             <input type="text"
                                    placeholder="Enter zipCode"
@@ -112,7 +112,7 @@
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-12 col-md-6 form-group">
+                        <div class="col-12 col-md-8 ">
                             <label>Address :</label>
                             <textarea type="text"
                                       placeholder="Enter your address"
@@ -128,8 +128,8 @@
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-12 col-md-12 form-group">
-                            <h4 class="yellow-text">VAT NUMBER</h4>
+                        <div class="col-12 col-md-8">
+                            <h5 class="yellow-text">VAT NUMBER</h5>
                             <mat-radio-group (change)="changeVatNumber($event)" #radioGroup="matRadioGroup">
                                 <mat-radio-button class="mat-label" value="1" [checked]="vatNumber">
                                     I don't have a VAT number
@@ -141,7 +141,7 @@
                             </mat-radio-group>
                             <div *ngIf="!vatNumber">
                                 <input type="text"
-                                       class="vat-num"
+                                       class="form-control"
                                        placeholder="VAT number"
                                        formControlName="vatNumber">
                             </div>
@@ -150,7 +150,7 @@
                 </div>
             </div>
             <div class="col-md-12 btn-save text-right">
-                <button type="submit" class="light-green-btn">Save</button>
+                <button type="submit" class="green-btn">Save</button>
             </div>
         </form>
     </div>

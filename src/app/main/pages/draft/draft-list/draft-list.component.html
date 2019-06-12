@@ -104,17 +104,34 @@
                     </td>
                     <td class="td-single text-right actions-container">
                         <div class="actions">
-                            <a><i (click)="removeDraft(d)" class="fa fa-trash"></i></a>
-                            <a><i [routerLink]="['../',d.id]" class="fa fa-pencil"></i></a>
+                            <a><i (click)="removeDraft(d)" class="fa fa-trash light-red-btn"></i></a>
+                            <a><i [routerLink]="['../',d.id]" class="fa fa-pencil light-green-btn"></i></a>
                         </div>
                     </td>
                 </tr>
                 </tbody>
             </table>
+<<<<<<< HEAD
             <div class="table-pagination text-right">
                 <span><i class="fa fa-arrow-circle-left"></i></span>
                 <span><i class="fa fa-arrow-circle-right"></i></span>
 >>>>>>> 994891994a3f2a50862d5e086347a6fe65eea78b
+=======
+            <!--pagination-->
+            <div class="col-12 pagination-div">
+                <div class="row pt-1 pb-1">
+                    <div class="col-12 col-md-6 text-left fo-3 black-text font-weight-bold">Displaying 1-10 of
+                        {{totalItems}} records
+                    </div>
+                    <div class="col-12 col-md-6 text-right">
+                        <pagination-controls (pageChange)="doPaging($event)"
+                                             maxSize="5"
+                                             responsive="true"
+                                             previousLabel=""
+                                             nextLabel=""></pagination-controls>
+                    </div>
+                </div>
+>>>>>>> e2e051e0e59aebef21a600d81ef7020831c11eef
             </div>
           </td>
         </tr>
@@ -133,10 +150,5 @@
                        previousLabel=""
                        nextLabel=""></pagination-controls>
 
-    <pagination-controls (pageChange)="doPaging($event)"
-                         maxSize="5"
-                         responsive="true"
-                         previousLabel=""
-                         nextLabel=""></pagination-controls>
 
 </div>

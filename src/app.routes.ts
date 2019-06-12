@@ -27,8 +27,8 @@ import {BillingAddressComponent} from './app/main/pages/biling/billing-address/b
 import {InvoiceListComponent} from './app/main/pages/biling/invoice-list/invoice-list.component';
 import {CreateTransactionComponent} from './app/main/pages/biling/create-transaction/create-transaction.component';
 
-import {FundListComponent} from './app/main/pages/add-fund/fund-list/fund-list.component';
-import {FundComponent} from './app/main/pages/add-fund/fund/fund.component';
+// import {FundListComponent} from './app/main/pages/add-fund/fund-list/fund-list.component';
+// import {FundComponent} from './app/main/pages/add-fund/fund/fund.component';
 import {BillingAddressResolverService} from './app/main/pages/biling/billing-address/billing-address-resolver.service';
 import {AuthGuard} from './app/shared/auth.guard';
 
@@ -70,8 +70,8 @@ export const APP_ROUTES: Routes = [
 
   {path: 'reward-point', component: RewardPointComponent},
 
-  {path: 'fund-list', component: FundListComponent},
-  {path: 'fund', component: FundComponent},
+  // {path: 'fund-list', component: FundListComponent},
+  // {path: 'fund', component: FundComponent},
 
 
   {path: 'login', component: LoginComponent, canActivate: [AuthGuard]},
