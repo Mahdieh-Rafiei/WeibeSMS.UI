@@ -43,7 +43,6 @@ export class ImportContactFromOtherListsComponent implements OnInit {
   ngOnInit() {
     this.groupId = parseInt(this.activatedRoute.parent.snapshot.paramMap.get('groupId'));
     this.getAllGroupList();
-
   }
 
   getAllGroupList() {
@@ -85,6 +84,7 @@ export class ImportContactFromOtherListsComponent implements OnInit {
       }
     } else {
       this.clickedGroup.isSelected = false;
+      //TODO: use splice instead of lodash in all components!
       _.remove(this.groupSelectedFromLeft, id => id === this.clickedGroup.id);
 
       const selectedContacts = this.clickedGroup.contacts.filter(c => c.isSelected);
@@ -148,7 +148,6 @@ export class ImportContactFromOtherListsComponent implements OnInit {
         group.contacts.forEach(c => c.isSelected = this.clickedGroup.isSelected);
       });
   }
-
 
   operation(isCut: boolean) {
     debugger;
