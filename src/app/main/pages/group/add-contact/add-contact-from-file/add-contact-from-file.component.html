@@ -4,10 +4,8 @@
         <p> You can Download  Excel Template  <i class="fa fa-arrow-circle-right"></i>  <span class="download" (click)="downloadSample()"> Download </span> </p>
     </div>
     <div class="col-md-12 text-center no-pad">
-        <file-drop dropZoneLabel="Drop files here" (onFileDrop)="dropped($event)">
-            <!--(onFileOver)="fileOver($event)" (onFileLeave)="fileLeave($event)">-->
-            <p>click or drag and drog file here.</p><br/>
-
+        <file-drop accept=".xlsx" browseBtnClassName="myClass" showBrowseBtn="true" dropZoneLabel="Drop files here" (onFileDrop)="dropped($event)">
+            <p>click or drag and drop file here.</p><br/>
         </file-drop>
     </div>
 </div>

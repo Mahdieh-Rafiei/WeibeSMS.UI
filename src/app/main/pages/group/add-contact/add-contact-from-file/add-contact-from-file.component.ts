@@ -36,11 +36,14 @@ export class AddContactFromFileComponent implements OnInit {
 
   dropped(e) {
     const droppedFile = e.files[0];
-
     const fileEntry = droppedFile.fileEntry as FileSystemFileEntry;
 
     fileEntry.file((file: File) => {
-
+      let extension = file.name.split('.').pop();
+      if (extension != 'xls' && extension != 'xlsx'){
+        this.notificationService.error("File format doesn't support",'');
+        return;
+      };
       const formData = new FormData();
       formData.append('logo', file, droppedFile.relativePath);
       formData.append('replaceDuplicateContact',true.toString());

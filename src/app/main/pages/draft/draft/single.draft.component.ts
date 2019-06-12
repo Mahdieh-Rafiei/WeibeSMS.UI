@@ -79,6 +79,7 @@ export class SingleDraftComponent implements OnInit {
   addOrUpdateDraft() {
     if (!this.draft.title) {
       this.titleValue = true;
+      return;
     }
     if (!this.draft.messageText) {
       this.messageValue = true;
@@ -92,7 +93,7 @@ export class SingleDraftComponent implements OnInit {
       this.draftService.addDraft(payload)
         .subscribe((res: AddDraftResponseInterface) => {
           this.notificationService.success('Template saved successfully', '');
-          this.router.navigateByUrl('draft-list');
+          this.router.navigateByUrl('draft/list');
         });
     } else {
       const payload: EditDraftInterface = {
@@ -102,7 +103,7 @@ export class SingleDraftComponent implements OnInit {
       this.draftService.modifyDraft(this.draft.id, payload)
         .subscribe((res: EditDraftResponseInterface) => {
           this.notificationService.success('Template saved successfully', '');
-          this.router.navigateByUrl('draft-list');
+          this.router.navigateByUrl('draft/list');
         });
     }
   }
