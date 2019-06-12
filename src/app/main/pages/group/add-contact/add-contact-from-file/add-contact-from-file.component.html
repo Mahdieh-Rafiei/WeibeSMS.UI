@@ -1,7 +1,7 @@
 <div class="section-div from-file">
     <div class="title form-group">
         <h5 class="mb-4">Add Contact</h5>
-        <p> You can Download  Exel Template  <i class="fa fa-arrow-circle-right"></i>  <span class="download" (click)="downloadSample()"> Download </span> </p>
+        <p> You can Download  Excel Template  <i class="fa fa-arrow-circle-right"></i>  <span class="download" (click)="downloadSample()"> Download </span> </p>
     </div>
     <div class="col-md-12 text-center no-pad">
         <file-drop dropZoneLabel="Drop files here" (onFileDrop)="dropped($event)">
@@ -9,23 +9,5 @@
             <p>click or drag and drog file here.</p><br/>
 
         </file-drop>
-    </div>
-</div>
-
-
-<div *ngIf="resultView" class="modal fade in modal-back" role="dialog" tabindex="-1" style="display: block;"
-     aria-modal="true">
-    <div role="document" class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button (click)="close()" aria-label="Close" class="close pull-right" type="button">
-                    <span aria-hidden="true">×</span>
-                </button>
-            </div>
-
-            <pre>
-        {{result | json}}
-      </pre>
-        </div>
     </div>
 </div>

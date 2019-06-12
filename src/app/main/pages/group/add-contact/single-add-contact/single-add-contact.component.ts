@@ -110,6 +110,7 @@ export class SingleAddContactComponent implements OnInit {
 
 
   submit() {
+    debugger;
     this.countries.forEach(item => {
       if (this.singleContactForm.value.prefixNumberId === item.id) {
         this.mobileValue = this.singleContactForm.value.mobile.substring(item.prefixNumber.length);

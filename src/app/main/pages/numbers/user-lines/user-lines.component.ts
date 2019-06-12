@@ -2,8 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import {NumbersService} from '../numbers.service';
 import {ItemsUserLineInterface} from './models/items-user-line.interface';
 import {GetUserLineModelInterface} from './models/get-user-line-model.interface';
-import {ItemsGroupListInterface} from '../../group/group-list/models/items-group-list.interface';
-import {AddEditGroupComponent} from '../../group/group-list/add-edit/add-edit-group.component';
 import {NotificationService} from '../../../../shared/notification.service';
 import {MatDialog} from '@angular/material';
 import {EditUserLinesComponent} from './edit-user-lines/edit-user-lines.component';
@@ -13,6 +11,7 @@ import {EditUserLinesComponent} from './edit-user-lines/edit-user-lines.componen
   templateUrl: './user-lines.component.html',
   styleUrls: ['./user-lines.scss']
 })
+
 export class UserLinesComponent implements OnInit {
 
   getUserLineModel: GetUserLineModelInterface;

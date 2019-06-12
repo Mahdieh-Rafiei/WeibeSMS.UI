@@ -2,10 +2,11 @@ import {Component, OnInit} from '@angular/core';
 import {FileSystemFileEntry, UploadEvent} from 'ngx-file-drop';
 import {ContactService} from '../../contact/contact.service';
 import {GroupService} from '../../group.service';
-import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {NotificationService} from '../../../../../shared/notification.service';
 import {ActivatedRoute, Router} from '@angular/router';
 import {AddContactFormGroupResponseInterface} from './models/add-contact-form-group-response.interface';
+import {MatDialog} from '@angular/material';
+import {ConfirmationAddContactFromFileComponent} from './confirmation-add-contact-from-file/confirmation-add-contact-from-file.component';
 
 @Component({
   selector: 'app-add-contact-from-file',
@@ -15,14 +16,14 @@ import {AddContactFormGroupResponseInterface} from './models/add-contact-form-gr
 export class AddContactFromFileComponent implements OnInit {
 
   result: any;
-  resultView: boolean = false;
   groupId: number;
 
   constructor(private contactService: ContactService,
               private groupService: GroupService,
               private notificationService: NotificationService,
               private activatedRoute: ActivatedRoute,
-              private router: Router) {
+              private router: Router,
+              private dialog: MatDialog) {
   }
 
   ngOnInit() {
@@ -39,18 +40,37 @@ export class AddContactFromFileComponent implements OnInit {
     const fileEntry = droppedFile.fileEntry as FileSystemFileEntry;
 
     fileEntry.file((file: File) => {
-      this.contactService.addContactFromFile(this.groupId, true, true, file, droppedFile.relativePath)
+
+      const formData = new FormData();
+      formData.append('logo', file, droppedFile.relativePath);
+      formData.append('replaceDuplicateContact',true.toString());
+      formData.append('immediate', false.toString());
+
+      this.contactService.addContactFromFile(this.groupId,formData)
         .subscribe((res: AddContactFormGroupResponseInterface) => {
-          console.log(res);
           this.result = res.data;
-          this.resultView = true;
-          this.notificationService.success('File processed successfully', '');
+          this.openDialog('400px', 'auto', '', {data:res.data, formData,groupId: this.groupId});
         });
     });
   }
 
   close() {
-    this.resultView = false;
     this.router.navigateByUrl(`group/${this.groupId}`);
+  }
+
+  openDialog(width, height, panelClass, data): void {
+    const dialogRef = this.dialog.open(ConfirmationAddContactFromFileComponent, {
+      width,
+      height,
+      panelClass,
+      data
+    });
+
+    dialogRef.afterClosed()
+      .subscribe(result => {
+        if (result) {
+          this.notificationService.success('Contacts added successfully', '');
+          this.router.navigateByUrl(`group/${this.groupId}`);
+      }});
   }
 }
