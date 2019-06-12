@@ -1,23 +1,4 @@
-<<<<<<< HEAD
-<div class="dialog">
-  <div class="col-12 form-group modal-header p-2">
-    <h5>Auto extension</h5>
-  </div>
-  <div class="col-12 form-group">
-    <p class="fo-3 black-text pb-2">Auto extension:</p>
-    <input type="checkbox" class="form-control" [(ngModel)]="userLineData.hasAutoExtension">
-    <br>
-    <button [disabled]="!userLineData.isSuspended" (click)="extendUserLine()">Extend</button>
-  </div>
-  <div class="col-12 pb-3">
-    <div class="text-center" dir="ltr">
-      <button type="submit" class="green-btn mr-2" (click)="onSubmit()">
-        submit
-      </button>
-      <button class="gray-btn" (click)="closeDialog()">
-        cancel
-      </button>
-=======
+
 <div class="dialog" (keydown)="keySendVerificationCode($event)">
     <div class="col-12 modal-header p-2 text-center">
         <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
@@ -52,6 +33,6 @@
                 cancel
             </button>
         </div>
->>>>>>> 994891994a3f2a50862d5e086347a6fe65eea78b
+
     </div>
 </div>

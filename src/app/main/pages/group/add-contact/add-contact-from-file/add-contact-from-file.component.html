@@ -1,7 +1,11 @@
 <div class="section-div from-file">
     <div class="title form-group">
-        <h5 class="mb-4">Add Contact</h5>
-        <p> You can Download  Excel Template  <i class="fa fa-arrow-circle-right"></i>  <span class="download" (click)="downloadSample()"> Download </span> </p>
+        <h5>Add Contact</h5>
+        <p class="fo-4 black-text">
+            You can Download  Excel Template
+            <i class="fa fa-arrow-circle-right red-text pr-2 pl-2"></i>
+            <span class="download blue-text" (click)="downloadSample()"> Download </span>
+        </p>
     </div>
     <div class="col-md-12 text-center no-pad">
         <file-drop accept=".xlsx" browseBtnClassName="myClass" showBrowseBtn="true" dropZoneLabel="Drop files here" (onFileDrop)="dropped($event)">

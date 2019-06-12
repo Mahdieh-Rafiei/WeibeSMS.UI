@@ -1,83 +1,81 @@
 <div>
-  <div class="btn-section text-right">
-    <div class="col-md-12 text-right">
-      <button class="green-btn" [routerLink]="['/draft']"><i class="fa fa-plus"></i> Create template</button>
-    </div>
-  </div>
 
-  <div class="div-section">
-    <!--operation-->
-    <div class="row">
-      <div class="col-md-6 operation-section form-group">
-        <button class="light-blue-btn">
-          <i class="fa fa-filter"></i> Filter
-        </button>
-      </div>
-      <div class="col-md-6 operation-section form-group">
-        <!--<app-search [params]="[{title: 'device'}, {title: 'location'}]"></app-search>-->
-      </div>
+    <div class="btn-section text-right">
+        <div class="col-md-12 text-right">
+            <button class="green-btn" [routerLink]="['/draft']"><i class="fa fa-plus"></i> Create template</button>
+        </div>
     </div>
-    <!--table-->
-    <div class="table-div table-responsive">
-      <table class="index-table text-left">
-        <thead>
-        <tr>
-          <th class="text-left"><i class="fa fa-sort"></i> Name</th>
-          <th class="text-center"><i class="fa fa-sort"></i> MESSAGE</th>
-          <th class="text-center">Send Action</th>
-          <th></th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr *ngFor="let d of drafts| paginate : {
+    <div class="div-section">
+        <!--operation-->
+        <div class="row">
+            <div class="col-md-6 operation-section form-group">
+                <button class="light-blue-btn">
+                    <i class="fa fa-filter"></i> Filter
+                </button>
+            </div>
+            <div class="col-md-6 operation-section form-group">
+                <!--<app-search [params]="[{title: 'device'}, {title: 'location'}]"></app-search>-->
+            </div>
+        </div>
+        <!--table-->
+        <div class="table-div table-responsive">
+            <table class="index-table text-left">
+                <thead>
+                <tr>
+                    <th class="text-left"><i class="fa fa-sort"></i> Name</th>
+                    <th class="text-left"><i class="fa fa-sort"></i> MESSAGE</th>
+                    <th class="text-left">Send Action</th>
+                    <th></th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr *ngFor="let d of drafts| paginate : {
                                 itemsPerPage : 10, currentPage : pageNumber, totalItems : totalItemsCount
                                 },index as i">
-          <td class="text-left">
-            <div class="table-head">
-              {{d.title}}
+                    <td class="text-left">
+                        <div class="table-head">
+                            {{d.title}}
+                        </div>
+                    </td>
+                    <td class=" text-left">
+                        <div>
+                            {{d.summary}} <a><span [title]="d.messageText" style="color: #f5274e;">. . .</span></a>
+                        </div>
+                    </td>
+                    <td class="text-left">
+                        <div>
+                            <select class="select-send">
+                                <option>Simple send</option>
+                                <option>Scheduled send</option>
+                                <option>Event send</option>
+                            </select>
+                        </div>
+                    </td>
+                    <td class="td-single text-right actions-container">
+                        <div class="actions text-right">
+                            <a><i (click)="removeDraft(d)" class="fa fa-trash light-red-btn"></i></a>
+                            <a><i [routerLink]="['../',d.id]" class="fa fa-pencil light-green-btn"></i></a>
+                        </div>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+            <!--pagination-->
+            <div class="col-12 pagination-div">
+                <div class="row pt-1 pb-1">
+                    <div class="col-12 col-md-6 text-left fo-3 black-text font-weight-bold">Displaying 1-10 of
+                        {{totalItems}} records
+                    </div>
+                    <div class="col-12 col-md-6 text-right">
+                        <pagination-controls (pageChange)="doPaging($event)"
+                                             maxSize="5"
+                                             responsive="true"
+                                             previousLabel=""
+                                             nextLabel="">
+                        </pagination-controls>
+                    </div>
+                </div>
             </div>
-          </td>
-          <td class=" text-center">
-            <div>
-              {{d.summary}} <a><span [title]="d.messageText" style="color: #f5274e;">. . .</span></a>
-            </div>
-          </td>
-          <td class="text-center">
-            <div>
-              <select class="select-send">
-                <option>Simple send</option>
-                <option>Scheduled send</option>
-                <option>Event send</option>
-              </select>
-            </div>
-          </td>
-          <td class="td-single text-right actions-container">
-            <div class="actions text-right">
-              <a><i (click)="removeDraft(d)" class="fa fa-trash light-red-btn"></i></a>
-              <a><i [routerLink]="['../',d.id]" class="fa fa-pencil light-green-btn"></i></a>
-            </div>
-          </td>
-        </tr>
-        </tbody>
-      </table>
-      <!--pagination-->
-      <div class="col-12 pagination-div">
-        <div class="row pt-1 pb-1">
-          <div class="col-12 col-md-6 text-left fo-3 black-text font-weight-bold">Displaying 1-10 of
-            {{totalItems}} records
-          </div>
-          <div class="col-12 col-md-6 text-right">
-            <pagination-controls (pageChange)="doPaging($event)"
-                                 maxSize="5"
-                                 responsive="true"
-                                 previousLabel=""
-                                 nextLabel="">
-            </pagination-controls>
-          </div>
         </div>
-      </div>
     </div>
-  </div>
-
-
 </div>

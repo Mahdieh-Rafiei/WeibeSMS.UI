@@ -9,25 +9,107 @@
     <div class="add-contact-tab text-center">
         <h5 class="mb-4">How would you like to get contacts into your list?</h5>
         <div class="row">
-            <div class="col-md-4">
+            <div class="col-md-4" (click)="addTypeSelected='single'">
                 <div [routerLink]="['single-contact']" class="add-contact-div border-right">
-                    <p>Add Contacts <span class="type-add">" single "</span></p>
-                    <img src="../../../../../assets/images/addcontact/singel.svg">
-                    <p>If you want to add them manually.</p>
+                    <p>Add Contacts <span class="red-text">" single "</span></p>
+                    <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
+                       viewBox="0 0 512 438.3">
+                    <style type="text/css">
+                      .st0{fill:none;stroke:#2A2A2A;stroke-width:7;stroke-linecap:round;stroke-linejoin:round;}
+                      .st1{fill:none;stroke:#2A2A2A;stroke-width:7;stroke-linecap:round;stroke-miterlimit:10;}
+                      .st2{fill:none;stroke:#2A2A2A;stroke-width:7;stroke-miterlimit:10;}
+                      .st3{fill:#FFFFFF;}
+                      .st4{fill:#2A2A2A;}
+                      .st5{fill:#FFFFFF;stroke:#2A2A2A;stroke-width:4;stroke-linecap:round;stroke-linejoin:round;}
+                    </style>
+                    <g id="group1">
+                      <line class="st0" x1="25.3" y1="425.8" x2="6" y2="425.8"/>
+                      <line class="st0" x1="39.3" y1="425.7" x2="506" y2="425.7"/>
+                      <path class="st1" d="M79.5,423.8c0-97.4,79.1-176.5,176.5-176.5c97.5,0,176.5,79.1,176.5,176.5"/>
+                      <path class="st2" d="M256,204c-52.7,0-95.6-42.8-95.6-95.6c0-52.7,42.8-95.6,95.6-95.6s95.6,42.8,95.6,95.6S308.8,204,256,204z"/>
+                    </g>
+                    <g id="group2">
+                      <g>
+                        <circle [ngClass]="{'chang-fill':addTypeSelected==='single'}" class="st3" cx="440" cy="361.4" r="64.2"/>
+                        <path class="st4" d="M440,299.7c34.1,0,61.7,27.6,61.7,61.7s-27.6,61.7-61.7,61.7s-61.7-27.6-61.7-61.7
+			C378.3,327.4,405.9,299.7,440,299.7 M440,294.7c-36.8,0-66.7,29.9-66.7,66.7s29.9,66.7,66.7,66.7s66.7-29.9,66.7-66.7
+			C506.7,324.7,476.8,294.7,440,294.7L440,294.7z"/>
+                      </g>
+                      <polygon class="st5" points="479.8,356.3 447,356.3 447,323.5 434,323.5 434,356.3 401.2,356.3 401.2,369.3 434,369.3 434,402.1
+		447,402.1 447,369.3 479.8,369.3 	"/>
+                    </g>
+                  </svg>
+                    <p class="fo-3 black-text">If you want to add them manually.</p>
                 </div>
             </div>
-            <div class="col-md-4">
+            <div class="col-md-4" (click)="addTypeSelected='list'">
                 <div [routerLink]="['from-list']" class="add-contact-div border-right">
-                    <p>Add Contacts <span class="type-add">" List "</span></p>
-                    <img src="../../../../../assets/images/addcontact/list.svg">
-                    <p>If you want to add them from other list.</p>
+                    <p>Add Contacts <span class="red-text">" List "</span></p>
+                    <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                       viewBox="0 0 512 438.3" style="enable-background:new 0 0 512 438.3;" xml:space="preserve">
+                    <style type="text/css">
+                      .st0{fill:none;stroke:#2A2A2A;stroke-width:7;stroke-linecap:round;stroke-linejoin:round;}
+                      .st1{fill:none;stroke:#2A2A2A;stroke-width:7;stroke-linecap:round;stroke-miterlimit:10;}
+                      .st2{fill:none;stroke:#2A2A2A;stroke-width:7;stroke-miterlimit:10;}
+                      .st3{fill:#FFFFFF;}
+                      .st4{fill:#2A2A2A;}
+                      .st5{fill:none;stroke:#2A2A2A;stroke-width:6;stroke-linecap:round;stroke-miterlimit:10;}
+                    </style>
+                                        <g id="group1">
+                      <line class="st0" x1="25.3" y1="425.8" x2="6" y2="425.8"/>
+                                          <line class="st0" x1="39.3" y1="425.7" x2="506" y2="425.7"/>
+                                          <path class="st1" d="M79.5,423.8c0-97.4,79.1-176.5,176.5-176.5c97.5,0,176.5,79.1,176.5,176.5"/>
+                                          <path class="st2" d="M256,204c-52.7,0-95.6-42.8-95.6-95.6c0-52.7,42.8-95.6,95.6-95.6c52.8,0,95.6,42.8,95.6,95.6
+                        C351.6,161.2,308.8,204,256,204z"/>
+                    </g>
+                                        <g id="group2">
+                      <g>
+                        <circle [ngClass]="{'chang-fill':addTypeSelected==='list'}" class="st3" cx="441" cy="361.4" r="64.2"/>
+                        <path class="st4" d="M441,299.7c34.1,0,61.7,27.6,61.7,61.7c0,34.1-27.6,61.7-61.7,61.7c-34.1,0-61.7-27.6-61.7-61.7
+                          C379.3,327.4,406.9,299.7,441,299.7 M441,294.7c-36.8,0-66.7,29.9-66.7,66.7c0,36.8,29.9,66.7,66.7,66.7s66.7-29.9,66.7-66.7
+                          C507.7,324.7,477.8,294.7,441,294.7L441,294.7z"/>
+                      </g>
+                                          <line class="st5" x1="434" y1="362.5" x2="478.3" y2="362.5"/>
+                                          <circle class="st4" cx="411.8" cy="362.5" r="6.3"/>
+                                          <line class="st5" x1="434" y1="337.2" x2="478.3" y2="337.2"/>
+                                          <circle class="st4" cx="411.8" cy="337.2" r="6.3"/>
+                                          <line class="st5" x1="434" y1="387.9" x2="478.3" y2="387.9"/>
+                                          <circle class="st4" cx="411.8" cy="387.9" r="6.3"/>
+                    </g>
+                    </svg>
+                    <p class="fo-3 black-text">If you want to add them from other list.</p>
                 </div>
             </div>
-            <div class="col-md-4">
+            <div class="col-md-4" (click)="addTypeSelected='file'">
                 <div [routerLink]="['from-file']" class="add-contact-div">
-                    <p>Import Contacts</p>
-                    <img src="../../../../../assets/images/addcontact/excel.svg">
-                    <p>Import your contacts from Excel.</p>
+                    <p>Import Contacts<span class="red-text">" .xlsx "</span></p>
+                    <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                         viewBox="0 0 512 438.3" style="enable-background:new 0 0 512 438.3;" xml:space="preserve">
+                    <style type="text/css">
+                      .st0{fill:none;stroke:#2A2A2A;stroke-width:7;stroke-linecap:round;stroke-linejoin:round;}
+                      .st1{fill:none;stroke:#2A2A2A;stroke-width:7;stroke-linecap:round;stroke-miterlimit:10;}
+                      .st2{fill:none;stroke:#2A2A2A;stroke-width:7;stroke-miterlimit:10;}
+                      .st3{fill:#FFFFFF;}
+                      .st4{fill:#2A2A2A;}
+                      .st5{fill:#FFFFFF;stroke:#121617;stroke-width:4;stroke-linecap:round;stroke-linejoin:round;}
+                    </style>
+                                        <g id="group1">
+                      <line class="st0" x1="25.3" y1="425.8" x2="6" y2="425.8"/>
+                                          <line class="st0" x1="39.3" y1="425.7" x2="506" y2="425.7"/>
+                                          <path class="st1" d="M79.5,423.8c0-97.4,79.1-176.5,176.5-176.5c97.5,0,176.5,79.1,176.5,176.5"/>
+                                          <path class="st2" d="M256,204c-52.7,0-95.6-42.8-95.6-95.6c0-52.7,42.8-95.6,95.6-95.6s95.6,42.8,95.6,95.6S308.8,204,256,204z"/>
+                    </g>
+                                        <g id="group2">
+                      <g>
+                        <circle [ngClass]="{'chang-fill':addTypeSelected==='file'}" class="st3" cx="440" cy="361.4" r="64.2"/>
+                        <path class="st4" d="M440,299.7c34.1,0,61.7,27.6,61.7,61.7s-27.6,61.7-61.7,61.7s-61.7-27.6-61.7-61.7
+                          C378.3,327.4,405.9,299.7,440,299.7 M440,294.7c-36.8,0-66.7,29.9-66.7,66.7s29.9,66.7,66.7,66.7s66.7-29.9,66.7-66.7
+                          C506.7,324.7,476.8,294.7,440,294.7L440,294.7z"/>
+                      </g>
+                                          <polygon class="st5" points="451.6,361.8 479.8,361.8 441,402.1 401.2,360.9 431.5,360.9 431.5,321.5 451.6,321.5 	"/>
+                    </g>
+                    </svg>
+                    <p class="fo-3 black-text">Import your contacts from Excel.</p>
                 </div>
             </div>
         </div>
