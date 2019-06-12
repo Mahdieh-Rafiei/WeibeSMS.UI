@@ -31,7 +31,7 @@ body {
   overflow-x: hidden;
   font-family: 'OpenSans-Regular';
   font-weight: 300;
-  height: 81vh;
+  //height: 81vh;
 }
 
 h1,
@@ -156,7 +156,7 @@ article, aside, details, figcaption, figure, footer, header, hgroup, main, menu,
 
 ::placeholder {
   color: #a7abc3;
-  font-size: 12px;
+  font-size: 14px !important;
 }
 
 /*-----------------------------Div-----------------------------*/
@@ -942,10 +942,7 @@ li {
   color: #a7abc3 !important;
 }
 
-::placeholder {
-  color: #b5b5b5;
-  font-size: 12px;
-}
+
 
 .light-blue-btn:hover {
   background-color: #2786fb;

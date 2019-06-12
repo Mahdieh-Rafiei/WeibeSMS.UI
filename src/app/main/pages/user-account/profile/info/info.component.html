@@ -7,13 +7,11 @@
                     [uploadType]="'1'"
                     [apiUrl]="'upload'"
                     [type]="'circle'"
-                    [deleteAvatar]="deleteAvatar"
                     [accept]="['image/png', 'image/jpeg', 'image/jpg']"
                     [sizeValidate]="2"
                     [validateSize]="'max size uploading is 2KB'"
                     [validateFormats]="'PNG, JPG, JEPG Formats is invalid.'"
                     (removeAvatar)="getData($event)">
-
             </app-image-upload>
         </div>
 
@@ -24,7 +22,7 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-12 col-md-4 form-group">
+                <div class="col-12 col-md-4 ">
                     <label>Firstname :</label>
                     <input type="text"
                            placeholder="Enter your Firstname"
@@ -43,7 +41,7 @@
                             </div>
                         </div>
                 </div>
-                <div class="col-12 col-md-4 form-group">
+                <div class="col-12 col-md-4 ">
                     <label>Surename :</label>
                     <input type="text"
                            placeholder="Enter your Surename"
@@ -61,7 +59,7 @@
                        </div>
                    </div>
                 </div>
-                <div class="col-12 col-md-4 form-group">
+                <div class="col-12 col-md-4 ">
                     <label>Gender :</label>
                     <select formControlName="gender" class="form-control">
                         <option hidden value="">select</option>
