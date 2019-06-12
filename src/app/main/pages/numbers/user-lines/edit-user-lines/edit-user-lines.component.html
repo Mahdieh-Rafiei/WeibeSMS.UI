@@ -1,10 +1,10 @@
-<div class="dialog" (keydown)="keySendVerificationCode($event)">
+<div class="dialog">
   <div class="col-12 form-group modal-header p-2">
-    <h5>Create Key</h5>
+    <h5>Auto extension</h5>
   </div>
   <div class="col-12 form-group">
     <p class="fo-3 black-text pb-2">Auto extension:</p>
-    <input type="checkbox" class="form-control" [(ngModel)]="userLineData.hasAutoExtension" placeholder="enter api key name">
+    <input type="checkbox" class="form-control" [(ngModel)]="userLineData.hasAutoExtension">
     <br>
     <button [disabled]="!userLineData.isSuspended" (click)="extendUserLine()">Extend</button>
   </div>

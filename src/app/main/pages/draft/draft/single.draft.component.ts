@@ -80,7 +80,7 @@ export class SingleDraftComponent implements OnInit {
     if (!this.draft.title) {
       this.titleValue = true;
     }
-    if (!this.draft.title) {
+    if (!this.draft.messageText) {
       this.messageValue = true;
       return;
     }

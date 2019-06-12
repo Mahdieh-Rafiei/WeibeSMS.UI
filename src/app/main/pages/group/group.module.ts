@@ -4,6 +4,7 @@ import {GroupRoutingModule, routedComponents} from './group-routing.module';
 import {AddEditGroupComponent} from './group-list/add-edit/add-edit-group.component';
 import {SharedModule} from '../../../shared/module/shared.module';
 import {FileDropModule} from 'ngx-file-drop';
+import { ConfirmationAddContactFromFileComponent } from './add-contact/add-contact-from-file/confirmation-add-contact-from-file/confirmation-add-contact-from-file.component';
 
 @NgModule({
   imports: [
@@ -15,7 +16,7 @@ import {FileDropModule} from 'ngx-file-drop';
     ...routedComponents
   ],
   entryComponents: [
-    AddEditGroupComponent
+     AddEditGroupComponent
   ]
 })
 export class GroupModule {

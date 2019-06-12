@@ -7,7 +7,7 @@ import {ContactComponent} from './app/main/pages/group/contact/contact.component
 import {AddContactComponent} from './app/main/pages/group/add-contact/add-contact.component';
 import {SingleAddContactComponent} from './app/main/pages/group/add-contact/single-add-contact/single-add-contact.component';
 import {AddContactFromFileComponent} from './app/main/pages/group/add-contact/add-contact-from-file/add-contact-from-file.component';
-import {ImportContactFromOtherListsComponent} from './app/main/pages/group/add-contact/import-contact-from-file/import-contact-from-other-lists.component';
+import {ImportContactFromOtherListsComponent} from './app/main/pages/group/add-contact/import-contact-from-other-list/import-contact-from-other-lists.component';
 
 import {SendMessageComponent} from './app/main/pages/send-message/send-message.component';
 import {SendMessageFirstStepComponent} from './app/main/pages/send-message/send-message-first-step/send-message-first-step.component';

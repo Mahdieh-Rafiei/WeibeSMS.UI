@@ -27,7 +27,7 @@ import {ContactComponent} from './main/pages/group/contact/contact.component';
 import {AddContactComponent} from './main/pages/group/add-contact/add-contact.component';
 import {SingleAddContactComponent} from './main/pages/group/add-contact/single-add-contact/single-add-contact.component';
 import {AddContactFromFileComponent} from './main/pages/group/add-contact/add-contact-from-file/add-contact-from-file.component';
-import {ImportContactFromOtherListsComponent} from './main/pages/group/add-contact/import-contact-from-file/import-contact-from-other-lists.component';
+import {ImportContactFromOtherListsComponent} from './main/pages/group/add-contact/import-contact-from-other-list/import-contact-from-other-lists.component';
 
 import {SendMessageComponent} from './main/pages/send-message/send-message.component';
 import {SendMessageFirstStepComponent} from './main/pages/send-message/send-message-first-step/send-message-first-step.component';
@@ -54,10 +54,10 @@ import {FundComponent} from './main/pages/add-fund/fund/fund.component';
 import {SharedModule} from './shared/module/shared.module';
 import {MainRoutingModule} from './main/main-routing.module';
 import {MainComponent} from './main/main.component';
-
 import {FooterComponent} from './main/layout/footer/footer.component';
 import {DialogComponent} from './shared/component/dialog/dialog.component';
 import {AuthGuard} from './shared/auth.guard';
+import {ConfirmationAddContactFromFileComponent} from './main/pages/group/add-contact/add-contact-from-file/confirmation-add-contact-from-file/confirmation-add-contact-from-file.component';
 
 @NgModule({
 
@@ -92,9 +92,13 @@ import {AuthGuard} from './shared/auth.guard';
     MainComponent,
     FooterComponent,
     DialogComponent,
+    //TODO: move this c to groupModule
+    ConfirmationAddContactFromFileComponent
   ],
   entryComponents: [
     DialogComponent,
+    //TODO: move this c to groupModule
+    ConfirmationAddContactFromFileComponent
   ],
 
   imports: [
@@ -110,7 +114,7 @@ import {AuthGuard} from './shared/auth.guard';
     BrowserAnimationsModule,
     FileDropModule,
     MainRoutingModule,
-    SharedModule,
+    SharedModule
 
   ],
   providers: [

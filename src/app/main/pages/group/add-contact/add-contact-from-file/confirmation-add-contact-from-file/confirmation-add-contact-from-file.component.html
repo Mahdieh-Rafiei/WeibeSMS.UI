@@ -1,0 +1,30 @@
+<div class="dialog">
+  <div class="col-12 form-group modal-header p-2">
+    <h5>Auto extension</h5>
+  </div>
+  <div class="col-12 form-group">
+    <p class="fo-3 black-text pb-2">add count:</p>
+    <p>{{contactData.addCount}}</p>
+    <p class="fo-3 black-text pb-2">distinct count:</p>
+    <p>{{contactData.distinctCount}}</p>
+    <p class="fo-3 black-text pb-2">duplicate count:</p>
+    <p>{{contactData.duplicateCount}}</p>
+    <p class="fo-3 black-text pb-2">exists contact count:</p>
+    <p>{{contactData.existsContactCount}}</p>
+    <p class="fo-3 black-text pb-2">total count:</p>
+    <p>{{contactData.totalCount}}</p>
+    <p class="fo-3 black-text pb-2">wrong numbers count:</p>
+    <p>{{contactData.wrongNumber}}</p>
+    <br>
+  </div>
+  <div class="col-12 pb-3">
+    <div class="text-center" dir="ltr">
+      <button type="submit" class="green-btn mr-2" (click)="onSubmit()">
+        submit
+      </button>
+      <button class="gray-btn" (click)="closeDialog()">
+        cancel
+      </button>
+    </div>
+  </div>
+</div>
