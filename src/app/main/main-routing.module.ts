@@ -33,6 +33,10 @@ const routes: Routes = [
                 loadChildren: '.\/pages\/numbers\/numbers.module#NumbersModule',
             },
             {
+                path: 'send-message',
+                loadChildren: '.\/pages\/send-message\/send-message.module#SendMessageModule',
+            },
+            {
                 path: 'developer',
                 loadChildren: '.\/pages\/developers\/developers.module#DevelopersModule',
             },
@@ -63,7 +67,7 @@ const routes: Routes = [
             {
                 path: 'billing',
                 loadChildren: '.\/pages\/billing\/billing.module#BillingModule',
-              },
+            },
         ]
     }
 ];

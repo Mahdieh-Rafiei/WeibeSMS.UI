@@ -175,7 +175,8 @@ article, aside, details, figcaption, figure, footer, header, hgroup, main, menu,
 
 /*---------------------------Main Div--------------------------*/
 .main-container {
-  margin: 90px 15px 90px 245px;
+  //margin: 90px 15px 90px 245px;
+  margin: 78px 0 90px 235px;
   padding: 0;
   -ms-overflow-x: hidden;
   //overflow-x: hidden;
@@ -203,7 +204,7 @@ article, aside, details, figcaption, figure, footer, header, hgroup, main, menu,
   padding: 1rem;
   border-radius: .4rem;
   box-shadow: 0px 0px 13px 0px rgba(82, 63, 105, 0.05);
-  //height: 70vh;
+  height: 100vh;
 }
 
 /*---------------------------Search-----------------------*/
@@ -1147,4 +1148,7 @@ mat-sidenav.mat-drawer.mat-sidenav.ng-tns-c8-5.ng-trigger.ng-trigger-transform.n
 }
 .mat-drawer-container {
   background-color: unset;
+}
+.mat-drawer-content {
+  padding: 15px;
 }

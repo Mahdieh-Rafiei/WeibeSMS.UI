@@ -29,20 +29,10 @@ import {SingleAddContactComponent} from './main/pages/group/add-contact/single-a
 import {AddContactFromFileComponent} from './main/pages/group/add-contact/add-contact-from-file/add-contact-from-file.component';
 import {ImportContactFromOtherListsComponent} from './main/pages/group/add-contact/import-contact-from-other-list/import-contact-from-other-lists.component';
 
-import {SendMessageComponent} from './main/pages/send-message/send-message.component';
-import {SendMessageFirstStepComponent} from './main/pages/send-message/send-message-first-step/send-message-first-step.component';
-import {SendMessageSecondStepComponent} from './main/pages/send-message/send-message-second-step/send-message-second-step.component';
-import {SendMessageThirdStepComponent} from './main/pages/send-message/send-message-third-step/send-message-third-step.component';
-import {SendMessageScheduleComponent} from './main/pages/send-message/send-message-schedule/send-message-schedule.component';
-import {SendMessageEventComponent} from './main/pages/send-message/send-message-event/send-message-event.component';
-
 import {TicketService} from './main/pages/tickets/ticket.service';
 
 import {SlimSidebarComponent} from './main/layout/slim-sidebar/slim-sidebar.component';
-
-import {RewardPointComponent} from './main/pages/user-account/reward-point/reward-point.component';
 import {UserAccountService} from './main/pages/user-account/user-account.service';
-
 
 import {SharedModule} from './shared/module/shared.module';
 import {MainRoutingModule} from './main/main-routing.module';
@@ -66,20 +56,16 @@ import {ConfirmationAddContactFromFileComponent} from './main/pages/group/add-co
     SingleAddContactComponent,
     AddContactFromFileComponent,
     ImportContactFromOtherListsComponent,
-    SendMessageComponent,
-    SendMessageFirstStepComponent,
-    SendMessageSecondStepComponent,
-    SendMessageThirdStepComponent,
-    SendMessageScheduleComponent,
-    SendMessageEventComponent,
     SlimSidebarComponent,
     NumericInputDirective,
-    RewardPointComponent,
     MainComponent,
     FooterComponent,
     DialogComponent,
     //TODO: move this c to groupModule
-    ConfirmationAddContactFromFileComponent
+    ConfirmationAddContactFromFileComponent,
+    // HelpComponent,
+
+
   ],
   entryComponents: [
     DialogComponent,
@@ -101,7 +87,6 @@ import {ConfirmationAddContactFromFileComponent} from './main/pages/group/add-co
     FileDropModule,
     MainRoutingModule,
     SharedModule
-
   ],
   providers: [
     ApiService,
