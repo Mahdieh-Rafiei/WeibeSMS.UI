@@ -10,58 +10,64 @@ import {SendVerificationCodeResponseInterface} from '../../../auth/login/models/
 import {SendVerificationCodeInterface} from '../../../auth/login/models/send-verification-code.interface';
 import {ChangeNumberInterface} from './profile/change-number/models/change-number.interface';
 import {VerifyMobileInterface} from './profile/change-number/verify-number/models/verify-mobile.interface';
+import {AddSenderIdResponseInterface} from './profile/sender-id/models/add-sender-id-response.interface';
 
 @Injectable({
-    providedIn: 'root'
+  providedIn: 'root'
 })
 export class UserAccountService {
 
-    constructor(private apiService: ApiService) {
-    }
+  constructor(private apiService: ApiService) {
+  }
 
-    changePassword(payload): Observable<ChangePasswordResponseInterface> {
-        const url = `User/password`;
-        return this.apiService.put(url, payload, true);
-    }
+  changePassword(payload): Observable<ChangePasswordResponseInterface> {
+    const url = `User/password`;
+    return this.apiService.put(url, payload, true);
+  }
 
-    getProfile(): Observable<InfoGetInterface> {
-        const url = `User/profile`;
-        return this.apiService.get(url, true);
-    }
+  getProfile(): Observable<InfoGetInterface> {
+    const url = `User/profile`;
+    return this.apiService.get(url, true);
+  }
 
-    modifyProfile(payload): Observable<any> {
-        const url = `User`;
-        return this.apiService.put<InfoInterface>(url, payload, true);
-    }
+  modifyProfile(payload): Observable<any> {
+    const url = `User`;
+    return this.apiService.put<InfoInterface>(url, payload, true);
+  }
 
-    removeAvatar() {
-        const url = `user/profile/image`;
-        return this.apiService.delete(url, null, true)
-    }
+  removeAvatar() {
+    const url = `user/profile/image`;
+    return this.apiService.delete(url, null, true);
+  }
 
-    verifyEmail(payload): Observable<any> {
-        const url = `User/sendVerificationUrl`;
-        return this.apiService.post<ChangeEmailInterface>(url, payload, true);
-    }
+  verifyEmail(payload): Observable<any> {
+    const url = `User/sendVerificationUrl`;
+    return this.apiService.post<ChangeEmailInterface>(url, payload, true);
+  }
 
-    getSenderId(): Observable<SenderIdResponseInterface> {
-        const url = `User/senderName`;
-        return this.apiService.get(url, true);
-    }
 
-    modifySenderId(payload: string): Observable<any> {
-        const url = `User/senderName`;
-        return this.apiService.put(url, payload, true);
-    }
+  sendVerificationCode(payload): Observable<ChangeNumberInterface> {
+    const url = `user/SendVerificationCode`;
+    return this.apiService.post<SendVerificationCodeInterface>(url, payload, true);
+  }
 
-    sendVerificationCode(payload): Observable<ChangeNumberInterface> {
-        const url = `user/SendVerificationCode`;
-        return this.apiService.post<SendVerificationCodeInterface>(url, payload, true);
-    }
+  verifyMobile(payload): Observable<any> {
+    const url = `user/verifyMobile`;
+    return this.apiService.post<VerifyMobileInterface>(url, payload, true);
+  }
 
-    verifyMobile(payload): Observable<any> {
-        const url = `user/verifyMobile`;
-        return this.apiService.post<VerifyMobileInterface>(url, payload, true);
-    }
+  getSenderIds(): Observable<SenderIdResponseInterface> {
+    const url = `senderName`;
+    return this.apiService.get(url, true);
+  }
 
+  addSenderName(senderName: string): Observable<AddSenderIdResponseInterface> {
+    const url = 'senderName';
+    return this.apiService.post(url, `"${senderName}"`, true);
+  }
+
+  removeSenderName(senderNameId: number): Observable<any> {
+    const url = `senderName/${senderNameId}`;
+    return this.apiService.delete(url, null, true);
+  }
 }

@@ -35,31 +35,44 @@
                 <th class="text-left"><i class="fa fa-sort"></i>Datetime</th>
             </tr>
             </thead>
-            <tbody>
+            <tbody *ngFor="let tl of transactionLogs | paginate :
+            {itemsPerPage:10, currentPage:getTransactionLogsModel.pageNumber,totalItems:totalItems},index as i">
             <tr>
-                <td class="text-left">#1</td>
-                <td class="text-left">1000 credit for 1400$</td>
-                <td class="text-left">
-                    <button class="light-green-btn">simple</button> &nbsp;
-                </td>
-                <td class="text-left">
-                    60$ <i class="fa fa-arrow-down"></i>
-                </td>
-                <td class="text-left">$500</td>
-                <td class="text-left">98/2/8, 11:08</td>
+              <td class="text-left">#{{i + 1}}</td>
+              <td class="text-left">{{tl.description}}</td>
+              <td class="text-left">
+                <button class="light-green-btn">simple</button>
+              </td>
+              <td class="text-left">
+                {{tl.credit}}$ <i class="fa" [ngClass]="tl.credit < 0 ? 'fa-arrow-down' : 'fa-arrow-up'"></i>
+              </td>
+              <td class="text-left">{{tl.remainCredit}}$</td>
+              <td class="text-left">{{tl.transactionDateTime | dateTime:'YYYY-MM-DD hh:mm:ss'}}</td>
             </tr>
-            <tr>
-                <td class="text-left">#2</td>
-                <td class="text-left">1000 credit for 1400$</td>
-                <td class="text-left">
-                    <button class="light-blue-btn">schedule</button> &nbsp;
-                </td>
-                <td class="text-left">
-                    60$ <i class="fa fa-arrow-up"></i>
-                </td>
-                <td class="text-left">$400</td>
-                <td class="text-left">98/2/8, 11:08</td>
-            </tr>
+<!--            <tr>-->
+<!--                <td class="text-left">#1</td>-->
+<!--                <td class="text-left">1000 credit for 1400$</td>-->
+<!--                <td class="text-left">-->
+<!--                    <button class="light-green-btn">simple</button> &nbsp;-->
+<!--                </td>-->
+<!--                <td class="text-left">-->
+<!--                    60$ <i class="fa fa-arrow-down"></i>-->
+<!--                </td>-->
+<!--                <td class="text-left">$500</td>-->
+<!--                <td class="text-left">98/2/8, 11:08</td>-->
+<!--            </tr>-->
+<!--            <tr>-->
+<!--                <td class="text-left">#2</td>-->
+<!--                <td class="text-left">1000 credit for 1400$</td>-->
+<!--                <td class="text-left">-->
+<!--                    <button class="light-blue-btn">schedule</button> &nbsp;-->
+<!--                </td>-->
+<!--                <td class="text-left">-->
+<!--                    60$ <i class="fa fa-arrow-up"></i>-->
+<!--                </td>-->
+<!--                <td class="text-left">$400</td>-->
+<!--                <td class="text-left">98/2/8, 11:08</td>-->
+<!--            </tr>-->
             </tbody>
         </table>
         <!--pagination-->

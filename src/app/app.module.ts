@@ -35,19 +35,19 @@ import {SendMessageSecondStepComponent} from './main/pages/send-message/send-mes
 import {SendMessageThirdStepComponent} from './main/pages/send-message/send-message-third-step/send-message-third-step.component';
 import {SendMessageScheduleComponent} from './main/pages/send-message/send-message-schedule/send-message-schedule.component';
 import {SendMessageEventComponent} from './main/pages/send-message/send-message-event/send-message-event.component';
-import {CreateTransactionComponent} from './main/pages/biling/create-transaction/create-transaction.component';
-import {InvoiceListComponent} from './main/pages/biling/invoice-list/invoice-list.component';
+import {TransactionLogComponent} from './main/pages/billing/transaction-log/transaction-log.component';
+import {InvoiceListComponent} from './main/pages/billing/invoice-list/invoice-list.component';
 
 import {TicketService} from './main/pages/tickets/ticket.service';
 
 import {SlimSidebarComponent} from './main/layout/slim-sidebar/slim-sidebar.component';
 
 import {RewardPointComponent} from './main/pages/user-account/reward-point/reward-point.component';
-import {BillingComponent} from './main/pages/biling/billing.component';
-import {PaymentComponent} from './main/pages/biling/payment/payment.component';
+import {BillingComponent} from './main/pages/billing/billing.component';
+import {PaymentComponent} from './main/pages/billing/payment/payment.component';
 import {UserAccountService} from './main/pages/user-account/user-account.service';
 
-import {BillingAddressComponent} from './main/pages/biling/billing-address/billing-address.component';
+import {BillingAddressComponent} from './main/pages/billing/billing-address/billing-address.component';
 // import {FundListComponent} from './main/pages/add-fund/fund-list/fund-list.component';
 // import {FundComponent} from './main/pages/add-fund/fund/fund.component';
 
@@ -79,14 +79,9 @@ import {ConfirmationAddContactFromFileComponent} from './main/pages/group/add-co
     SendMessageThirdStepComponent,
     SendMessageScheduleComponent,
     SendMessageEventComponent,
-    InvoiceListComponent,
-    CreateTransactionComponent,
     SlimSidebarComponent,
-    BillingAddressComponent,
     NumericInputDirective,
     RewardPointComponent,
-    BillingComponent,
-    PaymentComponent,
     // FundListComponent,
     // FundComponent,
     MainComponent,
