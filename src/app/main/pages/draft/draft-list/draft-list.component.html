@@ -1,10 +1,10 @@
 <div>
+
     <div class="btn-section text-right">
         <div class="col-md-12 text-right">
             <button class="green-btn" [routerLink]="['/draft']"><i class="fa fa-plus"></i> Create template</button>
         </div>
     </div>
-
     <div class="div-section">
         <!--operation-->
         <div class="row">
@@ -23,8 +23,8 @@
                 <thead>
                 <tr>
                     <th class="text-left"><i class="fa fa-sort"></i> Name</th>
-                    <th class="text-center"><i class="fa fa-sort"></i> MESSAGE</th>
-                    <th class="text-center">Send Action</th>
+                    <th class="text-left"><i class="fa fa-sort"></i> MESSAGE</th>
+                    <th class="text-left">Send Action</th>
                     <th></th>
                 </tr>
                 </thead>
@@ -37,12 +37,12 @@
                             {{d.title}}
                         </div>
                     </td>
-                    <td class=" text-center">
+                    <td class=" text-left">
                         <div>
                             {{d.summary}} <a><span [title]="d.messageText" style="color: #f5274e;">. . .</span></a>
                         </div>
                     </td>
-                    <td class="text-center">
+                    <td class="text-left">
                         <div>
                             <select class="select-send">
                                 <option>Simple send</option>
@@ -52,25 +52,30 @@
                         </div>
                     </td>
                     <td class="td-single text-right actions-container">
-                        <div class="actions">
-                            <a><i (click)="removeDraft(d)" class="fa fa-trash"></i></a>
-                            <a><i [routerLink]="['../',d.id]" class="fa fa-pencil"></i></a>
+                        <div class="actions text-right">
+                            <a><i (click)="removeDraft(d)" class="fa fa-trash light-red-btn"></i></a>
+                            <a><i [routerLink]="['../',d.id]" class="fa fa-pencil light-green-btn"></i></a>
                         </div>
                     </td>
                 </tr>
                 </tbody>
             </table>
-            <div class="table-pagination text-right">
-                <span><i class="fa fa-arrow-circle-left"></i></span>
-                <span><i class="fa fa-arrow-circle-right"></i></span>
+            <!--pagination-->
+            <div class="col-12 pagination-div">
+                <div class="row pt-1 pb-1">
+                    <div class="col-12 col-md-6 text-left fo-3 black-text font-weight-bold">Displaying 1-10 of
+                        {{totalItems}} records
+                    </div>
+                    <div class="col-12 col-md-6 text-right">
+                        <pagination-controls (pageChange)="doPaging($event)"
+                                             maxSize="5"
+                                             responsive="true"
+                                             previousLabel=""
+                                             nextLabel="">
+                        </pagination-controls>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
-
-    <pagination-controls (pageChange)="doPaging($event)"
-                         maxSize="5"
-                         responsive="true"
-                         previousLabel=""
-                         nextLabel=""></pagination-controls>
-
 </div>

@@ -10,7 +10,7 @@ import {ExtendUserLineResponseInterface} from '../models/extend-user-line-respon
 @Component({
   selector: 'app-edit-user-lines',
   templateUrl: './edit-user-lines.component.html',
-  styleUrls: ['./edit-user-lines.component.css']
+  styleUrls: ['./edit-user-lines.component.scss']
 })
 export class EditUserLinesComponent implements OnInit {
 
@@ -29,15 +29,6 @@ export class EditUserLinesComponent implements OnInit {
   ngOnInit() {
   }
 
-  //TODO: add form validating if need...
-
-  // createForm() {
-  //   this.userLineForm = this.fb.group({
-  //     hasAutoExtension: [null, Validators.required]
-  //   });
-  // }
-
-
   closeDialog() {
     this.dialogRef.close();
   }
@@ -46,7 +37,7 @@ export class EditUserLinesComponent implements OnInit {
     const payload: ModifyUserLineInterface = {hasAutoExtension: this.userLineData.hasAutoExtension};
     this.numbersService.modifyUserLine(this.userLineData.id, payload)
       .subscribe((res: ModifyUserLineResponseInterface) => {
-        this.dialogRef.close(null);
+        this.dialogRef.close({status:1 , data:null});
       });
   }
 
@@ -68,7 +59,7 @@ export class EditUserLinesComponent implements OnInit {
           expirationDateTime:  expirationDateTime.getTime() / 1000,
         };
 
-        this.dialogRef.close(addedUserLine);
+        this.dialogRef.close({status:2 , data:addedUserLine} );
       });
   }
 }

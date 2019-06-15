@@ -2,8 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import {NumbersService} from '../numbers.service';
 import {ItemsUserLineInterface} from './models/items-user-line.interface';
 import {GetUserLineModelInterface} from './models/get-user-line-model.interface';
-import {ItemsGroupListInterface} from '../../group/group-list/models/items-group-list.interface';
-import {AddEditGroupComponent} from '../../group/group-list/add-edit/add-edit-group.component';
 import {NotificationService} from '../../../../shared/notification.service';
 import {MatDialog} from '@angular/material';
 import {EditUserLinesComponent} from './edit-user-lines/edit-user-lines.component';
@@ -13,6 +11,7 @@ import {EditUserLinesComponent} from './edit-user-lines/edit-user-lines.componen
   templateUrl: './user-lines.component.html',
   styleUrls: ['./user-lines.scss']
 })
+
 export class UserLinesComponent implements OnInit {
 
   getUserLineModel: GetUserLineModelInterface;
@@ -61,11 +60,11 @@ export class UserLinesComponent implements OnInit {
 
     dialogRef.afterClosed()
       .subscribe(result => {
-        if (result) {
+        if (result && result.status == 2) {
           this.userLines.splice(this.currentIndex,1);
-          this.userLines.push(result);
+          this.userLines.push(result.data);
           this.notificationService.success('Line extended successfully', '');
-        }else {
+        }else if (result && result.status == 1 ) {
           this.notificationService.success('Payment management modified successfully', '');
         }
       });

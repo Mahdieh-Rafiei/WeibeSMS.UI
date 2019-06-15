@@ -1,17 +1,14 @@
 .verification-code {
-  background-color: #d5e1fa;
-  border-radius: 5px 15px 15px 15px;
+  background-color: #5867dd1a;
+  border-radius: 0 .4rem .4rem;
   padding: 15px;
   font-size: 14px !important;
-  margin-left: 20px;
-  span {
-    font-weight: 600 !important;
-  }
 }
 
-.more-info p {
-  font-size: 14px;
-  line-height: 2;
+.more-info {
+  i{
+    animation: move-forward 1s infinite ease-in;
+  }
 }
 
 .underline {
@@ -27,6 +24,7 @@ td i {
   padding: 4px;
   border-radius: 50%;
 }
+
 @media (max-width: 991px) and (min-width: 768px) {
   .verification-code {
     margin-left: 0;

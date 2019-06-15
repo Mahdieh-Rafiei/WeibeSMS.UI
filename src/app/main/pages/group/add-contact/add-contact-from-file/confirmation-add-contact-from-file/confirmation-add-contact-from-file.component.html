@@ -1,4 +1,3 @@
-
 <div class="dialog">
     <div class="col-12 modal-header p-2 text-center">
         <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
@@ -14,15 +13,24 @@
 	</g>
 
 </svg>
-        <h5 class="green-text">Management Payment</h5>
+        <h5 class="green-text">Preview</h5>
     </div>
-    <div class="col-12 form-group text-center">
-        <p class="fo-3 black-text pb-2 text-center">Auto extension:</p>
-        <mat-checkbox [(ngModel)]="userLineData.hasAutoExtension"></mat-checkbox>
+    <div class="col-12 form-group">
+        <label class="fo-3 black-text pb-2">add count:</label>
+        <p>{{contactData.addCount}}</p>
+        <label class="fo-3 black-text pb-2">distinct count:</label>
+        <p>{{contactData.distinctCount}}</p>
+        <label class="fo-3 black-text pb-2">duplicate count:</label>
+        <p>{{contactData.duplicateCount}}</p>
+        <label class="fo-3 black-text pb-2">exists contact count:</label>
+        <p>{{contactData.existsContactCount}}</p>
+        <label class="fo-3 black-text pb-2">total count:</label>
+        <p>{{contactData.totalCount}}</p>
+        <label class="fo-3 black-text pb-2">wrong numbers count:</label>
+        <p>{{contactData.wrongNumber}}</p>
         <br>
-        <button [disabled]="!userLineData.isSuspended" (click)="extendUserLine()" class="light-yellow-btn">Extend</button>
     </div>
-    <div class="col-12">
+    <div class="col-12 pb-3">
         <div class="text-center" dir="ltr">
             <button type="submit" class="green-btn mr-2" (click)="onSubmit()">
                 submit

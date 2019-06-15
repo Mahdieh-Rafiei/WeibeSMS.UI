@@ -10,10 +10,10 @@ import {GetContactInterface} from './models/get-contact.interface';
 import {RemoveContactFormGroupInterface} from '../models/remove-contact-form-group.interface';
 import {ModifyContactInterface} from '../add-contact/single-add-contact/models/modify-contact.interface';
 import {RemoveContactInterface} from './models/remove-contact.interface';
-import {GetAllContactGroupInterface} from '../add-contact/import-contact-from-file/models/get-all--contact-group.interface';
+import {GetAllContactGroupInterface} from '../add-contact/import-contact-from-other-list/models/get-all--contact-group.interface';
 import {AddContactFormGroupResponseInterface} from '../add-contact/add-contact-from-file/models/add-contact-form-group-response.interface';
-import {ContactGroupMoveCopyResponseInterface} from '../add-contact/import-contact-from-file/models/contact-group-move-copy-response.interface';
-import {ContactGroupMoveCopyInterface} from '../add-contact/import-contact-from-file/models/contact-group-move-copy-interface';
+import {ContactGroupMoveCopyResponseInterface} from '../add-contact/import-contact-from-other-list/models/contact-group-move-copy-response.interface';
+import {ContactGroupMoveCopyInterface} from '../add-contact/import-contact-from-other-list/models/contact-group-move-copy-interface';
 
 @Injectable({
   providedIn: 'root'
@@ -38,15 +38,10 @@ export class ContactService {
     return this.apiService.post<AddContactInterface>(url, payload, true);
   }
 
-  addContactFromFile(groupId: number, replaceDuplicateContact: boolean, immediate: boolean, file: File, relativePath: string): Observable<AddContactFormGroupResponseInterface> {
-    const formData = new FormData();
-
-    formData.append('logo', file, relativePath);
-    formData.append('replaceDuplicateContact', replaceDuplicateContact.toString());
-    formData.append('immediate', Immediate.toString());
+  addContactFromFile(groupId:number,formData:FormData): Observable<AddContactFormGroupResponseInterface> {
 
     const headers = new HttpHeaders({
-      token: localStorage.getItem('jwt-sms')
+      Authorization: localStorage.getItem('jwt-sms')
     });
 
     const url = `${this.configService.baseUrl}Contact/${groupId}`;
@@ -54,11 +49,12 @@ export class ContactService {
   }
 
   addContactFromGroups(destinationGroupId: number, operationInfo: Map<number, number[]>, isCut: boolean): Observable<ContactGroupMoveCopyResponseInterface> {
+    debugger;
     const rows = {};
     operationInfo.forEach((value, key) => {
       rows[key] = value;
     });
-    const payload = {Dic: rows};
+    const payload = {Contacts: rows};
     const url = `ContactGroup/${isCut ? 'Move' : 'Copy'}/${destinationGroupId}`;
     return this.apiService.post<ContactGroupMoveCopyInterface>(url, payload, true);
   }

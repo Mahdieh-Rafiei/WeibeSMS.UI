@@ -1,42 +1,116 @@
-<div class="btn-section text-right">
-  <div class="col-md-6 no-pad text-left">
-    <button class="previous-btn"> <i class="fa fa-arrow-left"></i> Previous </button>
-  </div>
-  <div class="col-md-6 no-pad text-right">
-    <button (click)="deleteContact()" class="red-btn" style="margin-right: 5px"> <i class="fa fa-trash"></i> Delete Permanent </button>
-    <button (click)="modifyContact()" class="green-btn"> <i class="fa fa-edit"></i> Save </button>
-  </div>
-</div>
 <div class="main-container">
-  <div class="col-md-12 div-section">
-    <div class="col-md-12 edit-recipient">
-      <p>Edit Recipient</p>
-      <div class="col-md-6 no-pad">
-        <input [(ngModel)]="contact.mobile" type="text" disabled placeholder="Phone Number :">
-        <br/>
-        <input [(ngModel)]="contact.lastName" type="text" placeholder="Surname :">
-      </div>
-      <div class="col-md-6 no-pad">
-        <input [(ngModel)]="contact.firstName" type="text" placeholder="Name :">
-        <br/>
-        <input [(ngModel)]="contact.gender" type="text" placeholder="Gender :">
-      </div>
-      <div class="col-md-12 space"></div>
-      <div class="col-md-12 no-pad">
-        <select>
-          <option value="volvo">Select Field</option>
-          <option value="saab">field 2</option>
-          <option value="vw">field 3</option>
-        </select>
-        <input type="text" class="date-value" placeholder="value">
-        <span class="operation-fa"><i class="fa fa-trash"></i></span>
-        <span class="operation-fa"><i class="fa fa-plus"></i></span>
-      </div>
+    <div class="btn-section">
+        <div class="col-12">
+            <div class="row">
+                <div class="col-12 col-md-6 col-sm-6 col-xs-6 text-left">
+                    <button class="previous-btn" [routerLink]="['../list']"><i class="fa fa-arrow-left"></i> Previous</button>
+                </div>
+                <div class="col-12 col-md-6 no-pad text-right">
+                    <button (click)="deleteContact()" class="red-btn" style="margin-right: 5px"><i class="fa fa-trash"></i>
+                        Delete Permanent
+                    </button>
+                    <button (click)="modifyContact()" class="green-btn"><i class="fa fa-edit"></i> Save</button>
+                </div>
+            </div>
+
+        </div>
     </div>
-  </div>
+    <div class="col-12 col-md-12 section-div">
+        <form class=" single-add-contact">
+            <div class="add-contact">
+                <div class="title">
+                    <h5 class="mb-4">Add Contact</h5>
+                </div>
+                <div class="row">
+                    <div class="col-md-4 form-group">
+                        <label>Phone Number</label>
+                            <input type="text"
+                                   placeholder="Your phone number"
+                                   class="form-control"
+                                   #mobileInput
+                                   formControlName="mobile"
+                                   (input)="changeMobile(mobileInput.value)"
+                                   appNumericInput
+                                   [ngClass]="{'border-error' :(singleContactForm.controls['mobile'].touched || singleContactForm.controls['mobile'].dirty ) && !mobileValue}"
+                                   autofocus autocomplete="off" disabled>
+                        <div class="text-left"
+                             *ngIf="formDir.submitted">
+                            <p class="errorMessage"
+                               *ngIf="(!mobileValue)">
+                                This filed is required!
+                            </p>
+                        </div>
+                    </div>
+                    <div class="col-md-4 form-group">
+                        <label>First Name</label>
+                        <input type="text"
+                               class="form-control"
+                               formControlName="firstName"
+                               placeholder="Name :">
+                    </div>
+                    <div class="col-md-4 form-group">
+                        <label>Surename</label>
+                        <input type="text"
+                               class="form-control"
+                               formControlName="lastName"
+                               placeholder="Surname :">
+                    </div>
+                    <div class="col-md-4 form-group">
+                        <label>Email</label>
+                        <input type="text"
+                               class="form-control"
+                               formControlName="email"
+                               placeholder="Enter recipient Email :">
+                        <div class="text-left"
+                             *ngIf="(((singleContactForm.controls['email'].dirty || singleContactForm.controls['email'].touched) || formDir.submitted))">
+                            <p class="errorMessage"
+                               *ngIf="(singleContactForm.controls['email'].hasError('email'))">
+                                email is invalid!
+                            </p>
+                        </div>
+                    </div>
+                    <div class="col-md-4 form-group">
+                        <label>Gender</label>
+                        <select formControlName="gender" class="form-control">
+                            <option hidden value="">Select</option>
+                            <option [value]="gender.value" *ngFor="let gender of genders">{{gender.title}}</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <div class="field border-top">
+                <div class="title form-group">
+                    <h5 class="yellow-text">Recipient field</h5>
+                    <p>you can go <span class="red-text">"Option>event field"</span> and create field for <span
+                            class="font-weight-bold">event</span> send sms.</p>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <label>Select field</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4 form-group">
+                        <div class="input-group mb-3">
+                            <div class="input-group-append">
+                                <!--<span class="input-group-text" id="basic-addon2">@example.com</span>-->
+                                <select formControlName="id" #select class="form-control" id="basic-addon2">
+                                    <option hidden value="">Select</option>
+                                    <option>select</option>
+                                    <option>select</option>
+                                    <option>select</option>
+                                </select>
+                            </div>
+                            <input type="text" class="form-control" placeholder="birthday" aria-label="Recipient's username" aria-describedby="basic-addon2">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+
 </div>
-
-
 
 
 

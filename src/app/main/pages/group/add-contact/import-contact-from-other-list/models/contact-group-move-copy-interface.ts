@@ -1,3 +1,3 @@
 export interface ContactGroupMoveCopyInterface {
-  Dic: {};
+  Contacts: {};
 }
