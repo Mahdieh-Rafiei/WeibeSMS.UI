@@ -5,6 +5,7 @@ import {BillingAddressInterface} from './billing-address/models/billing-address.
 import {BillindAddressResponseInterface} from './billing-address/models/billind-address-response.interface';
 import {CreditTransactionResponseInterface} from './transaction-log/models/credit-transaction-response.interface';
 import {InvoiceResponseInterface} from './invoice-list/models/invoice-response.interface';
+import {PaymentResponseInterface} from './payment/models/payment-response.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -34,13 +35,17 @@ export class BillingService {
     return this.apiService.get(url, true);
   }
 
-  getInvoices(pageNumber:number,pageSize:number,fromDate:number,toDate:number) : Observable<InvoiceResponseInterface>{
-    // const url = `Invoice?pageNumber=${pageNumber}&pageSize=${pageSize}&fromDate=${fromDate}&toDate=${toDate}`;
+  getInvoices(pageNumber: number, pageSize: number, fromDate: number, toDate: number): Observable<InvoiceResponseInterface> {
+
+    debugger;
     const url = `Invoice?pageNumber=${pageNumber}&pageSize=${pageSize}`;
-    return this.apiService.get(url,true);
+    return this.apiService.get(url, true);
   }
 
-  getPaymentLogs(){
+  getPaymentLogs(pageNumber: number, pageSize, description: string, fromDate: number,
+                 toDate: number, paymentType: number, isPaid: boolean) :Observable<PaymentResponseInterface> {
 
+    const url = `Payment?pageNumber=${pageNumber}&pageSize=${pageSize}`;
+    return this.apiService.get(url,true);
   }
 }

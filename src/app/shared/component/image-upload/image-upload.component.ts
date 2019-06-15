@@ -40,7 +40,6 @@ export class ImageUploadComponent implements OnInit {
   @Input() uploadType: string;
   @Input() deleteAvatar: boolean;
 
-
   @Output() image: EventEmitter<any> = new EventEmitter();
   @Output() loading: EventEmitter<any> = new EventEmitter();
   @Output() removeAvatar: EventEmitter<boolean> = new EventEmitter();
@@ -130,6 +129,10 @@ export class ImageUploadComponent implements OnInit {
     const formData = new FormData();
     formData.append('file', fileToUpload);
     formData.append('type', '1');
+
+    //TODO: using svg
+
+    // this.imageSrc= '../../../../src/assets/images/profile-loading.svg';
 
     this.as.postFile(this.apiUrl, formData)
       .subscribe(res => {

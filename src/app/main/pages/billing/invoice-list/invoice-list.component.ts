@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {BillingService} from '../billing.service';
 import {InvoiceInterface} from './models/invoice.interface';
 import {GetInvocesModelInterface} from './models/get-invoces-model.interface';
@@ -10,26 +10,36 @@ import {GetInvocesModelInterface} from './models/get-invoces-model.interface';
 })
 export class InvoiceListComponent implements OnInit {
 
-  getInvoiceModel:GetInvocesModelInterface;
-  invoices:InvoiceInterface[];
-  constructor(private billingService:BillingService) { }
+  getInvoiceModel: GetInvocesModelInterface = {
+    fromDate: null,
+    pageNumber: 1,
+    pageSize: 10,
+    toDate: null
+  };
+
+  invoices: InvoiceInterface[];
+  totalItems: number;
+
+  constructor(private billingService: BillingService) {
+  }
 
   ngOnInit() {
-    this.getInvoiceModel = {
-      fromDate :null ,
-      pageNumber :1,
-      pageSize:10,
-      toDate:null
-    };
-
     this.getInvoices();
   }
 
-  getInvoices(){
+  getInvoices() {
     this.billingService.getInvoices(this.getInvoiceModel.pageNumber,
       this.getInvoiceModel.pageSize,
       this.getInvoiceModel.fromDate,
       this.getInvoiceModel.toDate)
-      .subscribe(res => console.log(res));
+      .subscribe(res => {
+        this.invoices = res.data.items;
+        this.totalItems = res.data.totalItemsCount;
+      });
+  }
+
+  doPaging(e) {
+    this.getInvoiceModel.pageNumber = e;
+    this.getInvoices();
   }
 }

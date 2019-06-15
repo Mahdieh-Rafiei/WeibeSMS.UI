@@ -36,34 +36,37 @@
                 <th class="text-left"><i class="fa fa-sort"></i>Date time</th>
             </tr>
             </thead>
-            <tbody>
+            <tbody *ngFor="let p of payments | paginate:
+            {itemsPerPage:10, currentPage:getPaymentsModel.pageNumber,totalItems:totalItems},index as i">
             <tr>
-                <td class="text-left">#1</td>
-                <td class="text-left">98/2/8, 11:08</td>
-                <td class="text-left">500 credit for 60$</td>
+                <td class="text-left">#{{i + 1}}</td>
+                <td class="text-left">{{p.description}}</td>
+                <td class="text-left">{{p.type == 1 ? 'Credit' : 'Others'}}</td>
                 <td class="text-left">
-                    <button class="yellow-btn">pending</button>
+                    <button [ngClass]="p.isPaid ? 'green-btn' : 'yellow-btn'">{{p.isPaid}}</button>
                 </td>
-                <td class="text-left">$37</td>
-                <td class="text-left">%10</td>
-                <td class="text-left">$40</td>
-                <td class="text-left">98/2/8, 11:08</td>
+                <td class="text-left">€{{p.amount}}</td>
+                <td class="text-left">%{{p.vat}}</td>
+                <td class="text-left">€{{p.total}}</td>
+                <td class="text-left">{{p.creationDateTime | dateTime: 'YYYY-MM-DD hh-mm-ss'}}</td>
             </tr>
-            <tr>
-                <td class="text-left">#2</td>
-                <td class="text-left">98/2/8, 11:08</td>
-                <td class="text-left">500 credit for 60$</td>
-                <td class="text-left">
-                    <button class="green-btn">paid</button>
-                </td>
-                <td class="text-left">$37</td>
-                <td class="text-left">%10</td>
-                <td class="text-left">$40</td>
-                <td class="text-left">98/2/8, 11:08</td>
-            </tr>
+
+            <!--<tr>-->
+                <!--<td class="text-left">#2</td>-->
+                <!--<td class="text-left">98/2/8, 11:08</td>-->
+                <!--<td class="text-left">500 credit for 60$</td>-->
+                <!--<td class="text-left">-->
+                    <!--<button class="green-btn">paid</button>-->
+                <!--</td>-->
+                <!--<td class="text-left">$37</td>-->
+                <!--<td class="text-left">%10</td>-->
+                <!--<td class="text-left">$40</td>-->
+                <!--<td class="text-left">98/2/8, 11:08</td>-->
+            <!--</tr>-->
+
             </tbody>
         </table>
-        <!--pagination-->
+
         <div class="col-12 pagination-div">
             <div class="row pt-1 pb-1">
                 <div class="col-12 col-md-6 text-left fo-3 black-text font-weight-bold">Displaying 1-10 of {{totalItems}} records</div>

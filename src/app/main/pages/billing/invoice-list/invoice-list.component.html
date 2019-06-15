@@ -25,31 +25,19 @@
                 <th></th>
             </tr>
             </thead>
-            <tbody>
+            <tbody *ngFor="let inv of invoices | paginate :
+            {itemsPerPage:10, currentPage:getInvoiceModel.pageNumber,totalItems:totalItems},index as i">
             <tr>
-                <td class="text-left">#1</td>
-                <td class="text-left">$500</td>
-                <td class="text-left">%5</td>
-                <td class="text-left">$1000</td>
-                <td class="text-left">98/2/8, 11:08</td>
+                <td class="text-left">#{{i + 1}}</td>
+                <td class="text-left">€{{inv.amount}}</td>
+                <td class="text-left">%{{inv.vat}}</td>
+                <td class="text-left">€{{inv.totalAmount}}</td>
+                <td class="text-left">{{inv.creationDate | date}}</td>
                 <td class="text-right">
                     <div class="actions text-right">
                         <i class="fa fa-file light-green-btn"></i>
                     </div>
                 </td>
-            </tr>
-            <tr>
-                <td class="text-left">#2</td>
-                <td class="text-left">$500</td>
-                <td class="text-left">%5</td>
-                <td class="text-left">$1000</td>
-                <td class="text-left">98/2/8, 11:08</td>
-                <td class="text-right">
-                    <div class="actions text-right">
-                        <i class="fa fa-file light-green-btn"></i>
-                    </div>
-                </td>
-
             </tr>
             </tbody>
         </table>

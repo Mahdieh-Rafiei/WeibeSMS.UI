@@ -28,7 +28,7 @@ export class ProfileComponent implements OnInit {
 
   onClick(link) {
     this.active = link;
-    this.router.navigate(['./profile/' + link]);
+    this.router.navigateByUrl(`profile/${link}`);
 
   }
 
