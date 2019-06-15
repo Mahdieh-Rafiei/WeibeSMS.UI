@@ -23,9 +23,9 @@
               <div class="text-left"
                    *ngIf="((senderIdForm.controls['name'].dirty || senderIdForm.controls['name'].touched || formDir.submitted)|| senderIdUnique)"
                    [@errorAnimation]>
-                <p class="errorMessage" *ngIf="senderIdForm.hasError('required', 'name')">
-                  <i class="far fa-exclamation-circle"></i> this filed is required!
-                </p>
+                <!--<p class="errorMessage" *ngIf="senderIdForm.hasError('required', 'name')">-->
+                  <!--<i class="far fa-exclamation-circle"></i> this filed is required!-->
+                <!--</p>-->
                 <p class="errorMessage"
                    *ngIf="(senderIdForm.controls['name'].hasError('pattern')) " [@errorAnimation]>
                   <i class="far fa-exclamation-circle"></i> sender id is invalid!

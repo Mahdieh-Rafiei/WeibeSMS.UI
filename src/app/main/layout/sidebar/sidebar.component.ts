@@ -90,7 +90,7 @@ export class SidebarComponent implements OnInit {
     }, {
       title: 'Billing',
       icon: 'money-bill',
-      link: '/billing',
+      link: '/billing/invoice-list',
       subMenu: null
     }, {
       title: 'Add fund',
