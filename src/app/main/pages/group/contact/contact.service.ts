@@ -28,7 +28,7 @@ export class ContactService {
     return this.apiService.get(url, true);
   }
 
-  getContact(contactId: string): Observable<GetContactInterface> {
+  getContact(contactId: number): Observable<GetContactInterface> {
     const url = `Contact/${contactId}`;
     return this.apiService.get(url, true);
   }

@@ -35,12 +35,13 @@ import {AuthGuard} from './app/shared/auth.guard';
 export const APP_ROUTES: Routes = [
   // {path: 'group/:groupId', component: SingleGroupComponent, canActivate: [CanActivateRouteGuard]},
   // {path: 'group', component: GroupListComponent, canActivate: [CanActivateRouteGuard]},
-  {path: 'group/:groupId/contact/:contactId', component: ContactComponent},
+  {path: 'group/:groupId/contact/:contactId', component: SingleAddContactComponent},
 
   {
     path: 'group/:groupId/add-contact', component: AddContactComponent, children: [
       {path: 'from-file', component: AddContactFromFileComponent},
       {path: 'single-contact', component: SingleAddContactComponent},
+      {path: 'single-contact/:contactId', component: SingleAddContactComponent},
       {path: 'from-list', component: ImportContactFromOtherListsComponent},
     ]
   },

@@ -1,3 +1,5 @@
+import {EventsUserContactInterface} from './events-user-contact.interface';
+
 export interface DataGetContactInterface {
   creationDateTime: Date;
   email: string;
@@ -6,4 +8,5 @@ export interface DataGetContactInterface {
   id: number;
   lastName: string;
   mobile: string;
+  eventsUser: EventsUserContactInterface[];
 }
