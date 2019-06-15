@@ -18,6 +18,7 @@ import {SendMessageEventComponent} from './app/main/pages/send-message/send-mess
 
 import {RewardPointComponent} from './app/main/pages/user-account/reward-point/reward-point.component';
 import {AuthGuard} from './app/shared/auth.guard';
+import {HelpComponent} from "./app/main/pages/help/help.component";
 
 export const APP_ROUTES: Routes = [
   // {path: 'group/:groupId', component: SingleGroupComponent, canActivate: [CanActivateRouteGuard]},
@@ -43,6 +44,7 @@ export const APP_ROUTES: Routes = [
   },
 
   {path: 'reward-point', component: RewardPointComponent},
+  // {path: 'help', component: HelpComponent},
 
   // {path: 'fund-list', component: FundListComponent},
   // {path: 'fund', component: FundComponent},
