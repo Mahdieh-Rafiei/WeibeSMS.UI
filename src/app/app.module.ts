@@ -58,72 +58,76 @@ import {FooterComponent} from './main/layout/footer/footer.component';
 import {DialogComponent} from './shared/component/dialog/dialog.component';
 import {AuthGuard} from './shared/auth.guard';
 import {ConfirmationAddContactFromFileComponent} from './main/pages/group/add-contact/add-contact-from-file/confirmation-add-contact-from-file/confirmation-add-contact-from-file.component';
+// import { HelpComponent } from './main/pages/help/help.component';
+// import {MatSidenavModule} from '@angular/material/sidenav';
 
 @NgModule({
 
-  declarations: [
-    AppComponent,
-    LoginComponent,
-    RegisterComponent,
-    SidebarComponent,
-    TopNavComponent,
-    ForgotPasswordComponent,
-    ContactComponent,
-    AddContactComponent,
-    SingleAddContactComponent,
-    AddContactFromFileComponent,
-    ImportContactFromOtherListsComponent,
-    SendMessageComponent,
-    SendMessageFirstStepComponent,
-    SendMessageSecondStepComponent,
-    SendMessageThirdStepComponent,
-    SendMessageScheduleComponent,
-    SendMessageEventComponent,
-    SlimSidebarComponent,
-    NumericInputDirective,
-    RewardPointComponent,
-    // FundListComponent,
-    // FundComponent,
-    MainComponent,
-    FooterComponent,
-    DialogComponent,
-    //TODO: move this c to groupModule
-    ConfirmationAddContactFromFileComponent
-  ],
-  entryComponents: [
-    DialogComponent,
-    //TODO: move this c to groupModule
-    ConfirmationAddContactFromFileComponent
-  ],
+    declarations: [
+        AppComponent,
+        LoginComponent,
+        RegisterComponent,
+        SidebarComponent,
+        TopNavComponent,
+        ForgotPasswordComponent,
+        ContactComponent,
+        AddContactComponent,
+        SingleAddContactComponent,
+        AddContactFromFileComponent,
+        ImportContactFromOtherListsComponent,
+        SendMessageComponent,
+        SendMessageFirstStepComponent,
+        SendMessageSecondStepComponent,
+        SendMessageThirdStepComponent,
+        SendMessageScheduleComponent,
+        SendMessageEventComponent,
+        SlimSidebarComponent,
+        NumericInputDirective,
+        RewardPointComponent,
 
-  imports: [
-    BrowserModule,
-    FormsModule,
-    ReactiveFormsModule,
-    HttpClientModule,
-    AngularEditorModule,
-    RouterModule.forRoot(APP_ROUTES),
-    ToastrModule.forRoot({
-      preventDuplicates: true
-    }),
-    BrowserAnimationsModule,
-    FileDropModule,
-    MainRoutingModule,
-    SharedModule
+        MainComponent,
+        FooterComponent,
+        DialogComponent,
+        //TODO: move this c to groupModule
+        ConfirmationAddContactFromFileComponent,
+        // HelpComponent,
 
-  ],
-  providers: [
-    ApiService,
-    ConfigService,
-    AuthenticationService,
-    AuthGuard,
-    RegisterService,
-    CanActivateRouteGuard,
-    NotificationService,
-    TicketService,
-    UserAccountService
-  ],
-  bootstrap: [AppComponent]
+
+    ],
+    entryComponents: [
+        DialogComponent,
+        //TODO: move this c to groupModule
+        ConfirmationAddContactFromFileComponent
+    ],
+
+    imports: [
+        BrowserModule,
+        FormsModule,
+        ReactiveFormsModule,
+        HttpClientModule,
+        AngularEditorModule,
+        RouterModule.forRoot(APP_ROUTES),
+        ToastrModule.forRoot({
+            preventDuplicates: true
+        }),
+        BrowserAnimationsModule,
+        FileDropModule,
+        MainRoutingModule,
+        SharedModule
+
+    ],
+    providers: [
+        ApiService,
+        ConfigService,
+        AuthenticationService,
+        AuthGuard,
+        RegisterService,
+        CanActivateRouteGuard,
+        NotificationService,
+        TicketService,
+        UserAccountService
+    ],
+    bootstrap: [AppComponent]
 })
 export class AppModule {
 }
