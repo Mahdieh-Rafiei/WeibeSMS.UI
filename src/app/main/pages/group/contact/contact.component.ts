@@ -11,7 +11,7 @@ import {RemoveContactInterface} from './models/remove-contact.interface';
 })
 export class ContactComponent implements OnInit {
 
-  contactId: string;
+  contactId: number;
   contact: any;
   groupId: string;
 
@@ -21,7 +21,7 @@ export class ContactComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.contactId = this.activatedRoute.snapshot.paramMap.get('contactId');
+    this.contactId = +this.activatedRoute.snapshot.paramMap.get('contactId');
     this.groupId = this.activatedRoute.snapshot.paramMap.get('groupId');
     this.getContact();
   }

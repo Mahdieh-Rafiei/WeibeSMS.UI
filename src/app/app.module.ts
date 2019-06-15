@@ -44,62 +44,62 @@ import {ConfirmationAddContactFromFileComponent} from './main/pages/group/add-co
 
 @NgModule({
 
-    declarations: [
-        AppComponent,
-        LoginComponent,
-        RegisterComponent,
-        SidebarComponent,
-        TopNavComponent,
-        ForgotPasswordComponent,
-        ContactComponent,
-        AddContactComponent,
-        SingleAddContactComponent,
-        AddContactFromFileComponent,
-        ImportContactFromOtherListsComponent,
-        SlimSidebarComponent,
-        NumericInputDirective,
-        MainComponent,
-        FooterComponent,
-        DialogComponent,
-        //TODO: move this c to groupModule
-        ConfirmationAddContactFromFileComponent,
-        // HelpComponent,
+  declarations: [
+    AppComponent,
+    LoginComponent,
+    RegisterComponent,
+    SidebarComponent,
+    TopNavComponent,
+    ForgotPasswordComponent,
+    ContactComponent,
+    AddContactComponent,
+    SingleAddContactComponent,
+    AddContactFromFileComponent,
+    ImportContactFromOtherListsComponent,
+    SlimSidebarComponent,
+    NumericInputDirective,
+    MainComponent,
+    FooterComponent,
+    DialogComponent,
+    //TODO: move this c to groupModule
+    ConfirmationAddContactFromFileComponent,
+    // HelpComponent,
 
 
-    ],
-    entryComponents: [
-        DialogComponent,
-        //TODO: move this c to groupModule
-        ConfirmationAddContactFromFileComponent
-    ],
+  ],
+  entryComponents: [
+    DialogComponent,
+    //TODO: move this c to groupModule
+    ConfirmationAddContactFromFileComponent
+  ],
 
-    imports: [
-        BrowserModule,
-        FormsModule,
-        ReactiveFormsModule,
-        HttpClientModule,
-        AngularEditorModule,
-        RouterModule.forRoot(APP_ROUTES),
-        ToastrModule.forRoot({
-            preventDuplicates: true
-        }),
-        BrowserAnimationsModule,
-        FileDropModule,
-        MainRoutingModule,
-        SharedModule
-    ],
-    providers: [
-        ApiService,
-        ConfigService,
-        AuthenticationService,
-        AuthGuard,
-        RegisterService,
-        CanActivateRouteGuard,
-        NotificationService,
-        TicketService,
-        UserAccountService
-    ],
-    bootstrap: [AppComponent]
+  imports: [
+    BrowserModule,
+    FormsModule,
+    ReactiveFormsModule,
+    HttpClientModule,
+    AngularEditorModule,
+    RouterModule.forRoot(APP_ROUTES),
+    ToastrModule.forRoot({
+      preventDuplicates: true
+    }),
+    BrowserAnimationsModule,
+    FileDropModule,
+    MainRoutingModule,
+    SharedModule
+  ],
+  providers: [
+    ApiService,
+    ConfigService,
+    AuthenticationService,
+    AuthGuard,
+    RegisterService,
+    CanActivateRouteGuard,
+    NotificationService,
+    TicketService,
+    UserAccountService
+  ],
+  bootstrap: [AppComponent]
 })
 export class AppModule {
 }

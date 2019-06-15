@@ -11,6 +11,8 @@ import {CountryInterface} from '../../../../../shared/models/country.interface';
 import {SharedService} from '../../../../../shared/service/shared.service';
 import {DataCountryInterface} from '../../../../../shared/models/data-country.interface';
 import {DataUserEventInterface} from '../../../user-event/models/data-user-event.interface';
+import {GetContactInterface} from '../../contact/models/get-contact.interface';
+import {DataGetContactInterface} from '../../contact/models/data-get-contact.interface';
 
 @Component({
   selector: 'app-single-add-contact',
@@ -33,6 +35,10 @@ export class SingleAddContactComponent implements OnInit {
   val = [];
   id = [];
   req: boolean = false;
+  showAdd: number;
+
+  contact: DataGetContactInterface;
+  contactId: number;
 
   constructor(private contactService: ContactService,
               private userEventService: UserEventService,
@@ -41,16 +47,53 @@ export class SingleAddContactComponent implements OnInit {
               private groupService: GroupService,
               private fb: FormBuilder,
               private router: Router,
-              private shs: SharedService
-  ) {
-    this.getCountry();
+              private shs: SharedService) {
+    if (!this.contactId) {
+      this.getCountry();
+    }
+    this.activatedRoute.params.subscribe(item => this.contactId = parseInt(item.contactId));
   }
 
   ngOnInit() {
     this.groupId = parseInt(this.activatedRoute.parent.snapshot.paramMap.get('groupId'));
     this.getUserEvents();
     this.createForm();
-    this.addUserEvent();
+    if (this.contactId) {
+      this.getContact();
+    } else {
+      this.addUserEvent(0);
+    }
+  }
+
+  getContact() {
+    this.contactService.getContact(this.contactId)
+      .subscribe((res: GetContactInterface) => {
+        this.contact = res.data;
+        this.fillContact(this.singleContactForm);
+      });
+  }
+
+  fillContact(singleContactForm) {
+    singleContactForm.patchValue({
+      gender: this.contact.gender,
+      firstName: this.contact.firstName,
+      lastName: this.contact.lastName,
+      email: this.contact.email,
+      mobile: `+${this.contact.mobile}`
+    });
+    singleContactForm['controls'].mobile.disable();
+    if (!this.contact.eventsUser || this.contact.eventsUser.length === 0) {
+      this.addUserEvent(0);
+    } else {
+      for (let i = 0; i < this.contact.eventsUser.length; i++) {
+        this.addUserEvent(i);
+        const singleContact = this.singleContactForm.get('eventsUser') as FormArray;
+        singleContact['controls'][i].patchValue({
+          id: this.contact.eventsUser[i].id,
+          value: new Date(this.contact.eventsUser[i].value * 1000),
+        });
+      }
+    }
   }
 
   getCountry() {
@@ -62,25 +105,27 @@ export class SingleAddContactComponent implements OnInit {
   }
 
   selectCountry(index, country) {
-    this.countryPrefix = country.prefixNumber;
-    this.countryFlag = country.flag;
-    if (index === 2) {
-      this.countries.forEach(item => {
-        if (this.singleContactForm.value.prefixNumberId === item.id) {
-          this.mobileValue = this.singleContactForm.value.mobile.substring(item.prefixNumber.length);
-        }
-      });
+    if (!this.contactId) {
+      this.countryPrefix = country.prefixNumber;
+      this.countryFlag = country.flag;
+      if (index === 2) {
+        this.countries.forEach(item => {
+          if (this.singleContactForm.value.prefixNumberId === item.id) {
+            this.mobileValue = this.singleContactForm.value.mobile.substring(item.prefixNumber.length);
+          }
+        });
+        this.singleContactForm.patchValue({
+          mobile: country.prefixNumber + this.mobileValue
+        });
+      } else {
+        this.singleContactForm.patchValue({
+          mobile: country.prefixNumber
+        });
+      }
       this.singleContactForm.patchValue({
-        mobile: country.prefixNumber + this.mobileValue
-      });
-    } else {
-      this.singleContactForm.patchValue({
-        mobile: country.prefixNumber
+        prefixNumberId: country.id,
       });
     }
-    this.singleContactForm.patchValue({
-      prefixNumberId: country.id,
-    });
   }
 
   changeMobile(mobile: string) {
@@ -90,7 +135,7 @@ export class SingleAddContactComponent implements OnInit {
 
   getUserEvents() {
     this.userEventService.getUserEvents()
-      .subscribe((res: UserEventResponseInterface) => {
+      .subscribe((res: any) => {
         this.userEvents = res.data;
       });
   }
@@ -163,18 +208,24 @@ export class SingleAddContactComponent implements OnInit {
     }
   }
 
-  addUserEvent() {
+  addUserEvent(index) {
+    this.showAdd = index;
     const eventUser = this.fb.group({
-      id: [null],
-      value: [''],
+      id: [''],
+      value: [null],
     });
     (this.singleContactForm.get('eventsUser') as FormArray).push(eventUser);
   }
 
-  deleteEventUser(index) {
+  deleteEventUser(index, length) {
+    this.showAdd = length - 2;
     const userEvent = this.singleContactForm.get('eventsUser') as FormArray;
     userEvent.removeAt(index);
+    if (userEvent.length === 0) {
+      this.addUserEvent(0);
+    }
   }
+
 
   get userEvent() {
     return this.singleContactForm['controls'].eventsUser;

@@ -5,7 +5,6 @@ import {GroupComponent} from './group.component';
 import {GroupListComponent} from './group-list/group-list.component';
 import {AddEditGroupComponent} from './group-list/add-edit/add-edit-group.component';
 import {SingleGroupComponent} from './single-group/single-group.component';
-import {ConfirmationAddContactFromFileComponent} from './add-contact/add-contact-from-file/confirmation-add-contact-from-file/confirmation-add-contact-from-file.component';
 
 const routes: Routes = [{
   path: '',
@@ -40,5 +39,5 @@ export const routedComponents = [
   GroupComponent,
   GroupListComponent,
   SingleGroupComponent,
-  AddEditGroupComponent
+  AddEditGroupComponent,
 ];
