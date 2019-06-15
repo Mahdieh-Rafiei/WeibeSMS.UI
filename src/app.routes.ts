@@ -16,20 +16,7 @@ import {SendMessageThirdStepComponent} from './app/main/pages/send-message/send-
 import {SendMessageScheduleComponent} from './app/main/pages/send-message/send-message-schedule/send-message-schedule.component';
 import {SendMessageEventComponent} from './app/main/pages/send-message/send-message-event/send-message-event.component';
 
-import {SingleDraftComponent} from './app/main/pages/draft/draft/single.draft.component';
-import {DraftListComponent} from './app/main/pages/draft/draft-list/draft-list.component';
-
 import {RewardPointComponent} from './app/main/pages/user-account/reward-point/reward-point.component';
-
-import {BillingComponent} from './app/main/pages/biling/billing.component';
-import {PaymentComponent} from './app/main/pages/biling/payment/payment.component';
-import {BillingAddressComponent} from './app/main/pages/biling/billing-address/billing-address.component';
-import {InvoiceListComponent} from './app/main/pages/biling/invoice-list/invoice-list.component';
-import {CreateTransactionComponent} from './app/main/pages/biling/create-transaction/create-transaction.component';
-
-// import {FundListComponent} from './app/main/pages/add-fund/fund-list/fund-list.component';
-// import {FundComponent} from './app/main/pages/add-fund/fund/fund.component';
-import {BillingAddressResolverService} from './app/main/pages/biling/billing-address/billing-address-resolver.service';
 import {AuthGuard} from './app/shared/auth.guard';
 
 export const APP_ROUTES: Routes = [
@@ -52,19 +39,6 @@ export const APP_ROUTES: Routes = [
       {path: 'third-step', component: SendMessageThirdStepComponent},
       {path: 'schedule', component: SendMessageScheduleComponent},
       {path: 'event', component: SendMessageEventComponent},
-    ]
-  },
-  {
-    path: 'billing', component: BillingComponent, children: [
-      {
-        path: 'billing-address', component: BillingAddressComponent, resolve: {
-          billingAddress: BillingAddressResolverService,
-        },
-      },
-      {path: 'invoice-list', component: InvoiceListComponent},
-      {path: 'payment', component: PaymentComponent},
-      {path: 'create-transaction', component: CreateTransactionComponent},
-
     ]
   },
 
