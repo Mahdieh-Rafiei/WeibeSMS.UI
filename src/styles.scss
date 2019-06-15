@@ -52,61 +52,61 @@ ul {
 }
 
 /*------------------------padding and margin--------------------------*/
-.mt-1 {
-  margin-top: 4px;
-}
-
-.mt-2 {
-  margin-top: 8px;
-}
-
-.mt-3 {
-  margin-top: 12px;
-}
-
-.mt-4 {
-  margin-top: 16px;
-}
-
-.mt-5 {
-  padding-top: 20px;
-}
-
-.mr-1 {
-  margin-right: 4px;
-}
-
-.mr-2 {
-  margin-right: 8px;
-}
-
-.mr-3 {
-  margin-right: 12px;
-}
-
-.mt-1 {
-  margin-top: 4px;
-}
-
-.mt-2 {
-  margin-top: 8px;
-}
-
-.mt-3 {
-  margin-top: 12px;
-}
-
-.pl-0 {
-  padding-left: 0;
-}
-
-.pr-0 {
-  padding-right: 0;
-}
-
-.pl-1 {
-  padding-left: 4px;
-}
+//.mt-1 {
+//  margin-top: 4px;
+//}
+//
+//.mt-2 {
+//  margin-top: 8px;
+//}
+//
+//.mt-3 {
+//  margin-top: 12px;
+//}
+//
+//.mt-4 {
+//  margin-top: 16px;
+//}
+//
+//.mt-5 {
+//  padding-top: 20px;
+//}
+//
+//.mr-1 {
+//  margin-right: 4px;
+//}
+//
+//.mr-2 {
+//  margin-right: 8px;
+//}
+//
+//.mr-3 {
+//  margin-right: 12px;
+//}
+//
+//.mt-1 {
+//  margin-top: 4px;
+//}
+//
+//.mt-2 {
+//  margin-top: 8px;
+//}
+//
+//.mt-3 {
+//  margin-top: 12px;
+//}
+//
+//.pl-0 {
+//  padding-left: 0;
+//}
+//
+//.pr-0 {
+//  padding-right: 0;
+//}
+//
+//.pl-1 {
+//  padding-left: 4px;
+//}
 
 select.light-blue-btn {
   cursor: pointer;
@@ -203,6 +203,7 @@ article, aside, details, figcaption, figure, footer, header, hgroup, main, menu,
   padding: 1rem;
   border-radius: .4rem;
   box-shadow: 0px 0px 13px 0px rgba(82, 63, 105, 0.05);
+  //height: 70vh;
 }
 
 /*---------------------------Search-----------------------*/
@@ -319,10 +320,6 @@ article, aside, details, figcaption, figure, footer, header, hgroup, main, menu,
 
 /*----------------------------End Search---------------------------*/
 /*------------------------------table------------------------------*/
-.table-div {
-  /*padding: 11px !important;*/
-}
-
 table {
   width: 100%;
   background-color: #ffffff;
@@ -421,6 +418,7 @@ i.fa.fa-sort {
   color: #ffffff;
   padding: 7px 25px;
   font-size: 14px;
+  transition: .4s;
 }
 
 .green-btn {
@@ -430,6 +428,7 @@ i.fa.fa-sort {
   color: #ffffff;
   padding: 7px 25px;
   font-size: 14px;
+  transition: .4s;
 }
 
 .light-green-btn {
@@ -439,12 +438,14 @@ i.fa.fa-sort {
   border-radius: .25rem !important;
   padding: .5rem .75rem;;
   font-size: 14px;
+  transition: .4s;
 }
 
 .light-green-btn:hover {
   background-color: #1dc9b7;
   border-color: #1dc9b7;
   color: #ffffff;
+  transition: .4s;
 }
 
 .blue-btn {
@@ -454,6 +455,7 @@ i.fa.fa-sort {
   border-radius: .25rem !important;
   padding: .5rem .75rem;;
   font-size: 14px;
+  transition: .4s;
 }
 
 .light-blue-btn {
@@ -463,6 +465,7 @@ i.fa.fa-sort {
   border-radius: .25rem !important;
   padding: .5rem .75rem;;
   font-size: 14px;
+  transition: .4s;
 }
 
 .light-yellow-btn {
@@ -472,6 +475,7 @@ i.fa.fa-sort {
   border-radius: .25rem !important;
   padding: .5rem .75rem;;
   font-size: 14px;
+  transition: .4s;
 }
 
 .red-btn {
@@ -481,6 +485,7 @@ i.fa.fa-sort {
   color: #ffffff;
   padding: 7px 25px;
   font-size: 14px;
+  transition: .4s;
 }
 
 .light-red-btn {
@@ -490,12 +495,16 @@ i.fa.fa-sort {
   border-radius: .25rem !important;
   padding: .5rem .75rem;;
   font-size: 14px;
+  transition: .4s;
 }
+
 .light-red-btn:hover {
   background-color: #fd397a;
   border-color: #fd397a;
   color: #ffffff;
+  transition: .4s;
 }
+
 .gray-btn {
   background-color: transparent;
   border: 1px solid #e2e5ec;
@@ -503,10 +512,12 @@ i.fa.fa-sort {
   border-radius: .25rem !important;
   padding: .5rem .75rem;;
   font-size: 14px;
+  transition: .4s;
 }
 
 .gray-btn:hover {
   background-color: #e2e5ec;
+  transition: .4s;
 }
 
 .warning-box {
@@ -943,8 +954,6 @@ li {
   color: #a7abc3 !important;
 }
 
-
-
 .light-blue-btn:hover {
   background-color: #2786fb;
   color: #fff;
@@ -1119,4 +1128,23 @@ textarea {
 .form-control {
   height: calc(1.5em + 1.3rem + 2px);
   font-size: 14px;
+}
+
+
+//side nav help
+.mat-drawer {
+  right: 0;
+}
+mat-sidenav.mat-drawer.mat-sidenav.ng-tns-c8-5.ng-trigger.ng-trigger-transform.ng-tns-c6-4.mat-drawer-over.ng-star-inserted {
+  transform: translate3d(+100%, 0, 0);
+}
+.mat-drawer-backdrop.mat-drawer-shown {
+  background-color: rgba(0, 0, 0, 0);
+}
+.mat-drawer-inner-container {
+  background: #a6a6a6;
+  width: 250px !important;
+}
+.mat-drawer-container {
+  background-color: unset;
 }

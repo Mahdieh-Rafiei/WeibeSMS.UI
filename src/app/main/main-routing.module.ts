@@ -60,6 +60,10 @@ const routes: Routes = [
                 path: 'add-fund',
                 loadChildren: '.\/pages\/add-fund\/add-fund.module#AddFundModule',
             },
+            {
+                path: 'billing',
+                loadChildren: '.\/pages\/billing\/billing.module#BillingModule',
+              },
         ]
     }
 ];

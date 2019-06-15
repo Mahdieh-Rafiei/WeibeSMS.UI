@@ -35,19 +35,14 @@ import {SendMessageSecondStepComponent} from './main/pages/send-message/send-mes
 import {SendMessageThirdStepComponent} from './main/pages/send-message/send-message-third-step/send-message-third-step.component';
 import {SendMessageScheduleComponent} from './main/pages/send-message/send-message-schedule/send-message-schedule.component';
 import {SendMessageEventComponent} from './main/pages/send-message/send-message-event/send-message-event.component';
-import {CreateTransactionComponent} from './main/pages/biling/create-transaction/create-transaction.component';
-import {InvoiceListComponent} from './main/pages/biling/invoice-list/invoice-list.component';
 
 import {TicketService} from './main/pages/tickets/ticket.service';
 
 import {SlimSidebarComponent} from './main/layout/slim-sidebar/slim-sidebar.component';
 
 import {RewardPointComponent} from './main/pages/user-account/reward-point/reward-point.component';
-import {BillingComponent} from './main/pages/biling/billing.component';
-import {PaymentComponent} from './main/pages/biling/payment/payment.component';
 import {UserAccountService} from './main/pages/user-account/user-account.service';
 
-import {BillingAddressComponent} from './main/pages/biling/billing-address/billing-address.component';
 
 import {SharedModule} from './shared/module/shared.module';
 import {MainRoutingModule} from './main/main-routing.module';
@@ -77,14 +72,9 @@ import {ConfirmationAddContactFromFileComponent} from './main/pages/group/add-co
     SendMessageThirdStepComponent,
     SendMessageScheduleComponent,
     SendMessageEventComponent,
-    InvoiceListComponent,
-    CreateTransactionComponent,
     SlimSidebarComponent,
-    BillingAddressComponent,
     NumericInputDirective,
     RewardPointComponent,
-    BillingComponent,
-    PaymentComponent,
     MainComponent,
     FooterComponent,
     DialogComponent,

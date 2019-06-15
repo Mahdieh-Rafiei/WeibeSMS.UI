@@ -1,5 +1,6 @@
 export interface DataSenderIdInterface {
+  id: number;
   isValid: boolean;
-  name: string;
-
+  title: string;
+  creationDateTime: number;
 }
