@@ -51,11 +51,13 @@ export class SingleAddContactComponent implements OnInit {
     if (!this.contactId) {
       this.getCountry();
     }
-    this.activatedRoute.params.subscribe(item => this.contactId = parseInt(item.contactId));
+    this.activatedRoute.params.subscribe(item => {
+      this.contactId = parseInt(item.contactId);
+      this.groupId = parseInt(item.groupId);
+    });
   }
 
   ngOnInit() {
-    this.groupId = parseInt(this.activatedRoute.parent.snapshot.paramMap.get('groupId'));
     this.getUserEvents();
     this.createForm();
     if (this.contactId) {
@@ -75,6 +77,7 @@ export class SingleAddContactComponent implements OnInit {
 
   fillContact(singleContactForm) {
     singleContactForm.patchValue({
+      contactGroupId: this.groupId,
       gender: this.contact.gender,
       firstName: this.contact.firstName,
       lastName: this.contact.lastName,
@@ -94,6 +97,7 @@ export class SingleAddContactComponent implements OnInit {
         });
       }
     }
+    this.mobileValue = `+${this.contact.mobile}`;
   }
 
   getCountry() {
@@ -155,11 +159,13 @@ export class SingleAddContactComponent implements OnInit {
 
 
   submit() {
-    this.countries.forEach(item => {
-      if (this.singleContactForm.value.prefixNumberId === item.id) {
-        this.mobileValue = this.singleContactForm.value.mobile.substring(item.prefixNumber.length);
-      }
-    });
+    if (!this.contactId) {
+      this.countries.forEach(item => {
+        if (this.singleContactForm.value.prefixNumberId === item.id) {
+          this.mobileValue = this.singleContactForm.value.mobile.substring(item.prefixNumber.length);
+        }
+      });
+    }
 
     this.singleContactForm.value.eventsUser.forEach((item, index) => {
       if (!item.id && item.value) {
@@ -200,11 +206,21 @@ export class SingleAddContactComponent implements OnInit {
         });
       }
 
-      this.contactService.addContact(payload)
-        .subscribe(res => {
-          this.notificationService.success('Contact added successfully', '');
-          this.router.navigateByUrl(`group/${this.groupId}`);
-        });
+      if (!this.contactId) {
+        this.contactService.addContact(payload)
+          .subscribe(res => {
+            this.notificationService.success('Contact added successfully', '');
+            this.router.navigateByUrl(`group/${this.groupId}`);
+          });
+      } else {
+        delete payload['mobile'];
+        delete payload['prefixNumberId'];
+        this.contactService.editContact(payload, this.contactId)
+          .subscribe(res => {
+            this.notificationService.success('Contact added successfully', '');
+            this.router.navigateByUrl(`group/${this.groupId}`);
+          });
+      }
     }
   }
 
