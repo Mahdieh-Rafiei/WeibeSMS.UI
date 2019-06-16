@@ -38,7 +38,12 @@ export class ContactService {
     return this.apiService.post<AddContactInterface>(url, payload, true);
   }
 
-  addContactFromFile(groupId:number,formData:FormData): Observable<AddContactFormGroupResponseInterface> {
+  editContact(payload, contactId): Observable<any> {
+    const url = `Contact/${contactId}`;
+    return this.apiService.put<any>(url, payload, true);
+  }
+
+  addContactFromFile(groupId: number, formData: FormData): Observable<AddContactFormGroupResponseInterface> {
 
     const headers = new HttpHeaders({
       Authorization: localStorage.getItem('jwt-sms')
