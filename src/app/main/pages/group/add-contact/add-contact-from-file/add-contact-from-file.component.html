@@ -1,15 +1,19 @@
-<div class="section-div from-file">
-    <div class="title form-group">
-        <h5>Add Contact</h5>
-        <p class="fo-4 black-text">
-            You can Download  Excel Template
-            <i class="fa fa-arrow-circle-right red-text pr-2 pl-2"></i>
-            <span class="download blue-text" (click)="downloadSample()"> Download </span>
-        </p>
-    </div>
-    <div class="col-md-12 text-center no-pad">
-        <file-drop accept=".xlsx" browseBtnClassName="myClass" showBrowseBtn="true" dropZoneLabel="Drop files here" (onFileDrop)="dropped($event)">
-            <p>click or drag and drop file here.</p><br/>
-        </file-drop>
+<div class="div-section">
+    <div class="col-md-12">
+        <div class="title form-group">
+            <h5>Add Contact</h5>
+            <p class="fo-4 black-text">
+                You can Download Excel Template
+                <i class="fa fa-arrow-circle-right red-text pr-2 pl-2"></i>
+                <span class="download blue-text" (click)="downloadSample()"> Download </span>
+            </p>
+        </div>
+        <div class="col-md-12 text-center pr-0 pl-0">
+            <file-drop accept=".xlsx" browseBtnClassName="myClass gray-btn" showBrowseBtn="true"
+                       (onFileDrop)="dropped($event)" class="pt-3 pb-3">
+                <p>click or drag and drop file here.</p><br/>
+            </file-drop>
+        </div>
     </div>
 </div>
+
