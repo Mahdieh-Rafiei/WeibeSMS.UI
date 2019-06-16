@@ -1,3 +1,7 @@
+.div-section {
+  border-radius: 0 0 .4rem .4rem;
+  padding: 1rem
+}
 .other-list {
   padding: 10px;
   min-height: 400px;
@@ -75,4 +79,12 @@
 .light-blue-btn i{
   float: right;
   margin-top: 10px;
+}
+
+.add-contact-div {
+  svg {
+    margin: 40px auto;
+    display: block;
+    height: 200px;
+  }
 }

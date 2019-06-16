@@ -1,9 +1,6 @@
-.section-div {
-  background-color: #ffffff;
+.div-section {
   border-radius: 0 0 .4rem .4rem;
-  padding: 10px 15px;
-  font-size: 12px;
-  margin-bottom: 15px;
+  padding: 1rem
 }
 
 .download {
@@ -14,4 +11,7 @@
   i {
     animation: move-forward 1s infinite ease-in;
   }
+}
+.ngx-file-drop__content{
+  display: block !important;
 }

@@ -1,23 +1,48 @@
-.section-div {
-  background-color: #ffffff;
-  font-size: 12px;
-  margin-bottom: 15px;
-  border-radius: .4rem;
+.div-section {
+  border-radius: 0 0 .4rem .4rem;
+  padding: 1rem
 }
 
 .mat-form-field-infix {
   padding: 0 !important;
   min-height: unset !important;
 }
+
 .select .mat-form-field-infix {
   padding: 0 !important;
 }
+
 .date-picker {
   position: relative;
 }
+
 mat-datepicker-toggle.mat-datepicker-toggle {
   //position: absolute;
   top: -23px;
   right: -4px;
+}
+
+.mat-form-field-infix {
+  padding: 0 !important;
+  text-align: left;
+  line-height: 0 !important;
+  min-width: unset;
+  height: unset;
+}
+
+.col-md-3.select {
+  display: inline-flex;
+}
+
+.select span {
+  line-height: 28px;
+}
+
+.mat-datepicker-toggle {
+  padding: 11px;
+}
+
+.select-field {
+  font-size: 15px;
 }
 
