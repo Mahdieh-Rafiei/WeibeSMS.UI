@@ -204,7 +204,7 @@ article, aside, details, figcaption, figure, footer, header, hgroup, main, menu,
   padding: 1rem;
   border-radius: .4rem;
   box-shadow: 0px 0px 13px 0px rgba(82, 63, 105, 0.05);
-  height: 100vh;
+  //height: 100vh;
 }
 
 /*---------------------------Search-----------------------*/
@@ -861,6 +861,9 @@ input, select, textarea {
   .search-wrapper input {
     width: 100%;
   }
+  .div-section {
+    height: unset;
+  }
 }
 
 @media (max-width: 767px) and (min-width: 320px) {
@@ -875,7 +878,9 @@ input, select, textarea {
   .search-wrapper input {
     width: 100%;
   }
-
+  .div-section {
+    height: unset;
+  }
 }
 
 .select .mat-form-field {
