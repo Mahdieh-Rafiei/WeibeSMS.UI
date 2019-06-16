@@ -1,32 +1,33 @@
 <div class="dialog" (keydown)="keySendVerificationCode($event)">
-    <div class="col-12 modal-header p-2 text-center">
-        <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-	 viewBox="0 0 435.3 432.9" xml:space="preserve">
+  <div class="col-12 modal-header p-2 text-center">
+    <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+         x="0px" y="0px"
+         viewBox="0 0 435.3 432.9" xml:space="preserve">
 	<g class="circle">
 		<path class="create-st0" d="M216.7,9c-114.9,0-208,93.1-208,208s93.1,208,208,208s208-93.1,208-208S331.6,9,216.7,9z M397.9,217
 			c0,99.6-80.6,181.2-181.2,181.2c-99.6,0-181.2-80.6-181.2-181.2c0-99.6,80.6-181.2,181.2-181.2C316.3,35.8,397.9,116.4,397.9,217z"/>
 	</g>
-	<g class="creat">
+      <g class="creat">
 		<path class="create-st0" d="M345.8,211.6v12c0,6.6-5.4,12-12,12h-98v98c0,6.6-5.4,12-12,12h-12c-6.6,0-12-5.4-12-12v-98h-98
 					c-6.6,0-12-5.4-12-12v-12c0-6.6,5.4-12,12-12h98v-98c0-6.6,5.4-12,12-12h12c6.6,0,12,5.4,12,12v98h98
 					C340.4,199.6,345.8,205,345.8,211.6z"/>
 	</g>
 
 </svg>
-        <h5 class="pl-3 green-text">Create Key</h5>
+    <h5 class="pl-3 green-text">Create Key</h5>
+  </div>
+  <div class="col-12 form-group">
+    <p class="fo-3 black-text pb-2 text-center">please choose api key name</p>
+    <input class="form-control" [(ngModel)]="title" placeholder="enter api key name" maxlength="16">
+  </div>
+  <div class="col-12 pb-3">
+    <div class="text-center" dir="ltr">
+      <button type="submit" class="green-btn mr-2" (click)="onSubmit()">
+        submit
+      </button>
+      <button class="red-btn" (click)="closeDialog()">
+        cancel
+      </button>
     </div>
-    <div class="col-12 form-group">
-        <p class="fo-3 black-text pb-2 text-center">please choose api key name</p>
-        <input class="form-control" [(ngModel)]="title" placeholder="enter api key name" maxlength="16">
-    </div>
-    <div class="col-12 pb-3">
-        <div class="text-center" dir="ltr">
-            <button type="submit" class="green-btn mr-2" (click)="onSubmit()">
-                submit
-            </button>
-            <button class="red-btn" (click)="closeDialog()">
-                cancel
-            </button>
-        </div>
-    </div>
+  </div>
 </div>

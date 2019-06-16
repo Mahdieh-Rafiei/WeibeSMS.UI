@@ -11,4 +11,5 @@ export interface DataInfoGetInterface {
   countryId: number;
   image: any;
   mobile: number;
+  userName:string;
 }
