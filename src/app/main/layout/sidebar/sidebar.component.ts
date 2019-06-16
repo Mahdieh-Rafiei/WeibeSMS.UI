@@ -24,7 +24,7 @@ export class SidebarComponent implements OnInit {
         }, {
           title: 'Profile',
           icon: 'circle',
-          link: '/profile'
+          link: '/profile/info'
         }, {
           title: 'Point',
           icon: 'circle',

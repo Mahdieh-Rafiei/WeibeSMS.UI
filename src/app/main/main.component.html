@@ -1,6 +1,19 @@
 <section
-  [ngClass]="{'slim-navbar':configService.sidebarMode=='slim', 'hidden-navbar':configService.sidebarMode=='hidden'}">
-  <div class="main-container" #router [@routerAnimation]="getRouteAnimation(router)">
-    <router-outlet></router-outlet>
-  </div>
+        [ngClass]="{'slim-navbar':configService.sidebarMode=='slim', 'hidden-navbar':configService.sidebarMode=='hidden'}">
+    <div class="main-container" #router [@routerAnimation]="getRouteAnimation(router)">
+        <mat-sidenav-container
+                class="example-container" (backdropClick)="close('backdrop')">
+            <mat-sidenav #sidenav disableClose>
+                <p>
+                    <button mat-button (click)="close()"><i class="fa fa-times-circle"></i></button>
+                </p>
+            </mat-sidenav>
+
+            <mat-sidenav-content>
+
+                <router-outlet></router-outlet>
+
+            </mat-sidenav-content>
+        </mat-sidenav-container>
+    </div>
 </section>

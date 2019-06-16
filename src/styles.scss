@@ -175,7 +175,8 @@ article, aside, details, figcaption, figure, footer, header, hgroup, main, menu,
 
 /*---------------------------Main Div--------------------------*/
 .main-container {
-  margin: 90px 15px 90px 245px;
+  //margin: 90px 15px 90px 245px;
+  margin: 78px 0 90px 235px;
   padding: 0;
   -ms-overflow-x: hidden;
   //overflow-x: hidden;
@@ -203,6 +204,7 @@ article, aside, details, figcaption, figure, footer, header, hgroup, main, menu,
   padding: 1rem;
   border-radius: .4rem;
   box-shadow: 0px 0px 13px 0px rgba(82, 63, 105, 0.05);
+  height: 100vh;
 }
 
 /*---------------------------Search-----------------------*/
@@ -496,12 +498,14 @@ i.fa.fa-sort {
   font-size: 14px;
   transition: .4s;
 }
+
 .light-red-btn:hover {
   background-color: #fd397a;
   border-color: #fd397a;
   color: #ffffff;
   transition: .4s;
 }
+
 .gray-btn {
   background-color: transparent;
   border: 1px solid #e2e5ec;
@@ -951,8 +955,6 @@ li {
   color: #a7abc3 !important;
 }
 
-
-
 .light-blue-btn:hover {
   background-color: #2786fb;
   color: #fff;
@@ -1127,4 +1129,26 @@ textarea {
 .form-control {
   height: calc(1.5em + 1.3rem + 2px);
   font-size: 14px;
+}
+
+
+//side nav help
+.mat-drawer {
+  right: 0;
+}
+mat-sidenav.mat-drawer.mat-sidenav.ng-tns-c8-5.ng-trigger.ng-trigger-transform.ng-tns-c6-4.mat-drawer-over.ng-star-inserted {
+  transform: translate3d(+100%, 0, 0);
+}
+.mat-drawer-backdrop.mat-drawer-shown {
+  background-color: rgba(0, 0, 0, 0);
+}
+.mat-drawer-inner-container {
+  background: #a6a6a6;
+  width: 250px !important;
+}
+.mat-drawer-container {
+  background-color: unset;
+}
+.mat-drawer-content {
+  padding: 15px;
 }

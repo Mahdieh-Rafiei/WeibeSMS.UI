@@ -1,14 +1,14 @@
 <app-top-nav *ngIf="isAuthenticated"></app-top-nav>
 
 <div *ngIf="isAuthenticated && configService.sidebarMode!='hidden'">
-  <app-slim-sidebar *ngIf="configService.sidebarMode=='slim'"></app-slim-sidebar>
-  <app-sidebar *ngIf="configService.sidebarMode=='default'"></app-sidebar>
+    <app-slim-sidebar *ngIf="configService.sidebarMode=='slim'"></app-slim-sidebar>
+    <app-sidebar *ngIf="configService.sidebarMode=='default'"></app-sidebar>
 </div>
 
 <!--<section-->
-  <!--[ngClass]="{'slim-navbar':configService.sidebarMode=='slim', 'hidden-navbar':configService.sidebarMode=='hidden'}">-->
-  <!---->
-  <router-outlet #route></router-outlet>
+<!--[ngClass]="{'slim-navbar':configService.sidebarMode=='slim', 'hidden-navbar':configService.sidebarMode=='hidden'}">-->
+<!---->
+<router-outlet #route></router-outlet>
 <!--</section>-->
 
 <app-footer *ngIf="isAuthenticated"
