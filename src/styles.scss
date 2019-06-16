@@ -176,13 +176,13 @@ article, aside, details, figcaption, figure, footer, header, hgroup, main, menu,
 /*---------------------------Main Div--------------------------*/
 .main-container {
   //margin: 90px 15px 90px 245px;
-  margin: 78px 0 90px 235px;
+  margin: 78px 0 40px 235px;
   padding: 0;
   -ms-overflow-x: hidden;
-  //overflow-x: hidden;
-  //overflow-y: scroll;
+  overflow-x: hidden;
+  overflow-y: scroll;
   position: relative;
-  //overflow: hidden;
+  overflow: hidden;
 }
 
 @media (max-width: 767px) {
