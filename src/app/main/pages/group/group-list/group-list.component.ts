@@ -9,6 +9,9 @@ import {MatDialog} from '@angular/material';
 import {AddEditGroupComponent} from './add-edit/add-edit-group.component';
 import {ItemsGroupListInterface} from './models/items-group-list.interface';
 import {errorAnimation} from "../../../../shared/component/animation/error-animation";
+import {RemoveIpinterface} from "../../developers/developer/models/remove-ipinterface";
+import {DialogComponent} from "../../../../shared/component/dialog/dialog.component";
+import {RemoveKeyInterface} from "../../developers/developer/models/remove-key.interface";
 
 @Component({
     selector: 'app-group-list',
@@ -53,15 +56,35 @@ export class GroupListComponent implements OnInit {
     }
 
     removeGroup(index, group) {
+        this.openDeleteDialog('480px', 'auto', '', {
+            modalType: 'deleteGroup',
+            modalHeader:'Delete Group',
+            modalText: 'are you sure to remove this group?',
+            id: group.id,
+            index
+        });
+    }
 
-        this.currentGroup = group;
 
-        if (this.currentGroup == null) return;
+    openDeleteDialog(width, height, panelClass, data): void {
+        const dialogRef = this.dialog.open(DialogComponent, {
+            width,
+            height,
+            panelClass,
+            data
+        });
 
-        this.groupService.removeGroup(this.currentGroup.id)
-            .subscribe((res: RemoveGroupNameResponseInterface) => {
-                this.groups.splice(index, 1);
-                this.notificationService.success('Group removed successfully', '');
+        dialogRef.afterClosed()
+            .subscribe(result => {
+                if (result && result.remove) {
+                    if (result.remove.modalType === 'deleteGroup') {
+                        this.groupService.removeGroup(result.remove.data.id)
+                            .subscribe((res: RemoveGroupNameResponseInterface) => {
+                                this.groups.splice(result.remove.data.index, 1);
+                                this.notificationService.success('Group removed successfully', '');
+                            });
+                    }
+                }
             });
     }
 
