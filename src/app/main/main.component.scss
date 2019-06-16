@@ -4,3 +4,29 @@
 .hidden-navbar {
   margin-left: -230px;
 }
+
+//side nav help
+.mat-drawer {
+  right: 0;
+}
+
+.mat-drawer-backdrop.mat-drawer-shown {
+  background-color: rgba(0, 0, 0, 0);
+}
+
+.mat-drawer-inner-container {
+  background: #a6a6a6;
+  width: 250px !important;
+}
+
+.mat-drawer-container {
+  background-color: unset;
+}
+
+.mat-drawer-content {
+  padding: 15px;
+}
+
+mat-sidenav.mat-drawer.mat-sidenav.ng-tns-c8-5.ng-trigger.ng-trigger-transform.ng-tns-c6-4.mat-drawer-over.ng-star-inserted{
+  transform: translate3d(+100%,0,0);
+}
