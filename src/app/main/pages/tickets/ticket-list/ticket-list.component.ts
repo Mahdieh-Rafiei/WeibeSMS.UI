@@ -40,4 +40,9 @@ export class TicketListComponent implements OnInit {
     this.pageNumber = e;
     this.getAllTickets();
   }
+
+  getData(event) {
+    this.phrase = event;
+    this.getAllTickets();
+  }
 }
