@@ -11,9 +11,15 @@ import {CountryInterface} from '../../../../../shared/models/country.interface';
 import {SharedService} from '../../../../../shared/service/shared.service';
 import {DataCountryInterface} from '../../../../../shared/models/data-country.interface';
 import {DataUserEventInterface} from '../../../user-event/models/data-user-event.interface';
+
+import {GetContactInterface} from '../../contact/models/get-contact.interface';
+import {DataGetContactInterface} from '../../contact/models/data-get-contact.interface';
+import {CacheObject} from '../../../../../shared/models/cache-object';
+
 import {GetContactInterface} from './models/get-contact.interface';
 import {DataGetContactInterface} from './models/data-get-contact.interface';
 import {errorAnimation} from "../../../../../shared/component/animation/error-animation";
+
 
 @Component({
     selector: 'app-single-add-contact',
@@ -24,6 +30,7 @@ import {errorAnimation} from "../../../../../shared/component/animation/error-an
         errorAnimation()
     ]
 })
+
 export class SingleAddContactComponent implements OnInit {
     singleContactForm: FormGroup;
     groupId: number;

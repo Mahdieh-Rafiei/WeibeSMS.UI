@@ -15,7 +15,6 @@ import {ConfigService} from './shared/config.service';
 import {CanActivateRouteGuard} from './shared/canActivateRouteGuard';
 import {NotificationService} from './shared/notification.service';
 import {NumericInputDirective} from './shared/numeric-input.directive';
-
 import {LoginComponent} from './auth/login/login.component';
 import {RegisterComponent} from './auth/register/register.component';
 import {SidebarComponent} from './main/layout/sidebar/sidebar.component';
@@ -23,13 +22,9 @@ import {TopNavComponent} from './main/layout/top-nav/top-nav.component';
 import {AuthenticationService} from './auth/login/authentication.service';
 import {RegisterService} from './auth/register/register.service';
 import {ForgotPasswordComponent} from './auth/forgot-password/forgot-password.component';
-
-
 import {TicketService} from './main/pages/tickets/ticket.service';
-
 import {SlimSidebarComponent} from './main/layout/slim-sidebar/slim-sidebar.component';
 import {UserAccountService} from './main/pages/user-account/user-account.service';
-
 import {SharedModule} from './shared/module/shared.module';
 import {MainRoutingModule} from './main/main-routing.module';
 import {MainComponent} from './main/main.component';
@@ -54,8 +49,7 @@ import {ConfirmationAddContactFromFileComponent} from './main/pages/group/add-co
     FooterComponent,
     DialogComponent,
     //TODO: move this c to groupModule
-    ConfirmationAddContactFromFileComponent,
-
+    ConfirmationAddContactFromFileComponent
   ],
   entryComponents: [
     DialogComponent,

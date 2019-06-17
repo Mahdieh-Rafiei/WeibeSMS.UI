@@ -10,7 +10,6 @@ import {DateTimePipe} from '../pipe/date-time.pipe';
 import {FilterComponent} from '../component/filter/filter.component';
 import {LoadingSpinnerComponent} from '../component/loading-spinner/loading-spinner.component';
 import {AngularEditorModule} from '@kolkov/angular-editor';
-// import {MatSidenavModule} from "@angular/material/sidenav";
 
 @NgModule({
     imports: [

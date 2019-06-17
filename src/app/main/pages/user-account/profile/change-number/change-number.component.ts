@@ -8,6 +8,8 @@ import {SendVerificationCodeInterface} from '../../../../../auth/login/models/se
 import {UserAccountService} from '../../user-account.service';
 import {log} from 'util';
 import {ChangeNumberInterface} from './models/change-number.interface';
+import {CacheObject} from '../../../../../shared/models/cache-object';
+import {DashboardInfoInterface} from '../../../../../auth/login/models/dashboard-info.interface';
 
 @Component({
   selector: 'app-change-number',
@@ -22,6 +24,8 @@ export class ChangeNumberComponent implements OnInit {
   countryPrefix;
   countryFlag;
   mobileValue;
+  currentUserInfo: DashboardInfoInterface;
+
 
   constructor(private fb: FormBuilder,
               private shs: SharedService,
@@ -32,18 +36,19 @@ export class ChangeNumberComponent implements OnInit {
   ngOnInit() {
     this.createForm();
     this.getCountry();
+    this.currentUserInfo = this.shs.getCurrentUserInfo();
   }
 
-
   getCountry() {
-    this.shs.getCountry()
-      .subscribe((res: CountryInterface) => {
-        this.countries = res.data;
-        this.selectCountry(1, this.countries[0]);
-      });
+    this.shs.getCountries().subscribe(res => {
+      this.countries = res.data;
+      this.selectCountry(this.currentUserInfo.prefixNumberId, this.countries[this.currentUserInfo.prefixNumberId - 1]);
+      this.changeNumberForm.patchValue({mobile: this.currentUserInfo.mobile});
+    });
   }
 
   selectCountry(index, country) {
+    debugger;
     this.countryPrefix = country.prefixNumber;
     this.countryFlag = country.flag;
     if (index === 2) {
@@ -75,7 +80,9 @@ export class ChangeNumberComponent implements OnInit {
   }
 
   changeMobile(mobile: string) {
-    this.countries.forEach(item => mobile === item.prefixNumber ? this.selectCountry(2, item) : null);
+    this.countries.forEach(item => {
+      mobile === item.prefixNumber ? this.selectCountry(2, item) : null
+    });
   }
 
   submit() {

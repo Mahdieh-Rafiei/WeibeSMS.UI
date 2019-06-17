@@ -6,6 +6,7 @@ import {LoginInterface} from './models/login.interface';
 import {LoginResponseInterface} from './models/login-response.interface';
 import {Observable} from 'rxjs';
 import {DataCountryInterface} from '../../shared/models/data-country.interface';
+import {CacheObject} from '../../shared/models/cache-object';
 
 @Injectable({
   providedIn: 'root'
@@ -32,6 +33,12 @@ export class AuthenticationService {
 
   logOut() {
     localStorage.removeItem(this.configService.tokenKeyName);
+    // let cacheJson = localStorage.getItem('cache-object');
+    // if (cacheJson){
+    //   let cacheObject = <CacheObject>JSON.parse(cacheJson);
+    //   cacheObject.currentUserInfo = null;
+    //   cache
+    // }
     this.configService.authenticationChanged.emit(false);
     this.router.navigateByUrl('/login');
   }
