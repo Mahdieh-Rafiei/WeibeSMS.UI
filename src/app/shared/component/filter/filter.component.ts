@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {FormBuilder, FormGroup} from '@angular/forms';
 
 @Component({
   selector: 'app-filter',
@@ -7,9 +8,23 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FilterComponent implements OnInit {
 
-  constructor() { }
+  perPages = [10, 20, 50];
+  filterForm: FormGroup;
 
-  ngOnInit() {
+  constructor(private fb: FormBuilder) {
   }
 
+  ngOnInit() {
+    this.createFrom();
+  }
+
+  createFrom() {
+    this.filterForm = this.fb.group({
+      perPage: ['']
+    });
+  }
+
+  getDate(event) {
+    console.log(event);
+  }
 }

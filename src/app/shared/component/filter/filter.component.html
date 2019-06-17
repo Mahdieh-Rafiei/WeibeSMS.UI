@@ -1,47 +1,36 @@
-<div class="filtering">
-  <ul class="filtering-menu">
-    <li>
-      <a href="#">
-        <p> Lorem ipsum dolor sit amet.</p>
-        <select>
-          <option>select</option>
-          <option>Test 02</option>
-          <option>Test 03</option>
-        </select>
-      </a>
-    </li>
-    <li>
-      <a href="#">
-        <p> Lorem ipsum dolor sit amet.</p>
-        <select>
-          <option>select</option>
-          <option>Test 02</option>
-          <option>Test 03</option>
-        </select>
-      </a>
-    </li>
-    <li>
-      <a href="#">
-        <p> Lorem ipsum dolor sit amet.</p>
-        <label>from :</label> <input type="date"><br>
-        <label>to :</label> <input type="date">
-      </a>
-    </li>
-    <li>
-      <a href="#">
-        <p> Lorem ipsum dolor sit amet.</p>
-        <select>
-          <option>select</option>
-          <option>Test 02</option>
-          <option>Test 03</option>
-        </select>
-      </a>
-    </li>
-    <li class="text-center">
-      <a href="#">
-        <button class="green-btn">Apply</button>
-        <button class="gray-btn">Cancel</button>
-      </a>
-    </li>
-  </ul>
+<div class="container">
+  <button type="button" class="dropdown-toggle light-blue-btn" data-toggle="collapse" data-target="#filter">
+    <i class="fa fa-filter"></i> Filter
+  </button>
+  <div id="filter" class="collapse">
+    <form class="filtering" [formGroup]="filterForm">
+      <ul class="filtering-menu">
+        <li>
+          <p> Lorem ipsum dolor sit amet.</p>
+          <select>
+            <option>select</option>
+            <option>Test 02</option>
+            <option>Test 03</option>
+          </select>
+        </li>
+        <li>
+          <p> Lorem ipsum dolor sit amet.</p>
+          <app-date-from-to (date)="getDate($event)"></app-date-from-to>
+        </li>
+        <li>
+          <p> Lorem ipsum dolor sit amet.</p>
+          <select class="form-control" formControlName="perPage">
+            <option hidden value="">Select</option>
+            <option [value]="perPage" *ngFor="let perPage of perPages">{{perPage}}</option>
+          </select>
+        </li>
+        <li class="text-center">
+          <button class="green-btn">Apply</button>
+          <button type="button" class="gray-btn" data-toggle="collapse" data-target="#filter">
+            Cancel
+          </button>
+        </li>
+      </ul>
+    </form>
+  </div>
 </div>

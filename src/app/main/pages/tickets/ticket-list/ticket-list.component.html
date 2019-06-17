@@ -15,14 +15,7 @@
         <!--<i class="fa fa-filter"></i> Filter-->
         <!--</button>-->
 
-        <div class="container">
-          <button type="button" class="dropdown-toggle btn btn-info" data-toggle="collapse" data-target="#filter">
-            <i class="fa fa-filter"></i> Filter
-          </button>
-          <div id="filter" class="collapse">
-            <app-filter></app-filter>
-          </div>
-        </div>
+        <app-filter ></app-filter>
       </div>
       <div class="col-md-6 operation-section form-group">
         <app-search (searchText)="getData($event)"></app-search>

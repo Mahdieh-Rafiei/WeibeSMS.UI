@@ -17,6 +17,22 @@ export class TicketListComponent implements OnInit {
   totalItemsCount: number;
   phrase = '';
 
+  status = [
+    {
+      title: 'Open = 1,', value: 1
+    }, {
+      title: 'AdminAnswered', value: 2
+    }, {
+      title: 'UserAnswered', value: 3
+    }, {
+      title: 'OnHold', value: 4
+    }, {
+      title: 'OnProgress', value: 5
+    }, {
+      title: 'Closed', value: 6
+    },
+  ];
+
   constructor(private ticketService: TicketService) {
   }
 
