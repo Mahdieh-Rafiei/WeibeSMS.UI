@@ -20,7 +20,6 @@ import {AngularEditorModule} from '@kolkov/angular-editor';
         MatCoreModule,
         NgxPaginationModule,
         AngularEditorModule,
-        // MatSidenavModule
     ],
     declarations: [
         CountDownComponent,
@@ -46,7 +45,6 @@ import {AngularEditorModule} from '@kolkov/angular-editor';
         DateTimePipe,
         FilterComponent,
         LoadingSpinnerComponent,
-        // MatSidenavModule
     ]
 })
 export class SharedModule {

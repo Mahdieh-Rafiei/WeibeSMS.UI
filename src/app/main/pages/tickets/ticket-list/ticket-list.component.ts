@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, ElementRef, OnInit, ViewChild, ViewEncapsulation} from '@angular/core';
 import {TicketService} from '../ticket.service';
 import {TicketListResponseModel} from './models/ticket-list-response.model';
 import {ItemsTicketListInterface} from './models/items-ticket-list.interface';
@@ -6,7 +6,8 @@ import {ItemsTicketListInterface} from './models/items-ticket-list.interface';
 @Component({
   selector: 'app-ticket-list',
   templateUrl: './ticket-list.component.html',
-  styleUrls: ['./ticket-list.component.scss']
+  styleUrls: ['./ticket-list.component.scss'],
+  encapsulation: ViewEncapsulation.None
 })
 export class TicketListComponent implements OnInit {
 
@@ -40,4 +41,10 @@ export class TicketListComponent implements OnInit {
     this.pageNumber = e;
     this.getAllTickets();
   }
+
+  getData(event) {
+    this.phrase = event;
+    this.getAllTickets();
+  }
+
 }

@@ -24,6 +24,7 @@ import {AuthenticationService} from './auth/login/authentication.service';
 import {RegisterService} from './auth/register/register.service';
 import {ForgotPasswordComponent} from './auth/forgot-password/forgot-password.component';
 
+
 import {TicketService} from './main/pages/tickets/ticket.service';
 
 import {SlimSidebarComponent} from './main/layout/slim-sidebar/slim-sidebar.component';
@@ -46,6 +47,7 @@ import {ConfirmationAddContactFromFileComponent} from './main/pages/group/add-co
     SidebarComponent,
     TopNavComponent,
     ForgotPasswordComponent,
+
     SlimSidebarComponent,
     NumericInputDirective,
     MainComponent,
@@ -74,7 +76,7 @@ import {ConfirmationAddContactFromFileComponent} from './main/pages/group/add-co
     BrowserAnimationsModule,
     FileDropModule,
     MainRoutingModule,
-    SharedModule
+    SharedModule,
   ],
   providers: [
     ApiService,
