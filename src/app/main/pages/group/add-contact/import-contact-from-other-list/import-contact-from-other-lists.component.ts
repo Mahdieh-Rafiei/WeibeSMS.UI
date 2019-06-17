@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {ContactService} from '../../contact/contact.service';
+import {ContactService} from '../single-add-contact/contact.service';
 import {NotificationService} from '../../../../../shared/notification.service';
 import {GroupService} from '../../group.service';
 import _ from 'node_modules/lodash/lodash.js';

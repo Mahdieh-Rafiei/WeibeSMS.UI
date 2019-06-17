@@ -560,7 +560,7 @@ i.fa.fa-sort {
 /*--------------------- Login & register & forgot pass ---------------*/
 .error-place {
   display: flex;
-  height: 20px;
+  //height: 2px;
   padding-top: 2px;
 
 }
@@ -770,7 +770,9 @@ input.verification-code-input {
 .black-text {
   color: #495057;
 }
-
+ .pointer{
+   cursor: pointer;
+ }
 /*----------------------------alert-box--------------------------------*/
 .alert-box-default {
   background-color: #edeef0;
