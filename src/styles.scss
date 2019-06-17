@@ -1136,3 +1136,9 @@ textarea {
   font-size: 14px;
 }
 
+#filter{
+  background-color: #fff;
+  position: absolute;
+  z-index: 2;
+  box-shadow: 0 6px 10px 2px #00000038;
+}
