@@ -13,6 +13,7 @@ import {DataCountryInterface} from '../../../../../shared/models/data-country.in
 import {DataUserEventInterface} from '../../../user-event/models/data-user-event.interface';
 import {GetContactInterface} from '../../contact/models/get-contact.interface';
 import {DataGetContactInterface} from '../../contact/models/data-get-contact.interface';
+import {CacheObject} from '../../../../../shared/models/cache-object';
 
 @Component({
   selector: 'app-single-add-contact',
@@ -48,9 +49,9 @@ export class SingleAddContactComponent implements OnInit {
               private fb: FormBuilder,
               private router: Router,
               private shs: SharedService) {
-    if (!this.contactId) {
-      this.getCountry();
-    }
+    // if (!this.contactId) {
+    //   this.getCountry();
+    // }
     this.activatedRoute.params.subscribe(item => {
       this.contactId = parseInt(item.contactId);
       this.groupId = parseInt(item.groupId);
@@ -65,6 +66,8 @@ export class SingleAddContactComponent implements OnInit {
     } else {
       this.addUserEvent(0);
     }
+
+    this.getCountries();
   }
 
   getContact() {
@@ -100,12 +103,12 @@ export class SingleAddContactComponent implements OnInit {
     this.mobileValue = `+${this.contact.mobile}`;
   }
 
-  getCountry() {
-    this.shs.getCountry()
-      .subscribe((res: CountryInterface) => {
-        this.countries = res.data;
-        this.selectCountry(1, this.countries[0]);
-      });
+
+  getCountries() {
+    this.shs.getCountries().subscribe(res=>{
+      this.countries = res.data;
+      this.selectCountry(1, this.countries[0]);
+    })
   }
 
   selectCountry(index, country) {

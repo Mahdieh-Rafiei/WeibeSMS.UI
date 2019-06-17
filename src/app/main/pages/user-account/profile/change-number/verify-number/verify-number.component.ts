@@ -61,7 +61,6 @@ export class VerifyNumberComponent implements OnInit {
       this.uas.verifyMobile(payload)
         .subscribe((res: VerifyMobileResponseInterafce) => {
           this.ns.success('change number successfully', '');
-          localStorage.removeItem('k-u');
           this.router.navigate(['/profile/change-number']);
         });
     }

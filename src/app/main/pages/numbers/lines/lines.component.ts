@@ -6,6 +6,7 @@ import {DataCountryInterface} from '../../../../shared/models/data-country.inter
 import {SharedService} from '../../../../shared/service/shared.service';
 import {AddUserLineInterface} from './models/add-user-line.interface';
 import {Router} from '@angular/router';
+import {CacheObject} from '../../../../shared/models/cache-object';
 
 @Component({
   selector: 'app-buy-numbers-show',
@@ -28,13 +29,10 @@ export class LinesComponent implements OnInit {
   }
 
   ngOnInit() {
-    // this.getLines();
 
-    this.sharedService.getCountry()
-      .subscribe(res => {
-        this.countries = res.data;
-        console.log(this.countries);
-      });
+    this.sharedService.getCountries().subscribe(res=>{
+      this.countries = res.data;
+    });
   }
 
   getLines(){
