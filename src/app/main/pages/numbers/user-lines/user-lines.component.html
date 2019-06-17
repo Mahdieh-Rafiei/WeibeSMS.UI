@@ -10,9 +10,8 @@
                 <i class="fa fa-filter"></i> Filter
             </button>
         </div>
-        <div class="col-md-6 operation-section form-group">
-            <!--<app-search [params]="[{title: 'device'}, {title: 'location'}]"></app-search>--> search
-            <!--TODO: search-->
+        <div class="col-md-3 offset-md-3 operation-section form-group text-right">
+            <app-search (searchText)="getData($event)"></app-search>
         </div>
     </div>
     <!--table-->
@@ -38,7 +37,7 @@
                 <td class="text-left">{{userLine.creationDateTime | dateTime: 'YYYY-DD-MM'}}</td>
                 <td class="text-left">{{userLine.cost}}€</td>
                 <td class="text-left">
-                    <button (click)="modifyUserLine(userLine,i)" class="light-yellow-btn"> <i class="fa fa-cog"></i> </button>
+                  <i class="fa fa-cog yellow-text" (click)="modifyUserLine(userLine,i)"></i>
                 </td>
             </tr>
 

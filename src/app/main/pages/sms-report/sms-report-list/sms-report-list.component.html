@@ -18,9 +18,8 @@
                 <i class="fa fa-filter"></i> Filter
             </button>
         </div>
-        <div class="col-md-6 operation-section form-group">
-            <!--<app-search [params]="[{title: 'device'}, {title: 'location'}]"></app-search>--> search
-            <!--TODO: SEARCH-->
+        <div class="col-md-3 offset-md-3 operation-section form-group text-right">
+            <app-search (searchText)="getData($event)"></app-search>
         </div>
     </div>
     <!--table-->

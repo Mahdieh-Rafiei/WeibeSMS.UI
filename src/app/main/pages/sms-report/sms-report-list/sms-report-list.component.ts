@@ -1,15 +1,20 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 
 @Component({
-  selector: 'app-sms-report-list',
-  templateUrl: './sms-report-list.component.html',
-  styleUrls: ['./sms-report-list.component.scss']
+    selector: 'app-sms-report-list',
+    templateUrl: './sms-report-list.component.html',
+    styleUrls: ['./sms-report-list.component.scss']
 })
 export class SmsReportListComponent implements OnInit {
 
-  constructor() { }
+    constructor() {
+    }
 
-  ngOnInit() {
-  }
+    ngOnInit() {
+    }
 
+    // getData(event) {
+    //     this.phrase = event;
+    //     this.getAllReports();
+    // }
 }

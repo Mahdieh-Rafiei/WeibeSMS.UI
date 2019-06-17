@@ -479,6 +479,16 @@ i.fa.fa-sort {
   transition: .4s;
 }
 
+.light-yellow-btn:hover {
+  background-color: #ffb822;
+  border: 1px solid #ffb822;
+  color: #ffffff;
+  border-radius: .25rem !important;
+  padding: .5rem .75rem;;
+  font-size: 14px;
+  transition: .4s;
+}
+
 .red-btn {
   background-color: #fd397a;
   border: 1px solid #fd397a;
@@ -1138,3 +1148,10 @@ textarea {
   font-size: 14px;
 }
 
+
+//turn
+@keyframes turn {
+  to{
+    transform: rotate(360deg);
+  }
+}
