@@ -5,6 +5,10 @@ import {GroupComponent} from './group.component';
 import {GroupListComponent} from './group-list/group-list.component';
 import {AddEditGroupComponent} from './group-list/add-edit/add-edit-group.component';
 import {SingleGroupComponent} from './single-group/single-group.component';
+import {SingleAddContactComponent} from './add-contact/single-add-contact/single-add-contact.component';
+import {AddContactComponent} from './add-contact/add-contact.component';
+import {AddContactFromFileComponent} from './add-contact/add-contact-from-file/add-contact-from-file.component';
+import {ImportContactFromOtherListsComponent} from './add-contact/import-contact-from-other-list/import-contact-from-other-lists.component';
 
 const routes: Routes = [{
   path: '',
@@ -17,6 +21,31 @@ const routes: Routes = [{
         title: 'group list',
         num: 1
       },
+    },
+    {
+      path: ':groupId/contact/:contactId',
+      component: SingleAddContactComponent,
+    }, {
+      path: ':groupId/add-contact',
+      component: AddContactComponent,
+      children: [
+        {
+          path: 'from-file',
+          component: AddContactFromFileComponent,
+        },
+        {
+          path: 'single-contact',
+          component: SingleAddContactComponent
+        },
+        {
+          path: 'single-contact/:contactId',
+          component: SingleAddContactComponent
+        },
+        {
+          path: 'from-list',
+          component: ImportContactFromOtherListsComponent
+        },
+      ]
     },
     {
       path: ':groupId',
@@ -40,4 +69,8 @@ export const routedComponents = [
   GroupListComponent,
   SingleGroupComponent,
   AddEditGroupComponent,
+  SingleAddContactComponent,
+  AddContactComponent,
+  AddContactFromFileComponent,
+  ImportContactFromOtherListsComponent
 ];

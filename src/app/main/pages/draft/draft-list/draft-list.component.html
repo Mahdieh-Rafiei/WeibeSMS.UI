@@ -6,12 +6,12 @@
         </div>
     </div>
     <div class="div-section">
+      <h5>Templates</h5>
+      <p class="fo-4 black-text pb-1">Templates can be created as a blueprint for messages you'll send on a regular basis.</p>
         <!--operation-->
         <div class="row">
             <div class="col-md-6 operation-section form-group">
-                <button class="light-blue-btn">
-                    <i class="fa fa-filter"></i> Filter
-                </button>
+
             </div>
             <div class="col-md-6 operation-section form-group">
                 <!--<app-search [params]="[{title: 'device'}, {title: 'location'}]"></app-search>-->
@@ -22,6 +22,7 @@
             <table class="index-table text-left">
                 <thead>
                 <tr>
+                    <th class="text-left"><i class="fa fa-sort"></i> ID</th>
                     <th class="text-left"><i class="fa fa-sort"></i> Name</th>
                     <th class="text-left"><i class="fa fa-sort"></i> MESSAGE</th>
                     <th class="text-left">Send Action</th>
@@ -32,6 +33,11 @@
                 <tr *ngFor="let d of drafts| paginate : {
                                 itemsPerPage : 10, currentPage : pageNumber, totalItems : totalItemsCount
                                 },index as i">
+                  <td class="text-left">
+                    <div class="table-head">
+                      <span>#{{i+1}}</span>
+                    </div>
+                  </td>
                     <td class="text-left">
                         <div class="table-head">
                             {{d.title}}
