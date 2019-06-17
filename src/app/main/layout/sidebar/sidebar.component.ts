@@ -10,7 +10,7 @@ export class SidebarComponent implements OnInit {
 
   showMenu: string;
   subMenuIcon: boolean = false;
-
+  active: string = '';
   menuItems = [
     {
       title: 'Hi IPE',
@@ -124,6 +124,8 @@ export class SidebarComponent implements OnInit {
 
   // subMenu
   addExpandClass(element: any) {
+    this.active = element;
+    this.active = element;
     if (element === this.showMenu) {
       this.subMenuIcon = false;
       this.showMenu = '0';
@@ -134,6 +136,7 @@ export class SidebarComponent implements OnInit {
   }
 
   navigateRoute(link) {
+    this.active = link;
     this.subMenuIcon = false;
     this.showMenu = '';
     this.router.navigate(['./' + link]);

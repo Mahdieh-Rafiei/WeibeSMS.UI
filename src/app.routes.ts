@@ -3,7 +3,6 @@ import {LoginComponent} from './app/auth/login/login.component';
 import {RegisterComponent} from './app/auth/register/register.component';
 import {ForgotPasswordComponent} from './app/auth/forgot-password/forgot-password.component';
 
-import {ContactComponent} from './app/main/pages/group/contact/contact.component';
 import {AddContactComponent} from './app/main/pages/group/add-contact/add-contact.component';
 import {SingleAddContactComponent} from './app/main/pages/group/add-contact/single-add-contact/single-add-contact.component';
 import {AddContactFromFileComponent} from './app/main/pages/group/add-contact/add-contact-from-file/add-contact-from-file.component';

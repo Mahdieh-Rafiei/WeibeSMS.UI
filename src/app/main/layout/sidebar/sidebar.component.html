@@ -1,29 +1,30 @@
 <nav class="sidebar" id="style-1">
-    <!--menu-->
-    <div class="list-group">
-        <!--Logo-->
-        <div class="sidebar-section">
-            <div class="logo-box text-center">
-                <img src="../../../../assets/images/logo-dash.svg" class="img-responsive center-block">
-            </div>
-        </div>
-        <!--item menu-->
-        <div class="nested-menu" *ngFor="let item of menuItems">
-            <a class="list-group-item" (click)="item.link ? navigateRoute(item.link) : addExpandClass(item.title)">
-                <i class="fa fa-{{item.icon}}"></i>&nbsp;{{item.title}}
-                <span *ngIf="item.subMenu && !subMenuIcon" class="fa fa-chevron-right"></span>
-                <span *ngIf="item.subMenu && subMenuIcon" class="fa fa-chevron-down"></span>
-            </a>
-            <li class="nested" [class.expand]="showMenu === item.title">
-                <ul class="submenu">
-                    <li *ngFor="let sub of item.subMenu">
-                        <a [routerLink]="[sub.link]">
-                            <!--<i class="fa fa-{{item.icon}}"></i>-->
-                            <span><i class="fa fa-{{sub.icon}}"></i> {{sub.title}} </span>
-                        </a>
-                    </li>
-                </ul>
-            </li>
-        </div>
+  <!--menu-->
+  <div class="list-group">
+    <!--Logo-->
+    <div class="sidebar-section">
+      <div class="logo-box text-center">
+        <img src="../../../../assets/images/logo-dash.svg" class="img-responsive center-block">
+      </div>
     </div>
+    <!--item menu-->
+    <div class="nested-menu" *ngFor="let item of menuItems">
+      <a [ngClass]="{'active': item.link === active || item.title === active}" class="list-group-item"
+         (click)="item.link ? navigateRoute(item.link) : addExpandClass(item.title)">
+        <i class="fa fa-{{item.icon}}"></i>&nbsp;{{item.title}}
+        <span *ngIf="item.subMenu && !subMenuIcon" class="fa fa-chevron-right"></span>
+        <span *ngIf="item.subMenu && subMenuIcon" class="fa fa-chevron-down"></span>
+      </a>
+      <li class="nested" [class.expand]="showMenu === item.title">
+        <ul class="submenu">
+          <li *ngFor="let sub of item.subMenu">
+            <a [routerLink]="[sub.link]">
+              <!--<i class="fa fa-{{item.icon}}"></i>-->
+              <span><i class="fa fa-{{sub.icon}}"></i> {{sub.title}} </span>
+            </a>
+          </li>
+        </ul>
+      </li>
+    </div>
+  </div>
 </nav>
