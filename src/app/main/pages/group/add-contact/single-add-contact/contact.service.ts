@@ -1,19 +1,19 @@
 import {Injectable} from '@angular/core';
-import {ApiService} from '../../../../shared/api.service';
+import {ApiService} from '../../../../../shared/api.service';
 import {Observable} from 'rxjs';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
-import {ConfigService} from '../../../../shared/config.service';
+import {ConfigService} from '../../../../../shared/config.service';
 import {Immediate} from 'rxjs/internal-compatibility';
-import {AddContactInterface} from '../add-contact/single-add-contact/models/add-contact.interface';
-import {AddContactResponseInterface} from '../add-contact/single-add-contact/models/add-contact-response.interface';
+import {AddContactInterface} from './models/add-contact.interface';
+import {AddContactResponseInterface} from './models/add-contact-response.interface';
 import {GetContactInterface} from './models/get-contact.interface';
-import {RemoveContactFormGroupInterface} from '../models/remove-contact-form-group.interface';
-import {ModifyContactInterface} from '../add-contact/single-add-contact/models/modify-contact.interface';
+import {RemoveContactFormGroupInterface} from '../../models/remove-contact-form-group.interface';
+import {ModifyContactInterface} from './models/modify-contact.interface';
 import {RemoveContactInterface} from './models/remove-contact.interface';
-import {GetAllContactGroupInterface} from '../add-contact/import-contact-from-other-list/models/get-all--contact-group.interface';
-import {AddContactFormGroupResponseInterface} from '../add-contact/add-contact-from-file/models/add-contact-form-group-response.interface';
-import {ContactGroupMoveCopyResponseInterface} from '../add-contact/import-contact-from-other-list/models/contact-group-move-copy-response.interface';
-import {ContactGroupMoveCopyInterface} from '../add-contact/import-contact-from-other-list/models/contact-group-move-copy-interface';
+import {GetAllContactGroupInterface} from '../import-contact-from-other-list/models/get-all--contact-group.interface';
+import {AddContactFormGroupResponseInterface} from '../add-contact-from-file/models/add-contact-form-group-response.interface';
+import {ContactGroupMoveCopyResponseInterface} from '../import-contact-from-other-list/models/contact-group-move-copy-response.interface';
+import {ContactGroupMoveCopyInterface} from '../import-contact-from-other-list/models/contact-group-move-copy-interface';
 
 @Injectable({
   providedIn: 'root'

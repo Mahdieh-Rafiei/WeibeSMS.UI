@@ -1,10 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Router} from "@angular/router";
+import {ConfigService} from "../../../shared/config.service";
+import {DataService} from "../../../shared/service/data.service";
 
 @Component({
-  selector: 'app-slim-sidebar',
-  templateUrl: './slim-sidebar.component.html',
-  styleUrls: ['./slim-sidebar.component.scss']
+    selector: 'app-slim-sidebar',
+    templateUrl: './slim-sidebar.component.html',
+    styleUrls: ['./slim-sidebar.component.scss']
 })
 export class SlimSidebarComponent implements OnInit {
 
@@ -25,11 +27,7 @@ export class SlimSidebarComponent implements OnInit {
                     title: 'Profile',
                     icon: 'circle',
                     link: '/profile'
-                }, {
-                    title: 'Point',
-                    icon: 'circle',
-                    link: '/reward-point'
-                }]
+                },]
         }, {
             title: 'Dashboard',
             icon: 'home',
@@ -40,7 +38,7 @@ export class SlimSidebarComponent implements OnInit {
             icon: 'address-book',
             link: '/group/list',
             subMenu: null
-        },{
+        }, {
             title: 'Send',
             icon: 'envelope',
             link: null,
@@ -58,19 +56,19 @@ export class SlimSidebarComponent implements OnInit {
                     icon: 'circle',
                     link: '/send-message'
                 }]
-        },{
+        }, {
             title: 'Option',
             icon: 'cog',
             link: null,
             subMenu: [{
                 title: 'Template',
                 icon: 'circle',
-                link: '/draft-list'
+                link: '/draft/list'
             },
                 {
                     title: 'schedule,events',
                     icon: 'circle',
-                    link: '/schedule-event'
+                    link: '/definition-schedule-event'
                 }, {
                     title: 'event_field',
                     icon: 'circle',
@@ -78,23 +76,23 @@ export class SlimSidebarComponent implements OnInit {
                 }]
         }, {
             title: 'Reports',
-            icon: 'bar-chart-o',
-            link: '/show-list',
+            icon: 'chart-bar',
+            link: 'sms-report/list',
             subMenu: null
         }, {
             title: 'Verification',
             icon: 'check-square',
-            link: '/report-verification',
+            link: '/sms-report/verification-code',
             subMenu: null
         }, {
             title: 'Billing',
-            icon: 'money',
-            link: '/billing',
+            icon: 'money-bill',
+            link: '/billing/invoice-list',
             subMenu: null
         }, {
             title: 'Add fund',
-            icon: 'dollar',
-            link: '/fund-list',
+            icon: 'dollar-sign',
+            link: '/add-fund/list',
             subMenu: null
         }, {
             title: 'Support',
@@ -106,10 +104,17 @@ export class SlimSidebarComponent implements OnInit {
             icon: 'code',
             link: '/developer/list',
             subMenu: null
+        }, {
+            title: 'Lines',
+            icon: 'shopping-basket',
+            link: '/lines/my-lines',
+            subMenu: null
         }
     ];
 
-    constructor(private router: Router) {
+    constructor(private router: Router,
+                private configService: ConfigService,
+                private ds: DataService) {
     }
 
     ngOnInit() {
@@ -131,5 +136,10 @@ export class SlimSidebarComponent implements OnInit {
         this.subMenuIcon = false;
         this.showMenu = '';
         this.router.navigate(['./' + link]);
+    }
+
+    mouseEnter() {
+        this.configService.sidebarMode = this.configService.sidebarMode == 'default' ? 'slim' : 'default';
+        this.ds.showSideBar = true
     }
 }

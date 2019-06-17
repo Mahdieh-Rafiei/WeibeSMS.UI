@@ -36,12 +36,14 @@
                                [ngClass]="{'border-error' :(singleContactForm.controls['mobile'].touched || singleContactForm.controls['mobile'].dirty ) && !mobileValue}"
                                autofocus autocomplete="off">
                     </div>
-                    <div class="text-left"
-                         *ngIf="formDir.submitted">
-                        <p class="errorMessage"
-                           *ngIf="(!mobileValue)">
-                            This filed is required!
-                        </p>
+                    <div class="error-place">
+                        <div class="text-left"
+                             *ngIf="formDir.submitted">
+                            <p class="errorMessage"
+                               *ngIf="(!mobileValue)">
+                                <i class="far fa-exclamation-circle"></i> This filed is required!
+                            </p>
+                        </div>
                     </div>
                 </div>
                 <div class="col-md-4 form-group" *ngIf="contactId">
@@ -71,12 +73,14 @@
                            class="form-control"
                            formControlName="email"
                            placeholder="Enter recipient Email :">
-                    <div class="text-left"
-                         *ngIf="(((singleContactForm.controls['email'].dirty || singleContactForm.controls['email'].touched) || formDir.submitted))">
-                        <p class="errorMessage"
-                           *ngIf="(singleContactForm.controls['email'].hasError('email'))">
-                            email is invalid!
-                        </p>
+                    <div class="error-place">
+                        <div class="text-left"
+                             *ngIf="(((singleContactForm.controls['email'].dirty || singleContactForm.controls['email'].touched) || formDir.submitted))" [@errorAnimation]>
+                            <p class="errorMessage"
+                               *ngIf="(singleContactForm.controls['email'].hasError('email'))">
+                                <i class="far fa-exclamation-circle"></i> email is invalid!
+                            </p>
+                        </div>
                     </div>
                 </div>
                 <div class="col-md-4 form-group">
@@ -106,21 +110,23 @@
             </div>
             <div class="row" *ngFor="let eventUser of userEvent.controls; let i=index"
                  [formGroup]="eventUser">
-                <div class="col-md-4">
+                <div class="col-md-4 form-group">
                     <select formControlName="id" #select class="form-control select-field">
                         <option hidden value="">Select</option>
                         <option *ngFor="let ue of userEvents"
                                 [value]="ue.id">{{ue.name}}
                         </option>
                     </select>
-                    <div class="text-left"
-                         *ngIf="id[i] && !select.value">
-                        <p class="errorMessage">
-                            this filed is required!
-                        </p>
-                    </div>
+                   <div class="error-place">
+                       <div class="text-left"
+                            *ngIf="id[i] && !select.value" [@errorAnimation]>
+                           <p class="errorMessage">
+                               <i class="far fa-exclamation-circle"></i> this filed is required!
+                           </p>
+                       </div>
+                   </div>
                 </div>
-                <div class="col-md-3 select">
+                <div class="col-md-3 form-group select">
                     <mat-form-field class="date-picker">
                         <input matInput class="form-control "
                                formControlName="value"
@@ -130,14 +136,7 @@
                         <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
                         <mat-datepicker #picker></mat-datepicker>
                     </mat-form-field>
-                    <div class="error-place">
-                        <div class="text-left"
-                             *ngIf="val[i] && !pickerValue.value">
-                            <p class="errorMessage">
-                                this filed is required!
-                            </p>
-                        </div>
-                    </div>
+
                     <span (click)="deleteEventUser(i, singleContactForm['controls'].eventsUser.length)"
                           class="fa fa-trash operation-fa light-red-btn ml-1">
                     </span>
@@ -145,6 +144,15 @@
                           (click)="addUserEvent(singleContactForm['controls'].eventsUser.length)"
                           class="fa fa-plus operation-fa light-green-btn ml-1">
                     </span>
+
+                </div>
+                <div class="error-place">
+                    <div class="text-left"
+                         *ngIf="val[i] && !pickerValue.value"  [@errorAnimation]>
+                        <p class="errorMessage">
+                            <i class="far fa-exclamation-circle"></i> this filed is required!
+                        </p>
+                    </div>
                 </div>
 
             </div>

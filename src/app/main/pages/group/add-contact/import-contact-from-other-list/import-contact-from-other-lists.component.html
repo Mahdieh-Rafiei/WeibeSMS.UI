@@ -14,7 +14,7 @@
                                 <p>
                                     <mat-checkbox (ngModelChange)="groupCheckedChanged($event,g)"
                                                   [(ngModel)]="g.isSelected"></mat-checkbox>
-                                    <span class="ml-2" (click)="loadContacts(g)">{{g.groupName}}  ({{g.contactsCount}})  <span class="red-text fo-3">(show)</span></span>
+                                    <span class="ml-2" (click)="loadContacts(g)">{{g.groupName}}  ({{g.contactsCount}})  <span class="red-text fo-3 pointer">(show)</span></span>
                                 </p>
                             </div>
                         </div>
