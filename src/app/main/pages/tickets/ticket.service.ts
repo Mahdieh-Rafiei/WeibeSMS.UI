@@ -18,7 +18,7 @@ export class TicketService {
   }
 
   getAllTickets(pageNumber: number, pageSize: number, phrase: string): Observable<TicketListResponseModel> {
-    const url = `Ticket?pageSize=${pageSize}&pageNumber=${pageNumber}`;
+    const url = `Ticket?pageSize=${pageSize}&pageNumber=${pageNumber}&title=${phrase}`;
     return this.apiService.get(url, true);
   }
 

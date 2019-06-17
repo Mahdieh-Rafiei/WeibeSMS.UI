@@ -1,7 +1,7 @@
 <div class="btn-section">
     <div class="row">
         <div class="col-12 col-md-6 col-sm-6 col-xs-6 text-left">
-            <button class="previous-btn"><i class="fa fa-arrow-left"></i> Previous</button>
+            <button class="previous-btn" [routerLink]="['/group/list']"><i class="fa fa-arrow-left"></i> Previous</button>
         </div>
         <div class="col-12 col-md-6 col-sm-6 col-xs-6 text-right">
             <button [routerLink]="['add-contact', 'single-contact']" class="green-btn"> Add Contact</button>
@@ -30,7 +30,8 @@
             </button>
         </div>
         <div class="col-md-6 operation-section form-group">
-            <!--<app-search [params]="[{title: 'device'}, {title: 'location'}]"></app-search>-->
+            <!--<app-search [params]="[{title: 'device'}, {title: 'location'}]"></app-search>--> search
+            <!--TODO--> search
         </div>
     </div>
     <!--table-->

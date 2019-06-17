@@ -1,7 +1,9 @@
 <div class="div-section">
   <div class="hange-password">
     <h5>Deactive</h5>
-    <p class="fo-4 black-text">Update your account password. Always set a strong password, including uppercase, lowercase, number.</p>
+    <p class="fo-4 black-text pb-1">You can disable this account instead of deleting it. This means your account activity stops working until you reactivate it by logging back in.</p>
+    <p class="fo-4 yellow-text pb-1"><i class="fas fa-exclamation-triangle"></i> You can only disable your account once a week. </p>
+    <p class="fo-4 yellow-text pb-2"><i class="fas fa-exclamation-triangle"></i> According to our policy, your account information will be deleted 30 days after your account is deactivated.</p>
     <form class="row" [formGroup]="deActiveForm" #formDir="ngForm" (ngSubmit)="submit()">
       <div class="col-12 col-md-4 pt-2">
         <div class="row">

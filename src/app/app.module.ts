@@ -42,19 +42,14 @@ import {ConfirmationAddContactFromFileComponent} from './main/pages/group/add-co
     SidebarComponent,
     TopNavComponent,
     ForgotPasswordComponent,
-    // ContactComponent,
-    // AddContactComponent,
-    // SingleAddContactComponent,
-    // AddContactFromFileComponent,
-    // ImportContactFromOtherListsComponent,
+
     SlimSidebarComponent,
     NumericInputDirective,
     MainComponent,
     FooterComponent,
     DialogComponent,
     //TODO: move this c to groupModule
-    ConfirmationAddContactFromFileComponent,
-    // HelpComponent,
+    ConfirmationAddContactFromFileComponent
   ],
   entryComponents: [
     DialogComponent,
@@ -75,7 +70,7 @@ import {ConfirmationAddContactFromFileComponent} from './main/pages/group/add-co
     BrowserAnimationsModule,
     FileDropModule,
     MainRoutingModule,
-    SharedModule
+    SharedModule,
   ],
   providers: [
     ApiService,
