@@ -23,10 +23,7 @@ import {TopNavComponent} from './main/layout/top-nav/top-nav.component';
 import {AuthenticationService} from './auth/login/authentication.service';
 import {RegisterService} from './auth/register/register.service';
 import {ForgotPasswordComponent} from './auth/forgot-password/forgot-password.component';
-import {AddContactComponent} from './main/pages/group/add-contact/add-contact.component';
-import {SingleAddContactComponent} from './main/pages/group/add-contact/single-add-contact/single-add-contact.component';
-import {AddContactFromFileComponent} from './main/pages/group/add-contact/add-contact-from-file/add-contact-from-file.component';
-import {ImportContactFromOtherListsComponent} from './main/pages/group/add-contact/import-contact-from-other-list/import-contact-from-other-lists.component';
+
 
 import {TicketService} from './main/pages/tickets/ticket.service';
 
@@ -50,10 +47,7 @@ import {ConfirmationAddContactFromFileComponent} from './main/pages/group/add-co
     SidebarComponent,
     TopNavComponent,
     ForgotPasswordComponent,
-    AddContactComponent,
-    SingleAddContactComponent,
-    AddContactFromFileComponent,
-    ImportContactFromOtherListsComponent,
+
     SlimSidebarComponent,
     NumericInputDirective,
     MainComponent,

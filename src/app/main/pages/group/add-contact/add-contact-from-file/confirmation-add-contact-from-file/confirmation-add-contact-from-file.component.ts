@@ -1,7 +1,7 @@
 import {Component, Inject, OnInit} from '@angular/core';
 import {DataAddContactFormGroupInterface} from '../models/data-add-contact-form-group.interface';
 import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material';
-import {ContactService} from '../../../contact/contact.service';
+import {ContactService} from '../../single-add-contact/contact.service';
 import {AddContactFormGroupResponseInterface} from '../models/add-contact-form-group-response.interface';
 
 @Component({

@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {GroupService} from '../group.service';
 import {ActivatedRoute, Router} from '@angular/router';
-import {ContactService} from '../contact/contact.service';
+import {ContactService} from '../add-contact/single-add-contact/contact.service';
 import {GroupResponseInterface} from '../models/group-response.interface';
 import {RemoveContactFormGroupInterface} from '../models/remove-contact-form-group.interface';
 

@@ -1,6 +1,6 @@
 import {Component, OnInit, ViewEncapsulation} from '@angular/core';
 import {FileSystemFileEntry, UploadEvent} from 'ngx-file-drop';
-import {ContactService} from '../../contact/contact.service';
+import {ContactService} from '../single-add-contact/contact.service';
 import {GroupService} from '../../group.service';
 import {NotificationService} from '../../../../../shared/notification.service';
 import {ActivatedRoute, Router} from '@angular/router';
