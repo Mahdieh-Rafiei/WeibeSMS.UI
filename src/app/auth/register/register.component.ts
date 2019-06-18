@@ -11,6 +11,8 @@ import {Gender} from '../../shared/enums';
 import {RegisterInterface} from './models/register.interface';
 import {SharedService} from '../../shared/service/shared.service';
 import {errorAnimation} from '../../shared/component/animation/error-animation';
+import {DashboardInfoResponseInterface} from '../login/models/dashboard-info-response.interface';
+import {UserAccountService} from '../../main/pages/user-account/user-account.service';
 
 
 @Component({
@@ -40,7 +42,8 @@ export class RegisterComponent implements OnInit {
               private shs: SharedService,
               private configService: ConfigService,
               private notificationService: NotificationService,
-              private authSharedService: AuthSharedService) {
+              private authSharedService: AuthSharedService,
+              private userAccountService:UserAccountService) {
   }
 
   ngOnInit() {
@@ -79,11 +82,16 @@ export class RegisterComponent implements OnInit {
       delete payload['confirmPassword'];
       this.registerService.saveInfo(payload)
         .subscribe(res => {
-            this.showSpinner = false;
             this.authService.setToken(res.data.token);
             localStorage.removeItem('k-l');
-            this.configService.authenticationChanged.emit(true);
-            this.router.navigateByUrl('');
+
+            this.userAccountService.getDashboardInfo()
+              .subscribe((res:DashboardInfoResponseInterface)=>{
+                this.showSpinner = false;
+                this.shs.setUserInfo(res.data);
+                this.router.navigateByUrl('');
+                this.configService.authenticationChanged.emit(true);
+              });
           },
           err => {
             this.showSpinner = false;

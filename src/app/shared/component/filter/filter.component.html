@@ -3,29 +3,28 @@
     <i class="fa fa-filter"></i> Filter
   </button>
   <div id="filter" class="collapse">
-    <form class="filtering" [formGroup]="filterForm">
+    <form class="filtering" [formGroup]="filterForm" (ngSubmit)="submit()">
       <ul class="filtering-menu">
-        <li>
+        <li *ngFor="let option of options">
           <p> Lorem ipsum dolor sit amet.</p>
-          <select>
-            <option>select</option>
-            <option>Test 02</option>
-            <option>Test 03</option>
+          <select class="form-control" [formControlName]="option.option.title">
+            <option hidden value="">Select</option>
+            <option [value]="state.value" *ngFor="let state of option.option.data">{{state.title}}</option>
           </select>
         </li>
-        <li>
+        <li *ngIf="options.fromToDate">
           <p> Lorem ipsum dolor sit amet.</p>
           <app-date-from-to (date)="getDate($event)"></app-date-from-to>
         </li>
         <li>
           <p> Lorem ipsum dolor sit amet.</p>
-          <select class="form-control" formControlName="perPage">
+          <select class="form-control" formControlName="pageSize">
             <option hidden value="">Select</option>
-            <option [value]="perPage" *ngFor="let perPage of perPages">{{perPage}}</option>
+            <option [value]="page" *ngFor="let page of pageSize">{{page}}</option>
           </select>
         </li>
         <li class="text-center">
-          <button class="green-btn">Apply</button>
+          <button type="submit" data-toggle="collapse" data-target="#filter" class="green-btn">Apply</button>
           <button type="button" class="gray-btn" data-toggle="collapse" data-target="#filter">
             Cancel
           </button>

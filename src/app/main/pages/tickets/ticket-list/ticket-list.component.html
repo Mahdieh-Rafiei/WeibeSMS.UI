@@ -15,7 +15,7 @@
         <!--<i class="fa fa-filter"></i> Filter-->
         <!--</button>-->
 
-        <app-filter ></app-filter>
+        <app-filter [options]="options" (filterValue)="getFilterData($event)"></app-filter>
       </div>
       <div class="col-md-6 operation-section form-group">
         <app-search (searchText)="getData($event)"></app-search>
@@ -42,7 +42,7 @@
         </thead>
         <tbody>
         <tr *ngFor="let t of tickets | paginate : {
-                                itemsPerPage : 10, currentPage : pageNumber, totalItems : totalItemsCount
+                                itemsPerPage : pageSize, currentPage : pageNumber, totalItems : totalItemsCount
                                 },index as i">
           <td class="text-left">{{i+1}}</td>
           <td class="text-left">{{t.title}}</td>

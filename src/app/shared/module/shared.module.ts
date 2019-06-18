@@ -12,8 +12,6 @@ import {LoadingSpinnerComponent} from '../component/loading-spinner/loading-spin
 import {AngularEditorModule} from '@kolkov/angular-editor';
 import {DateFromToComponent} from '../component/date-from-to/date-from-to.component';
 
-// import {MatSidenavModule} from "@angular/material/sidenav";
-
 @NgModule({
   imports: [
     CommonModule,

@@ -1,5 +1,5 @@
-import {Component, OnInit} from '@angular/core';
-import {FormBuilder, FormGroup} from '@angular/forms';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {FormBuilder, FormControl, FormGroup} from '@angular/forms';
 
 @Component({
   selector: 'app-filter',
@@ -8,23 +8,41 @@ import {FormBuilder, FormGroup} from '@angular/forms';
 })
 export class FilterComponent implements OnInit {
 
-  perPages = [10, 20, 50];
+  pageSize = [10, 20, 50];
   filterForm: FormGroup;
+
+  @Input() options;
+
+  @Output() filterValue: EventEmitter<any> = new EventEmitter<any>();
 
   constructor(private fb: FormBuilder) {
   }
 
   ngOnInit() {
     this.createFrom();
+    console.log(this.options.fromToDate)
   }
 
   createFrom() {
     this.filterForm = this.fb.group({
-      perPage: ['']
+      pageSize: ['']
     });
+    for (let i = 0; i < this.options.length; i++) {
+      this.filterForm.addControl(this.options[i].option.title, new FormControl(''));
+
+    }
   }
 
   getDate(event) {
-    console.log(event);
+    if (event.dateFrom) {
+      this.filterForm.addControl('dateFrom', new FormControl(event.dateFrom.getTime() / 1000));
+    }
+    if (event.dateTo) {
+      this.filterForm.addControl('dateTo', new FormControl(event.dateTo.getTime() / 1000));
+    }
+  }
+
+  submit() {
+    this.filterValue.emit(this.filterForm.value);
   }
 }

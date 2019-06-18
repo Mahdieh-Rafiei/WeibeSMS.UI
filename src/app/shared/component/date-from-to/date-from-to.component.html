@@ -3,7 +3,7 @@
     <mat-form-field class="date-picker">
       <input matInput class="form-control "
              #pickerValue
-             (dateInput)="changeDate('input', $event)" (dateChange)="changeDate('change', $event)"
+             (dateInput)="changeDate(0)" (dateChange)="changeDate(1)"
              formControlName="dateFrom"
              [matDatepicker]="DateFrom"
              placeholder="From">
@@ -15,7 +15,7 @@
     <mat-form-field class="date-picker">
       <input matInput class="form-control "
              #pickerValue
-             (dateInput)="changeDate('input', $event)" (dateChange)="changeDate('change', $event)"
+             (dateInput)="changeDate(0)" (dateChange)="changeDate(1)"
              formControlName="dateTo"
              [matDatepicker]="DateTO"
              placeholder="To">

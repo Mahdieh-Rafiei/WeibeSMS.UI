@@ -94,8 +94,10 @@
           <label>Default prefix :</label>
           <select formControlName="defaultPrefixNumberId" class="form-control">
             <option hidden value="">select</option>
-            <option *ngFor="let country of countries" [value]="country.id">
-              {{country.prefixNumber}}
+            <option *ngFor="let country of countries"
+                    [value]="country.id"
+                    [innerText]='country.name + " (" + country.prefixNumber + ")"'
+            >
             </option>
           </select>
           <div class="detail-prefix">

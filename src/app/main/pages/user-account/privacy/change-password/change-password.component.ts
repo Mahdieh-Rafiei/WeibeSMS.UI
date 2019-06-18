@@ -6,6 +6,7 @@ import {AbstractControl, FormBuilder, FormGroup, Validators} from '@angular/form
 import {ChangePasswordInterface} from './models/change-password.interface';
 import {ChangePasswordResponseInterface} from './models/change-password-response.interface';
 import {errorAnimation} from "../../../../../shared/component/animation/error-animation";
+import {Router} from '@angular/router';
 
 @Component({
     selector: 'app-change-password',
@@ -23,7 +24,8 @@ export class ChangePasswordComponent implements OnInit {
     constructor(private userService: UserAccountService,
                 private notificationService: NotificationService,
                 private utilityService: UtilityService,
-                private fb: FormBuilder) {
+                private fb: FormBuilder,
+                private router:Router) {
     }
 
     ngOnInit() {
@@ -51,6 +53,7 @@ export class ChangePasswordComponent implements OnInit {
             this.userService.changePassword(payload)
                 .subscribe((res: ChangePasswordResponseInterface) => {
                     this.notificationService.success('Password changed successfully!', '');
+                    this.router.navigateByUrl(``);
                 });
         }
     }

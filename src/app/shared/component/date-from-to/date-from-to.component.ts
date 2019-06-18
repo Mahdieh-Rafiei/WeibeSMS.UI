@@ -24,7 +24,11 @@ export class DateFromToComponent implements OnInit {
     });
   }
 
-  changeDate() {
-    this.date.emit(this.dateFromTo.value);
+  changeDate(type) {
+    if (type === 0) {
+      this.date.emit(this.dateFromTo.value);
+    } else if (type === 1) {
+      this.date.emit(this.dateFromTo.value);
+    }
   }
 }
