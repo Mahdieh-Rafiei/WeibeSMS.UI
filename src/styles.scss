@@ -780,9 +780,11 @@ input.verification-code-input {
 .black-text {
   color: #495057;
 }
- .pointer{
-   cursor: pointer;
- }
+
+.pointer {
+  cursor: pointer;
+}
+
 /*----------------------------alert-box--------------------------------*/
 .alert-box-default {
   background-color: #edeef0;
@@ -1148,10 +1150,16 @@ textarea {
   font-size: 14px;
 }
 
+#filter {
+  background-color: #fff;
+  position: absolute;
+  z-index: 2;
+  box-shadow: 0 6px 10px 2px #00000038;
+}
 
 //turn
 @keyframes turn {
-  to{
+  to {
     transform: rotate(360deg);
   }
 }

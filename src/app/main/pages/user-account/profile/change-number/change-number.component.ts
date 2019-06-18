@@ -42,13 +42,13 @@ export class ChangeNumberComponent implements OnInit {
   getCountry() {
     this.shs.getCountries().subscribe(res => {
       this.countries = res.data;
-      this.selectCountry(this.currentUserInfo.prefixNumberId, this.countries[this.currentUserInfo.prefixNumberId - 1]);
+      this.selectCountry(1, this.countries[this.currentUserInfo.prefixNumberId - 1]);
+      // this.selectCountry(this.currentUserInfo.prefixNumberId, this.countries[this.currentUserInfo.prefixNumberId - 1]);
       this.changeNumberForm.patchValue({mobile: this.currentUserInfo.mobile});
     });
   }
 
   selectCountry(index, country) {
-    debugger;
     this.countryPrefix = country.prefixNumber;
     this.countryFlag = country.flag;
     if (index === 2) {

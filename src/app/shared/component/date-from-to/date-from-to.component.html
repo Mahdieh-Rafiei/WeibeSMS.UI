@@ -1,0 +1,26 @@
+<form [formGroup]="dateFromTo">
+  <div class="form-group">
+    <mat-form-field class="date-picker">
+      <input matInput class="form-control "
+             #pickerValue
+             (dateInput)="changeDate(0)" (dateChange)="changeDate(1)"
+             formControlName="dateFrom"
+             [matDatepicker]="DateFrom"
+             placeholder="From">
+      <mat-datepicker-toggle matSuffix [for]="DateFrom"></mat-datepicker-toggle>
+      <mat-datepicker #DateFrom></mat-datepicker>
+    </mat-form-field>
+  </div>
+  <div class="form-group">
+    <mat-form-field class="date-picker">
+      <input matInput class="form-control "
+             #pickerValue
+             (dateInput)="changeDate(0)" (dateChange)="changeDate(1)"
+             formControlName="dateTo"
+             [matDatepicker]="DateTO"
+             placeholder="To">
+      <mat-datepicker-toggle matSuffix [for]="DateTO"></mat-datepicker-toggle>
+      <mat-datepicker #DateTO></mat-datepicker>
+    </mat-form-field>
+  </div>
+</form>

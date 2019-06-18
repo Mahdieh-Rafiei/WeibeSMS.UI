@@ -1,46 +1,35 @@
-<div class="col-md-3">
-  <div class="filtering">
-    <ul class="filtering-menu">
-      <li>
-        <a href="#">
+<div class="container">
+  <button type="button" class="dropdown-toggle light-blue-btn" data-toggle="collapse" data-target="#filter">
+    <i class="fa fa-filter"></i> Filter
+  </button>
+  <div id="filter" class="collapse">
+    <form class="filtering" [formGroup]="filterForm" (ngSubmit)="submit()">
+      <ul class="filtering-menu">
+        <li *ngFor="let option of options">
           <p> Lorem ipsum dolor sit amet.</p>
-          <select>
-            <option>select</option>
-            <option>Test 02</option>
-            <option>Test 03</option>
+          <select class="form-control" [formControlName]="option.option.title">
+            <option hidden value="">Select</option>
+            <option [value]="state.value" *ngFor="let state of option.option.data">{{state.title}}</option>
           </select>
-        </a>
-      </li>
-      <li>
-        <a href="#">
+        </li>
+        <li *ngIf="options.fromToDate">
           <p> Lorem ipsum dolor sit amet.</p>
-          <label>from :</label> <input type="date"><br>
-          <label>to :</label> <input type="date">
-        </a>
-      </li>
-      <li>
-        <a href="#">
+          <app-date-from-to (date)="getDate($event)"></app-date-from-to>
+        </li>
+        <li>
           <p> Lorem ipsum dolor sit amet.</p>
-          <label>from :</label> <input type="date"> <br>
-          <label>to :</label> <input type="date">
-        </a>
-      </li>
-      <li>
-        <a href="#">
-          <p> Lorem ipsum dolor sit amet.</p>
-          <select>
-            <option>select</option>
-            <option>Test 02</option>
-            <option>Test 03</option>
+          <select class="form-control" formControlName="pageSize">
+            <option hidden value="">Select</option>
+            <option [value]="page" *ngFor="let page of pageSize">{{page}}</option>
           </select>
-        </a>
-      </li>
-      <li class="text-center">
-        <a href="#">
-          <button class="green-btn">Apply</button>
-          <button class="gray-btn">Cancel</button>
-        </a>
-      </li>
-    </ul>
+        </li>
+        <li class="text-center">
+          <button type="submit" data-toggle="collapse" data-target="#filter" class="green-btn">Apply</button>
+          <button type="button" class="gray-btn" data-toggle="collapse" data-target="#filter">
+            Cancel
+          </button>
+        </li>
+      </ul>
+    </form>
   </div>
 </div>

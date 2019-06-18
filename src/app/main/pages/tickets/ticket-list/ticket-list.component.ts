@@ -16,6 +16,31 @@ export class TicketListComponent implements OnInit {
   pageSize: number = 10;
   totalItemsCount: number;
   phrase = '';
+  status: number = null;
+
+  options = [
+    {
+      option: {
+        title: 'status', data: [
+          {
+            title: 'Open', value: 1
+          }, {
+            title: 'AdminAnswered', value: 2
+          }, {
+            title: 'UserAnswered', value: 3
+          }, {
+            title: 'OnHold', value: 4
+          }, {
+            title: 'OnProgress', value: 5
+          }, {
+            title: 'Closed', value: 6
+          },
+        ]
+      },
+      fromToDate: true
+    }
+  ];
+
 
   constructor(private ticketService: TicketService) {
   }
@@ -25,16 +50,11 @@ export class TicketListComponent implements OnInit {
   }
 
   getAllTickets() {
-    this.ticketService.getAllTickets(this.pageNumber, this.pageSize, this.phrase)
+    this.ticketService.getAllTickets(this.pageNumber, this.pageSize, this.phrase, this.status)
       .subscribe((res: TicketListResponseModel) => {
         this.tickets = res.data.items;
         this.totalItemsCount = res.data.totalItemsCount;
       });
-  }
-
-  getDataWithSearch() {
-    this.pageNumber = 1;
-    this.getAllTickets();
   }
 
   doPaging(e) {
@@ -44,6 +64,12 @@ export class TicketListComponent implements OnInit {
 
   getData(event) {
     this.phrase = event;
+    this.getAllTickets();
+  }
+
+  getFilterData(event) {
+    this.pageSize = event.pageSize ? event.pageSize : 10;
+    this.status = +event.status;
     this.getAllTickets();
   }
 

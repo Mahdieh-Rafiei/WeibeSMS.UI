@@ -71,7 +71,7 @@ export class LoginComponent implements OnInit {
               private authSharedService: AuthSharedService,
               private shs: SharedService,
               private router: Router,
-              private userAccountService:UserAccountService) {
+              private userAccountService: UserAccountService) {
   }
 
   ngOnInit() {
@@ -115,7 +115,7 @@ export class LoginComponent implements OnInit {
         .subscribe((res: LoginResponseInterface) => {
             this.authService.setToken(res.data.token);
             this.userAccountService.getDashboardInfo()
-              .subscribe((res:DashboardInfoResponseInterface)=>{
+              .subscribe((res: DashboardInfoResponseInterface) => {
                 this.showSpinner = false;
                 this.shs.setUserInfo(res.data);
                 this.router.navigateByUrl('');
