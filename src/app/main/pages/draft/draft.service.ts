@@ -17,7 +17,7 @@ export class DraftService {
   }
 
   getAllDrafts(pageNumber: number, pageSize: number, phrase: string): Observable<DraftInterface> {
-    const url = `DraftMessage?pageNumber=${pageNumber}&pageSize=${pageSize}`;
+    const url = `DraftMessage?pageNumber=${pageNumber}&pageSize=${pageSize}&searchValue=${phrase}`;
     return this.apiService.get(url, true);
   }
 

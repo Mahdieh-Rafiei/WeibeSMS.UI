@@ -22,8 +22,8 @@
                 </button>
             </div>
             <!--search-->
-            <div class="col-md-6 operation-section form-group">
-                <!--<app-search [params]="[{title: 'device'}, {title: 'location'}]"></app-search>-->
+            <div class="col-md-3 offset-md-3 operation-section form-group text-right">
+                <app-search (searchText)="getData($event)"></app-search>
             </div>
         </div>
         <div class="table-div table-responsive">

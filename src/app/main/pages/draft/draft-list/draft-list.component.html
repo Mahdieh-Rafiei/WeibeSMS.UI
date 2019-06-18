@@ -6,15 +6,16 @@
         </div>
     </div>
     <div class="div-section">
-      <h5>Templates</h5>
-      <p class="fo-4 black-text pb-1">Templates can be created as a blueprint for messages you'll send on a regular basis.</p>
+        <h5>Templates</h5>
+        <p class="fo-4 black-text pb-1">Templates can be created as a blueprint for messages you'll send on a regular
+            basis.</p>
         <!--operation-->
         <div class="row">
             <div class="col-md-6 operation-section form-group">
 
             </div>
-            <div class="col-md-6 operation-section form-group">
-                <!--<app-search [params]="[{title: 'device'}, {title: 'location'}]"></app-search>-->
+            <div class="col-md-3 offset-md-3 operation-section form-group text-right">
+                <app-search (searchText)="getData($event)"></app-search>
             </div>
         </div>
         <!--table-->
@@ -33,11 +34,11 @@
                 <tr *ngFor="let d of drafts| paginate : {
                                 itemsPerPage : 10, currentPage : pageNumber, totalItems : totalItemsCount
                                 },index as i">
-                  <td class="text-left">
-                    <div class="table-head">
-                      <span>#{{i+1}}</span>
-                    </div>
-                  </td>
+                    <td class="text-left">
+                        <div class="table-head">
+                            <span>#{{i+1}}</span>
+                        </div>
+                    </td>
                     <td class="text-left">
                         <div class="table-head">
                             {{d.title}}
@@ -45,7 +46,8 @@
                     </td>
                     <td class=" text-left">
                         <div>
-                            {{d.summary}} <a><span [title]="d.messageText" style="color: #f5274e;">. . .</span></a>
+                            {{d.messageText|slice:0:64}} <span [matTooltip]="d.messageText"
+                                                                 style="color: #f5274e;">. . .</span>
                         </div>
                     </td>
                     <td class="text-left">
@@ -59,7 +61,7 @@
                     </td>
                     <td class="td-single text-right actions-container">
                         <div class="actions text-right">
-                            <a><i (click)="removeDraft(d)" class="fa fa-trash light-red-btn"></i></a>
+                            <a><i (click)="removeDraft(i,d)" class="fa fa-trash light-red-btn"></i></a>
                             <a><i [routerLink]="['../',d.id]" class="fa fa-pencil light-green-btn"></i></a>
                         </div>
                     </td>
