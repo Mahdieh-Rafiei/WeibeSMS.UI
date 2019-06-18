@@ -2,16 +2,12 @@ import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {SharedService} from '../../../../shared/service/shared.service';
-import {CountryInterface} from '../../../../shared/models/country.interface';
 import {DataCountryInterface} from '../../../../shared/models/data-country.interface';
-import {DataCityInterface} from '../../../../shared/models/data-city.interface';
 import {CityInterface} from '../../../../shared/models/city.interface';
 import {BillingService} from '../billing.service';
 import {NotificationService} from '../../../../shared/notification.service';
 import {BillindAddressResponseInterface} from './models/billind-address-response.interface';
-import {BillingAddressInterface} from './models/billing-address.interface';
 import {errorAnimation} from '../../../../shared/component/animation/error-animation';
-import {CacheObject} from '../../../../shared/models/cache-object';
 
 @Component({
   selector: 'app-billing-address',

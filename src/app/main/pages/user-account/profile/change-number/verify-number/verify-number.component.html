@@ -1,23 +1,25 @@
 <div class="col-md-12 div-section">
-    <div class="change-password">
-        <h5>Verify phone number</h5>
-        <p class="fo-4 black-text">Please enter the code that we have sent to your phone.</p>
-        <div class="col-md-4">
-            <form class="row" [formGroup]="verifyNumberForm" (ngSubmit)="submit()">
-                <label>Verification code: </label>
-                <div class="input-group pt-3">
-                    <input type="number"
-                           class="form-control"
-                           formControlName="verificationCode"
-                           placeholder="Enter verification code">
-                    <div class="input-group-append">
-                        <button type="submit" id="basic-addon2" class="light-blue-btn ml-2">Verify</button>
-                    </div>
-                </div>
-                <app-countdown (countDownEmit)="getCountDown($event)"></app-countdown>
-            </form>
+  <div class="change-password">
+    <h5>Verify phone number</h5>
+    <p class="fo-4 black-text">Please enter the code that we have sent to your phone.</p>
+    <div class="col-md-4">
+      <form class="row" [formGroup]="verifyNumberForm" (ngSubmit)="submit()">
+        <label>Verification code: </label>
+        <div class="input-group pt-3">
+          <input type="number"
+                 class="form-control"
+                 formControlName="verificationCode"
+                 placeholder="Enter verification code">
+          <div class="input-group-append">
+            <button type="submit" id="basic-addon2" class="light-blue-btn ml-2">Verify</button>
+          </div>
         </div>
+        <app-countdown (countDownEmit)="getCountDown($event)"></app-countdown>
+
+      </form>
+      <button [routerLink]="['/profile/change-number']">Change Number</button>
     </div>
+  </div>
 </div>
 
 
