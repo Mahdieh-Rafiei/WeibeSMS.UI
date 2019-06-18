@@ -47,6 +47,11 @@ export class SingleAddContactComponent implements OnInit {
   contact: DataGetContactInterface;
   contactId: number;
 
+  pageNumber: number = 1;
+  pageSize: number = 10;
+  totalItemsCount: number;
+  phrase = '';
+
   constructor(private contactService: ContactService,
               private userEventService: UserEventService,
               private notificationService: NotificationService,
@@ -149,7 +154,7 @@ export class SingleAddContactComponent implements OnInit {
   }
 
   getUserEvents() {
-    this.userEventService.getUserEvents()
+    this.userEventService.getUserEvents(this.pageNumber, this.pageSize, this.phrase)
       .subscribe((res: any) => {
         this.userEvents = res.data;
       });

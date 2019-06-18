@@ -31,6 +31,7 @@ export class GroupListComponent implements OnInit {
     currentGroup: any;
     totalItemsCount: number;
     phrase = '';
+    sortOption = '';
 
     groupName: string = '';
 
@@ -47,6 +48,7 @@ export class GroupListComponent implements OnInit {
     }
 
     getAllGroupList() {
+        // this.groupService.getAllGroupList(this.pageSize, this.pageNumber, this.phrase, this.sortOption)
         this.groupService.getAllGroupList(this.pageSize, this.pageNumber, this.phrase)
             .subscribe((res: GroupListInterface) => {
                 this.data = res.data;
@@ -58,7 +60,7 @@ export class GroupListComponent implements OnInit {
     removeGroup(index, group) {
         this.openDeleteDialog('480px', 'auto', '', {
             modalType: 'deleteGroup',
-            modalHeader:'Delete Group',
+            modalHeader: 'Delete Group',
             modalText: 'are you sure to remove this group?',
             id: group.id,
             index
@@ -123,5 +125,15 @@ export class GroupListComponent implements OnInit {
                 }
             });
     }
+
+    getData(event) {
+        this.phrase = event;
+        this.getAllGroupList();
+    }
+
+    // sortData(type) {
+    //     this.sortOption = type;
+    //     this.getAllGroupList()
+    // }
 }
 

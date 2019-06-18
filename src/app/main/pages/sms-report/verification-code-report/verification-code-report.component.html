@@ -7,7 +7,8 @@
         </div>
         <h5 class="yellow-text">For more info : </h5>
         <div class="more-info">
-            <p class="fo-4 black-text pb-2 bt-2" >1. About key check<i class="fa fa-arrow-circle-right red-text pr-2 pl-2"></i>
+            <p class="fo-4 black-text pb-2 bt-2">1. About key check<i
+                    class="fa fa-arrow-circle-right red-text pr-2 pl-2"></i>
                 <span class="blue-text">Devloper</span>
             </p>
 
@@ -32,9 +33,8 @@
                 <i class="fa fa-filter"></i> Filter
             </button>
         </div>
-        <div class="col-md-6 operation-section form-group">
-            <!--<app-search [params]="[{title: 'device'}, {title: 'location'}]"></app-search>--> search
-            <!--TODO: search-->
+        <div class="col-md-3 offset-md-3 operation-section form-group text-right">
+            <app-search (searchText)="getData($event)"></app-search>
         </div>
     </div>
     <!--table-->
@@ -45,7 +45,6 @@
                 <th class="text-left"><i class="fa fa-sort"></i> Message</th>
                 <th class="text-left"><i class="fa fa-sort"></i> Phone Number</th>
                 <th class="text-left"><i class="fa fa-sort"></i> Date Time</th>
-                <th></th>
             </tr>
             </thead>
             <tbody>
@@ -53,21 +52,11 @@
                 <td class="text-left">your verification code is : <span>2040</span></td>
                 <td class="text-left">+989185966</td>
                 <td class="text-left">2019-5-14, 11;8</td>
-                <td class="td-single text-right actions-container">
-                    <div class="actions text-right">
-                        <i class="fa fa-eye light-green-btn"></i>
-                    </div>
-                </td>
             </tr>
             <tr>
                 <td class="text-left">your verification code is : <span>2040</span></td>
                 <td class="text-left">+989185966</td>
                 <td class="text-left">2019-5-14, 11;8</td>
-                <td class="td-single text-right actions-container">
-                    <div class="actions text-right">
-                        <i class="fa fa-eye light-green-btn"></i>
-                    </div>
-                </td>
             </tr>
             </tbody>
         </table>

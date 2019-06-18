@@ -9,63 +9,73 @@ import {AddEditUserEventComponent} from './add-edit/add-edit-user-event.componen
 import {DataUserEventInterface} from './models/data-user-event.interface';
 
 @Component({
-  selector: 'app-user-event',
-  templateUrl: './user-event.component.html',
-  styleUrls: ['./user-event.component.scss']
+    selector: 'app-user-event',
+    templateUrl: './user-event.component.html',
+    styleUrls: ['./user-event.component.scss']
 })
 export class UserEventComponent implements OnInit {
-  userEvents: DataUserEventInterface[];
+    userEvents: DataUserEventInterface[];
+    pageNumber: number = 1;
+    pageSize: number = 10;
+    totalItemsCount: number;
+    phrase = '';
 
-  constructor(private userEventService: UserEventService,
-              private dialog: MatDialog,
-              private ns: NotificationService) {
-  }
+    constructor(private userEventService: UserEventService,
+                private dialog: MatDialog,
+                private ns: NotificationService) {
+    }
 
-  ngOnInit() {
-    this.getUserEvents();
-  }
+    ngOnInit() {
+        this.getUserEvents();
+    }
 
-  getUserEvents() {
-    this.userEventService.getUserEvents()
-      .subscribe((res: UserEventResponseInterface) => {
-        console.log(res);
-        this.userEvents = res.data;
-      });
-  }
+    getUserEvents() {
+        this.userEventService.getUserEvents(this.pageNumber, this.pageSize, this.phrase)
+            .subscribe((res: UserEventResponseInterface) => {
+                console.log(res);
+                this.userEvents = res.data;
+            });
+    }
 
-  removeUserEvent(index: number, id: number) {
-    const payload: RemoveUserEventInterface = {
-      DeleteAnyway: true
-    };
-    this.userEventService.removeUserEvent(id, payload)
-      .subscribe((res: RemoveUserEventResponseInterface) => {
-        this.userEvents.splice(index, 1);
-      });
-  }
-
-
-  addEditUserEvent(data: DataUserEventInterface, index: number) {
-    this.openDialog('480px', 'auto', '', {data, index});
-  }
+    removeUserEvent(index: number, id: number) {
+        const payload: RemoveUserEventInterface = {
+            DeleteAnyway: true
+        };
+        this.userEventService.removeUserEvent(id, payload)
+            .subscribe((res: RemoveUserEventResponseInterface) => {
+                this.userEvents.splice(index, 1);
+            });
+    }
 
 
-  openDialog(width, height, panelClass, data): void {
-    const dialogRef = this.dialog.open(AddEditUserEventComponent, {
-      width,
-      height,
-      panelClass,
-      data
-    });
+    addEditUserEvent(data: DataUserEventInterface, index: number) {
+        this.openDialog('480px', 'auto', '', {data, index});
+    }
 
-    dialogRef.afterClosed()
-      .subscribe(result => {
-        if (result && result.addUserEvent) {
-          this.userEvents.unshift({id: result.addUserEvent.id, name: result.addUserEvent.name});
-          this.ns.success('New group added successfully', '');
-        } else if (result && result.editUserEvent) {
-          this.userEvents[result.editUserEvent.index].name = result.editUserEvent.name;
-        }
 
-      });
-  }
+    openDialog(width, height, panelClass, data): void {
+        const dialogRef = this.dialog.open(AddEditUserEventComponent, {
+            width,
+            height,
+            panelClass,
+            data
+        });
+
+        dialogRef.afterClosed()
+            .subscribe(result => {
+                if (result && result.addUserEvent) {
+                    this.userEvents.unshift({id: result.addUserEvent.id, name: result.addUserEvent.name});
+                    this.ns.success('New group added successfully', '');
+                } else if (result && result.editUserEvent) {
+                    this.userEvents[result.editUserEvent.index].name = result.editUserEvent.name;
+                }
+
+            });
+    }
+
+
+    getData(event) {
+        this.phrase = event;
+        this.getUserEvents();
+    }
 }

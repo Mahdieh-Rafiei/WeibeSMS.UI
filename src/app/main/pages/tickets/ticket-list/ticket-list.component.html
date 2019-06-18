@@ -8,16 +8,11 @@
     </div>
   </div>
   <div class="div-section">
-    <!--operation-->
     <div class="row">
-      <div class="col-md-6 operation-section form-group">
-        <!--<button class="light-blue-btn">-->
-        <!--<i class="fa fa-filter"></i> Filter-->
-        <!--</button>-->
-
+      <div class="col-12 col-md-6 operation-section form-group">
         <app-filter [options]="options" (filterValue)="getFilterData($event)"></app-filter>
       </div>
-      <div class="col-md-6 operation-section form-group">
+      <div class="col-12 col-md-3 offset-md-3 operation-section form-group">
         <app-search (searchText)="getData($event)"></app-search>
       </div>
     </div>

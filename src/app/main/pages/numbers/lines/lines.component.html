@@ -20,28 +20,43 @@
         </div>
         <div class="row">
             <div class="col-md-12">
-                <button (click)="selectedLine = l" *ngFor="let l of lines" class="col-md-2 light-blue-btn mt-2 mb-2 mr-2">
+                <button (click)="selectedLine = l" *ngFor="let l of lines" class="col-md-2 light-blue-btn mt-2 mb-2 mr-4 ml-3">
                     {{l.number}}
                 </button>
             </div>
         </div>
     </div>
     <div class="country-number" *ngIf="selectedLine">
-        <div class="country-number-div form-group mt-4 mb-4">
-            <h5>Country Number Monthly</h5>
+        <div class="country-number-div form-group mt-4 mb-4 pt-3">
+            <h5 class="yellow-text">Country Number Monthly</h5>
         </div>
         <div class="row">
             <div class="col-md-3">
                 <div class="country-number-section">
-                    <p class="font-weight-bold pb-2">Setup Fee: <span>{{selectedLine.cost}}$</span></p>
-                    <p class="font-weight-bold pb-2">Recurring Fee: <span>{{selectedLine.cost}}$ (Every 1 month)</span>
+                    <p class="pb-2">Setup Fee: <span>{{selectedLine.cost}}$</span></p>
+                    <p class="pb-2">Recurring Fee: <span>{{selectedLine.cost}}$ (Every 1 month)</span>
                     </p>
-                    <p class="font-weight-bold pb-2">Inbound SMS Fee: <span>0.02$</span></p>
+                    <p class="pb-2">Inbound SMS Fee: <span>0.02$</span></p>
                     <!--<input [(ngModel)]="hasAutoExtension" type="checkbox"><span>auto extension</span>-->
-                    <mat-checkbox>auto extension</mat-checkbox>
+                    <mat-checkbox [(ngModel)]="hasAutoExtension"> <span class="ml-2">auto extension</span></mat-checkbox>
                     <!--TODO: checkbox-->
                     <div class="country-number-btn text-center mt-4">
                         <button (click)="buyLine()" class="light-green-btn">Buy with your Balance</button>
+                    </div>
+                </div>
+            </div>
+            <!--TODO-->
+            <div class="col-md-3">
+                <div class="country-number-section">
+                    <p class="pb-2">Setup Fee: <span>{{selectedLine.cost}}$</span></p>
+                    <p class="pb-2">Recurring Fee: <span>{{selectedLine.cost}}$ (Every 1 month)</span>
+                    </p>
+                    <p class="pb-2">Inbound SMS Fee: <span>0.02$</span></p>
+                    <!--<input [(ngModel)]="hasAutoExtension" type="checkbox"><span>auto extension</span>-->
+                    <mat-checkbox [(ngModel)]="hasAutoExtension"> <span class="ml-2">auto extension</span></mat-checkbox>
+                    <!--TODO: checkbox-->
+                    <div class="country-number-btn text-center mt-4">
+                        <button (click)="buyLine()" class="light-yellow-btn">Upgrade your Balance</button>
                     </div>
                 </div>
             </div>
