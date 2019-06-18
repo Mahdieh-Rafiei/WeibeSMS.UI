@@ -16,8 +16,8 @@ export class UserEventService {
   constructor(private apiService: ApiService) {
   }
 
-  getUserEvents(): Observable<UserEventResponseInterface> {
-    const url = `EventUser`;
+  getUserEvents(pageNumber: number, pageSize: number, phrase: string): Observable<UserEventResponseInterface> {
+    const url = `EventUser?pageSize=${pageSize}&pageNumber=${pageNumber}&searchValue=${phrase}`;
     return this.apiService.get(url, true);
   }
 

@@ -32,7 +32,7 @@ export class UserLinesComponent implements OnInit {
     }
 
     getUserLines() {
-        this.numberService.getUserLines(this.getUserLineModel.pageNumber, this.getUserLineModel.pageSize, this.getUserLineModel.isActive)
+        this.numberService.getUserLines(this.getUserLineModel.pageNumber, this.getUserLineModel.pageSize, this.getUserLineModel.isActive, this.phrase)
             .subscribe(res => {
                 this.userLines = res.data.items;
                 this.totalItemsCount = res.data.totalItemsCount;

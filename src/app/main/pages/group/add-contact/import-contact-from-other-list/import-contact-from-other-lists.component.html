@@ -95,9 +95,8 @@
                     <div *ngIf="clickedGroup">
                         <!--operation-->
                         <div class="row">
-                            <div class="offset-md-6 col-md-6 operation-section form-group">
-                                <!--<app-search [params]="[{title: 'device'}, {title: 'location'}]"></app-search>--> search
-                                <!--TODO: search-->
+                            <div class="col-md-3 offset-md-9 operation-section form-group text-right">
+                                <app-search (searchText)="getData($event)"></app-search>
                             </div>
                         </div>
                         <!--table-->

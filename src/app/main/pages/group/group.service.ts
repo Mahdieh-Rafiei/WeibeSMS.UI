@@ -25,7 +25,7 @@ export class GroupService {
   }
 
   getGroup(id: string, pageSize: number, pageNumber: number, phrase: string): Observable<GroupResponseInterface> {
-    const url = `ContactGroup/${id}?pageSize=${pageSize}&pageNumber=${pageNumber}`;
+    const url = `ContactGroup/${id}?pageSize=${pageSize}&pageNumber=${pageNumber}&searchValue=${phrase}`;
     return this.apiService.get(url, true);
   }
 

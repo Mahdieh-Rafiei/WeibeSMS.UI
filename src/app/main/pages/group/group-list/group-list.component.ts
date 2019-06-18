@@ -31,7 +31,7 @@ export class GroupListComponent implements OnInit {
     currentGroup: any;
     totalItemsCount: number;
     phrase = '';
-    sortOption = ''
+    sortOption = '';
 
     groupName: string = '';
 
