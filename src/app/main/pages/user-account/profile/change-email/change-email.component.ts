@@ -32,7 +32,6 @@ export class ChangeEmailComponent implements OnInit {
         this.currentUserInfo = this.shs.getCurrentUserInfo();
         this.changeEmailForm.patchValue({email:this.currentUserInfo.email});
 
-        debugger;
         if (this.currentUserInfo.emailConfirmed){
           this.changeEmailForm.controls['email'].disable();
         }

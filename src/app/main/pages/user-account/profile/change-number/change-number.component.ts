@@ -25,7 +25,7 @@ export class ChangeNumberComponent implements OnInit {
   countryFlag;
   mobileValue;
   currentUserInfo: DashboardInfoInterface;
-
+  isTried = false;
 
   constructor(private fb: FormBuilder,
               private shs: SharedService,
@@ -42,13 +42,13 @@ export class ChangeNumberComponent implements OnInit {
   getCountry() {
     this.shs.getCountries().subscribe(res => {
       this.countries = res.data;
-      this.selectCountry(this.currentUserInfo.prefixNumberId, this.countries[this.currentUserInfo.prefixNumberId - 1]);
-      this.changeNumberForm.patchValue({mobile: this.currentUserInfo.mobile});
+      this.selectCountry(1, this.countries[this.currentUserInfo.prefixNumberId - 1]);
+      // this.selectCountry(this.currentUserInfo.prefixNumberId, this.countries[this.currentUserInfo.prefixNumberId - 1]);
+      this.changeNumberForm.patchValue({mobile: `+${this.currentUserInfo.mobile}`});
     });
   }
 
   selectCountry(index, country) {
-    debugger;
     this.countryPrefix = country.prefixNumber;
     this.countryFlag = country.flag;
     if (index === 2) {
@@ -81,7 +81,7 @@ export class ChangeNumberComponent implements OnInit {
 
   changeMobile(mobile: string) {
     this.countries.forEach(item => {
-      mobile === item.prefixNumber ? this.selectCountry(2, item) : null
+      mobile === item.prefixNumber ? this.selectCountry(2, item) : null;
     });
   }
 
@@ -89,7 +89,9 @@ export class ChangeNumberComponent implements OnInit {
     if (this.changeNumberForm.valid) {
       this.countries.forEach(item => {
         if (this.changeNumberForm.value.prefixNumberId === item.id) {
-          this.mobileValue = this.changeNumberForm.value.mobile.substring(item.prefixNumber.length);
+          if (!this.isTried) {
+            this.mobileValue = this.changeNumberForm.value.mobile.substring(item.prefixNumber.length);
+          }
         }
       });
       const payload: SendVerificationCodeInterface = this.changeNumberForm.value;
@@ -102,6 +104,7 @@ export class ChangeNumberComponent implements OnInit {
             localStorage.setItem('k-u', res.data.key);
           },
           err => {
+            this.isTried = true;
             if (err.error.Message === '4') {
               this.router.navigate(['/profile/verify-number']);
             }

@@ -54,7 +54,6 @@ export class ContactService {
   }
 
   addContactFromGroups(destinationGroupId: number, operationInfo: Map<number, number[]>, isCut: boolean): Observable<ContactGroupMoveCopyResponseInterface> {
-    debugger;
     const rows = {};
     operationInfo.forEach((value, key) => {
       rows[key] = value;

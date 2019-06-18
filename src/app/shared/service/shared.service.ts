@@ -22,28 +22,6 @@ export class SharedService {
     this.fillCacheData();
   }
 
-  // countries() {
-  // debugger;
-  //     // if (this._cacheObject && this._cacheObject.countries.length > 0) {
-  //     //   this.cacheItemsFilled.emit(this._cacheObject);
-  //     // }
-  //     //
-  //     // let cacheJson = localStorage.getItem('cache-object');
-  //     // if (cacheJson) {
-  //     //   this._cacheObject = <CacheObject> JSON.parse(cacheJson);
-  //     //   this.cacheItemsFilled.emit(this._cacheObject);
-  //     // } else {
-  //     //   this.fillCountries()
-  //     //     .subscribe(res => {
-  //     //       this._cacheObject.countries = res.data;
-  //     //       localStorage.setItem('cache-object', JSON.stringify(this._cacheObject));
-  //     //       this.cacheItemsFilled.emit(this._cacheObject);
-  //     //     });
-  //     // }
-
-  // this.
-  // }
-
   getCountries(): Observable<CountryInterface> {
     const url = `BaseData/country`;
     return this.as.get(url, false);
@@ -55,7 +33,6 @@ export class SharedService {
   }
 
   setUserInfo(userInfo: DashboardInfoInterface) {
-    debugger;
     this._cacheObject.currentUserInfo = userInfo;
     localStorage.setItem('cache-object', JSON.stringify(this._cacheObject));
   }

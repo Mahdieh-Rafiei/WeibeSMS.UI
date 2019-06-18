@@ -150,7 +150,6 @@ export class ImportContactFromOtherListsComponent implements OnInit {
   }
 
   operation(isCut: boolean) {
-    debugger;
     const apiModel = new Map<number, number[]>();
     this.contactsSelectedFromGrid.forEach((value, key) => {
       apiModel.set(key, value);
