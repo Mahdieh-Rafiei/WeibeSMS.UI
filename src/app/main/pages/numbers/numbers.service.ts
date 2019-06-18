@@ -28,8 +28,8 @@ export class NumbersService {
     return this.apiService.post(url,data,true);
   }
 
-  getUserLines(pageNumber:number,pageSize:number,isActive:boolean):Observable<UserLineResponseInterface> {
-    const url = `user/line?pageNumber=${pageNumber}&pageSize=${pageSize}&isActive=${isActive}`;
+  getUserLines(pageNumber:number,pageSize:number,isActive:boolean, phrase: string):Observable<UserLineResponseInterface> {
+    const url = `user/line?pageNumber=${pageNumber}&pageSize=${pageSize}&isActive=${isActive}&searchValue=${phrase}`;
     return this.apiService.get(url,true);
   }
 

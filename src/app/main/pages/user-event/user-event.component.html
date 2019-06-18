@@ -10,9 +10,9 @@
     </div>
     <div class="div-section">
         <div class="user-event mb-3">
-            <h5>Event Field</h5>
-            <p class="fo-4 black-text">Lorem ipsum dolor sit amet consectetur adipiscing elit sed do eiusmod tempor
-                incididunt ut labore. </p>
+            <h5>Event Fields</h5>
+            <p class="fo-4 black-text pb-1">Event field can be used for an attribute for your contacts</p>
+            <p class="fo-4 yellow-text pb-1"><i class="fas fa-exclamation-triangle"></i> You can use them only in the Event SMS.</p>
         </div>
 
         <div class="row">
@@ -22,15 +22,15 @@
                 </button>
             </div>
             <!--search-->
-            <div class="col-md-6 operation-section form-group">
-                <!--<app-search [params]="[{title: 'device'}, {title: 'location'}]"></app-search>-->
+            <div class="col-md-3 offset-md-3 operation-section form-group text-right">
+                <app-search (searchText)="getData($event)"></app-search>
             </div>
         </div>
         <div class="table-div table-responsive">
             <table class="index-table text-left">
                 <thead>
                 <tr>
-                    <th class="text-left"><i class="fa fa-sort"></i>#</th>
+                    <th class="text-left"><i class="fa fa-sort"></i>ID</th>
                     <th class="text-left"><i class="fa fa-sort"></i>Title</th>
                     <th></th>
                 </tr>

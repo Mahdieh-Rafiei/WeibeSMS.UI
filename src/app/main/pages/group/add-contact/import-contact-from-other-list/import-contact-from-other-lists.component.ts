@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {ContactService} from '../../contact/contact.service';
+import {ContactService} from '../single-add-contact/contact.service';
 import {NotificationService} from '../../../../../shared/notification.service';
 import {GroupService} from '../../group.service';
 import _ from 'node_modules/lodash/lodash.js';
@@ -26,7 +26,7 @@ export class ImportContactFromOtherListsComponent implements OnInit {
   groups = [];
   ContactTotalItemsCount: number;
   clickedGroup: any;
-
+  phrase = '';
   contactsForGrid: any[] = [];
   contactsSelectedFromGrid: Map<number, number[]> = new Map<number, number[]>();
   groupSelectedFromLeft: number[] = [];
@@ -46,7 +46,7 @@ export class ImportContactFromOtherListsComponent implements OnInit {
   }
 
   getAllGroupList() {
-    this.groupService.getAllGroupList(this.groupPageSize, this.groupPageNumber, '')
+    this.groupService.getAllGroupList(this.groupPageSize, this.groupPageNumber, this.phrase)
       .subscribe((res: GroupListInterface) => {
         this.groups = res.data.items.filter(i => i.id !== this.groupId);
         this.groups.forEach(g => g.isSelected = false);
@@ -134,8 +134,6 @@ export class ImportContactFromOtherListsComponent implements OnInit {
     this.clickedGroup = group;
     if (!group.contacts) {
       this.getAllContacts(this.clickedGroup);
-    } else {
-      this.getDataWithSearch();
     }
   }
 
@@ -150,6 +148,7 @@ export class ImportContactFromOtherListsComponent implements OnInit {
   }
 
   operation(isCut: boolean) {
+    debugger;
     const apiModel = new Map<number, number[]>();
     this.contactsSelectedFromGrid.forEach((value, key) => {
       apiModel.set(key, value);
@@ -167,6 +166,25 @@ export class ImportContactFromOtherListsComponent implements OnInit {
       });
   }
 
+
+  // operation(isCut: boolean) {
+  //   const apiModel = new Map<number, number[]>();
+  //   this.contactsSelectedFromGrid.forEach((value, key) => {
+  //     apiModel.set(key, value);
+  //   });
+  //
+  //   this.groupSelectedFromLeft.forEach(g => {
+  //     apiModel.set(g, []);
+  //   });
+  //
+  //   this.contactService.addContactFromGroups(this.groupId, apiModel, isCut)
+  //     .subscribe((res: ContactGroupMoveCopyResponseInterface) => {
+  //       console.log(res);
+  //       this.notificationService.success('Operation done successfully', '');
+  //       this.router.navigateByUrl(`group/${this.groupId}`);
+  //     });
+  // }
+
   getDataWithSearch() {
     this.contactPageNumber = 1;
     this.getAllContacts(this.clickedGroup);
@@ -177,4 +195,8 @@ export class ImportContactFromOtherListsComponent implements OnInit {
     this.getAllContacts(this.clickedGroup);
   }
 
+  getData(event) {
+    this.phrase = event;
+    this.getAllGroupList();
+  }
 }

@@ -1,25 +1,31 @@
-import {Component, ElementRef, Input, OnInit, ViewChild} from '@angular/core';
-import {ContactService} from '../../contact/contact.service';
+import {Component, OnInit, ViewEncapsulation} from '@angular/core';
+import {ContactService} from './contact.service';
 import {UserEventService} from '../../../user-event/user-event.service';
 import {NotificationService} from '../../../../../shared/notification.service';
 import {ActivatedRoute, Router} from '@angular/router';
 import {GroupService} from '../../group.service';
-import {UserEventResponseInterface} from '../../../user-event/models/user-event-response.interface';
-import {AddContactInterface} from './models/add-contact.interface';
 import {FormArray, FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {CountryInterface} from '../../../../../shared/models/country.interface';
 import {SharedService} from '../../../../../shared/service/shared.service';
 import {DataCountryInterface} from '../../../../../shared/models/data-country.interface';
 import {DataUserEventInterface} from '../../../user-event/models/data-user-event.interface';
-import {GetContactInterface} from '../../contact/models/get-contact.interface';
-import {DataGetContactInterface} from '../../contact/models/data-get-contact.interface';
-import {CacheObject} from '../../../../../shared/models/cache-object';
+
+import {GetContactInterface} from './models/get-contact.interface';
+import {DataGetContactInterface} from './models/data-get-contact.interface';
+import {errorAnimation} from '../../../../../shared/component/animation/error-animation';
+import {AddContactInterface} from './models/add-contact.interface';
+
 
 @Component({
   selector: 'app-single-add-contact',
   templateUrl: './single-add-contact.component.html',
-  styleUrls: ['./single-add-contact.component.scss']
+  styleUrls: ['./single-add-contact.component.scss'],
+  encapsulation: ViewEncapsulation.None,
+  animations: [
+    errorAnimation()
+  ]
 })
+
 export class SingleAddContactComponent implements OnInit {
   singleContactForm: FormGroup;
   groupId: number;
@@ -41,24 +47,33 @@ export class SingleAddContactComponent implements OnInit {
   contact: DataGetContactInterface;
   contactId: number;
 
+  pageNumber: number = 1;
+  pageSize: number = 10;
+  totalItemsCount: number;
+  phrase = '';
+
   constructor(private contactService: ContactService,
               private userEventService: UserEventService,
               private notificationService: NotificationService,
-              private activatedRoute: ActivatedRoute,
+              private route: ActivatedRoute,
               private groupService: GroupService,
               private fb: FormBuilder,
               private router: Router,
               private shs: SharedService) {
-    // if (!this.contactId) {
-    //   this.getCountry();
-    // }
-    this.activatedRoute.params.subscribe(item => {
+    if (!this.contactId) {
+      this.getCountry();
+    }
+    this.route.params.subscribe(item => {
       this.contactId = parseInt(item.contactId);
       this.groupId = parseInt(item.groupId);
     });
   }
 
   ngOnInit() {
+    if (!this.contactId) {
+      this.groupId = parseInt(this.route.parent.snapshot.paramMap.get('groupId'));
+    }
+
     this.getUserEvents();
     this.createForm();
     if (this.contactId) {
@@ -66,8 +81,6 @@ export class SingleAddContactComponent implements OnInit {
     } else {
       this.addUserEvent(0);
     }
-
-    this.getCountries();
   }
 
   getContact() {
@@ -103,12 +116,12 @@ export class SingleAddContactComponent implements OnInit {
     this.mobileValue = `+${this.contact.mobile}`;
   }
 
-
-  getCountries() {
-    this.shs.getCountries().subscribe(res=>{
-      this.countries = res.data;
-      this.selectCountry(1, this.countries[0]);
-    })
+  getCountry() {
+    this.shs.getCountries()
+      .subscribe((res: CountryInterface) => {
+        this.countries = res.data;
+        this.selectCountry(1, this.countries[0]);
+      });
   }
 
   selectCountry(index, country) {
@@ -141,7 +154,7 @@ export class SingleAddContactComponent implements OnInit {
   }
 
   getUserEvents() {
-    this.userEventService.getUserEvents()
+    this.userEventService.getUserEvents(this.pageNumber, this.pageSize, this.phrase)
       .subscribe((res: any) => {
         this.userEvents = res.data;
       });

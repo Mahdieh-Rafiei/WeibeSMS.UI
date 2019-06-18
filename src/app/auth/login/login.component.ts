@@ -71,7 +71,7 @@ export class LoginComponent implements OnInit {
               private authSharedService: AuthSharedService,
               private shs: SharedService,
               private router: Router,
-              private userAccountService:UserAccountService) {
+              private userAccountService: UserAccountService) {
   }
 
   ngOnInit() {
@@ -114,7 +114,7 @@ export class LoginComponent implements OnInit {
         .subscribe((res: LoginResponseInterface) => {
             this.authService.setToken(res.data.token);
             this.userAccountService.getDashboardInfo()
-              .subscribe((res:DashboardInfoResponseInterface)=>{
+              .subscribe((res: DashboardInfoResponseInterface) => {
                 this.showSpinner = false;
                 this.shs.setUserInfo(res.data);
                 this.router.navigateByUrl('');
@@ -215,7 +215,6 @@ export class LoginComponent implements OnInit {
   verify() {
     const verificationCode = this.verificationCodePart1.concat(this.verificationCodePart2, this.verificationCodePart3,
       this.verificationCodePart4, this.verificationCodePart5);
-    this.showSpinner = true;
     const payload: VerifyMobileInterface = {
       Key: this.registrationKey ? this.registrationKey : localStorage.getItem('k-l'),
       Mobile: this.signUpForm.value.mobile,
@@ -223,7 +222,8 @@ export class LoginComponent implements OnInit {
       VerificationCode: +verificationCode,
       reason: 1
     };
-    this.registerService.verifyMobile(payload)
+      this.showSpinner = true;
+      this.registerService.verifyMobile(payload)
       .subscribe((res: any) => {
           this.showSpinner = false;
           // this.authService.setToken(res.data);
