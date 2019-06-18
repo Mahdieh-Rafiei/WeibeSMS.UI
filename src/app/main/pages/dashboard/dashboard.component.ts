@@ -17,7 +17,9 @@ export class DashboardComponent implements OnInit {
 
   ngOnInit() {
     //TODO: remove localstorage and cache service
-    // localStorage.removeItem('k-l');
-    // localStorage.removeItem('k-f');
+
+    localStorage.removeItem('k-l');
+    localStorage.removeItem('k-f');
+    localStorage.removeItem('k-u');
   }
 }

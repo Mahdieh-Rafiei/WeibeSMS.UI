@@ -1,6 +1,6 @@
 import {Component, OnInit, ViewEncapsulation} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import {ActivatedRoute} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import {InfoGetInterface} from './models/info-get.interface';
 import {CountryInterface} from '../../../../../shared/models/country.interface';
 import {SharedService} from '../../../../../shared/service/shared.service';
@@ -9,6 +9,7 @@ import {NotificationService} from '../../../../../shared/notification.service';
 import {UserAccountService} from '../../user-account.service';
 import {errorAnimation} from '../../../../../shared/component/animation/error-animation';
 import {DataService} from '../../../../../shared/service/data.service';
+import {CacheObject} from '../../../../../shared/models/cache-object';
 
 @Component({
   selector: 'app-info',
@@ -30,6 +31,7 @@ export class InfoComponent implements OnInit {
 
   constructor(private fb: FormBuilder,
               private route: ActivatedRoute,
+              private router: Router,
               private uas: UserAccountService,
               private notificationService: NotificationService,
               private ds: DataService,
@@ -38,6 +40,7 @@ export class InfoComponent implements OnInit {
       .subscribe((data: { info: InfoGetInterface }) => {
         this.infoData = data.info;
       });
+
     this.getCountry();
   }
 
@@ -47,10 +50,10 @@ export class InfoComponent implements OnInit {
   }
 
   getCountry() {
-    this.shs.getCountry()
-      .subscribe((res: CountryInterface) => this.countries = res.data);
+    this.shs.getCountries().subscribe(res => {
+      this.countries = res.data;
+    });
   }
-
 
   createForm() {
     this.profileForm = this.fb.group({
@@ -98,6 +101,7 @@ export class InfoComponent implements OnInit {
       this.uas.modifyProfile(payload)
         .subscribe(res => {
           this.notificationService.success('Update profile successfully', '');
+          this.router.navigateByUrl('');
         });
     }
   }

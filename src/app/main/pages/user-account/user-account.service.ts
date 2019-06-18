@@ -11,6 +11,7 @@ import {SendVerificationCodeInterface} from '../../../auth/login/models/send-ver
 import {ChangeNumberInterface} from './profile/change-number/models/change-number.interface';
 import {VerifyMobileInterface} from './profile/change-number/verify-number/models/verify-mobile.interface';
 import {AddSenderIdResponseInterface} from './profile/sender-id/models/add-sender-id-response.interface';
+import {DashboardInfoResponseInterface} from '../../../auth/login/models/dashboard-info-response.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -69,5 +70,10 @@ export class UserAccountService {
   removeSenderName(senderNameId: number): Observable<any> {
     const url = `senderName/${senderNameId}`;
     return this.apiService.delete(url, null, true);
+  }
+
+  getDashboardInfo():Observable<DashboardInfoResponseInterface>{
+    const url = `user/dashboard`;
+    return this.apiService.get(url,true);
   }
 }

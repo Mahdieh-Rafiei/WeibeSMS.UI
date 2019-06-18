@@ -15,6 +15,9 @@ import {CountryInterface} from '../../shared/models/country.interface';
 import {SharedService} from '../../shared/service/shared.service';
 import {DataCountryInterface} from '../../shared/models/data-country.interface';
 import {errorAnimation} from '../../shared/component/animation/error-animation';
+import {CacheObject} from '../../shared/models/cache-object';
+import {UserAccountService} from '../../main/pages/user-account/user-account.service';
+import {DashboardInfoResponseInterface} from './models/dashboard-info-response.interface';
 
 @Component({
   selector: 'app-login',
@@ -67,21 +70,13 @@ export class LoginComponent implements OnInit {
               private fb: FormBuilder,
               private authSharedService: AuthSharedService,
               private shs: SharedService,
-              private router: Router) {
+              private router: Router,
+              private userAccountService:UserAccountService) {
   }
 
   ngOnInit() {
     this.createForm();
-    this.getCountry();
-  }
-
-
-  getCountry() {
-    this.shs.getCountry()
-      .subscribe((res: CountryInterface) => {
-        this.countries = res.data;
-        this.selectCountry(1, this.countries[0]);
-      });
+    this.getCountries();
   }
 
   createForm() {
@@ -104,16 +99,28 @@ export class LoginComponent implements OnInit {
     this.countries.forEach(item => mobile === item.prefixNumber ? this.selectCountry(2, item) : null);
   }
 
+  getCountries() {
+    this.shs.getCountries().subscribe((res) => {
+      debugger;
+      this.countries = res.data;
+      this.selectCountry(1, this.countries[0]);
+    });
+  }
+
   login() {
     if (this.signInForm.valid) {
       this.showSpinner = true;
       const payload: LoginInterface = this.signInForm.value;
       this.authService.loginViaUsernamePassword(payload)
         .subscribe((res: LoginResponseInterface) => {
-            this.showSpinner = false;
-            this.router.navigateByUrl('');
             this.authService.setToken(res.data.token);
-            this.configService.authenticationChanged.emit(true);
+            this.userAccountService.getDashboardInfo()
+              .subscribe((res:DashboardInfoResponseInterface)=>{
+                this.showSpinner = false;
+                this.shs.setUserInfo(res.data);
+                this.router.navigateByUrl('');
+                this.configService.authenticationChanged.emit(true);
+              });
           },
           err => {
             this.showSpinner = false;
