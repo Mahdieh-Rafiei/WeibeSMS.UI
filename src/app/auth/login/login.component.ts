@@ -101,7 +101,6 @@ export class LoginComponent implements OnInit {
 
   getCountries() {
     this.shs.getCountries().subscribe((res) => {
-      debugger;
       this.countries = res.data;
       this.selectCountry(1, this.countries[0]);
     });

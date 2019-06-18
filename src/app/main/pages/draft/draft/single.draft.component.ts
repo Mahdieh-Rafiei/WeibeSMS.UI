@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {DraftService} from '../draft.service';
 import {ActivatedRoute, Router} from '@angular/router';
 import {NotificationService} from '../../../../shared/notification.service';
@@ -10,6 +10,7 @@ import {GetDraftInterface} from './models/get-draft.interface';
 import {EditDraftResponseInterface} from './models/edit-draft-response.interface';
 import {EditDraftInterface} from './models/edit-draft.interface';
 import {errorAnimation} from "../../../../shared/component/animation/error-animation";
+import {UtilityService} from '../../../../shared/utility.service';
 
 @Component({
   selector: 'app-draft',
@@ -33,14 +34,17 @@ export class SingleDraftComponent implements OnInit {
   isAddMode: boolean = false;
   localSmsLen: number = 0;
   container: number = 160;
-
+  totalSize=1377;
   titleValue: boolean = false;
   messageValue: boolean = false;
+  hasDoubleChar=false;
+  maxLenError=false;
 
   constructor(private draftService: DraftService,
               private activatedRoute: ActivatedRoute,
               private notificationService: NotificationService,
-              private router: Router) {
+              private router: Router,
+              private utilityService:UtilityService) {
   }
 
   ngOnInit() {
@@ -62,7 +66,7 @@ export class SingleDraftComponent implements OnInit {
     this.draftService.getDraft(id)
       .subscribe((res: GetDraftInterface) => {
         console.log(res);
-        this.draft = res.data;
+        this.draft.messageText = res.data.messageText;
         this.onMessageTextChange();
       });
   }
@@ -85,6 +89,19 @@ export class SingleDraftComponent implements OnInit {
       this.messageValue = true;
       return;
     }
+    
+    if (this.hasDoubleChar){
+      if (this.draft.messageText.length > 603) {
+        this.maxLenError = true;
+        return;
+      }
+    }else {
+      if (this.draft.messageText.length > 1377) {
+        this.maxLenError = true;
+        return;
+      }
+    }
+    
     if (this.isAddMode) {
       const payload: AddDraftInterface = {
         Title: this.draft.title,
@@ -132,38 +149,41 @@ export class SingleDraftComponent implements OnInit {
   }
 
   onMessageTextChange() {
+    this.hasDoubleChar =this.utilityService.containsNonLatinCodepoints(this.draft.messageText);
+    this.totalSize = this.hasDoubleChar ? 603 : 1377;
+    const repeatingContainerSize = this.hasDoubleChar ? 67 : 153;
+    const firstContainerSize = this.hasDoubleChar ? 70 : 160;
+    const secondContainerSize = this.hasDoubleChar ? 134 : 306;
+    const thirdContainerSize = this.hasDoubleChar ? 201 : 459;
 
     let len = this.draft.messageText.length;
-    this.container = 153;
+    this.container = repeatingContainerSize;
+    this.localSmsLen = len;
 
     if (len == 0) {
       this.smsCount = 0;
-      this.localSmsLen = len;
-      this.container = 160;
-    } else if (len <= 160) {
+      // this.localSmsLen = len;
+      this.container = firstContainerSize;
+    } else if (len <= firstContainerSize) {
       this.smsCount = 1;
-      this.localSmsLen = len;
-      this.container = 160;
-    } else if (len > 160 && len <= 360) {
+      // this.localSmsLen = len;
+      this.container = firstContainerSize;
+    } else if (len > firstContainerSize && len <= secondContainerSize) {
       this.smsCount = 2;
-      this.localSmsLen = len - 160;
-      this.container = 146;
+      // this.localSmsLen = len - 160;
+      this.container = secondContainerSize - firstContainerSize;
     }
-    else if (len > 360 && len < 459) {
+    else if (len > secondContainerSize && len < thirdContainerSize) {
       this.smsCount = 3;
-      this.localSmsLen = len - 360;
+      // this.localSmsLen = len - 360;
 
     } else {
-      this.smsCount = 4 + Math.floor((len - 459) / 153);
-      this.localSmsLen = (len - 459) % 153;
+      this.smsCount = 3 + Math.floor((len - thirdContainerSize) / repeatingContainerSize);
+      // this.localSmsLen = (len - 459) % 153;
     }
   }
 
-  assignReadyTemplate(e) {
-    let selectedId = e.target.value;
-    let selectedDraft = _.find(this.drafts, d => d.Id == selectedId);
-    this.draft.messageText = selectedDraft.messageText;
-  }
+
 
   selectTemplate(event) {
     this.getDraft(event.target.value);
