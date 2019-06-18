@@ -7,13 +7,13 @@
     <form class="row" [formGroup]="deActiveForm" #formDir="ngForm" (ngSubmit)="submit()">
       <div class="col-12 col-md-4 pt-2">
         <div class="row">
-          <div class="col-12 form-group">
+          <div class="col-12">
             <label>Why are you deactivate your account: </label>
-            <select (change)="onReasonChange($event)" [selectedIndex]="0" class="form-control" formControlName="reason">
+            <select (change)="onReasonChange($event)" [selectedIndex]="0" class="form-group form-control" formControlName="reason">
               <option [value]="reason.value" *ngFor="let reason of reasons">{{reason.title}}</option>
             </select>
-            <label>Description: </label>
-            <div *ngIf="needDescription" >
+            <label *ngIf="needDescription" >Description: </label>
+            <div>
               <div class="text-left"
                    *ngIf="(((deActiveForm.controls['reason'].dirty || deActiveForm.controls['reason'].touched) || formDir.submitted))">
                 <p class="errorMessage" *ngIf="deActiveForm.hasError('required', 'reason')" [@errorAnimation]>
@@ -23,7 +23,7 @@
             </div>
           </div>
           <div class="col-12 form-group">
-            <textarea class="form-control" formControlName="description" rows="8"></textarea>
+            <textarea *ngIf="needDescription" class="form-control" formControlName="description" rows="8"></textarea>
           </div>
         </div>
       </div>
