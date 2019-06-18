@@ -9,23 +9,23 @@ import {AddDraftInterface} from './models/add-draft.interface';
 import {GetDraftInterface} from './models/get-draft.interface';
 import {EditDraftResponseInterface} from './models/edit-draft-response.interface';
 import {EditDraftInterface} from './models/edit-draft.interface';
-import {errorAnimation} from "../../../../shared/component/animation/error-animation";
+import {errorAnimation} from '../../../../shared/component/animation/error-animation';
 import {UtilityService} from '../../../../shared/utility.service';
 
 @Component({
   selector: 'app-draft',
   templateUrl: './single.draft.component.html',
   styleUrls: ['./single.draft.component.scss'],
-    animations: [
-        errorAnimation()
-    ],
+  animations: [
+    errorAnimation()
+  ],
 })
 export class SingleDraftComponent implements OnInit {
 
   id: number;
   draft: any = {
     Id: 0,
-    Title: '',
+    title: '',
     messageText: ''
   };
 
@@ -34,17 +34,17 @@ export class SingleDraftComponent implements OnInit {
   isAddMode: boolean = false;
   localSmsLen: number = 0;
   container: number = 160;
-  totalSize=1377;
+  totalSize = 1377;
   titleValue: boolean = false;
   messageValue: boolean = false;
-  hasDoubleChar=false;
-  maxLenError=false;
+  hasDoubleChar = false;
+  maxLenError = false;
 
   constructor(private draftService: DraftService,
               private activatedRoute: ActivatedRoute,
               private notificationService: NotificationService,
               private router: Router,
-              private utilityService:UtilityService) {
+              private utilityService: UtilityService) {
   }
 
   ngOnInit() {
@@ -53,7 +53,7 @@ export class SingleDraftComponent implements OnInit {
       this.isAddMode = true;
     } else {
       this.id = parseInt(strId);
-      this.getDraft(this.id);
+      this.getDraft(this.id, true);
     }
 
     console.log(this.id);
@@ -62,11 +62,13 @@ export class SingleDraftComponent implements OnInit {
     this.getAllDrafts();
   }
 
-  getDraft(id) {
+  getDraft(id, useTitle: boolean) {
     this.draftService.getDraft(id)
       .subscribe((res: GetDraftInterface) => {
         console.log(res);
         this.draft.messageText = res.data.messageText;
+        this.draft.title = useTitle ? res.data.title : this.draft.title;
+        this.draft.id = res.data.id;
         this.onMessageTextChange();
       });
   }
@@ -89,19 +91,19 @@ export class SingleDraftComponent implements OnInit {
       this.messageValue = true;
       return;
     }
-    
-    if (this.hasDoubleChar){
+
+    if (this.hasDoubleChar) {
       if (this.draft.messageText.length > 603) {
         this.maxLenError = true;
         return;
       }
-    }else {
+    } else {
       if (this.draft.messageText.length > 1377) {
         this.maxLenError = true;
         return;
       }
     }
-    
+
     if (this.isAddMode) {
       const payload: AddDraftInterface = {
         Title: this.draft.title,
@@ -149,7 +151,7 @@ export class SingleDraftComponent implements OnInit {
   }
 
   onMessageTextChange() {
-    this.hasDoubleChar =this.utilityService.containsNonLatinCodepoints(this.draft.messageText);
+    this.hasDoubleChar = this.utilityService.containsNonLatinCodepoints(this.draft.messageText);
     this.totalSize = this.hasDoubleChar ? 603 : 1377;
     const repeatingContainerSize = this.hasDoubleChar ? 67 : 153;
     const firstContainerSize = this.hasDoubleChar ? 70 : 160;
@@ -172,8 +174,7 @@ export class SingleDraftComponent implements OnInit {
       this.smsCount = 2;
       // this.localSmsLen = len - 160;
       this.container = secondContainerSize - firstContainerSize;
-    }
-    else if (len > secondContainerSize && len < thirdContainerSize) {
+    } else if (len > secondContainerSize && len < thirdContainerSize) {
       this.smsCount = 3;
       // this.localSmsLen = len - 360;
 
@@ -184,8 +185,7 @@ export class SingleDraftComponent implements OnInit {
   }
 
 
-
   selectTemplate(event) {
-    this.getDraft(event.target.value);
+    this.getDraft(event.target.value, false);
   }
 }

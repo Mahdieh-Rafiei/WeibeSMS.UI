@@ -17,17 +17,13 @@ import {ContactGroupMoveCopyResponseInterface} from './models/contact-group-move
 export class ImportContactFromOtherListsComponent implements OnInit {
 
   groupId: number;
-  isCollapsed = false;
   groupPageNumber: number = 1;
-  groupPageSize: number = 10;
-  contactPageNumber: number = 1;
+  groupPageSize: number = 100;
   contactPageSize: number = 10;
-  filterExpression: string = '';
   groups = [];
   ContactTotalItemsCount: number;
   clickedGroup: any;
   phrase = '';
-  contactsForGrid: any[] = [];
   contactsSelectedFromGrid: Map<number, number[]> = new Map<number, number[]>();
   groupSelectedFromLeft: number[] = [];
   totalContactsSelectedCount;
@@ -49,7 +45,12 @@ export class ImportContactFromOtherListsComponent implements OnInit {
     this.groupService.getAllGroupList(this.groupPageSize, this.groupPageNumber, this.phrase)
       .subscribe((res: GroupListInterface) => {
         this.groups = res.data.items.filter(i => i.id !== this.groupId);
-        this.groups.forEach(g => g.isSelected = false);
+        this.groups.forEach(g => {
+          g.isSelected = false;
+          g.pageNumber = 1;
+          g.loadedPageNumbers = [];
+          g.totalItems = g.contactsCount;
+        });
       });
   }
 
@@ -131,18 +132,24 @@ export class ImportContactFromOtherListsComponent implements OnInit {
   }
 
   loadContacts(group) {
+    debugger;
     this.clickedGroup = group;
+
     if (!group.contacts) {
-      this.getAllContacts(this.clickedGroup);
+      group.contacts = [];
+      this.getContactsFromServer(this.clickedGroup);
     }
   }
 
-  getAllContacts(group) {
-    this.contactService.getAllContacts(group.id, this.contactPageNumber, this.contactPageSize)
+  getContactsFromServer(group) {
+    debugger;
+    this.contactService.getAllContacts(group.id, group.pageNumber, this.contactPageSize)
       .subscribe((res: GetAllContactGroupInterface) => {
-        group.contacts = res.data.items;
-        this.contactsForGrid = res.data.items;
-        this.ContactTotalItemsCount = res.data.totalItemsCount;
+        debugger;
+        res.data.items.forEach(i => {
+          group.contacts.push(i);
+        });
+        group.loadedPageNumbers.push(group.pageNumber);
         group.contacts.forEach(c => c.isSelected = this.clickedGroup.isSelected);
       });
   }
@@ -185,14 +192,17 @@ export class ImportContactFromOtherListsComponent implements OnInit {
   //     });
   // }
 
-  getDataWithSearch() {
-    this.contactPageNumber = 1;
-    this.getAllContacts(this.clickedGroup);
-  }
-
   doPaging(e) {
-    this.contactPageNumber = e;
-    this.getAllContacts(this.clickedGroup);
+    this.clickedGroup.pageNumber = e;
+
+    for (let i=0;this.clickedGroup.loadedPageNumbers.length > i;i++){
+      debugger;
+      let num = this.clickedGroup.loadedPageNumbers[i];
+      if (num == e)
+        return;
+    }
+
+    this.getContactsFromServer(this.clickedGroup);
   }
 
   getData(event) {

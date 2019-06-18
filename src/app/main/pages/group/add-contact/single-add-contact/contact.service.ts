@@ -34,7 +34,7 @@ export class ContactService {
   }
 
   addContact(payload): Observable<AddContactResponseInterface> {
-    const url = `Contact`;
+    const url = `lijlk`;
     return this.apiService.post<AddContactInterface>(url, payload, true);
   }
 

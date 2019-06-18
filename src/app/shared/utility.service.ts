@@ -23,6 +23,11 @@ export class UtilityService {
     return regex.test(phrase);
   }
 
+  onlyDigit(phrase) {
+    const regex =/^[0-9]+$/;
+    return regex.test(phrase);
+  }
+
   filterByExpression(sourceCollection: any[], filteredCollection: any[], columnName, expression) {
 
     _.remove(filteredCollection);

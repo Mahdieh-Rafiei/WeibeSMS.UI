@@ -72,11 +72,12 @@ export class DeactiveAccountComponent implements OnInit {
   }
 
   onReasonChange(e){
-    if (e.target.value != 8) {
-      this.deActiveForm.controls['description'].disable();
-    }
-    else {
-      this.deActiveForm.controls['description'].enable();
-    }
+    this.needDescription = e.target.value == 8;
+    // if (e.target.value != 8) {
+    //   this.deActiveForm.controls['description'].disable();
+    // }
+    // else {
+    //   this.deActiveForm.controls['description'].enable();
+    // }
   }
 }

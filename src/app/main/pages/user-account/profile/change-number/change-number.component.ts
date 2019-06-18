@@ -26,6 +26,7 @@ export class ChangeNumberComponent implements OnInit {
   mobileValue;
   currentUserInfo: DashboardInfoInterface;
   isTried = false;
+  oldMobileEntered=true;
 
   constructor(private fb: FormBuilder,
               private shs: SharedService,
@@ -80,6 +81,7 @@ export class ChangeNumberComponent implements OnInit {
   }
 
   changeMobile(mobile: string) {
+    this.oldMobileEntered = this.changeNumberForm.value.mobile.substring(1) == this.currentUserInfo.mobile;
     this.countries.forEach(item => {
       mobile === item.prefixNumber ? this.selectCountry(2, item) : null;
     });
