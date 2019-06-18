@@ -35,10 +35,8 @@ export class BillingService {
     return this.apiService.get(url, true);
   }
 
-  getInvoices(pageNumber: number, pageSize: number, fromDate: number, toDate: number): Observable<InvoiceResponseInterface> {
-
-    debugger;
-    const url = `Invoice?pageNumber=${pageNumber}&pageSize=${pageSize}`;
+  getInvoices(pageNumber: number, pageSize: number,phrase: string, fromDate: number, toDate: number): Observable<InvoiceResponseInterface> {
+    const url = `Invoice?pageNumber=${pageNumber}&pageSize=${pageSize}&searchValue=${phrase}&`;
     return this.apiService.get(url, true);
   }
 
