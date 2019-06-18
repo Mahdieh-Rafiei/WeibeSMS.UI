@@ -17,10 +17,13 @@ export class TicketListComponent implements OnInit {
   totalItemsCount: number;
   phrase = '';
   status: number = null;
+  dateFrom: number = null;
+  dateTo: number = null;
 
-  options = [
-    {
-      option: {
+  filterData = {
+    fromToDate: true,
+    options: [
+      {
         title: 'status', data: [
           {
             title: 'Open', value: 1
@@ -36,10 +39,9 @@ export class TicketListComponent implements OnInit {
             title: 'Closed', value: 6
           },
         ]
-      },
-      fromToDate: true
-    }
-  ];
+      }
+    ]
+  };
 
 
   constructor(private ticketService: TicketService) {
@@ -50,7 +52,7 @@ export class TicketListComponent implements OnInit {
   }
 
   getAllTickets() {
-    this.ticketService.getAllTickets(this.pageNumber, this.pageSize, this.phrase, this.status)
+    this.ticketService.getAllTickets(this.pageNumber, this.pageSize, this.phrase, this.status, this.dateFrom, this.dateTo)
       .subscribe((res: TicketListResponseModel) => {
         this.tickets = res.data.items;
         this.totalItemsCount = res.data.totalItemsCount;
@@ -70,6 +72,8 @@ export class TicketListComponent implements OnInit {
   getFilterData(event) {
     this.pageSize = event.pageSize ? event.pageSize : 10;
     this.status = +event.status;
+    this.dateFrom = +event.dateFrom;
+    this.dateTo = +event.dateTo;
     this.getAllTickets();
   }
 

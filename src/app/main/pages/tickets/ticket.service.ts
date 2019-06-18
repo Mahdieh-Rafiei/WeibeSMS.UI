@@ -16,10 +16,13 @@ export class TicketService {
 
   constructor(private apiService: ApiService) {
   }
-  
-  getAllTickets(pageNumber: number, pageSize: number, phrase: string, status?: number): Observable<TicketListResponseModel> {
-    const url = status ? `Ticket?pageSize=${pageSize}&pageNumber=${pageNumber}&searchValue=${phrase}&status=${status}` : `Ticket?pageSize=${pageSize}&pageNumber=${pageNumber}&title=${phrase}`;
-    return this.apiService.get(url, true);
+
+  getAllTickets(pageNumber: number, pageSize: number, phrase: string, status: number, fromDate: number, toDate: number): Observable<TicketListResponseModel> {
+    const a = `Ticket?pageSize=${pageSize}&pageNumber=${pageNumber}&searchValue=${phrase}`;
+    const b = status ? `${a}&status=${status}` : `${a}`;
+    const c = fromDate ? `${b}&fromDate=${fromDate}` : `${b}`;
+    const d = toDate ? `${c}&toDate=${toDate}` : `${c}`;
+    return this.apiService.get(d, true);
   }
 
   getTicket(id: number): Observable<TicketResponseInterface> {
