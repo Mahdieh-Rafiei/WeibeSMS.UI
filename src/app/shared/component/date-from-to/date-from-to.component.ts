@@ -9,6 +9,8 @@ import {FormBuilder, FormGroup} from '@angular/forms';
 export class DateFromToComponent implements OnInit {
   dateFromTo: FormGroup;
   @Output() date: EventEmitter<any> = new EventEmitter<any>();
+  minDate = null;
+  maxDate = null;
 
   constructor(private fb: FormBuilder) {
   }
@@ -24,11 +26,17 @@ export class DateFromToComponent implements OnInit {
     });
   }
 
-  changeDate(type) {
-    if (type === 0) {
+  changeDate(index, type) {
+    if (index === 0) {
       this.date.emit(this.dateFromTo.value);
-    } else if (type === 1) {
+    } else if (index === 1) {
       this.date.emit(this.dateFromTo.value);
+    }
+    if (type === 'from') {
+      this.minDate = this.dateFromTo.value.dateFrom;
+    }
+    if (type === 'to') {
+      this.maxDate = this.dateFromTo.value.dateTo;
     }
   }
 }

@@ -5,14 +5,15 @@
   <div id="filter" class="collapse">
     <form class="filtering" [formGroup]="filterForm" (ngSubmit)="submit()">
       <ul class="filtering-menu">
-        <li *ngFor="let option of options">
+        <li *ngFor="let option of filterData.options">
           <p> Lorem ipsum dolor sit amet.</p>
-          <select class="form-control" [formControlName]="option.option.title">
+          <select class="form-control" [formControlName]="option.title">
             <option hidden value="">Select</option>
-            <option [value]="state.value" *ngFor="let state of option.option.data">{{state.title}}</option>
+            <option [value]="null">All {{option.title}}</option>
+            <option [value]="state.value" *ngFor="let state of option.data">{{state.title}}</option>
           </select>
         </li>
-        <li *ngIf="options.fromToDate">
+        <li *ngIf="filterData.fromToDate">
           <p> Lorem ipsum dolor sit amet.</p>
           <app-date-from-to (date)="getDate($event)"></app-date-from-to>
         </li>
