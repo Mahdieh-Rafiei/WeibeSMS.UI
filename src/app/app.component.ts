@@ -1,8 +1,10 @@
-import {Component, HostListener, Injectable, OnInit, ViewChild} from '@angular/core';
+import {Component, HostListener, Injectable, OnInit} from '@angular/core';
 
 import {ConfigService} from './shared/config.service';
-import {Router} from '@angular/router';
+import {ActivatedRoute, NavigationEnd, Router} from '@angular/router';
 import {AuthenticationService} from './auth/login/authentication.service';
+
+import {Title} from '@angular/platform-browser';
 
 @Component({
   selector: 'app-root',
@@ -12,10 +14,11 @@ import {AuthenticationService} from './auth/login/authentication.service';
 @Injectable()
 export class AppComponent implements OnInit {
 
-  constructor(private authService: AuthenticationService
-    , public configService: ConfigService
-    , private router: Router
-  ) {
+  constructor(private authService: AuthenticationService,
+              public configService: ConfigService,
+              private router: Router,
+              private titleService: Title,
+              private route: ActivatedRoute) {
   }
 
   title = 'WeibeSMS';
@@ -38,6 +41,7 @@ export class AppComponent implements OnInit {
     if (!this.authService.isAuthenticated()) {
       this.router.navigateByUrl('/login');
     }
+
   }
 
   @HostListener('window:resize', ['$event'])
