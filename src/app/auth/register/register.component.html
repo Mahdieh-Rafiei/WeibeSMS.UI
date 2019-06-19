@@ -82,16 +82,33 @@
                        [ngClass]="{'border-error' : ((registerForm.controls['email'].dirty || registerForm.controls['email'].touched) || formDir.submitted)}"
                        #email
                        placeholder="User Email"
-                       (change)="checkUnique(2, email?.value)"
+                       (keydown)="onKeyDown('email')"
+                       (keyup)="onKeyUp('email', email?.value)"
                        formControlName="email">
                 <div class="error-place">
-                  <div class="text-left"
-                       *ngIf="(((registerForm.controls['email'].dirty || registerForm.controls['email'].touched) || formDir.submitted) || emailUnique)">
-                    <p class="errorMessage" *ngIf="registerForm.hasError('required', 'email')" [@errorAnimation]>
-                      <i class="far fa-exclamation-circle"></i> Enter your email!
-                    </p>
+                  <div class="text-left" *ngIf="!checkingEmail">
+                    <div *ngIf="((registerForm.controls['email'].touched) || formDir.submitted)">
+                      <p class="errorMessage" *ngIf="email.value < 1" [@errorAnimation]>
+                        <i class="far fa-exclamation-circle"></i> Enter your email!
+                      </p>
+                      <p class="errorMessage" *ngIf="!us.checkEmail(email.value) && email.value.length > 0" [@errorAnimation]>
+                        <i class="far fa-exclamation-circle"></i> This email is invalid.
+                      </p>
+                    </div>
+                  </div>
+                  <div class="text-left" *ngIf="checkingEmail">
+                    <p class="defaultMessage">Checking email...</p>
+                  </div>
+                  <div class="text-left" *ngIf="!checkingEmail">
                     <p class="errorMessage" *ngIf="emailUnique" [@errorAnimation]>
-                      <i class="far fa-exclamation-circle"></i> this email is already taken!
+                      <i class="far fa-exclamation-circle"></i> this user name is already taken!
+                    </p>
+                  </div>
+                  <div class="text-left" *ngIf="!checkingEmail">
+                    <p class="successMessage"
+                       *ngIf="!emailUnique && email.value.length > 0 && us.checkEmail(email.value)"
+                       [@errorAnimation]>
+                      <i class="far fa-check"></i> {{email.value}} is available .
                     </p>
                   </div>
                 </div>
@@ -108,20 +125,30 @@
                        class="form-control"
                        placeholder="Your username"
                        #userName
-                       (change)="checkUnique(1, userName?.value)"
+                       (keydown)="onKeyDown('userName')"
+                       (keyup)="onKeyUp('userName', userName?.value)"
                        formControlName="userName">
+                <!--(change)="checkUnique(1, userName?.value)"-->
                 <div class="error-place">
-                  <div class="text-left"
-                       *ngIf="(((registerForm.controls['userName'].touched) || formDir.submitted))" [@errorAnimation]>
-                    <p class="errorMessage" *ngIf="registerForm.hasError('required', 'userName')">
-                      <i class="far fa-exclamation-circle"></i> please choose your username!
-                    </p>
-                    <p class="errorMessage"
-                       *ngIf="(registerForm.controls['userName'].hasError('minlength'))" [@errorAnimation]>
-                      <i class="far fa-exclamation-circle"></i> Username min length is 6 char!
-                    </p>
+                  <div class="text-left" *ngIf="!checkingUserName">
+                    <div *ngIf="(((registerForm.controls['userName'].touched) || formDir.submitted))" [@errorAnimation]>
+                      <p class="errorMessage"
+                         *ngIf="registerForm.hasError('required', 'userName') || userName.value.length < 6">
+                        <i class="far fa-exclamation-circle"></i> Username min length is 6 char!
+                      </p>
+                    </div>
+                  </div>
+                  <div class="text-left" *ngIf="checkingUserName">
+                    <p class="defaultMessage">Checking username...</p>
+                  </div>
+                  <div class="text-left" *ngIf="!checkingUserName">
                     <p class="errorMessage" *ngIf="userNameUnique" [@errorAnimation]>
                       <i class="far fa-exclamation-circle"></i> this user name is already taken!
+                    </p>
+                  </div>
+                  <div class="text-left" *ngIf="!checkingUserName">
+                    <p class="successMessage" *ngIf="!userNameUnique && userName.value.length > 5" [@errorAnimation]>
+                      <i class="far fa-check"></i> {{userName.value}} is available .
                     </p>
                   </div>
                 </div>
