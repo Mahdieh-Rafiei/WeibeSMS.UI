@@ -20,7 +20,7 @@ export class TopNavComponent implements OnInit {
     userNotifications: any[];
     showNotification: boolean = false;
     selectedNotification: any;
-    openHelp: boolean = false
+    openHelp: boolean = false;
 
     constructor(public configService: ConfigService,
                 private userNotificationService: UserNotificationService,

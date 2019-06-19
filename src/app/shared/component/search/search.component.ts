@@ -15,6 +15,7 @@ import {debounceTime} from 'rxjs/operators';
             </div>
         </form>
     `,
+    styles:[''],
 })
 export class SearchComponent implements OnInit {
     formGroup: FormGroup;
