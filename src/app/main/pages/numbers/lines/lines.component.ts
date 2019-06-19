@@ -1,12 +1,10 @@
 import {Component, OnInit} from '@angular/core';
 import {NumbersService} from '../numbers.service';
 import {DataLineInterface} from './models/data-line.interface';
-import {CountryInterface} from '../../../../shared/models/country.interface';
 import {DataCountryInterface} from '../../../../shared/models/data-country.interface';
 import {SharedService} from '../../../../shared/service/shared.service';
 import {AddUserLineInterface} from './models/add-user-line.interface';
 import {Router} from '@angular/router';
-import {CacheObject} from '../../../../shared/models/cache-object';
 
 @Component({
   selector: 'app-buy-numbers-show',
@@ -23,23 +21,23 @@ export class LinesComponent implements OnInit {
   //TODO: using cached data
   countries: DataCountryInterface[];
 
-  constructor(private numbersService: NumbersService,
+  constructor(private numberService: NumbersService,
               private sharedService: SharedService,
               private route: Router) {
   }
 
   ngOnInit() {
-
+    this.numberService.mode='buyNumbers';
     this.sharedService.getCountries().subscribe(res=>{
       this.countries = res.data;
     });
   }
 
   getLines(){
-    this.numbersService.getLines(this.selectedCountryId)
+    this.numberService.getLines(this.selectedCountryId)
       .subscribe(res => {
         this.lines = res.data;
-        console.log(this.lines);
+        this.selectedLine=null;
       });
   }
 
@@ -51,9 +49,9 @@ export class LinesComponent implements OnInit {
   buyLine(){
     //TODO: disable if credit is not enough!
     let addUserLine:AddUserLineInterface = {lineId:this.selectedLine.id,hasAutoExtension:this.hasAutoExtension};
-    this.numbersService.buyLine(addUserLine)
+    this.numberService.buyLine(addUserLine)
       .subscribe(res=>{
-        this.numbersService.mode='yourNumbers';
+        this.numberService.mode='yourNumbers';
          this.route.navigateByUrl('lines/my-lines')
       });
   }

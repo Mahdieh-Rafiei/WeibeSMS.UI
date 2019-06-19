@@ -84,7 +84,8 @@
                     <div class="btn-group profile" dropdown>
                         <!--<a id="button-basic" dropdownToggle class="dropdown-toggle" aria-controls="dropdown-basic">-->
                         <a mat-button [matMenuTriggerFor]="profile">
-                            <i class="fa fa-user"></i>
+                          <i *ngIf="!sharedService.getCurrentUserInfo().imageUrl" class="fa fa-user"></i>
+                          <img *ngIf="sharedService.getCurrentUserInfo().imageUrl" style="width: 50px" class="img img-circle" [src]="sharedService.getCurrentUserInfo().imageUrl" alt="">
                         </a>
                         <mat-menu #profile="matMenu">
                             <button mat-menu-item [routerLink]="['/profile']"><i class="fa fa-user"></i> Profile

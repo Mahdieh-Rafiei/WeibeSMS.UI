@@ -12,9 +12,6 @@
                             aria-describedby="basic-addon2">
                         <option [innerText]="c.name" [value]="c.id" *ngFor="let c of countries"></option>
                     </select>
-                    <div class="input-group-append ml-2">
-                        <button class="light-green-btn search-btn" id="basic-addon2">search</button>
-                    </div>
                 </div>
             </div>
         </div>
@@ -31,7 +28,8 @@
             <h5 class="yellow-text">Country Number Monthly</h5>
         </div>
         <div class="row">
-            <div class="col-md-3">
+
+            <div *ngIf="sharedService.getCurrentUserInfo().credit > selectedLine.cost" class="col-md-3">
                 <div class="country-number-section">
                     <p class="pb-2">Setup Fee: <span>{{selectedLine.cost}}$</span></p>
                     <p class="pb-2">Recurring Fee: <span>{{selectedLine.cost}}$ (Every 1 month)</span>
@@ -46,7 +44,7 @@
                 </div>
             </div>
             <!--TODO-->
-            <div class="col-md-3">
+            <div *ngIf="sharedService.getCurrentUserInfo().credit < selectedLine.cost" class="col-md-3">
                 <div class="country-number-section">
                     <p class="pb-2">Setup Fee: <span>{{selectedLine.cost}}$</span></p>
                     <p class="pb-2">Recurring Fee: <span>{{selectedLine.cost}}$ (Every 1 month)</span>

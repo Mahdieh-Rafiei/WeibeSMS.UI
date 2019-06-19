@@ -21,8 +21,6 @@ export class ImageUploadComponent implements OnInit {
   avatar: File;
   responseImage;
 
-  picture;
-
   AvatarSizeValidate = false;
   AvatarTypeValidate = false;
   typeValidate = false;
@@ -138,6 +136,7 @@ export class ImageUploadComponent implements OnInit {
       .subscribe(res => {
         if (res && res.data) {
           this.imageSrc = res.data;
+          this.shs.getCurrentUserInfo().imageUrl = this.imageSrc;
           this.hasAvatar = true;
         }
       });
@@ -149,6 +148,7 @@ export class ImageUploadComponent implements OnInit {
 
   remove() {
     this.removeAvatar.emit(true);
+    this.shs.getCurrentUserInfo().imageUrl = null;
   }
 }
 

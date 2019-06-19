@@ -6,6 +6,7 @@ import _ from 'node_modules/lodash/lodash.js';
 import {NotificationResponseInterface} from '../../pages/user-notification/list/models/notification-response.interface';
 import {GetUserNotificationInterface} from '../../pages/user-notification/list/models/get-user-notification.interface';
 import {DataService} from "../../../shared/service/data.service";
+import {SharedService} from '../../../shared/service/shared.service';
 
 @Component({
     selector: 'app-top-nav',
@@ -24,7 +25,8 @@ export class TopNavComponent implements OnInit {
     constructor(public configService: ConfigService,
                 private userNotificationService: UserNotificationService,
                 private authService: AuthenticationService,
-                private ds: DataService) {
+                private ds: DataService,
+                private sharedService:SharedService) {
     }
 
     ngOnInit() {
