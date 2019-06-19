@@ -11,7 +11,8 @@ export class DataService {
     showHelp: Subject<{ event: boolean }> = new Subject();
     showHelp$ = this.showHelp.asObservable();
 
-    showSideBar: boolean = false
+    showSideBar: boolean = false;
+    show;
 
     constructor() {
     }
