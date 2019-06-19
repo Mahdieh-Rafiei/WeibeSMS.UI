@@ -24,7 +24,12 @@ export class UtilityService {
   }
 
   onlyDigit(phrase) {
-    const regex =/^[0-9]+$/;
+    const regex = /^[0-9]+$/;
+    return regex.test(phrase);
+  }
+
+  checkEmail(phrase) {
+    const regex = /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$/;
     return regex.test(phrase);
   }
 
