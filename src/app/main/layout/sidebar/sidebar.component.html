@@ -1,4 +1,4 @@
-<nav class="sidebar" id="style-1" (mouseleave) ="mouseLeave()">
+<nav class="sidebar" id="style-1" (mouseleave)="mouseLeave()">
     <!--menu-->
     <div class="list-group">
         <!--Logo-->
@@ -8,11 +8,13 @@
             </div>
         </div>
         <!--item menu-->
-        <div class="nested-menu" *ngFor="let item of menuItems">
-            <a class="list-group-item" (click)="item.link ? navigateRoute(item.link) : addExpandClass(item.title)">
+        <div class="nested-menu" *ngFor="let item of menuItems; let i=index">
+            <a class="list-group-item"
+               [ngClass]="{'active': item.title===expandPanel || item.link===activeRoute}"
+               (click)="item.link ? navigateRoute(item.link) : addExpandClass(item.title)">
                 <i class="fa fa-{{item.icon}}"></i>&nbsp;{{item.title}}
-                <span *ngIf="item.subMenu && !subMenuIcon" class="fa fa-chevron-right"></span>
-                <span *ngIf="item.subMenu && subMenuIcon" class="fa fa-chevron-down"></span>
+                <span *ngIf="item.subMenu && item.title !== expandPanel" class="fa fa-chevron-right"></span>
+                <span *ngIf="item.subMenu && item.title === expandPanel" class="fa fa-chevron-down"></span>
             </a>
             <li class="nested" [class.expand]="showMenu === item.title">
                 <ul class="submenu">
