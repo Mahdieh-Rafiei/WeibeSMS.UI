@@ -126,9 +126,9 @@
                        </div>
                    </div>
                 </div>
-                <div class="col-md-3 form-group select">
+                <div class="col-md-4 form-group select">
                     <mat-form-field class="date-picker">
-                        <input matInput class="form-control "
+                        <input matInput class="form-control birthday-field"
                                formControlName="value"
                                #pickerValue
                                [matDatepicker]="picker"
@@ -136,23 +136,23 @@
                         <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
                         <mat-datepicker #picker></mat-datepicker>
                     </mat-form-field>
-
+                    <div class="error-place">
+                        <div class="text-left"
+                             *ngIf="val[i] && !pickerValue.value"  [@errorAnimation]>
+                            <p class="errorMessage">
+                                <i class="far fa-exclamation-circle"></i> this filed is required!
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-1 form-group">
                     <span (click)="deleteEventUser(i, singleContactForm['controls'].eventsUser.length)"
-                          class="fa fa-trash operation-fa light-red-btn ml-1">
+                          class="fa fa-trash  light-red-btn">
                     </span>
                     <span *ngIf="showAdd===i && userEvent.length<userEvents.length"
                           (click)="addUserEvent(singleContactForm['controls'].eventsUser.length)"
-                          class="fa fa-plus operation-fa light-green-btn ml-1">
+                          class="fa fa-plus  light-green-btn ml-1">
                     </span>
-
-                </div>
-                <div class="error-place">
-                    <div class="text-left"
-                         *ngIf="val[i] && !pickerValue.value"  [@errorAnimation]>
-                        <p class="errorMessage">
-                            <i class="far fa-exclamation-circle"></i> this filed is required!
-                        </p>
-                    </div>
                 </div>
 
             </div>
