@@ -11,7 +11,7 @@ export class FilterComponent implements OnInit {
   pageSize = [10, 20, 50];
   filterForm: FormGroup;
 
-  @Input() options;
+  @Input() filterData;
 
   @Output() filterValue: EventEmitter<any> = new EventEmitter<any>();
 
@@ -20,15 +20,14 @@ export class FilterComponent implements OnInit {
 
   ngOnInit() {
     this.createFrom();
-    console.log(this.options.fromToDate)
   }
 
   createFrom() {
     this.filterForm = this.fb.group({
       pageSize: ['']
     });
-    for (let i = 0; i < this.options.length; i++) {
-      this.filterForm.addControl(this.options[i].option.title, new FormControl(''));
+    for (let i = 0; i < this.filterData.options.length; i++) {
+      this.filterForm.addControl(this.filterData.options[i].title, new FormControl(''));
 
     }
   }

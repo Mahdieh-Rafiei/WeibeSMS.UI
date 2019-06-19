@@ -14,6 +14,7 @@ import {GetContactInterface} from './models/get-contact.interface';
 import {DataGetContactInterface} from './models/data-get-contact.interface';
 import {errorAnimation} from '../../../../../shared/component/animation/error-animation';
 import {AddContactInterface} from './models/add-contact.interface';
+import {UtilityService} from '../../../../../shared/utility.service';
 
 
 @Component({
@@ -59,7 +60,8 @@ export class SingleAddContactComponent implements OnInit {
               private groupService: GroupService,
               private fb: FormBuilder,
               private router: Router,
-              private shs: SharedService) {
+              private shs: SharedService,
+              private utilityService: UtilityService) {
     if (!this.contactId) {
       this.getCountry();
     }
@@ -175,6 +177,7 @@ export class SingleAddContactComponent implements OnInit {
 
 
   submit() {
+
     if (!this.contactId) {
       this.countries.forEach(item => {
         if (this.singleContactForm.value.prefixNumberId === item.id) {
@@ -218,7 +221,10 @@ export class SingleAddContactComponent implements OnInit {
         delete payload['eventsUser'];
       } else {
         this.singleContactForm.value.eventsUser.forEach((item, index) => {
-          this.singleContactForm.value.eventsUser[index].value = this.singleContactForm.value.eventsUser[index].value.getTime() / 1000;
+          let isUnix = this.utilityService.onlyDigit(this.singleContactForm.value.eventsUser[index].value);
+          if (!isUnix){
+            this.singleContactForm.value.eventsUser[index].value =this.singleContactForm.value.eventsUser[index].value.getTime() / 1000;
+          }
         });
       }
 

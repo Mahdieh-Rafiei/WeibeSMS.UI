@@ -3,7 +3,8 @@
     <mat-form-field class="date-picker">
       <input matInput class="form-control "
              #pickerValue
-             (dateInput)="changeDate(0)" (dateChange)="changeDate(1)"
+             [max]="maxDate"
+             (dateInput)="changeDate(0, 'from')" (dateChange)="changeDate(1, 'from')"
              formControlName="dateFrom"
              [matDatepicker]="DateFrom"
              placeholder="From">
@@ -15,7 +16,8 @@
     <mat-form-field class="date-picker">
       <input matInput class="form-control "
              #pickerValue
-             (dateInput)="changeDate(0)" (dateChange)="changeDate(1)"
+             [min]="minDate"
+             (dateInput)="changeDate(0, 'to')" (dateChange)="changeDate(1, 'to')"
              formControlName="dateTo"
              [matDatepicker]="DateTO"
              placeholder="To">
