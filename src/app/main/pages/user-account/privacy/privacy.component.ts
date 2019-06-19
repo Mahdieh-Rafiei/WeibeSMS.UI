@@ -20,7 +20,6 @@ export class PrivacyComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.onClick('change-password');
   }
 
   onClick(link) {

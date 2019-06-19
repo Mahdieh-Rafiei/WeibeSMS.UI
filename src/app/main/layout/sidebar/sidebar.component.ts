@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {Router} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import {DataService} from "../../../shared/service/data.service";
 import {ConfigService} from "../../../shared/config.service";
 
@@ -11,8 +11,7 @@ import {ConfigService} from "../../../shared/config.service";
 export class SidebarComponent implements OnInit {
 
     showMenu: string;
-    subMenuIcon: boolean = false;
-
+    expandPanel: string;
     menuItems = [
         {
             title: 'Hi IPE',
@@ -22,7 +21,7 @@ export class SidebarComponent implements OnInit {
                 {
                     title: 'Privacy',
                     icon: 'circle',
-                    link: '/privacy'
+                    link: '/privacy/change-password'
                 }, {
                     title: 'Profile',
                     icon: 'circle',
@@ -112,10 +111,24 @@ export class SidebarComponent implements OnInit {
             subMenu: null
         }
     ];
+    activeRoute: string;
 
     constructor(private router: Router,
                 private ds: DataService,
+                private route: ActivatedRoute,
                 private configService: ConfigService) {
+        this.navigateRoute(window.location.pathname);
+        debugger;
+        this.menuItems.forEach(item => {
+                if (item.subMenu) {
+                    item.subMenu.forEach(res => {
+                        if (res.link === window.location.pathname) {
+                            this.addExpandClass(item.title)
+                        }
+                    })
+                }
+            }
+        )
     }
 
     ngOnInit() {
@@ -123,18 +136,19 @@ export class SidebarComponent implements OnInit {
     }
 
     // subMenu
-    addExpandClass(element: any) {
-        if (element === this.showMenu) {
-            this.subMenuIcon = false;
+    addExpandClass(title: any) {
+        this.expandPanel = title;
+        this.activeRoute = '';
+        if (title === this.showMenu) {
             this.showMenu = '0';
         } else {
-            this.showMenu = element;
-            this.subMenuIcon = true;
+            this.showMenu = title;
         }
     }
 
-    navigateRoute(link) {
-        this.subMenuIcon = false;
+    navigateRoute(link: string) {
+        this.expandPanel = '';
+        this.activeRoute = link;
         this.showMenu = '';
         this.router.navigate(['./' + link]);
     }

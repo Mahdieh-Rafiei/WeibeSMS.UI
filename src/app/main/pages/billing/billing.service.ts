@@ -29,14 +29,15 @@ export class BillingService {
   }
 
   getTransactionLogs(pageNumber: number, pageSize: number, description: string, fromDate: number,
-                     toDate: number, type: number): Observable<CreditTransactionResponseInterface> {
+                     toDate: number, type: number, phrase: string): Observable<CreditTransactionResponseInterface> {
 
-    const url = `CreditTransaction?pageSize=${pageSize}&pageNumber=${pageNumber}`;
+    const url = `CreditTransaction?pageSize=${pageSize}&pageNumber=${pageNumber}&searchValue=${phrase}`;
     return this.apiService.get(url, true);
   }
 
+
   getInvoices(pageNumber: number, pageSize: number,phrase: string, fromDate: number, toDate: number): Observable<InvoiceResponseInterface> {
-    const url = `Invoice?pageNumber=${pageNumber}&pageSize=${pageSize}&searchValue=${phrase}&`;
+    const url = `Invoice?pageNumber=${pageNumber}&pageSize=${pageSize}&searchValue=${phrase}`;
     return this.apiService.get(url, true);
   }
 
