@@ -46,4 +46,18 @@ export class PaymentComponent implements OnInit {
     this.getPaymentsModel.pageNumber = e;
     this.getPayments();
   }
+
+  export(e) {
+    debugger;
+    const ids: number[] = [];
+    if (e.target.value == 1) {
+      this.payments.forEach(p => {
+        ids.push(p.id);
+      });
+    }
+    this.billingService.getPaymentLogsExcel(ids)
+      .subscribe(res => {
+        window.open(res.data,'_blank');
+      });
+  }
 }

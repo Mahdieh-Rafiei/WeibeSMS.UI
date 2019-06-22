@@ -43,4 +43,9 @@ export class GroupService {
     const url = `ContactGroup/${id}`;
     return this.apiService.delete<RemoveGroupNameResponseInterface>(url, null, true);
   }
+
+  getContactsExcel(groupId:string,ids: number[]): Observable<any> {
+    const url = `ContactGroup/${groupId}/excel`;
+    return this.apiService.post(url, ids, true);
+  }
 }

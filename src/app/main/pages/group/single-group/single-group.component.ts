@@ -61,4 +61,19 @@ export class SingleGroupComponent implements OnInit {
         this.phrase = event;
         this.getGroup();
     }
+
+  export(e) {
+    debugger;
+    const ids: number[] = [];
+    if (e.target.value == 1) {
+      this.contacts.forEach(t => {
+        ids.push(t.id);
+      });
+    }
+    this.groupService.getContactsExcel(this.groupId,ids)
+      .subscribe(res => {
+        debugger;
+        window.open(res.data,'_blank');
+      });
+  }
 }

@@ -20,10 +20,10 @@
       <!--</button>-->
       <!--TODO: DELET SELECT ALL-->
 
-      <select class="light-blue-btn mr-2">
+      <select (change)="export($event)" class="light-blue-btn mr-3">
         <option> Export</option>
-        <option> Test 1</option>
-        <option> Test 1</option>
+        <option [value]="1" >Paged data</option>
+        <option [value]="2">All records</option>
       </select>
       <button class="light-blue-btn">
         <i class="fa fa-filter"></i> Filter
