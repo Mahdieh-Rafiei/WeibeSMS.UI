@@ -32,6 +32,8 @@ export class GroupListComponent implements OnInit {
   phrase = '';
 
   groupName: string = '';
+  filterData = {
+  };
 
   constructor(private groupService: GroupService,
               private router: Router,
@@ -63,7 +65,6 @@ export class GroupListComponent implements OnInit {
       index
     });
   }
-
 
   openDeleteDialog(width, height, panelClass, data): void {
     const dialogRef = this.dialog.open(DialogComponent, {
@@ -119,14 +120,13 @@ export class GroupListComponent implements OnInit {
   }
 
   getData(event) {
-    debugger;
     this.phrase = event;
     this.getAllGroupList();
   }
 
-  // sortData(type) {
-  //     this.sortOption = type;
-  //     this.getAllGroupList()
-  // }
+  getFilterData(event) {
+    this.pageSize = event.pageSize ? event.pageSize : 10;
+     this.getAllGroupList();
+  }
 }
 

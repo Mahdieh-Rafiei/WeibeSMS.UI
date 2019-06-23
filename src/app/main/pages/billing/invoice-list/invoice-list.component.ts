@@ -2,50 +2,61 @@ import {Component, OnInit} from '@angular/core';
 import {BillingService} from '../billing.service';
 import {InvoiceInterface} from './models/invoice.interface';
 import {GetInvocesModelInterface} from './models/get-invoces-model.interface';
+import {FilterDataInterface} from '../../../../shared/component/filter/filter-data.interface';
 
 @Component({
-    selector: 'app-invoice-list',
-    templateUrl: './invoice-list.component.html',
-    styleUrls: ['./invoice-list.component.scss']
+  selector: 'app-invoice-list',
+  templateUrl: './invoice-list.component.html',
+  styleUrls: ['./invoice-list.component.scss']
 })
 export class InvoiceListComponent implements OnInit {
-    phrase = '';
-    getInvoiceModel: GetInvocesModelInterface = {
-        fromDate: null,
-        pageNumber: 1,
-        pageSize: 10,
-        toDate: null
-    };
+  phrase = '';
 
-    invoices: InvoiceInterface[];
-    totalItems: number;
+  pageNumber=1;
+  invoices: InvoiceInterface[];
+  totalItems: number;
 
-    constructor(private billingService: BillingService) {
-    }
+  filterData : FilterDataInterface  = {
+    fromToDate: true,
+    fromDate:0,
+    pageSize:10,
+    toDate:2147483647
+  };
 
-    ngOnInit() {
-        this.getInvoices();
-    }
+  constructor(private billingService: BillingService) {
+  }
 
-    getInvoices() {
-        this.billingService.getInvoices(this.getInvoiceModel.pageNumber, this.getInvoiceModel.pageSize,
-            this.phrase,
-            this.getInvoiceModel.fromDate,
-            this.getInvoiceModel.toDate
-            )
-            .subscribe(res => {
-                this.invoices = res.data.items;
-                this.totalItems = res.data.totalItemsCount;
-            });
-    }
+  ngOnInit() {
+    this.getInvoices();
+  }
 
-    doPaging(e) {
-        this.getInvoiceModel.pageNumber = e;
-        this.getInvoices();
-    }
+  getInvoices() {
+    this.billingService.getInvoices(this.pageNumber, this.filterData.pageSize,
+      this.phrase,
+      this.filterData.fromDate,
+      this.filterData.toDate
+    )
+      .subscribe(res => {
+        this.invoices = res.data.items;
+        this.totalItems = res.data.totalItemsCount;
+      });
+  }
 
-    getData(event) {
-        this.phrase = event;
-        this.getInvoices();
-    }
+  doPaging(e) {
+    this.pageNumber = e;
+    this.getInvoices();
+  }
+
+  getData(event) {
+    this.phrase = event;
+    this.getInvoices();
+  }
+
+  getFilterData(event){
+    debugger;
+    // this.getInvoiceModel.pageSize = +event.pageSize ;
+    // this.getInvoiceModel.fromDate = event.dateFrom ? event.dateFrom : 0;
+    // this.getInvoiceModel.toDate = event.dateTo ? event.dateTo : 2147483647;
+    this.getInvoices();
+  }
 }

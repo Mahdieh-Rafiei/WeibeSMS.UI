@@ -7,7 +7,7 @@
     <!--operation-->
     <div class="row">
         <div class="col-12 col-md-6 operation-section form-group">
-            <!--<app-filter [filterData]="filterData" (filterValue)="getFilterData($event)"></app-filter>-->
+            <app-filter [filterData]="filterData" (filterValue)="getFilterData($event)"></app-filter>
         </div>
         <div class="col-12 col-md-3 offset-md-3 operation-section form-group">
             <app-search (searchText)="getData($event)"></app-search>
@@ -27,7 +27,7 @@
             </tr>
             </thead>
             <tbody *ngFor="let inv of invoices | paginate :
-            {itemsPerPage:10, currentPage:getInvoiceModel.pageNumber,totalItems:totalItems},index as i">
+            {itemsPerPage:10, currentPage:pageNumber,totalItems:totalItems},index as i">
             <tr>
                 <td class="text-left">#{{i + 1}}</td>
                 <td class="text-left">€{{inv.amount}}</td>
