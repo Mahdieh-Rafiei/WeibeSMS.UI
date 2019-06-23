@@ -63,15 +63,8 @@ export class ContactService {
     return this.apiService.post<ContactGroupMoveCopyInterface>(url, payload, true);
   }
 
-  modifyContact(contactId: number, payload): Observable<any> {
-    const url = `Contact/${contactId}`;
-    return this.apiService.put<ModifyContactInterface>(url, payload, true);
-  }
-
   removeContact(contactId: number): Observable<RemoveContactInterface> {
     const url = `Contact/${contactId}`;
     return this.apiService.delete(url, null, true);
   }
-
-
 }

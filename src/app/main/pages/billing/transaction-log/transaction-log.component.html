@@ -13,9 +13,7 @@
                 <option [value]="1" >Paged data</option>
                 <option [value]="2">All records</option>
             </select>
-            <button class="light-blue-btn">
-                <i class="fa fa-filter"></i> Filter
-            </button>
+          <!--<app-filter [filterData]="filterData" (filterValue)="getFilterData($event)"></app-filter>-->
         </div>
         <div class="col-12 col-md-3 offset-md-3 operation-section form-group">
             <app-search (searchText)="getData($event)"></app-search>
