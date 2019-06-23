@@ -1,36 +1,36 @@
-<div>
+<form [formGroup]="dummy">
   <button type="button" class="dropdown-toggle light-blue-btn" data-toggle="collapse" data-target="#filter">
     <i class="fa fa-filter"></i> Filter
   </button>
   <div id="filter" class="collapse">
-    <form class="filtering" [formGroup]="filterForm" (ngSubmit)="submit()">
+    <div class="filtering">
       <ul class="filtering-menu">
         <li *ngFor="let option of filterData.options">
-          <p> Lorem ipsum dolor sit amet.</p>
-          <select class="form-control" [formControlName]="option.title">
+          <p> Ticket statuses: </p>
+          <select class="form-control">
             <option hidden value="">Select</option>
             <option [value]="null">All {{option.title}}</option>
             <option [value]="state.value" *ngFor="let state of option.data">{{state.title}}</option>
           </select>
         </li>
         <li *ngIf="filterData.fromToDate">
-          <p> Lorem ipsum dolor sit amet.</p>
+          <p> Filter on date values: </p>
           <app-date-from-to (date)="getDate($event)"></app-date-from-to>
         </li>
         <li>
-          <p> Lorem ipsum dolor sit amet.</p>
-          <select class="form-control" formControlName="pageSize">
+          <p> Item display per page: </p>
+          <select (change)="setPageSize($event)" class="form-control">
             <option hidden value="">Select</option>
-            <option [value]="page" *ngFor="let page of pageSize">{{page}}</option>
+            <option [value]="page" *ngFor="let page of pageSizes">{{page}}</option>
           </select>
         </li>
         <li class="text-center">
-          <button type="submit" data-toggle="collapse" data-target="#filter" class="green-btn">Apply</button>
+          <button (click)="submit()" data-toggle="collapse" data-target="#filter" class="green-btn">Apply</button>
           <button type="button" class="gray-btn" data-toggle="collapse" data-target="#filter">
             Cancel
           </button>
         </li>
       </ul>
-    </form>
+    </div>
   </div>
-</div>
+</form>

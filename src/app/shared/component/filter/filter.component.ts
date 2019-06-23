@@ -1,5 +1,6 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {FormBuilder, FormControl, FormGroup} from '@angular/forms';
+import {FilterDataInterface} from './filter-data.interface';
 
 @Component({
   selector: 'app-filter',
@@ -8,40 +9,34 @@ import {FormBuilder, FormControl, FormGroup} from '@angular/forms';
 })
 export class FilterComponent implements OnInit {
 
-  pageSize = [10, 20, 50];
-  filterForm: FormGroup;
+  pageSizes = [10, 20, 50];
 
-  @Input() filterData;
+  dummy:FormGroup = new FormGroup({});
 
+  @Input() filterData: FilterDataInterface;
   @Output() filterValue: EventEmitter<any> = new EventEmitter<any>();
 
-  constructor(private fb: FormBuilder) {
+  constructor() {
   }
 
   ngOnInit() {
-    this.createFrom();
-  }
-
-  createFrom() {
-    this.filterForm = this.fb.group({
-      pageSize: ['']
-    });
-    for (let i = 0; i < this.filterData.options.length; i++) {
-      this.filterForm.addControl(this.filterData.options[i].title, new FormControl(''));
-
-    }
   }
 
   getDate(event) {
+    debugger;
     if (event.dateFrom) {
-      this.filterForm.addControl('dateFrom', new FormControl(event.dateFrom.getTime() / 1000));
+      this.filterData.fromDate = event.dateFrom.getTime() / 1000;
     }
     if (event.dateTo) {
-      this.filterForm.addControl('dateTo', new FormControl(event.dateTo.getTime() / 1000));
+      this.filterData.toDate = event.dateTo.getTime() / 1000;
     }
   }
 
   submit() {
-    this.filterValue.emit(this.filterForm.value);
+    this.filterValue.emit(true);
+  }
+
+  setPageSize(e){
+    this.filterData.pageSize = e.target.value;
   }
 }

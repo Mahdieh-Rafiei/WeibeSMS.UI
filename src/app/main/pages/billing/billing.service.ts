@@ -38,14 +38,14 @@ export class BillingService {
 
 
   getInvoices(pageNumber: number, pageSize: number, phrase: string, fromDate: number, toDate: number): Observable<InvoiceResponseInterface> {
-    const url = `Invoice?pageNumber=${pageNumber}&pageSize=${pageSize}&searchValue=${phrase}`;
+    const url = `Invoice?pageNumber=${pageNumber}&pageSize=${pageSize}&searchValue=${phrase}&fromDate=${fromDate}&toDate=${toDate}`;
     return this.apiService.get(url, true);
   }
 
   getPaymentLogs(pageNumber: number, pageSize, description: string, fromDate: number,
-                 toDate: number, paymentType: number, isPaid: boolean, phrase: string) :Observable<PaymentResponseInterface> {
+                 toDate: number, paymentType: number, isPaid: boolean, phrase: string): Observable<PaymentResponseInterface> {
     const url = `Payment?pageNumber=${pageNumber}&pageSize=${pageSize}&searchValue=${phrase}`;
-    return this.apiService.get(url,true);
+    return this.apiService.get(url, true);
   }
 
   getTransactionLogsExcel(ids: number[]): Observable<CreditTransactionExcelResponseInterface> {
