@@ -8,13 +8,12 @@ import {FormArray, FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {CountryInterface} from '../../../../../shared/models/country.interface';
 import {SharedService} from '../../../../../shared/service/shared.service';
 import {DataCountryInterface} from '../../../../../shared/models/data-country.interface';
-import {DataUserEventInterface} from '../../../user-event/models/data-user-event.interface';
-
 import {GetContactInterface} from './models/get-contact.interface';
 import {DataGetContactInterface} from './models/data-get-contact.interface';
 import {errorAnimation} from '../../../../../shared/component/animation/error-animation';
 import {AddContactInterface} from './models/add-contact.interface';
 import {UtilityService} from '../../../../../shared/utility.service';
+import {UserEventInterface} from '../../../user-event/models/user-event.interface';
 
 
 @Component({
@@ -30,7 +29,7 @@ import {UtilityService} from '../../../../../shared/utility.service';
 export class SingleAddContactComponent implements OnInit {
   singleContactForm: FormGroup;
   groupId: number;
-  userEvents: DataUserEventInterface[] = [];
+  userEvents: UserEventInterface[] = [];
 
   genders = [{title: 'Unknown', value: 1},
     {title: 'Female', value: 2},

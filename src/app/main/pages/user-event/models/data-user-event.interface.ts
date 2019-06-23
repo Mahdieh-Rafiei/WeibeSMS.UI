@@ -1,4 +1,9 @@
+import {UserEventInterface} from './user-event.interface';
+
 export interface DataUserEventInterface {
-  id: number;
-  name: string;
+  items: UserEventInterface[];
+  pageNumber: number;
+  pageSize: number;
+  totalItemsCount: number;
+  totalPagesCount: number;
 }

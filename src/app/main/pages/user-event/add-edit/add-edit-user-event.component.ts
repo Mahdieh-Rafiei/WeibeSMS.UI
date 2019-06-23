@@ -5,8 +5,8 @@ import {UserEventService} from '../user-event.service';
 import {AddUserEventResponseInterface} from './models/add-user-event-response.interface';
 import {EditUserEventResponseInterface} from './models/edit-user-event-response.interface';
 import {EditUserEventInterface} from './models/edit-user-event.interface';
-import {DataUserEventInterface} from '../models/data-user-event.interface';
 import {errorAnimation} from "../../../../shared/component/animation/error-animation";
+import {UserEventInterface} from '../models/user-event.interface';
 
 @Component({
     selector: 'app-dialog',
@@ -17,7 +17,7 @@ import {errorAnimation} from "../../../../shared/component/animation/error-anima
     ],
 })
 export class AddEditUserEventComponent implements OnInit {
-    userEventData: DataUserEventInterface;
+    userEventData: UserEventInterface;
     userEventForm: FormGroup;
     index: number;
 
