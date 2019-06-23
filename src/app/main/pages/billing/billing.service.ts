@@ -43,10 +43,9 @@ export class BillingService {
   }
 
   getPaymentLogs(pageNumber: number, pageSize, description: string, fromDate: number,
-                 toDate: number, paymentType: number, isPaid: boolean): Observable<PaymentResponseInterface> {
-
-    const url = `Payment?pageNumber=${pageNumber}&pageSize=${pageSize}`;
-    return this.apiService.get(url, true);
+                 toDate: number, paymentType: number, isPaid: boolean, phrase: string) :Observable<PaymentResponseInterface> {
+    const url = `Payment?pageNumber=${pageNumber}&pageSize=${pageSize}&searchValue=${phrase}`;
+    return this.apiService.get(url,true);
   }
 
   getTransactionLogsExcel(ids: number[]): Observable<CreditTransactionExcelResponseInterface> {
@@ -58,5 +57,4 @@ export class BillingService {
     const url = `Payment/excel`;
     return this.apiService.post(url, ids, true);
   }
-
 }

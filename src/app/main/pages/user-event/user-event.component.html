@@ -16,10 +16,8 @@
         </div>
 
         <div class="row">
-            <div class="col-md-6 operation-section form-group">
-                <button class="light-blue-btn">
-                    <i class="fa fa-filter"></i> Filter
-                </button>
+            <div class="col-12 col-md-6 operation-section form-group">
+                <app-filter [filterData]="filterData" (filterValue)="getFilterData($event)"></app-filter>
             </div>
             <!--search-->
             <div class="col-md-3 offset-md-3 operation-section form-group text-right">
@@ -42,7 +40,9 @@
                     <td class="text-left">{{userEvent.name}}</td>
                     <td class="td-single text-right actions-container">
                         <div class="actions text-right">
-                            <a><i (click)="removeUserEvent(i, userEvent.id)" class="fa fa-trash light-red-btn"></i></a>
+                            <!--<a><i (click)="removeUserEvent(i, userEvent.id)" class="fa fa-trash light-red-btn"></i></a>-->
+                            <a><i (click)="removeUserEvent(i, userEvent)" class="fa fa-trash light-red-btn"></i></a>
+
                             <a (click)="addEditUserEvent(userEvent, i)"> <i
                                     class="fa fa-pencil light-green-btn"></i></a>
                         </div>

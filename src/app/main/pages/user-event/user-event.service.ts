@@ -31,8 +31,12 @@ export class UserEventService {
     return this.apiService.put(url, payload, true);
   }
 
-  removeUserEvent(id: number, payload): Observable<RemoveUserEventResponseInterface> {
-    const url = `EventUser/${id}`;
-    return this.apiService.delete<RemoveUserEventInterface>(url, payload, true);
-  }
+    // removeUserEvent(id: number, payload): Observable<RemoveUserEventResponseInterface> {
+    //   const url = `EventUser/${id}`;
+    //   return this.apiService.delete<RemoveUserEventInterface>(url, payload, true);
+    // }
+    removeUserEvent(id: number, payload): Observable<RemoveUserEventResponseInterface> {
+        const url = `EventUser/${id}`;
+        return this.apiService.delete<RemoveUserEventInterface>(url, payload, true);
+    }
 }

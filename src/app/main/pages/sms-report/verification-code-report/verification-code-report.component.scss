@@ -25,6 +25,9 @@ td i {
   border-radius: 50%;
 }
 
+.export-filter {
+  display: inline-flex;
+}
 @media (max-width: 991px) and (min-width: 768px) {
   .verification-code {
     margin-left: 0;

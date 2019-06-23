@@ -18,7 +18,8 @@ export class PaymentComponent implements OnInit {
     pageNumber: 1,
     pageSize: 10,
     toDate: null,
-    type: null
+    type: null,
+    phrase: ''
   };
 
   payments: PaymentInterface[];
@@ -35,7 +36,8 @@ export class PaymentComponent implements OnInit {
       this.getPaymentsModel.pageSize, this.getPaymentsModel.description,
       this.getPaymentsModel.fromDate, this.getPaymentsModel.toDate,
       this.getPaymentsModel.type,
-      this.getPaymentsModel.isPaid)
+      this.getPaymentsModel.isPaid,
+      this.getPaymentsModel.phrase)
       .subscribe(res => {
         this.payments = res.data.items;
         this.totalItems = res.data.totalItemsCount;
@@ -57,7 +59,12 @@ export class PaymentComponent implements OnInit {
     }
     this.billingService.getPaymentLogsExcel(ids)
       .subscribe(res => {
-        window.open(res.data,'_blank');
+        window.open(res.data, '_blank');
       });
+  }
+
+  getData(event) {
+    this.getPaymentsModel.phrase = event;
+    this.getPayments();
   }
 }

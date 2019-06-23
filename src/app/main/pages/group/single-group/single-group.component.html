@@ -9,6 +9,7 @@
   </div>
 </div>
 <div class="div-section">
+<<<<<<< HEAD
   <!--operation-->
   <div class="row operation">
     <div class="col-md-6 operation-section form-group">
@@ -31,6 +32,29 @@
     </div>
     <div class="col-md-3 offset-md-3 operation-section form-group text-right">
       <app-search (searchText)="getData($event)"></app-search>
+=======
+    <!--operation-->
+    <div class="row operation">
+        <div class="col-md-6 operation-section form-group export-filter">
+            <!--<span class="input-check mr-2">-->
+                <!--<mat-checkbox></mat-checkbox>-->
+            <!--</span>-->
+            <!--<button class="trash mr-2">-->
+                <!--<i class="fa fa-trash"></i>-->
+            <!--</button>-->
+            <!--TODO: DELET SELECT ALL-->
+
+            <select class="light-blue-btn mr-2">
+                <option> Export</option>
+                <option> Test 1</option>
+                <option> Test 1</option>
+            </select>
+            <app-filter [filterData]="filterData" (filterValue)="getFilterData($event)"></app-filter>
+        </div>
+        <div class="col-md-3 offset-md-3 operation-section form-group text-right">
+            <app-search (searchText)="getData($event)"></app-search>
+        </div>
+>>>>>>> 654be7c9ac7d03a9e49f80197af4103c714bbb84
     </div>
   </div>
   <!--table-->
@@ -50,6 +74,7 @@
       <tr *ngFor="let contact of contacts| paginate : {
                                 itemsPerPage : 10, currentPage : pageNumber, totalItems : totalItemsCount
                                 },index as i">
+<<<<<<< HEAD
         <td class="text-left">
           <div>
             {{i + 1}}
@@ -91,6 +116,51 @@
                                previousLabel=""
                                nextLabel="">
           </pagination-controls>
+=======
+              <td class="text-left">
+                <div>
+                  {{i + 1}}
+                </div>
+              </td>
+              <td class=" text-left">
+                    <div>{{contact.mobile}}</div>
+                </td>
+                <td class="text-left">
+                    <div class="table-head">
+                        <span>{{contact.firstName}}</span>
+                    </div>
+                </td>
+                <td class=" text-left">
+                    <div>{{contact.lastName}}</div>
+                </td>
+                <td class=" text-left">
+                  <div>{{contact.email}}</div>
+                </td>
+                <td class="td-single text-left actions-container">
+                    <div class="actions text-right">
+                        <a (click)="removeFromGroup(i, contact)"><i class="fa fa-trash light-red-btn"></i></a>
+                        <a [routerLink]="['contact',contact.id]"><i class="fa fa-pencil light-green-btn"></i></a>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+        <!--pagination-->
+        <div class="col-12 pagination-div">
+            <div class="row pt-1 pb-1">
+                <div class="col-12 col-md-6 text-left fo-3 black-text font-weight-bold">Displaying 1-10 of
+                    {{totalItems}} records
+                </div>
+                <div class="col-12 col-md-6 text-right">
+                    <pagination-controls (pageChange)="doPaging($event)"
+                                         maxSize="5"
+                                         responsive="true"
+                                         previousLabel=""
+                                         nextLabel="">
+                    </pagination-controls>
+                </div>
+            </div>
+>>>>>>> 654be7c9ac7d03a9e49f80197af4103c714bbb84
         </div>
       </div>
     </div>
