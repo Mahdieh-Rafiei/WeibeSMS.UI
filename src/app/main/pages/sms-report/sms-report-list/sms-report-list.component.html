@@ -8,15 +8,13 @@
 
     <!--operation-->
     <div class="row">
-        <div class="col-md-6 operation-section form-group">
+        <div class="col-md-6 operation-section form-group export-filter">
             <select class="light-blue-btn">
                 <option> Export</option>
                 <option> Test 1</option>
                 <option> Test 1</option>
             </select>
-            <button class="light-blue-btn">
-                <i class="fa fa-filter"></i> Filter
-            </button>
+            <app-filter [filterData]="filterData" (filterValue)="getFilterData($event)"></app-filter>
         </div>
         <div class="col-md-3 offset-md-3 operation-section form-group text-right">
             <app-search (searchText)="getData($event)"></app-search>

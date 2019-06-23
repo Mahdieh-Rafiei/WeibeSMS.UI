@@ -11,7 +11,7 @@
 <div class="div-section">
     <!--operation-->
     <div class="row operation">
-        <div class="col-md-6 operation-section form-group">
+        <div class="col-md-6 operation-section form-group export-filter">
             <!--<span class="input-check mr-2">-->
                 <!--<mat-checkbox></mat-checkbox>-->
             <!--</span>-->
@@ -25,9 +25,7 @@
                 <option> Test 1</option>
                 <option> Test 1</option>
             </select>
-            <button class="light-blue-btn">
-                <i class="fa fa-filter"></i> Filter
-            </button>
+            <app-filter [filterData]="filterData" (filterValue)="getFilterData($event)"></app-filter>
         </div>
         <div class="col-md-3 offset-md-3 operation-section form-group text-right">
             <app-search (searchText)="getData($event)"></app-search>
@@ -71,7 +69,7 @@
                 </td>
                 <td class="td-single text-left actions-container">
                     <div class="actions text-right">
-                        <a (click)="removeFromGroup(contact, i)"><i class="fa fa-trash light-red-btn"></i></a>
+                        <a (click)="removeFromGroup(i, contact)"><i class="fa fa-trash light-red-btn"></i></a>
                         <a [routerLink]="['contact',contact.id]"><i class="fa fa-pencil light-green-btn"></i></a>
                     </div>
                 </td>

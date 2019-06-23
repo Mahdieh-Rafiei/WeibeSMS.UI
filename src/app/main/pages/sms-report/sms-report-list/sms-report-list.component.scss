@@ -1,10 +1,16 @@
-i.fa.fa-sort{
-    margin-right: 5px;
+i.fa.fa-sort {
+  margin-right: 5px;
 }
-.green-btn, .blue-btn{
-    padding: 5px 15px !important;
+
+.green-btn, .blue-btn {
+  padding: 5px 15px !important;
 }
-select.light-blue-btn{
-    margin-right: 10px;
-    cursor: pointer;
+
+select.light-blue-btn {
+  margin-right: 10px;
+  cursor: pointer;
+}
+
+.export-filter {
+  display: inline-flex;
 }

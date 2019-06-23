@@ -4,6 +4,12 @@ import {ActivatedRoute, Router} from '@angular/router';
 import {ContactService} from '../add-contact/single-add-contact/contact.service';
 import {GroupResponseInterface} from '../models/group-response.interface';
 import {RemoveContactFormGroupInterface} from '../models/remove-contact-form-group.interface';
+import {GroupListInterface} from "../group-list/models/group-list.interface";
+import {RemoveGroupNameResponseInterface} from "../group-list/models/remove-group-name-response.interface";
+import {DialogComponent} from "../../../../shared/component/dialog/dialog.component";
+import {MatDialog} from "@angular/material";
+import {NotificationService} from "../../../../shared/notification.service";
+import {DataGroupInterface} from "../models/data-group.interface";
 
 @Component({
     selector: 'app-sub-group',
@@ -22,7 +28,10 @@ export class SingleGroupComponent implements OnInit {
 
     constructor(private groupService: GroupService,
                 private activatedRoute: ActivatedRoute,
-                private contactService: ContactService) {
+                private contactService: ContactService,
+                private dialog: MatDialog,
+                private ns: NotificationService,
+                private notificationService: NotificationService) {
     }
 
     ngOnInit() {
@@ -39,11 +48,36 @@ export class SingleGroupComponent implements OnInit {
             });
     }
 
-    removeFromGroup(contact, index) {
-        this.contactService.removeContactFromGroup(this.group.id, contact.id)
-            .subscribe((res: RemoveContactFormGroupInterface) => {
-                console.log(res);
-                this.contacts.splice(index, 1);
+    removeFromGroup(index, contact) {
+        this.openDeleteDialog('480px', 'auto', '', {
+            modalType: 'deleteContact',
+            modalHeader: 'Delete contact',
+            modalText: 'are you sure to remove this contact?',
+            id: contact.id,
+            index
+        });
+    }
+
+    openDeleteDialog(width, height, panelClass, data): void {
+        const dialogRef = this.dialog.open(DialogComponent, {
+            width,
+            height,
+            panelClass,
+            data
+        });
+
+        dialogRef.afterClosed()
+            .subscribe(result => {
+                if (result && result.remove) {
+                    if (result.remove.modalType === 'deleteContact') {
+                        // this.groupService.removeContactFromGroup(this.groupId,)
+                        this.groupService.removeContactFromGroup(this.groupId,result.remove.data.id)
+                            .subscribe((res: RemoveContactFormGroupInterface) => {
+                                this.contacts.splice(result.remove.data.index, 1);
+                                this.notificationService.success('Contact removed successfully', '');
+                            });
+                    }
+                }
             });
     }
 

@@ -73,8 +73,5 @@ export class ContactService {
     return this.apiService.delete(url, null, true);
   }
 
-  removeContactFromGroup(groupId: string, contactId: string): Observable<RemoveContactFormGroupInterface> {
-    const url = `Contact/${contactId}/group/${groupId}`;
-    return this.apiService.delete(url, null, true);
-  }
+
 }

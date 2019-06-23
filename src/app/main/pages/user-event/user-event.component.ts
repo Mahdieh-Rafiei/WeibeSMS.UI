@@ -7,6 +7,8 @@ import {MatDialog} from '@angular/material';
 import {NotificationService} from '../../../shared/notification.service';
 import {AddEditUserEventComponent} from './add-edit/add-edit-user-event.component';
 import {DataUserEventInterface} from './models/data-user-event.interface';
+import {RemoveGroupNameResponseInterface} from "../group/group-list/models/remove-group-name-response.interface";
+import {DialogComponent} from "../../../shared/component/dialog/dialog.component";
 
 @Component({
     selector: 'app-user-event',
@@ -22,7 +24,8 @@ export class UserEventComponent implements OnInit {
 
     constructor(private userEventService: UserEventService,
                 private dialog: MatDialog,
-                private ns: NotificationService) {
+                private ns: NotificationService,
+                private notificationService: NotificationService) {
     }
 
     ngOnInit() {
@@ -37,13 +40,46 @@ export class UserEventComponent implements OnInit {
             });
     }
 
-    removeUserEvent(index: number, id: number) {
-        const payload: RemoveUserEventInterface = {
-            DeleteAnyway: true
-        };
-        this.userEventService.removeUserEvent(id, payload)
-            .subscribe((res: RemoveUserEventResponseInterface) => {
-                this.userEvents.splice(index, 1);
+    // removeUserEvent(index: number, id: number) {
+    //     const payload: RemoveUserEventInterface = {
+    //         DeleteAnyway: true
+    // TODO
+    //     };
+    //     this.userEventService.removeUserEvent(id, payload)
+    //         .subscribe((res: RemoveUserEventResponseInterface) => {
+    //             this.userEvents.splice(index, 1);
+    //         });
+    // }
+    removeUserEvent(index: number, userEvent) {
+        this.openDeleteDialog('480px', 'auto', '', {
+            modalType: 'deleteUserEvent',
+            modalHeader: 'Delete userEvent',
+            modalText: 'are you sure to remove this userEvent?',
+            id: userEvent.id,
+            index
+        });
+    }
+
+    openDeleteDialog(width, height, panelClass, data): void {
+        const dialogRef = this.dialog.open(DialogComponent, {
+            width,
+            height,
+            panelClass,
+            data
+        });
+
+        dialogRef.afterClosed()
+            .subscribe(result => {
+                if (result && result.remove) {
+                    if (result.remove.modalType === 'deleteUserEvent') {
+                        const payload:RemoveUserEventInterface= {DeleteAnyway: true };
+                        this.userEventService.removeUserEvent(result.remove.data.id, payload)
+                            .subscribe((res: RemoveUserEventResponseInterface) => {
+                                this.userEvents.splice(result.remove.data.index, 1);
+                                this.notificationService.success('userEvent removed successfully', '');
+                            });
+                    }
+                }
             });
     }
 
