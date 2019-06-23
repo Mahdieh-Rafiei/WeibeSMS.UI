@@ -53,10 +53,6 @@ export class InvoiceListComponent implements OnInit {
   }
 
   getFilterData(event){
-    debugger;
-    // this.getInvoiceModel.pageSize = +event.pageSize ;
-    // this.getInvoiceModel.fromDate = event.dateFrom ? event.dateFrom : 0;
-    // this.getInvoiceModel.toDate = event.dateTo ? event.dateTo : 2147483647;
     this.getInvoices();
   }
 }
