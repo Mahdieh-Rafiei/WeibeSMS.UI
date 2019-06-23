@@ -28,7 +28,7 @@
             <div class="col-md-8 form-group">
                 <p class="date-author">
                     <span *ngIf="ticket">{{ticket.authorName}}</span>
-                    <span *ngIf="ticket">{{ticket.date}}</span>
+                    <span *ngIf="ticket">{{ticket.date | dateTime:'YYYY-MM-DD hh:mm:ss'}}</span>
                 </p>
                 <div class="customer-ticket">
                     <p *ngIf="ticket" [innerHTML]="ticket.message"></p>

@@ -6,4 +6,5 @@ export interface GetPaymentsModel {
   toDate:number;
   type:number;
   isPaid:boolean;
+  phrase:string;
 }

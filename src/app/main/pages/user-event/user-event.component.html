@@ -34,7 +34,8 @@
                 </tr>
                 </thead>
                 <tbody>
-                <tr *ngFor="let userEvent of userEvents; let i= index">
+                <tr *ngFor="let userEvent of userEvents | paginate:
+                {itemsPerPage:10, currentPage:getModel.pageNumber,totalItems:totalItems}; let i= index">
                     <td class="text-left">#{{i+1}}</td>
                     <td class="text-left">{{userEvent.name}}</td>
                     <td class="td-single text-right actions-container">

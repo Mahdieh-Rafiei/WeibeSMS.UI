@@ -3,4 +3,6 @@ export interface DashboardInfoInterface {
   emailConfirmed:boolean;
   mobile:number;
   prefixNumberId:number;
+  imageUrl:string;
+  credit:number;
 }

@@ -1,4 +1,4 @@
-import {EventEmitter, Injectable, Output} from '@angular/core';
+import {Injectable} from '@angular/core';
 import {Observable} from 'rxjs';
 import {ApiService} from '../api.service';
 import {CityInterface} from '../models/city.interface';
@@ -13,10 +13,7 @@ import {DashboardInfoInterface} from '../../auth/login/models/dashboard-info.int
 export class SharedService {
 
   data;
-
-  private _cacheObject: CacheObject;
-
-  // @Output() cacheItemsFilled: EventEmitter<CacheObject> = new EventEmitter<CacheObject>();
+  _cacheObject: CacheObject;
 
   constructor(private as: ApiService) {
     this.fillCacheData();

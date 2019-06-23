@@ -66,4 +66,8 @@ export class VerifyNumberComponent implements OnInit {
     }
   }
 
+  rollbackToFirstStep() {
+    this.router.navigateByUrl('/profile/change-number');
+  }
+
 }

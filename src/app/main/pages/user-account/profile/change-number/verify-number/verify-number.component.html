@@ -15,9 +15,14 @@
           </div>
         </div>
         <app-countdown (countDownEmit)="getCountDown($event)"></app-countdown>
-
       </form>
-      <button [routerLink]="['/profile/change-number']">Change Number</button>
+
+      <div>
+        <p class="wrong welcome-text">your number : <span
+          class="mobile-num">{{shs.data.mobile}}</span>
+          <span
+            (click)="rollbackToFirstStep()"> wrong ? </span></p>
+      </div>
     </div>
   </div>
 </div>

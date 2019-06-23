@@ -1,4 +1,4 @@
-import {ItemsGroupInterface} from "./ItemsGroupInterface";
+import {ItemsGroupInterface} from './ItemsGroupInterface';
 
 export interface ContactsGroupInterface {
   items: ItemsGroupInterface[];

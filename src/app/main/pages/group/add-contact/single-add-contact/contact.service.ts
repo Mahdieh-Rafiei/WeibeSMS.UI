@@ -23,8 +23,8 @@ export class ContactService {
   constructor(private apiService: ApiService, private http: HttpClient, private configService: ConfigService) {
   }
 
-  getAllContacts(groupId: number, pageNumber: number, pageSize: number): Observable<GetAllContactGroupInterface> {
-    const url = `Contact/ContactGroup/${groupId}?pageNumber=${pageNumber}&pageSize=${pageSize}`;
+  getAllContacts(groupId: number, pageNumber: number, pageSize: number,searchValue:string): Observable<GetAllContactGroupInterface> {
+    const url = `Contact/ContactGroup/${groupId}?pageNumber=${pageNumber}&pageSize=${pageSize}&searchValue=${searchValue}`;
     return this.apiService.get(url, true);
   }
 
@@ -34,7 +34,7 @@ export class ContactService {
   }
 
   addContact(payload): Observable<AddContactResponseInterface> {
-    const url = `lijlk`;
+    const url = `Contact`;
     return this.apiService.post<AddContactInterface>(url, payload, true);
   }
 

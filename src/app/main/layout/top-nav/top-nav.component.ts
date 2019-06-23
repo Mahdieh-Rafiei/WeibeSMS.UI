@@ -5,7 +5,8 @@ import {UserNotificationService} from '../../pages/user-notification/user-notifi
 import _ from 'node_modules/lodash/lodash.js';
 import {NotificationResponseInterface} from '../../pages/user-notification/list/models/notification-response.interface';
 import {GetUserNotificationInterface} from '../../pages/user-notification/list/models/get-user-notification.interface';
-import {DataService} from '../../../shared/service/data.service';
+import {DataService} from "../../../shared/service/data.service";
+import {SharedService} from '../../../shared/service/shared.service';
 
 @Component({
   selector: 'app-top-nav',
@@ -16,16 +17,17 @@ import {DataService} from '../../../shared/service/data.service';
 @Injectable()
 export class TopNavComponent implements OnInit {
 
-  userNotifications: any[];
-  showNotification: boolean = false;
-  selectedNotification: any;
-  openHelp: boolean = false;
+    userNotifications: any[];
+    showNotification: boolean = false;
+    selectedNotification: any;
+    openHelp: boolean = false;
 
-  constructor(public configService: ConfigService,
-              private userNotificationService: UserNotificationService,
-              private authService: AuthenticationService,
-              private ds: DataService) {
-  }
+    constructor(public configService: ConfigService,
+                private userNotificationService: UserNotificationService,
+                private authService: AuthenticationService,
+                private ds: DataService,
+                private sharedService:SharedService) {
+    }
 
   ngOnInit() {
 

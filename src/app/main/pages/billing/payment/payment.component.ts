@@ -4,53 +4,67 @@ import {PaymentInterface} from './models/payment.interface';
 import {GetPaymentsModel} from './models/get-payments-model';
 
 @Component({
-    selector: 'app-payment',
-    templateUrl: './payment.component.html',
-    styleUrls: ['./payment.component.scss']
+  selector: 'app-payment',
+  templateUrl: './payment.component.html',
+  styleUrls: ['./payment.component.scss']
 })
 export class PaymentComponent implements OnInit {
 
-    totalItems: number;
-    getPaymentsModel: GetPaymentsModel = {
-        description: '',
-        fromDate: null,
-        isPaid: null,
-        pageNumber: 1,
-        pageSize: 10,
-        toDate: null,
-        type: null,
+  totalItems: number;
+  getPaymentsModel: GetPaymentsModel = {
+    description: '',
+    fromDate: null,
+    isPaid: null,
+    pageNumber: 1,
+    pageSize: 10,
+    toDate: null,
+    type: null,
+    phrase: ''
+  };
 
-    };
-    phrase = '';
+  payments: PaymentInterface[];
 
-    payments: PaymentInterface[];
+  constructor(private billingService: BillingService) {
+  }
 
-    constructor(private billingService: BillingService) {
+  ngOnInit() {
+    this.getPayments();
+  }
+
+  getPayments() {
+    this.billingService.getPaymentLogs(this.getPaymentsModel.pageNumber,
+      this.getPaymentsModel.pageSize, this.getPaymentsModel.description,
+      this.getPaymentsModel.fromDate, this.getPaymentsModel.toDate,
+      this.getPaymentsModel.type,
+      this.getPaymentsModel.isPaid,
+      this.getPaymentsModel.phrase)
+      .subscribe(res => {
+        this.payments = res.data.items;
+        this.totalItems = res.data.totalItemsCount;
+      });
+  }
+
+  doPaging(e) {
+    this.getPaymentsModel.pageNumber = e;
+    this.getPayments();
+  }
+
+  export(e) {
+    debugger;
+    const ids: number[] = [];
+    if (e.target.value == 1) {
+      this.payments.forEach(p => {
+        ids.push(p.id);
+      });
     }
+    this.billingService.getPaymentLogsExcel(ids)
+      .subscribe(res => {
+        window.open(res.data, '_blank');
+      });
+  }
 
-    ngOnInit() {
-        this.getPayments();
-    }
-
-    getPayments() {
-        this.billingService.getPaymentLogs(this.getPaymentsModel.pageNumber,
-            this.getPaymentsModel.pageSize, this.getPaymentsModel.description,
-            this.getPaymentsModel.fromDate, this.getPaymentsModel.toDate,
-            this.getPaymentsModel.type,
-            this.getPaymentsModel.isPaid, this.phrase)
-            .subscribe(res => {
-                this.payments = res.data.items;
-                this.totalItems = res.data.totalItemsCount;
-            });
-    }
-
-    doPaging(e) {
-        this.getPaymentsModel.pageNumber = e;
-        this.getPayments();
-    }
-
-    getData(event) {
-        this.phrase = event;
-        this.getPayments();
-    }
+  getData(event) {
+    this.getPaymentsModel.phrase = event;
+    this.getPayments();
+  }
 }
