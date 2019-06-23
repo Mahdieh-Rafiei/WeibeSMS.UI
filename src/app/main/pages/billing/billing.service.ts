@@ -42,9 +42,9 @@ export class BillingService {
   }
 
   getPaymentLogs(pageNumber: number, pageSize, description: string, fromDate: number,
-                 toDate: number, paymentType: number, isPaid: boolean) :Observable<PaymentResponseInterface> {
+                 toDate: number, paymentType: number, isPaid: boolean, phrase: string) :Observable<PaymentResponseInterface> {
 
-    const url = `Payment?pageNumber=${pageNumber}&pageSize=${pageSize}`;
+    const url = `Payment?pageNumber=${pageNumber}&pageSize=${pageSize}&searchValue=${phrase}`;
     return this.apiService.get(url,true);
   }
 }

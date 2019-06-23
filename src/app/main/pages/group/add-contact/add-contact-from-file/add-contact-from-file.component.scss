@@ -5,6 +5,7 @@
 
 .download {
   text-decoration: underline;
+  cursor: pointer;
 }
 
 .title {
@@ -12,6 +13,7 @@
     animation: move-forward 1s infinite ease-in;
   }
 }
-.ngx-file-drop__content{
+
+.ngx-file-drop__content {
   display: block !important;
 }

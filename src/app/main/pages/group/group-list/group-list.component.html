@@ -1,77 +1,75 @@
 <div>
-  <div class="btn-section text-right">
-    <button class="green-btn" (click)="addEditGroup(null, null)">
-      <i class="fa fa-plus">
-      </i> New Group
-    </button>
-  </div>
-  <div class="div-section">
-    <!--operation-->
-    <div class="row">
-      <div class="col-md-6 operation-section form-group">
-        <button class="light-blue-btn">
-          <i class="fa fa-filter"></i> Filter
+    <div class="btn-section text-right">
+        <button class="green-btn" (click)="addEditGroup(null, null)">
+            <i class="fa fa-plus">
+            </i> New Group
         </button>
-      </div>
-      <div class="col-md-3 offset-md-3 operation-section form-group text-right">
-        <app-search (searchText)="getData($event)"></app-search>
-      </div>
     </div>
-    <!--table-->
-    <div class="table-div table-responsive">
-      <table class="index-table text-left">
-        <thead>
-        <tr>
-          <th class="text-left"><i class="fa fa-sort"></i> Id</th>
-          <th (click)="sortData('title')" class="text-left"><i class="fa fa-sort"></i> Title</th>
-          <th class="text-center"><i class="fa fa-sort"></i> Recipient</th>
-          <th></th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr *ngFor="let group of groups | paginate : {
+    <div class="div-section">
+        <!--operation-->
+        <div class="row">
+            <div class="col-12 col-md-6 operation-section form-group">
+                <app-filter [filterData]="filterData" (filterValue)="getFilterData($event)"></app-filter>
+            </div>
+            <div class="col-md-3 offset-md-3 operation-section form-group text-right">
+                <app-search (searchText)="getData($event)"></app-search>
+            </div>
+        </div>
+        <!--table-->
+        <div class="table-div table-responsive">
+            <table class="index-table text-left">
+                <thead>
+                <tr>
+                    <th class="text-left"><i class="fa fa-sort"></i> Id</th>
+                    <th (click)="sortData('title')" class="text-left"><i class="fa fa-sort"></i> Title</th>
+                    <th class="text-center"><i class="fa fa-sort"></i> Recipient</th>
+                    <th></th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr *ngFor="let group of groups | paginate : {
                     itemsPerPage : 10, currentPage : pageNumber, totalItems : totalItemsCount
                     },index as i">
-          <td class="text-left">
-            <div class="table-head">
-              <span>{{i + 1}}</span>
-            </div>
-          </td>
-          <td class="text-left">
-            <div class="table-head">
-              <span>{{group.groupName}}</span>
-            </div>
-          </td>
-          <td class=" text-center">
-            <div>{{group.contactsCount}}</div>
-          </td>
-          <td class="td-single text-right actions-container">
-            <div class="actions text-right">
-              <a (click)="removeGroup(i, group)"><i class="fa fa-trash light-red-btn"></i></a>
-              <a (click)="addEditGroup(group, i)"> <i class="fa fa-pencil light-green-btn"></i></a>
-              <a [routerLink]="['../',group.id]"><i class="fa fa-eye light-green-btn"></i></a>
-            </div>
-          </td>
-        </tr>
-        </tbody>
-      </table>
-        <!--pagination-->
-        <div class="col-12 pagination-div">
-            <div class="row pt-1 pb-1">
-                <div class="col-12 col-md-6 text-left fo-3 black-text font-weight-bold">Displaying 1-10 of
-                    {{totalItems}} records
-                </div>
-                <div class="col-12 col-md-6 text-right">
-                    <pagination-controls (pageChange)="doPaging($event)"
-                                         maxSize="5"
-                                         responsive="true"
-                                         previousLabel=""
-                                         nextLabel="">
-                    </pagination-controls>
+                    <td class="text-left">
+                        <div class="table-head">
+                            <span>{{i + 1}}</span>
+                        </div>
+                    </td>
+                    <td class="text-left">
+                        <div class="table-head">
+                            <span>{{group.groupName}}</span>
+                        </div>
+                    </td>
+                    <td class=" text-center">
+                        <div>{{group.contactsCount}}</div>
+                    </td>
+                    <td class="td-single text-right actions-container">
+                        <div class="actions text-right">
+                            <a (click)="removeGroup(i, group)"><i class="fa fa-trash light-red-btn"></i></a>
+                            <a (click)="addEditGroup(group, i)"> <i class="fa fa-pencil light-green-btn"></i></a>
+                            <a [routerLink]="['../',group.id]"><i class="fa fa-eye light-green-btn"></i></a>
+                        </div>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+            <!--pagination-->
+            <div class="col-12 pagination-div">
+                <div class="row pt-1 pb-1">
+                    <div class="col-12 col-md-6 text-left fo-3 black-text font-weight-bold">Displaying 1-10 of
+                        {{totalItems}} records
+                    </div>
+                    <div class="col-12 col-md-6 text-right">
+                        <pagination-controls (pageChange)="doPaging($event)"
+                                             maxSize="5"
+                                             responsive="true"
+                                             previousLabel=""
+                                             nextLabel="">
+                        </pagination-controls>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
 
-  </div>
+    </div>
 </div>

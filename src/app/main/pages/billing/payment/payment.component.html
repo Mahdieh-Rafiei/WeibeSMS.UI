@@ -1,24 +1,22 @@
 <div class="div-section">
     <div class="change-password form-group">
         <h5>payment log</h5>
-        <p class="fo-4 black-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
+        <p class="fo-4 black-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+            incididunt ut labore et dolore
             magna aliqua.</p>
     </div>
     <!--operation-->
     <div class="row">
-        <div class="col-md-6 operation-section form-group">
+         <div class="col-12 col-md-6 operation-section form-group export-filter">
             <select class="light-blue-btn mr-3">
                 <option> Export</option>
                 <option> Test 1</option>
                 <option> Test 1</option>
             </select>
-            <button class="light-blue-btn">
-                <i class="fa fa-filter"></i> Filter
-            </button>
+            <app-filter [filterData]="filterData" (filterValue)="getFilterData($event)"></app-filter>
         </div>
-        <div class="col-md-6 operation-section form-group">
-            <!--<app-search [params]="[{title: 'device'}, {title: 'location'}]"></app-search>--> search
-            <!--TODO: search-->
+        <div class="col-md-3 offset-md-3 operation-section form-group text-right">
+            <app-search (searchText)="getData($event)"></app-search>
         </div>
     </div>
     <!--table-->
@@ -52,16 +50,16 @@
             </tr>
 
             <!--<tr>-->
-                <!--<td class="text-left">#2</td>-->
-                <!--<td class="text-left">98/2/8, 11:08</td>-->
-                <!--<td class="text-left">500 credit for 60$</td>-->
-                <!--<td class="text-left">-->
-                    <!--<button class="green-btn">paid</button>-->
-                <!--</td>-->
-                <!--<td class="text-left">$37</td>-->
-                <!--<td class="text-left">%10</td>-->
-                <!--<td class="text-left">$40</td>-->
-                <!--<td class="text-left">98/2/8, 11:08</td>-->
+            <!--<td class="text-left">#2</td>-->
+            <!--<td class="text-left">98/2/8, 11:08</td>-->
+            <!--<td class="text-left">500 credit for 60$</td>-->
+            <!--<td class="text-left">-->
+            <!--<button class="green-btn">paid</button>-->
+            <!--</td>-->
+            <!--<td class="text-left">$37</td>-->
+            <!--<td class="text-left">%10</td>-->
+            <!--<td class="text-left">$40</td>-->
+            <!--<td class="text-left">98/2/8, 11:08</td>-->
             <!--</tr>-->
 
             </tbody>
@@ -69,7 +67,9 @@
 
         <div class="col-12 pagination-div">
             <div class="row pt-1 pb-1">
-                <div class="col-12 col-md-6 text-left fo-3 black-text font-weight-bold">Displaying 1-10 of {{totalItems}} records</div>
+                <div class="col-12 col-md-6 text-left fo-3 black-text font-weight-bold">Displaying 1-10 of
+                    {{totalItems}} records
+                </div>
                 <div class="col-12 col-md-6 text-right">
                     <pagination-controls (pageChange)="doPaging($event)"
                                          maxSize="5"
