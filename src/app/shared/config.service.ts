@@ -11,12 +11,13 @@ export class ConfigService {
   tokenKeyName: string;
   errorMessages: Map<number, string> = new Map<number, string>();
   sidebarMode: string = 'default';
+  documentationUrl ='';
 
-  // @Output() sidebarStateChanged: EventEmitter<string> = new EventEmitter<string>();
   @Output() authenticationChanged: EventEmitter<boolean> = new EventEmitter<boolean>();
 
   constructor() {
     this.tokenKeyName = 'jwt-sms';
+    this.documentationUrl = 'http://localhost:8090/swagger/index.html';
 
     // this.baseUrl = 'https://localhost:44315/app/api/';
     // this.globalUrl = 'https://localhost:44315/api/';
@@ -34,7 +35,7 @@ export class ConfigService {
     this.errorMessages.set(5, 'Verification code is wrong!');
     this.errorMessages.set(6, 'Verification code is expired!');
     //TODO: this.errorMessages.set(8,'');
-    this.errorMessages.set(9, 'Username or password is wrong!');
+    this.errorMessages.set(7, 'User not found!');
     this.errorMessages.set(10, 'Username cant be null!');
     this.errorMessages.set(11, 'Password cant be null!');
     this.errorMessages.set(12, 'Verification Key Is InValid'); //TODO:he is hacker
@@ -76,5 +77,6 @@ export class ConfigService {
     this.errorMessages.set(48, 'Title or message is wrong!');
     this.errorMessages.set(49, 'Draft message not found!');
     this.errorMessages.set(50, 'This draft message is not yours!'); //TODO: bug
+    this.errorMessages.set(66, 'Username or password is wrong!'); //TODO: bug
   }
 }
