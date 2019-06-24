@@ -10,19 +10,23 @@ import {AddEditGroupComponent} from './add-edit/add-edit-group.component';
 import {ItemsGroupListInterface} from './models/items-group-list.interface';
 import {errorAnimation} from '../../../../shared/component/animation/error-animation';
 import {DialogComponent} from '../../../../shared/component/dialog/dialog.component';
+
 import {TableConfigInterface} from '../../../../shared/component/table/models/table-config.interface';
 import {PagingModelInterface} from '../../../../shared/component/table/models/paging-model.interface';
+import {RemoveKeyInterface} from '../../developers/developer/models/remove-key.interface';
+import {FilterDataInterface} from "../../../../shared/component/filter/filter-data.interface";
 
 @Component({
-  selector: 'app-group-list',
-  templateUrl: './group-list.component.html',
-  styleUrls: ['./group-list.component.scss'],
-  animations: [
-    errorAnimation()
-  ],
+    selector: 'app-group-list',
+    templateUrl: './group-list.component.html',
+    styleUrls: ['./group-list.component.scss'],
+    animations: [
+        errorAnimation()
+    ],
 })
 
 export class GroupListComponent implements OnInit {
+
 
   data: any;
   groups: ItemsGroupListInterface[] = [];
@@ -142,5 +146,6 @@ export class GroupListComponent implements OnInit {
   showDetails(group: ItemsGroupListInterface) {
     this.router.navigateByUrl(`/group/${group.id}`);
   }
+
 }
 
