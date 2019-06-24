@@ -1,0 +1,57 @@
+<div class="table-div table-responsive">
+  <table class="index-table text-left">
+    <thead *ngIf="pagingModel.totalItemsCount > 0">
+    <tr>
+      <th *ngFor="let headerName of headersName" class="text-left"><i class="fa fa-sort"></i>{{headerName}}</th>
+      <th *ngIf="tableConfig.hasActions"></th>
+    </tr>
+    </thead>
+    <thead *ngIf="pagingModel.totalItemsCount === 0">
+    <tr>
+      <th>
+        <p class="text-center">Record Not Found</p>
+      </th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let item of collection | paginate : {
+                    itemsPerPage : 10, currentPage : pagingModel.pageNumber, totalItems : pagingModel.totalItemsCount
+                    },index as i">
+      <td class="text-left">
+        <div class="table-head">
+          <span>{{i + 1 + (pagingModel.pageSize * (pagingModel.pageNumber == 1 ? 0 : pagingModel.pageNumber - 1))}}</span>
+        </div>
+      </td>
+      <td class="text-left" *ngFor="let r of tableConfig.rowColumnsConfig">
+        <div
+          [innerText]="r.isDateTime ? (item[r.propertyName] | dateTime:'YYYY-MM-DD hh:mm:ss') :(item[r.propertyName])"></div>
+      </td>
+      <td *ngIf="tableConfig.hasActions" class="td-single text-right actions-container">
+        <div class="actions text-right">
+          <a *ngIf="tableConfig.hasRemoveButton" (click)="removeItem(i, item)"><i class="fa fa-trash light-red-btn"></i></a>
+          <a *ngIf="tableConfig.hasAddOrUpdateButton" (click)="editItem(i,item)"> <i
+            class="fa fa-pencil light-green-btn"></i></a>
+          <a *ngIf="tableConfig.hasShowButton" (click)="showItem(item)"><i class="fa fa-eye light-green-btn"></i></a>
+        </div>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+  <div class="col-12 pagination-div">
+    <div class="row pt-1 pb-1">
+      <div class="col-12 col-md-6 text-left fo-3 black-text font-weight-bold">Displaying
+        {{(pagingModel.pageSize * (pagingModel.pageNumber == 1 ? 0 : pagingModel.pageNumber - 1)) + 1 }}
+        - {{pagingModel.pageSize * pagingModel.pageNumber}} of
+        {{pagingModel.totalItemsCount}} records
+      </div>
+      <div class="col-12 col-md-6 text-right">
+        <pagination-controls (pageChange)="doPaging($event)"
+                             maxSize="5"
+                             responsive="true"
+                             previousLabel=""
+                             nextLabel="">
+        </pagination-controls>
+      </div>
+    </div>
+  </div>
+</div>

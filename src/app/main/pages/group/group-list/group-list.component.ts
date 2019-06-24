@@ -10,6 +10,8 @@ import {AddEditGroupComponent} from './add-edit/add-edit-group.component';
 import {ItemsGroupListInterface} from './models/items-group-list.interface';
 import {errorAnimation} from '../../../../shared/component/animation/error-animation';
 import {DialogComponent} from '../../../../shared/component/dialog/dialog.component';
+import {TableConfigInterface} from '../../../../shared/component/table/models/table-config.interface';
+import {PagingModelInterface} from '../../../../shared/component/table/models/paging-model.interface';
 
 @Component({
   selector: 'app-group-list',
@@ -22,14 +24,16 @@ import {DialogComponent} from '../../../../shared/component/dialog/dialog.compon
 
 export class GroupListComponent implements OnInit {
 
-  pageNumber: number = 1;
-  pageSize: number = 10;
   data: any;
   groups: ItemsGroupListInterface[] = [];
-  totalItemsCount: number;
   phrase = '';
   groupName: string = '';
-  filterData = {
+  filterData = {};
+  tableConfig: TableConfigInterface;
+  pagingModel: PagingModelInterface = {
+    pageNumber: 1,
+    pageSize: 10,
+    totalItemsCount: 0
   };
 
   constructor(private groupService: GroupService,
@@ -42,14 +46,16 @@ export class GroupListComponent implements OnInit {
 
   ngOnInit() {
     this.getAllGroupList();
+    this.generateRowColumns();
   }
 
   getAllGroupList() {
-    this.groupService.getAllGroupList(this.pageSize, this.pageNumber, this.phrase)
+    this.groupService.getAllGroupList(this.pagingModel.pageSize, this.pagingModel.pageNumber
+      , this.phrase)
       .subscribe((res: GroupListInterface) => {
         this.data = res.data;
         this.groups = this.data.items;
-        this.totalItemsCount = this.data.totalItemsCount;
+        this.pagingModel.totalItemsCount = this.data.totalItemsCount;
       });
   }
 
@@ -85,10 +91,6 @@ export class GroupListComponent implements OnInit {
       });
   }
 
-  doPaging(e) {
-    this.pageNumber = e;
-    this.getAllGroupList();
-  }
 
   addEditGroup(data: ItemsGroupListInterface, index) {
     this.openDialog('480px', 'auto', '', {data, index});
@@ -121,8 +123,24 @@ export class GroupListComponent implements OnInit {
   }
 
   getFilterData(event) {
-    this.pageSize = event.pageSize ? event.pageSize : 10;
-     this.getAllGroupList();
+    this.getAllGroupList();
+  }
+
+  generateRowColumns() {
+    this.tableConfig = {
+      hasActions: true,
+      hasAddOrUpdateButton: true,
+      hasRemoveButton: true,
+      hasShowButton: true,
+      rowColumnsConfig: []
+    };
+
+    this.tableConfig.rowColumnsConfig.push({propertyName: 'groupName', isDateTime: false, classes: null});
+    this.tableConfig.rowColumnsConfig.push({propertyName: 'contactsCount', isDateTime: false, classes: null});
+  }
+
+  showDetails(group: ItemsGroupListInterface) {
+    this.router.navigateByUrl(`/group/${group.id}`);
   }
 }
 

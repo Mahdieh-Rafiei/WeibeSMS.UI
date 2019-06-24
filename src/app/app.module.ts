@@ -5,7 +5,6 @@ import {HttpClientModule} from '@angular/common/http';
 import {RouterModule} from '@angular/router';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {AngularEditorModule} from '@kolkov/angular-editor';
-
 import {ToastrModule} from 'ngx-toastr';
 import {FileDropModule} from 'ngx-file-drop';
 import {AppComponent} from './app.component';
@@ -32,6 +31,7 @@ import {FooterComponent} from './main/layout/footer/footer.component';
 import {DialogComponent} from './shared/component/dialog/dialog.component';
 import {AuthGuard} from './shared/auth.guard';
 import {ConfirmationAddContactFromFileComponent} from './main/pages/group/add-contact/add-contact-from-file/confirmation-add-contact-from-file/confirmation-add-contact-from-file.component';
+import { TableComponent } from './shared/component/table/table.component';
 
 @NgModule({
 
@@ -49,7 +49,7 @@ import {ConfirmationAddContactFromFileComponent} from './main/pages/group/add-co
     FooterComponent,
     DialogComponent,
     //TODO: move this c to groupModule
-    ConfirmationAddContactFromFileComponent
+    ConfirmationAddContactFromFileComponent,
   ],
   entryComponents: [
     DialogComponent,

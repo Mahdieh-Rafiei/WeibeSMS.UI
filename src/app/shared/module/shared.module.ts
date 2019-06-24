@@ -11,6 +11,7 @@ import {FilterComponent} from '../component/filter/filter.component';
 import {LoadingSpinnerComponent} from '../component/loading-spinner/loading-spinner.component';
 import {AngularEditorModule} from '@kolkov/angular-editor';
 import {DateFromToComponent} from '../component/date-from-to/date-from-to.component';
+import {TableComponent} from '../component/table/table.component';
 
 @NgModule({
   imports: [
@@ -27,6 +28,7 @@ import {DateFromToComponent} from '../component/date-from-to/date-from-to.compon
     SearchComponent,
     DateTimePipe,
     FilterComponent,
+    TableComponent,
     DateFromToComponent,
     LoadingSpinnerComponent
   ],
@@ -47,6 +49,7 @@ import {DateFromToComponent} from '../component/date-from-to/date-from-to.compon
     FilterComponent,
     DateFromToComponent,
     LoadingSpinnerComponent,
+    TableComponent
   ]
 })
 export class SharedModule {
