@@ -18,7 +18,7 @@ export class GroupService {
   constructor(private apiService: ApiService) {
   }
 
-  getAllGroupList(pageNumber: number, phrase: string,pageSize: number): Observable<GroupListInterface> {
+  getAllGroupList(pageNumber: number, pageSize: number, phrase: string): Observable<GroupListInterface> {
     const url = `ContactGroup?pageSize=${pageSize}&pageNumber=${pageNumber}&searchValue=${phrase}`;
     return this.apiService.get(url, true);
   }
