@@ -9,9 +9,7 @@ import {MatDialog} from '@angular/material';
 import {AddEditGroupComponent} from './add-edit/add-edit-group.component';
 import {ItemsGroupListInterface} from './models/items-group-list.interface';
 import {errorAnimation} from '../../../../shared/component/animation/error-animation';
-import {RemoveIpinterface} from '../../developers/developer/models/remove-ipinterface';
 import {DialogComponent} from '../../../../shared/component/dialog/dialog.component';
-import {RemoveKeyInterface} from '../../developers/developer/models/remove-key.interface';
 
 @Component({
   selector: 'app-group-list',
@@ -30,7 +28,6 @@ export class GroupListComponent implements OnInit {
   groups: ItemsGroupListInterface[] = [];
   totalItemsCount: number;
   phrase = '';
-
   groupName: string = '';
   filterData = {
   };
@@ -96,7 +93,6 @@ export class GroupListComponent implements OnInit {
   addEditGroup(data: ItemsGroupListInterface, index) {
     this.openDialog('480px', 'auto', '', {data, index});
   }
-
 
   openDialog(width, height, panelClass, data): void {
     const dialogRef = this.dialog.open(AddEditGroupComponent, {
