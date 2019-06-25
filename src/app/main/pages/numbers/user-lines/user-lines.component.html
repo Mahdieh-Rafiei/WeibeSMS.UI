@@ -12,50 +12,12 @@
             <app-search (searchText)="getData($event)"></app-search>
         </div>
     </div>
-    <!--table-->
-    <div class="table-div table-responsive">
-        <table class="index-table text-left">
-            <thead>
-            <tr>
-                <th class="text-left"><i class="fa fa-sort"></i>Order</th>
-                <th class="text-left"><i class="fa fa-sort"></i>Country</th>
-                <th class="text-left"><i class="fa fa-sort"></i>Number</th>
-                <th class="text-left"><i class="fa fa-sort"></i>Next billing date</th>
-                <th class="text-left"><i class="fa fa-sort"></i>Cost</th>
-                <th class="text-left"><i class="fa fa-sort"></i>Manage</th>
-            </tr>
-            </thead>
 
-            <tbody>
-            <tr *ngFor="let userLine of userLines | paginate :
-            {itemsPerPage:10, currentPage:getUserLineModel.pageNumber,totalItems:totalItemsCount},index as i">
-                <td class="text-left">{{i+1}}</td>
-                <td class="text-left">{{userLine.countryName}}</td>
-                <td class="text-left">{{userLine.number}}</td>
-                <td class="text-left">{{userLine.creationDateTime | dateTime: 'YYYY-DD-MM'}}</td>
-                <td class="text-left">{{userLine.cost}}€</td>
-                <td class="text-left">
-                  <i class="fa fa-cog yellow-text" (click)="modifyUserLine(userLine,i)"></i>
-                </td>
-            </tr>
+    <app-table [tableConfig]="tableConfig"
+               [collection]="userLines"
+               (pagingModelChanged)="getUserLines()"
+               (manageButtonClicked)=" modifyUserLine($event.item,$event.index)"
+    >
 
-            </tbody>
-        </table>
-        <!--pagination-->
-        <div class="col-12 pagination-div">
-            <div class="row pt-1 pb-1">
-                <div class="col-12 col-md-6 text-left fo-3 black-text font-weight-bold">Displaying 1-10 of
-                    {{totalItems}} records
-                </div>
-                <div class="col-12 col-md-6 text-right">
-                    <pagination-controls (pageChange)="doPaging($event)"
-                                         maxSize="5"
-                                         responsive="true"
-                                         previousLabel=""
-                                         nextLabel=""></pagination-controls>
-                </div>
-            </div>
-        </div>
-
-    </div>
+    </app-table>
 </div>
