@@ -58,6 +58,9 @@
           <a *ngIf="tableConfig.hasShowButton" (click)="showItem(item)"><i class="fa fa-eye light-green-btn"></i></a>
         </div>
       </td>
+        <td *ngIf="tableConfig.hasManageColumn"  class="td-single text-left">
+            <a  (click)="manageItem(i,item)"><i class="fa fa-cog yellow-text"></i></a>
+        </td>
     </tr>
     </tbody>
 
