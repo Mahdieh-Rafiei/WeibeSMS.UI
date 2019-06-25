@@ -15,55 +15,47 @@
     </div>
   </div>
   <!--table-->
-  <div class="table-div table-responsive">
-    <table class="index-table text-left">
-      <thead *ngIf="totalItems > 0">
-      <tr>
-        <th class="text-left"><i class="fa fa-sort"></i>Id</th>
-        <th class="text-left"><i class="fa fa-sort"></i>Amount</th>
-        <th class="text-left"><i class="fa fa-sort"></i>Vat</th>
-        <th class="text-left"><i class="fa fa-sort"></i>Total Price</th>
-        <th class="text-left"><i class="fa fa-sort"></i>Created on</th>
-        <th></th>
-      </tr>
-      </thead>
-      <thead *ngIf="totalItems === 0">
-      <tr>
-        <th>
-          <p class="text-center">Record Not Found</p>
-        </th>
-      </tr>
-      </thead>
-      <tbody *ngFor="let inv of invoices | paginate :
-            {itemsPerPage:10, currentPage:pageNumber,totalItems:totalItems},index as i">
-      <tr>
-        <td class="text-left">#{{i + 1}}</td>
-        <td class="text-left">€{{inv.amount}}</td>
-        <td class="text-left">%{{inv.vat}}</td>
-        <td class="text-left">€{{inv.totalAmount}}</td>
-        <td class="text-left">{{inv.creationDate | date}}</td>
-        <td class="text-right">
-          <div class="actions text-right">
-            <i class="fa fa-file light-green-btn"></i>
-          </div>
-        </td>
-      </tr>
-      </tbody>
-    </table>
-    <!--pagination-->
-    <div class="col-12 pagination-div">
-      <div class="row pt-1 pb-1">
-        <div class="col-12 col-md-6 text-left fo-3 black-text font-weight-bold">Displaying 1-10 of
-          {{totalItems}} records
-        </div>
-        <div class="col-12 col-md-6 text-right">
-          <pagination-controls (pageChange)="doPaging($event)"
-                               maxSize="5"
-                               responsive="true"
-                               previousLabel=""
-                               nextLabel=""></pagination-controls>
-        </div>
-      </div>
-    </div>
-  </div>
+
+  <app-table [collection]="invoices"
+             [tableConfig]="tableConfig"
+             (pagingModelChanged)="getInvoices()">
+  </app-table>
+
+  <!--<div class="table-div table-responsive">-->
+  <!--<table class="index-table text-left">-->
+  <!--<thead *ngIf="totalItems > 0">-->
+  <!--<tr>-->
+  <!--<th class="text-left"><i class="fa fa-sort"></i>Id</th>-->
+  <!--<th class="text-left"><i class="fa fa-sort"></i>Amount</th>-->
+  <!--<th class="text-left"><i class="fa fa-sort"></i>Vat</th>-->
+  <!--<th class="text-left"><i class="fa fa-sort"></i>Total Price</th>-->
+  <!--<th class="text-left"><i class="fa fa-sort"></i>Created on</th>-->
+  <!--<th></th>-->
+  <!--</tr>-->
+  <!--</thead>-->
+  <!--<thead *ngIf="totalItems === 0">-->
+  <!--<tr>-->
+  <!--<th>-->
+  <!--<p class="text-center">Record Not Found</p>-->
+  <!--</th>-->
+  <!--</tr>-->
+  <!--</thead>-->
+  <!--<tbody *ngFor="let inv of invoices | paginate :-->
+  <!--{itemsPerPage:10, currentPage:pageNumber,totalItems:totalItems},index as i">-->
+  <!--<tr>-->
+  <!--<td class="text-left">#{{i + 1}}</td>-->
+  <!--<td class="text-left">€{{inv.amount}}</td>-->
+  <!--<td class="text-left">%{{inv.vat}}</td>-->
+  <!--<td class="text-left">€{{inv.totalAmount}}</td>-->
+  <!--<td class="text-left">{{inv.creationDate | date}}</td>-->
+  <!--<td class="text-right">-->
+  <!--<div class="actions text-right">-->
+  <!--<i class="fa fa-file light-green-btn"></i>-->
+  <!--</div>-->
+  <!--</td>-->
+  <!--</tr>-->
+  <!--</tbody>-->
+  <!--</table>-->
+  <!--&lt;!&ndash;pagination&ndash;&gt;-->
+
 </div>

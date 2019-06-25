@@ -1,6 +1,7 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {FormBuilder, FormControl, FormGroup} from '@angular/forms';
 import {FilterDataInterface} from './filter-data.interface';
+import {TableConfigInterface} from '../table/models/table-config.interface';
 
 @Component({
   selector: 'app-filter',
@@ -14,6 +15,7 @@ export class FilterComponent implements OnInit {
   dummy:FormGroup = new FormGroup({});
 
   @Input() filterData: FilterDataInterface;
+  @Input() tableConfig:TableConfigInterface;
   @Output() filterValue: EventEmitter<any> = new EventEmitter<any>();
 
   constructor() {
@@ -37,6 +39,6 @@ export class FilterComponent implements OnInit {
   }
 
   setPageSize(e){
-    this.filterData.pageSize = e.target.value;
+    this.tableConfig.pagingModel.pageSize = e.target.value;
   }
 }

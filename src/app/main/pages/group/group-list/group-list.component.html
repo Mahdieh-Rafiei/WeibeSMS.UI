@@ -16,10 +16,8 @@
       </div>
     </div>
 
-    <app-table [headersName]="['Id','Title','Recipient']"
-               [tableConfig]="tableConfig"
+    <app-table [tableConfig]="tableConfig"
                [collection]="groups"
-               [pagingModel]="pagingModel"
                (pagingModelChanged)="getAllGroupList()"
                (itemRemoved)="removeGroup($event.index,$event.item)"
                (itemSelected)="showDetails($event.item)"

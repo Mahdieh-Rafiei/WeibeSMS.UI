@@ -9,6 +9,8 @@ import {GetUserEventsModelInterface} from './models/get-user-events-model.interf
 import {UserEventInterface} from './models/user-event.interface';
 import {UserEventResponseInterface} from './models/user-event-response.interface';
 import {DialogComponent} from '../../../shared/component/dialog/dialog.component';
+import {TableConfigInterface} from '../../../shared/component/table/models/table-config.interface';
+import {PagingModel} from '../../../shared/component/table/models/paging-model';
 
 @Component({
   selector: 'app-user-event',
@@ -17,11 +19,14 @@ import {DialogComponent} from '../../../shared/component/dialog/dialog.component
 })
 export class UserEventComponent implements OnInit {
   userEvents: UserEventInterface[];
-  totalItems = 0;
-  getModel: GetUserEventsModelInterface = {
-    pageNumber: 1,
-    pageSize: 10,
-    phrase: ''
+  phrase = '';
+  tableConfig: TableConfigInterface = {
+    rowColumnsConfig: [],
+    pagingModel: new PagingModel(),
+    hasActions: true,
+    hasRemoveButton: true,
+    hasAddOrUpdateButton: true,
+    headerNames: ['Id', 'Title']
   };
 
   constructor(private userEventService: UserEventService,
@@ -31,14 +36,15 @@ export class UserEventComponent implements OnInit {
 
   ngOnInit() {
     this.getUserEvents();
+    this.generateRowColumns();
   }
 
   getUserEvents() {
-    this.userEventService.getUserEvents(this.getModel.pageNumber,
-      this.getModel.pageSize, this.getModel.phrase)
+    this.userEventService.getUserEvents(this.tableConfig.pagingModel.pageNumber,
+      this.tableConfig.pagingModel.pageSize, this.phrase)
       .subscribe((res: UserEventResponseInterface) => {
         this.userEvents = res.data.items;
-        this.totalItems = res.data.totalItemsCount;
+        this.tableConfig.pagingModel.totalItemsCount = res.data.totalItemsCount;
       });
   }
 
@@ -99,13 +105,12 @@ export class UserEventComponent implements OnInit {
       });
   }
 
-  doPaging(e) {
-    this.getModel.pageNumber = e;
+  getData(event) {
+    this.phrase = event;
     this.getUserEvents();
   }
 
-  getData(event) {
-    this.getModel.phrase = event;
-    this.getUserEvents();
+  generateRowColumns() {
+    this.tableConfig.rowColumnsConfig.push({propertyName: 'name'});
   }
 }

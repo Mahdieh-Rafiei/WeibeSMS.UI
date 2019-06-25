@@ -1,8 +1,9 @@
 import {Component, OnInit} from '@angular/core';
 import {BillingService} from '../billing.service';
 import {InvoiceInterface} from './models/invoice.interface';
-import {GetInvocesModelInterface} from './models/get-invoces-model.interface';
 import {FilterDataInterface} from '../../../../shared/component/filter/filter-data.interface';
+import {TableConfigInterface} from '../../../../shared/component/table/models/table-config.interface';
+import {PagingModel} from '../../../../shared/component/table/models/paging-model';
 
 @Component({
   selector: 'app-invoice-list',
@@ -12,14 +13,16 @@ import {FilterDataInterface} from '../../../../shared/component/filter/filter-da
 export class InvoiceListComponent implements OnInit {
   phrase = '';
 
-  pageNumber=1;
   invoices: InvoiceInterface[];
-  totalItems: number;
+  tableConfig:TableConfigInterface={
+    pagingModel: new PagingModel(),
+    rowColumnsConfig:[],
+    headerNames:['Id','Amount','Vat','Total price','Created on']
+  };
 
   filterData : FilterDataInterface  = {
     fromToDate: true,
     fromDate:0,
-    pageSize:10,
     toDate:2147483647
   };
 
@@ -28,23 +31,19 @@ export class InvoiceListComponent implements OnInit {
 
   ngOnInit() {
     this.getInvoices();
+    this.generateRowColumns();
   }
 
   getInvoices() {
-    this.billingService.getInvoices(this.pageNumber, this.filterData.pageSize,
-      this.phrase,
+    this.billingService.getInvoices(this.tableConfig.pagingModel.pageNumber,
+      this.tableConfig.pagingModel.pageSize, this.phrase,
       this.filterData.fromDate,
       this.filterData.toDate
     )
       .subscribe(res => {
         this.invoices = res.data.items;
-        this.totalItems = res.data.totalItemsCount;
+        this.tableConfig.pagingModel.totalItemsCount = res.data.totalItemsCount;
       });
-  }
-
-  doPaging(e) {
-    this.pageNumber = e;
-    this.getInvoices();
   }
 
   getData(event) {
@@ -54,5 +53,12 @@ export class InvoiceListComponent implements OnInit {
 
   getFilterData(event){
     this.getInvoices();
+  }
+
+  generateRowColumns() {
+    this.tableConfig.rowColumnsConfig.push({propertyName: 'amount', sign:'€'});
+    this.tableConfig.rowColumnsConfig.push({propertyName: 'vat', sign:'%'});
+    this.tableConfig.rowColumnsConfig.push({propertyName: 'totalAmount', sign:'€'});
+    this.tableConfig.rowColumnsConfig.push({propertyName: 'creationDate',isDate:true});
   }
 }

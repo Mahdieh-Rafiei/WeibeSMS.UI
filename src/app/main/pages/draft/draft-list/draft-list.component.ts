@@ -5,18 +5,29 @@ import {RemoveDraftInterface} from '../draft/models/remove-draft.interface';
 import {DialogComponent} from '../../../../shared/component/dialog/dialog.component';
 import {MatDialog} from '@angular/material';
 import {NotificationService} from '../../../../shared/notification.service';
+import {ItemsDraftInterface} from '../draft/models/items-draft.interface';
+import {TableConfigInterface} from '../../../../shared/component/table/models/table-config.interface';
+import {PagingModel} from '../../../../shared/component/table/models/paging-model';
 
 @Component({
   selector: 'app-draft-list',
   templateUrl: './draft-list.component.html',
   styleUrls: ['./draft-list.component.scss']
 })
+
 export class DraftListComponent implements OnInit {
 
-  drafts: any[] = [];
-  pageNumber: number = 1;
-  pageSize: number = 10;
-  totalItemsCount: number;
+  drafts: ItemsDraftInterface[]=[];
+  tableConfig:TableConfigInterface={
+    pagingModel:new PagingModel(),
+    hasRemoveButton:true,
+    hasAddOrUpdateButton:true,
+    hasShowButton:false,
+    hasActions:true,
+    rowColumnsConfig:[],
+    headerNames:['Id','Name','Message','Send action']
+  };
+
   phrase = '';
 
   constructor(private draftService: DraftService,
@@ -26,13 +37,15 @@ export class DraftListComponent implements OnInit {
 
   ngOnInit() {
     this.getAllDrafts();
+    this.generateRowColumns();
   }
 
   getAllDrafts() {
-    this.draftService.getAllDrafts(this.pageNumber, this.pageSize, this.phrase)
+    this.draftService.getAllDrafts(this.tableConfig.pagingModel.pageNumber,
+      this.tableConfig.pagingModel.pageSize, this.phrase)
       .subscribe((res: DraftInterface) => {
         this.drafts = res.data.items;
-        this.totalItemsCount = res.data.totalItemsCount;
+        this.tableConfig.pagingModel.totalItemsCount = res.data.totalItemsCount;
       });
   }
 
@@ -68,18 +81,13 @@ export class DraftListComponent implements OnInit {
       });
   }
 
-  getDataWithSearch() {
-    this.pageNumber = 1;
-    this.getAllDrafts();
-  }
-
-  doPaging(e) {
-    this.pageNumber = e;
-    this.getAllDrafts();
-  }
-
   getData(event) {
     this.phrase = event;
     this.getAllDrafts();
+  }
+
+  generateRowColumns() {
+    this.tableConfig.rowColumnsConfig.push({propertyName: 'title', isDateTime: false, classes: null,hasSummaryDisplay:false});
+    this.tableConfig.rowColumnsConfig.push({propertyName: 'messageText', isDateTime: false, classes: null,hasSummaryDisplay:true});
   }
 }
