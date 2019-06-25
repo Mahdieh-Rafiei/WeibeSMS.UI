@@ -1,85 +1,31 @@
 <div class="div-section">
-    <div class="change-password form-group">
-        <h5>payment log</h5>
-        <p class="fo-4 black-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-            incididunt ut labore et dolore
-            magna aliqua.</p>
+  <div class="change-password form-group">
+    <h5>payment log</h5>
+    <p class="fo-4 black-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+      incididunt ut labore et dolore
+      magna aliqua.</p>
+  </div>
+  <!--operation-->
+  <div class="row">
+    <div class="col-12 col-md-6 operation-section form-group export-filter">
+      <select class="light-blue-btn mr-3">
+        <option> Export</option>
+        <option> Test 1</option>
+        <option> Test 1</option>
+      </select>
+      <!--<app-filter [filterData]="filterData" (filterValue)="getFilterData($event)"></app-filter>-->
     </div>
-    <!--operation-->
-    <div class="row">
-         <div class="col-12 col-md-6 operation-section form-group export-filter">
-            <select class="light-blue-btn mr-3">
-                <option> Export</option>
-                <option> Test 1</option>
-                <option> Test 1</option>
-            </select>
-            <!--<app-filter [filterData]="filterData" (filterValue)="getFilterData($event)"></app-filter>-->
-        </div>
-        <div class="col-md-3 offset-md-3 operation-section form-group text-right">
-            <app-search (searchText)="getData($event)"></app-search>
-        </div>
+    <div class="col-md-3 offset-md-3 operation-section form-group text-right">
+      <app-search (searchText)="getData($event)"></app-search>
     </div>
-    <!--table-->
-    <div class="table-div table-responsive">
-        <table class="index-table text-left">
-            <thead>
-            <tr>
-                <th class="text-left"><i class="fa fa-sort"></i>Id</th>
-                <th class="text-left"><i class="fa fa-sort"></i>Description</th>
-                <th class="text-left"><i class="fa fa-sort"></i>Payment types</th>
-                <th class="text-left"><i class="fa fa-sort"></i>Status</th>
-                <th class="text-left"><i class="fa fa-sort"></i>Amount</th>
-                <th class="text-left"><i class="fa fa-sort"></i>Vat</th>
-                <th class="text-left"><i class="fa fa-sort"></i>Total</th>
-                <th class="text-left"><i class="fa fa-sort"></i>Date time</th>
-            </tr>
-            </thead>
-            <tbody *ngFor="let p of payments | paginate:
-            {itemsPerPage:10, currentPage:getPaymentsModel.pageNumber,totalItems:totalItems},index as i">
-            <tr>
-                <td class="text-left">#{{i + 1}}</td>
-                <td class="text-left">{{p.description}}</td>
-                <td class="text-left">{{p.type == 1 ? 'Credit' : 'Others'}}</td>
-                <td class="text-left">
-                    <button [ngClass]="p.isPaid ? 'green-btn' : 'yellow-btn'">{{p.isPaid}}</button>
-                </td>
-                <td class="text-left">€{{p.amount}}</td>
-                <td class="text-left">%{{p.vat}}</td>
-                <td class="text-left">€{{p.total}}</td>
-                <td class="text-left">{{p.creationDateTime | dateTime: 'YYYY-MM-DD hh-mm-ss'}}</td>
-            </tr>
+  </div>
 
-            <!--<tr>-->
-            <!--<td class="text-left">#2</td>-->
-            <!--<td class="text-left">98/2/8, 11:08</td>-->
-            <!--<td class="text-left">500 credit for 60$</td>-->
-            <!--<td class="text-left">-->
-            <!--<button class="green-btn">paid</button>-->
-            <!--</td>-->
-            <!--<td class="text-left">$37</td>-->
-            <!--<td class="text-left">%10</td>-->
-            <!--<td class="text-left">$40</td>-->
-            <!--<td class="text-left">98/2/8, 11:08</td>-->
-            <!--</tr>-->
+  <app-table
+    (pagingModelChanged)="getPayments()"
+    [tableConfig]="tableConfig"
+    [collection]="payments"
+  >
 
-            </tbody>
-        </table>
-
-        <div class="col-12 pagination-div">
-            <div class="row pt-1 pb-1">
-                <div class="col-12 col-md-6 text-left fo-3 black-text font-weight-bold">Displaying 1-10 of
-                    {{totalItems}} records
-                </div>
-                <div class="col-12 col-md-6 text-right">
-                    <pagination-controls (pageChange)="doPaging($event)"
-                                         maxSize="5"
-                                         responsive="true"
-                                         previousLabel=""
-                                         nextLabel="">
-                    </pagination-controls>
-                </div>
-            </div>
-        </div>
-    </div>
+  </app-table>
 </div>
 

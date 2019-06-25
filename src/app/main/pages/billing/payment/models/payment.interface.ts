@@ -1,7 +1,7 @@
 export interface PaymentInterface {
   id:number;
   description:string;
-  type:number,
+  type:string,
   isPaid:boolean;
   amount:number;
   vat:number;
