@@ -1,9 +1,10 @@
 export interface RowColumnConfigInterface {
-  propertyName:string;
-
+  propertyName?:string;
   sign?:string;
   isDateTime?:boolean;
   isDate?:boolean;
-  classes?:string[];
   hasSummaryDisplay?:boolean;
+  hasButton?:boolean;
+  hasArrowClass?:boolean;
+  classSelector?(item:any):string;
 }

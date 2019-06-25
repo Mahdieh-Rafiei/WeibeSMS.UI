@@ -1,67 +1,80 @@
 <div class="div-section">
-    <div class="change-password form-group">
-        <h5>Transaction log</h5>
-        <p class="fo-4 black-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-            incididunt ut labore et dolore
-            magna aliqua.</p>
+  <div class="change-password form-group">
+    <h5>Transaction log</h5>
+    <p class="fo-4 black-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+      incididunt ut labore et dolore
+      magna aliqua.</p>
+  </div>
+  <!--operation-->
+  <div class="row">
+    <div class="col-md-6 operation-section form-group">
+      <select (change)="export($event)" class="light-blue-btn mr-3">
+        <option> Export</option>
+        <option [value]="1">Paged data</option>
+        <option [value]="2">All records</option>
+      </select>
+      <!--<app-filter [filterData]="filterData" (filterValue)="getFilterData($event)"></app-filter>-->
     </div>
-    <!--operation-->
-    <div class="row">
-        <div class="col-md-6 operation-section form-group">
-            <select (change)="export($event)" class="light-blue-btn mr-3">
-                <option> Export</option>
-                <option [value]="1" >Paged data</option>
-                <option [value]="2">All records</option>
-            </select>
-          <!--<app-filter [filterData]="filterData" (filterValue)="getFilterData($event)"></app-filter>-->
-        </div>
-        <div class="col-12 col-md-3 offset-md-3 operation-section form-group">
-            <app-search (searchText)="getData($event)"></app-search>
-        </div>
+    <div class="col-12 col-md-3 offset-md-3 operation-section form-group">
+      <app-search (searchText)="getData($event)"></app-search>
     </div>
-    <!--table-->
-    <div class="table-div table-responsive">
-        <table class="index-table text-left">
-            <thead>
-            <tr>
-                <th class="text-left"><i class="fa fa-sort"></i>Id</th>
-                <th class="text-left"><i class="fa fa-sort"></i>Description</th>
-                <th class="text-left"><i class="fa fa-sort"></i>Type</th>
-                <th class="text-left"><i class="fa fa-sort"></i>Use credits</th>
-                <th class="text-left"><i class="fa fa-sort"></i>Remain credit</th>
-                <th class="text-left"><i class="fa fa-sort"></i>Datetime</th>
-            </tr>
-            </thead>
-            <tbody *ngFor="let tl of transactionLogs | paginate :
-            {itemsPerPage:10, currentPage:getTransactionLogsModel.pageNumber,totalItems:totalItems},index as i">
-            <tr>
-              <td class="text-left">#{{i + 1}}</td>
-              <td class="text-left">{{tl.description}}</td>
-              <td class="text-left">
-                <button class="light-green-btn">simple</button>
-              </td>
-              <td class="text-left">
-                {{tl.credit}}$ <i class="fa" [ngClass]="tl.credit < 0 ? 'fa-arrow-down' : 'fa-arrow-up'"></i>
-              </td>
-              <td class="text-left">{{tl.remainCredit}}$</td>
-              <td class="text-left">{{tl.transactionDateTime | dateTime:'YYYY-MM-DD hh:mm:ss'}}</td>
-            </tr>
-            </tbody>
-        </table>
-        <!--pagination-->
-        <div class="col-12 pagination-div">
-            <div class="row pt-1 pb-1">
-                <div class="col-12 col-md-6 text-left fo-3 black-text font-weight-bold">Displaying 1-10 of {{totalItems}} records</div>
-                <div class="col-12 col-md-6 text-right">
-                    <pagination-controls (pageChange)="doPaging($event)"
-                                         maxSize="5"
-                                         responsive="true"
-                                         previousLabel=""
-                                         nextLabel="">
-                    </pagination-controls>
-                </div>
-            </div>
-        </div>
-    </div>
+  </div>
+  <!--table-->
+
+
+  <app-table [collection]="transactionLogs"
+             [tableConfig]="tableConfig"
+             (pagingModelChanged)="getTransactionLogs()">
+
+  </app-table>
+
+
+  <!--<div class="table-div table-responsive">-->
+  <!--<table class="index-table text-left">-->
+  <!--<thead>-->
+  <!--<tr>-->
+  <!--<th class="text-left"><i class="fa fa-sort"></i>Id</th>-->
+  <!--<th class="text-left"><i class="fa fa-sort"></i>Description</th>-->
+  <!--<th class="text-left"><i class="fa fa-sort"></i>Type</th>-->
+  <!--<th class="text-left"><i class="fa fa-sort"></i>Use credits</th>-->
+  <!--<th class="text-left"><i class="fa fa-sort"></i>Remain credit</th>-->
+  <!--<th class="text-left"><i class="fa fa-sort"></i>Datetime</th>-->
+  <!--</tr>-->
+  <!--</thead>-->
+  <!--<tbody *ngFor="let tl of transactionLogs | paginate :-->
+  <!--{itemsPerPage:10, currentPage:tableConfig.pagingModel.pageNumber,totalItems:tableConfig.pagingModel.totalItemsCount},index as i">-->
+  <!--<tr>-->
+  <!--<td class="text-left">#{{i + 1}}</td>-->
+  <!--<td class="text-left">{{tl.description}}</td>-->
+  <!--<td class="text-left">-->
+  <!--<button class="light-green-btn">simple</button>-->
+  <!--</td>-->
+  <!--<td class="text-left">-->
+  <!--{{tl.credit}}$ <i class="fa" [ngClass]="tl.credit < 0 ? 'fa-arrow-down' : 'fa-arrow-up'"></i>-->
+  <!--</td>-->
+  <!--<td class="text-left">{{tl.remainCredit}}$</td>-->
+  <!--<td class="text-left">{{tl.transactionDateTime | dateTime:'YYYY-MM-DD hh:mm:ss'}}</td>-->
+  <!--</tr>-->
+  <!--</tbody>-->
+  <!--</table>-->
+  <!--&lt;!&ndash;pagination&ndash;&gt;-->
+  <!--<div class="col-12 pagination-div">-->
+  <!--<div class="row pt-1 pb-1">-->
+  <!--<div class="col-12 col-md-6 text-left fo-3 black-text font-weight-bold">Displaying 1-10 of {{totalItems}}-->
+  <!--records-->
+  <!--</div>-->
+  <!--<div class="col-12 col-md-6 text-right">-->
+  <!--<pagination-controls (pageChange)="doPaging($event)"-->
+  <!--maxSize="5"-->
+  <!--responsive="true"-->
+  <!--previousLabel=""-->
+  <!--nextLabel="">-->
+  <!--</pagination-controls>-->
+  <!--</div>-->
+  <!--</div>-->
+  <!--</div>-->
+  <!--</div>-->
+
+
 </div>
 
