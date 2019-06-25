@@ -1,72 +1,38 @@
 <div>
-    <div class="btn-section text-right">
-        <div class="col-md-12 no-pad text-right">
-            <button class="green-btn"><i class="fa fa-plus"></i> Send Event SMS</button>
-            <button class="green-btn ml-3" (click)="addEditUserEvent(null, null)"><i
-                    class="fa fa-plus"></i>
-                New Fields
-            </button>
-        </div>
+  <div class="btn-section text-right">
+    <div class="col-md-12 no-pad text-right">
+      <button class="green-btn"><i class="fa fa-plus"></i> Send Event SMS</button>
+      <button class="green-btn ml-3" (click)="addEditUserEvent(null, null)"><i
+        class="fa fa-plus"></i>
+        New Fields
+      </button>
     </div>
-    <div class="div-section">
-        <div class="user-event mb-3">
-            <h5>Event Fields</h5>
-            <p class="fo-4 black-text pb-1">Event field can be used for an attribute for your contacts</p>
-            <p class="fo-4 yellow-text pb-1"><i class="fas fa-exclamation-triangle"></i> You can use them only in the Event SMS.</p>
-        </div>
-
-        <div class="row">
-            <div class="col-12 col-md-6 operation-section form-group">
-                <!--<app-filter [filterData]="filterData" (filterValue)="getFilterData($event)"></app-filter>-->
-            </div>
-            <!--search-->
-            <div class="col-md-3 offset-md-3 operation-section form-group text-right">
-                <app-search (searchText)="getData($event)"></app-search>
-            </div>
-        </div>
-        <div class="table-div table-responsive">
-            <table class="index-table text-left">
-                <thead>
-                <tr>
-                    <th class="text-left"><i class="fa fa-sort"></i>ID</th>
-                    <th class="text-left"><i class="fa fa-sort"></i>Title</th>
-                    <th></th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr *ngFor="let userEvent of userEvents | paginate:
-                {itemsPerPage:10, currentPage:getModel.pageNumber,totalItems:totalItems}; let i= index">
-                    <td class="text-left">#{{i+1}}</td>
-                    <td class="text-left">{{userEvent.name}}</td>
-                    <td class="td-single text-right actions-container">
-                        <div class="actions text-right">
-                            <!--<a><i (click)="removeUserEvent(i, userEvent.id)" class="fa fa-trash light-red-btn"></i></a>-->
-                            <a><i (click)="removeUserEvent(i, userEvent)" class="fa fa-trash light-red-btn"></i></a>
-
-                            <a (click)="addEditUserEvent(userEvent, i)"> <i
-                                    class="fa fa-pencil light-green-btn"></i></a>
-                        </div>
-                    </td>
-                </tr>
-                </tbody>
-            </table>
-            <!--pagination-->
-            <div class="col-12 pagination-div">
-                <div class="row pt-1 pb-1">
-                    <div class="col-12 col-md-6 text-left fo-3 black-text font-weight-bold">Displaying 1-10 of
-                        {{totalItems}} records
-                    </div>
-                    <div class="col-12 col-md-6 text-right">
-                        <pagination-controls (pageChange)="doPaging($event)"
-                                             maxSize="5"
-                                             responsive="true"
-                                             previousLabel=""
-                                             nextLabel="">
-                        </pagination-controls>
-                    </div>
-                </div>
-            </div>
-        </div>
-
+  </div>
+  <div class="div-section">
+    <div class="user-event mb-3">
+      <h5>Event Fields</h5>
+      <p class="fo-4 black-text pb-1">Event field can be used for an attribute for your contacts</p>
+      <p class="fo-4 yellow-text pb-1"><i class="fas fa-exclamation-triangle"></i> You can use them only in the Event
+        SMS.</p>
     </div>
+
+    <div class="row">
+      <div class="col-12 col-md-6 operation-section form-group">
+        <!--<app-filter [filterData]="filterData" (filterValue)="getFilterData($event)"></app-filter>-->
+      </div>
+      <!--search-->
+      <div class="col-md-3 offset-md-3 operation-section form-group text-right">
+        <app-search (searchText)="getData($event)"></app-search>
+      </div>
+    </div>
+
+    <app-table
+      [tableConfig]="tableConfig"
+      [collection]="userEvents"
+      (pagingModelChanged)="getUserEvents()"
+      (itemRemoved)="removeUserEvent($event.index,$event.item)"
+      (editItemClicked)="addEditUserEvent($event.item,$event.index)">
+
+    </app-table>
+  </div>
 </div>

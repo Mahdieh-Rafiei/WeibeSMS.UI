@@ -1,6 +1,7 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import {PagingModelInterface} from './models/paging-model.interface';
+import {PagingModel} from './models/paging-model';
 import {TableConfigInterface} from './models/table-config.interface';
+import {RowColumnConfigInterface} from './models/row-column-config.interface';
 
 @Component({
   selector: 'app-table',
@@ -10,9 +11,7 @@ import {TableConfigInterface} from './models/table-config.interface';
 export class TableComponent implements OnInit {
 
   @Input() tableConfig: TableConfigInterface;
-  @Input() headersName: string[];
   @Input() collection: any[];
-  @Input() pagingModel: PagingModelInterface;
   @Output() pagingModelChanged: EventEmitter<any> = new EventEmitter<any>();
   @Output() itemRemoved: EventEmitter<any> = new EventEmitter<any>();
   @Output() editItemClicked: EventEmitter<any> = new EventEmitter<any>();
@@ -25,7 +24,7 @@ export class TableComponent implements OnInit {
   }
 
   doPaging(e) {
-    this.pagingModel.pageNumber = e;
+    this.tableConfig.pagingModel.pageNumber = e;
     this.pagingModelChanged.emit();
   }
 
@@ -39,5 +38,9 @@ export class TableComponent implements OnInit {
 
   editItem(index:number,item:any){
     this.editItemClicked.emit({index:index,item:item});
+  }
+
+  test(){
+    console.log(this.tableConfig);
   }
 }

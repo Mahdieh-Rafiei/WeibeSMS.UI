@@ -1,5 +1,9 @@
 export interface RowColumnConfigInterface {
-  isDateTime:boolean;
   propertyName:string;
-  classes:string[];
+
+  sign?:string;
+  isDateTime?:boolean;
+  isDate?:boolean;
+  classes?:string[];
+  hasSummaryDisplay?:boolean;
 }

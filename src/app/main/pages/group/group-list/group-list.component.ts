@@ -10,34 +10,33 @@ import {AddEditGroupComponent} from './add-edit/add-edit-group.component';
 import {ItemsGroupListInterface} from './models/items-group-list.interface';
 import {errorAnimation} from '../../../../shared/component/animation/error-animation';
 import {DialogComponent} from '../../../../shared/component/dialog/dialog.component';
-
 import {TableConfigInterface} from '../../../../shared/component/table/models/table-config.interface';
-import {PagingModelInterface} from '../../../../shared/component/table/models/paging-model.interface';
-import {RemoveKeyInterface} from '../../developers/developer/models/remove-key.interface';
-import {FilterDataInterface} from "../../../../shared/component/filter/filter-data.interface";
+import {PagingModel} from '../../../../shared/component/table/models/paging-model';
 
 @Component({
-    selector: 'app-group-list',
-    templateUrl: './group-list.component.html',
-    styleUrls: ['./group-list.component.scss'],
-    animations: [
-        errorAnimation()
-    ],
+  selector: 'app-group-list',
+  templateUrl: './group-list.component.html',
+  styleUrls: ['./group-list.component.scss'],
+  animations: [
+    errorAnimation()
+  ],
 })
 
 export class GroupListComponent implements OnInit {
-
 
   data: any;
   groups: ItemsGroupListInterface[] = [];
   phrase = '';
   groupName: string = '';
   filterData = {};
-  tableConfig: TableConfigInterface;
-  pagingModel: PagingModelInterface = {
-    pageNumber: 1,
-    pageSize: 10,
-    totalItemsCount: 0
+  tableConfig: TableConfigInterface = {
+    hasActions: true,
+    hasAddOrUpdateButton: true,
+    hasRemoveButton: true,
+    hasShowButton: true,
+    rowColumnsConfig: [],
+    pagingModel: new PagingModel(),
+    headerNames:['Id','Title','Recipient']
   };
 
   constructor(private groupService: GroupService,
@@ -54,12 +53,14 @@ export class GroupListComponent implements OnInit {
   }
 
   getAllGroupList() {
-    this.groupService.getAllGroupList(this.pagingModel.pageSize, this.pagingModel.pageNumber
+    this.groupService.getAllGroupList(this.tableConfig.pagingModel.pageNumber,
+      this.tableConfig.pagingModel.pageSize
       , this.phrase)
       .subscribe((res: GroupListInterface) => {
+        debugger;
         this.data = res.data;
         this.groups = this.data.items;
-        this.pagingModel.totalItemsCount = this.data.totalItemsCount;
+        this.tableConfig.pagingModel.totalItemsCount = this.data.totalItemsCount;
       });
   }
 
@@ -131,16 +132,11 @@ export class GroupListComponent implements OnInit {
   }
 
   generateRowColumns() {
-    this.tableConfig = {
-      hasActions: true,
-      hasAddOrUpdateButton: true,
-      hasRemoveButton: true,
-      hasShowButton: true,
-      rowColumnsConfig: []
-    };
+    this.tableConfig.rowColumnsConfig.push(
+      {propertyName: 'groupName'});
 
-    this.tableConfig.rowColumnsConfig.push({propertyName: 'groupName', isDateTime: false, classes: null});
-    this.tableConfig.rowColumnsConfig.push({propertyName: 'contactsCount', isDateTime: false, classes: null});
+    this.tableConfig.rowColumnsConfig.push(
+      {propertyName: 'contactsCount'});
   }
 
   showDetails(group: ItemsGroupListInterface) {

@@ -1,9 +1,7 @@
 <div class="div-section">
     <div class="change-password form-group">
         <h5>invoice</h5>
-        <p class="fo-4 black-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-            incididunt
-            ut labore et dolore
+        <p class="fo-4 black-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
             magna aliqua.</p>
     </div>
     <!--operation-->
@@ -18,7 +16,7 @@
     <!--table-->
     <div class="table-div table-responsive">
         <table class="index-table text-left">
-            <thead *ngIf="totalItems > 0">
+            <thead>
             <tr>
                 <th class="text-left"><i class="fa fa-sort"></i>Id</th>
                 <th class="text-left"><i class="fa fa-sort"></i>Amount</th>
@@ -26,13 +24,6 @@
                 <th class="text-left"><i class="fa fa-sort"></i>Total Price</th>
                 <th class="text-left"><i class="fa fa-sort"></i>Created on</th>
                 <th></th>
-            </tr>
-            </thead>
-            <thead *ngIf="totalItems === 0">
-            <tr>
-                <th>
-                    <p class="text-center">Record Not Found</p>
-                </th>
             </tr>
             </thead>
             <tbody *ngFor="let inv of invoices | paginate :

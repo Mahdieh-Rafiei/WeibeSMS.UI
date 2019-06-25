@@ -1,12 +1,13 @@
 <div class="table-div table-responsive">
   <table class="index-table text-left">
-    <thead *ngIf="pagingModel.totalItemsCount > 0">
+    <thead *ngIf="tableConfig.pagingModel.totalItemsCount > 0">
     <tr>
-      <th *ngFor="let headerName of headersName" class="text-left"><i class="fa fa-sort"></i>{{headerName}}</th>
+      <th *ngFor="let headerName of tableConfig.headerNames" class="text-left"><i class="fa fa-sort"></i>{{headerName}}
+      </th>
       <th *ngIf="tableConfig.hasActions"></th>
     </tr>
     </thead>
-    <thead *ngIf="pagingModel.totalItemsCount === 0">
+    <thead *ngIf="tableConfig.pagingModel.totalItemsCount === 0">
     <tr>
       <th>
         <p class="text-center">Record Not Found</p>
@@ -15,16 +16,33 @@
     </thead>
     <tbody>
     <tr *ngFor="let item of collection | paginate : {
-                    itemsPerPage : 10, currentPage : pagingModel.pageNumber, totalItems : pagingModel.totalItemsCount
+                    itemsPerPage : tableConfig.pagingModel.pageSize, currentPage : tableConfig.pagingModel.pageNumber, totalItems : tableConfig.pagingModel.totalItemsCount
                     },index as i">
       <td class="text-left">
         <div class="table-head">
-          <span>{{i + 1 + (pagingModel.pageSize * (pagingModel.pageNumber == 1 ? 0 : pagingModel.pageNumber - 1))}}</span>
+          <span>{{i + 1 + (tableConfig.pagingModel.pageSize * (tableConfig.pagingModel.pageNumber == 1 ? 0 : tableConfig.pagingModel.pageNumber - 1))}}</span>
         </div>
       </td>
       <td class="text-left" *ngFor="let r of tableConfig.rowColumnsConfig">
-        <div
-          [innerText]="r.isDateTime ? (item[r.propertyName] | dateTime:'YYYY-MM-DD hh:mm:ss') :(item[r.propertyName])"></div>
+        <div *ngIf="!r.hasSummaryDisplay">
+          <div *ngIf="!r.sign">
+            {{
+            !r.isDateTime && !r.isDate ? item[r.propertyName] :
+              r.isDate ? (item[r.propertyName] | date) : (item[r.propertyName] | dateTime:'YYYY-MM-DD hh:mm:ss')
+            }}
+          </div>
+          <div *ngIf="r.sign">
+            {{
+            r.sign + item[r.propertyName]
+            }}
+          </div>
+        </div>
+        <div *ngIf="r.hasSummaryDisplay">
+          {{item[r.propertyName].length > 64 ? (item[r.propertyName]|slice:0:64) : item[r.propertyName]}}
+          <span *ngIf="item[r.propertyName].length > 64" [matTooltip]="item[r.propertyName]"
+                style="color: #f5274e;">. . .
+                          </span>
+        </div>
       </td>
       <td *ngIf="tableConfig.hasActions" class="td-single text-right actions-container">
         <div class="actions text-right">
@@ -40,9 +58,9 @@
   <div class="col-12 pagination-div">
     <div class="row pt-1 pb-1">
       <div class="col-12 col-md-6 text-left fo-3 black-text font-weight-bold">Displaying
-        {{(pagingModel.pageSize * (pagingModel.pageNumber == 1 ? 0 : pagingModel.pageNumber - 1)) + 1 }}
-        - {{pagingModel.pageSize * pagingModel.pageNumber}} of
-        {{pagingModel.totalItemsCount}} records
+        {{(tableConfig.pagingModel.pageSize * (tableConfig.pagingModel.pageNumber == 1 ? 0 : tableConfig.pagingModel.pageNumber - 1)) + 1 }}
+        - {{tableConfig.pagingModel.pageSize * tableConfig.pagingModel.pageNumber}} of
+        {{tableConfig.pagingModel.totalItemsCount}} records
       </div>
       <div class="col-12 col-md-6 text-right">
         <pagination-controls (pageChange)="doPaging($event)"
