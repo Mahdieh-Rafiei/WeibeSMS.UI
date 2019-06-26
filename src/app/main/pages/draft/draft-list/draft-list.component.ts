@@ -88,6 +88,7 @@ export class DraftListComponent implements OnInit {
 
   generateRowColumns() {
     this.tableConfig.rowColumnsConfig.push({propertyName: 'title'});
+    this.tableConfig.rowColumnsConfig.push({propertyName: 'title'});
     this.tableConfig.rowColumnsConfig.push({propertyName: 'messageText',hasSummaryDisplay:true});
   }
 }
