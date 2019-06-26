@@ -116,7 +116,7 @@
                             <label>Address :</label>
                             <textarea type="text"
                                       placeholder="Enter your address"
-                                      formControlName="address" class="form-control"></textarea>
+                                      formControlName="address" class="form-control" rows="3"></textarea>
                             <div class="error-place">
                                 <div class="text-left"
                                      *ngIf="(((billingAddressForm.controls['address'].dirty || billingAddressForm.controls['address'].touched) || formDir.submitted))">
@@ -132,14 +132,14 @@
                             <h5 class="yellow-text">VAT NUMBER</h5>
                             <mat-radio-group (change)="changeVatNumber($event)" #radioGroup="matRadioGroup">
                                 <mat-radio-button class="mat-label" value="1" [checked]="vatNumber">
-                                    I don't have a VAT number
-                                </mat-radio-button>
+
+                                </mat-radio-button>  I don't have a VAT number
                                 <br>
                                 <mat-radio-button class="mat-label" value="2" [checked]="!vatNumber">
-                                    Enter VAT number
-                                </mat-radio-button>
+
+                                </mat-radio-button>   Enter VAT number
                             </mat-radio-group>
-                            <div *ngIf="!vatNumber">
+                            <div *ngIf="!vatNumber" class="mt-2">
                                 <input type="text"
                                        class="form-control"
                                        placeholder="VAT number"
