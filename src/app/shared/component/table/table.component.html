@@ -1,13 +1,14 @@
-<div class="table-div table-responsive">
+<div *ngIf="collection" class="table-div table-responsive">
   <table class="index-table text-left">
-    <thead *ngIf="tableConfig.pagingModel.totalItemsCount > 0">
+    <thead *ngIf="collection.length > 0">
     <tr>
-      <th *ngFor="let headerName of tableConfig.headerNames" class="text-left"><i class="fa fa-sort"></i>{{headerName}}
+      <th *ngFor="let headerName of tableConfig.headerNames" class="text-left">
+        <i *ngIf="headerName" class="fa fa-sort"></i>{{headerName}}
       </th>
       <th *ngIf="tableConfig.hasActions"></th>
     </tr>
     </thead>
-    <thead *ngIf="tableConfig.pagingModel.totalItemsCount === 0">
+    <thead *ngIf="collection.length === 0">
     <tr>
       <th>
         <p class="text-center">Record Not Found</p>
@@ -15,16 +16,25 @@
     </tr>
     </thead>
     <tbody>
-    <tr *ngFor="let item of collection | paginate : {
+
+    <tr *ngFor=" let item of (tableConfig.pagingModel ? (collection | paginate : {
                     itemsPerPage : tableConfig.pagingModel.pageSize, currentPage : tableConfig.pagingModel.pageNumber, totalItems : tableConfig.pagingModel.totalItemsCount
-                    },index as i">
+                    }) : collection),index as i">
       <td class="text-left">
         <div class="table-head">
-          <span>{{i + 1 + (tableConfig.pagingModel.pageSize * (tableConfig.pagingModel.pageNumber == 1 ? 0 : tableConfig.pagingModel.pageNumber - 1))}}</span>
+          <span
+            *ngIf="tableConfig.pagingModel">{{i + 1 + (tableConfig.pagingModel.pageSize * (tableConfig.pagingModel.pageNumber == 1 ? 0 : tableConfig.pagingModel.pageNumber - 1))}}</span>
+          <span>{{i + 1}}</span>
         </div>
       </td>
       <td class="text-left" *ngFor="let r of tableConfig.rowColumnsConfig">
-        <div *ngIf="!r.hasSummaryDisplay && !r.hasButton">
+
+        <div *ngIf="r.manipulationMethod">
+          {{r.manipulationMethod(item[r.propertyName])}}
+        </div>
+
+
+        <div *ngIf="!r.hasSummaryDisplay && !r.buttonConfig && !r.manipulationMethod">
           <div *ngIf="!r.sign">
             {{
             !r.isDateTime && !r.isDate ? item[r.propertyName] :
@@ -36,19 +46,25 @@
             {{
             r.sign + item[r.propertyName]
             }}
-            <i *ngIf="r.hasArrowClass" class="fa" [ngClass]="item[r.propertyName] < 0 ? 'red-text fa-arrow-down' : 'green-text fa-arrow-up'"></i>
+            <i *ngIf="r.hasArrowClass" class="fa"
+               [ngClass]="item[r.propertyName] < 0 ? 'red-text fa-arrow-down' : 'green-text fa-arrow-up'"></i>
           </div>
         </div>
         <div *ngIf="r.hasSummaryDisplay">
           {{item[r.propertyName].length > 64 ? (item[r.propertyName]|slice:0:64) : item[r.propertyName]}}
           <span *ngIf="item[r.propertyName].length > 64" [matTooltip]="item[r.propertyName]"
                 style="color: #f5274e;">. . .
-          </span>
+        </span>
         </div>
-        <div *ngIf="r.hasButton">
-          <button
-            [class]="r.classSelector ? r.classSelector(item[r.propertyName]) : ''">{{item[r.propertyName]}}</button>
+        <div *ngIf="r.buttonConfig">
+
+          <button [class]="r.buttonConfig.classSelector(item)"
+          [innerHTML]="r.buttonConfig.innerHTMLSelector(item)"
+          (click)="r.buttonConfig.action ? r.buttonConfig.action(item) : null">
+
+          </button>
         </div>
+
       </td>
       <td *ngIf="tableConfig.hasActions" class="td-single text-right actions-container">
         <div class="actions text-right">
@@ -58,14 +74,15 @@
           <a *ngIf="tableConfig.hasShowButton" (click)="showItem(item)"><i class="fa fa-eye light-green-btn"></i></a>
         </div>
       </td>
-        <td *ngIf="tableConfig.hasManageColumn"  class="td-single text-left">
-            <a  (click)="manageItem(i,item)"><i class="fa fa-cog yellow-text"></i></a>
-        </td>
+      <td *ngIf="tableConfig.hasManageColumn" class="td-single text-left">
+        <a (click)="manageItem(i,item)"><i class="fa fa-cog yellow-text"></i></a>
+      </td>
     </tr>
+
     </tbody>
 
   </table>
-  <div class="col-12 pagination-div">
+  <div *ngIf="tableConfig.pagingModel" class="col-12 pagination-div">
     <div class="row pt-1 pb-1">
       <div class="col-12 col-md-6 text-left fo-3 black-text font-weight-bold">Displaying
         {{(tableConfig.pagingModel.pageSize * (tableConfig.pagingModel.pageNumber == 1 ? 0 : tableConfig.pagingModel.pageNumber - 1)) + 1 }}

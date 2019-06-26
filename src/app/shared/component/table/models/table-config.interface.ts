@@ -4,7 +4,7 @@ import {PagingModel} from './paging-model';
 export interface TableConfigInterface {
   rowColumnsConfig:RowColumnConfigInterface[];
   headerNames:string[];
-  pagingModel:PagingModel;
+  pagingModel?:PagingModel;
 
   hasActions?:boolean;
   hasShowButton?:boolean;

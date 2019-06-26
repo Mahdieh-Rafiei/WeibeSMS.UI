@@ -12,11 +12,12 @@ import {PagingModel} from '../../../../shared/component/table/models/paging-mode
 })
 export class PaymentComponent implements OnInit {
 
-    tableConfig: TableConfigInterface = {
-        pagingModel: new PagingModel(),
-        headerNames: ['Id', 'Description', 'Payment types', 'Status', 'Amount', 'Vat', 'Total', 'Date time'],
-        rowColumnsConfig: []
-    };
+  tableConfig: TableConfigInterface = {
+    pagingModel: new PagingModel(),
+    headerNames: ['Id', 'Description', 'Payment types', 'Status', 'Amount', 'Vat', 'Total', 'Date time'],
+    rowColumnsConfig: [],
+  };
+
 
 
     getPaymentsModel: GetPaymentsModel = {
@@ -75,19 +76,25 @@ export class PaymentComponent implements OnInit {
         this.getPayments();
     }
 
-    generateRowColumns() {
-        this.tableConfig.rowColumnsConfig.push({propertyName: 'description'});
-        this.tableConfig.rowColumnsConfig.push({propertyName: 'type'});
-        this.tableConfig.rowColumnsConfig.push({
-            propertyName: 'isPaid',
-            classSelector: (value) => {
-                return value === true ? 'green-btn' : 'yellow-btn';
-            },
-            hasButton: true
-        });
-        this.tableConfig.rowColumnsConfig.push({propertyName: 'amount', sign: '€'});
-        this.tableConfig.rowColumnsConfig.push({propertyName: 'vat', sign: '%'});
-        this.tableConfig.rowColumnsConfig.push({propertyName: 'total', sign: '€'});
-        this.tableConfig.rowColumnsConfig.push({propertyName: 'creationDateTime', isDateTime: true});
-    }
+
+  generateRowColumns() {
+    this.tableConfig.rowColumnsConfig.push({propertyName: 'description'});
+    this.tableConfig.rowColumnsConfig.push({propertyName: 'type'});
+    this.tableConfig.rowColumnsConfig.push({
+      buttonConfig: {
+        classSelector: (item: PaymentInterface) => {
+          return item.isPaid === true ? 'green-btn' : 'yellow-btn';
+        },
+        innerHTMLSelector: (item: PaymentInterface) => {
+          return item.isPaid.toString();
+        },
+        action: null
+      }
+    });
+
+    this.tableConfig.rowColumnsConfig.push({propertyName: 'amount', sign: '€'});
+    this.tableConfig.rowColumnsConfig.push({propertyName: 'vat', sign: '%'});
+    this.tableConfig.rowColumnsConfig.push({propertyName: 'total', sign: '€'});
+    this.tableConfig.rowColumnsConfig.push({propertyName: 'creationDateTime', isDateTime: true});
+  }
 }

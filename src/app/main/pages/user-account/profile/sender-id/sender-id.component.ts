@@ -1,14 +1,10 @@
 import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {UserAccountService} from '../../user-account.service';
-import {SenderIdResponseInterface} from './models/sender-id-response.interface';
 import {SharedService} from '../../../../../shared/service/shared.service';
 import {errorAnimation} from '../../../../../shared/component/animation/error-animation';
-import {DataSenderIdInterface} from './models/data-sender-id.interface';
 import {NotificationService} from '../../../../../shared/notification.service';
-import {PagingModel} from "../../../../../shared/component/table/models/paging-model";
 import {TableConfigInterface} from "../../../../../shared/component/table/models/table-config.interface";
-import {GetPaymentsModel} from "../../../billing/payment/models/get-payments-model";
 import {SenderIdInterface} from "./models/sender-id.interface";
 
 @Component({
@@ -47,22 +43,22 @@ export class SenderIdComponent implements OnInit {
     }
 
     ngOnInit() {
-        this.getSenderIds();
+
         this.createForm();
+        this.getSenderIds();
         this.generateRowColumns();
     }
 
     getSenderIds() {
         this.userAccountService.getSenderIds(
-            this.tableConfig.pagingModel.pageNumber,
-            this.tableConfig.pagingModel.pageSize,
+            1,
+            10,
             this.phrase,
             this.fromDate,
             this.toDate,)
             .subscribe(res => {
                 this.data = res.data;
-                this.senderNames = this.data.items;
-
+                this.senderNames = this.data;
             });
     }
 
@@ -122,14 +118,17 @@ export class SenderIdComponent implements OnInit {
 
     generateRowColumns() {
         this.tableConfig.rowColumnsConfig.push({propertyName: 'title'});
-        this.tableConfig.rowColumnsConfig.push({propertyName: 'type'});
         this.tableConfig.rowColumnsConfig.push({propertyName: 'creationDateTime', isDateTime: true});
         this.tableConfig.rowColumnsConfig.push({
-            propertyName: 'isValid',
-            classSelector: (value) => {
-                return value === true ? 'green-btn' : 'yellow-btn';
-            },
-            hasButton: true
+            buttonConfig: {
+                classSelector: (value: SenderIdInterface) => {
+                    return value.isValid ? 'green-btn' : 'yellow-btn';
+                },
+                action: null,
+                innerHTMLSelector: (value: SenderIdInterface) => {
+                    return value.isValid ? 'Accepted' : 'Pending'
+                }
+            }
         });
     }
 }
