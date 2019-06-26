@@ -15,7 +15,7 @@ export class PaymentComponent implements OnInit {
   tableConfig: TableConfigInterface = {
     pagingModel: new PagingModel(),
     headerNames: ['Id', 'Description', 'Payment types', 'Status', 'Amount', 'Vat', 'Total', 'Date time'],
-    rowColumnsConfig: []
+    rowColumnsConfig: [],
   };
 
 

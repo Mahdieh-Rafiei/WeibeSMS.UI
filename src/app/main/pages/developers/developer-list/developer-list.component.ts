@@ -5,6 +5,8 @@ import {CreateKeyComponent} from './create-key/create-key.component';
 import {MatDialog} from '@angular/material';
 import {DataDeveloperListInterface} from './models/data-developer-list.interface';
 import {ConfigService} from '../../../../shared/config.service';
+import {TableConfigInterface} from '../../../../shared/component/table/models/table-config.interface';
+import {PagingModel} from '../../../../shared/component/table/models/paging-model';
 
 @Component({
   selector: 'app-developer-list',
@@ -13,7 +15,13 @@ import {ConfigService} from '../../../../shared/config.service';
 })
 export class DeveloperListComponent implements OnInit {
   keys: DataDeveloperListInterface[] = [];
-  showAuthKey = [];
+
+  tableConfig:TableConfigInterface={
+    rowColumnsConfig:[],
+    headerNames:['Id','Title','Authentication key','','Modify time','Status'],
+    hasShowButton:true,
+    hasActions:true
+  };
 
   constructor(private route: ActivatedRoute,
               private ns: NotificationService,
@@ -27,6 +35,7 @@ export class DeveloperListComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.generateRowColumns();
   }
 
   copyText(val: string) {
@@ -76,5 +85,22 @@ export class DeveloperListComponent implements OnInit {
           this.router.navigate(['/developer/modify', result.createKey.data.id]);
         }
       });
+  }
+
+  generateRowColumns(){
+    this.tableConfig.rowColumnsConfig.push({
+      propertyName:'title'
+    });
+
+    this.tableConfig.rowColumnsConfig.push({
+      propertyName:'key',
+      manipulationMethod:(item)=>{
+        return item.substring(0,4) + '**********' + item.substring(item.length -4);
+      }
+    });
+  }
+
+  showDetail(item:DataDeveloperListInterface){
+    this.router.navigateByUrl(`/developer/modify/${item.id}`);
   }
 }

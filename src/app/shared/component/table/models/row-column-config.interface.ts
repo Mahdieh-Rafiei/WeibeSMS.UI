@@ -7,4 +7,5 @@ export interface RowColumnConfigInterface {
   hasButton?:boolean;
   hasArrowClass?:boolean;
   classSelector?(item:any):string;
+  manipulationMethod?(item:any):string;
 }
