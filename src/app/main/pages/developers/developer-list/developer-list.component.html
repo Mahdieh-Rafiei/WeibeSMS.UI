@@ -14,7 +14,7 @@
       <div class="details p-0 pb-3">
         <p class="fo-4 black-text">Learn more about the our API<i
           class="fa fa-arrow-circle-right red-text pr-2 pl-2"></i>
-          <span  (click)="redirectToDocumentation()" class="blue-text">API Documentation</span>
+          <span (click)="redirectToDocumentation()" class="blue-text">API Documentation</span>
         </p>
         <hr>
       </div>
@@ -22,72 +22,80 @@
     <div class="col-12 col-md-6">
     </div>
   </div>
-  <div class="table-div table-responsive">
-    <table class="index-table text-left">
-      <thead>
-      <tr>
-        <th class="text-left"><i class="fa fa-sort"></i> Id</th>
-        <th class="text-left"><i class="fa fa-sort"></i> Title</th>
-        <th class="text-left"><i class="fa fa-sort"></i> Authentication key</th>
-        <th></th>
-        <th class="text-left"><i class="fa fa-sort"></i> ModifyTime</th>
-        <th class="text-center"><i class="fa fa-sort"></i> Status</th>
-        <!--<th class="text-left"><i class="fa fa-sort"></i> DateTime</th>-->
-        <th></th>
-      </tr>
-      </thead>
-      <tbody>
-      <tr *ngFor="let developer of keys, index as i">
-        <td class="text-left">
-          <div class="table-head">
-            <span>#{{i+1}}</span>
-          </div>
-        </td>
-        <td class="text-left">
-          <div class="table-head">
-            <span>{{developer.title}}</span>
-          </div>
-        </td>
-        <td class="text-left">
-          <div class="table-head">
-            <p *ngIf="showAuthKey[i]">{{developer.key}}</p>
-            <!--<p *ngIf="showAuthKey">{{developer.key| slice:(developer.key.length/2)}}</p>-->
-            <span *ngIf="!showAuthKey[i]">{{developer.key|slice:0:4}}</span>
-            <span *ngIf="!showAuthKey[i]">**********</span>
-            <span *ngIf="!showAuthKey[i]">{{developer.key|slice:developer.key.length-4}}</span>
-          </div>
-        </td>
-        <td class="text-left">
-          <div class="table-head">
-            <!--<button (click)="showAuthKey[i] = !showAuthKey[i]" class="light-yellow-btn">-->
-            <!--<span *ngIf="showAuthKey[i]"><i class="fa fa-eye-slash"></i> Hide</span>-->
-            <!--<span *ngIf="!showAuthKey[i]"><i class="fa fa-eye"></i> Show</span>-->
-            <!--</button>-->
-            <button (click)="copyText(developer.key)" class="light-green-btn"><i class="fa fa-copy"></i>
-              Copy
-            </button>
-          </div>
-        </td>
-        <td>
-          <div>
-            {{developer.lastModifiedDateTime | dateTime: 'YYYY-DD-MM'}}
-          </div>
-        </td>
-        <td class="text-center">
-          <div class="table-head">
-            <span *ngIf="!developer.isActive">Disable</span>
-            <span *ngIf="developer.isActive">Enable</span>
-          </div>
-        </td>
-        <td class="table-head">
-                <span [routerLink]="['/developer/modify', developer.id]"><i
-                  class="fa fa-eye light-green-btn"></i></span>
-        </td>
-      </tr>
 
-      </tbody>
-    </table>
-  </div>
+  <app-table [collection]="keys"
+             [tableConfig]="tableConfig"
+             (itemSelected)="showDetail($event.item)">
+  </app-table>
+
+  <!--<div class="table-div table-responsive">-->
+    <!--<table class="index-table text-left">-->
+      <!--<thead>-->
+      <!--<tr>-->
+        <!--<th class="text-left"><i class="fa fa-sort"></i> Id</th>-->
+        <!--<th class="text-left"><i class="fa fa-sort"></i> Title</th>-->
+        <!--<th class="text-left"><i class="fa fa-sort"></i> Authentication key</th>-->
+        <!--<th></th>-->
+        <!--<th class="text-left"><i class="fa fa-sort"></i> ModifyTime</th>-->
+        <!--<th class="text-center"><i class="fa fa-sort"></i> Status</th>-->
+        <!--&lt;!&ndash;<th class="text-left"><i class="fa fa-sort"></i> DateTime</th>&ndash;&gt;-->
+        <!--<th></th>-->
+      <!--</tr>-->
+      <!--</thead>-->
+      <!--<tbody>-->
+      <!--<tr *ngFor="let developer of keys, index as i">-->
+        <!--<td class="text-left">-->
+          <!--<div class="table-head">-->
+            <!--<span>#{{i + 1}}</span>-->
+          <!--</div>-->
+        <!--</td>-->
+        <!--<td class="text-left">-->
+          <!--<div class="table-head">-->
+            <!--<span>{{developer.title}}</span>-->
+          <!--</div>-->
+        <!--</td>-->
+        <!--<td class="text-left">-->
+          <!--<div class="table-head">-->
+            <!--<p *ngIf="showAuthKey[i]">{{developer.key}}</p>-->
+            <!--&lt;!&ndash;<p *ngIf="showAuthKey">{{developer.key| slice:(developer.key.length/2)}}</p>&ndash;&gt;-->
+            <!--<span *ngIf="!showAuthKey[i]">{{developer.key|slice:0:4}}</span>-->
+            <!--<span *ngIf="!showAuthKey[i]">**********</span>-->
+            <!--<span *ngIf="!showAuthKey[i]">{{developer.key|slice:developer.key.length - 4}}</span>-->
+          <!--</div>-->
+        <!--</td>-->
+        <!--<td class="text-left">-->
+          <!--<div class="table-head">-->
+            <!--&lt;!&ndash;<button (click)="showAuthKey[i] = !showAuthKey[i]" class="light-yellow-btn">&ndash;&gt;-->
+            <!--&lt;!&ndash;<span *ngIf="showAuthKey[i]"><i class="fa fa-eye-slash"></i> Hide</span>&ndash;&gt;-->
+            <!--&lt;!&ndash;<span *ngIf="!showAuthKey[i]"><i class="fa fa-eye"></i> Show</span>&ndash;&gt;-->
+            <!--&lt;!&ndash;</button>&ndash;&gt;-->
+            <!--<button (click)="copyText(developer.key)" class="light-green-btn"><i class="fa fa-copy"></i>-->
+              <!--Copy-->
+            <!--</button>-->
+          <!--</div>-->
+        <!--</td>-->
+        <!--<td>-->
+          <!--<div>-->
+            <!--{{developer.lastModifiedDateTime | dateTime: 'YYYY-DD-MM'}}-->
+          <!--</div>-->
+        <!--</td>-->
+        <!--<td class="text-center">-->
+          <!--<div class="table-head">-->
+            <!--<span *ngIf="!developer.isActive">Disable</span>-->
+            <!--<span *ngIf="developer.isActive">Enable</span>-->
+          <!--</div>-->
+        <!--</td>-->
+        <!--<td class="table-head">-->
+                <!--<span [routerLink]="['/developer/modify', developer.id]"><i-->
+                  <!--class="fa fa-eye light-green-btn"></i></span>-->
+        <!--</td>-->
+      <!--</tr>-->
+
+      <!--</tbody>-->
+    <!--</table>-->
+  <!--</div>-->
+
+
 </div>
 
 

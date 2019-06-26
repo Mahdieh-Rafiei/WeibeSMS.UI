@@ -18,7 +18,7 @@ export class TransactionLogComponent implements OnInit {
   tableConfig: TableConfigInterface = {
     pagingModel: new PagingModel(),
     rowColumnsConfig: [],
-    headerNames: ['Id' ,'Description', 'Type', 'Use credit', 'Remain credit', 'Date time'],
+    headerNames: ['Id', 'Description', 'Type', 'Use credit', 'Remain credit', 'Date time'],
   };
 
   getTransactionLogsModel: GetTransactionLogsModelInterface =
@@ -71,13 +71,19 @@ export class TransactionLogComponent implements OnInit {
     this.tableConfig.rowColumnsConfig.push({propertyName: 'description'});
 
     this.tableConfig.rowColumnsConfig.push({
-      propertyName: 'simple', classSelector: (value) => {
-        return 'light-green-btn';
-      }, hasButton: true
+      buttonConfig: {
+        action: null,
+        classSelector: (item: any) => {
+          return 'light-green-btn';
+        },
+        innerHTMLSelector: (item) => {
+          return 'simple';
+        }
+      }
     });
 
     this.tableConfig.rowColumnsConfig.push({
-      propertyName: 'credit', sign: '€',hasArrowClass:true
+      propertyName: 'credit', sign: '€', hasArrowClass: true
     });
 
     this.tableConfig.rowColumnsConfig.push({
