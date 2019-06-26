@@ -18,6 +18,7 @@ import {errorAnimation} from '../../shared/component/animation/error-animation';
 import {CacheObject} from '../../shared/models/cache-object';
 import {UserAccountService} from '../../main/pages/user-account/user-account.service';
 import {DashboardInfoResponseInterface} from './models/dashboard-info-response.interface';
+import {UtilityService} from '../../shared/utility.service';
 
 @Component({
   selector: 'app-login',
@@ -37,6 +38,7 @@ export class LoginComponent implements OnInit {
   username: string = '';
   password: string = '';
   registrationKey: string;
+  isCorrectMobile=false;
 
   @ViewChild('verificationCodePart1Element') verificationCodePart1Element: ElementRef;
   @ViewChild('verificationCodePart2Element') verificationCodePart2Element: ElementRef;
@@ -60,6 +62,7 @@ export class LoginComponent implements OnInit {
   showSpinner: boolean = false;
   countryPrefix;
   countryFlag;
+  isTried=false;
 
   mobileValue;
 
@@ -71,7 +74,8 @@ export class LoginComponent implements OnInit {
               private authSharedService: AuthSharedService,
               private shs: SharedService,
               private router: Router,
-              private userAccountService: UserAccountService) {
+              private userAccountService: UserAccountService,
+              private utilityService:UtilityService) {
   }
 
   ngOnInit() {
@@ -96,6 +100,8 @@ export class LoginComponent implements OnInit {
 
 
   changeMobile(mobile: string) {
+    this.setMobileValue();
+    this.isCorrectMobile = this.utilityService.isMobile(this.mobileValue);
     this.countries.forEach(item => mobile === item.prefixNumber ? this.selectCountry(2, item) : null);
   }
 
@@ -122,6 +128,7 @@ export class LoginComponent implements OnInit {
               });
           },
           err => {
+            this.isTried=true;
             this.showSpinner = false;
           });
     }
@@ -152,7 +159,6 @@ export class LoginComponent implements OnInit {
 
   keySendVerificationCode(event) {
     if (event.key === 'Enter') {
-      console.log(event);
       this.sendVerificationCode();
     }
   }
@@ -162,7 +168,8 @@ export class LoginComponent implements OnInit {
       this.showSpinner = true;
       this.countries.forEach(item => {
         if (this.signUpForm.value.prefixNumberId === item.id) {
-          this.mobileValue = this.signUpForm.value.mobile.substring(item.prefixNumber.length);
+          this.mobileValue = this.isTried ? this.signUpForm.value.mobile :
+            this.signUpForm.value.mobile.substring(item.prefixNumber.length);
         }
       });
       console.log(this.mobileValue);
@@ -307,5 +314,16 @@ export class LoginComponent implements OnInit {
           break;
       }
     }
+  }
+
+  setMobileValue(){
+    this.countries.forEach(item => {
+      if (this.signUpForm.value.prefixNumberId === item.id) {
+        {
+          this.mobileValue = this.signUpForm.value.mobile && this.signUpForm.value.mobile[0] != '+'  ? this.signUpForm.value.mobile :
+            this.signUpForm.value.mobile.substring(item.prefixNumber.length);
+        }
+      }
+    });
   }
 }

@@ -10,6 +10,7 @@ import {log} from 'util';
 import {ChangeNumberInterface} from './models/change-number.interface';
 import {CacheObject} from '../../../../../shared/models/cache-object';
 import {DashboardInfoInterface} from '../../../../../auth/login/models/dashboard-info.interface';
+import {UtilityService} from '../../../../../shared/utility.service';
 
 @Component({
   selector: 'app-change-number',
@@ -26,12 +27,14 @@ export class ChangeNumberComponent implements OnInit {
   mobileValue;
   currentUserInfo: DashboardInfoInterface;
   isTried = false;
-  oldMobileEntered=true;
+  oldMobileEntered = true;
+  isCorrectMobile = true;
 
   constructor(private fb: FormBuilder,
               private shs: SharedService,
               private router: Router,
-              private uas: UserAccountService) {
+              private uas: UserAccountService,
+              private utilityService: UtilityService) {
   }
 
   ngOnInit() {
@@ -54,11 +57,9 @@ export class ChangeNumberComponent implements OnInit {
     this.countryFlag = country.flag;
     if (index === 2) {
       this.mobileInput.nativeElement.focus();
-      this.countries.forEach(item => {
-        if (this.changeNumberForm.value.prefixNumberId === item.id) {
-          this.mobileValue = this.changeNumberForm.value.mobile.substring(item.prefixNumber.length);
-        }
-      });
+
+      this.setMobileValue();
+
       this.changeNumberForm.patchValue({
         mobile: country.prefixNumber + this.mobileValue
       });
@@ -81,6 +82,9 @@ export class ChangeNumberComponent implements OnInit {
   }
 
   changeMobile(mobile: string) {
+    debugger;
+    this.setMobileValue();
+    this.isCorrectMobile = this.utilityService.isMobile(this.mobileValue);
     this.oldMobileEntered = this.changeNumberForm.value.mobile.substring(1) == this.currentUserInfo.mobile;
     this.countries.forEach(item => {
       mobile === item.prefixNumber ? this.selectCountry(2, item) : null;
@@ -112,5 +116,13 @@ export class ChangeNumberComponent implements OnInit {
             }
           });
     }
+  }
+
+  setMobileValue(){
+    this.countries.forEach(item => {
+      if (this.changeNumberForm.value.prefixNumberId === item.id) {
+        this.mobileValue = this.changeNumberForm.value.mobile.substring(item.prefixNumber.length);
+      }
+    });
   }
 }
