@@ -108,7 +108,7 @@
                     </div>
                 </div>
                 <div>
-                    <button type="submit" (click)="sendVerificationCode()" class="ws-btn login-btn">Register
+                    <button [disabled]="!isCorrectMobile" type="submit" (click)="sendVerificationCode()" class="ws-btn login-btn">Register
                     </button>
                 </div>
                 <div class="text-center">
