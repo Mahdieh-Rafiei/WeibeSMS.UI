@@ -1,6 +1,7 @@
-import {DataSenderIdInterface} from './data-sender-id.interface';
+import {SenderIdInterface} from "./sender-id.interface";
+
 
 export interface SenderIdResponseInterface {
-  data: DataSenderIdInterface[];
-  message: string;
+    data: SenderIdInterface[];
+    message: string;
 }

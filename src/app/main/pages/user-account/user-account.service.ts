@@ -57,8 +57,8 @@ export class UserAccountService {
     return this.apiService.post<VerifyMobileInterface>(url, payload, true);
   }
 
-  getSenderIds(): Observable<SenderIdResponseInterface> {
-    const url = `senderName`;
+  getSenderIds(pageNumber: number, pageSize: number, phrase: string, fromDate: number, toDate: number): Observable<SenderIdResponseInterface> {
+    const url = `senderName?pageNumber=${pageNumber}&pageSize=${pageSize}&searchValue=${phrase}&fromDate=${fromDate}&toDate=${toDate}`;
     return this.apiService.get(url, true);
   }
 

@@ -6,9 +6,9 @@ import {TableConfigInterface} from '../../../../shared/component/table/models/ta
 import {PagingModel} from '../../../../shared/component/table/models/paging-model';
 
 @Component({
-  selector: 'app-payment',
-  templateUrl: './payment.component.html',
-  styleUrls: ['./payment.component.scss']
+    selector: 'app-payment',
+    templateUrl: './payment.component.html',
+    styleUrls: ['./payment.component.scss']
 })
 export class PaymentComponent implements OnInit {
 
@@ -19,59 +19,63 @@ export class PaymentComponent implements OnInit {
   };
 
 
-  getPaymentsModel: GetPaymentsModel = {
-    description: '',
-    fromDate: null,
-    isPaid: null,
-    toDate: null,
-    type: null,
-    phrase: ''
-  };
 
-  payments: PaymentInterface[];
+    getPaymentsModel: GetPaymentsModel = {
+        description: '',
+        fromDate: null,
+        isPaid: null,
+        toDate: null,
+        type: null,
+        phrase: ''
+    };
 
-  constructor(private billingService: BillingService) {
-  }
+    payments: PaymentInterface[];
 
-  ngOnInit() {
-    this.getPayments();
-    this.generateRowColumns();
-  }
-
-  getPayments() {
-    this.billingService.getPaymentLogs(this.tableConfig.pagingModel.pageNumber,
-      this.tableConfig.pagingModel.pageSize, this.getPaymentsModel.description,
-      this.getPaymentsModel.fromDate, this.getPaymentsModel.toDate,
-      this.getPaymentsModel.type,
-      this.getPaymentsModel.isPaid,
-      this.getPaymentsModel.phrase)
-      .subscribe(res => {
-        this.payments = res.data.items;
-        this.tableConfig.pagingModel.totalItemsCount = res.data.totalItemsCount;
-        this.payments.forEach(p => {
-          p.type = p.type == '1' ? 'Credit' : 'Others';
-        });
-      });
-  }
-
-  export(e) {
-    debugger;
-    const ids: number[] = [];
-    if (e.target.value == 1) {
-      this.payments.forEach(p => {
-        ids.push(p.id);
-      });
+    constructor(private billingService: BillingService) {
     }
-    this.billingService.getPaymentLogsExcel(ids)
-      .subscribe(res => {
-        window.open(res.data, '_blank');
-      });
-  }
 
-  getData(event) {
-    this.getPaymentsModel.phrase = event;
-    this.getPayments();
-  }
+    ngOnInit() {
+        this.getPayments();
+        this.generateRowColumns();
+    }
+
+    getPayments() {
+        this.billingService.getPaymentLogs(
+            this.tableConfig.pagingModel.pageNumber,
+            this.tableConfig.pagingModel.pageSize,
+            this.getPaymentsModel.description,
+            this.getPaymentsModel.fromDate,
+            this.getPaymentsModel.toDate,
+            this.getPaymentsModel.type,
+            this.getPaymentsModel.isPaid,
+            this.getPaymentsModel.phrase)
+            .subscribe(res => {this.payments = res.data.items;
+                this.tableConfig.pagingModel.totalItemsCount = res.data.totalItemsCount;
+                this.payments.forEach(p => {
+                    p.type = p.type == '1' ? 'Credit' : 'Others';
+                });
+            });
+    }
+
+    export(e) {
+        debugger;
+        const ids: number[] = [];
+        if (e.target.value == 1) {
+            this.payments.forEach(p => {
+                ids.push(p.id);
+            });
+        }
+        this.billingService.getPaymentLogsExcel(ids)
+            .subscribe(res => {
+                window.open(res.data, '_blank');
+            });
+    }
+
+    getData(event) {
+        this.getPaymentsModel.phrase = event;
+        this.getPayments();
+    }
+
 
   generateRowColumns() {
     this.tableConfig.rowColumnsConfig.push({propertyName: 'description'});
