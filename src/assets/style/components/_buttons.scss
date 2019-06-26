@@ -1,179 +1,154 @@
-@import '../helper/_variables';
-@import '../helper/_mixins';
-
-.button {
-  &--save{
-    float: left;
-  }
-  &--action-btn {
-    border: 1px solid #ececec !important;
-    color: #767676;
-    background-color: transparent !important;
-    border-radius: 3px;
-    width: 100%;
-    box-sizing: border-box;
-    position: relative;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
-    cursor: pointer;
-    outline: 0;
-    -webkit-tap-highlight-color: transparent;
-    display: inline-block;
-    vertical-align: baseline;
-    text-align: center;
-    margin: 0;
-    line-height: 38px;
-    padding: 0 -1px;
-    overflow: visible;
-  }
-
-  &--action-btn:hover {
-    background-color: #ededed !important;
-
-  }
-
-  &--square-white {
-    min-width: 40px !important;
-    padding: 2px 8px !important;
-  }
-
-  &--basic-blur {
-    &-small {
-      padding: 2px 8px !important;
-      background-color: rgba(255, 255, 255, 0.38) !important;
-      color: $color-white !important;
-      min-width: 85px !important;
-    }
-
-    &-large {
-      padding: 2px 8px !important;
-      background-color: rgba(255, 255, 255, 0.38) !important;
-      color: $color-white !important;
-      min-width: 185px !important;
-    }
-  }
-
-  &--basic-white {
-    padding: 2px 1px !important;
-    min-width: 114px !important;
-
-    span {
-      padding: 0 10px !important;
-    }
-  }
-
-  &--basic-gradient {
-    min-width: 114px !important;
-    padding: 2px 18px !important;
-    color: $color-white !important;
-    @include gradient(-76deg, $gradient-start-color-pink 0%, $gradient-end-color-orange 100%);
-    transition: all ease 200ms !important;
-
-    span {
-      padding: 0 10px !important;
-    }
-  }
-
-  &--basic-gray-large {
-    background-color: $color__button--dark-gray !important;
-    min-width: 114px !important;
-    padding: 2px 18px !important;
-    color: $color-gray !important;
-    transition: all ease 200ms !important;
-
-    span {
-      padding: 0 10px !important;
-    }
-  }
-
-  &--basic-gray {
-    background-color: $color__button--gray;
-
-    &-blue-text {
-      color: $color__button-text--blue;
-    }
-  }
-
-  &--circle-gradient {
-
-    img {
-      @include content-holder(20px);
-    }
-
-    &-small {
-      @include gradient(-48deg, $gradient-start-color-pink 0%, $gradient-end-color-orange 100%);
-      .mat-icon {
-        position: relative;
-        bottom: 4.8px;
-      }
-      z-index: 5;
-      width: 15px !important;
-      height: 15px !important;
-      animation: fade-out 500ms;
-
-      @keyframes fade-out {
-        from {
-          opacity: 0;
-        }
-        to {
-          opacity: 1;
-        }
-      }
-    }
-
-    &-large {
-      @include gradient(-48deg, #2739c1 0%, #5867dd 100%);
-      .mat-icon {
-        position: relative;
-        bottom: 4.8px;
-      }
-      z-index: 5;
-      width: 30px !important;
-      height: 30px !important;
-    }
-
-    &-remove {
-      position: absolute;
-      top: -7.5px;
-      left: 30px;
-      height: 15px !important;
-      overflow: hidden;
-
-      .mat-icon {
-        color: $color-white;
-        font-size: $font-size-small;
-        padding: 2px;
-        margin: 0;
-        position: absolute;
-        top: 0.1px;
-        left: 0.1px;
-        @include content-holder(0, 0);
-      }
-    }
-  }
-
-  &--standard {
-    min-width: 100px;
-  }
-
-  &--copy {
-    background-color: transparent;
-    color: $color-_button--gray;
-    cursor: pointer;
-    border: none;
-
-    i {
-      font-size: 1.3rem !important;
-    }
-  }
-
-  &__show-filter {
-    border: unset;
-    background-color: #fff;
-    color: #aaacb1;
-    cursor: pointer;
-  }
+.previous-btn {
+  background: none;
+  border: none;
+  color: #000;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 37px;
 }
 
+.yellow-btn {
+  background-color: #ffb822;
+  border: 1px solid #ffb822;
+  border-radius: 4px;
+  color: #ffffff;
+  padding: 7px 25px;
+  font-size: 14px;
+  transition: .4s;
+}
+
+.green-btn {
+  background-color: #1dc9b7;
+  border: 1px solid #1dc9b7;
+  border-radius: 4px;
+  color: #ffffff;
+  padding: 7px 25px;
+  font-size: 14px;
+  transition: .4s;
+}
+
+.light-green-btn {
+  background-color: #1dc9b71a;
+  border: 1px solid #e8f9f8;
+  color: #4dd4c6;
+  border-radius: .25rem !important;
+  padding: .5rem .75rem;;
+  font-size: 14px;
+  transition: .4s;
+}
+
+.light-green-btn:hover {
+  background-color: #1dc9b7;
+  border-color: #1dc9b7;
+  color: #ffffff;
+  transition: .4s;
+}
+
+.blue-btn {
+  background-color: #5867dd;
+  border: 1px solid #5867dd;
+  color: #ffffff;
+  border-radius: .25rem !important;
+  padding: .5rem .75rem;;
+  font-size: 14px;
+  transition: .4s;
+}
+
+.light-blue-btn {
+  background-color: #e9f3ff;
+  border: 1px solid #e9f3ff;
+  color: #2786fb;
+  border-radius: .25rem !important;
+  padding: .5rem .75rem;;
+  font-size: 14px;
+  transition: .4s;
+}
+
+.light-blue-btn:hover {
+  background-color: #2786fb;
+  color: #fff;
+}
+
+.light-yellow-btn {
+  background-color: #fff8e8;
+  border: 1px solid #fff8e8;
+  color: #ffb822;
+  border-radius: .25rem !important;
+  padding: .5rem .75rem;;
+  font-size: 14px;
+  transition: .4s;
+}
+
+.light-yellow-btn:hover {
+  background-color: #ffb822;
+  border: 1px solid #ffb822;
+  color: #ffffff;
+  border-radius: .25rem !important;
+  padding: .5rem .75rem;;
+  font-size: 14px;
+  transition: .4s;
+}
+
+.red-btn {
+  background-color: #fd397a;
+  border: 1px solid #fd397a;
+  border-radius: 4px;
+  color: #ffffff;
+  padding: 7px 25px;
+  font-size: 14px;
+  transition: .4s;
+}
+
+.light-red-btn {
+  background-color: #f5e2ec;
+  border: 1px solid #f5e2ec;
+  color: #fd397a;
+  border-radius: .25rem !important;
+  padding: .5rem .75rem;;
+  font-size: 14px;
+  transition: .4s;
+}
+
+.light-red-btn:hover {
+  background-color: #fd397a;
+  border-color: #fd397a;
+  color: #ffffff;
+  transition: .4s;
+}
+
+.gray-btn {
+  background-color: transparent;
+  border: 1px solid #e2e5ec;
+  color: #6c7293;
+  border-radius: .25rem !important;
+  padding: .5rem .75rem;;
+  font-size: 14px;
+  transition: .4s;
+}
+
+.gray-btn:hover {
+  background-color: #e2e5ec;
+  transition: .4s;
+}
+
+.ws-btn {
+  background: #5867dd;
+  padding: .6rem 2rem;
+  cursor: pointer;
+  transition: .3s;
+  border: none;
+  width: 100%;
+  font-size: 15px;
+  box-shadow: none;
+  color: #fff;
+  border-radius: .5rem;
+}
+
+.ws-btn:hover {
+  background: #384ad7;
+}
+
+select.light-blue-btn {
+  cursor: pointer;
+  padding-left: 0;
+}

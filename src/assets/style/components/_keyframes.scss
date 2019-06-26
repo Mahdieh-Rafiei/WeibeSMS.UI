@@ -1,0 +1,60 @@
+@keyframes stroke-offset {
+  0% {
+    fill-opacity: 0;
+    stroke-width: 0;
+    stroke-dasharray: 0% 100%;
+  }
+  25% {
+    stroke-width: 2px;
+  }
+  50% {
+    fill-opacity: 0;
+  }
+  75% {
+    stroke-width: 2px;
+  }
+  80% {
+    stroke-width: 0;
+  }
+  100% {
+    stroke-width: 0;
+  }
+}
+
+@keyframes shake {
+  10%, 90% {
+    transform: translate3d(-1px, 0, 0);
+  }
+
+  20%, 80% {
+    transform: translate3d(2px, 0, 0);
+  }
+
+  30%, 50%, 70% {
+    transform: translate3d(-4px, 0, 0);
+  }
+
+  40%, 60% {
+    transform: translate3d(4px, 0, 0);
+  }
+}
+
+//forward arrow
+@keyframes move-forward {
+  0% {
+    transform: translateX(0)
+  }
+  50% {
+    transform: translateX(-3px)
+  }
+  100% {
+    transform: translateX(0px)
+  }
+}
+
+//turn
+@keyframes turn {
+  to {
+    transform: rotate(360deg);
+  }
+}

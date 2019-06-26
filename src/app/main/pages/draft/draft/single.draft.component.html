@@ -68,37 +68,9 @@
             </p>
           </div>
         </div>
-
         <p *ngIf="hasDoubleChar">
           you use unicode chars!
         </p>
-        <div class="col-md-4 pl-2 pr-0">
-          <div class="content-box personalize mb-3">
-            <h5>Personalize</h5>
-            <p class="yellow-text fo-3 pt-1 pb-1 font-weight-bold">* To use the field dynamically</p>
-            <p class="green-text fo-2 pt-2" (click)="addSegment(1)"><i class="fa fa-plus-circle"></i> Name</p>
-            <p class="green-text fo-2 pt-2" (click)="addSegment(2)"><i class="fa fa-plus-circle"></i> Surname</p>
-            <p class="green-text fo-2 pt-2" (click)="addSegment(3)"><i class="fa fa-plus-circle"></i> Phone number</p>
-          </div>
-          <div class="template">
-            <select class="form-control" (change)="selectTemplate($event)">
-              <option hidden *ngIf="drafts?.length===0">No Template</option>
-              <option hidden *ngIf="drafts?.length>0">Select Template</option>
-              <option [innerText]="d.title" [value]="d.id" *ngFor="let d of drafts">
-              </option>
-            </select>
-          </div>
-        </div>
-        <div class="col-md-12 p-0">
-          <div class="error-place">
-            <div class="text-left">
-              <p class="errorMessage" *ngIf="!message.value && messageValue" [@errorAnimation]>
-                <i class="far fa-exclamation-circle"></i> this filed is required!
-              </p>
-              <i class="far fa-exclamation-circle"></i> Notice to Max length message!
-            </div>
-          </div>
-        </div>
       </div>
     </div>
   </div>

@@ -1,0 +1,46 @@
+/*-----------------------------------------Modal SVG--------------------------------*/
+.modal-header {
+  display: block;
+  border: none;
+  padding-bottom: 0 !important;
+  svg {
+    width: 70px;
+  }
+}
+
+.cdk-overlay-dark-backdrop {
+  background: rgba(0, 0, 0, 0.5);
+}
+
+//svg delete
+.delete-st0 {
+  fill: #FD397A;
+}
+
+.trash path {
+  animation: shake 2.5s ease-in;
+
+}
+
+//svg warning
+.question-st0 {
+  fill: #FFB822;
+}
+
+.question path {
+  animation: shake 2.5s ease-in;
+}
+
+//svg create
+.create-st0 {
+  fill: #1DC9B7;
+}
+
+.creat path {
+  fill: #1DC9B7;
+  stroke: #1DC9B7;
+  fill-opacity: 1;
+  stroke-width: 0;
+  stroke-dasharray: 100% 0;
+  animation: stroke-offset 2.5s ease-in;
+}
