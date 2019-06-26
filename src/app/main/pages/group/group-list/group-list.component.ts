@@ -57,7 +57,6 @@ export class GroupListComponent implements OnInit {
       this.tableConfig.pagingModel.pageSize
       , this.phrase)
       .subscribe((res: GroupListInterface) => {
-        debugger;
         this.data = res.data;
         this.groups = this.data.items;
         this.tableConfig.pagingModel.totalItemsCount = this.data.totalItemsCount;

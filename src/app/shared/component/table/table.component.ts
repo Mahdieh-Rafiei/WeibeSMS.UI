@@ -16,6 +16,7 @@ export class TableComponent implements OnInit {
     @Output() itemSelected: EventEmitter<any> = new EventEmitter<any>();
     @Output() manageButtonClicked: EventEmitter<any> = new EventEmitter<any>();
 
+
     constructor() {
     }
 

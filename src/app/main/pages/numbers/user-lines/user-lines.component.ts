@@ -50,7 +50,6 @@ export class UserLinesComponent implements OnInit {
         this.numberService.getUserLines(this.tableConfig.pagingModel.pageNumber, this.tableConfig.pagingModel.pageSize, this.getUserLineModel.isActive, this.phrase)
             .subscribe(res => {
                 this.userLines = res.data.items;
-                console.log(this.userLines);
                 this.tableConfig.pagingModel.totalItemsCount = res.data.totalItemsCount;
             });
     }
