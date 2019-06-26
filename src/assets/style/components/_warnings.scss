@@ -1,0 +1,48 @@
+.error-place {
+  height: 20px;
+}
+
+.border-error {
+  border: 1px solid #fd397a;
+  transition: .3s;
+}
+
+.errorMessage {
+  font-size: 12px;
+  color: #fd397a;
+  display: flow-root;
+  padding-left: 2px;
+  align-items: center;
+}
+
+.successMessage {
+  font-size: 12px;
+  color: #17e41d;
+  display: flow-root;
+  padding-left: 2px;
+  align-items: center;
+}
+.defaultMessage {
+  font-size: 12px;
+  display: flow-root;
+  padding-left: 2px;
+  align-items: center;
+}
+
+
+.strong-password {
+  font-size: 12px;
+  color: #1dc9b7;
+  display: flow-root;
+  padding-left: 2px;
+  align-items: center;
+}
+
+.warning-box {
+  background: #fb9678;
+  color: #fff;
+  border-color: #fb9678;
+  padding: 10px;
+  border-radius: 8px;
+  line-height: 1.9;
+}
