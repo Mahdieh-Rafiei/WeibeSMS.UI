@@ -1,5 +1,6 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {TableConfigInterface} from './models/table-config.interface';
+import {RowColumnConfigInterface} from './models/row-column-config.interface';
 
 @Component({
   selector: 'app-table',

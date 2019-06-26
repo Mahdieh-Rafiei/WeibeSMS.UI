@@ -7,6 +7,7 @@ import {DataDeveloperListInterface} from './models/data-developer-list.interface
 import {ConfigService} from '../../../../shared/config.service';
 import {TableConfigInterface} from '../../../../shared/component/table/models/table-config.interface';
 import {PagingModel} from '../../../../shared/component/table/models/paging-model';
+import {forEach} from '@angular/router/src/utils/collection';
 
 @Component({
   selector: 'app-developer-list',
@@ -36,6 +37,9 @@ export class DeveloperListComponent implements OnInit {
 
   ngOnInit() {
     this.generateRowColumns();
+    this.keys.forEach(k=>{
+      k.isActive=k.isActive == '1' ? 'Enabled' : 'Disabled'
+    });
   }
 
   copyText(val: string) {
@@ -78,7 +82,7 @@ export class DeveloperListComponent implements OnInit {
             id: result.createKey.data.id,
             key: result.createKey.data.key,
             title: result.createKey.data.title,
-            isActive: true,
+            isActive: 'Enabled',
             lastModifiedDateTime: +new Date()
           });
           this.ns.success('create key successfully!', '');
@@ -92,15 +96,39 @@ export class DeveloperListComponent implements OnInit {
       propertyName:'title'
     });
 
+
     this.tableConfig.rowColumnsConfig.push({
       propertyName:'key',
       manipulationMethod:(item)=>{
         return item.substring(0,4) + '**********' + item.substring(item.length -4);
       }
     });
+
+    this.tableConfig.rowColumnsConfig.push({
+      buttonConfig:{
+        action:(item:DataDeveloperListInterface)=>{
+          this.copyText(item.key);
+        },
+        classSelector:(item => {
+          return 'light-green-btn'
+        }),
+        innerHTMLSelector:(item => {
+          return `<i class="fa fa-copy"></i>` + ` Copy`;
+        })
+      }
+    });
+
+    this.tableConfig.rowColumnsConfig.push({
+      propertyName:'lastModifiedDateTime',
+      isDate:true
+    });
+
+    this.tableConfig.rowColumnsConfig.push({
+      propertyName:'isActive',
+    });
   }
 
-  showDetail(item:DataDeveloperListInterface){
-    this.router.navigateByUrl(`/developer/modify/${item.id}`);
+  showDetail(item){
+     this.router.navigateByUrl('/developer/modify/' + item.id);
   }
 }

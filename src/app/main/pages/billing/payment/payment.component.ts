@@ -77,19 +77,20 @@ export class PaymentComponent implements OnInit {
     this.tableConfig.rowColumnsConfig.push({propertyName: 'description'});
     this.tableConfig.rowColumnsConfig.push({propertyName: 'type'});
     this.tableConfig.rowColumnsConfig.push({
-      propertyName: 'isPaid',
-      classSelector: (value) => {
-        return value === true ? 'green-btn' : 'yellow-btn';
-      },
-      hasButton: true
+      buttonConfig: {
+        classSelector: (item: PaymentInterface) => {
+          return item.isPaid === true ? 'green-btn' : 'yellow-btn';
+        },
+        innerHTMLSelector: (item: PaymentInterface) => {
+          return item.isPaid.toString();
+        },
+        action: null
+      }
     });
+
     this.tableConfig.rowColumnsConfig.push({propertyName: 'amount', sign: '€'});
     this.tableConfig.rowColumnsConfig.push({propertyName: 'vat', sign: '%'});
     this.tableConfig.rowColumnsConfig.push({propertyName: 'total', sign: '€'});
     this.tableConfig.rowColumnsConfig.push({propertyName: 'creationDateTime', isDateTime: true});
   }
 }
-
-// <td class="text-left">
-// <button [ngClass]="p.isPaid ? 'green-btn' : 'yellow-btn'">{{p.isPaid}}</button>
-// </td>

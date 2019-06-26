@@ -29,10 +29,6 @@ export class UserLinesComponent implements OnInit {
         headerNames: ['Id', 'Country', 'Number', 'Next billing date', 'Cost','Manage']
     };
 
-    getUserLineModel: GetUserLineModelInterface={
-      isActive:null
-    };
-
     currentIndex: number;
 
     constructor(private numberService: NumbersService,
@@ -47,14 +43,13 @@ export class UserLinesComponent implements OnInit {
     }
 
     getUserLines() {
-        this.numberService.getUserLines(this.tableConfig.pagingModel.pageNumber, this.tableConfig.pagingModel.pageSize, this.getUserLineModel.isActive, this.phrase)
+        this.numberService.getUserLines(this.tableConfig.pagingModel.pageNumber, this.tableConfig.pagingModel.pageSize, null, this.phrase)
             .subscribe(res => {
                 this.userLines = res.data.items;
                 console.log(this.userLines);
                 this.tableConfig.pagingModel.totalItemsCount = res.data.totalItemsCount;
             });
     }
-
 
     modifyUserLine(data: ItemsUserLineInterface, index) {
         this.currentIndex = index;

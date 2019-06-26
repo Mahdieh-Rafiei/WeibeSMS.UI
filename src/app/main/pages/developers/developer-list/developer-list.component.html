@@ -23,10 +23,9 @@
     </div>
   </div>
 
-
   <app-table [collection]="keys"
              [tableConfig]="tableConfig"
-             (itemSelected)="showDetail($event)">
+             (itemSelected)="showDetail($event.item)">
   </app-table>
 
   <!--<div class="table-div table-responsive">-->
