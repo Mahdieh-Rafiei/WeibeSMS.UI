@@ -143,26 +143,26 @@ export class RegisterComponent implements OnInit {
         .subscribe((res: any) => {
           if (!res.data) {
             if (key === 1) {
+              this.checkingUserName = false;
               this.userNameUnique = false;
             } else if (key === 2) {
+              this.checkingEmail = false;
               this.emailUnique = false;
             }
           } else {
             if (key === 1) {
+              this.checkingUserName = false;
               this.userNameUnique = true;
             } else if (key === 2) {
+              this.checkingEmail = false;
               this.emailUnique = true;
             }
           }
-          this.checkingEmail = false;
-          this.checkingUserName = false;
         });
     }
   }
 
   onKeyUp(type, value) {
-    console.log('is unique: ' + this.emailUnique);
-
     if (type === 'userName') {
       if (value.length > 5) {
         this.checkingUserName = true;

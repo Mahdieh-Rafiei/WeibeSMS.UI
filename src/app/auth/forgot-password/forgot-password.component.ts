@@ -12,8 +12,6 @@ import {SharedService} from '../../shared/service/shared.service';
 import {DataCountryInterface} from '../../shared/models/data-country.interface';
 import {AuthSharedService} from '../auth-shared.service';
 import {CacheObject} from '../../shared/models/cache-object';
-import {NotificationService} from '../../shared/notification.service';
-import {UtilityService} from '../../shared/utility.service';
 
 
 @Component({
@@ -25,7 +23,7 @@ import {UtilityService} from '../../shared/utility.service';
 export class ForgotPasswordComponent implements OnInit {
 
   step: number = 1;
-  isCorrectMobile = false;
+  mobile: string;
   verificationCodePart1: string = '';
   verificationCodePart2: string = '';
   verificationCodePart3: string = '';
@@ -43,7 +41,7 @@ export class ForgotPasswordComponent implements OnInit {
   verificationCode: string;
   countries: DataCountryInterface[];
   showSpinner: boolean = false;
-  isTried: boolean;
+
   countryPrefix;
   countryFlag;
 
@@ -52,7 +50,9 @@ export class ForgotPasswordComponent implements OnInit {
   @ViewChild('verificationCodePart2Element') verificationCodePart2Element: ElementRef;
   @ViewChild('verificationCodePart3Element') verificationCodePart3Element: ElementRef;
   @ViewChild('verificationCodePart4Element') verificationCodePart4Element: ElementRef;
+
   @ViewChild('verificationCodePart5Element') verificationCodePart5Element: ElementRef;
+
   @ViewChild('mobileInput') mobileInput: ElementRef;
 
   constructor(private forgotPasswordService: ForgotPasswordService,
@@ -61,9 +61,7 @@ export class ForgotPasswordComponent implements OnInit {
               private shs: SharedService,
               private authSharedService: AuthSharedService,
               private authService: AuthenticationService,
-              private configService: ConfigService,
-              private notificationService: NotificationService,
-              private utilityService: UtilityService) {
+              private configService: ConfigService) {
   }
 
   ngOnInit() {
@@ -85,9 +83,6 @@ export class ForgotPasswordComponent implements OnInit {
   }
 
   changeMobile(mobile: string) {
-    debugger;
-    this.setMobileValue();
-    this.isCorrectMobile = this.utilityService.isMobile(this.mobileValue);
     this.countries.forEach(item => mobile === item.prefixNumber ? this.selectCountry(2, item) : null);
   }
 
@@ -123,20 +118,20 @@ export class ForgotPasswordComponent implements OnInit {
 
   sendVerificationCode() {
     if (this.forgotPasswordForm.valid) {
-      this.setMobileValue();
+      this.countries.forEach(item => {
+        if (this.forgotPasswordForm.value.prefixNumberId === item.id) {
+          this.mobileValue = this.forgotPasswordForm.value.Mobile.substring(item.prefixNumber.length);
+        }
+      });
       this.authSharedService.mobile = this.mobileValue;
       this.authSharedService.prefixNumberId = +this.forgotPasswordForm.value.countryId;
       const payload: SendVerificationCodeInterface = this.forgotPasswordForm.value;
       payload['Mobile'] = this.mobileValue;
 
       this.showSpinner = true;
+      // const payload: SendVerificationCodeInterface = this.forgotPasswordForm.value;
       this.forgotPasswordService.sendVerificationCode(payload)
         .subscribe(res => {
-            debugger;
-            if (res.data.codeIsExists) {
-              this.notificationService.info('Use the last verification code', '');
-            }
-
             this.showSpinner = false;
             this.step = 2;
             setTimeout(() => {
@@ -144,10 +139,8 @@ export class ForgotPasswordComponent implements OnInit {
             }, 500);
             this.key = res.data.key;
             localStorage.setItem('k-f', res.data.key);
-
           },
           err => {
-            this.isTried = true;
             this.showSpinner = false;
             if (err.error.Message === '4') {
               console.log(err);
@@ -163,7 +156,6 @@ export class ForgotPasswordComponent implements OnInit {
   }
 
   keySendVerificationCode(event) {
-
     if (event.key === 'Enter') {
       console.log(event);
       this.sendVerificationCode();
@@ -238,12 +230,7 @@ export class ForgotPasswordComponent implements OnInit {
         localStorage.setItem('k-v-f', res.data);
         this.verifyKey = res.data;
       }, err => {
-        this.verificationCodePart1 = '';
-        this.verificationCodePart2 = '';
-        this.verificationCodePart3 = '';
-        this.verificationCodePart4 = '';
-        this.verificationCodePart5 = '';
-        this.showSpinner = false;
+        this.showSpinner = true;
       });
   }
 
@@ -318,14 +305,5 @@ export class ForgotPasswordComponent implements OnInit {
       this.verificationCodePart4 && this.verificationCodePart5) {
       this.verify();
     }
-  }
-
-  setMobileValue(){
-    this.countries.forEach(item => {
-      if (this.forgotPasswordForm.value.prefixNumberId === item.id) {
-        this.mobileValue = this.isTried ? this.forgotPasswordForm.value.Mobile :
-          this.forgotPasswordForm.value.Mobile.substring(item.prefixNumber.length);
-      }
-    });
   }
 }

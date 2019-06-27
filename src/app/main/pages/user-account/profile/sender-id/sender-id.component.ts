@@ -6,6 +6,9 @@ import {errorAnimation} from '../../../../../shared/component/animation/error-an
 import {NotificationService} from '../../../../../shared/notification.service';
 import {TableConfigInterface} from "../../../../../shared/component/table/models/table-config.interface";
 import {SenderIdInterface} from "./models/sender-id.interface";
+import {DialogComponent} from "../../../../../shared/component/dialog/dialog.component";
+import {MatDialog} from "@angular/material";
+import {SenderIdResponseInterface} from "./models/sender-id-response.interface";
 
 @Component({
     selector: 'app-sender-id',
@@ -33,13 +36,16 @@ export class SenderIdComponent implements OnInit {
 
     tableConfig: TableConfigInterface = {
         headerNames: ['Order', 'Sender name', 'Create date', 'Status'],
-        rowColumnsConfig: []
+        rowColumnsConfig: [],
+        hasRemoveButton: true,
+        hasActions:true,
     };
 
     constructor(private fb: FormBuilder,
                 private shs: SharedService,
                 private userAccountService: UserAccountService,
-                private notificationService: NotificationService) {
+                private notificationService: NotificationService,
+                private dialog: MatDialog,) {
     }
 
     ngOnInit() {
@@ -83,7 +89,6 @@ export class SenderIdComponent implements OnInit {
         }
     }
 
-
     submit() {
         if (this.senderNames.length >= 10) {
             this.notificationService.error('You can have at most 10 sender id', '');
@@ -107,14 +112,37 @@ export class SenderIdComponent implements OnInit {
         }
     }
 
-    removeSenderName(senderName: SenderIdInterface, index: number) {
-        this.userAccountService.removeSenderName(senderName.id)
-            .subscribe(res => {
-                this.senderNames.splice(index, 1);
-                this.notificationService.success('Sender Id removed successfully', '');
-            });
+    removeSenderName(index, SenderName) {
+        this.openDeleteDialog('480px', 'auto', '', {
+            modalType: 'deleteSenderId',
+            modalHeader: 'Delete Sender Id',
+            modalText: 'are you sure to remove this Sender Id?',
+            id: SenderName.id,
+            index
+        });
     }
 
+    openDeleteDialog(width, height, panelClass, data): void {
+        const dialogRef = this.dialog.open(DialogComponent, {
+            width,
+            height,
+            panelClass,
+            data
+        });
+
+        dialogRef.afterClosed()
+            .subscribe(result => {
+                if (result && result.remove) {
+                    if (result.remove.modalType === 'deleteSenderId') {
+                        this.userAccountService.removeSenderName(result.remove.data.id)
+                            .subscribe((res: SenderIdResponseInterface) => {
+                                this.senderNames.splice(result.remove.data.index, 1);
+                                this.notificationService.success('Sender Id removed successfully', '');
+                            });
+                    }
+                }
+            });
+    }
 
     generateRowColumns() {
         this.tableConfig.rowColumnsConfig.push({propertyName: 'title'});

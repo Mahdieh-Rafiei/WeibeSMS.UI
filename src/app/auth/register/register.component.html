@@ -79,7 +79,7 @@
                 <label>Email*</label>
                 <input type="text"
                        class="form-control"
-                       [ngClass]="{'border-error' : (((registerForm.controls['email'].dirty || registerForm.controls['email'].touched) || formDir.submitted) && emailUnique)}"
+                       [ngClass]="{'border-error' : ((registerForm.controls['email'].dirty || registerForm.controls['email'].touched) || formDir.submitted)}"
                        #email
                        placeholder="User Email"
                        (keydown)="onKeyDown('email')"
@@ -120,7 +120,7 @@
               <div class="col-12 col-md-4">
                 <label>Username*</label>
                 <input type="text"
-                       [ngClass]="{'border-error' : (((registerForm.controls['userName'].dirty || registerForm.controls['userName'].touched) || formDir.submitted) && userNameUnique)}"
+                       [ngClass]="{'border-error' : ((registerForm.controls['userName'].dirty || registerForm.controls['userName'].touched) || formDir.submitted)}"
                        autocomplete="off"
                        class="form-control"
                        placeholder="Your username"
@@ -209,10 +209,10 @@
             </div>
           </div>
           <div class="col-md-12 privacy">
-            <mat-checkbox (change)="confirm($event)">I have read and agree to Weiß SMS terms and <span
-              class="sign-in">conditions</span>
-              and the <span class="sign-in">privacy policy</span>.
-            </mat-checkbox>
+            <mat-checkbox (change)="confirm($event)">
+            </mat-checkbox> I have read and agree to Weiß SMS terms and <span
+                  class="sign-fill">conditions</span>
+            and the <span class="sign-fill">privacy policy</span>.
           </div>
           <div class="col-md-12 text-center btn-save">
             <button [disabled]="disableButton"
