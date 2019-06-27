@@ -44,7 +44,7 @@ export class DeactiveAccountComponent implements OnInit {
   createForm() {
     this.deActiveForm = this.fb.group({
       reason: ['', Validators.required],
-      description: [''],
+      description: [null],
     });
   }
 

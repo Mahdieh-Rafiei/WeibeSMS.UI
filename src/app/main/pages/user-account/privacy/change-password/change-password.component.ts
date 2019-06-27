@@ -7,7 +7,6 @@ import {ChangePasswordInterface} from './models/change-password.interface';
 import {ChangePasswordResponseInterface} from './models/change-password-response.interface';
 import {errorAnimation} from "../../../../../shared/component/animation/error-animation";
 import {Router} from '@angular/router';
-import {SharedService} from '../../../../../shared/service/shared.service';
 
 @Component({
     selector: 'app-change-password',
@@ -16,6 +15,7 @@ import {SharedService} from '../../../../../shared/service/shared.service';
     animations: [
         errorAnimation()
     ]
+
 })
 export class ChangePasswordComponent implements OnInit {
     changePassForm: FormGroup;
@@ -36,8 +36,8 @@ export class ChangePasswordComponent implements OnInit {
         this.changePassForm = this.fb.group({
             oldPassword: [null, Validators.required],
             newPassword: [null, Validators.required],
-             //   Validators.compose([Validators.required,
-             // Validators.pattern(/^(?=^.{8,}$)(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?!.*\s)[0-9a-zA-Z!@#$%^&*()]*$/)]),
+            //   Validators.compose([Validators.required,
+            // Validators.pattern(/^(?=^.{8,}$)(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?!.*\s)[0-9a-zA-Z!@#$%^&*()]*$/)])],
             confirmPassword: [null]
         });
     }

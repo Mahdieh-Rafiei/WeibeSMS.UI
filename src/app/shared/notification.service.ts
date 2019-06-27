@@ -26,8 +26,4 @@ export class NotificationService {
   error(message: string, title: string) {
     this.toastr.error(message, title ? title : 'Error', this.config);
   }
-
-  info(message: string, title: string) {
-    this.toastr.info(message, title ? title : 'Info', this.config);
-  }
 }

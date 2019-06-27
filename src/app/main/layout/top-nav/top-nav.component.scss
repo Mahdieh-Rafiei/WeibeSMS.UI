@@ -3,7 +3,7 @@
   background: #ffffff;
   border-radius: 0 !important;
   margin-bottom: 0;
-  box-shadow: 0 1px 5px rgba(0,0,0,0.18);
+  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.18);
   padding: 0;
 }
 
@@ -93,14 +93,22 @@ a.toggle-menu {
     }
   }
 }
-.profile{
-  a{
+
+button.mat-menu-item {
+  font-size: 15px;
+  border-bottom: 1px solid #edeef0;
+}
+button.mat-menu-item:last-child {
+  border-bottom: none;
+}
+.profile {
+  a {
     padding: 0;
     line-height: 76px;
   }
 }
 
-.notification, .guide{
+.notification, .guide {
   a {
     line-height: 76px;
     i {
@@ -142,9 +150,11 @@ a.toggle-menu {
   border-radius: 30px;
   background-color: #fab63f;
 }
+
 .fixed-top {
   z-index: 2;
 }
+
 @keyframes wave {
   0% {
     -webkit-transform: scale(0);

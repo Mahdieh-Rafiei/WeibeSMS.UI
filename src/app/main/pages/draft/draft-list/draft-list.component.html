@@ -1,28 +1,30 @@
 <div>
 
-  <div class="btn-section text-right">
-    <div class="col-md-12 text-right">
-      <button class="green-btn" [routerLink]="['/draft']"><i class="fa fa-plus"></i> Create template</button>
+    <div class="btn-section text-right">
+        <div class="col-md-12 text-right">
+            <button class="green-btn" [routerLink]="['/draft']"><i class="fa fa-plus"></i> Create template</button>
+        </div>
     </div>
-  </div>
-  <div class="div-section">
-    <h5>Templates</h5>
-    <p class="fo-4 black-text pb-1">Templates can be created as a blueprint for messages you'll send on a regular
-      basis.</p>
-    <!--operation-->
-    <div class="row">
-      <div class="col-md-6 operation-section form-group">
+    <div class="div-section">
+        <h5>Templates</h5>
+        <p class="fo-4 black-text pb-1">Templates can be created as a blueprint for messages you'll send on a regular
+            basis.</p>
+        <!--operation-->
+        <div class="row">
+            <div class="col-md-6 operation-section form-group">
 
-      </div>
-      <div class="col-md-3 offset-md-3 operation-section form-group text-right">
-        <app-search (searchText)="getData($event)"></app-search>
-      </div>
+            </div>
+            <div class="col-md-3 offset-md-3 operation-section form-group text-right">
+                <app-search (searchText)="getData($event)"></app-search>
+            </div>
+        </div>
+
+        <app-table (pagingModelChanged)="getAllDrafts()"
+                   [collection]="drafts"
+                   [tableConfig]="tableConfig"
+                   (itemRemoved)="removeDraft($event.index,$event.item)"
+        >
+        </app-table>
+
     </div>
-
-    <app-table (pagingModelChanged)="getAllDrafts()"
-    [collection]="drafts"
-    [tableConfig]="tableConfig">
-    </app-table>
-
-  </div>
 </div>

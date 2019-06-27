@@ -1,0 +1,82 @@
+@import '../helper/variables';
+@import '../helper/_mixins';
+
+.page-content-add {
+  direction: rtl;
+  margin: 0 20px;
+  height: 755px;
+  background-color: $color-white;
+  &__input {
+    &-box {
+      width: 100%;
+      margin: 18px 0;
+      @include font-style($font-family-bold, 12px, $color-dialog);
+      padding: 9px 12px;
+      height: 38px;
+      @include border($color-light-gray);
+      @include border-radius(5px)
+    }
+  }
+  &__image {
+    height: 109px;
+    margin-top: 16px;
+  }
+  &__attach {
+
+    margin-top: 16px;
+    &-gallery {
+
+      overflow: auto;
+    }
+    &-choice {
+      overflow: hidden;
+      position: absolute;
+      width: 110px;
+      line-height: 120px;
+      right: 20px;
+      opacity: 0;
+      cursor: pointer;
+      bottom: 0;
+    }
+    &-image {
+      h5 {
+        position: absolute;
+        bottom: 3px;
+        right: 40px;
+        @include font-style($font-family-bold, 11px, $color-dialog);
+        span {
+          @include font-style($font-family-bold, 11px, $color-dialog);
+        }
+      }
+      &-gallery {
+        position: relative;
+        max-height: 120px;
+        margin-top: 10px;
+        max-width: 120px;
+        margin-left: 7px;
+        img:first-child {
+          position: absolute;
+          z-index: 999;
+          width: 17px;
+          margin-top: 12px;
+          margin-right: 2px;
+        }
+      }
+    }
+    &-edit-icon {
+      position: absolute;
+      bottom: 50px;
+      right: 53px;
+      width: 35px;
+    }
+    &-icon {
+      width: 115px;
+      height: 125px;
+      border: 2px dashed $color-dialog;
+      margin-right: 5px;
+      text-align: center;
+      cursor: pointer;
+      object-fit: contain;
+    }
+  }
+}

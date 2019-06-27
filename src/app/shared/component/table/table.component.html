@@ -82,7 +82,7 @@
     </tbody>
 
   </table>
-  <div *ngIf="tableConfig.pagingModel && collection && collection.length > 0" class="col-12 pagination-div">
+  <div *ngIf="tableConfig.pagingModel" class="col-12 pagination-div">
     <div class="row pt-1 pb-1">
       <div class="col-12 col-md-6 text-left fo-3 black-text font-weight-bold">Displaying
         {{(tableConfig.pagingModel.pageSize * (tableConfig.pagingModel.pageNumber == 1 ? 0 : tableConfig.pagingModel.pageNumber - 1)) + 1 }}

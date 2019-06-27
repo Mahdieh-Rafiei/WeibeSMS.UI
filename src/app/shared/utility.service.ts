@@ -28,10 +28,6 @@ export class UtilityService {
     return regex.test(phrase);
   }
 
-  isMobile(phrase){
-    return this.onlyDigit(phrase) && phrase.length == 10;
-  }
-
   checkEmail(phrase) {
     const regex = /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$/;
     return regex.test(phrase);

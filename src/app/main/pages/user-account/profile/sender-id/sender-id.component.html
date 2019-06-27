@@ -39,6 +39,7 @@
                 (pagingModelChanged)="getSenderIds()"
                 [tableConfig]="tableConfig"
                 [collection]="senderNames "
+                (itemRemoved)="removeSenderName($event.index,$event.item)"
         >
         </app-table>
     </div>
