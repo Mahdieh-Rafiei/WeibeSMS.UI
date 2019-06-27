@@ -2,10 +2,8 @@ import {Component, OnInit} from '@angular/core';
 import {BillingService} from '../billing.service';
 import {CreditTransactionInterface} from './models/credit-transaction.interface';
 import {GetTransactionLogsModelInterface} from './models/get-transaction-logs-model.interface';
-import {toDate} from '@angular/common/src/i18n/format_date';
 import {TableConfigInterface} from '../../../../shared/component/table/models/table-config.interface';
 import {PagingModel} from '../../../../shared/component/table/models/paging-model';
-import {privateEntriesToIndex} from '@angular/compiler-cli/src/metadata/index_writer';
 
 @Component({
   selector: 'app-create-transaction',
