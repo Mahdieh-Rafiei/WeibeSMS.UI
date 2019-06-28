@@ -14,6 +14,7 @@ import {errorAnimation} from '../../../../../shared/component/animation/error-an
 import {AddContactInterface} from './models/add-contact.interface';
 import {UtilityService} from '../../../../../shared/utility.service';
 import {UserEventInterface} from '../../../user-event/models/user-event.interface';
+import {UserEventResponseInterface} from '../../../user-event/models/user-event-response.interface';
 
 
 @Component({
@@ -41,14 +42,14 @@ export class SingleAddContactComponent implements OnInit {
   mobileValue;
   val = [];
   id = [];
-  req: boolean = false;
+  req = false;
   showAdd: number;
 
   contact: DataGetContactInterface;
   contactId: number;
 
-  pageNumber: number = 1;
-  pageSize: number = 10;
+  pageNumber = 1;
+  pageSize = 10;
   totalItemsCount: number;
   phrase = '';
 
@@ -101,14 +102,14 @@ export class SingleAddContactComponent implements OnInit {
       email: this.contact.email,
       mobile: `+${this.contact.mobile}`
     });
-    singleContactForm['controls'].mobile.disable();
+    singleContactForm.controls.mobile.disable();
     if (!this.contact.eventsUser || this.contact.eventsUser.length === 0) {
       this.addUserEvent(0);
     } else {
       for (let i = 0; i < this.contact.eventsUser.length; i++) {
         this.addUserEvent(i);
         const singleContact = this.singleContactForm.get('eventsUser') as FormArray;
-        singleContact['controls'][i].patchValue({
+        singleContact.controls[i].patchValue({
           id: this.contact.eventsUser[i].id,
           value: new Date(this.contact.eventsUser[i].value * 1000),
         });
@@ -156,8 +157,8 @@ export class SingleAddContactComponent implements OnInit {
 
   getUserEvents() {
     this.userEventService.getUserEvents(this.pageNumber, this.pageSize, this.phrase)
-      .subscribe((res: any) => {
-        this.userEvents = res.data;
+      .subscribe((res: UserEventResponseInterface) => {
+        this.userEvents = res.data.items;
       });
   }
 
@@ -214,15 +215,15 @@ export class SingleAddContactComponent implements OnInit {
     if (this.singleContactForm.valid && this.mobileValue && !this.req) {
 
       const payload: AddContactInterface = this.singleContactForm.value;
-      payload['mobile'] = this.mobileValue;
-      payload['gender'] === '' ? payload['gender'] = 1 : payload['gender'];
+      payload.mobile = this.mobileValue;
+      payload.gender === 0 ? payload.gender = 1 : payload.gender;
       if (payload.eventsUser.length === 1 && !payload.eventsUser[0].value && !payload.eventsUser[0].id) {
-        delete payload['eventsUser'];
+        delete payload.eventsUser;
       } else {
         this.singleContactForm.value.eventsUser.forEach((item, index) => {
-          let isUnix = this.utilityService.onlyDigit(this.singleContactForm.value.eventsUser[index].value);
-          if (!isUnix){
-            this.singleContactForm.value.eventsUser[index].value =this.singleContactForm.value.eventsUser[index].value.getTime() / 1000;
+          const isUnix = this.utilityService.onlyDigit(this.singleContactForm.value.eventsUser[index].value);
+          if (!isUnix) {
+            this.singleContactForm.value.eventsUser[index].value = this.singleContactForm.value.eventsUser[index].value.getTime() / 1000;
           }
         });
       }
@@ -234,8 +235,8 @@ export class SingleAddContactComponent implements OnInit {
             this.router.navigateByUrl(`group/${this.groupId}`);
           });
       } else {
-        delete payload['mobile'];
-        delete payload['prefixNumberId'];
+        delete payload.mobile;
+        delete payload.prefixNumberId;
         this.contactService.editContact(payload, this.contactId)
           .subscribe(res => {
             this.notificationService.success('Contact added successfully', '');
@@ -265,7 +266,7 @@ export class SingleAddContactComponent implements OnInit {
 
 
   get userEvent() {
-    return this.singleContactForm['controls'].eventsUser;
+    return this.singleContactForm.controls.eventsUser;
   }
 
 }

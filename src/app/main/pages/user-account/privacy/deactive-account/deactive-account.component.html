@@ -33,7 +33,7 @@
         </div>
       </div>
       <div class="col-md-12 text-right">
-        <button type="submit" class="red-btn">DeActive your account ?</button>
+        <button [disabled]="needDescription && !deActiveForm.controls['description'].value" type="submit" class="red-btn">Deactivate your account</button>
       </div>
     </form>
   </div>

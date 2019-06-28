@@ -16,10 +16,10 @@ export class LoginLogComponent implements OnInit {
   loginLogs: ItemsLoginLogInterface[];
   phrase = '';
 
-  tableConfig:TableConfigInterface={
-    rowColumnsConfig:[],
-    pagingModel:new PagingModel(),
-    headerNames:['Id','Device','Location','Date time']
+  tableConfig: TableConfigInterface = {
+    rowColumnsConfig: [],
+    pagingModel: new PagingModel(),
+    headerNames: ['Id', 'Device', 'Location', 'Date time']
   };
 
   constructor(private route: ActivatedRoute,
@@ -29,6 +29,8 @@ export class LoginLogComponent implements OnInit {
         this.loginLogs = data.loginLog.data.items;
         this.tableConfig.pagingModel.totalItemsCount = data.loginLog.data.totalItemsCount;
       });
+
+    this.ps.mode = 'loginLog';
   }
 
   ngOnInit() {

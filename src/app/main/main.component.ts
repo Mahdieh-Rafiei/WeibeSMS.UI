@@ -2,8 +2,8 @@ import {Component, OnInit, ViewChild, ViewEncapsulation} from '@angular/core';
 import {NavigationService} from '../shared/component/animation/navigation.service';
 import {routerTransition} from '../shared/component/animation/animations';
 import {ConfigService} from '../shared/config.service';
-import {DataService} from "../shared/service/data.service";
-import {MatSidenav} from "@angular/material/sidenav";
+import {DataService} from '../shared/service/data.service';
+import {MatSidenav} from '@angular/material/sidenav';
 
 @Component({
   selector: 'app-pages',
@@ -28,15 +28,15 @@ export class MainComponent implements OnInit {
     ngOnInit() {
         this.ds.showHelp$.subscribe(res => {
             if (res) {
-                this.open()
+                this.open();
             } else {
-                this.close()
+                this.close();
             }
-        })
+        });
     }
 
     open() {
-        this.sidenav.open()
+        this.sidenav.open();
     }
   getRouteAnimation(outlet) {
     return this.navigationService.animationValue;

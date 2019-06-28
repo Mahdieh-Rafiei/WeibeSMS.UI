@@ -18,8 +18,6 @@ export class PaymentComponent implements OnInit {
     rowColumnsConfig: [],
   };
 
-
-
     getPaymentsModel: GetPaymentsModel = {
         description: '',
         fromDate: null,
@@ -35,8 +33,9 @@ export class PaymentComponent implements OnInit {
     }
 
     ngOnInit() {
-        this.getPayments();
-        this.generateRowColumns();
+      this.billingService.mode = 'payment';
+      this.getPayments();
+      this.generateRowColumns();
     }
 
     getPayments() {
@@ -50,8 +49,8 @@ export class PaymentComponent implements OnInit {
             this.getPaymentsModel.isPaid,
             this.getPaymentsModel.phrase)
             .subscribe(res => {this.payments = res.data.items;
-                this.tableConfig.pagingModel.totalItemsCount = res.data.totalItemsCount;
-                this.payments.forEach(p => {
+                               this.tableConfig.pagingModel.totalItemsCount = res.data.totalItemsCount;
+                               this.payments.forEach(p => {
                     p.type = p.type == '1' ? 'Credit' : 'Others';
                 });
             });

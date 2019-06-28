@@ -1,4 +1,11 @@
-import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
+import {
+  AfterViewChecked,
+  ChangeDetectorRef,
+  Component,
+  ElementRef,
+  OnInit,
+  ViewChild,
+} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {SharedService} from '../../../../shared/service/shared.service';
@@ -17,11 +24,12 @@ import {errorAnimation} from '../../../../shared/component/animation/error-anima
     errorAnimation()
   ],
 })
-export class BillingAddressComponent implements OnInit {
+
+export class BillingAddressComponent implements OnInit, AfterViewChecked {
   billingAddressData;
   billingAddressForm: FormGroup;
   cities = [];
-  vatNumber: boolean = true;
+  vatNumber = true;
 
   @ViewChild('mobileInput') mobileInput: ElementRef;
 
@@ -34,29 +42,35 @@ export class BillingAddressComponent implements OnInit {
               private fb: FormBuilder,
               private bs: BillingService,
               private notificationService: NotificationService,
-              private shs: SharedService) {
+              private shs: SharedService,
+              private changeDetectorRef: ChangeDetectorRef) {
     this.route.data
       .subscribe((data: { billingAddress: BillindAddressResponseInterface }) => {
         this.billingAddressData = data.billingAddress;
+
       });
 
+    bs.mode='address';
+  }
 
+  ngAfterViewChecked() {
+    this.changeDetectorRef.detectChanges();
   }
 
   ngOnInit() {
     this.createForm();
-    this.getCountries();
+    this.countries = this.shs.getCountriesByCache();
+    this.selectCountry(1, this.countries[0]);
+    this.fillBillingAddress(this.billingAddressForm);
+    this.setMobileValue();
   }
 
-  getCountries() {
-    this.shs.getCountries().subscribe(res=>{
-      this.countries = res.data;
-      this.selectCountry(1, this.countries[0]);
-    })
-  }
 
   changeMobile(mobile: string) {
-    this.countries.forEach(item => mobile === item.prefixNumber ? this.selectCountry(2, item) : null);
+    this.countries.forEach(item => {
+      mobile === item.prefixNumber ? this.selectCountry(2, item) : null;
+    });
+    this.setMobileValue();
   }
 
   selectCountry(index, country) {
@@ -64,11 +78,7 @@ export class BillingAddressComponent implements OnInit {
     this.countryFlag = country.flag;
     if (index === 2) {
       this.mobileInput.nativeElement.focus();
-      this.countries.forEach(item => {
-        if (this.billingAddressForm.value.prefixNumberId === item.id) {
-          this.mobileValue = this.billingAddressForm.value.phone.substring(item.prefixNumber.length);
-        }
-      });
+      this.setMobileValue();
       this.billingAddressForm.patchValue({
         phone: country.prefixNumber + this.mobileValue
       });
@@ -83,6 +93,10 @@ export class BillingAddressComponent implements OnInit {
   }
 
   fillBillingAddress(billingAddressForm) {
+    if (!this.billingAddressData.data) {
+      return;
+    }
+
     if (this.billingAddressData.data && this.billingAddressData.data.countryId) {
       this.countrySelect(this.billingAddressData.data.countryId);
     }
@@ -106,7 +120,6 @@ export class BillingAddressComponent implements OnInit {
     if (this.billingAddressData.data && this.billingAddressData.data.vatNumber) {
       this.vatNumber = false;
     }
-
   }
 
   changeVatNumber(event) {
@@ -122,7 +135,7 @@ export class BillingAddressComponent implements OnInit {
       fullName: [null, Validators.required],
       countryId: ['', Validators.required],
       cityId: ['', Validators.required],
-      phone: [null, Validators.required],
+      phone: ['', Validators.required],
       address: [null, Validators.required],
       zipCode: [null, Validators.required],
       prefixNumberId: ['', Validators.required],
@@ -139,20 +152,28 @@ export class BillingAddressComponent implements OnInit {
 
   submit() {
     if (this.billingAddressForm.valid) {
-      this.countries.forEach(item => {
-        if (this.billingAddressForm.value.prefixNumberId === item.id) {
-          this.mobileValue = this.billingAddressForm.value.phone.substring(item.prefixNumber.length);
-        }
-      });
+      this.setMobileValue();
       const payload = this.billingAddressForm.value;
-      payload['phone'] = this.mobileValue;
-      if (!payload['vatNumber']) {
-        delete payload['vatNumber'];
+      payload.phone = this.mobileValue;
+      if (!payload.vatNumber) {
+        delete payload.vatNumber;
       }
       this.bs.modifyAddress(payload)
         .subscribe(res => {
           this.notificationService.success('save billing address successfully', '');
         });
     }
+  }
+
+  test() {
+    console.log(this.mobileValue);
+  }
+
+  setMobileValue() {
+    this.countries.forEach(item => {
+      if (this.billingAddressForm.value.prefixNumberId === item.id) {
+        this.mobileValue = this.billingAddressForm.value.phone.substring(item.prefixNumber.length);
+      }
+    });
   }
 }

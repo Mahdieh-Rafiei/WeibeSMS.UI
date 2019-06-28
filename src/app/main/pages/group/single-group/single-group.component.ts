@@ -1,12 +1,15 @@
 import {Component, OnInit} from '@angular/core';
 import {GroupService} from '../group.service';
-import {ActivatedRoute} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import {ContactService} from '../add-contact/single-add-contact/contact.service';
 import {GroupResponseInterface} from '../models/group-response.interface';
 import {RemoveContactFormGroupInterface} from '../models/remove-contact-form-group.interface';
 import {DialogComponent} from '../../../../shared/component/dialog/dialog.component';
 import {MatDialog} from '@angular/material';
 import {NotificationService} from '../../../../shared/notification.service';
+import {TableConfigInterface} from '../../../../shared/component/table/models/table-config.interface';
+import {PagingModel} from '../../../../shared/component/table/models/paging-model';
+import {FilterDataModel} from '../../../../shared/component/filter/filter-data-model';
 
 @Component({
   selector: 'app-sub-group',
@@ -15,32 +18,42 @@ import {NotificationService} from '../../../../shared/notification.service';
 })
 export class SingleGroupComponent implements OnInit {
 
+  tableConfig: TableConfigInterface = {
+    pagingModel: new PagingModel(),
+    rowColumnsConfig: [],
+    headerNames: ['Id', 'Phone number', 'Name', 'Surename', 'email'],
+    hasActions: true,
+    hasRemoveButton: true,
+    hasAddOrUpdateButton: true
+  };
+
+  filterDataModel = new FilterDataModel();
   group: any;
   groupId: string;
   contacts: any[];
-  pageNumber: number = 1;
-  pageSize: number = 10;
-  totalItemsCount: number;
   phrase = '';
 
   constructor(private groupService: GroupService,
               private activatedRoute: ActivatedRoute,
               private contactService: ContactService,
               private dialog: MatDialog,
-              private notificationService: NotificationService) {
+              private notificationService: NotificationService,
+              private router: Router) {
   }
 
   ngOnInit() {
     this.groupId = this.activatedRoute.snapshot.paramMap.get('groupId');
+    this.generateRowColumns();
     this.getGroup();
   }
 
   getGroup() {
-    this.groupService.getGroup(this.groupId, this.pageSize, this.pageNumber, this.phrase)
+    this.groupService.getGroup(this.groupId, this.tableConfig.pagingModel.pageSize,
+      this.tableConfig.pagingModel.pageNumber, this.phrase)
       .subscribe((res: GroupResponseInterface) => {
         this.group = res.data;
         this.contacts = res.data.contacts.items;
-        this.totalItemsCount = res.data.contacts.totalItemsCount;
+        this.tableConfig.pagingModel.totalItemsCount = res.data.contacts.totalItemsCount;
       });
   }
 
@@ -78,11 +91,6 @@ export class SingleGroupComponent implements OnInit {
       });
   }
 
-  doPaging(e) {
-    this.pageNumber = e;
-    this.getGroup();
-  }
-
   getData(e) {
     this.phrase = e;
     this.getGroup();
@@ -99,5 +107,33 @@ export class SingleGroupComponent implements OnInit {
       .subscribe(res => {
         window.open(res.data, '_blank');
       });
+  }
+
+  generateRowColumns() {
+    this.tableConfig.rowColumnsConfig.push({
+      propertyName: 'mobile',
+      sign: '+'
+    });
+
+    this.tableConfig.rowColumnsConfig.push({
+      propertyName: 'firstName'
+    });
+
+    this.tableConfig.rowColumnsConfig.push({
+      propertyName: 'lastName'
+    });
+
+    this.tableConfig.rowColumnsConfig.push({
+      propertyName: 'email'
+    });
+  }
+
+  showDetail(item) {
+    this.router.navigateByUrl(`/group/${this.groupId}/contact/${item.id}`);
+  }
+
+  getFilterData(e: FilterDataModel) {
+    this.tableConfig.pagingModel.pageSize = e.pageSize;
+    this.getGroup();
   }
 }

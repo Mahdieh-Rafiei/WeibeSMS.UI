@@ -91,10 +91,8 @@ export class ApiService {
   }
 
   handleError(error, router: Router, configService: ConfigService) {
-    debugger;
     let errorMessage = '';
     if (error.error instanceof ErrorEvent) {
-
       errorMessage = `Error: ${error.error.Message}`;
     } else {
       // server-side error
@@ -106,8 +104,8 @@ export class ApiService {
       errorMessage = `Status Code: ${error.status}\nMessage: ${error.message}\n `;
     }
 
-    let errorCode = parseInt(error.error && error.error.Message);
-    let errorNotificationMessage = configService.errorMessages.get(errorCode);
+    const errorCode = parseInt(error.error && error.error.Message);
+    const errorNotificationMessage = configService.errorMessages.get(errorCode);
     this.notificationService.error(errorNotificationMessage, 'Error');
     return throwError(error);
   }

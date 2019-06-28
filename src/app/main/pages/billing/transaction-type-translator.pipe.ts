@@ -1,38 +1,34 @@
 import {Injectable, Pipe, PipeTransform} from '@angular/core';
 
 @Pipe({
-  name: 'statusTranslator'
+  name: 'transactionTypeTranslator'
 })
 @Injectable({
   providedIn: 'root'
 })
-export class StatusTranslatorPipe implements PipeTransform {
+export class TransactionTypeTranslatorPipe implements PipeTransform {
 
   transform(value: any, args?: any): string {
     let result = 'Unknown';
     switch (value) {
       case  1:
-        result = 'Open';
+        result = 'Buy credit';
         break;
 
       case 2 :
-        result = 'Admin answered';
+        result = 'Send sms';
         break;
 
       case 3:
-        result = 'Pending';
+        result = 'Buy line';
         break;
 
       case 4 :
-        result = 'On hold';
+        result = 'Extend line';
         break;
 
       case 5 :
-        result = 'On progress';
-        break;
-
-      case 6:
-        result = 'Close';
+        result = 'Send one to one message';
         break;
     }
     return result;

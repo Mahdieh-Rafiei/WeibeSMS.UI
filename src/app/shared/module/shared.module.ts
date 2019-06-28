@@ -12,6 +12,7 @@ import {LoadingSpinnerComponent} from '../component/loading-spinner/loading-spin
 import {AngularEditorModule} from '@kolkov/angular-editor';
 import {DateFromToComponent} from '../component/date-from-to/date-from-to.component';
 import {TableComponent} from '../component/table/table.component';
+import {NumericInputDirective} from '../numeric-input.directive';
 
 @NgModule({
   imports: [
@@ -20,7 +21,7 @@ import {TableComponent} from '../component/table/table.component';
     ReactiveFormsModule,
     MatCoreModule,
     NgxPaginationModule,
-    AngularEditorModule,
+    AngularEditorModule
   ],
   declarations: [
     CountDownComponent,
@@ -30,7 +31,8 @@ import {TableComponent} from '../component/table/table.component';
     FilterComponent,
     TableComponent,
     DateFromToComponent,
-    LoadingSpinnerComponent
+    LoadingSpinnerComponent,
+    NumericInputDirective
   ],
   entryComponents: [
     LoadingSpinnerComponent
@@ -49,7 +51,8 @@ import {TableComponent} from '../component/table/table.component';
     FilterComponent,
     DateFromToComponent,
     LoadingSpinnerComponent,
-    TableComponent
+    TableComponent,
+    NumericInputDirective
   ]
 })
 export class SharedModule {

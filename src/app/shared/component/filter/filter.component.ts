@@ -1,7 +1,6 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import {FormBuilder, FormControl, FormGroup} from '@angular/forms';
-import {FilterDataInterface} from './filter-data.interface';
-import {TableConfigInterface} from '../table/models/table-config.interface';
+import {FormGroup} from '@angular/forms';
+import { FilterDataModel} from './filter-data-model';
 
 @Component({
   selector: 'app-filter',
@@ -12,10 +11,9 @@ export class FilterComponent implements OnInit {
 
   pageSizes = [10, 20, 50];
 
-  dummy:FormGroup = new FormGroup({});
+  dummy: FormGroup = new FormGroup({});
 
-  @Input() filterData: FilterDataInterface;
-  @Input() tableConfig:TableConfigInterface;
+  @Input() filterDataModel: FilterDataModel;
   @Output() filterValue: EventEmitter<any> = new EventEmitter<any>();
 
   constructor() {
@@ -25,20 +23,27 @@ export class FilterComponent implements OnInit {
   }
 
   getDate(event) {
-    debugger;
     if (event.dateFrom) {
-      this.filterData.fromDate = event.dateFrom.getTime() / 1000;
+      this.filterDataModel.fromDate = event.dateFrom.getTime() / 1000;
     }
     if (event.dateTo) {
-      this.filterData.toDate = event.dateTo.getTime() / 1000;
+      this.filterDataModel.toDate = event.dateTo.getTime() / 1000;
     }
   }
 
   submit() {
-    this.filterValue.emit(true);
+    this.filterValue.emit(this.filterDataModel);
   }
 
-  setPageSize(e){
-    this.tableConfig.pagingModel.pageSize = e.target.value;
+  setPageSize(e) {
+    this.filterDataModel.pageSize = e.target.value;
+  }
+
+  ticketStatusSelectedChanged(e){
+    this.filterDataModel.ticketStatusSelected = e.target.value;
+  }
+
+  transactionTypeSelectedChanged(e){
+    this.filterDataModel.transactionTypeSelected = e.target.value;
   }
 }

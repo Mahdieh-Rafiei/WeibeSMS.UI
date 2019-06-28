@@ -1,5 +1,4 @@
 <div>
-
   <div class="btn-section text-right">
     <div class="col-md-12 text-right">
       <button class="green-btn" [routerLink]="['/draft']"><i class="fa fa-plus"></i> Create template</button>
@@ -11,9 +10,6 @@
       basis.</p>
     <!--operation-->
     <div class="row">
-      <div class="col-md-6 operation-section form-group">
-
-      </div>
       <div class="col-md-3 offset-md-3 operation-section form-group text-right">
         <app-search (searchText)="getData($event)"></app-search>
       </div>
@@ -21,7 +17,9 @@
 
     <app-table (pagingModelChanged)="getAllDrafts()"
     [collection]="drafts"
-    [tableConfig]="tableConfig">
+    [tableConfig]="tableConfig"
+    (itemRemoved)="removeDraft($event.index,$event.item)"
+    (editItemClicked)="showDetail($event.item)">
     </app-table>
 
   </div>

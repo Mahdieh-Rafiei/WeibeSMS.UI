@@ -23,10 +23,12 @@
       </div>
       <div class="row">
         <div class="col-12 col-md-4 ">
-          <label>Firstname :</label>
+          <label>First name :</label>
           <input type="text"
-                 placeholder="Enter your Firstname"
-                 formControlName="firstName" class="form-control">
+                 placeholder="Enter your first name"
+                 formControlName="firstName" class="form-control"
+                 [ngClass]="{'border-error' :(profileForm.controls['firstName'].touched || profileForm.controls['firstName'].dirty ) &&
+                 !profileForm.controls['firstName'].value}">
           <div class="error-place">
             <div class="text-left"
                  *ngIf="(((profileForm.controls['firstName'].dirty || profileForm.controls['firstName'].touched) || formDir.submitted))"
@@ -45,7 +47,9 @@
           <label>Surename :</label>
           <input type="text"
                  placeholder="Enter your Surename"
-                 formControlName="lastName" class="form-control">
+                 formControlName="lastName" class="form-control"
+                 [ngClass]="{'border-error' :(profileForm.controls['lastName'].touched || profileForm.controls['lastName'].dirty ) &&
+                 !profileForm.controls['lastName'].value}">
           <div class="error-place">
             <div class="text-left"
                  *ngIf="((profileForm.controls['lastName'].dirty || profileForm.controls['lastName'].touched || formDir.submitted))"
@@ -115,7 +119,7 @@
         </div>
       </div>
       <div class="col-md-12 btn-save text-right">
-        <button type="submit" class="green-btn">Save</button>
+        <button [disabled]="!profileForm.dirty" type="submit" class="green-btn">Save</button>
       </div>
     </form>
   </div>

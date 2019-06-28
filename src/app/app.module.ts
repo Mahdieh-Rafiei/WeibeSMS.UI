@@ -13,7 +13,6 @@ import {ApiService} from './shared/api.service';
 import {ConfigService} from './shared/config.service';
 import {CanActivateRouteGuard} from './shared/canActivateRouteGuard';
 import {NotificationService} from './shared/notification.service';
-import {NumericInputDirective} from './shared/numeric-input.directive';
 import {LoginComponent} from './auth/login/login.component';
 import {RegisterComponent} from './auth/register/register.component';
 import {SidebarComponent} from './main/layout/sidebar/sidebar.component';
@@ -44,7 +43,6 @@ import { TableComponent } from './shared/component/table/table.component';
     ForgotPasswordComponent,
 
     SlimSidebarComponent,
-    NumericInputDirective,
     MainComponent,
     FooterComponent,
     DialogComponent,

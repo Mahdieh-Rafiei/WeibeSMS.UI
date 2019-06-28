@@ -10,63 +10,18 @@
   <div class="div-section">
     <div class="row">
       <div class="col-12 col-md-6 operation-section form-group">
-        <app-filter [filterData]="filterData" (filterValue)="getFilterData($event)"></app-filter>
+        <app-filter [filterDataModel]="filterDataModel" (filterValue)="getFilterData($event)"></app-filter>
       </div>
       <div class="col-12 col-md-3 offset-md-3 operation-section form-group">
         <app-search (searchText)="getData($event)"></app-search>
       </div>
     </div>
-    <!--table-->
-    <div class="table-div table-responsive">
-      <table class="index-table text-left">
-        <thead *ngIf="totalItemsCount > 0">
-        <tr>
-          <th class="text-left">#</th>
-          <th class="text-left"><i class="fa fa-sort"></i>Title</th>
-          <th class="text-left"><i class="fa fa-sort"></i>Date</th>
-          <th class="text-left"><i class="fa fa-sort"></i>Status</th>
-          <th></th>
-        </tr>
-        </thead>
-        <thead *ngIf="totalItemsCount === 0">
-        <tr>
-          <th>
-            <p class="text-center">Record Not Found</p>
-          </th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr *ngFor="let t of tickets | paginate : {
-                                itemsPerPage : pageSize, currentPage : pageNumber, totalItems : totalItemsCount
-                                },index as i">
-          <td class="text-left">{{i+1}}</td>
-          <td class="text-left">{{t.title}}</td>
-          <td class="text-left">{{t.date | dateTime:'YYYY-DD-MM hh-mm-ss'}}</td>
-          <td class="text-left">{{t.status | statusTranslator}}</td>
-          <td class="td-single text-left actions-container">
-            <div class="actions">
-              <a [routerLink]="['../modify',t.id]"><i class="fa fa-eye light-green-btn"></i></a>
-            </div>
-          </td>
-        </tr>
-        </tbody>
-      </table>
-      <!--pagination-->
-      <div class="col-12 pagination-div" *ngIf="totalItemsCount > 0">
-        <div class="row pt-1 pb-1">
-          <div class="col-12 col-md-6 text-left fo-3 black-text font-weight-bold">Displaying 1-10 of
-            {{totalItemsCount}} records
-          </div>
-          <div class="col-12 col-md-6 text-right">
-            <pagination-controls (pageChange)="doPaging($event)"
-                                 maxSize="5"
-                                 responsive="true"
-                                 previousLabel=""
-                                 nextLabel=""></pagination-controls>
-          </div>
-        </div>
-      </div>
-    </div>
+    <app-table [tableConfig]="tableConfig"
+    (pagingModelChanged)="getAllTickets()"
+    (itemSelected)="showDetail($event.item)"
+    [collection]="tickets">
+    </app-table>
+
   </div>
 </div>
 

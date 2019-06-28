@@ -2,6 +2,11 @@ import {Component, ElementRef, OnInit, ViewChild, ViewEncapsulation} from '@angu
 import {TicketService} from '../ticket.service';
 import {TicketListResponseModel} from './models/ticket-list-response.model';
 import {ItemsTicketListInterface} from './models/items-ticket-list.interface';
+import {TableConfigInterface} from '../../../../shared/component/table/models/table-config.interface';
+import {PagingModel} from '../../../../shared/component/table/models/paging-model';
+import {StatusTranslatorPipe} from '../../../../shared/pipe/status-translator.pipe';
+import {Router} from '@angular/router';
+import {FilterDataModel} from '../../../../shared/component/filter/filter-data-model';
 
 @Component({
   selector: 'app-ticket-list',
@@ -12,56 +17,57 @@ import {ItemsTicketListInterface} from './models/items-ticket-list.interface';
 export class TicketListComponent implements OnInit {
 
   tickets: ItemsTicketListInterface[];
-  pageNumber: number = 1;
-  pageSize: number = 10;
-  totalItemsCount: number;
-  phrase = '';
-  status: number = null;
-  dateFrom: number = null;
-  dateTo: number = null;
-
-  filterData = {
-    fromToDate: true,
-    options: [
-      {
-        title: 'status', data: [
-          {
-            title: 'Open', value: 1
-          }, {
-            title: 'AdminAnswered', value: 2
-          }, {
-            title: 'UserAnswered', value: 3
-          }, {
-            title: 'OnHold', value: 4
-          }, {
-            title: 'OnProgress', value: 5
-          }, {
-            title: 'Closed', value: 6
-          },
-        ]
-      }
-    ]
+  tableConfig: TableConfigInterface = {
+    hasActions: true,
+    hasShowButton: true,
+    headerNames: ['Id', 'Title', 'Date', 'Status'],
+    rowColumnsConfig: [],
+    pagingModel: new PagingModel()
   };
 
+  phrase = '';
 
-  constructor(private ticketService: TicketService) {
+  filterDataModel: FilterDataModel = new FilterDataModel();
+
+  constructor(private ticketService: TicketService,
+              private statusTranslatorPipe: StatusTranslatorPipe,
+              private router: Router) {
   }
 
   ngOnInit() {
     this.getAllTickets();
+    this.generateRowConfigs();
+
+    this.filterDataModel.fromToDate = true;
+    this.filterDataModel.ticketStatusSelected = null;
+    this.filterDataModel.ticketStatuses = [
+      {
+        title: 'All', value: null
+      },
+      {
+        title: 'Open', value: 1
+      }, {
+        title: 'AdminAnswered', value: 2
+      }, {
+        title: 'UserAnswered', value: 3
+      }, {
+        title: 'OnHold', value: 4
+      }, {
+        title: 'OnProgress', value: 5
+      }, {
+        title: 'Closed', value: 6
+      },
+    ];
   }
 
   getAllTickets() {
-    this.ticketService.getAllTickets(this.pageNumber, this.pageSize, this.phrase, this.status, this.dateFrom, this.dateTo)
+    this.ticketService.getAllTickets(this.tableConfig.pagingModel.pageNumber,
+      this.tableConfig.pagingModel.pageSize, this.phrase, this.filterDataModel.ticketStatusSelected,
+      this.filterDataModel.fromDate, this.filterDataModel.toDate)
       .subscribe((res: TicketListResponseModel) => {
         this.tickets = res.data.items;
-        this.totalItemsCount = res.data.totalItemsCount;
+        this.tableConfig.pagingModel.totalItemsCount = res.data.totalItemsCount;
       });
-  }
-
-  doPaging(e) {
-    this.pageNumber = e;
-    this.getAllTickets();
   }
 
   getData(event) {
@@ -69,12 +75,31 @@ export class TicketListComponent implements OnInit {
     this.getAllTickets();
   }
 
-  getFilterData(event) {
-    this.pageSize = event.pageSize ? event.pageSize : 10;
-    this.status = +event.status;
-    this.dateFrom = +event.dateFrom;
-    this.dateTo = +event.dateTo;
+  getFilterData(event: FilterDataModel) {
+    debugger;
+    this.tableConfig.pagingModel.pageSize = event.pageSize ? event.pageSize : 10;
     this.getAllTickets();
   }
 
+  generateRowConfigs() {
+    this.tableConfig.rowColumnsConfig.push({
+      propertyName: 'title'
+    });
+
+    this.tableConfig.rowColumnsConfig.push({
+      propertyName: 'date',
+      isDateTime: true
+    });
+
+    this.tableConfig.rowColumnsConfig.push({
+      propertyName: 'status',
+      manipulationMethod: (value) => {
+        return this.statusTranslatorPipe.transform(value);
+      }
+    });
+  }
+
+  showDetail(item: ItemsTicketListInterface) {
+    this.router.navigateByUrl(`/ticket/modify/${item.id}`);
+  }
 }

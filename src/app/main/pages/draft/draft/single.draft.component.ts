@@ -24,19 +24,19 @@ export class SingleDraftComponent implements OnInit {
 
     id: number;
     draft: any = {
-        Id: 0,
+        id: 0,
         title: '',
         messageText: ''
     };
 
     drafts: any[];
-    smsCount: number = 0;
-    isAddMode: boolean = false;
-    localSmsLen: number = 0;
-    container: number = 160;
+    smsCount = 0;
+    isAddMode = false;
+    localSmsLen = 0;
+    container = 160;
     totalSize = 1377;
-    titleValue: boolean = false;
-    messageValue: boolean = false;
+    titleValue = false;
+    messageValue = false;
     hasDoubleChar = false;
     maxLenError = false;
 
@@ -70,6 +70,8 @@ export class SingleDraftComponent implements OnInit {
                 this.draft.title = useTitle ? res.data.title : this.draft.title;
                 this.draft.id = res.data.id;
                 this.onMessageTextChange();
+                this.titleValue = true;
+                this.messageValue = true;
             });
     }
 
@@ -78,22 +80,20 @@ export class SingleDraftComponent implements OnInit {
         // TODO: use an api to resolve only names
             .subscribe((res: DraftInterface) => {
                 this.drafts = res.data.items;
-                console.log(this.drafts);
             });
     }
 
     addOrUpdateDraft() {
         if (!this.draft.title) {
-            this.titleValue = true;
-            return;
+          return;
         }
         if (!this.draft.messageText) {
-            this.messageValue = true;
-            return;
+          return;
         }
 
-        if (!this.isMaxLenValid())
+        if (!this.isMaxLenValid()) {
             return;
+        }
 
         if (this.isAddMode) {
             const payload: AddDraftInterface = {
@@ -121,9 +121,9 @@ export class SingleDraftComponent implements OnInit {
     addSegment(type: number) {
         let expression = '';
 
-        debugger;
-        if (!this.isMaxLenValid())
+        if (!this.isMaxLenValid()) {
             return;
+        }
 
         switch (type) {
             case 1: {
@@ -153,7 +153,7 @@ export class SingleDraftComponent implements OnInit {
         const secondContainerSize = this.hasDoubleChar ? 134 : 306;
         const thirdContainerSize = this.hasDoubleChar ? 201 : 459;
 
-        let len = this.draft.messageText.length;
+        const len = this.draft.messageText.length;
         this.container = repeatingContainerSize;
         this.localSmsLen = len;
 

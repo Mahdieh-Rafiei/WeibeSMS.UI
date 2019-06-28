@@ -11,7 +11,7 @@ export class ConfigService {
   tokenKeyName: string;
   errorMessages: Map<number, string> = new Map<number, string>();
   sidebarMode: string = 'default';
-  documentationUrl ='';
+  documentationUrl = '';
 
   @Output() authenticationChanged: EventEmitter<boolean> = new EventEmitter<boolean>();
 
@@ -78,6 +78,10 @@ export class ConfigService {
     this.errorMessages.set(49, 'Draft message not found!');
     this.errorMessages.set(50, 'This draft message is not yours!'); //TODO: bug
     this.errorMessages.set(66, 'Username or password is wrong!');
+    this.errorMessages.set(88, 'Send verification email allowed per 30 minutes!');
+    this.errorMessages.set(90, 'Sender name should be unique!');
+    this.errorMessages.set(117, 'Title should be unique!');
     this.errorMessages.set(118, 'Password is wrong!');
+
   }
 }

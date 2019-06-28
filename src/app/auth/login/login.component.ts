@@ -11,11 +11,9 @@ import {SendVerificationCodeResponseInterface} from './models/send-verification-
 import {VerifyMobileInterface} from './models/verify-mobile.interface';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {AuthSharedService} from '../auth-shared.service';
-import {CountryInterface} from '../../shared/models/country.interface';
 import {SharedService} from '../../shared/service/shared.service';
 import {DataCountryInterface} from '../../shared/models/data-country.interface';
 import {errorAnimation} from '../../shared/component/animation/error-animation';
-import {CacheObject} from '../../shared/models/cache-object';
 import {UserAccountService} from '../../main/pages/user-account/user-account.service';
 import {DashboardInfoResponseInterface} from './models/dashboard-info-response.interface';
 import {UtilityService} from '../../shared/utility.service';
@@ -32,13 +30,13 @@ import {UtilityService} from '../../shared/utility.service';
 
 export class LoginComponent implements OnInit {
 
-  isLoginMode: boolean = true;
-  verificationCodeSent: boolean = false;
-  mobile: string = '';
-  username: string = '';
-  password: string = '';
+  isLoginMode = true;
+  verificationCodeSent = false;
+  mobile = '';
+  username = '';
+  password = '';
   registrationKey: string;
-  isCorrectMobile=false;
+  isCorrectMobile = false;
 
   @ViewChild('verificationCodePart1Element') verificationCodePart1Element: ElementRef;
   @ViewChild('verificationCodePart2Element') verificationCodePart2Element: ElementRef;
@@ -48,21 +46,21 @@ export class LoginComponent implements OnInit {
 
   @ViewChild('mobileInput') mobileInput: ElementRef;
 
-  verificationCodePart1: string = '';
-  verificationCodePart2: string = '';
-  verificationCodePart3: string = '';
-  verificationCodePart4: string = '';
-  verificationCodePart5: string = '';
+  verificationCodePart1 = '';
+  verificationCodePart2 = '';
+  verificationCodePart3 = '';
+  verificationCodePart4 = '';
+  verificationCodePart5 = '';
 
   signUpForm: FormGroup;
   signInForm: FormGroup;
 
-  enterPressConfirm: boolean = false;
+  enterPressConfirm = false;
   countries: DataCountryInterface[];
-  showSpinner: boolean = false;
+  showSpinner = false;
   countryPrefix;
   countryFlag;
-  isTried=false;
+  isTried = false;
 
   mobileValue;
 
@@ -75,7 +73,7 @@ export class LoginComponent implements OnInit {
               private shs: SharedService,
               private router: Router,
               private userAccountService: UserAccountService,
-              private utilityService:UtilityService) {
+              private utilityService: UtilityService) {
   }
 
   ngOnInit() {
@@ -108,6 +106,7 @@ export class LoginComponent implements OnInit {
   getCountries() {
     this.shs.getCountries().subscribe((res) => {
       this.countries = res.data;
+      this.shs.setCountries(this.countries);
       this.selectCountry(1, this.countries[0]);
     });
   }
@@ -128,7 +127,7 @@ export class LoginComponent implements OnInit {
               });
           },
           err => {
-            this.isTried=true;
+            this.isTried = true;
             this.showSpinner = false;
           });
     }
@@ -176,7 +175,7 @@ export class LoginComponent implements OnInit {
       this.authSharedService.mobile = this.mobileValue;
       this.authSharedService.prefixNumberId = +this.signUpForm.value.prefixNumberId;
       const payload: SendVerificationCodeInterface = this.signUpForm.value;
-      payload['mobile'] = this.mobileValue;
+      payload.mobile = this.mobileValue;
       this.registerService.sendVerificationCode(payload)
         .subscribe((res: SendVerificationCodeResponseInterface) => {
             this.showSpinner = false;
@@ -229,8 +228,8 @@ export class LoginComponent implements OnInit {
       VerificationCode: +verificationCode,
       reason: 1
     };
-      this.showSpinner = true;
-      this.registerService.verifyMobile(payload)
+    this.showSpinner = true;
+    this.registerService.verifyMobile(payload)
       .subscribe((res: any) => {
           this.showSpinner = false;
           // this.authService.setToken(res.data);
@@ -316,7 +315,7 @@ export class LoginComponent implements OnInit {
     }
   }
 
-  setMobileValue(){
+  setMobileValue() {
     this.countries.forEach(item => {
       if (this.signUpForm.value.prefixNumberId === item.id) {
         {

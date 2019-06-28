@@ -1,6 +1,6 @@
-<div class="col-md-12 privacy">
-  <div class="title-tab" *ngFor="let item of items">
-    <p [ngClass]="{'active-tab': item.link === active}" (click)="onClick(item.link)" >
+<div class="privacy">
+  <div class="title-tab no-pad" *ngFor="let item of items">
+    <p [ngClass]="{'active-tab': item.mode == privacyService.mode}" (click)="onClick(item)" >
       {{item.title}}</p>
   </div>
 </div>

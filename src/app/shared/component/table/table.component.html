@@ -24,7 +24,6 @@
         <div class="table-head">
           <span
             *ngIf="tableConfig.pagingModel">{{i + 1 + (tableConfig.pagingModel.pageSize * (tableConfig.pagingModel.pageNumber == 1 ? 0 : tableConfig.pagingModel.pageNumber - 1))}}</span>
-          <span>{{i + 1}}</span>
         </div>
       </td>
       <td class="text-left" *ngFor="let r of tableConfig.rowColumnsConfig">

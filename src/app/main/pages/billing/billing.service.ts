@@ -29,13 +29,15 @@ export class BillingService {
     return this.apiService.put<BillingAddressInterface>(url, payload, true);
   }
 
-  getTransactionLogs(pageNumber: number, pageSize: number, description: string, fromDate: number,
+  getTransactionLogs(pageNumber: number, pageSize: number, fromDate: number,
                      toDate: number, type: number, phrase: string): Observable<CreditTransactionResponseInterface> {
 
-    const url = `CreditTransaction?pageSize=${pageSize}&pageNumber=${pageNumber}&searchValue=${phrase}`;
+    let url = `CreditTransaction?pageSize=${pageSize}&pageNumber=${pageNumber}&searchValue=${phrase}&fromDate=${fromDate}&toDate=${toDate}`;
+    if (type) {
+      url += `&type=${type}`;
+    }
     return this.apiService.get(url, true);
   }
-
 
   getInvoices(pageNumber: number, pageSize: number, phrase: string, fromDate: number, toDate: number): Observable<InvoiceResponseInterface> {
     const url = `Invoice?pageNumber=${pageNumber}&pageSize=${pageSize}&searchValue=${phrase}&fromDate=${fromDate}&toDate=${toDate}`;

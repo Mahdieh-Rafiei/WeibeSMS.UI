@@ -9,9 +9,9 @@ import {DeleteAccountInterface} from './deactive-account/delete-acount/models/de
 })
 export class PrivacyService {
 
+  mode = 'changePassword';
   constructor(private apiService: ApiService) {
   }
-
 
   loginLog(pageNumber: number, pageSize: number, phrase: string): Observable<LoginLogInterface> {
     const url = `User/login?pageNumber=${pageNumber}&pageSize=${pageSize}`;

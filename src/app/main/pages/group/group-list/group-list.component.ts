@@ -12,6 +12,7 @@ import {errorAnimation} from '../../../../shared/component/animation/error-anima
 import {DialogComponent} from '../../../../shared/component/dialog/dialog.component';
 import {TableConfigInterface} from '../../../../shared/component/table/models/table-config.interface';
 import {PagingModel} from '../../../../shared/component/table/models/paging-model';
+import {FilterDataModel} from '../../../../shared/component/filter/filter-data-model';
 
 @Component({
   selector: 'app-group-list',
@@ -27,8 +28,8 @@ export class GroupListComponent implements OnInit {
   data: any;
   groups: ItemsGroupListInterface[] = [];
   phrase = '';
-  groupName: string = '';
-  filterData = {};
+  groupName = '';
+  filterDataModel = new FilterDataModel();
   tableConfig: TableConfigInterface = {
     hasActions: true,
     hasAddOrUpdateButton: true,
@@ -36,7 +37,7 @@ export class GroupListComponent implements OnInit {
     hasShowButton: true,
     rowColumnsConfig: [],
     pagingModel: new PagingModel(),
-    headerNames:['Id','Title','Recipient']
+    headerNames: ['Id', 'Title', 'Recipient']
   };
 
   constructor(private groupService: GroupService,
@@ -126,7 +127,8 @@ export class GroupListComponent implements OnInit {
     this.getAllGroupList();
   }
 
-  getFilterData(event) {
+  getFilterData(e: FilterDataModel) {
+    this.tableConfig.pagingModel.pageSize = e.pageSize;
     this.getAllGroupList();
   }
 
