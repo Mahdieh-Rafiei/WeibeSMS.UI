@@ -1,34 +1,29 @@
 <div class="tab-section">
-  <div class="change-password form-group">
-    <h5>Transaction log</h5>
-    <p class="fo-4 black-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-      incididunt ut labore et dolore
-      magna aliqua.</p>
-  </div>
-  <!--operation-->
-  <div class="row">
-    <div class="col-md-6 operation-section form-group">
-      <select (change)="export($event)" class="light-blue-btn mr-3">
-        <option> Export</option>
-        <option [value]="1">Paged data</option>
-        <option [value]="2">All records</option>
-      </select>
+    <div class="change-password form-group">
+        <h5>Transaction log</h5>
+        <p class="fo-4 black-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+            incididunt ut labore et dolore
+            magna aliqua.</p>
     </div>
-  </div>
-
-  <div class="row">
-    <div class="col-12 col-md-6 operation-section form-group">
-      <app-filter [filterDataModel]="filterDataModel" (filterValue)="getFilterData($event)"></app-filter>
+    <!--operation-->
+    <div class="row">
+        <div class="col-12 col-md-6 operation-section form-group">
+            <select (change)="export($event)" class="light-blue-btn mr-3">
+                <option> Export</option>
+                <option [value]="1">Paged data</option>
+                <option [value]="2">All records</option>
+            </select>
+            <app-filter [filterDataModel]="filterDataModel" (filterValue)="getFilterData($event)"></app-filter>
+        </div>
+        <div class="col-12 col-md-3 offset-md-3 operation-section form-group">
+            <app-search (searchText)="getData($event)"></app-search>
+        </div>
     </div>
-    <div class="col-12 col-md-3 offset-md-3 operation-section form-group">
-      <app-search (searchText)="getData($event)"></app-search>
-    </div>
-  </div>
 
-  <app-table [collection]="transactionLogs"
-             [tableConfig]="tableConfig"
-             (pagingModelChanged)="getTransactionLogs()">
+    <app-table [collection]="transactionLogs"
+               [tableConfig]="tableConfig"
+               (pagingModelChanged)="getTransactionLogs()">
 
-  </app-table>
+    </app-table>
 </div>
 

@@ -1,4 +1,4 @@
-<div class="div-section">
+<div class="tab-section">
     <form class="col-md-12 single-add-contact"
           [formGroup]="singleContactForm" #formDir="ngForm" (ngSubmit)="submit()">
         <div class="add-contact">
@@ -110,7 +110,7 @@
             </div>
             <div class="row" *ngFor="let eventUser of userEvent.controls; let i=index"
                  [formGroup]="eventUser">
-                <div class="col-md-4 form-group">
+                <div class="col-md-4">
                     <select formControlName="id" #select class="form-control select-field">
                         <option hidden value="">Select</option>
                         <option *ngFor="let ue of userEvents"
@@ -126,7 +126,7 @@
                        </div>
                    </div>
                 </div>
-                <div class="col-md-4 form-group select">
+                <div class="col-md-4 select">
                     <mat-form-field class="date-picker">
                         <input matInput class="form-control birthday-field"
                                formControlName="value"
@@ -145,7 +145,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-md-1 form-group">
+                <div class="col-md-1 p-0">
                     <span (click)="deleteEventUser(i, singleContactForm['controls'].eventsUser.length)"
                           class="fa fa-trash  light-red-btn">
                     </span>

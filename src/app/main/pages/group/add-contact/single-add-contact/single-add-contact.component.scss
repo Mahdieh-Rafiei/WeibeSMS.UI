@@ -49,3 +49,8 @@ mat-datepicker-toggle.mat-datepicker-toggle {
 .birthday-field{
   padding: 10px !important;
 }
+
+span.fa.fa-trash, span.fa.fa-plus{
+  cursor: pointer;
+  line-height: 2;
+}
