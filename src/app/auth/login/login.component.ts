@@ -98,6 +98,7 @@ export class LoginComponent implements OnInit {
 
 
   changeMobile(mobile: string) {
+    console.log(this.signUpForm.controls['prefixNumberId'].value);
     this.setMobileValue();
     this.isCorrectMobile = this.utilityService.isMobile(this.mobileValue);
     this.countries.forEach(item => mobile === item.prefixNumber ? this.selectCountry(2, item) : null);
@@ -326,3 +327,5 @@ export class LoginComponent implements OnInit {
     });
   }
 }
+
+
