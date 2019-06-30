@@ -2,14 +2,13 @@ import {Component, OnInit, ViewEncapsulation} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {ActivatedRoute, Router} from '@angular/router';
 import {InfoGetInterface} from './models/info-get.interface';
-import {CountryInterface} from '../../../../../shared/models/country.interface';
 import {SharedService} from '../../../../../shared/service/shared.service';
 import {DataCountryInterface} from '../../../../../shared/models/data-country.interface';
 import {NotificationService} from '../../../../../shared/notification.service';
 import {UserAccountService} from '../../user-account.service';
 import {errorAnimation} from '../../../../../shared/component/animation/error-animation';
 import {DataService} from '../../../../../shared/service/data.service';
-import {CacheObject} from '../../../../../shared/models/cache-object';
+
 
 @Component({
   selector: 'app-info',

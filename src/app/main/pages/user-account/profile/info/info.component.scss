@@ -1,4 +1,7 @@
 .profile {
+  input{
+    text-align: left !important;
+  }
   .mat-form-field-infix {
     padding: 0 !important;
     min-height: unset !important;
@@ -42,8 +45,9 @@
   .mat-datepicker-toggle {
     padding: 9px !important;
   }
-  input#mat-input-0 {
-    text-align: left !important;
+
+  ::placeholder{
+    text-align: left;
   }
 }
 

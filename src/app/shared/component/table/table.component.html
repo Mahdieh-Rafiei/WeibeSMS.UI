@@ -32,10 +32,9 @@
       </td>
       <td class="text-left" *ngFor="let r of tableConfig.rowColumnsConfig">
 
-        <div *ngIf="r.manipulationMethod">
+        <div [class]="r.classSelector ? r.classSelector(item[r.propertyName]) : ''" *ngIf="r.manipulationMethod">
           {{r.manipulationMethod(item[r.propertyName])}}
         </div>
-
 
         <div *ngIf="!r.hasSummaryDisplay && !r.buttonConfig && !r.manipulationMethod">
           <div *ngIf="!r.sign">
