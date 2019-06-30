@@ -79,7 +79,7 @@
                 <label>Email*</label>
                 <input type="text"
                        class="form-control"
-                       [ngClass]="{'border-error' : (((registerForm.controls['email'].dirty || registerForm.controls['email'].touched) || formDir.submitted) && emailUnique)}"
+                       [ngClass]="{'border-error' : (((registerForm.controls['email'].dirty || registerForm.controls['email'].touched) || formDir.submitted) && (emailUnique || !email.value))}"
                        #email
                        placeholder="User Email"
                        (keydown)="onKeyDown('email')"
@@ -91,7 +91,8 @@
                       <p class="errorMessage" *ngIf="email.value < 1" [@errorAnimation]>
                         <i class="far fa-exclamation-circle"></i> Enter your email!
                       </p>
-                      <p class="errorMessage" *ngIf="!us.checkEmail(email.value) && email.value.length > 0" [@errorAnimation]>
+                      <p class="errorMessage" *ngIf="!us.checkEmail(email.value) && email.value.length > 0"
+                         [@errorAnimation]>
                         <i class="far fa-exclamation-circle"></i> This email is invalid.
                       </p>
                     </div>
@@ -120,7 +121,7 @@
               <div class="col-12 col-md-4">
                 <label>Username*</label>
                 <input type="text"
-                       [ngClass]="{'border-error' : (((registerForm.controls['userName'].dirty || registerForm.controls['userName'].touched) || formDir.submitted) && userNameUnique)}"
+                       [ngClass]="{'border-error' : (((registerForm.controls['userName'].dirty || registerForm.controls['userName'].touched) || formDir.submitted) && ( userName.value.length < 6 || userNameUnique))}"
                        autocomplete="off"
                        class="form-control"
                        placeholder="Your username"
@@ -160,16 +161,16 @@
               <div class="col-12 col-md-4">
                 <label>Password*</label>
                 <input type="password"
-                       [matTooltip]="registerForm.controls['password'].touched? 'asdfgh': null"
                        placeholder="Enter Your Password"
                        class="form-control"
                        autocomplete="off"
+                       [ngClass]="{'border-error':(((registerForm.controls['password'].touched) || formDir.submitted)) && (registerForm.controls['password'].hasError('pattern') || !registerForm.controls['password'].value)}"
                        formControlName="password">
                 <div class="text-left"
                      *ngIf="(((registerForm.controls['password'].touched) || formDir.submitted))">
                   <ul class="pl-0 pt-1">
                     <li class="errorMessage pl-0" *ngIf="registerForm.hasError('required', 'password')">
-                      <i class="fa fa-check-circle"></i><span class="pl-1">this filed is required!</span>
+                      <i class="fa fa-check-circle"></i><span class="pl-1">Required!</span>
                     </li>
                     <ul *ngIf="registerForm.controls['password'].hasError('pattern')">
                       <li class="errorMessage pl-0">
@@ -196,6 +197,8 @@
                 <input type="password"
                        class="form-control"
                        autocomplete="off"
+                       [ngClass]="{'border-error':(((registerForm.controls['confirmPassword'].touched) || formDir.submitted)) &&
+                       (!registerForm.controls['confirmPassword'].value || (registerForm.controls['confirmPassword'].value != registerForm.controls['password'].value))}"
                        placeholder="Confirm Your Password"
                        (input)="confirmPasswordOut()"
                        (focusout)="confirmPasswordOut()"

@@ -20,7 +20,7 @@ export class StatusTranslatorPipe implements PipeTransform {
         break;
 
       case 3:
-        result = 'Pending';
+        result = 'User answered';
         break;
 
       case 4 :
@@ -32,7 +32,7 @@ export class StatusTranslatorPipe implements PipeTransform {
         break;
 
       case 6:
-        result = 'Close';
+        result = 'Closed';
         break;
     }
     return result;

@@ -9,6 +9,7 @@ import {ItemsDraftInterface} from '../draft/models/items-draft.interface';
 import {TableConfigInterface} from '../../../../shared/component/table/models/table-config.interface';
 import {PagingModel} from '../../../../shared/component/table/models/paging-model';
 import {Router} from '@angular/router';
+import {FilterDataModel} from '../../../../shared/component/filter/filter-data-model';
 
 @Component({
   selector: 'app-draft-list',
@@ -29,6 +30,7 @@ export class DraftListComponent implements OnInit {
     headerNames: ['Id', 'Name', 'Message', 'Send action']
   };
 
+  filterDataModel = new FilterDataModel();
   phrase = '';
 
   constructor(private draftService: DraftService,
@@ -85,6 +87,11 @@ export class DraftListComponent implements OnInit {
 
   getData(event) {
     this.phrase = event;
+    this.getAllDrafts();
+  }
+
+  getFilterData(e:FilterDataModel){
+    this.tableConfig.pagingModel.pageSize = e.pageSize;
     this.getAllDrafts();
   }
 

@@ -42,7 +42,7 @@ export class ImportContactFromOtherListsComponent implements OnInit {
   }
 
   getAllGroupList() {
-    this.groupService.getAllGroupList(this.groupPageSize, this.groupPageNumber, this.phrase)
+    this.groupService.getAllGroupList(this.groupPageNumber, this.groupPageSize, this.phrase)
       .subscribe((res: GroupListInterface) => {
         this.groups = res.data.items.filter(i => i.id !== this.groupId);
         this.groups.forEach(g => {

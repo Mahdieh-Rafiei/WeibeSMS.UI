@@ -1,11 +1,4 @@
 <div class="dialog">
-    <!--<div class="row">-->
-    <!--<div class="col-12 form-group">-->
-    <!--<h5 *ngIf="!GroupNameData">Add Group</h5>-->
-    <!--<h5 *ngIf="GroupNameData">Edit Group</h5>-->
-    <!--</div>-->
-    <!--</div>-->
-
 
     <div class="row">
         <div class="col-12 modal-header p-2 text-center">
@@ -54,12 +47,6 @@
                        class="form-control"
                        type="text"
                        placeholder="name">
-                <div class="text-left"
-                     *ngIf="(((groupNameForm.controls['groupName'].dirty || groupNameForm.controls['groupName'].touched) || formDir.submitted))">
-                    <p class="errorMessage" *ngIf="groupNameForm.hasError('required', 'groupName')" [@errorAnimation]>
-                        <i class="far fa-exclamation-circle"></i> this filed is required!
-                    </p>
-                </div>
             </div>
         </div>
 

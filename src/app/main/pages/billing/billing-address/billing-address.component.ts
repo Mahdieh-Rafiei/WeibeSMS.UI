@@ -6,7 +6,7 @@ import {
   OnInit,
   ViewChild,
 } from '@angular/core';
-import {ActivatedRoute} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {SharedService} from '../../../../shared/service/shared.service';
 import {DataCountryInterface} from '../../../../shared/models/data-country.interface';
@@ -43,14 +43,14 @@ export class BillingAddressComponent implements OnInit, AfterViewChecked {
               private bs: BillingService,
               private notificationService: NotificationService,
               private shs: SharedService,
-              private changeDetectorRef: ChangeDetectorRef) {
+              private changeDetectorRef: ChangeDetectorRef,
+              private router: Router) {
     this.route.data
       .subscribe((data: { billingAddress: BillindAddressResponseInterface }) => {
         this.billingAddressData = data.billingAddress;
 
       });
 
-    bs.mode='address';
   }
 
   ngAfterViewChecked() {
@@ -58,6 +58,8 @@ export class BillingAddressComponent implements OnInit, AfterViewChecked {
   }
 
   ngOnInit() {
+
+    this.bs.mode = 'address';
     this.createForm();
     this.countries = this.shs.getCountriesByCache();
     this.selectCountry(1, this.countries[0]);
@@ -160,7 +162,7 @@ export class BillingAddressComponent implements OnInit, AfterViewChecked {
       }
       this.bs.modifyAddress(payload)
         .subscribe(res => {
-          this.notificationService.success('save billing address successfully', '');
+          this.notificationService.success('Billing address saved successfully', '');
         });
     }
   }
