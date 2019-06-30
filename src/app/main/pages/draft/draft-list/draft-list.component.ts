@@ -8,6 +8,7 @@ import {NotificationService} from '../../../../shared/notification.service';
 import {ItemsDraftInterface} from '../draft/models/items-draft.interface';
 import {TableConfigInterface} from '../../../../shared/component/table/models/table-config.interface';
 import {PagingModel} from '../../../../shared/component/table/models/paging-model';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-draft-list',
@@ -17,22 +18,23 @@ import {PagingModel} from '../../../../shared/component/table/models/paging-mode
 
 export class DraftListComponent implements OnInit {
 
-  drafts: ItemsDraftInterface[]=[];
-  tableConfig:TableConfigInterface={
-    pagingModel:new PagingModel(),
-    hasRemoveButton:true,
-    hasAddOrUpdateButton:true,
-    hasShowButton:false,
-    hasActions:true,
-    rowColumnsConfig:[],
-    headerNames:['Id','Name','Message','Send action']
+  drafts: ItemsDraftInterface[] = [];
+  tableConfig: TableConfigInterface = {
+    pagingModel: new PagingModel(),
+    hasRemoveButton: true,
+    hasAddOrUpdateButton: true,
+    hasShowButton: false,
+    hasActions: true,
+    rowColumnsConfig: [],
+    headerNames: ['Id', 'Name', 'Message', 'Send action']
   };
 
   phrase = '';
 
   constructor(private draftService: DraftService,
               private dialog: MatDialog,
-              private notificationService: NotificationService) {
+              private notificationService: NotificationService,
+              private router: Router) {
   }
 
   ngOnInit() {
@@ -88,6 +90,23 @@ export class DraftListComponent implements OnInit {
 
   generateRowColumns() {
     this.tableConfig.rowColumnsConfig.push({propertyName: 'title'});
-    this.tableConfig.rowColumnsConfig.push({propertyName: 'messageText',hasSummaryDisplay:true});
+    this.tableConfig.rowColumnsConfig.push({propertyName: 'messageText', hasSummaryDisplay: true});
+    this.tableConfig.rowColumnsConfig.push({
+      buttonConfig: {
+        classSelector: (value) => {
+          return 'light-blue-btn';
+        },
+        innerHTMLSelector: (value) => {
+          return 'simple';
+        },
+        action: (value) => {
+          this.router.navigateByUrl('/send-message');
+        }
+      }
+    });
+  }
+
+  showDetail(e) {
+    this.router.navigateByUrl(`/draft/${e.id}`);
   }
 }

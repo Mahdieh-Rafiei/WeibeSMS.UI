@@ -7,6 +7,7 @@ import {MatDialog} from '@angular/material';
 import {DeleteAccountComponent} from './delete-acount/delete-account.component';
 import {AuthenticationService} from '../../../../../auth/login/authentication.service';
 import {errorAnimation} from '../../../../../shared/component/animation/error-animation';
+import {PrivacyService} from '../privacy.service';
 
 @Component({
   selector: 'app-deactive-account',
@@ -18,7 +19,7 @@ import {errorAnimation} from '../../../../../shared/component/animation/error-an
 })
 export class DeactiveAccountComponent implements OnInit {
   deActiveForm: FormGroup;
-  needDescription: boolean = false;
+  needDescription = false;
   reasons: TitleValueInterface[] = [
     {title: 'I have a privacy concern', value: 1},
     {title: 'I\'m not getting any value from my membership', value: 2},
@@ -34,17 +35,19 @@ export class DeactiveAccountComponent implements OnInit {
   constructor(private fb: FormBuilder,
               private ns: NotificationService,
               private dialog: MatDialog,
-              private authService: AuthenticationService) {
+              private authService: AuthenticationService,
+              private privacyService: PrivacyService) {
   }
 
   ngOnInit() {
+    this.privacyService.mode = 'deactivate';
     this.createForm();
   }
 
   createForm() {
     this.deActiveForm = this.fb.group({
-      reason: ['', Validators.required],
-      description: [null],
+      reason: [''],
+      description: [''],
     });
   }
 
@@ -66,18 +69,12 @@ export class DeactiveAccountComponent implements OnInit {
       .subscribe(result => {
         if (result && result.deleteAccount) {
           this.authService.logOut();
-          this.ns.success('create key successfully!', '');
+          this.ns.success('User deactivated successfully. Deactivation allowed just once a week!', '');
         }
       });
   }
 
-  onReasonChange(e){
+  onReasonChange(e) {
     this.needDescription = e.target.value == 8;
-    // if (e.target.value != 8) {
-    //   this.deActiveForm.controls['description'].disable();
-    // }
-    // else {
-    //   this.deActiveForm.controls['description'].enable();
-    // }
   }
 }

@@ -6,9 +6,7 @@ import {BillingAddressResolverService} from './billing-address/billing-address-r
 import {InvoiceListComponent} from './invoice-list/invoice-list.component';
 import {PaymentComponent} from './payment/payment.component';
 import {TransactionLogComponent} from './transaction-log/transaction-log.component';
-import {NumbersComponent} from '../numbers/numbers.component';
-import {UserLinesComponent} from '../numbers/user-lines/user-lines.component';
-import {LinesComponent} from '../numbers/lines/lines.component';
+import {TransactionTypeTranslatorPipe} from "./transaction-type-translator.pipe";
 
 const routes: Routes = [{
   path: '',
@@ -64,5 +62,6 @@ export const routedComponents = [
   InvoiceListComponent,
   PaymentComponent,
   BillingAddressComponent,
-  TransactionLogComponent
+  TransactionLogComponent,
+  TransactionTypeTranslatorPipe
 ];

@@ -5,15 +5,21 @@
   <div id="filter" class="collapse">
     <div class="filtering">
       <ul class="filtering-menu">
-        <li *ngFor="let option of filterData.options">
+        <li *ngIf="filterDataModel.ticketStatuses">
           <p> Ticket statuses: </p>
-          <select class="form-control">
-            <option hidden value="">Select</option>
-            <option [value]="null">All {{option.title}}</option>
-            <option [value]="state.value" *ngFor="let state of option.data">{{state.title}}</option>
+          <select (change)="ticketStatusSelectedChanged($event)" class="form-control">
+            <option *ngFor="let status of filterDataModel.ticketStatuses" [value]="status.value">{{status.title}}
+            </option>
           </select>
         </li>
-        <li *ngIf="filterData.fromToDate">
+        <li *ngIf="filterDataModel.transactionTypes">
+          <p> Transaction types: </p>
+          <select (change)="transactionTypeSelectedChanged($event)" class="form-control">
+            <option *ngFor="let type of filterDataModel.transactionTypes" [value]="type.value">{{type.title}}
+            </option>
+          </select>
+        </li>
+        <li *ngIf="filterDataModel.fromToDate">
           <p> Filter on date values: </p>
           <app-date-from-to (date)="getDate($event)"></app-date-from-to>
         </li>

@@ -5,8 +5,10 @@ import {UtilityService} from '../../../../../shared/utility.service';
 import {AbstractControl, FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {ChangePasswordInterface} from './models/change-password.interface';
 import {ChangePasswordResponseInterface} from './models/change-password-response.interface';
-import {errorAnimation} from "../../../../../shared/component/animation/error-animation";
+import {errorAnimation} from '../../../../../shared/component/animation/error-animation';
 import {Router} from '@angular/router';
+import {SharedService} from '../../../../../shared/service/shared.service';
+import {PrivacyService} from '../privacy.service';
 
 @Component({
     selector: 'app-change-password',
@@ -19,17 +21,19 @@ import {Router} from '@angular/router';
 })
 export class ChangePasswordComponent implements OnInit {
     changePassForm: FormGroup;
-    notMatch: boolean = false;
+    notMatch = false;
 
     constructor(private userService: UserAccountService,
                 private notificationService: NotificationService,
                 private utilityService: UtilityService,
                 private fb: FormBuilder,
-                private router:Router) {
+                private router: Router,
+                private privacyService: PrivacyService) {
     }
 
     ngOnInit() {
-        this.createForm();
+      this.privacyService.mode = 'changePassword';
+      this.createForm();
     }
 
     createForm() {
@@ -49,7 +53,6 @@ export class ChangePasswordComponent implements OnInit {
         if (this.changePassForm.valid && !this.notMatch && this.changePassForm.value.confirmPassword) {
             this.confirmPasswordOut();
             const payload: ChangePasswordInterface = this.changePassForm.value;
-            delete payload['confirmPassword'];
             this.userService.changePassword(payload)
                 .subscribe((res: ChangePasswordResponseInterface) => {
                     this.notificationService.success('Password changed successfully!', '');

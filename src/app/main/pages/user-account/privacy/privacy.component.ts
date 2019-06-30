@@ -1,31 +1,34 @@
-import {Component, OnInit} from '@angular/core';
+import {AfterViewChecked, ChangeDetectorRef, Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
+import {PrivacyService} from './privacy.service';
 
 @Component({
-    selector: 'app-privacy',
-    templateUrl: './privacy.component.html',
-    styleUrls: ['./privacy.component.scss']
+  selector: 'app-privacy',
+  templateUrl: './privacy.component.html',
+  styleUrls: ['./privacy.component.scss']
 })
-export class PrivacyComponent implements OnInit {
+export class PrivacyComponent implements OnInit, AfterViewChecked {
 
-    items = [
-        {title: 'Change password', link: 'change-password'},
-        {title: 'Login log', link: 'login-log'},
-        {title: 'Deactive account', link: 'deactive-account'}
-    ];
+  items = [
+    {title: 'Change password', link: 'change-password', mode: 'changePassword'},
+    {title: 'Login log', link: 'login-log', mode: 'loginLog'},
+    {title: 'Deactivate account', link: 'deactive-account', mode: 'deactivate'}
+  ];
 
-    active: string = null;
+  constructor(private router: Router,
+              private privacyService: PrivacyService,
+              private changeDetectorRef: ChangeDetectorRef) {
+  }
 
-    constructor(private route: ActivatedRoute,
-                private router: Router) {
-    }
+  ngOnInit() {
+  }
 
-    ngOnInit() {
-    }
+  ngAfterViewChecked() {
+    this.changeDetectorRef.detectChanges();
+  }
+  onClick(item) {
+    this.privacyService.mode = item.mode;
+    this.router.navigate(['./privacy/' + item.link]);
 
-    onClick(link) {
-        this.active = link;
-        this.router.navigate(['./privacy/' + link]);
-
-    }
+  }
 }

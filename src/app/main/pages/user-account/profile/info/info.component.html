@@ -1,129 +1,126 @@
-<div class="tab-section">
-    <div class="profile">
-        <div class="change-profile-pic pb-3">
-            <app-image-upload
-                    [imageSrc]="'../../../../../assets/images/profile.svg'"
-                    [imageUrl]="imageUrl"
-                    [uploadType]="'1'"
-                    [apiUrl]="'upload'"
-                    [type]="'circle'"
-                    [accept]="['image/png', 'image/jpeg', 'image/jpg']"
-                    [sizeValidate]="2"
-                    [validateSize]="'max size uploading is 2KB'"
-                    [validateFormats]="'PNG, JPG, JEPG Formats is invalid.'"
-                    (removeAvatar)="getData($event)">
-            </app-image-upload>
-        </div>
-
-        <form class="profile-input" [formGroup]="profileForm" #formDir="ngForm" (ngSubmit)="submit()">
-            <div class="row">
-                <div class="col-12 col-md-4 form-group">
-                    <label>Username : <span class="gray-text">{{infoData.data.userName}}</span></label>
-                </div>
-            </div>
-            <div class="row">
-                <!--Firstname-->
-                <div class="col-12 col-md-4 ">
-                    <label>Firstname :</label>
-                    <input type="text"
-                           placeholder="Enter your Firstname"
-                           formControlName="firstName" class="form-control">
-                    <div class="error-place">
-                        <div class="text-left"
-                             *ngIf="(((profileForm.controls['firstName'].dirty || profileForm.controls['firstName'].touched) || formDir.submitted))"
-                             [@errorAnimation]>
-                            <p class="errorMessage" *ngIf="profileForm.hasError('required', 'firstName')">
-                                <i class="far fa-exclamation-circle"></i> this filed is required!
-                            </p>
-                            <p class="errorMessage"
-                               *ngIf="(profileForm.controls['firstName'].hasError('maxlength'))" [@errorAnimation]>
-                                <i class="far fa-exclamation-circle"></i> Firstname max length is 20 char!
-                            </p>
-                        </div>
-                    </div>
-                </div>
-                <!--Surename-->
-                <div class="col-12 col-md-4 ">
-                    <label>Surename :</label>
-                    <input type="text"
-                           placeholder="Enter your Surename"
-                           formControlName="lastName" class="form-control">
-                    <div class="error-place">
-                        <div class="text-left"
-                             *ngIf="((profileForm.controls['lastName'].dirty || profileForm.controls['lastName'].touched || formDir.submitted))"
-                             [@errorAnimation]>
-                            <p class="errorMessage" *ngIf="profileForm.hasError('required', 'lastName')">
-                                <i class="far fa-exclamation-circle"></i> this filed is required!
-                            </p>
-                            <p class="errorMessage"
-                               *ngIf="(profileForm.controls['lastName'].hasError('maxlength')) " [@errorAnimation]>
-                                <i class="far fa-exclamation-circle"></i> Surename max length is 30 char!
-                            </p>
-                        </div>
-                    </div>
-                </div>
-                <!--Gender-->
-                <div class="col-12 col-md-4 ">
-                    <label>Gender :</label>
-                    <select formControlName="gender" class="form-control">
-                        <option hidden value="">select</option>
-                        <option *ngFor="let gender of genders" [value]="gender.value">
-                            {{gender.title}}
-                        </option>
-                    </select>
-                </div>
-            </div>
-            <div class="row">
-                <!--Company-->
-                <div class="col-12 col-md-4 form-group">
-                    <label>Company :</label>
-                    <input type="text" class="form-control"
-                           placeholder="Enter your Company"
-                           formControlName="companyName">
-                </div>
-                <!--Birthday-->
-                <div class="col-12 col-md-4 form-group select">
-                    <label>Birthday :</label>
-                    <mat-form-field class="date-picker">
-                        <input matInput class="form-control"
-                               formControlName="birthday"
-                               [matDatepicker]="picker"
-                               placeholder="Enter your Birthday">
-                        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-                        <mat-datepicker #picker></mat-datepicker>
-                    </mat-form-field>
-                </div>
-            </div>
-            <div class="row">
-                <!--Default prefix-->
-                <div class="col-12 col-md-4 form-group">
-                    <label>Default prefix :</label>
-                    <select formControlName="defaultPrefixNumberId" class="form-control">
-                        <option hidden value="">select</option>
-                        <option *ngFor="let country of countries"
-                                [value]="country.id"
-                                [innerText]='country.name + " (" + country.prefixNumber + ")"'
-                        >
-                        </option>
-                    </select>
-                    <div class="detail-prefix">
-                        <p class="yellow-text fo-1 pt-1">Select a default prefix, that will allow you to upload and use
-                            numbers in local
-                            format.</p>
-                    </div>
-                </div>
-                <!--Country-->
-                <div class="col-12 col-md-4 form-group">
-                    <label>Country :</label>
-                    <select formControlName="countryId" class="form-control">
-                        <option hidden value="">select</option>
-                        <option *ngFor="let country of countries" [value]="country.id">{{country.name}}</option>
-                    </select>
-                </div>
-            </div>
-            <div class="col-md-12 btn-save text-right">
-                <button type="submit" class="green-btn">Save</button>
-            </div>
-        </form>
+<div class="div-section">
+  <div class="profile">
+    <div class="change-profile-pic pb-3">
+      <app-image-upload
+        [imageSrc]="'../../../../../assets/images/profile.svg'"
+        [imageUrl]="imageUrl"
+        [uploadType]="'1'"
+        [apiUrl]="'upload'"
+        [type]="'circle'"
+        [accept]="['image/png', 'image/jpeg', 'image/jpg']"
+        [sizeValidate]="2"
+        [validateSize]="'max size uploading is 2KB'"
+        [validateFormats]="'PNG, JPG, JEPG Formats is invalid.'"
+        (removeAvatar)="getData($event)">
+      </app-image-upload>
     </div>
+
+    <form class="profile-input" [formGroup]="profileForm" #formDir="ngForm" (ngSubmit)="submit()">
+      <div class="row">
+        <div class="col-12 col-md-4 form-group">
+          <label>Username : <span class="gray-text">{{infoData.data.userName}}</span></label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-12 col-md-4 ">
+          <label>First name :</label>
+          <input type="text"
+                 placeholder="Enter your first name"
+                 formControlName="firstName" class="form-control"
+                 [ngClass]="{'border-error' :(profileForm.controls['firstName'].touched || profileForm.controls['firstName'].dirty ) &&
+                 !profileForm.controls['firstName'].value}">
+          <div class="error-place">
+            <div class="text-left"
+                 *ngIf="(((profileForm.controls['firstName'].dirty || profileForm.controls['firstName'].touched) || formDir.submitted))"
+                 [@errorAnimation]>
+              <p class="errorMessage" *ngIf="profileForm.hasError('required', 'firstName')">
+                <i class="far fa-exclamation-circle"></i> this filed is required!
+              </p>
+              <p class="errorMessage"
+                 *ngIf="(profileForm.controls['firstName'].hasError('maxlength'))" [@errorAnimation]>
+                <i class="far fa-exclamation-circle"></i> Firstname max length is 20 char!
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="col-12 col-md-4 ">
+          <label>Surename :</label>
+          <input type="text"
+                 placeholder="Enter your Surename"
+                 formControlName="lastName" class="form-control"
+                 [ngClass]="{'border-error' :(profileForm.controls['lastName'].touched || profileForm.controls['lastName'].dirty ) &&
+                 !profileForm.controls['lastName'].value}">
+          <div class="error-place">
+            <div class="text-left"
+                 *ngIf="((profileForm.controls['lastName'].dirty || profileForm.controls['lastName'].touched || formDir.submitted))"
+                 [@errorAnimation]>
+              <p class="errorMessage" *ngIf="profileForm.hasError('required', 'lastName')">
+                <i class="far fa-exclamation-circle"></i> this filed is required!
+              </p>
+              <p class="errorMessage"
+                 *ngIf="(profileForm.controls['lastName'].hasError('maxlength')) " [@errorAnimation]>
+                <i class="far fa-exclamation-circle"></i> Surename max length is 30 char!
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="col-12 col-md-4 ">
+          <label>Gender :</label>
+          <select formControlName="gender" class="form-control">
+            <option hidden value="">select</option>
+            <option *ngFor="let gender of genders" [value]="gender.value">
+              {{gender.title}}
+            </option>
+          </select>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-12 col-md-4 form-group">
+          <label>Company :</label>
+          <input type="text" class="form-control"
+                 placeholder="Enter your Company"
+                 formControlName="companyName">
+        </div>
+        <div class="col-12 col-md-4 form-group select">
+          <label>Birthday :</label>
+          <mat-form-field class="date-picker">
+            <input matInput class="form-control"
+                   formControlName="birthday"
+                   [matDatepicker]="picker"
+                   placeholder="Enter your Birthday" >
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-12 col-md-4 form-group">
+          <label>Default prefix :</label>
+          <select formControlName="defaultPrefixNumberId" class="form-control">
+            <option hidden value="">select</option>
+            <option *ngFor="let country of countries"
+                    [value]="country.id"
+                    [innerText]='country.name + " (" + country.prefixNumber + ")"'
+            >
+            </option>
+          </select>
+          <div class="detail-prefix">
+            <p class="yellow-text fo-1 pt-1">Select a default prefix, that will allow you to upload and use
+              numbers in local
+              format.</p>
+          </div>
+        </div>
+        <div class="col-12 col-md-4 form-group">
+          <label>Country :</label>
+          <select formControlName="countryId" class="form-control">
+            <option hidden value="">select</option>
+            <option *ngFor="let country of countries" [value]="country.id">{{country.name}}</option>
+          </select>
+        </div>
+      </div>
+      <div class="col-md-12 btn-save text-right">
+        <button [disabled]="!profileForm.dirty" type="submit" class="green-btn">Save</button>
+      </div>
+    </form>
+  </div>
 </div>

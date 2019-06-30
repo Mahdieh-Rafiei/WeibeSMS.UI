@@ -43,7 +43,8 @@
                 <input formControlName="name"
                        class="form-control"
                        type="text"
-                       placeholder="name">
+                       placeholder="name"
+                       maxlength="32">
                 <div class="error-place">
                     <div class="text-left"
                          *ngIf="(((userEventForm.controls['name'].dirty || userEventForm.controls['name'].touched) || formDir.submitted))">

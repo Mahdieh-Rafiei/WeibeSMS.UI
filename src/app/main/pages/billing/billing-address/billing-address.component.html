@@ -1,158 +1,170 @@
-<div class="tab-section" *ngIf="countries">
-    <div class="profile">
-        <h5>Billing address</h5>
-        <p class="fo-4 black-text">Update your account password. Always set a strong password, including uppercase,
-            lowercase, number.</p>
-        <form class="col-md-12 input-box" [formGroup]="billingAddressForm" (ngSubmit)="submit()" #formDir="ngForm">
-            <div class="row">
-                <div class="col-12 col-md-9">
-                    <div class="row">
-                        <div class="col-12 col-md-8 pt-3 pb-1">
-                            <label>Full name :</label>
-                            <input type="text"
-                                   placeholder="Enter your Full name"
-                                   formControlName="fullName" class="form-control">
-                            <div class="error-place">
-                                <div class="text-left"
-                                     *ngIf="(((billingAddressForm.controls['fullName'].dirty || billingAddressForm.controls['fullName'].touched) || formDir.submitted))">
-                                    <p class="errorMessage" *ngIf="billingAddressForm.hasError('required', 'fullName')"
-                                       [@errorAnimation]>
-                                        <i class="far fa-exclamation-circle"></i> this filed is required!
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-12 col-md-4">
-                            <label>Phone :</label>
-                            <div class="flex-group">
-                                <div class="btn-group">
-                                    <button class="form-control dropdown-toggle btn-default btn-select" type="button"
-                                            data-toggle="dropdown" role="button" aria-expanded="true">
-                                        <img class="mr-2" width="20" [src]="'data:image/jpg;base64,'+countryFlag"/>
-                                    </button>
-                                    <div class="custom-dropdown">
-                                        <ul class="dropdown-menu" role="listbox" aria-expanded="true">
-                                            <li class="dropdown-item" *ngFor="let country of countries"
-                                                (click)="selectCountry(2, country)">
-                                                <img class="ml-2 mr-2" width="20"
-                                                     [src]="'data:image/jpg;base64,'+country.flag"/>
-                                                <span>{{country.name}}</span>
-                                                (<span>{{country.prefixNumber}}</span>)
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <input type="text"
-                                       #mobileInput
-                                       placeholder="Your phone number"
-                                       class="form-control"
-                                       formControlName="phone"
-                                       (input)="changeMobile(mobileInput.value)"
-                                       appNumericInput
-                                       [ngClass]="{'border-error' : (billingAddressForm.controls['phone'].hasError('pattern')) && (billingAddressForm.controls['phone'].touched || billingAddressForm.controls['phone'].dirty )}"
-                                       autofocus autocomplete="off">
-                            </div>
-                        </div>
-                        <div class="col-12 col-md-4">
-                            <label>Country :</label>
-                            <select name="country"
-                                    class="form-control"
-                                    formControlName="countryId"
-                                    #country
-                                    (change)="countrySelect(null)">
-                                <option hidden value="">select</option>
-                                <option *ngFor="let country of countries" [value]="country.id">{{country.name}}</option>
-                            </select>
-                            <div class="error-place">
-                                <div class="text-left"
-                                     *ngIf="(((billingAddressForm.controls['countryId'].dirty || billingAddressForm.controls['countryId'].touched) || formDir.submitted))">
-                                    <p class="errorMessage" *ngIf="billingAddressForm.hasError('required', 'countryId')" [@errorAnimation]>
-                                        <i class="far fa-exclamation-circle"></i> this filed is required!
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-12 col-md-4">
-                            <label>City :</label>
-                            <select formControlName="cityId" class="form-control">
-                                <option hidden value="" *ngIf="!country.value">please select Country!</option>
-                                <option hidden value="" *ngIf="cities.length===0">
-                                    loading...
-                                </option>
-                                <option hidden value="" *ngIf="country.value && cities.length!==0">select</option>
-                                <option *ngFor="let city of cities" [value]="city.id">{{city.name}}</option>
-                            </select>
-                            <div class="error-place">
-                                <div class="text-left"
-                                     *ngIf="(((billingAddressForm.controls['cityId'].dirty || billingAddressForm.controls['cityId'].touched) || formDir.submitted))">
-                                    <p class="errorMessage" *ngIf="billingAddressForm.hasError('required', 'cityId')" [@errorAnimation]>
-                                        <i class="far fa-exclamation-circle"></i> this filed is required!
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-12 col-md-4">
-                            <label>Zipcode :</label>
-                            <input type="text"
-                                   placeholder="Enter zipCode"
-                                   class="form-control"
-                                   formControlName="zipCode">
-                            <div class="error-place">
-                                <div class="text-left"
-                                     *ngIf="(((billingAddressForm.controls['zipCode'].dirty || billingAddressForm.controls['zipCode'].touched) || formDir.submitted))">
-                                    <p class="errorMessage" *ngIf="billingAddressForm.hasError('required', 'zipCode')" [@errorAnimation]>
-                                        <i class="far fa-exclamation-circle"></i> this filed is required!
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-12 col-md-8 ">
-                            <label>Address :</label>
-                            <textarea type="text"
-                                      placeholder="Enter your address"
-                                      formControlName="address" class="form-control" rows="3"></textarea>
-                            <div class="error-place">
-                                <div class="text-left"
-                                     *ngIf="(((billingAddressForm.controls['address'].dirty || billingAddressForm.controls['address'].touched) || formDir.submitted))">
-                                    <p class="errorMessage" *ngIf="billingAddressForm.hasError('required', 'address')" [@errorAnimation]>
-                                        <i class="far fa-exclamation-circle"></i> this filed is required!
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-12 col-md-8">
-                            <h5 class="yellow-text">VAT NUMBER</h5>
-                            <mat-radio-group (change)="changeVatNumber($event)" #radioGroup="matRadioGroup">
-                                <mat-radio-button class="mat-label" value="1" [checked]="vatNumber">
-
-                                </mat-radio-button>  I don't have a VAT number
-                                <br>
-                                <mat-radio-button class="mat-label" value="2" [checked]="!vatNumber">
-
-                                </mat-radio-button>   Enter VAT number
-                            </mat-radio-group>
-                            <div *ngIf="!vatNumber" class="mt-2">
-                                <input type="text"
-                                       class="form-control"
-                                       placeholder="VAT number"
-                                       formControlName="vatNumber">
-                            </div>
-                        </div>
-                    </div>
+<div class="div-section" *ngIf="countries">
+  <div class="profile">
+    <h5>Billing address</h5>
+    <p class="fo-4 black-text">Update your account password. Always set a strong password, including uppercase,
+      lowercase, number.</p>
+    <form class="col-md-12 input-box" [formGroup]="billingAddressForm" (ngSubmit)="submit()" #formDir="ngForm">
+      <div class="row">
+        <div class="col-12 col-md-9">
+          <div class="row">
+            <div class="col-12 col-md-8 pt-3 pb-1">
+              <label>Full name :</label>
+              <input type="text"
+                     placeholder="Enter your Full name"
+                     maxlength="30"
+                     formControlName="fullName" class="form-control">
+              <div class="error-place">
+                <div class="text-left"
+                     *ngIf="(((billingAddressForm.controls['fullName'].dirty || billingAddressForm.controls['fullName'].touched) || formDir.submitted))">
+                  <p class="errorMessage" *ngIf="billingAddressForm.hasError('required', 'fullName')"
+                     [@errorAnimation]>
+                    <i class="far fa-exclamation-circle"></i> this filed is required!
+                  </p>
                 </div>
+              </div>
             </div>
-            <div class="col-md-12 btn-save text-right">
-                <button type="submit" class="green-btn">Save</button>
+          </div>
+          <div class="row">
+            <div class="col-12 col-md-4">
+              <label>Phone :</label>
+              <div class="flex-group">
+                <div class="btn-group">
+                  <button class="form-control dropdown-toggle btn-default btn-select" type="button"
+                          data-toggle="dropdown" role="button" aria-expanded="true">
+                    <img class="mr-2" width="20" [src]="'data:image/jpg;base64,'+countryFlag"/>
+                  </button>
+                  <div class="custom-dropdown">
+                    <ul class="dropdown-menu" role="listbox" aria-expanded="true">
+                      <li class="dropdown-item" *ngFor="let country of countries"
+                          (click)="selectCountry(2, country)">
+                        <img class="ml-2 mr-2" width="20"
+                             [src]="'data:image/jpg;base64,'+country.flag"/>
+                        <span>{{country.name}}</span>
+                        (<span>{{country.prefixNumber}}</span>)
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+                <input type="text"
+                       #mobileInput
+                       placeholder="Your phone number"
+                       class="form-control"
+                       formControlName="phone"
+                       (input)="changeMobile(mobileInput.value)"
+                       appNumericInput
+                       [ngClass]="{'border-error' : !mobileValue && ((billingAddressForm.controls['phone'].touched || billingAddressForm.controls['phone'].dirty ) || formDir.submitted)}"
+                       autofocus autocomplete="off">
+                <div class="error-place">
+                  <div class="text-left"
+                       *ngIf="!mobileValue && ((billingAddressForm.controls['phone'].dirty || billingAddressForm.controls['phone'].touched) || formDir.submitted)">
+                    <p class="errorMessage" *ngIf="!mobileValue"
+                       [@errorAnimation]>
+                      <i class="far fa-exclamation-circle"></i> this filed is required!
+                    </p>
+                  </div>
+                </div>
+              </div>
             </div>
-        </form>
-    </div>
+            <div class="col-12 col-md-4">
+              <label>Country :</label>
+              <select name="country"
+                      class="form-control"
+                      formControlName="countryId"
+                      #country
+                      (change)="countrySelect(null)">
+                <option hidden value="">select</option>
+                <option *ngFor="let country of countries" [value]="country.id">{{country.name}}</option>
+              </select>
+              <div class="error-place">
+                <div class="text-left"
+                     *ngIf="(((billingAddressForm.controls['countryId'].dirty || billingAddressForm.controls['countryId'].touched) || formDir.submitted))">
+                  <p class="errorMessage" *ngIf="billingAddressForm.hasError('required', 'countryId')"
+                     [@errorAnimation]>
+                    <i class="far fa-exclamation-circle"></i> this filed is required!
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-12 col-md-4">
+              <label>City :</label>
+              <select formControlName="cityId" class="form-control">
+                <option hidden value="" *ngIf="!country.value">please select Country!</option>
+                <option hidden value="" *ngIf="cities.length===0">
+                  loading...
+                </option>
+                <option hidden value="" *ngIf="country.value && cities.length!==0">select</option>
+                <option *ngFor="let city of cities" [value]="city.id">{{city.name}}</option>
+              </select>
+              <div class="error-place">
+                <div class="text-left"
+                     *ngIf="(((billingAddressForm.controls['cityId'].dirty || billingAddressForm.controls['cityId'].touched) || formDir.submitted))">
+                  <p class="errorMessage" *ngIf="billingAddressForm.hasError('required', 'cityId')" [@errorAnimation]>
+                    <i class="far fa-exclamation-circle"></i> this filed is required!
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div class="col-12 col-md-4">
+              <label>Zipcode :</label>
+              <input type="text"
+                     placeholder="Enter zipCode"
+                     class="form-control"
+                     formControlName="zipCode">
+              <div class="error-place">
+                <div class="text-left"
+                     *ngIf="(((billingAddressForm.controls['zipCode'].dirty || billingAddressForm.controls['zipCode'].touched) || formDir.submitted))">
+                  <p class="errorMessage" *ngIf="billingAddressForm.hasError('required', 'zipCode')" [@errorAnimation]>
+                    <i class="far fa-exclamation-circle"></i> this filed is required!
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-12 col-md-8 ">
+              <label>Address :</label>
+              <textarea type="text"
+                        placeholder="Enter your address"
+                        formControlName="address" class="form-control"></textarea>
+              <div class="error-place">
+                <div class="text-left"
+                     *ngIf="(((billingAddressForm.controls['address'].dirty || billingAddressForm.controls['address'].touched) || formDir.submitted))">
+                  <p class="errorMessage" *ngIf="billingAddressForm.hasError('required', 'address')" [@errorAnimation]>
+                    <i class="far fa-exclamation-circle"></i> this filed is required!
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-12 col-md-8">
+              <h5 class="yellow-text">VAT NUMBER</h5>
+              <mat-radio-group (change)="changeVatNumber($event)" #radioGroup="matRadioGroup">
+                <mat-radio-button class="mat-label" value="1" [checked]="vatNumber">
+                  I don't have a VAT number
+                </mat-radio-button>
+                <br>
+                <mat-radio-button class="mat-label" value="2" [checked]="!vatNumber">
+                  Enter VAT number
+                </mat-radio-button>
+              </mat-radio-group>
+              <div *ngIf="!vatNumber">
+                <input type="text"
+                       class="form-control"
+                       appNumericInput=""
+                       placeholder="VAT number"
+                       formControlName="vatNumber">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-12 btn-save text-right">
+        <button [disabled]="!mobileValue"  type="submit" class="green-btn">Save</button>
+      </div>
+    </form>
+  </div>
 </div>
-
+<button (click)="test()"></button>

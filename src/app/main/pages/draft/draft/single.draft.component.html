@@ -17,10 +17,10 @@
         <div class="col-md-12 p-0">
           <div class="input-box p-0">
             <label>title</label>
-            <input [(ngModel)]="draft.title" #title type="text" placeholder="name" class="form-control">
+            <input  maxlength="64" [(ngModel)]="draft.title" #title type="text" placeholder="name" class="form-control">
             <div class="error-place">
               <div class="text-left">
-                <p class="errorMessage" *ngIf="!title.value && titleValue" [@errorAnimation]>
+                <p class="errorMessage" *ngIf="!title.value  && titleValue" [@errorAnimation]>
                   <i class="far fa-exclamation-circle"></i> this filed is required!
                 </p>
               </div>
@@ -33,7 +33,7 @@
           <label>Compose</label>
         </div>
         <div class="col-md-8 pr-2 pl-0 content-box">
-                <textarea [maxLength]="hasDoubleChar ? 603 : 1377" placeholder="Message |"
+                <textarea  [maxLength]="hasDoubleChar ? 603 : 1377" placeholder="Message |"
                           (input)="onMessageTextChange()" [(ngModel)]="draft.messageText"
                           rows="9" #message></textarea>
           <div class="count-sms">
@@ -63,13 +63,16 @@
         <div class="error-place">
           <div class="text-left">
             <p class="errorMessage" *ngIf="(hasDoubleChar && draft.messageText.length > 603 ||
-             !hasDoubleChar && draft.messageText.length > 1377 )&& maxLenError" [@errorAnimation]>
-              <i class="far fa-exclamation-circle"></i> Notice to Max length message!
+             !hasDoubleChar && draft.messageText.length > 1377 ) || maxLenError || (draft.messageText.length == 0 && messageValue)"
+               [@errorAnimation]
+            [innerText]="maxLenError ? 'Notice to Max length message!' : 'this field is required!'">
+              <i class="far fa-exclamation-circle"></i>
+
             </p>
           </div>
         </div>
         <p *ngIf="hasDoubleChar">
-          you use unicode chars!
+          You used unicode chars!
         </p>
       </div>
     </div>

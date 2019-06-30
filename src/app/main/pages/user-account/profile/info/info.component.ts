@@ -86,7 +86,7 @@ export class InfoComponent implements OnInit {
       gender: this.infoData.data.gender,
       defaultPrefixNumberId: this.infoData.data.defaultPrefixNumberId,
       countryId: this.infoData.data.countryId,
-      birthday: new Date(this.infoData.data.birthDay * 1000),
+      birthday: this.infoData.data.birthDay ? new Date(this.infoData.data.birthDay * 1000) : null,
     });
   }
 
@@ -105,5 +105,4 @@ export class InfoComponent implements OnInit {
         });
     }
   }
-
 }

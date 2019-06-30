@@ -5,6 +5,7 @@ import {CityInterface} from '../models/city.interface';
 import {CacheObject} from '../models/cache-object';
 import {CountryInterface} from '../models/country.interface';
 import {DashboardInfoInterface} from '../../auth/login/models/dashboard-info.interface';
+import {DataCountryInterface} from '../models/data-country.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -34,8 +35,17 @@ export class SharedService {
     localStorage.setItem('cache-object', JSON.stringify(this._cacheObject));
   }
 
+  setCountries(countries: DataCountryInterface[]) {
+    this._cacheObject.countries = countries;
+    localStorage.setItem('cache-object', JSON.stringify(this._cacheObject));
+  }
+
   getCurrentUserInfo(): DashboardInfoInterface {
     return this._cacheObject.currentUserInfo;
+  }
+
+  getCountriesByCache(): DataCountryInterface[] {
+    return this._cacheObject.countries;
   }
 
   checkUnique(payload): Observable<any> {
@@ -44,9 +54,9 @@ export class SharedService {
   }
 
   fillCacheData() {
-    let cacheJson = localStorage.getItem('cache-object');
+    const cacheJson = localStorage.getItem('cache-object');
     if (cacheJson) {
-      this._cacheObject = <CacheObject> JSON.parse(cacheJson);
+      this._cacheObject = JSON.parse(cacheJson) as CacheObject;
     } else {
       this._cacheObject = {
         countries: [],
