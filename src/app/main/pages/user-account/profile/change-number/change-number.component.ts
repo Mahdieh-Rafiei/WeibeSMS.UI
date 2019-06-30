@@ -32,19 +32,20 @@ export class ChangeNumberComponent implements OnInit {
               private router: Router,
               private uas: UserAccountService,
               private utilityService: UtilityService) {
+
   }
 
   ngOnInit() {
+    this.countries = this.countries = this.shs.getCountriesByCache();
+    this.currentUserInfo = this.shs.getCurrentUserInfo();
     this.createForm();
     this.getCountry();
-    this.currentUserInfo = this.shs.getCurrentUserInfo();
   }
 
   getCountry() {
-      this.countries = this.shs.getCountriesByCache();
-      this.selectCountry(1, this.countries[this.currentUserInfo.prefixNumberId - 1]);
-      // this.selectCountry(this.currentUserInfo.prefixNumberId, this.countries[this.currentUserInfo.prefixNumberId - 1]);
-      this.changeNumberForm.patchValue({mobile: `+${this.currentUserInfo.mobile}`});
+
+    this.selectCountry(1, this.countries[this.currentUserInfo.prefixNumberId - 1]);
+    this.changeNumberForm.patchValue({mobile: `+${this.currentUserInfo.mobile}`});
   }
 
   selectCountry(index, country) {

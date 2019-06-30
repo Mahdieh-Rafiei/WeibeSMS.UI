@@ -42,6 +42,7 @@ export class DeactiveAccountComponent implements OnInit {
   ngOnInit() {
     this.privacyService.mode = 'deactivate';
     this.createForm();
+    this.deActiveForm.controls['reason'].patchValue(1);
   }
 
   createForm() {
@@ -69,7 +70,7 @@ export class DeactiveAccountComponent implements OnInit {
       .subscribe(result => {
         if (result && result.deleteAccount) {
           this.authService.logOut();
-          this.ns.success('User deactivated successfully. Deactivation allowed just once a week!', '');
+          this.ns.success('User deactivated successfully. Deactivation allowed just per 24 hours!', '');
         }
       });
   }
