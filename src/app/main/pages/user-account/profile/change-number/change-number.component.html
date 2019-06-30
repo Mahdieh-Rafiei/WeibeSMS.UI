@@ -1,4 +1,4 @@
-<div class="col-md-12 div-section" *ngIf="countries">
+<div class="col-md-12 tab-section" *ngIf="countries">
   <div class="change-password">
     <h5>Phone number</h5>
     <p class="black-text fo-4">you can change your phone number, but you should verify it.</p>
@@ -34,7 +34,7 @@
                    [ngClass]="{'border-error' : (changeNumberForm.controls['mobile'].hasError('pattern')) && (changeNumberForm.controls['mobile'].touched || changeNumberForm.controls['mobile'].dirty )}"
                    autofocus autocomplete="off">
             <div  class="input-group-prepend">
-              <button [disabled]="!(isCorrectMobile) ||(changeNumberForm.value.mobile.substring(1) == currentUserInfo.mobile)" [ngClass]="is" type="submit" class="light-blue-btn ml-2">Verification Code</button>
+              <button [disabled]="changeNumberForm.value.mobile.substring(1) == currentUserInfo.mobile" [ngClass]="is" type="submit" class="light-blue-btn ml-2">Verification Code</button>
             </div>
           </div>
         </div>

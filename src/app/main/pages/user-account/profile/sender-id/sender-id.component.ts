@@ -9,6 +9,11 @@ import {SenderIdInterface} from './models/sender-id.interface';
 import {DialogComponent} from '../../../../../shared/component/dialog/dialog.component';
 import {RemoveDraftInterface} from '../../../draft/draft/models/remove-draft.interface';
 import {MatDialog} from '@angular/material';
+import {TableConfigInterface} from "../../../../../shared/component/table/models/table-config.interface";
+import {SenderIdInterface} from "./models/sender-id.interface";
+import {DialogComponent} from "../../../../../shared/component/dialog/dialog.component";
+import {MatDialog} from "@angular/material";
+import {SenderIdResponseInterface} from "./models/sender-id-response.interface";
 
 @Component({
   selector: 'app-sender-id',
@@ -19,27 +24,33 @@ import {MatDialog} from '@angular/material';
   ],
 })
 export class SenderIdComponent implements OnInit {
-  data: any;
-  fromDate: null;
-  toDate: null;
-  senderIdForm: FormGroup;
-  phrase = '';
-  newSenderName: SenderIdInterface =
-    {
-      id: 0,
-      creationDateTime: 0,
-      isValid: false,
-      title: ''
+
+ 
+    data: any;
+    fromDate: null;
+    toDate: null;
+    senderIdForm: FormGroup;
+    phrase = '';
+    newSenderName: SenderIdInterface =
+        {
+            id: 0,
+            creationDateTime: 0,
+            isValid: false,
+            title: ''
+        };
+    senderIdUnique = false;
+    senderNames: SenderIdInterface[];
+
+    tableConfig: TableConfigInterface = {
+        headerNames: ['Order', 'Sender name', 'Create date', 'Status'],
+        rowColumnsConfig: [],
+        hasRemoveButton: true,
+        hasActions:true,
     };
   senderIdUnique = false;
   senderNames: SenderIdInterface[];
 
-  tableConfig: TableConfigInterface = {
-    headerNames: ['Order', 'Sender name', 'Create date', 'Status'],
-    rowColumnsConfig: [],
-    hasActions: true,
-    hasRemoveButton: true
-  };
+
 
   constructor(private fb: FormBuilder,
               private shs: SharedService,
@@ -146,6 +157,27 @@ export class SenderIdComponent implements OnInit {
       });
   }
 
+    openDeleteDialog(width, height, panelClass, data): void {
+        const dialogRef = this.dialog.open(DialogComponent, {
+            width,
+            height,
+            panelClass,
+            data
+        });
+
+        dialogRef.afterClosed()
+            .subscribe(result => {
+                if (result && result.remove) {
+                    if (result.remove.modalType === 'deleteSenderId') {
+                        this.userAccountService.removeSenderName(result.remove.data.id)
+                            .subscribe((res: SenderIdResponseInterface) => {
+                                this.senderNames.splice(result.remove.data.index, 1);
+                                this.notificationService.success('Sender Id removed successfully', '');
+                            });
+                    }
+                }
+            });
+    }
 
   generateRowColumns() {
     this.tableConfig.rowColumnsConfig.push({propertyName: 'title'});

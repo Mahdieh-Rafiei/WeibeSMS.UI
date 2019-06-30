@@ -1,4 +1,12 @@
-.div-section {
-  border-radius: 0 0 .4rem .4rem;
-  padding: 1rem
+.input-group > .form-control:not(:first-child), .input-group > .custom-select:not(:first-child) {
+  border-top-left-radius: 0 !important;
+  border-bottom-left-radius: 0 !important;
+  border-top-right-radius: .25rem !important;
+  border-bottom-right-radius: .25rem !important;
+}
+button.form-control.dropdown-toggle.btn-default.btn-select{
+  border-top-left-radius: .25rem !important;
+  border-bottom-left-radius: .25rem !important;
+  border-top-right-radius: 0 !important;
+  border-bottom-right-radius: 0 !important;
 }

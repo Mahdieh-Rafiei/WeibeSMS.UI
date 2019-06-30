@@ -48,7 +48,7 @@
                         </div>
                     </div>
                     <div class="btn-login-div">
-                        <span [routerLink]="['/forgot-password']" class="forgot-pass gray-text fo-2 pt-2 pb-2"> Forgot password ?</span>
+                        <span [routerLink]="['/forgot-password']" class="forgot-pass gray-text fo-2 pb-2"> Forgot password ?</span>
                         <button type="submit" (click)="login()" class="ws-btn login-btn mt-1">Login</button>
                     </div>
                 </div>
@@ -108,7 +108,7 @@
                     </div>
                 </div>
                 <div>
-                    <button [disabled]="!isCorrectMobile" type="submit" (click)="sendVerificationCode()" class="ws-btn login-btn">Register
+                    <button type="submit" (click)="sendVerificationCode()" class="ws-btn login-btn">Register
                     </button>
                 </div>
                 <div class="text-center">

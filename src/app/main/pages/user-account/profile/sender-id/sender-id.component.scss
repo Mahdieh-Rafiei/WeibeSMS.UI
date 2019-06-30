@@ -1,4 +1,4 @@
-.div-section {
+.tab-section {
   border-radius: 0 0 .4rem .4rem;
   padding: 1rem
 }
@@ -7,4 +7,7 @@
   top: 11px;
   right: 1.5rem;
   color: #1dc9b7;
+}
+input.form-control.ng-untouched.ng-pristine.ng-invalid {
+  border-radius: 0.25rem;
 }

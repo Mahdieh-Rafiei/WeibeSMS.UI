@@ -5,7 +5,12 @@
     <app-sidebar *ngIf="configService.sidebarMode=='default'"></app-sidebar>
 </div>
 
+<!--<section-->
+<!--[ngClass]="{'slim-navbar':configService.sidebarMode=='slim', 'hidden-navbar':configService.sidebarMode=='hidden'}">-->
+<!---->
 <router-outlet #route></router-outlet>
+<!--</section>-->
 
 <app-footer *ngIf="isAuthenticated"
             [ngClass]="{'slim-footer':configService.sidebarMode=='slim', 'hidden-footer':configService.sidebarMode=='hidden'}"></app-footer>
+
