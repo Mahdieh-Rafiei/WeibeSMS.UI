@@ -5,9 +5,7 @@ import {TableConfigInterface} from '../../../../shared/component/table/models/ta
 import {PagingModel} from '../../../../shared/component/table/models/paging-model';
 import {FilterDataModel} from '../../../../shared/component/filter/filter-data-model';
 import {TransactionTypeTranslatorPipe} from '../transaction-type-translator.pipe';
-import {GetTransactionLogsModelInterface} from './models/get-transaction-logs-model.interface';
-import {TableConfigInterface} from '../../../../shared/component/table/models/table-config.interface';
-import {PagingModel} from '../../../../shared/component/table/models/paging-model';
+
 
 
 @Component({

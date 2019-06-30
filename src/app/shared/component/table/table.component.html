@@ -23,7 +23,11 @@
       <td class="text-left">
         <div class="table-head">
           <span
-            *ngIf="tableConfig.pagingModel">{{i + 1 + (tableConfig.pagingModel.pageSize * (tableConfig.pagingModel.pageNumber == 1 ? 0 : tableConfig.pagingModel.pageNumber - 1))}}</span>
+            *ngIf="tableConfig.pagingModel">{{i + 1 + (tableConfig.pagingModel.pageSize * (tableConfig.pagingModel.pageNumber == 1 ? 0 : tableConfig.pagingModel.pageNumber - 1))}}
+          </span>
+          <span
+            *ngIf="!tableConfig.pagingModel">{{i + 1}}
+          </span>
         </div>
       </td>
       <td class="text-left" *ngFor="let r of tableConfig.rowColumnsConfig">
@@ -58,8 +62,8 @@
         <div *ngIf="r.buttonConfig">
 
           <button [class]="r.buttonConfig.classSelector(item)"
-          [innerHTML]="r.buttonConfig.innerHTMLSelector(item)"
-          (click)="r.buttonConfig.action ? r.buttonConfig.action(item) : null">
+                  [innerHTML]="r.buttonConfig.innerHTMLSelector(item)"
+                  (click)="r.buttonConfig.action ? r.buttonConfig.action(item) : null">
 
           </button>
         </div>
@@ -70,7 +74,8 @@
           <a *ngIf="tableConfig.hasRemoveButton" (click)="removeItem(i, item)"><i class="fa fa-trash light-red-btn"></i></a>
           <a *ngIf="tableConfig.hasAddOrUpdateButton" (click)="editItem(i,item)"> <i
             class="fa fa-pencil light-green-btn"></i></a>
-          <a *ngIf="tableConfig.hasShowButton" (click)="showItem(item)" matTooltip="show"><i class="fa fa-eye light-green-btn"></i></a>
+          <a *ngIf="tableConfig.hasShowButton" (click)="showItem(item)" matTooltip="show"><i
+            class="fa fa-eye light-green-btn"></i></a>
         </div>
       </td>
       <td *ngIf="tableConfig.hasManageColumn" class="td-single text-left">
