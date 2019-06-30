@@ -84,10 +84,11 @@
         <div class="col-12 col-md-4 form-group select">
           <label>Birthday :</label>
           <mat-form-field class="date-picker">
-            <input matInput class="form-control"
-                   formControlName="birthday"
+            <input matInput class="form-control birthday-field"
+                   formControlName="value"
+                   #pickerValue
                    [matDatepicker]="picker"
-                    >
+                   placeholder="Enter your Birthday">
             <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
             <mat-datepicker #picker></mat-datepicker>
           </mat-form-field>
