@@ -5,12 +5,12 @@ import {RemoveUserEventInterface} from './models/remove-user-event.interface';
 import {MatDialog} from '@angular/material';
 import {NotificationService} from '../../../shared/notification.service';
 import {AddEditUserEventComponent} from './add-edit/add-edit-user-event.component';
-import {GetUserEventsModelInterface} from './models/get-user-events-model.interface';
 import {UserEventInterface} from './models/user-event.interface';
 import {UserEventResponseInterface} from './models/user-event-response.interface';
 import {DialogComponent} from '../../../shared/component/dialog/dialog.component';
 import {TableConfigInterface} from '../../../shared/component/table/models/table-config.interface';
 import {PagingModel} from '../../../shared/component/table/models/paging-model';
+import {FilterDataModel} from '../../../shared/component/filter/filter-data-model';
 
 @Component({
   selector: 'app-user-event',
@@ -28,6 +28,8 @@ export class UserEventComponent implements OnInit {
     hasAddOrUpdateButton: true,
     headerNames: ['Id', 'Title']
   };
+
+  filterDataModel = new FilterDataModel();
 
   constructor(private userEventService: UserEventService,
               private dialog: MatDialog,
@@ -107,6 +109,11 @@ export class UserEventComponent implements OnInit {
 
   getData(event) {
     this.phrase = event;
+    this.getUserEvents();
+  }
+
+  getFilterData(e:FilterDataModel){
+    this.tableConfig.pagingModel.pageSize = e.pageSize;
     this.getUserEvents();
   }
 

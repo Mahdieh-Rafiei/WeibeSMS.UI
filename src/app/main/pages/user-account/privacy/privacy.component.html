@@ -1,6 +1,6 @@
 <div class="col-md-12 profile">
   <div class="title-tab" *ngFor="let item of items">
-    <p [ngClass]="{'active': item.link === active}" (click)="onClick(item.link)">
+    <p [ngClass]="{'active': item.mode == privacyService.mode}" (click)="onClick(item)">
       {{item.title}}</p>
   </div>
 </div>

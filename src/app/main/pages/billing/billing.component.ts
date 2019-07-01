@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {BillingService} from './billing.service';
 
 @Component({
@@ -8,9 +8,11 @@ import {BillingService} from './billing.service';
 })
 export class BillingComponent implements OnInit {
 
-  constructor(private billingService: BillingService) { }
+  constructor(private billingService: BillingService) {
+  }
 
   ngOnInit() {
+    this.billingService.mode = 'invoice';
   }
 
 }

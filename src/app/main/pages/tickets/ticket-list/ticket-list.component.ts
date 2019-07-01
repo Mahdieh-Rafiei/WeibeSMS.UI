@@ -9,101 +9,100 @@ import {Router} from '@angular/router';
 import {FilterDataModel} from '../../../../shared/component/filter/filter-data-model';
 
 @Component({
-    selector: 'app-ticket-list',
-    templateUrl: './ticket-list.component.html',
-    styleUrls: ['./ticket-list.component.scss'],
-    encapsulation: ViewEncapsulation.None
+  selector: 'app-ticket-list',
+  templateUrl: './ticket-list.component.html',
+  styleUrls: ['./ticket-list.component.scss'],
+  encapsulation: ViewEncapsulation.None
 })
 export class TicketListComponent implements OnInit {
 
-    tickets: ItemsTicketListInterface[];
-    tableConfig: TableConfigInterface = {
-        hasActions: true,
-        hasShowButton: true,
-        headerNames: ['Id', 'Title', 'Date', 'Status'],
-        rowColumnsConfig: [],
-        pagingModel: new PagingModel()
-    };
+  tickets: ItemsTicketListInterface[];
+  tableConfig: TableConfigInterface = {
+    hasActions: true,
+    hasShowButton: true,
+    headerNames: ['Id', 'Title', 'Date', 'Status'],
+    rowColumnsConfig: [],
+    pagingModel: new PagingModel()
+  };
 
-    phrase = '';
+  phrase = '';
 
-    filterDataModel: FilterDataModel = new FilterDataModel();
+  filterDataModel: FilterDataModel = new FilterDataModel();
 
-    constructor(private ticketService: TicketService,
-                private statusTranslatorPipe: StatusTranslatorPipe,
-                private router: Router) {
-    }
+  constructor(private ticketService: TicketService,
+              private statusTranslatorPipe: StatusTranslatorPipe,
+              private router: Router) {
+  }
 
-    ngOnInit() {
-        this.getAllTickets();
-        this.generateRowConfigs();
+  ngOnInit() {
+    this.getAllTickets();
+    this.generateRowConfigs();
 
-        this.filterDataModel.fromToDate = true;
-        this.filterDataModel.ticketStatusSelected = null;
-        this.filterDataModel.ticketStatuses = [
-            {
-                title: 'All', value: null
-            },
-            {
-                title: 'Open', value: 1
-            }, {
-                title: 'AdminAnswered', value: 2
-            }, {
-                title: 'UserAnswered', value: 3
-            }, {
-                title: 'OnHold', value: 4
-            }, {
-                title: 'OnProgress', value: 5
-            }, {
-                title: 'Closed', value: 6
-            },
-        ];
-    }
+    this.filterDataModel.fromToDate = true;
+    this.filterDataModel.ticketStatusSelected = 0;
+    this.filterDataModel.ticketStatuses = [
+      {
+        title: 'All', value: 0
+      },
+      {
+        title: 'Open', value: 1
+      }, {
+        title: 'AdminAnswered', value: 2
+      }, {
+        title: 'UserAnswered', value: 3
+      }, {
+        title: 'OnHold', value: 4
+      }, {
+        title: 'OnProgress', value: 5
+      }, {
+        title: 'Closed', value: 6
+      },
+    ];
+  }
 
-    getAllTickets() {
-        this.ticketService.getAllTickets(this.tableConfig.pagingModel.pageNumber,
-            this.tableConfig.pagingModel.pageSize, this.phrase, this.filterDataModel.ticketStatusSelected,
-            this.filterDataModel.fromDate, this.filterDataModel.toDate)
-            .subscribe((res: TicketListResponseModel) => {
-                this.tickets = res.data.items;
-                this.tableConfig.pagingModel.totalItemsCount = res.data.totalItemsCount;
-            });
-    }
+  getAllTickets() {
+    this.ticketService.getAllTickets(this.tableConfig.pagingModel.pageNumber,
+      this.tableConfig.pagingModel.pageSize, this.phrase, this.filterDataModel.ticketStatusSelected,
+      this.filterDataModel.fromDate, this.filterDataModel.toDate)
+      .subscribe((res: TicketListResponseModel) => {
+        this.tickets = res.data.items;
+        this.tableConfig.pagingModel.totalItemsCount = res.data.totalItemsCount;
+      });
+  }
 
-    getData(event) {
-        this.phrase = event;
-        this.getAllTickets();
-    }
+  getData(event) {
+    this.phrase = event;
+    this.getAllTickets();
+  }
 
-    getFilterData(event: FilterDataModel) {
-        debugger;
-        this.tableConfig.pagingModel.pageSize = event.pageSize ? event.pageSize : 10;
-        this.getAllTickets();
-    }
+  getFilterData(event: FilterDataModel) {
+    debugger;
+    this.tableConfig.pagingModel.pageSize = event.pageSize ? event.pageSize : 10;
+    this.getAllTickets();
+  }
 
-    generateRowConfigs() {
-        this.tableConfig.rowColumnsConfig.push({
-            propertyName: 'title'
-        });
+  generateRowConfigs() {
+    this.tableConfig.rowColumnsConfig.push({
+      propertyName: 'title'
+    });
 
-        this.tableConfig.rowColumnsConfig.push({
-            propertyName: 'date',
-            isDateTime: true
-        });
+    this.tableConfig.rowColumnsConfig.push({
+      propertyName: 'date',
+      isDateTime: true
+    });
 
-        this.tableConfig.rowColumnsConfig.push({
-            propertyName: 'status',
-            classSelector: (value) => {
-                // return value == 1 ? 'green-text' : (value == 6 ? 'red-text': null);
-                return 'red-text';
-            },
-            manipulationMethod: (value) => {
-                return this.statusTranslatorPipe.transform(value);
-            }
-        });
-    }
+    this.tableConfig.rowColumnsConfig.push({
+      propertyName: 'status',
+      classSelector: (value) => {
+        return value == 1 ? 'green-text' : (value == 6 ? 'red-text' : null);
+      },
+      manipulationMethod: (value) => {
+        return this.statusTranslatorPipe.transform(value);
+      }
+    });
+  }
 
-    showDetail(item: ItemsTicketListInterface) {
-        this.router.navigateByUrl(`/ticket/modify/${item.id}`);
-    }
+  showDetail(item: ItemsTicketListInterface) {
+    this.router.navigateByUrl(`/ticket/modify/${item.id}`);
+  }
 }

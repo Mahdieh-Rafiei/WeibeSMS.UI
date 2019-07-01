@@ -37,12 +37,13 @@ export class ImportContactFromOtherListsComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.contactService.addMode = 'list';
     this.groupId = parseInt(this.activatedRoute.parent.snapshot.paramMap.get('groupId'));
     this.getAllGroupList();
   }
 
   getAllGroupList() {
-    this.groupService.getAllGroupList(this.groupPageSize, this.groupPageNumber, this.phrase)
+    this.groupService.getAllGroupList(this.groupPageNumber, this.groupPageSize, this.phrase)
       .subscribe((res: GroupListInterface) => {
         this.groups = res.data.items.filter(i => i.id !== this.groupId);
         this.groups.forEach(g => {
@@ -169,7 +170,6 @@ export class ImportContactFromOtherListsComponent implements OnInit {
         this.router.navigateByUrl(`group/${this.groupId}`);
       });
   }
-
 
   doPaging(e) {
     this.clickedGroup.pageNumber = e;

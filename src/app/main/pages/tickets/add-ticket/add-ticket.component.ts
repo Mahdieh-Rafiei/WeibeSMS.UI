@@ -22,6 +22,7 @@ export class AddTicketComponent implements OnInit {
   priorityId: number = 1;
   titleRequired: boolean = false;
   messageRequired: boolean = false;
+  saveTried = false;
 
   constructor(private ticketService: TicketService,
               private notificationService: NotificationService,
@@ -29,14 +30,14 @@ export class AddTicketComponent implements OnInit {
   }
 
   addNewTicket() {
+    this.saveTried = true;
     if (this.message.length === 0) {
-      this.messageRequired = true;
-      // this.notificationService.error('Ticket text cant be null!', '');
+      return;
     }
     if (this.title.length === 0) {
-      this.titleRequired = true;
-      // this.notificationService.error('Title cant be null!', '');
+      return;
     }
+
     const payload: AddTicketInterface = {
       Title: this.title,
       Message: this.message,

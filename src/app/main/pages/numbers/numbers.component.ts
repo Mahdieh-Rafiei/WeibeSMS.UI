@@ -1,4 +1,4 @@
-import {Component, EventEmitter, OnInit, Output} from '@angular/core';
+import {AfterViewChecked, ChangeDetectorRef, Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {NumbersService} from './numbers.service';
 
 @Component({
@@ -6,11 +6,17 @@ import {NumbersService} from './numbers.service';
   templateUrl: './numbers.component.html',
   styleUrls: ['./numbers.component.scss']
 })
-export class NumbersComponent implements OnInit {
+export class NumbersComponent implements OnInit, AfterViewChecked {
 
-  constructor(private numberService:NumbersService) { }
+  constructor(private numberService: NumbersService,
+              private changeDetectorRef: ChangeDetectorRef) {
+  }
 
   ngOnInit() {
+  }
+
+  ngAfterViewChecked() {
+    this.changeDetectorRef.detectChanges();
   }
 
 }

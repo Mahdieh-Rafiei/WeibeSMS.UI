@@ -1,7 +1,6 @@
 <div class="dialog">
   <div class="col-12 modal-header p-2 text-center">
-    <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
-         x="0px" y="0px"
+    <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
          viewBox="0 0 435.3 432.9" xml:space="preserve">
 	<g class="circle">
 		<path class="create-st0" d="M216.7,9c-114.9,0-208,93.1-208,208s93.1,208,208,208s208-93.1,208-208S331.6,9,216.7,9z M397.9,217
@@ -14,37 +13,19 @@
 	</g>
 
 </svg>
-    <h5 class="green-text">Preview</h5>
+    <h5 class="green-text">Buy line</h5>
   </div>
   <div class="col-12 form-group">
-    <label class="fo-3 black-text pb-2">total count:</label>
-    <p>{{contactData.totalCount}}</p>
-
-    <label class="fo-3 black-text pb-2">distinct count:</label>
-    <p>{{contactData.distinctCount}}</p>
-
-    <label class="fo-3 black-text pb-2">add count:</label>
-    <p>{{contactData.addCount}}</p>
-
-
-
-    <label class="fo-3 black-text pb-2">duplicate count:</label>
-    <p>{{contactData.duplicateCount}}</p>
-
-    <label class="fo-3 black-text pb-2">exists contact count:</label>
-    <p>{{contactData.existsContactCount}}</p>
-
-    <label class="fo-3 black-text pb-2">wrong numbers count:</label>
-    <p>{{contactData.wrongNumber}}</p>
+    <p>Are you sure you want to buy line with number {{lineNumber}} and €{{linePrice}}?</p>
     <br>
   </div>
   <div class="col-12 pb-3">
     <div class="text-center" dir="ltr">
       <button type="submit" class="green-btn mr-2" (click)="onSubmit()">
-        submit
+        Submit
       </button>
       <button class="gray-btn" (click)="closeDialog()">
-        cancel
+        Cancel
       </button>
     </div>
   </div>

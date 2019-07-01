@@ -1,3 +1,5 @@
+import {SummaryCountryInterface} from '../../../main/pages/numbers/user-lines/models/summary-country.interface';
+
 export class FilterDataModel {
   fromDate: number;
   toDate: number;
@@ -7,8 +9,11 @@ export class FilterDataModel {
   ticketStatusSelected?: number;
   transactionTypes?: any[];
   transactionTypeSelected?: number;
-  // invoceStatuses?: any[];
-  // invoceStatusSelected: number;
+  countries?: any[];
+  countrySelected?: number;
+  paymentTypes?: any[];
+  paymentTypeSelected?: number;
+  paidPayments?: any;
 
   constructor() {
     this.fromDate = 0;

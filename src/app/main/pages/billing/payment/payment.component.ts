@@ -1,16 +1,18 @@
 import {Component, OnInit} from '@angular/core';
 import {BillingService} from '../billing.service';
 import {PaymentInterface} from './models/payment.interface';
-import {GetPaymentsModel} from './models/get-payments-model';
 import {TableConfigInterface} from '../../../../shared/component/table/models/table-config.interface';
 import {PagingModel} from '../../../../shared/component/table/models/paging-model';
+import {FilterDataModel} from '../../../../shared/component/filter/filter-data-model';
 
 @Component({
-    selector: 'app-payment',
-    templateUrl: './payment.component.html',
-    styleUrls: ['./payment.component.scss']
+  selector: 'app-payment',
+  templateUrl: './payment.component.html',
+  styleUrls: ['./payment.component.scss']
 })
 export class PaymentComponent implements OnInit {
+
+  phrase = '';
 
   tableConfig: TableConfigInterface = {
     pagingModel: new PagingModel(),
@@ -18,63 +20,66 @@ export class PaymentComponent implements OnInit {
     rowColumnsConfig: [],
   };
 
-    getPaymentsModel: GetPaymentsModel = {
-        description: '',
-        fromDate: null,
-        isPaid: null,
-        toDate: null,
-        type: null,
-        phrase: ''
-    };
+  filterDataModel = new FilterDataModel();
 
-    payments: PaymentInterface[];
+  payments: PaymentInterface[];
 
-    constructor(private billingService: BillingService) {
-    }
+  constructor(private billingService: BillingService) {
+  }
 
-    ngOnInit() {
-      this.billingService.mode = 'payment';
-      this.getPayments();
-      this.generateRowColumns();
-    }
+  ngOnInit() {
+    this.filterDataModel.fromToDate = true;
+    this.filterDataModel.paymentTypes = [
+      {value: 0, title: 'All'},
+      {value: 1, title: 'Credit'},
+      {value: 2, title: 'Other'}
+    ];
+    this.billingService.mode = 'payment';
+    this.getPayments();
+    this.generateRowColumns();
+  }
 
-    getPayments() {
-        this.billingService.getPaymentLogs(
-            this.tableConfig.pagingModel.pageNumber,
-            this.tableConfig.pagingModel.pageSize,
-            this.getPaymentsModel.description,
-            this.getPaymentsModel.fromDate,
-            this.getPaymentsModel.toDate,
-            this.getPaymentsModel.type,
-            this.getPaymentsModel.isPaid,
-            this.getPaymentsModel.phrase)
-            .subscribe(res => {this.payments = res.data.items;
-                               this.tableConfig.pagingModel.totalItemsCount = res.data.totalItemsCount;
-                               this.payments.forEach(p => {
-                    p.type = p.type == '1' ? 'Credit' : 'Others';
-                });
-            });
-    }
+  getPayments() {
+    this.billingService.getPaymentLogs(
+      this.tableConfig.pagingModel.pageNumber,
+      this.tableConfig.pagingModel.pageSize,
+      this.filterDataModel.fromDate,
+      this.filterDataModel.toDate,
+      this.filterDataModel.paymentTypeSelected,
+      this.filterDataModel.paidPayments,
+      this.phrase)
+      .subscribe(res => {
+        this.payments = res.data.items;
+        this.tableConfig.pagingModel.totalItemsCount = res.data.totalItemsCount;
+        this.payments.forEach(p => {
+          p.type = p.type == '1' ? 'Credit' : 'Others';
+        });
+      });
+  }
 
-    export(e) {
-        debugger;
-        const ids: number[] = [];
-        if (e.target.value == 1) {
-            this.payments.forEach(p => {
-                ids.push(p.id);
-            });
-        }
-        this.billingService.getPaymentLogsExcel(ids)
-            .subscribe(res => {
-                window.open(res.data, '_blank');
-            });
-    }
+  export(e) {
+    console.table(this.filterDataModel.paymentTypeSelected);
+    // const ids: number[] = [];
+    // if (e.target.value == 1) {
+    //   this.payments.forEach(p => {
+    //     ids.push(p.id);
+    //   });
+    // }
+    // this.billingService.getPaymentLogsExcel(ids)
+    //   .subscribe(res => {
+    //     window.open(res.data, '_blank');
+    //   });
+  }
 
-    getData(event) {
-        this.getPaymentsModel.phrase = event;
-        this.getPayments();
-    }
+  getData(event) {
+    this.phrase = event;
+    this.getPayments();
+  }
 
+  getFilterData(e: FilterDataModel) {
+    this.tableConfig.pagingModel.pageSize = e.pageSize;
+    this.getPayments();
+  }
 
   generateRowColumns() {
     this.tableConfig.rowColumnsConfig.push({propertyName: 'description'});
@@ -85,7 +90,7 @@ export class PaymentComponent implements OnInit {
           return item.isPaid === true ? 'green-btn' : 'yellow-btn';
         },
         innerHTMLSelector: (item: PaymentInterface) => {
-          return item.isPaid.toString();
+          return item.isPaid ? 'Succeeded' : 'Failed';
         },
         action: null
       }

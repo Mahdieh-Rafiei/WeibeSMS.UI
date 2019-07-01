@@ -14,11 +14,13 @@
            type="text"
            placeholder="title"
            class="form-control"
-           maxlength="64">
+           maxlength="64"
+           [ngClass]="{'border-error':saveTried && title.length===0}"
+    >
     <div class="error-place">
       <div class="text-left">
-        <p class="errorMessage" *ngIf="titleRequired && title.length===0" [@errorAnimation]>
-          <i class="far fa-exclamation-circle"></i> this filed is required!
+        <p class="errorMessage" *ngIf="saveTried && title.length===0" [@errorAnimation]>
+          <i class="far fa-exclamation-circle"></i>Required!
         </p>
       </div>
     </div>
@@ -44,8 +46,8 @@
   <angular-editor [(ngModel)]="message"></angular-editor>
   <div class="error-place">
     <div class="text-left">
-      <p class="errorMessage" *ngIf="messageRequired && message.length===0" [@errorAnimation]>
-        <i class="far fa-exclamation-circle"></i> this filed is required!
+      <p class="errorMessage" *ngIf="saveTried && message.length===0" [@errorAnimation]>
+        <i class="far fa-exclamation-circle"></i>Template body is required!
       </p>
     </div>
   </div>

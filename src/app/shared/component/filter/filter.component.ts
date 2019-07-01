@@ -1,6 +1,6 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {FormGroup} from '@angular/forms';
-import { FilterDataModel} from './filter-data-model';
+import {FilterDataModel} from './filter-data-model';
 
 @Component({
   selector: 'app-filter',
@@ -10,6 +10,11 @@ import { FilterDataModel} from './filter-data-model';
 export class FilterComponent implements OnInit {
 
   pageSizes = [10, 20, 50];
+  paymentStatuses = [
+    {value: 0, title: 'All'},
+    {value: true, title: 'Succeeded'},
+    {value: false, title: 'Failed'}
+  ];
 
   dummy: FormGroup = new FormGroup({});
 
@@ -23,12 +28,8 @@ export class FilterComponent implements OnInit {
   }
 
   getDate(event) {
-    if (event.dateFrom) {
-      this.filterDataModel.fromDate = event.dateFrom.getTime() / 1000;
-    }
-    if (event.dateTo) {
-      this.filterDataModel.toDate = event.dateTo.getTime() / 1000;
-    }
+    this.filterDataModel.fromDate = event.dateFrom ? event.dateFrom.getTime() / 1000 : 0;
+    this.filterDataModel.toDate = event.dateTo ? event.dateTo.getTime() / 1000 : 2147483647;
   }
 
   submit() {
@@ -39,11 +40,23 @@ export class FilterComponent implements OnInit {
     this.filterDataModel.pageSize = e.target.value;
   }
 
-  ticketStatusSelectedChanged(e){
+  ticketStatusSelectedChanged(e) {
     this.filterDataModel.ticketStatusSelected = e.target.value;
   }
 
-  transactionTypeSelectedChanged(e){
+  transactionTypeSelectedChanged(e) {
     this.filterDataModel.transactionTypeSelected = e.target.value;
+  }
+
+  countrySelectedChanged(e) {
+    this.filterDataModel.countrySelected = e.target.value;
+  }
+
+  paymentTypeSelectedChanged(e){
+    this.filterDataModel.paymentTypeSelected = e.target.value;
+  }
+
+  paymentStatusSelectedChanged(e){
+    this.filterDataModel.paidPayments = e.target.value;
   }
 }
