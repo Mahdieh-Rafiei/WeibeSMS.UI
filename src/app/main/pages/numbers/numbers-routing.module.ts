@@ -5,6 +5,7 @@ import {UserLinesComponent} from './user-lines/user-lines.component';
 import {NumbersComponent} from './numbers.component';
 import {LinesComponent} from './lines/lines.component';
 import {EditUserLinesComponent} from './user-lines/edit-user-lines/edit-user-lines.component';
+import {ConfirmationBuyLineComponent} from './lines/confirmation-buy-line/confirmation-buy-line.component';
 
 const routes: Routes = [{
     path: '',
@@ -37,5 +38,6 @@ export const routedComponents = [
     NumbersComponent,
     LinesComponent,
     UserLinesComponent,
-    EditUserLinesComponent
+    EditUserLinesComponent,
+    ConfirmationBuyLineComponent
 ];

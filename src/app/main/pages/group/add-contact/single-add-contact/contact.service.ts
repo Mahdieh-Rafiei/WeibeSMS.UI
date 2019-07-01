@@ -20,10 +20,12 @@ import {ContactGroupMoveCopyInterface} from '../import-contact-from-other-list/m
 })
 export class ContactService {
 
+  addMode = 'single';
+
   constructor(private apiService: ApiService, private http: HttpClient, private configService: ConfigService) {
   }
 
-  getAllContacts(groupId: number, pageNumber: number, pageSize: number,searchValue:string): Observable<GetAllContactGroupInterface> {
+  getAllContacts(groupId: number, pageNumber: number, pageSize: number, searchValue: string): Observable<GetAllContactGroupInterface> {
     const url = `Contact/ContactGroup/${groupId}?pageNumber=${pageNumber}&pageSize=${pageSize}&searchValue=${searchValue}`;
     return this.apiService.get(url, true);
   }

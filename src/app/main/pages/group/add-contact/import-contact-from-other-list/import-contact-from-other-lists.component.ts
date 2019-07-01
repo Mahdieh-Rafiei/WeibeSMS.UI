@@ -37,6 +37,7 @@ export class ImportContactFromOtherListsComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.contactService.addMode = 'list';
     this.groupId = parseInt(this.activatedRoute.parent.snapshot.paramMap.get('groupId'));
     this.getAllGroupList();
   }
@@ -169,7 +170,6 @@ export class ImportContactFromOtherListsComponent implements OnInit {
         this.router.navigateByUrl(`group/${this.groupId}`);
       });
   }
-
 
   doPaging(e) {
     this.clickedGroup.pageNumber = e;

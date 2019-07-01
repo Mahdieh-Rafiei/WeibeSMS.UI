@@ -1,23 +1,22 @@
 <div class="tab-section">
-    <div class="change-password form-group">
-        <h5>Your numbers</h5>
-        <p class="fo-4 black-text">Manage your virtual phone numbers and configure their settings.</p>
-    </div>
-    <!--operation-->
-    <div class="row">
-        <div class="col-12 col-md-6 operation-section form-group">
-            <!--<app-filter [filterData]="filterData" (filterValue)="getFilterData($event)"></app-filter>-->
-        </div>
-        <div class="col-md-3 offset-md-3 operation-section form-group text-right">
-            <app-search (searchText)="getData($event)"></app-search>
-        </div>
-    </div>
+  <div class="change-password form-group">
+    <h5>Your numbers</h5>
+    <p class="fo-4 black-text">Manage your virtual phone numbers and configure their settings.</p>
+  </div>
 
-    <app-table [tableConfig]="tableConfig"
-               [collection]="userLines"
-               (pagingModelChanged)="getUserLines()"
-               (manageButtonClicked)=" modifyUserLine($event.item,$event.index)"
-    >
+  <div class="row">
+    <div class="col-12 col-md-6 operation-section form-group">
+      <app-filter [filterDataModel]="filterDataModel" (filterValue)="getFilterData($event)"></app-filter>
+    </div>
+    <div class="col-md-3 offset-md-3 operation-section form-group text-right">
+      <app-search (searchText)="getData($event)"></app-search>
+    </div>
+  </div>
 
-    </app-table>
+  <app-table [tableConfig]="tableConfig"
+             [collection]="userLines"
+             (pagingModelChanged)="getUserLines()"
+             (manageButtonClicked)=" modifyUserLine($event.item,$event.index)"
+  >
+  </app-table>
 </div>

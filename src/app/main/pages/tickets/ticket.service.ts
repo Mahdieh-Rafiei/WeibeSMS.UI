@@ -19,7 +19,7 @@ export class TicketService {
 
   getAllTickets(pageNumber: number, pageSize: number, phrase: string, status: number, fromDate: number, toDate: number): Observable<TicketListResponseModel> {
     const a = `Ticket?pageSize=${pageSize}&pageNumber=${pageNumber}&searchValue=${phrase}`;
-    const b = status ? `${a}&status=${status}` : `${a}`;
+    const b = (status && status != 0) ? `${a}&status=${status}` : `${a}`;
     const c = fromDate ? `${b}&fromDate=${fromDate}` : `${b}`;
     const d = toDate ? `${c}&toDate=${toDate}` : `${c}`;
     return this.apiService.get(d, true);

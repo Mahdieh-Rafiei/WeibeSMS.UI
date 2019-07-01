@@ -39,10 +39,10 @@ export class TicketListComponent implements OnInit {
     this.generateRowConfigs();
 
     this.filterDataModel.fromToDate = true;
-    this.filterDataModel.ticketStatusSelected = null;
+    this.filterDataModel.ticketStatusSelected = 0;
     this.filterDataModel.ticketStatuses = [
       {
-        title: 'All', value: null
+        title: 'All', value: 0
       },
       {
         title: 'Open', value: 1

@@ -31,7 +31,7 @@ export class TransactionLogComponent implements OnInit {
   ngOnInit() {
     this.filterDataModel.fromToDate = true;
     this.filterDataModel.transactionTypes = [
-      {title: 'All', value: null},
+      {title: 'All', value: 0},
       {title: 'BuyCredit', value: 1},
       {title: 'SendSms', value: 2},
       {title: 'BuyLine', value: 3},

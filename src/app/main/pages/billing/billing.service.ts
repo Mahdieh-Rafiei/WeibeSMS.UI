@@ -33,7 +33,7 @@ export class BillingService {
                      toDate: number, type: number, phrase: string): Observable<CreditTransactionResponseInterface> {
 
     let url = `CreditTransaction?pageSize=${pageSize}&pageNumber=${pageNumber}&searchValue=${phrase}&fromDate=${fromDate}&toDate=${toDate}`;
-    if (type) {
+    if (type && type != 0) {
       url += `&type=${type}`;
     }
     return this.apiService.get(url, true);
@@ -44,9 +44,20 @@ export class BillingService {
     return this.apiService.get(url, true);
   }
 
-  getPaymentLogs(pageNumber: number, pageSize, description: string, fromDate: number,
-                 toDate: number, paymentType: number, isPaid: boolean, phrase: string): Observable<PaymentResponseInterface> {
-    const url = `Payment?pageNumber=${pageNumber}&pageSize=${pageSize}&searchValue=${phrase}`;
+  getPaymentLogs(pageNumber: number, pageSize, fromDate: number,
+                 toDate: number, paymentType: number, isPaid: any, phrase: string): Observable<PaymentResponseInterface> {
+    let url = `Payment?pageNumber=${pageNumber}&pageSize=${pageSize}&searchValue=${phrase}
+      &fromDate=${fromDate}&toDate=${toDate}`;
+
+
+    if (paymentType && paymentType != 0){
+      url += `&paymentType=${paymentType}`;
+    }
+
+    if (isPaid && isPaid != 0){
+      url += `&isPaid=${isPaid}`;
+    }
+
     return this.apiService.get(url, true);
   }
 

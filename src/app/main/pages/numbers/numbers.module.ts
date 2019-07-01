@@ -2,6 +2,7 @@ import {NgModule} from '@angular/core';
 import {NumbersRoutingModule, routedComponents} from './numbers-routing.module';
 import {SharedModule} from "../../../shared/module/shared.module";
 import { EditUserLinesComponent } from './user-lines/edit-user-lines/edit-user-lines.component';
+import { ConfirmationBuyLineComponent } from './lines/confirmation-buy-line/confirmation-buy-line.component';
 
 @NgModule({
     imports: [
@@ -9,10 +10,11 @@ import { EditUserLinesComponent } from './user-lines/edit-user-lines/edit-user-l
         SharedModule
     ],
     declarations: [
-        ...routedComponents
+        ...routedComponents,
     ],
     entryComponents:[
-      EditUserLinesComponent
+      EditUserLinesComponent,
+      ConfirmationBuyLineComponent
     ]
 })
 export class NumbersModule {
