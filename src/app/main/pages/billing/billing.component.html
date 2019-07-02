@@ -1,20 +1,7 @@
-<div>
-  <div class="privacy">
-    <div (click)="billingService.mode='invoice'" class="title-tab no-pad">
-      <p [ngClass]="{'active':billingService.mode == 'invoice'}" [routerLink]="['invoice-list']">Invoice</p>
+<div class="col-md-12 tab-div">
+    <div class="title-tab" *ngFor="let item of items">
+        <p [ngClass]="{'active': item.mode == billingService.mode}" (click)="onClick(item)">
+            {{item.title}}</p>
     </div>
-    <div (click)="billingService.mode='payment'" class="title-tab no-pad">
-      <p [ngClass]="{'active':billingService.mode == 'payment'}" [routerLink]="['payment']">Payment log</p>
-    </div>
-    <div (click)="billingService.mode='transaction'" class="title-tab no-pad">
-      <p [ngClass]="{'active':billingService.mode == 'transaction'}" class="none-tab"
-         [routerLink]="['transaction-log']">Transaction log</p>
-    </div>
-    <div (click)="billingService.mode='address'" class="title-tab no-pad">
-      <p [ngClass]="{'active':billingService.mode == 'address'}" class="none-tab" [routerLink]="['billing-address']">
-        Billing address</p>
-    </div>
-  </div>
-  <router-outlet></router-outlet>
 </div>
-
+<router-outlet></router-outlet>
