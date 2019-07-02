@@ -20,7 +20,6 @@ import {MatDialog} from '@angular/material';
 })
 export class SenderIdComponent implements OnInit {
 
-
   data: any;
   fromDate: null;
   toDate: null;
