@@ -1,64 +1,67 @@
 <form [formGroup]="dummy">
-  <button type="button" class="dropdown-toggle light-blue-btn" data-toggle="collapse" data-target="#filter">
-    <i class="fa fa-filter"></i> Filter
-  </button>
-  <div id="filter" class="collapse">
-    <div class="filtering">
-      <ul class="filtering-menu">
-        <li *ngIf="filterDataModel.ticketStatuses">
-          <p> Ticket statuses: </p>
-          <select (change)="ticketStatusSelectedChanged($event)" class="form-control">
-            <option *ngFor="let status of filterDataModel.ticketStatuses" [value]="status.value">{{status.title}}
-            </option>
-          </select>
-        </li>
-        <li *ngIf="filterDataModel.transactionTypes">
-          <p> Transaction types: </p>
-          <select (change)="transactionTypeSelectedChanged($event)" class="form-control">
-            <option *ngFor="let type of filterDataModel.transactionTypes" [value]="type.value">{{type.title}}
-            </option>
-          </select>
-        </li>
-        <li *ngIf="filterDataModel.countries">
-          <p> Country : </p>
-          <select (change)="countrySelectedChanged($event)" class="form-control">
-            <option *ngFor="let country of filterDataModel.countries" [value]="country.id">{{country.name}}
-            </option>
-          </select>
-        </li>
-        <li *ngIf="filterDataModel.paymentTypes">
-          <p> Type : </p>
-          <select (change)="paymentTypeSelectedChanged($event)" class="form-control">
-            <option *ngFor="let type of filterDataModel.paymentTypes" [value]="type.value">{{type.title}}
-            </option>
-          </select>
-        </li>
-        <li *ngIf="filterDataModel.paymentTypes">
-          <p> Status : </p>
-          <select (change)="paymentStatusSelectedChanged($event)" class="form-control">
-            <option *ngFor="let status of paymentStatuses"
-                    [value]="status.value">{{status.title}}
-            </option>
-          </select>
-        </li>
-        <li *ngIf="filterDataModel.fromToDate">
-          <p> Filter on date values: </p>
-          <app-date-from-to (date)="getDate($event)"></app-date-from-to>
-        </li>
-        <li>
-          <p> Item display per page: </p>
-          <select (change)="setPageSize($event)" class="form-control">
-            <option hidden value="">Select</option>
-            <option [value]="page" *ngFor="let page of pageSizes">{{page}}</option>
-          </select>
-        </li>
-        <li class="text-center">
-          <button (click)="submit()" data-toggle="collapse" data-target="#filter" class="green-btn">Apply</button>
-          <button type="button" class="gray-btn" data-toggle="collapse" data-target="#filter">
-            Cancel
-          </button>
-        </li>
-      </ul>
+    <button type="button" class="dropdown-toggle light-blue-btn" data-toggle="collapse" data-target="#filter">
+        <i class="fa fa-filter"></i> Filter
+    </button>
+    <div id="filter" class="collapse">
+        <div class="filtering">
+            <ul class="filtering-menu">
+                <li *ngIf="filterDataModel.ticketStatuses">
+                    <p> Ticket statuses: </p>
+                    <select (change)="ticketStatusSelectedChanged($event)" class="form-control">
+                        <option *ngFor="let status of filterDataModel.ticketStatuses" [value]="status.value">
+                            {{status.title}}
+                        </option>
+                    </select>
+                </li>
+                <li *ngIf="filterDataModel.transactionTypes">
+                    <p> Transaction types: </p>
+                    <select (change)="transactionTypeSelectedChanged($event)" class="form-control">
+                        <option *ngFor="let type of filterDataModel.transactionTypes" [value]="type.value">
+                            {{type.title}}
+                        </option>
+                    </select>
+                </li>
+                <li *ngIf="filterDataModel.countries">
+                    <p> Country : </p>
+                    <select (change)="countrySelectedChanged($event)" class="form-control">
+                        <option *ngFor="let country of filterDataModel.countries" [value]="country.id">{{country.name}}
+                        </option>
+                    </select>
+                </li>
+                <li *ngIf="filterDataModel.paymentTypes">
+                    <p> Type : </p>
+                    <select (change)="paymentTypeSelectedChanged($event)" class="form-control">
+                        <option *ngFor="let type of filterDataModel.paymentTypes" [value]="type.value">{{type.title}}
+                        </option>
+                    </select>
+                </li>
+                <li *ngIf="filterDataModel.paymentTypes">
+                    <p> Status : </p>
+                    <select (change)="paymentStatusSelectedChanged($event)" class="form-control">
+                        <option *ngFor="let status of paymentStatuses"
+                                [value]="status.value">{{status.title}}
+                        </option>
+                    </select>
+                </li>
+                <li *ngIf="filterDataModel.fromToDate">
+                    <p> Filter on date values: </p>
+                    <app-date-from-to (date)="getDate($event)"></app-date-from-to>
+                </li>
+                <li>
+                    <p> Item display per page: </p>
+                    <select (change)="setPageSize($event)" class="form-control">
+                        <option hidden value="">Select</option>
+                        <option [value]="page" *ngFor="let page of pageSizes">{{page}}</option>
+                    </select>
+                </li>
+                <li class="text-center">
+                    <button (click)="submit()" data-toggle="collapse" data-target="#filter" class="green-btn">Apply
+                    </button>
+                    <button type="button" class="gray-btn" data-toggle="collapse" data-target="#filter">
+                        Cancel
+                    </button>
+                </li>
+            </ul>
+        </div>
     </div>
-  </div>
 </form>
