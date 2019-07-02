@@ -1,4 +1,4 @@
-<div class="col-md-12 profile">
+<div class="col-md-12 tab-div">
   <div class="title-tab" *ngFor="let item of items">
     <p [ngClass]="{'active': item.link === active}" (click)="onClick(item.link)">
       {{item.title}}</p>

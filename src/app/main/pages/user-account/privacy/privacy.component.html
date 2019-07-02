@@ -1,7 +1,7 @@
-<div class="col-md-12 profile">
-  <div class="title-tab" *ngFor="let item of items">
-    <p [ngClass]="{'active': item.mode == privacyService.mode}" (click)="onClick(item)">
-      {{item.title}}</p>
-  </div>
+<div class="col-md-12 tab-div">
+    <div class="title-tab" *ngFor="let item of items">
+        <p [ngClass]="{'active': item.mode == privacyService.mode}" (click)="onClick(item)">
+            {{item.title}}</p>
+    </div>
 </div>
 <router-outlet></router-outlet>
