@@ -182,7 +182,6 @@ article, aside, details, figcaption, figure, footer, header, hgroup, main, menu,
 .search-wrapper input:focus {
   outline: 0;
   background: #fff;
-
 }
 
 .search-wrapper input::-webkit-input-placeholder {
@@ -676,3 +675,6 @@ textarea {
   box-shadow: 0 6px 10px 2px #00000038;
 }
 
+.export-filter {
+  display: inline-flex;
+}

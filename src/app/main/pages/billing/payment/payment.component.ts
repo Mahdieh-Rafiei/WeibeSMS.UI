@@ -58,17 +58,17 @@ export class PaymentComponent implements OnInit {
   }
 
   export(e) {
-    console.table(this.filterDataModel.paymentTypeSelected);
-    // const ids: number[] = [];
-    // if (e.target.value == 1) {
-    //   this.payments.forEach(p => {
-    //     ids.push(p.id);
-    //   });
-    // }
-    // this.billingService.getPaymentLogsExcel(ids)
-    //   .subscribe(res => {
-    //     window.open(res.data, '_blank');
-    //   });
+
+    const ids: number[] = [];
+    if (e.target.value == 1) {
+      this.payments.forEach(p => {
+        ids.push(p.id);
+      });
+    }
+    this.billingService.getPaymentLogsExcel(ids)
+      .subscribe(res => {
+        window.open(res.data, '_blank');
+      });
   }
 
   getData(event) {

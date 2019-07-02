@@ -1,96 +1,44 @@
 <div class="div-section">
-    <div class="row">
-        <div class="col-md-6 text-left mb-3">
-            <h5>Notification</h5>
-            <p class="fo-4 black-text">here you can find notification about your account.</p>
-        </div>
+  <div class="row">
+    <div class="col-md-6 text-left mb-3">
+      <h5>Notification</h5>
+      <p class="fo-4 black-text">here you can find notification about your account.</p>
     </div>
-    <div class="row">
-        <div class="col-md-6 operation-section form-group">
-            <button class="light-blue-btn">
-                <i class="fa fa-filter"></i> Filter
-            </button>
-        </div>
-        <div class="col-md-6 operation-section form-group">
-            <!--<app-search [params]="[{title: 'device'}, {title: 'location'}]"></app-search>-->
-        </div>
+  </div>
+  <div class="row">
+    <div class="col-md-6 operation-section form-group">
+      <app-filter [filterDataModel]="filterDataModel" (filterValue)="getFilterData($event)"></app-filter>
     </div>
-    <!--table-->
-    <div class="row">
-        <div class="col-md-12 table-div table-responsive">
-            <table class="index-table text-left">
-                <thead>
-                <tr>
-                    <th class="text-left"><i class="fa fa-sort"></i> #ID</th>
-                    <th class="text-left"><i class="fa fa-sort"></i> Title</th>
-                    <th class="text-left"><i class="fa fa-sort"></i> Status</th>
-                    <th class="text-left"><i class="fa fa-sort"></i> DateTime</th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr *ngFor="let un of userNotifications| paginate : {
-                                itemsPerPage : 10, currentPage : pageNumber, totalItems : totalItemsCount
-                                },index as i" (click)="preparingShowNotification(un)">
-                    <td class="text-left">
-                        <div class="table-head">
-                            {{i + 1}}
-                        </div>
-                    </td>
-                    <td class="text-left">
-                        <div class="table-head">
-                            {{un.title}}
-                        </div>
-                    </td>
-                    <td class="text-left">
-                        <button [ngClass]="[un.isRead ? 'green-btn' : 'red-btn']">
-                            <span *ngIf="un.isRead">Read</span>
-                            <span *ngIf="!un.isRead">UnRead</span>
-                        </button>
-                    </td>
-                    <td>{{un.creationDateTime* 1000 | dateTime:'MM-DD-YYYY H:m:s'}}</td>
-                </tr>
-                </tbody>
-            </table>
-            <!--pagination-->
-            <div class="col-12 pagination-div">
-                <div class="row pt-1 pb-1">
-                    <div class="col-12 col-md-6 text-left fo-3 black-text font-weight-bold">Displaying 1-10 of
-                        {{totalItems}} records
-                    </div>
-                    <div class="col-12 col-md-6 text-right">
-                        <pagination-controls (pageChange)="doPaging($event)"
-                                             maxSize="5"
-                                             responsive="true"
-                                             previousLabel=""
-                                             nextLabel="">
-                        </pagination-controls>
-                    </div>
-                </div>
-            </div>
-        </div>
+    <div class="col-md-3 offset-md-3 operation-section form-group text-right">
+      <app-search (searchText)="getData($event)"></app-search>
     </div>
-
-
+  </div>
+  <app-table
+          (pagingModelChanged)="getAllUserNotifications()"
+          [tableConfig]="tableConfig"
+          [collection]="userNotifications"
+  >
+  </app-table>
 </div>
 
 
 <div *ngIf="showNotification" class="modal fade in modal-back" role="dialog" tabindex="-1" style="display: block;"
      aria-modal="true">
-    <div role="document" class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button (click)="showNotification=false" aria-label="Close" class="close pull-right" type="button">
-                    <span aria-hidden="true">×</span>
-                </button>
-            </div>
-            <div class="modal-body text-center">
-                <div>
-                    <p>{{selectedUserNotification.title}}</p>
-                    <br>
-                    <p>{{selectedUserNotification.message}}</p>
-                    <br>
-                </div>
-            </div>
+  <div role="document" class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button (click)="showNotification=false" aria-label="Close" class="close pull-right" type="button">
+          <span aria-hidden="true">×</span>
+        </button>
+      </div>
+      <div class="modal-body text-center">
+        <div>
+          <p>{{selectedUserNotification.title}}</p>
+          <br>
+          <p>{{selectedUserNotification.message}}</p>
+          <br>
         </div>
+      </div>
     </div>
+  </div>
 </div>
