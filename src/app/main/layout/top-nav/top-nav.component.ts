@@ -31,7 +31,8 @@ export class TopNavComponent implements OnInit {
 
   ngOnInit() {
 
-    this.userNotificationService.getAllUserNotifications(1, 10, true)
+    this.userNotificationService.getAllUserNotifications(1,5,0,
+      2147483647,null,'')
       .subscribe((res: NotificationResponseInterface) => {
         this.userNotifications = res.data.items;
       });
