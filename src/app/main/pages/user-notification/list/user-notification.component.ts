@@ -1,6 +1,5 @@
 import {Component, OnInit} from '@angular/core';
 import {UserNotificationService} from '../user-notification.service';
-// import {NotificationResponseInterface} from './models/notification-response.interface';
 import {MatDialog} from '@angular/material';
 import {ShowNotificationComponent} from '../show/show-notification.component';
 import {GetUserNotificationInterface} from './models/get-user-notification.interface';
@@ -16,7 +15,7 @@ import {DataGetUserNotificationInterface} from "./models/data-get-user-notificat
     styleUrls: ['./user-notification.component.scss']
 })
 export class UserNotificationComponent implements OnInit {
-    userNotifications: any[];
+    userNotifications: DataGetUserNotificationInterface[];
     showNotification: boolean = false;
     selectedUserNotification: any;
 
@@ -36,9 +35,9 @@ export class UserNotificationComponent implements OnInit {
     ngOnInit() {
         this.filterDataModel.fromToDate = true;
         this.filterDataModel.notificationStatuses = [
-            {value: null, title: 'All'},
-            {value: true, title: 'read'},
-            {value: false, title: 'unread'}
+            {value: 0, title: 'All'},
+            {value: true, title: 'Read'},
+            {value: false, title: 'Unread'}
         ];
         this.generateRowColumns();
         this.getAllUserNotifications();
@@ -59,12 +58,7 @@ export class UserNotificationComponent implements OnInit {
             });
     }
 
-    export(e) {
-        console.table(this.filterDataModel.notificationStatusSelected);
-
-    }
-
-    preparingShowNotification(userNotification) {
+    preparingShowNotification(userNotification: DataGetUserNotificationInterface) {
         this.openDialog('600px', 'auto', '', {userNotification});
     }
 
@@ -97,14 +91,15 @@ export class UserNotificationComponent implements OnInit {
     }
 
     generateRowColumns() {
-        debugger;
         this.tableConfig.rowColumnsConfig.push({propertyName: 'title'});
         this.tableConfig.rowColumnsConfig.push({
             buttonConfig: {
                 classSelector: (value: DataGetUserNotificationInterface) => {
                     return value.isRead ? 'green-btn' : 'red-btn';
                 },
-                action: null,
+                action: (value:DataGetUserNotificationInterface) => {
+                    this.preparingShowNotification(value);
+                },
                 innerHTMLSelector: (value: DataGetUserNotificationInterface) => {
                     return value.isRead ? 'read' : 'unread';
                 }
@@ -112,5 +107,4 @@ export class UserNotificationComponent implements OnInit {
         });
         this.tableConfig.rowColumnsConfig.push({propertyName: 'creationDateTime', isDateTime: true});
     }
-
 }

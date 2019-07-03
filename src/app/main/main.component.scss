@@ -4,28 +4,3 @@
 .hidden-navbar {
   margin-left: -230px;
 }
-
-//side nav help
-.mat-drawer {
-  right: 0;
-}
-
-.mat-drawer-backdrop.mat-drawer-shown {
-  background-color: rgba(0, 0, 0, 0);
-}
-
-.mat-drawer-inner-container {
-  background: #ffffff;
-  width: 250px !important;
-}
-
-.mat-drawer-container {
-  background-color: unset;
-  min-height: 100vh;
-}
-
-.mat-drawer-content {
-  padding: 15px;
-  overflow: unset !important;
-}
-
