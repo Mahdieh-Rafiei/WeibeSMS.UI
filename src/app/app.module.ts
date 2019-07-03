@@ -30,7 +30,8 @@ import {FooterComponent} from './main/layout/footer/footer.component';
 import {DialogComponent} from './shared/component/dialog/dialog.component';
 import {AuthGuard} from './shared/auth.guard';
 import {ConfirmationAddContactFromFileComponent} from './main/pages/group/add-contact/add-contact-from-file/confirmation-add-contact-from-file/confirmation-add-contact-from-file.component';
-import { TableComponent } from './shared/component/table/table.component';
+import {BarChartComponent} from './shared/component/bar-chart/bar-chart.component';
+import {ChartsModule} from 'ng2-charts';
 
 @NgModule({
 
@@ -47,7 +48,7 @@ import { TableComponent } from './shared/component/table/table.component';
     FooterComponent,
     DialogComponent,
     //TODO: move this c to groupModule
-    ConfirmationAddContactFromFileComponent,
+    ConfirmationAddContactFromFileComponent
   ],
   entryComponents: [
     DialogComponent,
@@ -68,7 +69,7 @@ import { TableComponent } from './shared/component/table/table.component';
     BrowserAnimationsModule,
     FileDropModule,
     MainRoutingModule,
-    SharedModule,
+    SharedModule
   ],
   providers: [
     ApiService,
