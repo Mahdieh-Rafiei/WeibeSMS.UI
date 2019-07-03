@@ -14,7 +14,7 @@ export class PrivacyService {
   }
 
   loginLog(pageNumber: number, pageSize: number, phrase: string): Observable<LoginLogInterface> {
-    const url = `User/login?pageNumber=${pageNumber}&pageSize=${pageSize}`;
+    const url = `User/login?pageNumber=${pageNumber}&pageSize=${pageSize}&searchValue=${phrase}`;
     return this.apiService.get(url, true);
   }
 

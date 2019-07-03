@@ -1,0 +1,73 @@
+@import "../../../../assets/style/components/_variables.scss";
+//side nav help
+mat-sidenav.mat-drawer.mat-sidenav.ng-tns-c9-5.ng-trigger.ng-trigger-transform.ng-tns-c7-4.mat-drawer-over.ng-star-inserted {
+  background: $purple;
+}
+
+.mat-drawer {
+  right: 0;
+  padding: 15px;
+}
+
+.mat-drawer-backdrop.mat-drawer-shown {
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.mat-drawer-inner-container {
+
+  width: 400px !important;
+}
+
+.mat-drawer-container {
+  background-color: unset;
+  min-height: 100vh;
+}
+
+.mat-drawer-content {
+  padding: 15px;
+  overflow: unset !important;
+}
+
+i.fa.fa-times {
+  cursor: pointer;
+}
+
+.last-section {
+  ul {
+    li {
+      display: inline-block;
+    }
+  }
+}
+
+.carousel-indicators {
+  bottom: unset;
+  li {
+    background-color: #ffb822;
+    width: 10px;
+    opacity: 1;
+    border-radius: .4rem;
+    cursor: pointer;
+  }
+}
+.carousel-indicators .active {
+  opacity: 1;
+  width: 30px;
+}
+.carousel-inner {
+  background-color: white !important;
+  border: 1px solid #ffb822 !important;
+  border-radius: .4rem !important;
+  padding: 20px !important;
+  img {
+    width: 100px;
+  }
+}
+
+.title-collapse {
+  //display: inline-flex;
+  p{
+    color: $dark-purple;
+    cursor: pointer;
+  }
+}

@@ -1,84 +1,12 @@
-.profile {
-  input{
-    text-align: left !important;
-  }
+.date-picker {
   .mat-form-field-infix {
     padding: 0 !important;
-    min-height: unset !important;
   }
-  .select .mat-form-field-infix {
-    padding: 0 !important;
-  }
-
-  .profile-input span:first-child {
-    font-weight: 400;
-  }
-
-  .date-picker {
-    position: relative;
-  }
-  mat-datepicker-toggle.mat-datepicker-toggle {
-    //position: absolute;
-    top: -23px;
-    right: -4px;
-  }
-  .mat-datepicker-toggle {
-    padding: 11px;
-  }
-  .mat-input-element {
-    font-size: 14px;
-    background: 0 0;
-    color: currentColor;
-    border: none;
-    outline: 0;
-    padding: 0.65rem 1rem;
-    margin: 0;
-    width: 100%;
-    max-width: 100%;
-    vertical-align: bottom;
-    text-align: inherit;
-  }
-
-  input#mat-input-0 {
-    height: calc(1.5em + 0.75rem + 7px) !important;
-  }
-  .mat-datepicker-toggle {
-    padding: 9px !important;
-  }
-
-  mat-datepicker-toggle.mat-datepicker-toggle {
-    //position: absolute;
-    top: -23px;
-    right: -4px;
-  }
-
   .mat-form-field-infix {
-    padding: 0 !important;
     text-align: left;
-    line-height: 0 !important;
-    min-width: unset;
-    height: unset;
   }
-
-  .col-md-3.select {
-    display: inline-flex;
+  input#mat-input-0 {
+    padding-left: 5px;
+    height: calc(1.5em + 0.93rem + 2px) !important;
   }
-
-  .select span {
-    line-height: 28px;
-  }
-
-  .mat-datepicker-toggle {
-    padding: 11px;
-  }
-
-  .select-field {
-    font-size: 15px;
-  }
-
-  .birthday-field{
-    padding: 10px !important;
-  }
-
 }
-
