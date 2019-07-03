@@ -32,8 +32,6 @@ export class DashboardComponent implements OnInit {
 
     this.dashboardService.getSmsSentMonthlyReport()
       .subscribe(res => {
-        console.log(res.data);
-        debugger;
         this.barChartData.push({
             data: [], label: 'simple'
           },
@@ -49,13 +47,6 @@ export class DashboardComponent implements OnInit {
 
         this.barChartData[0].data = simpleData;
         this.barChartData[1].data = eventData;
-
-        console.log(this.barChartData);
-        console.log(this.barChartLabels);
       });
-    // = [
-    //   { data: [65, 59, 80, 81, 56, 55, 40], label: 'Series A' },
-    //   { data: [28, 48, 40, 19, 86, 27, 500], label: 'Series B' }
-    // ];
   }
 }

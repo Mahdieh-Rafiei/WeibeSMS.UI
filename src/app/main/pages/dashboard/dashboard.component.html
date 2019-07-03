@@ -18,7 +18,7 @@
     <div class="box-chart">
       <div class="row">
         <div class="col-12 col-md-8 box-chart-right form-group">
-          <app-bar-chart *ngIf="barChartData[0].data.length > 0" [barChartLabels]="barChartLabels"
+          <app-bar-chart *ngIf="barChartData.length > 0 && barChartData[0].data.length > 0" [barChartLabels]="barChartLabels"
           [barChartData]="barChartData">
 
           </app-bar-chart>
