@@ -1,18 +1,85 @@
-<div class="main-container">
-    <div class="div-section">
-        <div class="col-md-12">
-            <mat-sidenav-container
-                    class="example-container" (backdropClick)="close('backdrop')">
-                <mat-sidenav #sidenav disableClose>
-                    <button mat-button (click)="close()"><i class="fa fa-times-circle"></i></button>
-                </mat-sidenav>
-
-                <mat-sidenav-content>
-                    <!--<p>-->
-                        <!--<button mat-button (click)="open()">Open</button>-->
-                    <!--</p>-->
-                </mat-sidenav-content>
-            </mat-sidenav-container>
+<mat-sidenav-container dir="rtl" class="example-container" (backdropClick)="close('backdrop')">
+    <mat-sidenav #sidenav disableClose>
+        <div class="col-12">
+            <div class="row pb-3" dir="ltr">
+                <div class="col-md-6 p-0 text-left yellow-text font-weight-bold">
+                    <i class="fa fa-question-circle "></i> Help Center
+                </div>
+                <div class="col-md-6 p-0 text-right red-text">
+                    <span (click)="close()"><i class="fa fa-times"></i></span>
+                </div>
+            </div>
+            <div class="row text-center" dir="ltr">
+                <div class="col-12 second-section border-bottom pb-3">
+                    <h5>Hello, wellcome to help center !</h5>
+                    <p>Information about this section is available to you.</p>
+                </div>
+            </div>
+            <div class="row" dir="ltr">
+                <div class="col-12 border-bottom pb-3 pt-3" id="accordionExample">
+                    <div class="title-collapse" id="headingOne">
+                        <p class="font-weight-bold" data-toggle="collapse"
+                           data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                            developer
+                            <span class="float-right"><i class="fa fa-plus-circle red-text"></i></span>
+                        </p>
+                    </div>
+                    <div id="collapseOne" class="collapse show" aria-labelledby="headingOne"
+                         data-parent="#accordionExample">
+                        <div class="">
+                            Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 border-bottom pb-3 pt-3" id="accordionExample2">
+                    <div class="title-collapse" id="headingTwo">
+                        <p class="font-weight-bold" data-toggle="collapse"
+                           data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseOne">
+                            detail
+                            <span class="float-right"><i class="fa fa-minus-circle green-text"></i></span>
+                        </p>
+                    </div>
+                    <div id="collapseTwo" class="collapse show" aria-labelledby="headingTwo"
+                         data-parent="#accordionExample2">
+                        <div class="">
+                            Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row text-center" dir="ltr">
+                <div class="col-12 video-text border-bottom pb-3">
+                    <h5>We prepared a quick tutorial</h5>
+                    <p>You can watch the video, or download the PDF</p>
+                    <div id="carouselExampleIndicators" class="carousel slide pt-3 pb-3" data-ride="carousel">
+                        <div class="carousel-inner">
+                            <div class="carousel-item active">
+                                <img src="../../../../assets/images/video.svg">
+                            </div>
+                            <div class="carousel-item">
+                                <img src="../../../../assets/images/video.svg">
+                            </div>
+                        </div>
+                        <ol class="carousel-indicators">
+                            <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+                            <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+            <div class="row text-center" dir="ltr">
+                <div class="col-12 last-section">
+                    <h5>URLs that may be useful to you</h5>
+                    <ul>
+                        <li class="blue-text" [routerLink]="">app wiki</li>
+                        <li class="blue-text pr-4 pl-4" [routerLink]="">developer tools</li>
+                        <li class="blue-text" [routerLink]="">Lorem ipsum</li>
+                    </ul>
+                </div>
+            </div>
         </div>
-    </div>
-</div>
+    </mat-sidenav>
+    <mat-sidenav-content dir="ltr">
+        <router-outlet></router-outlet>
+    </mat-sidenav-content>
+</mat-sidenav-container>

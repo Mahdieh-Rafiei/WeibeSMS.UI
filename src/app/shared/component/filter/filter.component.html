@@ -43,6 +43,14 @@
                         </option>
                     </select>
                 </li>
+                <li *ngIf="filterDataModel.notificationStatuses">
+                    <p> Status : </p>
+                    <select (change)="notificationStatusSelectedChanged($event)" class="form-control">
+                        <option *ngFor="let status of filterDataModel.notificationStatuses"
+                                [value]="status.value">{{status.title}}
+                        </option>
+                    </select>
+                </li>
                 <li *ngIf="filterDataModel.fromToDate">
                     <p> Filter on date values: </p>
                     <app-date-from-to (date)="getDate($event)"></app-date-from-to>

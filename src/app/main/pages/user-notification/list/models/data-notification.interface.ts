@@ -1,7 +1,8 @@
-import {ItemsNotificationInterface} from './items-notification.interface';
+
+import {DataGetUserNotificationInterface} from "./data-get-user-notification.interface";
 
 export interface DataNotificationInterface {
-  items: ItemsNotificationInterface[];
+  items: DataGetUserNotificationInterface[];
   pageNumber: number;
   pageSize: number;
   totalItemsCount: number;

@@ -12,13 +12,12 @@ export class UserNotificationService {
     constructor(private apiService: ApiService) {
     }
 
-    // getAllUserNotifications(pageNumber: number, pageSize: number,fromDate: number, toDate: number,phrase: string, onlyUnread: boolean): Observable<NotificationResponseInterface> {
     getAllUserNotifications(pageNumber: number, pageSize: number, fromDate: number, toDate: number, notificationStatus: any, phrase: string): Observable<NotificationResponseInterface> {
-        // const url = `Notification?pageNumber=${pageNumber}&pageSize=${pageSize}&fromDate=${fromDate}&toDate=${toDate}&searchValue=${phrase}&onlyUnread=${onlyUnread}`;
         let url = `Notification?pageNumber=${pageNumber}&pageSize=${pageSize}&fromDate=${fromDate}&toDate=${toDate}&searchValue=${phrase}`;
-        // if (notificationStatuses && notificationStatuses != 0) {
-        //     url += `&notificationStatuses=${notificationStatuses}`;
-        // }
+
+        if (notificationStatus && notificationStatus != 0) {
+            url += `&isRead=${notificationStatus}`;
+        }
         return this.apiService.get(url, true);
     }
 

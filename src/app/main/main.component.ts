@@ -3,7 +3,7 @@ import {NavigationService} from '../shared/component/animation/navigation.servic
 import {routerTransition} from '../shared/component/animation/animations';
 import {ConfigService} from '../shared/config.service';
 import {DataService} from '../shared/service/data.service';
-import {MatSidenav} from '@angular/material/sidenav';
+
 
 @Component({
   selector: 'app-pages',
@@ -15,29 +15,29 @@ import {MatSidenav} from '@angular/material/sidenav';
   ]
 })
 export class MainComponent implements OnInit {
-    @ViewChild('sidenav') sidenav: MatSidenav;
-
-    close() {
-        this.sidenav.close();
-    }
+    // @ViewChild('sidenav') sidenav: MatSidenav;
+    //
+    // close() {
+    //     this.sidenav.close();
+    // }
 
   constructor(public configService: ConfigService,
               private navigationService: NavigationService,
               private ds: DataService) {
   }
     ngOnInit() {
-        this.ds.showHelp$.subscribe(res => {
-            if (res) {
-                this.open();
-            } else {
-                this.close();
-            }
-        });
+        // this.ds.showHelp$.subscribe(res => {
+        //     if (res) {
+        //         this.open();
+        //     } else {
+        //         this.close();
+        //     }
+        // });
     }
 
-    open() {
-        this.sidenav.open();
-    }
+    // open() {
+    //     this.sidenav.open();
+    // }
   getRouteAnimation(outlet) {
     return this.navigationService.animationValue;
   }
