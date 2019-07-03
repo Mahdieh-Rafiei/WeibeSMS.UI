@@ -18,8 +18,12 @@
     <div class="box-chart">
       <div class="row">
         <div class="col-12 col-md-8 box-chart-right form-group">
-          <canvas id="canvas">{{ chart }}</canvas>
+          <app-bar-chart *ngIf="barChartData[0].data.length > 0" [barChartLabels]="barChartLabels"
+          [barChartData]="barChartData">
+
+          </app-bar-chart>
         </div>
+
         <div class="col-12 col-md-4 box-chart-left form-group">
           <div class="row">
             <div class="col-12 col-md-6 form-group">
@@ -48,6 +52,7 @@
             </div>
           </div>
         </div>
+
       </div>
     </div>
   </div>

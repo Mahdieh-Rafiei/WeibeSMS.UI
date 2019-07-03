@@ -30,8 +30,7 @@ import {FooterComponent} from './main/layout/footer/footer.component';
 import {DialogComponent} from './shared/component/dialog/dialog.component';
 import {AuthGuard} from './shared/auth.guard';
 import {ConfirmationAddContactFromFileComponent} from './main/pages/group/add-contact/add-contact-from-file/confirmation-add-contact-from-file/confirmation-add-contact-from-file.component';
-import { TableComponent } from './shared/component/table/table.component';
-import { HelpComponent } from './main/pages/help/help.component';
+import {HelpComponent} from './main/pages/help/help.component';
 
 @NgModule({
 
@@ -49,7 +48,7 @@ import { HelpComponent } from './main/pages/help/help.component';
     DialogComponent,
     //TODO: move this c to groupModule
     ConfirmationAddContactFromFileComponent,
-    HelpComponent,
+    HelpComponent
   ],
   entryComponents: [
     DialogComponent,
@@ -70,7 +69,7 @@ import { HelpComponent } from './main/pages/help/help.component';
     BrowserAnimationsModule,
     FileDropModule,
     MainRoutingModule,
-    SharedModule,
+    SharedModule
   ],
   providers: [
     ApiService,

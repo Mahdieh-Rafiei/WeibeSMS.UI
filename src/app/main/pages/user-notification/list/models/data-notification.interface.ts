@@ -1,5 +1,4 @@
-
-import {DataGetUserNotificationInterface} from "./data-get-user-notification.interface";
+import {DataGetUserNotificationInterface} from './data-get-user-notification.interface';
 
 export interface DataNotificationInterface {
   items: DataGetUserNotificationInterface[];

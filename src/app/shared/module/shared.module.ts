@@ -13,6 +13,8 @@ import {AngularEditorModule} from '@kolkov/angular-editor';
 import {DateFromToComponent} from '../component/date-from-to/date-from-to.component';
 import {TableComponent} from '../component/table/table.component';
 import {NumericInputDirective} from '../numeric-input.directive';
+import {BarChartComponent} from '../component/bar-chart/bar-chart.component';
+import {ChartsModule} from 'ng2-charts';
 
 @NgModule({
   imports: [
@@ -21,7 +23,8 @@ import {NumericInputDirective} from '../numeric-input.directive';
     ReactiveFormsModule,
     MatCoreModule,
     NgxPaginationModule,
-    AngularEditorModule
+    AngularEditorModule,
+    ChartsModule
   ],
   declarations: [
     CountDownComponent,
@@ -32,7 +35,8 @@ import {NumericInputDirective} from '../numeric-input.directive';
     TableComponent,
     DateFromToComponent,
     LoadingSpinnerComponent,
-    NumericInputDirective
+    NumericInputDirective,
+    BarChartComponent
   ],
   entryComponents: [
     LoadingSpinnerComponent
@@ -52,7 +56,8 @@ import {NumericInputDirective} from '../numeric-input.directive';
     DateFromToComponent,
     LoadingSpinnerComponent,
     TableComponent,
-    NumericInputDirective
+    NumericInputDirective,
+    BarChartComponent
   ]
 })
 export class SharedModule {

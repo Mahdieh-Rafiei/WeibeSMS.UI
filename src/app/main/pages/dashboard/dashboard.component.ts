@@ -1,5 +1,8 @@
 import {Component, OnInit} from '@angular/core';
-// import {Chart} from 'chart.js';
+import {Label} from 'ng2-charts';
+import {DashboardService} from './dashboard-service';
+import {ChartDataSets} from 'chart.js';
+import {forEach} from '@angular/router/src/utils/collection';
 
 @Component({
   selector: 'app-dashboard',
@@ -8,12 +11,12 @@ import {Component, OnInit} from '@angular/core';
 })
 export class DashboardComponent implements OnInit {
 
-  // toppings = new FormControl();
-  // toppingList: string[] = ['search by first name', 'search by mobile', 'search by email', 'search by last name'];
-  chart = [];
+  barChartLabels: Label[] = [];
+  barChartData: ChartDataSets[] = [];
 
-  constructor() {
+  constructor(private dashboardService: DashboardService) {
   }
+
 
   ngOnInit() {
     //TODO: remove localstorage and cache service
@@ -22,62 +25,37 @@ export class DashboardComponent implements OnInit {
     localStorage.removeItem('k-f');
     localStorage.removeItem('k-u');
 
+    for (let i = 1; i < 31; i++) {
+      this.barChartLabels.push(i.toString());
+    }
 
-    // this.chart = new Chart('canvas', {
-    //   type: 'line',
-    //   data: {
-    //     labels: ['1', '1', '2', '3', '4', '5', '6', '7'],
-    //     datasets: [{
-    //       label: 'تعداد ارسال',
-    //       data: [0, 15, 0, 15, 0, 15, 0, 15],
-    //       backgroundColor: [
-    //         'transparent'
-    //       ],
-    //       borderColor: [
-    //         '#82ba31',
-    //       ],
-    //       borderWidth: 1
-    //     },
-    //       {
-    //         label: 'ایمیل های خوانده شده',
-    //         data: [0, 10, 5, 3, 12, 15, 0, 6],
-    //         backgroundColor: [
-    //           'transparent',
-    //         ],
-    //         borderColor: [
-    //           '#a0ae00',
-    //         ],
-    //         borderWidth: 1
-    //       },
-    //       {
-    //         label: 'تعداد کلیک ها :',
-    //         data: [0, 8, 1, 0, 12, 0, 1, 0],
-    //         backgroundColor: [
-    //           'transparent',
-    //         ],
-    //         borderColor: [
-    //           '#00b0c2',
-    //         ],
-    //         borderWidth: 1
-    //       }
-    //     ]
-    //   },
-    //
-    //   options:
-    //     {
-    //
-    //       scales: {
-    //         yAxes: [{
-    //           ticks: {
-    //             stacked: true
-    //           }
-    //         }]
-    //       },
-    //       tooltips: {
-    //         mode: 'index',
-    //         intersect: true
-    //       }
-    //     },
-    // });
+
+    this.dashboardService.getSmsSentMonthlyReport()
+      .subscribe(res => {
+        console.log(res.data);
+        debugger;
+        this.barChartData.push({
+            data: [], label: 'simple'
+          },
+          {data: [], label: 'event'});
+        let simpleData = [];
+        let eventData = [];
+
+        for (let i = 0; res.data.length > i; i++) {
+          const x = res.data[i];
+          simpleData.push(x.simpleSentCount);
+          eventData.push(x.eventSentCount);
+        }
+
+        this.barChartData[0].data = simpleData;
+        this.barChartData[1].data = eventData;
+
+        console.log(this.barChartData);
+        console.log(this.barChartLabels);
+      });
+    // = [
+    //   { data: [65, 59, 80, 81, 56, 55, 40], label: 'Series A' },
+    //   { data: [28, 48, 40, 19, 86, 27, 500], label: 'Series B' }
+    // ];
   }
 }
