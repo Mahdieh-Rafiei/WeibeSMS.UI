@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {ApiService} from '../../../shared/api.service';
 import {Observable} from 'rxjs';
-import {GetSmsSentMonthlyReportResponseInterface} from './models/get-sms-sent-monthly-report-response.interface';
+import {DashboardInfoResponseInterface} from './models/dashboard-info-response.interface';
 
 
 @Injectable({
@@ -11,8 +11,8 @@ export class DashboardService {
   constructor(private apiService: ApiService) {
   }
 
-  getSmsSentMonthlyReport():Observable<GetSmsSentMonthlyReportResponseInterface>{
-    const url = `sendMessage/monthly`;
+  getDashboardInfo():Observable<DashboardInfoResponseInterface>{
+    const url = `user/dashboard`;
     return this.apiService.get(url,true);
   }
 }

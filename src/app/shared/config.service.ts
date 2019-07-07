@@ -19,17 +19,17 @@ export class ConfigService {
     this.tokenKeyName = 'jwt-sms';
     this.documentationUrl = 'http://localhost:8090/swagger/index.html';
 
-    // this.baseUrl = 'https://localhost:44315/app/api/';
-    // this.globalUrl = 'https://localhost:44315/api/';
+    this.baseUrl = 'https://localhost:44315/app/api/';
+    this.globalUrl = 'https://localhost:44315/api/';
     //
     // this.baseUrl = 'http://185.211.58.165:8070/app/api/';
     // this.globalUrl = 'http://185.211.58.165:8070/appapi/v1/';
 
-    this.baseUrl = 'http://192.168.1.90:8070/app/api/';
-    this.globalUrl = 'http://192.168.1.90:8070/api/';
+    // this.baseUrl = 'http://192.168.1.90:8070/app/api/';
+    // this.globalUrl = 'http://192.168.1.90:8070/api/';
 
     this.errorMessages.set(1, 'Entered values are wrong!');
-    this.errorMessages.set(2, 'Get verification code again please!');
+    this.errorMessages.set(2, 'Get verification coded again please!');
     // this.errorMessages.set(3,'Entered values are wrong!');
     this.errorMessages.set(4, 'Please use the last verification code!');
     this.errorMessages.set(5, 'Verification code is wrong!');

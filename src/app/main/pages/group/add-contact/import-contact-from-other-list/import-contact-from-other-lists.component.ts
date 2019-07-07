@@ -107,10 +107,6 @@ export class ImportContactFromOtherListsComponent implements OnInit {
     }
 
     this.totalContactsSelectedCountCalculate();
-    console.log('Groups:');
-    console.log(this.groupSelectedFromLeft);
-    console.log('Contacts from grid:');
-    console.log(this.contactsSelectedFromGrid);
   }
 
   groupCheckedChanged(e, g) {
@@ -125,25 +121,17 @@ export class ImportContactFromOtherListsComponent implements OnInit {
       g.contacts.forEach(c => c.isSelected = e);
     }
     this.totalContactsSelectedCountCalculate();
-
-    console.log('Groups:');
-    console.log(this.groupSelectedFromLeft);
-    console.log('Contacts from grid:');
-    console.log(this.contactsSelectedFromGrid);
   }
 
   loadContacts(group) {
-    debugger;
     this.clickedGroup = group;
       group.contacts = [];
       this.getContactsFromServer(this.clickedGroup);
   }
 
   getContactsFromServer(group) {
-    debugger;
     this.contactService.getAllContacts(group.id, group.pageNumber, this.contactPageSize,this.phrase)
       .subscribe((res: GetAllContactGroupInterface) => {
-        debugger;
         res.data.items.forEach(i => {
           group.contacts.push(i);
         });
@@ -153,7 +141,6 @@ export class ImportContactFromOtherListsComponent implements OnInit {
   }
 
   operation(isCut: boolean) {
-    debugger;
     const apiModel = new Map<number, number[]>();
     this.contactsSelectedFromGrid.forEach((value, key) => {
       apiModel.set(key, value);
@@ -165,7 +152,6 @@ export class ImportContactFromOtherListsComponent implements OnInit {
 
     this.contactService.addContactFromGroups(this.groupId, apiModel, isCut)
       .subscribe((res: ContactGroupMoveCopyResponseInterface) => {
-        console.log(res);
         this.notificationService.success('Operation done successfully', '');
         this.router.navigateByUrl(`group/${this.groupId}`);
       });
@@ -175,7 +161,6 @@ export class ImportContactFromOtherListsComponent implements OnInit {
     this.clickedGroup.pageNumber = e;
 
     for (let i=0;this.clickedGroup.loadedPageNumbers.length > i;i++){
-      debugger;
       let num = this.clickedGroup.loadedPageNumbers[i];
       if (num == e)
         return;

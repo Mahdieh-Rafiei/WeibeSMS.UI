@@ -66,7 +66,6 @@ export class SingleDraftComponent implements OnInit {
   getDraft(id, useTitle: boolean) {
     this.draftService.getDraft(id)
       .subscribe((res: GetDraftInterface) => {
-        console.log(res);
         this.draft.messageText = res.data.messageText;
         this.draft.title = useTitle ? res.data.title : this.draft.title;
         this.draft.id = res.data.id;

@@ -7,11 +7,10 @@ import {NotificationService} from '../../shared/notification.service';
 import {UtilityService} from '../../shared/utility.service';
 import {AuthSharedService} from '../auth-shared.service';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import {Gender} from '../../shared/enums';
 import {RegisterInterface} from './models/register.interface';
 import {SharedService} from '../../shared/service/shared.service';
 import {errorAnimation} from '../../shared/component/animation/error-animation';
-import {DashboardInfoResponseInterface} from '../login/models/dashboard-info-response.interface';
+import {UserInfoResponseInterface} from '../login/models/user-info-response.interface';
 import {UserAccountService} from '../../main/pages/user-account/user-account.service';
 import {Subject} from 'rxjs';
 import {debounceTime} from 'rxjs/operators';
@@ -105,8 +104,8 @@ export class RegisterComponent implements OnInit {
         .subscribe(res => {
             this.authService.setToken(res.data.token);
             localStorage.removeItem('k-l');
-            this.userAccountService.getDashboardInfo()
-              .subscribe((result: DashboardInfoResponseInterface) => {
+            this.userAccountService.getUserInfo()
+              .subscribe((result: UserInfoResponseInterface) => {
                 this.showSpinner = false;
                 this.shs.setUserInfo(result.data);
                 this.router.navigateByUrl('');
@@ -116,7 +115,6 @@ export class RegisterComponent implements OnInit {
           err => {
             this.showSpinner = false;
             if (err.error.Message === '1') {
-              console.log(err);
               this.router.navigate(['/login']);
             }
           });
@@ -161,7 +159,6 @@ export class RegisterComponent implements OnInit {
   }
 
   onKeyUp(type, value) {
-    console.log('is unique: ' + this.emailUnique);
 
     if (type === 'userName') {
       if (value.length > 5) {
@@ -183,13 +180,10 @@ export class RegisterComponent implements OnInit {
   }
 
   onKeyDown(type): void {
-    console.log(this.registerForm.controls['email'].hasError('pattern'));
     if (type === 'userName') {
       this.registerForm.controls.userName.clearValidators();
     } else if (type === 'email') {
       this.registerForm.controls.email.clearValidators();
     }
   }
-
-
 }

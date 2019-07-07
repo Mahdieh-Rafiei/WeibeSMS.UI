@@ -15,6 +15,7 @@ import {TableComponent} from '../component/table/table.component';
 import {NumericInputDirective} from '../numeric-input.directive';
 import {BarChartComponent} from '../component/bar-chart/bar-chart.component';
 import {ChartsModule} from 'ng2-charts';
+import {QuickShowNotificationComponent} from '../../main/layout/top-nav/quick-show-notification/quick-show-notification.component';
 
 @NgModule({
   imports: [
@@ -36,10 +37,12 @@ import {ChartsModule} from 'ng2-charts';
     DateFromToComponent,
     LoadingSpinnerComponent,
     NumericInputDirective,
-    BarChartComponent
+    BarChartComponent,
+    QuickShowNotificationComponent
   ],
   entryComponents: [
-    LoadingSpinnerComponent
+    LoadingSpinnerComponent,
+    QuickShowNotificationComponent
   ],
   exports: [
     CommonModule,
@@ -57,7 +60,8 @@ import {ChartsModule} from 'ng2-charts';
     LoadingSpinnerComponent,
     TableComponent,
     NumericInputDirective,
-    BarChartComponent
+    BarChartComponent,
+    QuickShowNotificationComponent
   ]
 })
 export class SharedModule {

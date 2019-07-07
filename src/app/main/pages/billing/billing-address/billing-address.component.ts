@@ -167,10 +167,6 @@ export class BillingAddressComponent implements OnInit, AfterViewChecked {
     }
   }
 
-  test() {
-    console.log(this.mobileValue);
-  }
-
   setMobileValue() {
     this.countries.forEach(item => {
       if (this.billingAddressForm.value.prefixNumberId === item.id) {

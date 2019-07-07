@@ -1,25 +1,26 @@
-<div class="alert-box-default">
-  <span>Update your Info</span> <span><i class="fa fa-times"></i></span>
-</div>
-<div class="alert-box-default">
-  <span>Set up Billing Address</span> <span><i class="fa fa-times"></i></span>
+<div *ngIf="!sharedService.getCurrentUserInfo().hasBillingAddress" class="alert-box-default">
+  <span>Set up Billing Address</span><span><i class="fa fa-times"></i></span>
+  <a [routerLink]="['billing/billing-address']">Update billing info</a>
 </div>
 
 <div class="div-section">
   <div class="col-12 sms-sent-month form-group">
     <div class="row">
       <div class="col-12 col-md-6 form-group">
-        <div class="text-left report-title"><h4>SMS sent this month</h4></div>
+        <div class="text-left report-title"><h4>Sent SMS in this month</h4></div>
       </div>
       <div class="col-12 col-md-6 form-group">
-        <div class="text-right report-date"><h4>2019/08/05</h4></div>
+        <div class="text-right report-date"><h4 [innerText]="today | date"></h4></div>
       </div>
     </div>
     <div class="box-chart">
       <div class="row">
         <div class="col-12 col-md-8 box-chart-right form-group">
-          <app-bar-chart *ngIf="barChartData.length > 0 && barChartData[0].data.length > 0" [barChartLabels]="barChartLabels"
-          [barChartData]="barChartData">
+
+
+          <app-bar-chart *ngIf="barChartData.length > 0 && barChartData[0].data.length > 0"
+                         [barChartLabels]="barChartLabels"
+                         [barChartData]="barChartData">
 
           </app-bar-chart>
         </div>
@@ -29,62 +30,34 @@
             <div class="col-12 col-md-6 form-group">
               <div class="daily-report">
                 <h4>Today</h4>
-                <h1>3</h1>
+                <h1>{{dashboardInfoInterface ? dashboardInfoInterface.succeededSmsCountToday : 0}}</h1>
+                <h1>{{dashboardInfoInterface ? dashboardInfoInterface.failedSmsCountToday : 0}}</h1>
               </div>
             </div>
             <div class="col-12 col-md-6 form-group">
               <div class="daily-report">
                 <h4>Yesterday</h4>
-                <h1>0</h1>
+                <h1>{{dashboardInfoInterface ? dashboardInfoInterface.succeededSmsCountYesterday : 0}}</h1>
+                <h1>{{dashboardInfoInterface ? dashboardInfoInterface.failedSmsCountYesterday : 0}}</h1>
               </div>
             </div>
-            <div class="col-12 col-md-6 form-group">
+            <div class="col-12 col-سmd-6 form-group">
               <div class="daily-report">
                 <h4>Last 7 Day</h4>
-                <h1>0</h1>
+                <h1>{{dashboardInfoInterface ? dashboardInfoInterface.succeededSmsCountLast7Days : 0}}</h1>
+                <h1>{{dashboardInfoInterface ? dashboardInfoInterface.failedSmsCountLast7Days : 0}}</h1>
               </div>
             </div>
             <div class="col-12 col-md-6 form-group">
               <div class="daily-report">
                 <h4>This Month</h4>
-                <h1>0</h1>
+                <h1>{{dashboardInfoInterface ? dashboardInfoInterface.succeededSmsCountThisMonth : 0}}</h1>
+                <h1>{{dashboardInfoInterface ? dashboardInfoInterface.failedCountThisMonth : 0}}</h1>
               </div>
             </div>
           </div>
         </div>
-
-      </div>
-    </div>
-  </div>
-  <div class="activity">
-    <div class="row ">
-      <div class="col-12 col-md-6 form-group">
-        <div class="activity-box ">
-          <p>
-            Send acvtivy
-          </p>
-          <p>
-            date: from-to
-          </p>
-          <p>
-            incloude : Outbound - Bounced
-          </p>
-        </div>
-        <div id="chartContainer" style="height: 370px; width: 100%;">
-        </div>
-      </div>
-      <div class="col-12 col-md-6 form-group">
-        <div class="activity-box">
-          <p>
-            Credit acvtivy
-          </p>
-          <p>
-            date: from-to
-          </p>
-          <p>
-            include + -
-          </p>
-        </div>
+        <a [routerLink]="['/sms-report/list']">Report</a>
       </div>
     </div>
   </div>

@@ -30,7 +30,6 @@ export class BillingComponent implements OnInit ,AfterViewChecked{
         this.changeDetectorRef.detectChanges();
     }
     onClick(item) {
-        debugger;
         this.billingService.mode = item.mode;
         this.router.navigate(['./billing/' + item.link]);
     }
