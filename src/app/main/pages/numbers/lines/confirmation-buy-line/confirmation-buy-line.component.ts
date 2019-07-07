@@ -33,7 +33,6 @@ export class ConfirmationBuyLineComponent implements OnInit {
   }
 
   onSubmit() {
-    debugger;
     this.numbersService.buyLine(this.userLineData)
       .subscribe(res => {
         this.numbersService.mode = 'yourNumbers';

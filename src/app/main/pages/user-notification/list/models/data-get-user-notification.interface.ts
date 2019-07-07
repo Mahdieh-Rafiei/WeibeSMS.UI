@@ -1,6 +1,6 @@
 export interface DataGetUserNotificationInterface {
   creationDateTime: Date;
-  description: string;
+  message: string;
   id: number;
   isRead: boolean;
   notificationId: number;

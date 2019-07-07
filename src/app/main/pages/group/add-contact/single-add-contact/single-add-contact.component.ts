@@ -232,7 +232,6 @@ export class SingleAddContactComponent implements OnInit {
       const uniqueIds = Array.from(new Set(payload.eventsUser.map
       ((item: EventUserAddContactInterface): number => item.id)));
 
-      debugger;
       let uniqueEventUsers: EventUserAddContactInterface[] = [];
 
       let i = 0;

@@ -78,7 +78,6 @@ export class UserNotificationComponent implements OnInit {
                     const userNotification = result.showNotify.userNotification;
                     this.userNotificationService.getUserNotification(userNotification.id)
                         .subscribe((res: GetUserNotificationInterface) => {
-                            console.log(res.data);
                             userNotification.isRead = true;
                         });
                 }

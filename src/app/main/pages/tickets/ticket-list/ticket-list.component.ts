@@ -76,7 +76,6 @@ export class TicketListComponent implements OnInit {
   }
 
   getFilterData(event: FilterDataModel) {
-    debugger;
     this.tableConfig.pagingModel.pageSize = event.pageSize ? event.pageSize : 10;
     this.getAllTickets();
   }

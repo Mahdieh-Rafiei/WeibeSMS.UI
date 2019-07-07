@@ -5,7 +5,7 @@ import {SharedService} from '../../../../../shared/service/shared.service';
 import {ChangeEmailInterface} from './models/change-email.interface';
 import {NotificationService} from '../../../../../shared/notification.service';
 import {errorAnimation} from '../../../../../shared/component/animation/error-animation';
-import {DashboardInfoInterface} from '../../../../../auth/login/models/dashboard-info.interface';
+import {UserInfoInterface} from '../../../../../auth/login/models/user-info.interface';
 
 @Component({
   selector: 'app-change-email',
@@ -19,7 +19,7 @@ export class ChangeEmailComponent implements OnInit {
   changeEmailForm: FormGroup;
   emailUnique: boolean = false;
   disableButton: boolean = false;
-  currentUserInfo: DashboardInfoInterface;
+  currentUserInfo: UserInfoInterface;
 
   constructor(private fb: FormBuilder,
               private shs: SharedService,

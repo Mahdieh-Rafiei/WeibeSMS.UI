@@ -51,7 +51,6 @@ export class TransactionLogComponent implements OnInit {
       this.tableConfig.pagingModel.pageSize, this.filterDataModel.fromDate,
       this.filterDataModel.toDate, this.filterDataModel.transactionTypeSelected, this.phrase)
       .subscribe(res => {
-        console.log(res);
         this.transactionLogs = res.data.items;
         this.tableConfig.pagingModel.totalItemsCount = res.data.totalItemsCount;
       });

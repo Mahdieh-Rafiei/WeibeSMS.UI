@@ -15,7 +15,7 @@ import {SharedService} from '../../shared/service/shared.service';
 import {DataCountryInterface} from '../../shared/models/data-country.interface';
 import {errorAnimation} from '../../shared/component/animation/error-animation';
 import {UserAccountService} from '../../main/pages/user-account/user-account.service';
-import {DashboardInfoResponseInterface} from './models/dashboard-info-response.interface';
+import {UserInfoResponseInterface} from './models/user-info-response.interface';
 import {UtilityService} from '../../shared/utility.service';
 
 @Component({
@@ -98,7 +98,6 @@ export class LoginComponent implements OnInit {
 
 
   changeMobile(mobile: string) {
-    console.log(this.signUpForm.controls['prefixNumberId'].value);
     this.setMobileValue();
     this.isCorrectMobile = this.utilityService.isMobile(this.mobileValue);
     this.countries.forEach(item => mobile === item.prefixNumber ? this.selectCountry(2, item) : null);
@@ -119,8 +118,8 @@ export class LoginComponent implements OnInit {
       this.authService.loginViaUsernamePassword(payload)
         .subscribe((res: LoginResponseInterface) => {
             this.authService.setToken(res.data.token);
-            this.userAccountService.getDashboardInfo()
-              .subscribe((res: DashboardInfoResponseInterface) => {
+            this.userAccountService.getUserInfo()
+              .subscribe((res: UserInfoResponseInterface) => {
                 this.showSpinner = false;
                 this.shs.setUserInfo(res.data);
                 this.router.navigateByUrl('');
@@ -172,7 +171,6 @@ export class LoginComponent implements OnInit {
             this.signUpForm.value.mobile.substring(item.prefixNumber.length);
         }
       });
-      console.log(this.mobileValue);
       this.authSharedService.mobile = this.mobileValue;
       this.authSharedService.prefixNumberId = +this.signUpForm.value.prefixNumberId;
       const payload: SendVerificationCodeInterface = this.signUpForm.value;
@@ -251,26 +249,21 @@ export class LoginComponent implements OnInit {
 
       case 1:
         this.verificationCodePart2Element.nativeElement.focus();
-        console.log(this.verificationCodePart1);
         break;
 
       case 2:
         this.verificationCodePart3Element.nativeElement.focus();
-        console.log(this.verificationCodePart2);
         break;
 
       case 3:
         this.verificationCodePart4Element.nativeElement.focus();
-        console.log(this.verificationCodePart3);
         break;
 
       case 4:
         this.verificationCodePart5Element.nativeElement.focus();
-        console.log(this.verificationCodePart4);
         break;
 
       case 5:
-        console.log(this.verificationCodePart5);
     }
     if (this.verificationCodePart1 && this.verificationCodePart2 && this.verificationCodePart3 &&
       this.verificationCodePart4 && this.verificationCodePart5) {

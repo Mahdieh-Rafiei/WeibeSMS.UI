@@ -45,11 +45,8 @@ export class DeveloperComponent implements OnInit {
     }
 
     ngOnInit() {
-
-        console.log(this.keyData);
         this.creteForm();
         this.fillDeveloper(this.developerForm);
-
     }
 
     creteForm() {

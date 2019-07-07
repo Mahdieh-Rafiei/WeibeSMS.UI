@@ -102,7 +102,6 @@ export class SenderIdComponent implements OnInit {
       this.newSenderName.title = payload;
       this.userAccountService.addSenderName(payload)
         .subscribe(res => {
-          console.log(res);
           const addedItem: SenderIdInterface = {
             creationDateTime: new Date().getTime() / 1000,
             id: res.data,
@@ -116,7 +115,6 @@ export class SenderIdComponent implements OnInit {
   }
 
   removeSenderName(index, item: SenderIdInterface) {
-    debugger;
     this.openDeleteDialog('480px', 'auto', '', {
       modalType: 'deleteSenderId',
       modalHeader: 'Delete Sender Name',

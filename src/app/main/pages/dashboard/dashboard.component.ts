@@ -2,7 +2,8 @@ import {Component, OnInit} from '@angular/core';
 import {Label} from 'ng2-charts';
 import {DashboardService} from './dashboard-service';
 import {ChartDataSets} from 'chart.js';
-import {forEach} from '@angular/router/src/utils/collection';
+import {SharedService} from '../../../shared/service/shared.service';
+import {DashboardInfoInterface} from './models/dashboard-info.interface';
 
 @Component({
   selector: 'app-dashboard',
@@ -13,8 +14,11 @@ export class DashboardComponent implements OnInit {
 
   barChartLabels: Label[] = [];
   barChartData: ChartDataSets[] = [];
+  today = Date();
+  dashboardInfoInterface: DashboardInfoInterface;
 
-  constructor(private dashboardService: DashboardService) {
+  constructor(private dashboardService: DashboardService,
+              private sharedService: SharedService) {
   }
 
 
@@ -25,37 +29,30 @@ export class DashboardComponent implements OnInit {
     localStorage.removeItem('k-f');
     localStorage.removeItem('k-u');
 
-    for (let i = 1; i < 31; i++) {
-      this.barChartLabels.push(i.toString());
-    }
 
-
-    this.dashboardService.getSmsSentMonthlyReport()
+    this.dashboardService.getDashboardInfo()
       .subscribe(res => {
         console.log(res.data);
-        debugger;
-        this.barChartData.push({
-            data: [], label: 'simple'
-          },
-          {data: [], label: 'event'});
-        let simpleData = [];
-        let eventData = [];
+        this.dashboardInfoInterface = res.data;
+        this.dashboardInfoInterface.smsSentWeeklyReportViews.forEach(res => {
+          this.barChartLabels.push(res.dayName);
+        });
 
-        for (let i = 0; res.data.length > i; i++) {
-          const x = res.data[i];
-          simpleData.push(x.simpleSentCount);
-          eventData.push(x.eventSentCount);
+        this.barChartData.push({
+            data: [], label: 'Succeeded'
+          },
+          {data: [], label: 'Failed'});
+        let failedSmsCount = [];
+        let succeededSmsCount = [];
+
+        for (let i = 0; res.data.smsSentWeeklyReportViews.length > i; i++) {
+          const x = res.data.smsSentWeeklyReportViews[i];
+          failedSmsCount.push(x.failedSmsCount);
+          succeededSmsCount.push(x.succeededSmsCount);
         }
 
-        this.barChartData[0].data = simpleData;
-        this.barChartData[1].data = eventData;
-
-        console.log(this.barChartData);
-        console.log(this.barChartLabels);
+        this.barChartData[0].data = succeededSmsCount;
+        this.barChartData[1].data = failedSmsCount;
       });
-    // = [
-    //   { data: [65, 59, 80, 81, 56, 55, 40], label: 'Series A' },
-    //   { data: [28, 48, 40, 19, 86, 27, 500], label: 'Series B' }
-    // ];
   }
 }
