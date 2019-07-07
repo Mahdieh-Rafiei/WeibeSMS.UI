@@ -1,48 +1,50 @@
 @import "../../../../../assets/style/components/variables";
-
-.subject-ticket {
-  padding: 0 0 15px 0;
-  h4 {
-    font-weight: 600;
-    line-height: 0;
+.single-ticket {
+  .subject-ticket {
+    padding: 0 0 15px 0;
+    h4 {
+      font-weight: 600;
+      line-height: 0;
+    }
   }
-}
 
-.profile-pic {
-  img {
-    width: 100px;
+  .profile-pic {
+    img {
+      width: 100px;
+    }
   }
-}
 
-.supporter-ticket {
-  background: $light-purple;
-  padding: 20px 15px;
-  border-radius: 5px 15px 15px 15px;
-  p {
-    font-weight: 400;
-    font-size: 14px;
+  .supporter-ticket {
+    background: $light-purple;
+    padding: 20px 15px;
+    border-radius: 5px 15px 15px 15px;
+    p {
+      font-weight: 400;
+      font-size: 14px;
+    }
   }
-}
 
-.customer-ticket {
-  background: $light-green;
-  padding: 20px 15px;
-  border-radius: 15px 0 15px 15px;
-  p {
-    font-weight: 400;
-    font-size: 14px;
+  .customer-ticket {
+    background: $light-green;
+    padding: 20px 15px;
+    border-radius: 15px 0 15px 15px;
+    p {
+      font-weight: 400;
+      font-size: 14px;
+    }
   }
-}
 
-.date-author {
-  text-align: right;
-  color: $gray;
-  span {
-    font-size: 12px;
-    font-weight: 400;
+  .date-author {
+    text-align: right;
+    color: $gray;
+    span {
+      font-size: 12px;
+      font-weight: 400;
+    }
   }
-}
 
-.rtl-div {
-  direction: rtl;
+  .rtl-div {
+    direction: rtl;
+  }
+
 }

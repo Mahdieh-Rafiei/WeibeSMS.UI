@@ -32,6 +32,7 @@ export class DashboardComponent implements OnInit {
 
     this.dashboardService.getDashboardInfo()
       .subscribe(res => {
+
         console.log(res.data);
         this.dashboardInfoInterface = res.data;
         this.dashboardInfoInterface.smsSentWeeklyReportViews.forEach(res => {

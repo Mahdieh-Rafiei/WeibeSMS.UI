@@ -6,7 +6,7 @@ import {AddUserLineInterface} from '../models/add-user-line.interface';
 @Component({
   selector: 'app-confirmation-buy-line',
   templateUrl: './confirmation-buy-line.component.html',
-  styleUrls: ['./confirmation-buy-line.component.css']
+  styleUrls: ['./confirmation-buy-line.component.scss']
 })
 export class ConfirmationBuyLineComponent implements OnInit {
 

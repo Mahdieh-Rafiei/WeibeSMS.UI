@@ -5,6 +5,7 @@ import {NotificationService} from '../../../../shared/notification.service';
 import {TicketResponseInterface} from './models/ticket-response.interface';
 import {ReplyTicketResponseInterface} from './models/reply-ticket-response.interface';
 import {CloseTicketInterface} from './models/close-ticket.interface';
+import {SharedService} from "../../../../shared/service/shared.service";
 
 @Component({
   selector: 'app-ticket',
@@ -24,7 +25,8 @@ export class SingleTicketComponent implements OnInit {
   constructor(private ticketService: TicketService,
               private activatedRoute: ActivatedRoute,
               private notificationService: NotificationService,
-              private router: Router) {
+              private router: Router,
+              private sharedService:SharedService) {
   }
 
   ngOnInit() {

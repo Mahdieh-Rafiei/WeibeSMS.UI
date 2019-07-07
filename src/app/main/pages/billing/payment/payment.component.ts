@@ -6,99 +6,109 @@ import {PagingModel} from '../../../../shared/component/table/models/paging-mode
 import {FilterDataModel} from '../../../../shared/component/filter/filter-data-model';
 
 @Component({
-  selector: 'app-payment',
-  templateUrl: './payment.component.html',
-  styleUrls: ['./payment.component.scss']
+    selector: 'app-payment',
+    templateUrl: './payment.component.html',
+    styleUrls: ['./payment.component.scss']
 })
 export class PaymentComponent implements OnInit {
 
-  phrase = '';
+    phrase = '';
 
-  tableConfig: TableConfigInterface = {
-    pagingModel: new PagingModel(),
-    headerNames: ['Id', 'Description', 'Payment types', 'Status', 'Amount', 'Vat', 'Total', 'Date time'],
-    rowColumnsConfig: [],
-  };
+    tableConfig: TableConfigInterface = {
+        pagingModel: new PagingModel(),
+        headersConfig: [
+            {hideInResponsive: false, title: 'Id'},
+            {hideInResponsive: true, title: 'Description'},
+            {hideInResponsive: false, title: 'Payment types'},
+            {hideInResponsive: true, title: 'Status'},
+            {hideInResponsive: true, title: 'Amount'},
+            {hideInResponsive: true, title: 'Vat'},
+            {hideInResponsive: false, title: 'Total'},
+            {hideInResponsive: false, title: 'Date time'},
 
-  filterDataModel = new FilterDataModel();
+        ],
+        rowColumnsConfig: [],
+    };
 
-  payments: PaymentInterface[];
+    filterDataModel = new FilterDataModel();
 
-  constructor(private billingService: BillingService) {
-  }
+    payments: PaymentInterface[];
 
-  ngOnInit() {
-    this.filterDataModel.fromToDate = true;
-    this.filterDataModel.paymentTypes = [
-      {value: 0, title: 'All'},
-      {value: 1, title: 'Credit'},
-      {value: 2, title: 'Other'}
-    ];
-    this.billingService.mode = 'payment';
-    this.getPayments();
-    this.generateRowColumns();
-  }
-
-  getPayments() {
-    this.billingService.getPaymentLogs(
-      this.tableConfig.pagingModel.pageNumber,
-      this.tableConfig.pagingModel.pageSize,
-      this.filterDataModel.fromDate,
-      this.filterDataModel.toDate,
-      this.filterDataModel.paymentTypeSelected,
-      this.filterDataModel.paidPayments,
-      this.phrase)
-      .subscribe(res => {
-        this.payments = res.data.items;
-        this.tableConfig.pagingModel.totalItemsCount = res.data.totalItemsCount;
-        this.payments.forEach(p => {
-          p.type = p.type == '1' ? 'Credit' : 'Others';
-        });
-      });
-  }
-
-  export(e) {
-
-    const ids: number[] = [];
-    if (e.target.value == 1) {
-      this.payments.forEach(p => {
-        ids.push(p.id);
-      });
+    constructor(private billingService: BillingService) {
     }
-    this.billingService.getPaymentLogsExcel(ids)
-      .subscribe(res => {
-        window.open(res.data, '_blank');
-      });
-  }
 
-  getData(event) {
-    this.phrase = event;
-    this.getPayments();
-  }
+    ngOnInit() {
+        this.filterDataModel.fromToDate = true;
+        this.filterDataModel.paymentTypes = [
+            {value: 0, title: 'All'},
+            {value: 1, title: 'Credit'},
+            {value: 2, title: 'Other'}
+        ];
+        this.billingService.mode = 'payment';
+        this.getPayments();
+        this.generateRowColumns();
+    }
 
-  getFilterData(e: FilterDataModel) {
-    this.tableConfig.pagingModel.pageSize = e.pageSize;
-    this.getPayments();
-  }
+    getPayments() {
+        this.billingService.getPaymentLogs(
+            this.tableConfig.pagingModel.pageNumber,
+            this.tableConfig.pagingModel.pageSize,
+            this.filterDataModel.fromDate,
+            this.filterDataModel.toDate,
+            this.filterDataModel.paymentTypeSelected,
+            this.filterDataModel.paidPayments,
+            this.phrase)
+            .subscribe(res => {
+                this.payments = res.data.items;
+                this.tableConfig.pagingModel.totalItemsCount = res.data.totalItemsCount;
+                this.payments.forEach(p => {
+                    p.type = p.type == '1' ? 'Credit' : 'Others';
+                });
+            });
+    }
 
-  generateRowColumns() {
-    this.tableConfig.rowColumnsConfig.push({propertyName: 'description'});
-    this.tableConfig.rowColumnsConfig.push({propertyName: 'type'});
-    this.tableConfig.rowColumnsConfig.push({
-      buttonConfig: {
-        classSelector: (item: PaymentInterface) => {
-          return item.isPaid === true ? 'green-btn' : 'yellow-btn';
-        },
-        innerHTMLSelector: (item: PaymentInterface) => {
-          return item.isPaid ? 'Succeeded' : 'Failed';
-        },
-        action: null
-      }
-    });
+    export(e) {
 
-    this.tableConfig.rowColumnsConfig.push({propertyName: 'amount', sign: '€'});
-    this.tableConfig.rowColumnsConfig.push({propertyName: 'vat', sign: '%'});
-    this.tableConfig.rowColumnsConfig.push({propertyName: 'total', sign: '€'});
-    this.tableConfig.rowColumnsConfig.push({propertyName: 'creationDateTime', isDateTime: true});
-  }
+        const ids: number[] = [];
+        if (e.target.value == 1) {
+            this.payments.forEach(p => {
+                ids.push(p.id);
+            });
+        }
+        this.billingService.getPaymentLogsExcel(ids)
+            .subscribe(res => {
+                window.open(res.data, '_blank');
+            });
+    }
+
+    getData(event) {
+        this.phrase = event;
+        this.getPayments();
+    }
+
+    getFilterData(e: FilterDataModel) {
+        this.tableConfig.pagingModel.pageSize = e.pageSize;
+        this.getPayments();
+    }
+
+    generateRowColumns() {
+        this.tableConfig.rowColumnsConfig.push({propertyName: 'description', hideInResponsive: true});
+        this.tableConfig.rowColumnsConfig.push({propertyName: 'type', hideInResponsive: true});
+        this.tableConfig.rowColumnsConfig.push({
+            buttonConfig: {
+                classSelector: (item: PaymentInterface) => {
+                    return item.isPaid === true ? 'green-btn' : 'yellow-btn';
+                },
+                innerHTMLSelector: (item: PaymentInterface) => {
+                    return item.isPaid ? 'Succeeded' : 'Failed';
+                },
+                action: null
+            }
+        });
+
+        this.tableConfig.rowColumnsConfig.push({propertyName: 'amount', sign: '€', hideInResponsive: true});
+        this.tableConfig.rowColumnsConfig.push({propertyName: 'vat', sign: '%', hideInResponsive: true});
+        this.tableConfig.rowColumnsConfig.push({propertyName: 'total', sign: '€', hideInResponsive: false});
+        this.tableConfig.rowColumnsConfig.push({propertyName: 'creationDateTime', hideInResponsive: false, isDateTime: true});
+    }
 }

@@ -78,7 +78,10 @@ a:focus {
   outline: 0;
   text-decoration: none;
 }
-
+.btn:focus, .btn.focus {
+  outline: 0;
+  box-shadow: none !important;
+}
 .clear {
   clear: both;
 }
@@ -707,10 +710,49 @@ textarea {
   border-bottom: 1px solid #e2e5ec;
 }
 
-
-
 .border-text{
   border: 1px solid #e1e2e5;
   padding: .75rem 1rem;
   border-radius: .4rem;
 }
+
+.border-radius{
+  border-radius: .4rem;
+}
+
+span.fa.fa-trash, span.fa.fa-plus{
+  cursor: pointer;
+  line-height: 2;
+}
+
+/*-----------------------------scroll bar-----------------------------*/
+#style-1::-webkit-scrollbar-track {
+  -webkit-box-shadow: inset 0 0 6px rgba(255, 255, 255, 0.45);
+  background-color: #F5F5F5;
+}
+
+#style-1::-webkit-scrollbar {
+  width: 6px;
+  background-color: #F5F5F5;
+}
+
+#style-1::-webkit-scrollbar-thumb {
+  -webkit-box-shadow: inset 0 0 6px rgba(255, 255, 255, 0.45);
+  background-color: #555;
+}
+
+#style-2::-webkit-scrollbar-track {
+  -webkit-box-shadow: inset 0 0 6px rgba(255, 255, 255, 0.45);
+  background-color: #F5F5F5;
+}
+
+#style-2::-webkit-scrollbar {
+  width: 6px;
+  background-color: #F5F5F5;
+}
+
+#style-2::-webkit-scrollbar-thumb {
+  -webkit-box-shadow: inset 0 0 6px rgba(255, 255, 255, 0.45);
+  background-color: #555;
+}
+

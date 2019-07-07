@@ -2,8 +2,8 @@
   <table class="index-table text-left">
     <thead *ngIf="collection.length > 0">
     <tr>
-      <th *ngFor="let headerName of tableConfig.headerNames" class="text-left">
-        <i *ngIf="headerName" class="fa fa-sort"></i>{{headerName}}
+      <th [ngClass]="{'d-none d-sm-table-cell':config.hideInResponsive}" *ngFor="let config of tableConfig.headersConfig" class="text-left">
+        <i *ngIf="headerName" class="fa fa-sort"></i>{{config.title}}
       </th>
       <th *ngIf="tableConfig.hasActions"></th>
     </tr>
@@ -30,7 +30,7 @@
           </span>
         </div>
       </td>
-      <td class="text-left" *ngFor="let r of tableConfig.rowColumnsConfig">
+      <td [ngClass]="{'d-none d-sm-table-cell':r.hideInResponsive}" class="text-left" *ngFor="let r of tableConfig.rowColumnsConfig">
 
         <div [class]="r.classSelector ? r.classSelector(item[r.propertyName]) : ''" *ngIf="r.manipulationMethod">
           {{r.manipulationMethod(item[r.propertyName])}}

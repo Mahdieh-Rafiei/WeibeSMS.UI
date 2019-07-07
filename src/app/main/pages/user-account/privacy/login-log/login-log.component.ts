@@ -3,7 +3,6 @@ import {ActivatedRoute} from '@angular/router';
 import {LoginLogInterface} from './models/login-log.interface';
 import {PrivacyService} from '../privacy.service';
 import {TableConfigInterface} from '../../../../../shared/component/table/models/table-config.interface';
-import {RowColumnConfigInterface} from '../../../../../shared/component/table/models/row-column-config.interface';
 import {ItemsLoginLogInterface} from './models/items-login-log.interface';
 import {PagingModel} from '../../../../../shared/component/table/models/paging-model';
 
@@ -19,7 +18,14 @@ export class LoginLogComponent implements OnInit {
   tableConfig: TableConfigInterface = {
     rowColumnsConfig: [],
     pagingModel: new PagingModel(),
-    headerNames: ['Id', 'Device', 'Location', 'Date time']
+    // headerNames: ['Id', 'Device', 'Location', 'Date time']
+    headersConfig: [{
+      title: 'Id',
+      hideInResponsive: false
+    }, {title: 'Device', hideInResponsive: false}, {title: 'Location', hideInResponsive: false}, {
+      title: 'Date time',
+      hideInResponsive: false
+    }]
   };
 
   constructor(private route: ActivatedRoute,

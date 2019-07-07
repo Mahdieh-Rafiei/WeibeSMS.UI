@@ -36,7 +36,12 @@ export class SenderIdComponent implements OnInit {
   senderNames: SenderIdInterface[];
 
   tableConfig: TableConfigInterface = {
-    headerNames: ['Order', 'Sender name', 'Create date', 'Status'],
+    headersConfig: [
+      {hideInResponsive: false, title: 'Order'},
+      {hideInResponsive: false, title: 'Sender name'},
+      {hideInResponsive: false, title: 'Create date'},
+      {hideInResponsive: true, title: 'Status'},
+    ],
     rowColumnsConfig: [],
     hasRemoveButton: true,
     hasActions: true,
@@ -102,6 +107,7 @@ export class SenderIdComponent implements OnInit {
       this.newSenderName.title = payload;
       this.userAccountService.addSenderName(payload)
         .subscribe(res => {
+          console.log(res);
           const addedItem: SenderIdInterface = {
             creationDateTime: new Date().getTime() / 1000,
             id: res.data,
@@ -115,6 +121,7 @@ export class SenderIdComponent implements OnInit {
   }
 
   removeSenderName(index, item: SenderIdInterface) {
+    debugger;
     this.openDeleteDialog('480px', 'auto', '', {
       modalType: 'deleteSenderId',
       modalHeader: 'Delete Sender Name',
@@ -148,9 +155,10 @@ export class SenderIdComponent implements OnInit {
   }
 
   generateRowColumns() {
-    this.tableConfig.rowColumnsConfig.push({propertyName: 'title'});
-    this.tableConfig.rowColumnsConfig.push({propertyName: 'creationDateTime', isDateTime: true});
+    this.tableConfig.rowColumnsConfig.push({propertyName: 'title',hideInResponsive: false});
+    this.tableConfig.rowColumnsConfig.push({propertyName: 'creationDateTime',hideInResponsive: true, isDateTime: true});
     this.tableConfig.rowColumnsConfig.push({
+      hideInResponsive: false,
       buttonConfig: {
         classSelector: (value: SenderIdInterface) => {
           return value.isValid ? 'green-btn' : 'yellow-btn';

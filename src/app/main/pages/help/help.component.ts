@@ -17,6 +17,9 @@ import {NavigationService} from "../../../shared/component/animation/navigation.
 export class HelpComponent implements OnInit {
     @ViewChild('sidenav') sidenav: MatSidenav;
 
+    collapse:boolean =true;
+
+
     close() {
         this.sidenav.close();
     }
@@ -38,5 +41,6 @@ export class HelpComponent implements OnInit {
     open() {
         this.sidenav.open();
     }
+
 
 }

@@ -26,7 +26,10 @@ export class UserEventComponent implements OnInit {
     hasActions: true,
     hasRemoveButton: true,
     hasAddOrUpdateButton: true,
-    headerNames: ['Id', 'Title']
+      headersConfig: [
+          {hideInResponsive: false, title: 'Id'},
+          {hideInResponsive: false, title: 'Title'},
+      ]
   };
 
   filterDataModel = new FilterDataModel();
@@ -117,6 +120,6 @@ export class UserEventComponent implements OnInit {
   }
 
   generateRowColumns() {
-    this.tableConfig.rowColumnsConfig.push({propertyName: 'name'});
+    this.tableConfig.rowColumnsConfig.push({propertyName: 'name', hideInResponsive: false});
   }
 }
