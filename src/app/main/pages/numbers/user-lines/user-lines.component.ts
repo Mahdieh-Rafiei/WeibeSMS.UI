@@ -13,7 +13,7 @@ import {SummaryCountryInterface} from './models/summary-country.interface';
 @Component({
   selector: 'app-buy-numbers-list',
   templateUrl: './user-lines.component.html',
-  styleUrls: ['./user-lines.scss']
+  styleUrls: ['./user-lines.component.scss']
 })
 
 export class UserLinesComponent implements OnInit {

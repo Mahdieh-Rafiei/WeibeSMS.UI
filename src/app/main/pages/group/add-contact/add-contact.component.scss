@@ -1,19 +1,17 @@
-.add-contact-tab{
-  background-color: #ffffff;
-  padding: 15px 15px 0;
-  border-bottom: 1px solid #e2e5ec;
-  border-radius: .4rem .4rem 0 0;
+@import "../../../../../assets/style/components/variables";
+.tab-div{
+  display: block;
 }
 
-.add-contact-div {
-  padding: 15px;
+.tab-div {
   svg{
     margin: 0 auto;
     display: block;
     height: 85px;
+    cursor: pointer;
   }
 }
 .chang-fill{
-  fill:#1DC9B7;
+  fill: $green;
 }
 
