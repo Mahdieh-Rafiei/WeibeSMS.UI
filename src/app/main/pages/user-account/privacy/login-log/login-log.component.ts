@@ -19,7 +19,11 @@ export class LoginLogComponent implements OnInit {
   tableConfig: TableConfigInterface = {
     rowColumnsConfig: [],
     pagingModel: new PagingModel(),
-    headerNames: ['Id', 'Device', 'Location', 'Date time']
+      headersConfig: [
+          {hideInResponsive: false, title: 'Id'},
+          {hideInResponsive: false, title: 'Title'},
+          {hideInResponsive: false, title: 'Recipient'},
+      ]
   };
 
   constructor(private route: ActivatedRoute,
