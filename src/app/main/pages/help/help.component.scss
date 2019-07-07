@@ -59,8 +59,11 @@ i.fa.fa-times {
   border: 1px solid $yellow !important;
   border-radius: .4rem !important;
   padding: 20px !important;
-  img {
+  img.pdf {
     width: 100px;
+  }
+  img.video {
+    width: 150px;
   }
 }
 
