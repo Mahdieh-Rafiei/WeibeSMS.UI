@@ -25,17 +25,17 @@
     </div>
   </div>
   <div class="country-number" *ngIf="selectedLine">
-    <div class="country-number-div form-group mt-4 mb-4 pt-3">
+    <div class="country-number-div form-group mt-4 mb-4 pt-3 border-top">
       <h5 class="yellow-text">Country Number Monthly</h5>
     </div>
     <div class="row">
 
       <div *ngIf="sharedService.getCurrentUserInfo().credit >= selectedLine.cost" class="col-md-3">
-        <div class="country-number-section">
-          <p class="pb-2">Setup Fee: <span>{{selectedLine.cost}}$</span></p>
-          <p class="pb-2">Recurring Fee: <span>{{selectedLine.cost}}$ (Every 1 month)</span>
+        <div class="country-number-section p-3 border-radius border">
+          <p class="pb-2 mobile-num font-weight-bold">Setup Fee: <span class="font-weight-light">{{selectedLine.cost}}$</span></p>
+          <p class="pb-2 mobile-num font-weight-bold">Recurring Fee: <span class="font-weight-light">{{selectedLine.cost}}$ (Every 1 month)</span>
           </p>
-          <p class="pb-2">Inbound SMS Fee: <span>0.02$</span></p>
+          <p class="pb-2 mobile-num font-weight-bold">Inbound SMS Fee: <span class="font-weight-light">0.02$</span></p>
           <mat-checkbox [(ngModel)]="hasAutoExtension"><span class="ml-2">auto extension</span></mat-checkbox>
           <div class="country-number-btn text-center mt-4">
             <button (click)="buy('line')" class="light-green-btn">Buy with your Balance</button>
@@ -45,10 +45,10 @@
       <!--TODO-->
       <div *ngIf="sharedService.getCurrentUserInfo().credit < selectedLine.cost" class="col-md-3">
         <div class="country-number-section">
-          <p class="pb-2">Setup Fee: <span>{{selectedLine.cost}}$</span></p>
-          <p class="pb-2">Recurring Fee: <span>{{selectedLine.cost}}$ (Every 1 month)</span>
+          <p class="pb-2 mobile-num font-weight-bold">Setup Fee: <span class="font-weight-light">{{selectedLine.cost}}$</span></p>
+          <p class="pb-2 mobile-num font-weight-bold">Recurring Fee: <span class="font-weight-light">{{selectedLine.cost}}$ (Every 1 month)</span>
           </p>
-          <p class="pb-2">Inbound SMS Fee: <span>0.02$</span></p>
+          <p class="pb-2 mobile-num font-weight-bold">Inbound SMS Fee: <span class="font-weight-light">0.02$</span></p>
           <mat-checkbox [(ngModel)]="hasAutoExtension"><span class="ml-2">auto extension</span></mat-checkbox>
           <!--TODO: checkbox-->
           <div class="country-number-btn text-center mt-4">

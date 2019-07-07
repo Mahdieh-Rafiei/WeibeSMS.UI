@@ -1,4 +1,4 @@
-<div>
+<div class="single-ticket">
     <div class="col-md-12 warning-box form-group" *ngIf="ticket && isClosed">
         <p>support request closed. u can open that with sending reply.</p>
     </div>
@@ -22,8 +22,10 @@
         </div>
         <div class="row rtl-div">
             <div class="col-md-1 text-center profile-pic float-right form-group">
-                <img src="../../../../../assets/images/user.jpg" alt=""
-                     class="profile-picture img-thumbnail img-circle">
+                <!--<img src="../../../../../assets/images/user.jpg" alt=""-->
+                     <!--class="profile-picture img-thumbnail img-circle">-->
+                <img *ngIf="sharedService.getCurrentUserInfo().imageUrl" 
+                     class="profile-picture img-thumbnail img-circle" [src]="sharedService.getCurrentUserInfo().imageUrl" alt="">
             </div>
             <div class="col-md-8 form-group">
                 <p class="date-author">
@@ -61,7 +63,6 @@
             </div>
         </div>
     </div>
-
     <div *ngIf="isReplyMode" class="div-section">
         <angular-editor [(ngModel)]="replyText"></angular-editor>
       <div class="text-left">

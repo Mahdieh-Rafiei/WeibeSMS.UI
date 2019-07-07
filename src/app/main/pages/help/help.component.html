@@ -19,9 +19,9 @@
                 <div class="col-12 border-bottom pb-3 pt-3" id="accordionExample">
                     <div class="title-collapse" id="headingOne">
                         <p class="font-weight-bold" data-toggle="collapse"
-                           data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                           data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne" (click)="collapse=!collapse" >
                             developer
-                            <span class="float-right"><i class="fa fa-plus-circle red-text"></i></span>
+                            <span class="fa float-right" [ngClass]="{'fa-minus-circle red-text': collapse, 'fa-plus-circle green-text': !collapse}"></span>
                         </p>
                     </div>
                     <div id="collapseOne" class="collapse show" aria-labelledby="headingOne"
@@ -31,21 +31,21 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-12 border-bottom pb-3 pt-3" id="accordionExample2">
-                    <div class="title-collapse" id="headingTwo">
-                        <p class="font-weight-bold" data-toggle="collapse"
-                           data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseOne">
-                            detail
-                            <span class="float-right"><i class="fa fa-minus-circle green-text"></i></span>
-                        </p>
-                    </div>
-                    <div id="collapseTwo" class="collapse show" aria-labelledby="headingTwo"
-                         data-parent="#accordionExample2">
-                        <div class="">
-                            Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry
-                        </div>
-                    </div>
-                </div>
+                <!--<div class="col-12 border-bottom pb-3 pt-3" id="accordionExample2">-->
+                    <!--<div class="title-collapse" id="headingTwo">-->
+                        <!--<p class="font-weight-bold" data-toggle="collapse"-->
+                           <!--data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseOne">-->
+                            <!--detail-->
+                            <!--<span class="fa float-right" [ngClass]="{'fa-minus-circle red-text': collapse, 'fa-plus-circle green-text': !collapse}"></span>-->
+                        <!--</p>-->
+                    <!--</div>-->
+                    <!--<div id="collapseTwo" class="collapse show" aria-labelledby="headingTwo"-->
+                         <!--data-parent="#accordionExample2">-->
+                        <!--<div class="">-->
+                            <!--Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry-->
+                        <!--</div>-->
+                    <!--</div>-->
+                <!--</div>-->
             </div>
             <div class="row text-center" dir="ltr">
                 <div class="col-12 video-text border-bottom pb-3">

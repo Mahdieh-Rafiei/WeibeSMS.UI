@@ -1,19 +1,11 @@
-.div-section {
-  border-radius: 0 0 .4rem .4rem;
-  padding: 1rem
-}
-
-.download {
-  text-decoration: underline;
-  cursor: pointer;
-}
-
-.title {
-  i {
-    animation: move-forward 1s infinite ease-in;
+.tab-section {
+  .title {
+    i {
+      animation: move-forward 1s infinite ease-in;
+    }
   }
-}
 
-.ngx-file-drop__content {
-  display: block !important;
+  .ngx-file-drop__content {
+    display: block !important;
+  }
 }

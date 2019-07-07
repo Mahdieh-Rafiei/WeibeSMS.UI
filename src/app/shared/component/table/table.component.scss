@@ -79,3 +79,15 @@ table input[type=checkbox] {
 i.fa.fa-sort {
   margin-right: 5px;
 }
+
+i.fa.fa-cog.yellow-text{
+  cursor: pointer;
+}
+
+.fa-cog{
+  font-size: 20px;
+  animation: turn 1.5s linear infinite;
+}
+.fa-cog:hover:active{
+  animation: step-end;
+}
