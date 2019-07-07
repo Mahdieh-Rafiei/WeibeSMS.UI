@@ -1,9 +1,10 @@
 import {RowColumnConfigInterface} from './row-column-config.interface';
 import {PagingModel} from './paging-model';
+import {HeaderConfigInterface} from "./header-config.interface";
 
 export interface TableConfigInterface {
   rowColumnsConfig: RowColumnConfigInterface[];
-  headerNames: string[];
+  headersConfig: HeaderConfigInterface[];
   pagingModel?: PagingModel;
 
   hasActions?: boolean;
