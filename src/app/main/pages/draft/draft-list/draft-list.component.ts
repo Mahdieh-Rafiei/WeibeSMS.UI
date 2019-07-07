@@ -12,108 +12,113 @@ import {Router} from '@angular/router';
 import {FilterDataModel} from '../../../../shared/component/filter/filter-data-model';
 
 @Component({
-  selector: 'app-draft-list',
-  templateUrl: './draft-list.component.html',
-  styleUrls: ['./draft-list.component.scss']
+    selector: 'app-draft-list',
+    templateUrl: './draft-list.component.html',
+    styleUrls: ['./draft-list.component.scss']
 })
 
 export class DraftListComponent implements OnInit {
 
-  drafts: ItemsDraftInterface[] = [];
-  tableConfig: TableConfigInterface = {
-    pagingModel: new PagingModel(),
-    hasRemoveButton: true,
-    hasAddOrUpdateButton: true,
-    hasShowButton: false,
-    hasActions: true,
-    rowColumnsConfig: [],
-    headerNames: ['Id', 'Name', 'Message', 'Send action']
-  };
+    drafts: ItemsDraftInterface[] = [];
+    tableConfig: TableConfigInterface = {
+        pagingModel: new PagingModel(),
+        hasRemoveButton: true,
+        hasAddOrUpdateButton: true,
+        hasShowButton: false,
+        hasActions: true,
+        rowColumnsConfig: [],
+        headersConfig: [
+            {hideInResponsive: false, title: 'Id'},
+            {hideInResponsive: false, title: 'Name'},
+            {hideInResponsive: false, title: 'Message'},
+            {hideInResponsive: false, title: 'Send action'},
+        ]
+    };
 
-  filterDataModel = new FilterDataModel();
-  phrase = '';
+    filterDataModel = new FilterDataModel();
+    phrase = '';
 
-  constructor(private draftService: DraftService,
-              private dialog: MatDialog,
-              private notificationService: NotificationService,
-              private router: Router) {
-  }
+    constructor(private draftService: DraftService,
+                private dialog: MatDialog,
+                private notificationService: NotificationService,
+                private router: Router) {
+    }
 
-  ngOnInit() {
-    this.getAllDrafts();
-    this.generateRowColumns();
-  }
+    ngOnInit() {
+        this.getAllDrafts();
+        this.generateRowColumns();
+    }
 
-  getAllDrafts() {
-    this.draftService.getAllDrafts(this.tableConfig.pagingModel.pageNumber,
-      this.tableConfig.pagingModel.pageSize, this.phrase)
-      .subscribe((res: DraftInterface) => {
-        this.drafts = res.data.items;
-        this.tableConfig.pagingModel.totalItemsCount = res.data.totalItemsCount;
-      });
-  }
+    getAllDrafts() {
+        this.draftService.getAllDrafts(this.tableConfig.pagingModel.pageNumber,
+            this.tableConfig.pagingModel.pageSize, this.phrase)
+            .subscribe((res: DraftInterface) => {
+                this.drafts = res.data.items;
+                this.tableConfig.pagingModel.totalItemsCount = res.data.totalItemsCount;
+            });
+    }
 
-  removeDraft(index, draft) {
-    this.openDeleteDialog('480px', 'auto', '', {
-      modalType: 'deleteDraft',
-      modalHeader: 'Delete Draft',
-      modalText: 'are you sure to remove this draft?',
-      id: draft.id,
-      index
-    });
-  }
+    removeDraft(index, draft) {
+        this.openDeleteDialog('480px', 'auto', '', {
+            modalType: 'deleteDraft',
+            modalHeader: 'Delete Draft',
+            modalText: 'are you sure to remove this draft?',
+            id: draft.id,
+            index
+        });
+    }
 
-  openDeleteDialog(width, height, panelClass, data): void {
-    const dialogRef = this.dialog.open(DialogComponent, {
-      width,
-      height,
-      panelClass,
-      data
-    });
+    openDeleteDialog(width, height, panelClass, data): void {
+        const dialogRef = this.dialog.open(DialogComponent, {
+            width,
+            height,
+            panelClass,
+            data
+        });
 
-    dialogRef.afterClosed()
-      .subscribe(result => {
-        if (result && result.remove) {
-          if (result.remove.modalType === 'deleteDraft') {
-            this.draftService.removeDraft(result.remove.data.id)
-              .subscribe((res: RemoveDraftInterface) => {
-                this.drafts.splice(result.remove.data.index, 1);
-                this.notificationService.success('Draft removed successfully', '');
-              });
-          }
-        }
-      });
-  }
+        dialogRef.afterClosed()
+            .subscribe(result => {
+                if (result && result.remove) {
+                    if (result.remove.modalType === 'deleteDraft') {
+                        this.draftService.removeDraft(result.remove.data.id)
+                            .subscribe((res: RemoveDraftInterface) => {
+                                this.drafts.splice(result.remove.data.index, 1);
+                                this.notificationService.success('Draft removed successfully', '');
+                            });
+                    }
+                }
+            });
+    }
 
-  getData(event) {
-    this.phrase = event;
-    this.getAllDrafts();
-  }
+    getData(event) {
+        this.phrase = event;
+        this.getAllDrafts();
+    }
 
-  getFilterData(e:FilterDataModel){
-    this.tableConfig.pagingModel.pageSize = e.pageSize;
-    this.getAllDrafts();
-  }
+    getFilterData(e: FilterDataModel) {
+        this.tableConfig.pagingModel.pageSize = e.pageSize;
+        this.getAllDrafts();
+    }
 
-  generateRowColumns() {
-    this.tableConfig.rowColumnsConfig.push({propertyName: 'title'});
-    this.tableConfig.rowColumnsConfig.push({propertyName: 'messageText', hasSummaryDisplay: true});
-    this.tableConfig.rowColumnsConfig.push({
-      buttonConfig: {
-        classSelector: (value) => {
-          return 'light-blue-btn';
-        },
-        innerHTMLSelector: (value) => {
-          return 'simple';
-        },
-        action: (value) => {
-          this.router.navigateByUrl('/send-message');
-        }
-      }
-    });
-  }
+    generateRowColumns() {
+        this.tableConfig.rowColumnsConfig.push({propertyName: 'title', hideInResponsive: false,});
+        this.tableConfig.rowColumnsConfig.push({propertyName: 'messageText', hideInResponsive: false, hasSummaryDisplay: true});
+        this.tableConfig.rowColumnsConfig.push({hideInResponsive: false,
+            buttonConfig: {
+                classSelector: (value) => {
+                    return 'light-blue-btn';
+                },
+                innerHTMLSelector: (value) => {
+                    return 'simple';
+                },
+                action: (value) => {
+                    this.router.navigateByUrl('/send-message');
+                }
+            }
+        });
+    }
 
-  showDetail(e) {
-    this.router.navigateByUrl(`/draft/${e.id}`);
-  }
+    showDetail(e) {
+        this.router.navigateByUrl(`/draft/${e.id}`);
+    }
 }
