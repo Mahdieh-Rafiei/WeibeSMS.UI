@@ -6,8 +6,8 @@ import {DataCountryInterface} from '../../../../../shared/models/data-country.in
 import {SendVerificationCodeInterface} from '../../../../../auth/login/models/send-verification-code.interface';
 import {UserAccountService} from '../../user-account.service';
 import {ChangeNumberInterface} from './models/change-number.interface';
-import {DashboardInfoInterface} from '../../../../../auth/login/models/dashboard-info.interface';
 import {UtilityService} from '../../../../../shared/utility.service';
+import {UserInfoInterface} from '../../../../../auth/login/models/user-info.interface';
 
 @Component({
   selector: 'app-change-number',
@@ -22,7 +22,7 @@ export class ChangeNumberComponent implements OnInit {
   countryPrefix;
   countryFlag;
   mobileValue;
-  currentUserInfo: DashboardInfoInterface;
+  currentUserInfo: UserInfoInterface;
   isTried = false;
   oldMobileEntered = true;
   isCorrectMobile = true;

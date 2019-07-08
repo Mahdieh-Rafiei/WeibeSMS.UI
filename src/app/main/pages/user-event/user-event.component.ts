@@ -106,7 +106,6 @@ export class UserEventComponent implements OnInit {
         } else if (result && result.editUserEvent) {
           this.userEvents[result.editUserEvent.index].name = result.editUserEvent.name;
         }
-
       });
   }
 

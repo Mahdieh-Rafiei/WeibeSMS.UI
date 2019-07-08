@@ -85,7 +85,6 @@ export class ForgotPasswordComponent implements OnInit {
   }
 
   changeMobile(mobile: string) {
-    debugger;
     this.setMobileValue();
     this.isCorrectMobile = this.utilityService.isMobile(this.mobileValue);
     this.countries.forEach(item => mobile === item.prefixNumber ? this.selectCountry(2, item) : null);
@@ -132,7 +131,6 @@ export class ForgotPasswordComponent implements OnInit {
       this.showSpinner = true;
       this.forgotPasswordService.sendVerificationCode(payload)
         .subscribe(res => {
-            debugger;
             if (res.data.codeIsExists) {
               this.notificationService.info('Use the last verification code', '');
             }
@@ -150,7 +148,6 @@ export class ForgotPasswordComponent implements OnInit {
             this.isTried = true;
             this.showSpinner = false;
             if (err.error.Message === '4') {
-              console.log(err);
               this.step = 2;
               setTimeout(() => {
                 this.verificationCodePart1Element.nativeElement.focus();
@@ -165,7 +162,6 @@ export class ForgotPasswordComponent implements OnInit {
   keySendVerificationCode(event) {
 
     if (event.key === 'Enter') {
-      console.log(event);
       this.sendVerificationCode();
     }
   }
@@ -233,7 +229,6 @@ export class ForgotPasswordComponent implements OnInit {
     this.forgotPasswordService.verify(payload)
       .subscribe(res => {
         this.showSpinner = false;
-        console.log(res);
         this.step = 3;
         localStorage.setItem('k-v-f', res.data);
         this.verifyKey = res.data;
@@ -295,26 +290,21 @@ export class ForgotPasswordComponent implements OnInit {
 
       case 1:
         this.verificationCodePart2Element.nativeElement.focus();
-        console.log(this.verificationCodePart1);
         break;
 
       case 2:
         this.verificationCodePart3Element.nativeElement.focus();
-        console.log(this.verificationCodePart2);
         break;
 
       case 3:
         this.verificationCodePart4Element.nativeElement.focus();
-        console.log(this.verificationCodePart3);
         break;
 
       case 4:
         this.verificationCodePart5Element.nativeElement.focus();
-        console.log(this.verificationCodePart4);
         break;
 
       case 5:
-        console.log(this.verificationCodePart5);
     }
     if (this.verificationCodePart1 && this.verificationCodePart2 && this.verificationCodePart3 &&
       this.verificationCodePart4 && this.verificationCodePart5) {

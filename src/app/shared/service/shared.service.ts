@@ -4,8 +4,8 @@ import {ApiService} from '../api.service';
 import {CityInterface} from '../models/city.interface';
 import {CacheObject} from '../models/cache-object';
 import {CountryInterface} from '../models/country.interface';
-import {DashboardInfoInterface} from '../../auth/login/models/dashboard-info.interface';
 import {DataCountryInterface} from '../models/data-country.interface';
+import {UserInfoInterface} from '../../auth/login/models/user-info.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -30,7 +30,7 @@ export class SharedService {
     return this.as.get(url, true);
   }
 
-  setUserInfo(userInfo: DashboardInfoInterface) {
+  setUserInfo(userInfo: UserInfoInterface) {
     this._cacheObject.currentUserInfo = userInfo;
     localStorage.setItem('cache-object', JSON.stringify(this._cacheObject));
   }
@@ -40,7 +40,7 @@ export class SharedService {
     localStorage.setItem('cache-object', JSON.stringify(this._cacheObject));
   }
 
-  getCurrentUserInfo(): DashboardInfoInterface {
+  getCurrentUserInfo(): UserInfoInterface {
     return this._cacheObject.currentUserInfo;
   }
 

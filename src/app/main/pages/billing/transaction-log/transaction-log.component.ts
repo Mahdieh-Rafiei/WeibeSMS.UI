@@ -33,7 +33,6 @@ export class TransactionLogComponent implements OnInit {
     constructor(private billingService: BillingService,
                 private transactionTypeTranslatorPipe: TransactionTypeTranslatorPipe) {
     }
-
     ngOnInit() {
         this.filterDataModel.fromToDate = true;
         this.filterDataModel.transactionTypes = [

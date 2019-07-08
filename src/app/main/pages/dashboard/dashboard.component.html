@@ -1,92 +1,105 @@
-<div class="alert-box-default">
-  <span>Update your Info</span> <span><i class="fa fa-times"></i></span>
-</div>
-<div class="alert-box-default">
-  <span>Set up Billing Address</span> <span><i class="fa fa-times"></i></span>
+<div *ngIf="!sharedService.getCurrentUserInfo().hasBillingAddress && !billingAddressNotifCloseSelected"
+     class="div-section mb-3">
+    <span>Set up Billing Address</span><span (click)="billingAddressNotifCloseSelected = true"><i
+        class="fa fa-times"></i></span>
+    <a [routerLink]="['billing/billing-address']"> Update billing info</a>
 </div>
 
 <div class="div-section">
-  <div class="col-12 sms-sent-month form-group">
-    <div class="row">
-      <div class="col-12 col-md-6 form-group">
-        <div class="text-left report-title"><h4>SMS sent this month</h4></div>
-      </div>
-      <div class="col-12 col-md-6 form-group">
-        <div class="text-right report-date"><h4>2019/08/05</h4></div>
-      </div>
+    <div class="col-12 sms-sent-month form-group">
+        <div class="row">
+            <div class="col-12 col-md-6 form-group">
+                <div class="text-left report-title"><h4>Sent SMS in this month <span class="fo-3" [innerText]="today | date"></span> </h4></div>
+            </div>
+        </div>
+        <div class="box-chart">
+            <div class="row pt-3">
+                <div class="col-12 col-md-7 box-chart-right">
+                    <app-bar-chart *ngIf="barChartData.length > 0 && barChartData[0].data.length > 0"
+                                   [barChartLabels]="barChartLabels"
+                                   [barChartData]="barChartData">
+                    </app-bar-chart>
+                    <div class="col-12">
+                        <div class="row">
+                            <div class="col-md-6 text-left fo-3 gray-text">Last 7 days</div>
+                            <div class="col-md-6 text-right fo-3 gray-text">Last update a few months ago <i class="fa fa-redo"></i> </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-md-5 box-chart-left">
+                    <div class="row">
+                        <div class="col-12 col-md-6 form-group report-box mt-4">
+                            <p class="fo-5 pb-2 fo-6">Today</p>
+                            <div class="row daily-report">
+                                <div class="col-md-6">
+                                    <p class="green-text">{{dashboardInfoInterface ?
+                                        dashboardInfoInterface.succeededSmsCountToday : 0}} <i
+                                                class="fa fa-arrow-up"></i></p>
+                                </div>
+                                <div class="col-md-6">
+                                    <p class="red-text">{{dashboardInfoInterface ?
+                                        dashboardInfoInterface.failedSmsCountToday : 0}} <i
+                                                class="fa fa-arrow-down"></i></p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12 col-md-6 form-group report-box mt-4">
+                            <p class="fo-5 pb-2 fo-6">Yesterday</p>
+                            <div class="row daily-report">
+                                <div class="col-md-6">
+                                    <p class="green-text">{{dashboardInfoInterface ?
+                                        dashboardInfoInterface.succeededSmsCountYesterday :
+                                        0}} <i
+                                                class="fa fa-arrow-up"></i></p>
+                                </div>
+                                <div class="col-md-6">
+                                    <p class="red-text">{{dashboardInfoInterface ?
+                                        dashboardInfoInterface.failedSmsCountYesterday :
+                                        0}} <i
+                                                class="fa fa-arrow-down"></i></p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12 col-md-6 form-group report-box mt-3">
+                            <p class="fo-5 pb-2 fo-6">Last 7 day</p>
+                            <div class="row daily-report">
+                                <div class="col-md-6">
+                                    <p class="green-text">{{dashboardInfoInterface ?
+                                        dashboardInfoInterface.succeededSmsCountLast7Days :
+                                        0}} <i
+                                                class="fa fa-arrow-up"></i></p>
+                                </div>
+                                <div class="col-md-6">
+                                    <p class="red-text">{{dashboardInfoInterface ?
+                                        dashboardInfoInterface.failedSmsCountLast7Days :
+                                        0}} <i
+                                                class="fa fa-arrow-down"></i></p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12 col-md-6 form-group report-box mt-3">
+                            <p class="fo-5 pb-2 fo-6">This month</p>
+                            <div class="row daily-report">
+                                <div class="col-md-6">
+                                    <p class="green-text">{{dashboardInfoInterface ?
+                                        dashboardInfoInterface.succeededSmsCountThisMonth :
+                                        0}} <i
+                                                class="fa fa-arrow-up"></i></p>
+                                </div>
+                                <div class="col-md-6">
+                                    <p class="red-text">{{dashboardInfoInterface ?
+                                        dashboardInfoInterface.failedCountThisMonth : 0}} <i
+                                                class="fa fa-arrow-down"></i></p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12 report-section text-right">
+                            <a [routerLink]="['/sms-report/list']">View Report <i class="fa fa-arrow-right"></i> </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-    <div class="box-chart">
-      <div class="row">
-        <div class="col-12 col-md-8 box-chart-right form-group">
-          <app-bar-chart *ngIf="barChartData.length > 0 && barChartData[0].data.length > 0" [barChartLabels]="barChartLabels"
-          [barChartData]="barChartData">
-
-          </app-bar-chart>
-        </div>
-
-        <div class="col-12 col-md-4 box-chart-left form-group">
-          <div class="row">
-            <div class="col-12 col-md-6 form-group">
-              <div class="daily-report">
-                <h4>Today</h4>
-                <h1>3</h1>
-              </div>
-            </div>
-            <div class="col-12 col-md-6 form-group">
-              <div class="daily-report">
-                <h4>Yesterday</h4>
-                <h1>0</h1>
-              </div>
-            </div>
-            <div class="col-12 col-md-6 form-group">
-              <div class="daily-report">
-                <h4>Last 7 Day</h4>
-                <h1>0</h1>
-              </div>
-            </div>
-            <div class="col-12 col-md-6 form-group">
-              <div class="daily-report">
-                <h4>This Month</h4>
-                <h1>0</h1>
-              </div>
-            </div>
-          </div>
-        </div>
-
-      </div>
-    </div>
-  </div>
-  <div class="activity">
-    <div class="row ">
-      <div class="col-12 col-md-6 form-group">
-        <div class="activity-box ">
-          <p>
-            Send acvtivy
-          </p>
-          <p>
-            date: from-to
-          </p>
-          <p>
-            incloude : Outbound - Bounced
-          </p>
-        </div>
-        <div id="chartContainer" style="height: 370px; width: 100%;">
-        </div>
-      </div>
-      <div class="col-12 col-md-6 form-group">
-        <div class="activity-box">
-          <p>
-            Credit acvtivy
-          </p>
-          <p>
-            date: from-to
-          </p>
-          <p>
-            include + -
-          </p>
-        </div>
-      </div>
-    </div>
-  </div>
 </div>
 

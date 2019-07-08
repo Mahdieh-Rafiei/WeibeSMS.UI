@@ -29,7 +29,7 @@ export class ConfigService {
     this.globalUrl = 'http://192.168.1.90:8070/api/';
 
     this.errorMessages.set(1, 'Entered values are wrong!');
-    this.errorMessages.set(2, 'Get verification code again please!');
+    this.errorMessages.set(2, 'Get verification coded again please!');
     // this.errorMessages.set(3,'Entered values are wrong!');
     this.errorMessages.set(4, 'Please use the last verification code!');
     this.errorMessages.set(5, 'Verification code is wrong!');

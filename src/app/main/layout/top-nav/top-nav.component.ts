@@ -2,11 +2,12 @@ import {Component, Injectable, OnInit} from '@angular/core';
 import {ConfigService} from '../../../shared/config.service';
 import {AuthenticationService} from '../../../auth/login/authentication.service';
 import {UserNotificationService} from '../../pages/user-notification/user-notification.service';
-import _ from 'node_modules/lodash/lodash.js';
 import {NotificationResponseInterface} from '../../pages/user-notification/list/models/notification-response.interface';
-import {GetUserNotificationInterface} from '../../pages/user-notification/list/models/get-user-notification.interface';
-import {DataService} from "../../../shared/service/data.service";
+import {DataService} from '../../../shared/service/data.service';
 import {SharedService} from '../../../shared/service/shared.service';
+import {DataGetUserNotificationInterface} from '../../pages/user-notification/list/models/data-get-user-notification.interface';
+import {MatDialog} from '@angular/material';
+import {QuickShowNotificationComponent} from './quick-show-notification/quick-show-notification.component';
 
 @Component({
   selector: 'app-top-nav',
@@ -17,23 +18,23 @@ import {SharedService} from '../../../shared/service/shared.service';
 @Injectable()
 export class TopNavComponent implements OnInit {
 
-    userNotifications: any[];
-    showNotification: boolean = false;
-    selectedNotification: any;
-    openHelp: boolean = false;
+  userNotifications: DataGetUserNotificationInterface[];
+  openHelp: boolean = false;
 
-    constructor(public configService: ConfigService,
-                private userNotificationService: UserNotificationService,
-                private authService: AuthenticationService,
-                private ds: DataService,
-                private sharedService:SharedService) {
-    }
+  constructor(public configService: ConfigService,
+              private userNotificationService: UserNotificationService,
+              private authService: AuthenticationService,
+              private ds: DataService,
+              private sharedService: SharedService,
+              private dialog: MatDialog) {
+  }
 
   ngOnInit() {
 
-    this.userNotificationService.getAllUserNotifications(1,5,0,
-      2147483647,null,'')
+    this.userNotificationService.getAllUserNotifications(1, 3, 0,
+      2147483647, false, '')
       .subscribe((res: NotificationResponseInterface) => {
+        console.log(res.data);
         this.userNotifications = res.data.items;
       });
   }
@@ -52,13 +53,24 @@ export class TopNavComponent implements OnInit {
     this.authService.logOut();
   }
 
-  preparingShowNotification(notification) {
-    this.selectedNotification = notification;
-    this.showNotification = true;
-    _.remove(this.userNotifications, un => un.id === notification.id);
-    this.userNotificationService.getUserNotification(notification.id)
-      .subscribe((res: GetUserNotificationInterface) => {
-        console.log(res.data);
+  showNotification(data: DataGetUserNotificationInterface, index) {
+    this.openDialog('480px', 'auto', '', {data, index});
+  }
+
+  openDialog(width, height, panelClass, data): void {
+    const dialogRef = this.dialog.open(QuickShowNotificationComponent, {
+      width,
+      height,
+      panelClass,
+      data
+    });
+
+    dialogRef.afterClosed()
+      .subscribe(result => {
+        debugger;
+        if (result) {
+          this.userNotifications.splice(result.index,1);
+        }
       });
   }
 

@@ -3,6 +3,7 @@ import {ActivatedRoute, Router} from '@angular/router';
 import {DataService} from '../../../shared/service/data.service';
 import {ConfigService} from '../../../shared/config.service';
 import {animate, style, transition, trigger} from '@angular/animations';
+import {SharedService} from '../../../shared/service/shared.service';
 
 @Component({
   selector: 'app-sidebar',
@@ -117,7 +118,8 @@ export class SidebarComponent implements OnInit {
   constructor(private router: Router,
               private ds: DataService,
               private route: ActivatedRoute,
-              private configService: ConfigService) {
+              private configService: ConfigService,
+              private sharedService:SharedService) {
     this.navigateRoute(window.location.pathname);
     this.menuItems.forEach(item => {
         if (item.subMenu) {
@@ -133,6 +135,7 @@ export class SidebarComponent implements OnInit {
 
   ngOnInit() {
     this.showMenu = '';
+    this.menuItems[0].title = `Hi ${this.sharedService.getCurrentUserInfo().firstName}`;
   }
 
   // subMenu

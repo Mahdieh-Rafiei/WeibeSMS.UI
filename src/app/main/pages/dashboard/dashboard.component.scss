@@ -1,31 +1,30 @@
-.alert-box-default {
-  margin-bottom: 10px;
+@import "../../../../assets/style/components/variables";
+.div-section {
   span:nth-child(2) {
     float: right;
-    color: #929598;
+    color: $gray;
   }
 }
-
-.sms-sent-month {
-  border: 1px solid #c2c2c2;
-  border-radius: 4px;
-  h4 {
-    font-weight: 600;
+.report-box{
+  .daily-report{
+    background-color: $purple;
+    border-radius: .4rem;
+    padding: 60px 35px;
+    margin-right: 2px;
+    .col-md-6{
+      text-align: center;
+      p{
+        font-size: 20px;
+      }
+    }
   }
 }
-
-.activity-box {
-  border: 1px solid #c2c2c2;
-  border-radius: 4px;
-  padding: 1rem;
+.report-section{
+  a{
+    color: $gray;
+    font-size: 14px;
+  }
 }
-
-.daily-report {
-  background-color: #cdf3f2;
-  border: 1px solid #d1d1d1;
-  padding: 1rem;
-}
-
 
 
 

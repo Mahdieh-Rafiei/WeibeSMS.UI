@@ -15,7 +15,7 @@ export class UserNotificationService {
     getAllUserNotifications(pageNumber: number, pageSize: number, fromDate: number, toDate: number, notificationStatus: any, phrase: string): Observable<NotificationResponseInterface> {
         let url = `Notification?pageNumber=${pageNumber}&pageSize=${pageSize}&fromDate=${fromDate}&toDate=${toDate}&searchValue=${phrase}`;
 
-        if (notificationStatus && notificationStatus != 0) {
+        if (notificationStatus != null) {
             url += `&isRead=${notificationStatus}`;
         }
         return this.apiService.get(url, true);

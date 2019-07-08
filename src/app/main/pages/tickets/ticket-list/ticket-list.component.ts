@@ -80,11 +80,10 @@ export class TicketListComponent implements OnInit {
         this.getAllTickets();
     }
 
-    getFilterData(event: FilterDataModel) {
-        debugger;
-        this.tableConfig.pagingModel.pageSize = event.pageSize ? event.pageSize : 10;
-        this.getAllTickets();
-    }
+  getFilterData(event: FilterDataModel) {
+    this.tableConfig.pagingModel.pageSize = event.pageSize ? event.pageSize : 10;
+    this.getAllTickets();
+  }
 
     generateRowConfigs() {
         this.tableConfig.rowColumnsConfig.push({
