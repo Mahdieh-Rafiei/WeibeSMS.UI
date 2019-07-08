@@ -1,7 +1,7 @@
-import {ItemsDraftInterface} from './items-draft.interface';
+import {DraftInterface} from './draft.interface';
 
 export interface DataDraftInterface {
-  items: ItemsDraftInterface[];
+  items: DraftInterface[];
   pageNumber: number;
   pageSize: number;
   totalItemsCount: number;

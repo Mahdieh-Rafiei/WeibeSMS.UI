@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {SendMessageService} from '../send-message.service';
 
 @Component({
   selector: 'app-send-message-second-step',
@@ -7,9 +8,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SendMessageSecondStepComponent implements OnInit {
 
-  constructor() { }
+  constructor(private sendMessageService:SendMessageService) { }
 
   ngOnInit() {
+    this.sendMessageService.step = 2;
   }
 
 }

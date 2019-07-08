@@ -2,14 +2,13 @@ import {Component, OnInit} from '@angular/core';
 import {DraftService} from '../draft.service';
 import {ActivatedRoute, Router} from '@angular/router';
 import {NotificationService} from '../../../../shared/notification.service';
-import {DraftInterface} from './models/draft.interface';
-import {AddDraftResponseInterface} from './models/add-draft-response.interface';
-import {AddDraftInterface} from './models/add-draft.interface';
-import {GetDraftInterface} from './models/get-draft.interface';
-import {EditDraftResponseInterface} from './models/edit-draft-response.interface';
-import {EditDraftInterface} from './models/edit-draft.interface';
 import {errorAnimation} from '../../../../shared/component/animation/error-animation';
-import {UtilityService} from '../../../../shared/utility.service';
+import {DraftInterface} from './models/draft.interface';
+import {AddDraftInterface} from './models/add-draft.interface';
+import {AddDraftResponseInterface} from './models/add-draft-response.interface';
+import {EditDraftInterface} from './models/edit-draft.interface';
+import {EditDraftResponseInterface} from './models/edit-draft-response.interface';
+import {GetDraftResponseInterface} from './models/get-draft-response.interface';
 
 @Component({
   selector: 'app-draft',
@@ -22,29 +21,21 @@ import {UtilityService} from '../../../../shared/utility.service';
 export class SingleDraftComponent implements OnInit {
 
   id: number;
-  draft: any = {
-    id: 0,
+  draft: DraftInterface = {
+    messageText: '',
     title: '',
-    messageText: ''
+    id: 0
   };
 
-  drafts: any[];
-  smsCount = 0;
   isAddMode = false;
-  localSmsLen = 0;
-  container = 160;
-  totalSize = 1377;
   titleValue = false;
-  messageValue = false;
-  hasDoubleChar = false;
-  maxLenError = false;
   saveTried = false;
+  isMaxLenValid = true;
 
   constructor(private draftService: DraftService,
               private activatedRoute: ActivatedRoute,
               private notificationService: NotificationService,
-              private router: Router,
-              private utilityService: UtilityService) {
+              private router: Router) {
   }
 
   ngOnInit() {
@@ -52,35 +43,12 @@ export class SingleDraftComponent implements OnInit {
     if (strId == null) {
       this.isAddMode = true;
     } else {
-      this.id = parseInt(strId);
-      this.getDraft(this.id, true);
+
+      this.draftService.getDraft(parseInt(strId))
+        .subscribe((res: GetDraftResponseInterface) => {
+          this.draft = res.data;
+        });
     }
-
-    this.getAllDrafts();
-  }
-
-  test() {
-    alert('sasas');
-  }
-
-  getDraft(id, useTitle: boolean) {
-    this.draftService.getDraft(id)
-      .subscribe((res: GetDraftInterface) => {
-        this.draft.messageText = res.data.messageText;
-        this.draft.title = useTitle ? res.data.title : this.draft.title;
-        this.draft.id = res.data.id;
-        this.onMessageTextChange();
-        this.titleValue = true;
-        this.messageValue = true;
-      });
-  }
-
-  getAllDrafts() {
-    this.draftService.getAllDrafts(1, 1000, '') // TODO: correct pagination
-    // TODO: use an api to resolve only names
-      .subscribe((res: DraftInterface) => {
-        this.drafts = res.data.items;
-      });
   }
 
   addOrUpdateDraft() {
@@ -92,14 +60,14 @@ export class SingleDraftComponent implements OnInit {
       return;
     }
 
-    if (!this.isMaxLenValid()) {
+    if (!this.isMaxLenValid) {
       return;
     }
 
     if (this.isAddMode) {
       const payload: AddDraftInterface = {
-        Title: this.draft.title,
-        MessageText: this.draft.messageText
+        title: this.draft.title,
+        messageText: this.draft.messageText
       };
       this.draftService.addDraft(payload)
         .subscribe((res: AddDraftResponseInterface) => {
@@ -108,8 +76,8 @@ export class SingleDraftComponent implements OnInit {
         });
     } else {
       const payload: EditDraftInterface = {
-        Title: this.draft.title,
-        MessageText: this.draft.messageText
+        title: this.draft.title,
+        messageText: this.draft.messageText
       };
       this.draftService.modifyDraft(this.draft.id, payload)
         .subscribe((res: EditDraftResponseInterface) => {
@@ -119,81 +87,16 @@ export class SingleDraftComponent implements OnInit {
     }
   }
 
-  addSegment(type: number) {
-    let expression = '';
-
-    if (!this.isMaxLenValid()) {
-      return;
-    }
-
-    switch (type) {
-      case 1: {
-        expression = '#FirstName#';
-        break;
-      }
-
-      case 2: {
-        expression = '#LastName#';
-        break;
-      }
-
-      case 3: {
-        expression = '#Mobile#';
-        break;
-      }
-    }
-    this.draft.messageText = this.draft.messageText.concat(` ${expression}`);
-    this.onMessageTextChange();
-  }
-
-  onMessageTextChange() {
-    this.hasDoubleChar = this.utilityService.containsNonLatinCodepoints(this.draft.messageText);
-    this.totalSize = this.hasDoubleChar ? 603 : 1377;
-    const repeatingContainerSize = this.hasDoubleChar ? 67 : 153;
-    const firstContainerSize = this.hasDoubleChar ? 70 : 160;
-    const secondContainerSize = this.hasDoubleChar ? 134 : 306;
-    const thirdContainerSize = this.hasDoubleChar ? 201 : 459;
-
-    const len = this.draft.messageText.length;
-    this.container = repeatingContainerSize;
-    this.localSmsLen = len;
-
-    if (len == 0) {
-      this.smsCount = 0;
-      this.container = firstContainerSize;
-    } else if (len <= firstContainerSize) {
-      this.smsCount = 1;
-      this.container = firstContainerSize;
-    } else if (len > firstContainerSize && len <= secondContainerSize) {
-      this.smsCount = 2;
-      this.container = secondContainerSize - firstContainerSize;
-    } else if (len > secondContainerSize && len < thirdContainerSize) {
-      this.smsCount = 3;
-
-    } else {
-      this.smsCount = 3 + Math.floor((len - thirdContainerSize) / repeatingContainerSize);
+  setDraft(draft: DraftInterface) {
+    debugger;
+    this.draft.messageText = draft.messageText;
+    if (this.isAddMode || this.draft.title.length == 0) {
+      this.draft.title = draft.title;
     }
   }
 
-
-  selectTemplate(event) {
-    this.getDraft(event.target.value, false);
+  setMessageText(messageText){
+    this.draft.messageText = messageText;
   }
 
-  isMaxLenValid() {
-    let isValid = true;
-    if (this.hasDoubleChar) {
-      if (this.draft.messageText.length > 603) {
-        this.maxLenError = true;
-        isValid = false;
-      }
-    } else {
-      if (this.draft.messageText.length >= 1377) {
-        this.maxLenError = true;
-        isValid = false;
-      }
-    }
-
-    return isValid;
-  }
 }

@@ -47,7 +47,7 @@ export class SidebarComponent implements OnInit {
       subMenu: [{
         title: 'Simple',
         icon: 'circle',
-        link: '/send-message'
+        link: '/send-message/first-step'
       },
         {
           title: 'Schedule',

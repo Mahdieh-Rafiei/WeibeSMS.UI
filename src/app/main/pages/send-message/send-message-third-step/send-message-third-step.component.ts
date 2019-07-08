@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {SendMessageService} from '../send-message.service';
 
 @Component({
   selector: 'app-send-message-third-step',
@@ -7,9 +8,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SendMessageThirdStepComponent implements OnInit {
 
-  constructor() { }
-
-  ngOnInit() {
+  constructor(private sendMessageService: SendMessageService) {
   }
 
+  ngOnInit() {
+    this.sendMessageService.step = 3;
+  }
 }

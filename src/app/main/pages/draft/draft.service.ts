@@ -1,12 +1,12 @@
 import {Injectable} from '@angular/core';
 import {ApiService} from '../../../shared/api.service';
 import {Observable} from 'rxjs';
-import {DraftInterface} from './draft/models/draft.interface';
 import {AddDraftInterface} from './draft/models/add-draft.interface';
 import {AddDraftResponseInterface} from './draft/models/add-draft-response.interface';
-import {GetDraftInterface} from './draft/models/get-draft.interface';
 import {EditDraftResponseInterface} from './draft/models/edit-draft-response.interface';
 import {RemoveDraftInterface} from './draft/models/remove-draft.interface';
+import {GetDraftResponseInterface} from './draft/models/get-draft-response.interface';
+import {GetDraftsResponseInterface} from './draft/models/get-drafts-response.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -16,12 +16,12 @@ export class DraftService {
   constructor(private apiService: ApiService) {
   }
 
-  getAllDrafts(pageNumber: number, pageSize: number, phrase: string): Observable<DraftInterface> {
+  getAllDrafts(pageNumber: number, pageSize: number, phrase: string): Observable<GetDraftsResponseInterface> {
     const url = `DraftMessage?pageNumber=${pageNumber}&pageSize=${pageSize}&searchValue=${phrase}`;
     return this.apiService.get(url, true);
   }
 
-  getDraft(id: number): Observable<GetDraftInterface> {
+  getDraft(id: number): Observable<GetDraftResponseInterface> {
     const url = `DraftMessage/${id}`;
     return this.apiService.get(url, true);
   }
