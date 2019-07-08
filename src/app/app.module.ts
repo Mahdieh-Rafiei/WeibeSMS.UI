@@ -48,7 +48,7 @@ import {HelpComponent} from './main/pages/help/help.component';
     DialogComponent,
     //TODO: move this c to groupModule
     ConfirmationAddContactFromFileComponent,
-    HelpComponent
+    HelpComponent,
   ],
   entryComponents: [
     DialogComponent,

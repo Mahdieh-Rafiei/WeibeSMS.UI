@@ -1,6 +1,5 @@
-import {AfterContentInit, AfterViewChecked, ChangeDetectorRef, Component, OnInit} from '@angular/core';
+import {AfterViewChecked, ChangeDetectorRef, Component, OnInit} from '@angular/core';
 import {SendMessageService} from './send-message.service';
-import {MessageModel} from './models/message.model';
 import {Router} from '@angular/router';
 
 @Component({
@@ -11,8 +10,8 @@ import {Router} from '@angular/router';
 export class SendMessageComponent implements OnInit, AfterViewChecked {
 
   constructor(private sendMessageService: SendMessageService,
-              private changeDetectorRef :ChangeDetectorRef,
-              private router : Router) {
+              private changeDetectorRef: ChangeDetectorRef,
+              private router: Router) {
   }
 
   ngAfterViewChecked() {
@@ -23,18 +22,19 @@ export class SendMessageComponent implements OnInit, AfterViewChecked {
   }
 
   goToNextStep() {
-    if (this.sendMessageService.step == 1)
-    if (this.sendMessageService.messageModel &&
-      this.sendMessageService.messageModel.isMaxLenValid &&
-      this.sendMessageService.messageModel.messageText.length > 0) {
-      this.router.navigateByUrl(`send-message/second-step`);
-    }else {
+    if (this.sendMessageService.step == 1) {
+      if (this.sendMessageService.messageModel &&
+        this.sendMessageService.messageModel.isMaxLenValid &&
+        this.sendMessageService.messageModel.messageText.length > 0) {
+        this.router.navigateByUrl(`send-message/second-step`);
+      } else {
 
+      }
     }
   }
 
-  goToPreviousStep(){
-    if (this.sendMessageService.step == 2){
+  goToPreviousStep() {
+    if (this.sendMessageService.step == 2) {
       this.router.navigateByUrl(`send-message/first-step`);
     }
   }

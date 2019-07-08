@@ -4,7 +4,6 @@ import {NotificationService} from '../../../../../shared/notification.service';
 import {GroupService} from '../../group.service';
 import _ from 'node_modules/lodash/lodash.js';
 import {ActivatedRoute, Router} from '@angular/router';
-import {UtilityService} from '../../../../../shared/utility.service';
 import {GroupListInterface} from '../../group-list/models/group-list.interface';
 import {GetAllContactGroupInterface} from './models/get-all--contact-group.interface';
 import {ContactGroupMoveCopyResponseInterface} from './models/contact-group-move-copy-response.interface';
@@ -21,7 +20,6 @@ export class ImportContactFromOtherListsComponent implements OnInit {
   groupPageSize: number = 100;
   contactPageSize: number = 10;
   groups = [];
-  ContactTotalItemsCount: number;
   clickedGroup: any;
   phrase = '';
   contactsSelectedFromGrid: Map<number, number[]> = new Map<number, number[]>();
@@ -32,13 +30,15 @@ export class ImportContactFromOtherListsComponent implements OnInit {
               private groupService: GroupService,
               private activatedRoute: ActivatedRoute,
               private notificationService: NotificationService,
-              private router: Router,
-              private utilityService: UtilityService) {
+              private router: Router) {
   }
 
   ngOnInit() {
     this.contactService.addMode = 'list';
-    this.groupId = parseInt(this.activatedRoute.parent.snapshot.paramMap.get('groupId'));
+    const strGroupId =this.activatedRoute.parent.snapshot.paramMap.get('groupId');
+    if (strGroupId){
+      this.groupId = parseInt(strGroupId);
+    }
     this.getAllGroupList();
   }
 
