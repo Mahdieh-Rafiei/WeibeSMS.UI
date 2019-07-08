@@ -1,25 +1,8 @@
 <div class="col-12">
-    <div class="row">
-        <div class="col-md-8 p2-3">
-            <textarea placeholder="Message |" rows="9" class="content-box"></textarea>
-            <div class="count-sms">
-                <span>{{localSmsLen}} / {{container}}</span> | <span>{{smsCount}} SMS</span>
-            </div>
-        </div>
-        <div class="col-md-4 pl-3">
-            <div class="content-box personalize">
-                <h5>Personalize</h5>
-                <p class="yellow-text fo-2 font-weight-bold">* To use the field dynamically</p>
-                <p class="green-text fo-1 pt-3 pb-2"><i class="fa fa-plus-circle"></i> Name</p>
-                <p class="green-text fo-1 pb-2"><i class="fa fa-plus-circle"></i> Surname</p>
-                <p class="green-text fo-1 pb-3"><i class="fa fa-plus-circle"></i> Phone number</p>
-            </div>
-            <div class="template">
-                <select class="content-box">
-                    <option [innerText]="d.Title" [value]="d.Id" *ngFor="let d of drafts">
-                    </option>
-                </select>
-            </div>
-        </div>
-    </div>
+  <app-message-template-builder [messageText]="sendMessageService.messageModel.messageText"
+                                (draftLoaded)="setDraft($event)"
+                                (messageTextChanged)="setMessageText($event)"
+                                (maxLenValidated)="sendMessageService.messageModel.isMaxLenValid = $event">
+
+  </app-message-template-builder>
 </div>

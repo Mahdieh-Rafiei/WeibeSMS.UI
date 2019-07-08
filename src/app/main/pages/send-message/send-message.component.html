@@ -1,25 +1,21 @@
 <div class="btn-section">
-    <div class="row">
-        <div class="col-12 col-md-6 col-sm-6 col-xs-6 text-left">
-            <button class="previous-btn"><i class="fa fa-times-circle"></i> Exit</button>
-        </div>
-        <div class="col-12 col-md-6 col-sm-6 col-xs-6 text-right">
-            <button class="green-btn"> Next</button>
-        </div>
+  <div class="row">
+    <div class="col-md-12 text-right">
+      <button class="green-btn" (click)="goToNextStep()"> Next</button>
     </div>
+    <div *ngIf="sendMessageService.step != 1" class="col-md-1 text-left">
+      <button class="green-btn" (click)="goToPreviousStep()"> Previous</button>
+    </div>
+  </div>
 </div>
+
 <div class="col-12 div-section">
-
-        <div class="steps-send text-center">
-            <a class="active" [routerLink]="['first-step']">1.Content</a>
-            <span class="active"><i class="fa fa-arrow-circle-right"></i></span>
-            <a [routerLink]="['second-step']">2.Originator & Recipients</a>
-            <span><i class="fa fa-arrow-circle-right"></i></span>
-            <!--<a [routerLink]="['schedule']">3.Send Config</a>-->
-            <a [routerLink]="['event']">3.Send Config</a>
-            <span><i class="fa fa-arrow-circle-right"></i></span>
-            <a class="current" [routerLink]="['third-step']">4.Verify & Send</a>
-        </div>
-        <router-outlet></router-outlet>
-
+  <div class="steps-send text-center">
+    <a [ngClass]="{'active':sendMessageService.step == 1}">1.Content</a>
+    <span [ngClass]="{'active':sendMessageService.step == 1}"><i class="fa fa-arrow-circle-right"></i></span>
+    <a [ngClass]="{'active':sendMessageService.step == 2}">2.Originator & Recipients</a>
+    <span [ngClass]="{'active':sendMessageService.step == 2}"><i class="fa fa-arrow-circle-right"></i></span>
+    <a [ngClass]="{'active':sendMessageService.step == 3}" class="current">3.Verify & Send</a>
+  </div>
+  <router-outlet></router-outlet>
 </div>

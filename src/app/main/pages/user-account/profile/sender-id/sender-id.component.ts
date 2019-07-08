@@ -121,7 +121,6 @@ export class SenderIdComponent implements OnInit {
   }
 
   removeSenderName(index, item: SenderIdInterface) {
-    debugger;
     this.openDeleteDialog('480px', 'auto', '', {
       modalType: 'deleteSenderId',
       modalHeader: 'Delete Sender Name',

@@ -1,15 +1,15 @@
 import {Component, OnInit} from '@angular/core';
 import {DraftService} from '../draft.service';
-import {DraftInterface} from '../draft/models/draft.interface';
 import {RemoveDraftInterface} from '../draft/models/remove-draft.interface';
 import {DialogComponent} from '../../../../shared/component/dialog/dialog.component';
 import {MatDialog} from '@angular/material';
 import {NotificationService} from '../../../../shared/notification.service';
-import {ItemsDraftInterface} from '../draft/models/items-draft.interface';
 import {TableConfigInterface} from '../../../../shared/component/table/models/table-config.interface';
 import {PagingModel} from '../../../../shared/component/table/models/paging-model';
 import {Router} from '@angular/router';
 import {FilterDataModel} from '../../../../shared/component/filter/filter-data-model';
+import {DraftInterface} from '../draft/models/draft.interface';
+import {GetDraftsResponseInterface} from '../draft/models/get-drafts-response.interface';
 
 @Component({
     selector: 'app-draft-list',
@@ -19,7 +19,7 @@ import {FilterDataModel} from '../../../../shared/component/filter/filter-data-m
 
 export class DraftListComponent implements OnInit {
 
-    drafts: ItemsDraftInterface[] = [];
+    drafts: DraftInterface[] = [];
     tableConfig: TableConfigInterface = {
         pagingModel: new PagingModel(),
         hasRemoveButton: true,
@@ -52,7 +52,7 @@ export class DraftListComponent implements OnInit {
     getAllDrafts() {
         this.draftService.getAllDrafts(this.tableConfig.pagingModel.pageNumber,
             this.tableConfig.pagingModel.pageSize, this.phrase)
-            .subscribe((res: DraftInterface) => {
+            .subscribe((res: GetDraftsResponseInterface) => {
                 this.drafts = res.data.items;
                 this.tableConfig.pagingModel.totalItemsCount = res.data.totalItemsCount;
             });

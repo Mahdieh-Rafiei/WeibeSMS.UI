@@ -29,7 +29,6 @@ export class QuickShowNotificationComponent implements OnInit {
   }
 
   ngOnInit() {
-    debugger;
     this.userNotificationService.getUserNotification(this.notification.id)
       .subscribe((res: GetUserNotificationInterface) => {
         this.isSuccess = true;
