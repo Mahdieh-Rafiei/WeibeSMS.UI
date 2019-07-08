@@ -6,54 +6,55 @@ import {SharedService} from '../../../shared/service/shared.service';
 import {DashboardInfoInterface} from './models/dashboard-info.interface';
 
 @Component({
-  selector: 'app-dashboard',
-  templateUrl: './dashboard.component.html',
-  styleUrls: ['./dashboard.component.scss']
+    selector: 'app-dashboard',
+    templateUrl: './dashboard.component.html',
+    styleUrls: ['./dashboard.component.scss']
 })
 export class DashboardComponent implements OnInit {
 
-  barChartLabels: Label[] = [];
-  barChartData: ChartDataSets[] = [];
-  today = Date();
-  dashboardInfoInterface: DashboardInfoInterface;
+    barChartLabels: Label[] = [];
+    barChartData: ChartDataSets[] = [];
+    today = Date();
+    dashboardInfoInterface: DashboardInfoInterface;
+    billingAddressNotifCloseSelected = false;
 
-  constructor(private dashboardService: DashboardService,
-              private sharedService: SharedService) {
-  }
-
-
-  ngOnInit() {
-    //TODO: remove localstorage and cache service
-
-    localStorage.removeItem('k-l');
-    localStorage.removeItem('k-f');
-    localStorage.removeItem('k-u');
+    constructor(private dashboardService: DashboardService,
+                private sharedService: SharedService) {
+    }
 
 
-    this.dashboardService.getDashboardInfo()
-      .subscribe(res => {
+    ngOnInit() {
+        //TODO: remove localstorage and cache service
 
-        console.log(res.data);
-        this.dashboardInfoInterface = res.data;
-        this.dashboardInfoInterface.smsSentWeeklyReportViews.forEach(res => {
-          this.barChartLabels.push(res.dayName);
-        });
+        localStorage.removeItem('k-l');
+        localStorage.removeItem('k-f');
+        localStorage.removeItem('k-u');
 
-        this.barChartData.push({
-            data: [], label: 'Succeeded'
-          },
-          {data: [], label: 'Failed'});
-        let failedSmsCount = [];
-        let succeededSmsCount = [];
 
-        for (let i = 0; res.data.smsSentWeeklyReportViews.length > i; i++) {
-          const x = res.data.smsSentWeeklyReportViews[i];
-          failedSmsCount.push(x.failedSmsCount);
-          succeededSmsCount.push(x.succeededSmsCount);
-        }
+        this.dashboardService.getDashboardInfo()
+            .subscribe(res => {
 
-        this.barChartData[0].data = succeededSmsCount;
-        this.barChartData[1].data = failedSmsCount;
-      });
-  }
+                console.log(res.data);
+                this.dashboardInfoInterface = res.data;
+                this.dashboardInfoInterface.smsSentWeeklyReportViews.forEach(res => {
+                    this.barChartLabels.push(res.dayName);
+                });
+
+                this.barChartData.push({
+                        data: [], label: 'Succeeded'
+                    },
+                    {data: [], label: 'Failed'});
+                let failedSmsCount = [];
+                let succeededSmsCount = [];
+
+                for (let i = 0; res.data.smsSentWeeklyReportViews.length > i; i++) {
+                    const x = res.data.smsSentWeeklyReportViews[i];
+                    failedSmsCount.push(x.failedSmsCount);
+                    succeededSmsCount.push(x.succeededSmsCount);
+                }
+
+                this.barChartData[0].data = succeededSmsCount;
+                this.barChartData[1].data = failedSmsCount;
+            });
+    }
 }
