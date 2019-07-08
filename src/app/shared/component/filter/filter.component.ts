@@ -1,11 +1,12 @@
-import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output, ViewEncapsulation} from '@angular/core';
 import {FormGroup} from '@angular/forms';
 import {FilterDataModel} from './filter-data-model';
 
 @Component({
     selector: 'app-filter',
     templateUrl: './filter.component.html',
-    styleUrls: ['./filter.component.scss']
+    styleUrls: ['./filter.component.scss'],
+    encapsulation: ViewEncapsulation.None
 })
 export class FilterComponent implements OnInit {
 
