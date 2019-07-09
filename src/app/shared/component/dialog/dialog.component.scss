@@ -10,3 +10,28 @@
 //div#cdk-overlay-4{
 //  width: 480px !important;
 //}
+
+
+/*----------------------------------Modal---------------------------*/
+.modal-back {
+  background: #0000007a;
+}
+
+.modal-header {
+  min-height: 45px;
+}
+
+.modal-btn {
+  font-size: 15px;
+  margin-top: 0;
+  box-shadow: none;
+}
+
+@media (min-width: 768px) {
+  .modal-dialog {
+    width: 600px;
+    margin: 160px auto;
+  }
+}
+
+/*--------------------------------End Modal--------------------------*/

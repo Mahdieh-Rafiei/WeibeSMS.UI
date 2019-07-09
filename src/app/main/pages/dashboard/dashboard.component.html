@@ -19,17 +19,11 @@
                                    [barChartLabels]="barChartLabels"
                                    [barChartData]="barChartData">
                     </app-bar-chart>
-                    <div class="col-12">
-                        <div class="row">
-                            <div class="col-md-6 text-left fo-3 gray-text">Last 7 days</div>
-                            <div class="col-md-6 text-right fo-3 gray-text">Last update a few months ago <i class="fa fa-redo"></i> </div>
-                        </div>
-                    </div>
                 </div>
                 <div class="col-12 col-md-5 box-chart-left">
                     <div class="row">
-                        <div class="col-12 col-md-6 form-group report-box mt-4">
-                            <p class="fo-5 pb-2 fo-6">Today</p>
+                        <div class="col-12 col-md-6 form-group report-box">
+                            <p class="fo-5 pb-2 fo-6 mobile-num">Today</p>
                             <div class="row daily-report">
                                 <div class="col-md-6">
                                     <p class="green-text">{{dashboardInfoInterface ?
@@ -43,8 +37,8 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-12 col-md-6 form-group report-box mt-4">
-                            <p class="fo-5 pb-2 fo-6">Yesterday</p>
+                        <div class="col-12 col-md-6 form-group report-box">
+                            <p class="fo-5 pb-2 fo-6 mobile-num">Yesterday</p>
                             <div class="row daily-report">
                                 <div class="col-md-6">
                                     <p class="green-text">{{dashboardInfoInterface ?
@@ -61,7 +55,7 @@
                             </div>
                         </div>
                         <div class="col-12 col-md-6 form-group report-box mt-3">
-                            <p class="fo-5 pb-2 fo-6">Last 7 day</p>
+                            <p class="fo-5 pb-2 fo-6 mobile-num">Last 7 day</p>
                             <div class="row daily-report">
                                 <div class="col-md-6">
                                     <p class="green-text">{{dashboardInfoInterface ?
@@ -78,7 +72,7 @@
                             </div>
                         </div>
                         <div class="col-12 col-md-6 form-group report-box mt-3">
-                            <p class="fo-5 pb-2 fo-6">This month</p>
+                            <p class="fo-5 pb-2 fo-6 mobile-num">This month</p>
                             <div class="row daily-report">
                                 <div class="col-md-6">
                                     <p class="green-text">{{dashboardInfoInterface ?
@@ -93,7 +87,17 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-12 report-section text-right">
+                    </div>
+                </div>
+                <div class="col-12 report-section">
+                    <div class="row">
+                        <div class="col-md-4 text-left">
+                            Last 7 days
+                        </div>
+                        <div class="col-md-3 text-right">
+                            Last update a few months ago <i class="fa fa-redo"></i>
+                        </div>
+                        <div class="col-md-5 text-right">
                             <a [routerLink]="['/sms-report/list']">View Report <i class="fa fa-arrow-right"></i> </a>
                         </div>
                     </div>
