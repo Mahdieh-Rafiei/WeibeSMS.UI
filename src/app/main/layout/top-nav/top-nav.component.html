@@ -1,7 +1,7 @@
 <nav [ngClass]="{'slim-navbar':configService.sidebarMode=='slim', 'hidden-navbar':configService.sidebarMode=='hidden'}"
      class="navbar navbar-expand-lg fixed-top">
-    <div class="container-fluid no-pad">
-        <div class="col-md-12 navbar-content no-pad">
+    <div class="container-fluid p-0">
+        <div class="col-md-12 navbar-content ">
             <div class="">
                 <a (click)="changeSidebarState()" class="toggle-menu"><i class="fa fa-bars"></i></a>
             </div>
@@ -66,17 +66,14 @@
                 <li class="nav-item">
                     <div class="btn-group language" dropdown>
                         <a mat-button [matMenuTriggerFor]="language">
-                            <img src="../../../../assets/images/flags/1.png" class="center-block img-responsive">
+                            <i class="fa fa-globe center-block img-responsive"></i>
                         </a>
                         <mat-menu #language="matMenu">
-                            <button mat-menu-item [routerLink]="['/profile']">
-                                <i class="fas fa-flag-checkered"></i> en
-                            </button>
-                            <button mat-menu-item [routerLink]="['/change-password']">
-                                <i class="fas fa-flag-checkered"></i> fa
+                            <button mat-menu-item [routerLink]="['/profile']" >
+                                <img src="../../../../assets/images/flags/de.svg" class="language-flag"> German
                             </button>
                             <button mat-menu-item [routerLink]="['/billing-address']">
-                                <i class="fas fa-flag-checkered"></i> fr
+                                <img src="../../../../assets/images/flags/us.svg" class="language-flag"> English
                             </button>
                         </mat-menu>
                     </div>

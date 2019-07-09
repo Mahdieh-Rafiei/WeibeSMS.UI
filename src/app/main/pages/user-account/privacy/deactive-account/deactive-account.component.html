@@ -22,8 +22,6 @@
           <div class="col-12 form-group">
             <textarea [ngClass]="{'border-error' : needDescription && !deActiveForm.controls['description'].value && deActiveForm.controls['description'].touched}"
                       *ngIf="needDescription" class="form-control" formControlName="description" rows="8"></textarea>
-          </div>
-          <div>
             <div class="text-left"
                  *ngIf="needDescription && (((deActiveForm.controls['description'].dirty || deActiveForm.controls['description'].touched) || formDir.submitted))">
               <p class="errorMessage" *ngIf="needDescription && !deActiveForm.controls['description'].value"
