@@ -1,47 +1,64 @@
-.mat-form-field-infix {
-  padding: 0 !important;
-  min-height: unset !important;
-}
-
+//.mat-form-field-infix {
+//  padding: 0 !important;
+//  min-height: unset !important;
+//}
+//
+//.select .mat-form-field-infix {
+//  padding: 0 !important;
+//}
+//
+//.date-picker {
+//  position: relative;
+//}
+//
+//mat-datepicker-toggle.mat-datepicker-toggle {
+//  //position: absolute;
+//  top: -23px;
+//  right: -4px;
+//}
+//
+//.mat-form-field-infix {
+//  padding: 0 !important;
+//  text-align: left;
+//  line-height: 0 !important;
+//  min-width: unset;
+//  height: unset;
+//}
+//
+//.col-md-3.select {
+//  display: inline-flex;
+//}
+//
+//.select span {
+//  line-height: 28px;
+//}
+//
+//.mat-datepicker-toggle {
+//  padding: 11px;
+//}
+//
+//.select-field {
+//  font-size: 15px;
+//}
+//
+//.birthday-field{
+//  padding: 10px !important;
+//}
+//
 .select .mat-form-field-infix {
-  padding: 0 !important;
-}
-
-.date-picker {
+  width: 100%;
+  min-height: unset;
+  padding: unset;
   position: relative;
-}
-
-mat-datepicker-toggle.mat-datepicker-toggle {
-  //position: absolute;
-  top: -23px;
-  right: -4px;
-}
-
-.mat-form-field-infix {
-  padding: 0 !important;
+  border: none;
+  border-radius: unset;
   text-align: left;
-  line-height: 0 !important;
-  min-width: unset;
-  height: unset;
 }
-
-.col-md-3.select {
-  display: inline-flex;
+.select .mat-form-field-infix input{
+  border: 1px solid #ced4da;
+  padding-left: 5px;
 }
-
-.select span {
-  line-height: 28px;
+span.fa.fa-trash, span.fa.fa-plus {
+  cursor: pointer;
+  line-height: 1;
 }
-
-.mat-datepicker-toggle {
-  padding: 11px;
-}
-
-.select-field {
-  font-size: 15px;
-}
-
-.birthday-field{
-  padding: 10px !important;
-}
-

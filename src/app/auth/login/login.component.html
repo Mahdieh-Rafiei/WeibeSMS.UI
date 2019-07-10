@@ -2,7 +2,7 @@
 <div *ngIf="!showSpinner" class="flex-container login">
     <div class="flex-container-child">
         <div class="img-logo text-center">
-            <img src="../../assets/images/LogoLogin.svg" class="center-block img-responsive pb-3">
+            <img src="../../../assets/images/svg/LogoLogin.svg" class="center-block img-responsive pb-3">
         </div>
         <div class="flex-content pt-3">
             <form class="form-content pr-4 pl-4 pb-3" *ngIf="isLoginMode" [formGroup]="signInForm" #formDir="ngForm">
@@ -66,7 +66,7 @@
                     <span class="gray-text fo-2">Create a free account on <span class="weib">Weiß SMS</span>.</span>
                 </div>
                 <div>
-                    <div class="mt-3 mb-2">
+                    <div class="mt-3">
                         <div class="flex-group" [formGroup]="signUpForm">
                             <div class="btn-group">
                                 <button class="form-control dropdown-toggle btn-default btn-select" type="button"
@@ -108,8 +108,7 @@
                     </div>
                 </div>
                 <div>
-                    <button type="submit" (click)="sendVerificationCode()" class="ws-btn login-btn">Register
-                    </button>
+                    <button type="submit" (click)="sendVerificationCode()" class="ws-btn login-btn">Register</button>
                 </div>
                 <div class="text-center">
                     <hr>

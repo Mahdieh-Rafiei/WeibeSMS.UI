@@ -334,7 +334,7 @@ input, select, textarea {
 }
 
 .mat-datepicker-toggle {
-  padding: 8px;
+  padding: 7px;
   border: 1px solid $light-gray;
   border-radius: 3px;
 }
@@ -421,7 +421,7 @@ textarea {
 }
 
 .form-control {
-  height: calc(1.5em + 1.3rem + 2px);
+  //height: calc(1.5em + 1.3rem + 2px);
   font-size: 14px;
 }
 

@@ -70,15 +70,15 @@
       </td>
       <td *ngIf="tableConfig.hasActions" class="td-single text-right actions-container">
         <div class="actions text-right">
-          <a *ngIf="tableConfig.hasRemoveButton" (click)="removeItem(i, item)"><i class="fa fa-trash light-red-btn"></i></a>
-          <a *ngIf="tableConfig.hasAddOrUpdateButton" (click)="editItem(i,item)"> <i
+          <a *ngIf="tableConfig.hasRemoveButton" (click)="removeItem(i, item)" matTooltip="delete"><i class="fa fa-trash light-red-btn"></i></a>
+          <a *ngIf="tableConfig.hasAddOrUpdateButton" (click)="editItem(i,item)" matTooltip="edit"> <i
             class="fa fa-pencil light-green-btn"></i></a>
           <a *ngIf="tableConfig.hasShowButton" (click)="showItem(item)" matTooltip="show"><i
             class="fa fa-eye light-green-btn"></i></a>
         </div>
       </td>
       <td *ngIf="tableConfig.hasManageColumn" class="td-single text-left">
-        <a (click)="manageItem(i,item)"><i class="fa fa-cog yellow-text"></i></a>
+        <a (click)="manageItem(i,item)" matTooltip="manage"><i class="fa fa-cog yellow-text"></i></a>
       </td>
     </tr>
 
