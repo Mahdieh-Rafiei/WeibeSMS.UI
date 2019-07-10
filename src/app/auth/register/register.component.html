@@ -3,7 +3,7 @@
   <div class="flex-container-child">
     <div class="right-box ws-login-box">
       <div class="subject text-left">
-        <img src="../../../assets/images/LogoLogin.svg" class="img-responsive">
+        <img src="../../../assets/images/svg/LogoLogin.svg" class="img-responsive">
         <div class="subject-detail">
           <h4>Lets go!</h4>
           <p class="welcome-text">complete your information to create account.</p>
@@ -212,7 +212,7 @@
             </div>
           </div>
           <div class="col-md-12 privacy">
-            <mat-checkbox (change)="confirm($event)">I have read and agree to Weiß SMS terms and <span
+            <mat-checkbox (change)="confirm($event)">I have read and agree to {{configService.appTitle}} terms and <span
               class="sign-in">conditions</span>
               and the <span class="sign-in">privacy policy</span>.
             </mat-checkbox>

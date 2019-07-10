@@ -1,113 +1,79 @@
 <nav [ngClass]="{'slim-navbar':configService.sidebarMode=='slim', 'hidden-navbar':configService.sidebarMode=='hidden'}"
-     class="navbar navbar-expand-lg fixed-top">
-    <div class="container-fluid no-pad">
-        <div class="col-md-12 navbar-content no-pad">
-            <div class="">
-                <a (click)="changeSidebarState()" class="toggle-menu"><i class="fa fa-bars"></i></a>
+     class="navbar navbar-expand navbar-light topbar static-top">
+    <!--Sidebar Toggle (Topbar) -->
+    <a (click)="changeSidebarState()" class="toggle-menu"><i class="fa fa-bars"></i></a>
+    <!-- Topbar Navbar -->
+    <ul class="navbar-nav ml-auto mr-3">
+        <!--credit-->
+        <li class="nav-item d-none d-xl-block">
+            <div class="credit">
+                <span>Your credits : €{{sharedService.getCurrentUserInfo().credit}}</span>
+                <button [routerLink]="['add-fund/list']" class="light-green-btn">Buy Credit</button>
             </div>
-            <ul class="navbar-nav ml-auto hidden-xs">
-                <li class="nav-item d-none d-xl-block">
-                    <div class="credit">
-                        <span>Your credits : €{{sharedService.getCurrentUserInfo().credit}}</span>
-                        <button [routerLink]="['add-fund/list']" class="light-green-btn">Buy Credit</button>
-                    </div>
-                </li>
-                <!--<li class="nav-item">-->
-                <!--<div class="btn-group guide" dropdown>-->
-                <!--<a mat-button [matMenuTriggerFor]="star">-->
-                <!--<i class="fa fa-star"></i>-->
-                <!--</a>-->
-                <!--<mat-menu #star="matMenu">-->
-                <!--<button mat-menu-item>-->
-                <!--1-->
-                <!--</button>-->
-                <!--<button mat-menu-item>-->
-                <!--2-->
-                <!--</button>-->
-                <!--</mat-menu>-->
-                <!--</div>-->
-                <!--</li>-->
-                <li class="nav-item">
-                    <div class="btn-group guide" dropdown>
-                        <a mat-button (click)="showHelp()">
-                            <i class="fa fa-question-circle"></i>
-                        </a>
-                    </div>
-                </li>
-                <li class="nav-item">
-                    <div class="btn-group notification" dropdown>
-                        <a mat-button [matMenuTriggerFor]="notification">
-                            <i class="fa fa-bell"></i>
-                        </a>
-                        <div class="notification-alarm">
-                            <span class="wave wave-danger"></span>
-                            <span class="dot"></span>
-                        </div>
-                        <mat-menu #notification="matMenu">
-                            <button (click)="showNotification(notification,i)"
-                              *ngFor="let notification of userNotifications,index as i" mat-menu-item>
-                                {{notification.title}}
-                            </button>
-                            <button mat-menu-item>
-                                <a routerLink="../notification">More </a>
-                            </button>
-                        </mat-menu>
-                        <!--<ul *ngIf="userNotifications" id="dropdown-notif" class="dropdown-menu dropdown-profile"-->
-                        <!--role="menu" aria-labelledby="button-notif">-->
-                        <!--<div *ngFor="let un of userNotifications">-->
-                        <!--<li role="menuitem"><a class="dropdown-item" (click)="preparingShowNotification(un)">-->
-                        <!--{{un.title}} </a></li>-->
-                        <!--<li class="divider dropdown-divider"></li>-->
-                        <!--</div>-->
-                        <!--<li role="menuitem"><a class="dropdown-item" routerLink="../notification"> more </a></li>-->
-                        <!--</ul>-->
-                    </div>
-                </li>
-                <li class="nav-item">
-                    <div class="btn-group language" dropdown>
-                        <a mat-button [matMenuTriggerFor]="language">
-                            <img src="../../../../assets/images/flags/1.png" class="center-block img-responsive">
-                        </a>
-                        <mat-menu #language="matMenu">
-                            <button mat-menu-item [routerLink]="['/profile']">
-                                <i class="fas fa-flag-checkered"></i> en
-                            </button>
-                            <button mat-menu-item [routerLink]="['/change-password']">
-                                <i class="fas fa-flag-checkered"></i> fa
-                            </button>
-                            <button mat-menu-item [routerLink]="['/billing-address']">
-                                <i class="fas fa-flag-checkered"></i> fr
-                            </button>
-                        </mat-menu>
-                    </div>
-                </li>
-                <li class="nav-item">
-                    <div class="btn-group profile" dropdown>
-                        <!--<a id="button-basic" dropdownToggle class="dropdown-toggle" aria-controls="dropdown-basic">-->
-                        <a mat-button [matMenuTriggerFor]="profile">
-                            <i *ngIf="!sharedService.getCurrentUserInfo().imageUrl" class="fa fa-user"></i>
-                            <img *ngIf="sharedService.getCurrentUserInfo().imageUrl" style="width: 50px"
-                                 class="img img-circle" [src]="sharedService.getCurrentUserInfo().imageUrl" alt="">
-                        </a>
-                        <mat-menu #profile="matMenu">
-                            <button mat-menu-item [routerLink]="['/profile']"><i class="fa fa-user"></i> Profile
-                            </button>
-                            <button mat-menu-item [routerLink]="['/change-password']"><i class="fa fa-lock"></i>
-                                Change password
-                            </button>
-                            <button mat-menu-item [routerLink]="['/billing-address']"><i class="fa fa-address-book"></i>
-                                Billing address
-                            </button>
-                            <button mat-menu-item (click)="logOut()"><i class="fa fa-power-off"></i> Log out</button>
-
-                            <button mat-menu-item (click)="deleteAccount()"><i class="fa fa-power-off"></i>Delete
-                                account
-                            </button>
-                        </mat-menu>
-                    </div>
-                </li>
-            </ul>
-        </div>
-
-    </div>
+        </li>
+        <!--help-->
+        <li class="nav-item mr-1">
+            <a class="nav-link guide" id="searchDropdown" role="button" data-toggle="dropdown"
+               aria-haspopup="true" aria-expanded="false" (click)="showHelp()">
+                <i class="fa fa-question-circle"></i>
+            </a>
+        </li>
+        <!--notification-->
+        <li class="nav-item dropdown no-arrow mx-1">
+            <a class="nav-link dropdown-toggle notification" href="#" id="alertsDropdown" role="button" data-toggle="dropdown"
+               aria-haspopup="true" aria-expanded="false">
+                <i class="fa fa-bell"></i>
+            </a>
+            <div class="dropdown-list dropdown-menu dropdown-menu-right animated--grow-in "
+                 aria-labelledby="alertsDropdown">
+                <a class="dropdown-item d-flex align-items-center" (click)="showNotification(notification,i)"
+                   *ngFor="let notification of userNotifications,index as i">
+                    {{notification.title}}
+                </a>
+                <a class="dropdown-item d-flex align-items-center" (click)="showNotification(notification,i)"
+                   routerLink="../notification">
+                    More
+                </a>
+            </div>
+        </li>
+        <!--language-->
+        <li class="nav-item dropdown no-arrow mx-1">
+            <a class="nav-link dropdown-toggle language" id="messagesDropdown" role="button" data-toggle="dropdown"
+               aria-haspopup="true" aria-expanded="false">
+                <i class="fa fa-globe center-block img-responsive"></i>
+            </a>
+            <div class="dropdown-menu dropdown-menu-right animated--grow-in mt-0 p-0 language-div" aria-labelledby="userDropdown">
+                <a class="dropdown-item">
+                    <img src="../../../../assets/images/flags/de.svg" class="language-flag"> German
+                </a>
+                <a class="dropdown-item">
+                    <img src="../../../../assets/images/flags/us.svg" class="language-flag"> English
+                </a>
+            </div>
+        </li>
+        <!--profile-->
+        <li class="nav-item dropdown no-arrow">
+            <a class="nav-link dropdown-toggle profile" href="#" id="userDropdown" role="button" data-toggle="dropdown"
+               aria-haspopup="true" aria-expanded="false">
+                <i *ngIf="!sharedService.getCurrentUserInfo().imageUrl" class="fa fa-user"></i>
+                <img *ngIf="sharedService.getCurrentUserInfo().imageUrl" class="img-profile rounded-circle"
+                     [src]="sharedService.getCurrentUserInfo().imageUrl" alt="">
+            </a>
+            <!-- Dropdown - User Information -->
+            <div class="dropdown-menu dropdown-menu-right animated--grow-in profile p-0 mt-0" aria-labelledby="userDropdown">
+                <a class="dropdown-item fo-4" [routerLink]="['/profile']">
+                    <i class="fa fa-user"></i> Profile
+                </a>
+                <a class="dropdown-item fo-4" [routerLink]="['/change-password']">
+                    <i class="fa fa-lock"></i> Change password
+                </a>
+                <a class="dropdown-item fo-4" [routerLink]="['/billing-address']">
+                    <i class="fa fa-address-book"></i> Billing address
+                </a>
+                <a class="dropdown-item fo-4" (click)="logOut()">
+                    <i class="fa fa-power-off"></i> Log out
+                </a>
+            </div>
+        </li>
+    </ul>
 </nav>

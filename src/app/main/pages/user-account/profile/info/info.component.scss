@@ -1,12 +1,25 @@
-.date-picker {
-  .mat-form-field-infix {
-    padding: 0 !important;
-  }
-  .mat-form-field-infix {
-    text-align: left;
-  }
-  input#mat-input-0 {
-    padding-left: 5px;
-    height: calc(1.5em + 0.93rem + 2px) !important;
-  }
+//.date-picker {
+//  .mat-form-field-infix {
+//    padding: 0 !important;
+//  }
+//  .mat-form-field-infix {
+//    text-align: left;
+//  }
+//  input#mat-input-0 {
+//    padding-left: 5px;
+//    height: calc(1.04em + 1.3rem + 2px);
+//  }
+//}
+.select .mat-form-field-infix {
+  width: 100%;
+  min-height: unset;
+  padding: unset;
+  position: relative;
+  border: none;
+  border-radius: unset;
+  text-align: left;
+}
+.select .mat-form-field-infix input{
+  border: 1px solid #ced4da;
+  padding-left: 5px;
 }

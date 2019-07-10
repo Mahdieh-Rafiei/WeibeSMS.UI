@@ -1,36 +1,38 @@
+@import "../components/variables";
+
 .previous-btn {
   background: none;
   border: none;
-  color: #000;
+  color: $black;
   font-weight: 600;
   font-size: 14px;
   line-height: 37px;
 }
 
 .yellow-btn {
-  background-color: #ffb822;
-  border: 1px solid #ffb822;
+  background-color: $yellow;
+  border: 1px solid $yellow;
   border-radius: 4px;
-  color: #ffffff;
+  color: $white;
   padding: 7px 25px;
   font-size: 14px;
   transition: .4s;
 }
 
 .green-btn {
-  background-color: #1dc9b7;
-  border: 1px solid #1dc9b7;
+  background-color: $green;
+  border: 1px solid $green;
   border-radius: 4px;
-  color: #ffffff;
+  color: $white;
   padding: 7px 25px;
   font-size: 14px;
   transition: .4s;
 }
 
 .light-green-btn {
-  background-color: #1dc9b71a;
-  border: 1px solid #e8f9f8;
-  color: #4dd4c6;
+  background-color: $light-green;
+  border: 1px solid $light-green;
+  color: $green;
   border-radius: .25rem !important;
   padding: .5rem .75rem;;
   font-size: 14px;
@@ -38,16 +40,16 @@
 }
 
 .light-green-btn:hover {
-  background-color: #1dc9b7;
-  border-color: #1dc9b7;
-  color: #ffffff;
+  background-color: $green;
+  border-color: $green;
+  color: $white;
   transition: .4s;
 }
 
 .blue-btn {
-  background-color: #5867dd;
-  border: 1px solid #5867dd;
-  color: #ffffff;
+  background-color: $blue;
+  border: 1px solid $blue;
+  color: $white;
   border-radius: .25rem !important;
   padding: .5rem .75rem;;
   font-size: 14px;
@@ -55,9 +57,9 @@
 }
 
 .light-blue-btn {
-  background-color: #e9f3ff;
-  border: 1px solid #e9f3ff;
-  color: #2786fb;
+  background-color: $v-light-blue;
+  border: 1px solid $v-light-blue;
+  color: $light-blue;
   border-radius: .25rem !important;
   padding: .5rem .75rem;;
   font-size: 14px;
@@ -65,14 +67,14 @@
 }
 
 .light-blue-btn:hover {
-  background-color: #2786fb;
-  color: #fff;
+  background-color: $light-blue;
+  color: $white;
 }
 
 .light-yellow-btn {
-  background-color: #fff8e8;
-  border: 1px solid #fff8e8;
-  color: #ffb822;
+  background-color: $light-yellow;
+  border: 1px solid $light-yellow;
+  color: $yellow;
   border-radius: .25rem !important;
   padding: .5rem .75rem;;
   font-size: 14px;
@@ -80,9 +82,9 @@
 }
 
 .light-yellow-btn:hover {
-  background-color: #ffb822;
-  border: 1px solid #ffb822;
-  color: #ffffff;
+  background-color: $yellow;
+  border: 1px solid $yellow;
+  color: $white;
   border-radius: .25rem !important;
   padding: .5rem .75rem;;
   font-size: 14px;
@@ -90,19 +92,19 @@
 }
 
 .red-btn {
-  background-color: #fd397a;
-  border: 1px solid #fd397a;
+  background-color: $red;
+  border: 1px solid $red;
   border-radius: 4px;
-  color: #ffffff;
+  color: $white;
   padding: 7px 25px;
   font-size: 14px;
   transition: .4s;
 }
 
 .light-red-btn {
-  background-color: #f5e2ec;
-  border: 1px solid #f5e2ec;
-  color: #fd397a;
+  background-color: $light-red;
+  border: 1px solid $light-red;
+  color: $red;
   border-radius: .25rem !important;
   padding: .5rem .75rem;;
   font-size: 14px;
@@ -110,16 +112,16 @@
 }
 
 .light-red-btn:hover {
-  background-color: #fd397a;
-  border-color: #fd397a;
-  color: #ffffff;
+  background-color: $red;
+  border-color: $red;
+  color: $white;
   transition: .4s;
 }
 
 .gray-btn {
   background-color: transparent;
-  border: 1px solid #e2e5ec;
-  color: #6c7293;
+  border: 1px solid $light-gray;
+  color: $dark-purple;
   border-radius: .25rem !important;
   padding: .5rem .75rem;;
   font-size: 14px;
@@ -127,18 +129,18 @@
 }
 
 .gray-btn:hover {
-  background-color: #e2e5ec;
+  background-color: $light-gray;
   transition: .4s;
 }
 
 .disable-btn {
-  color: #ffffff;
-  background-color: #a0a7eb;
-  border-color: #a0a7eb;
+  color: $white;
+  background-color: $purple;
+  border-color: $purple;
 }
 
 .ws-btn {
-  background: #5867dd;
+  background: $blue;
   padding: .6rem 2rem;
   cursor: pointer;
   transition: .3s;
@@ -146,12 +148,12 @@
   width: 100%;
   font-size: 15px;
   box-shadow: none;
-  color: #fff;
+  color: $white;
   border-radius: .5rem;
 }
 
 .ws-btn:hover {
-  background: #384ad7;
+  background: $blue;
 }
 
 select.light-blue-btn {
@@ -159,34 +161,47 @@ select.light-blue-btn {
   padding-left: 0;
 }
 
+.trash {
+  background-color: $light-red;
+  border-radius: 4px;
+  padding: 4px 10px;
+  border: 1px solid $light-red;
+  margin-left: 5px;
+}
+
+.trash i {
+  color: $red;
+}
+
+//text
 .red-text {
-  color: #fd397a;
+  color: $red;
 }
 
 .gray-text {
-  color: #a7abc3;
+  color: $gray;
 }
 
 .blue-text {
-  color: #5867dd;
+  color: $blue;
 }
 
 .yellow-text {
-  color: #ffbd3d;
+  color: $yellow;
 }
 
 .green-text {
-  color: #1dc9b7 !important;
+  color: $green !important;
 }
 
 .mobile-num {
-  color: #6c7293;
+  color: $light-black;
 }
 
 .text-white {
-  color: #fff !important;
+  color: $white !important;
 }
 
 .black-text {
-  color: #495057;
+  color: $light-black;
 }

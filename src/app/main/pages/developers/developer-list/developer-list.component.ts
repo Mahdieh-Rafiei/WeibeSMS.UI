@@ -6,8 +6,7 @@ import {MatDialog} from '@angular/material';
 import {DataDeveloperListInterface} from './models/data-developer-list.interface';
 import {ConfigService} from '../../../../shared/config.service';
 import {TableConfigInterface} from '../../../../shared/component/table/models/table-config.interface';
-import {PagingModel} from '../../../../shared/component/table/models/paging-model';
-import {forEach} from '@angular/router/src/utils/collection';
+
 
 @Component({
     selector: 'app-developer-list',

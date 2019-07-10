@@ -1,4 +1,11 @@
+@import "../../../../assets/style/components/variables";
 .input-group-prepend span{
   background-color: #a7abc3;
   color: #ffffff;
+}
+::placeholder{
+  color: $gray;
+}
+.form-control {
+  height: calc(1.5em + 0.75rem + 6px) !important;
 }

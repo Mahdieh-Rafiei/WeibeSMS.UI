@@ -13,11 +13,16 @@ export class ConfigService {
   sidebarMode: string = 'default';
   documentationUrl = '';
 
+  get appTitle(): string {
+    return 'White SMS';
+  }
+
   @Output() authenticationChanged: EventEmitter<boolean> = new EventEmitter<boolean>();
 
   constructor() {
     this.tokenKeyName = 'jwt-sms';
     this.documentationUrl = 'http://localhost:8090/swagger/index.html';
+
 
     this.baseUrl = 'https://localhost:44315/app/api/';
     this.globalUrl = 'https://localhost:44315/api/';
@@ -27,6 +32,7 @@ export class ConfigService {
 
     // this.baseUrl = 'http://192.168.1.90:8070/app/api/';
     // this.globalUrl = 'http://192.168.1.90:8070/api/';
+
 
     this.errorMessages.set(1, 'Entered values are wrong!');
     this.errorMessages.set(2, 'Get verification coded again please!');

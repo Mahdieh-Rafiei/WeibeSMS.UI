@@ -1,5 +1,46 @@
+<<<<<<< HEAD
 <app-select-contacts [groupId]="groupId"
                      [hasOperation]="true">
+=======
+<div class="tab-section">
+    <div class="col-md-12">
+        <div class="title">
+            <h5 class="mb-4">Add Contact</h5>
+        </div>
+        <div class="row">
+            <div class="col-md-3">
+                <div class="border other-list form-group" id="style-1">
+                    <button class="light-yellow-btn text-left">My contact list
+                        <!--<i class="fa fa-angle-down float-right mt-5"></i>-->
+                    </button>
+                    <div>
+                        <div class="mt-3">
+                            <div *ngFor="let g of groups">
+                                <p>
+                                    <mat-checkbox (ngModelChange)="groupCheckedChanged($event,g)"
+                                                  [(ngModel)]="g.isSelected"></mat-checkbox>
+                                    <span class="ml-2" (click)="loadContacts(g)">{{g.groupName}}  ({{g.contactsCount}})  <span class="red-text fo-3 pointer">(show)</span></span>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-9 form-group">
+                <div class="border other-list p-3" id="style-2" >
+                    <div *ngIf="!clickedGroup">
+                        <div class="add-contact-div text-center">
+                            <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                       viewBox="0 0 512 438.3" style="enable-background:new 0 0 512 438.3;" xml:space="preserve">
+                    <style type="text/css">
+                      .st0 {
+                          fill: none;
+                          stroke: #2A2A2A;
+                          stroke-width: 7;
+                          stroke-linecap: round;
+                          stroke-linejoin: round;
+                      }
+>>>>>>> b638267bf1dabfef44f6a935ad9578794148c8f4
 
 </app-select-contacts>
 

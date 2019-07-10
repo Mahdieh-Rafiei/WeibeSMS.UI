@@ -1,9 +1,9 @@
 <div>
     <div class="tab-div">
-        <div class="title-tab no-pad">
+        <div class="title-tab p-o">
             <p [ngClass]="{'active':numberService.mode==='yourNumbers'}" (click)="numberService.mode='yourNumbers'" [routerLink]="['my-lines']">My numbers</p>
         </div>
-        <div class="title-tab no-pad">
+        <div class="title-tab p-o">
             <p [ngClass]="{'active':numberService.mode==='buyNumbers'}" (click)="numberService.mode='buyNumbers'" [routerLink]="['buy-lines']">Buy Numbers</p>
         </div>
     </div>

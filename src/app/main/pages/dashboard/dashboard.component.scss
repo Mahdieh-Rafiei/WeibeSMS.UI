@@ -5,25 +5,31 @@
     color: $gray;
   }
 }
+.box-chart-left, .box-chart-right{
+  //min-height: 420px;
+  //max-height: 420px;
+}
 .report-box{
   .daily-report{
     background-color: $purple;
     border-radius: .4rem;
-    padding: 60px 35px;
+    padding: 30px;
     margin-right: 2px;
+    min-height: 120px;
+    max-height: 120px;
     .col-md-6{
       text-align: center;
+      line-height: 3;
       p{
         font-size: 20px;
       }
     }
   }
 }
-.report-section{
-  a{
-    color: $gray;
-    font-size: 14px;
-  }
+.report-section, a{
+  color: $gray;
+  font-size: 14px;
+  cursor: pointer;
 }
 
 
