@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {AfterViewChecked, ChangeDetectorRef, Component, OnInit} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
 import {ContactService} from './single-add-contact/contact.service';
 
@@ -7,12 +7,16 @@ import {ContactService} from './single-add-contact/contact.service';
   templateUrl: './add-contact.component.html',
   styleUrls: ['./add-contact.component.scss']
 })
-export class AddContactComponent implements OnInit {
+export class AddContactComponent implements OnInit,AfterViewChecked {
   constructor(private activatedRoute: ActivatedRoute,
-              private contactService : ContactService) {
+              private contactService: ContactService,
+              private changeDetectorRef: ChangeDetectorRef) {
   }
 
   ngOnInit() {
-    const id = this.activatedRoute.snapshot.paramMap.get('groupId');
+  }
+
+  ngAfterViewChecked(){
+    this.changeDetectorRef.detectChanges();
   }
 }

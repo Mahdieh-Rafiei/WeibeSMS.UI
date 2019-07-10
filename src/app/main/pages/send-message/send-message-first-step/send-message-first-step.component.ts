@@ -1,7 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {SendMessageService} from '../send-message.service';
 import {Router} from '@angular/router';
-import {MessageModel} from '../models/message.model';
 import {DraftInterface} from '../../draft/draft/models/draft.interface';
 
 @Component({
@@ -17,9 +16,6 @@ export class SendMessageFirstStepComponent implements OnInit {
 
   ngOnInit() {
     this.sendMessageService.step = 1;
-    if (!this.sendMessageService.messageModel) {
-      this.sendMessageService.messageModel = new MessageModel('');
-    }
   }
 
   setDraft(draft: DraftInterface) {
