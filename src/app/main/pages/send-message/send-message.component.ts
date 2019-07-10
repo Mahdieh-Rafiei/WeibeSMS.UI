@@ -26,16 +26,27 @@ export class SendMessageComponent implements OnInit, AfterViewChecked {
       if (this.sendMessageService.messageModel &&
         this.sendMessageService.messageModel.isMaxLenValid &&
         this.sendMessageService.messageModel.messageText.length > 0) {
+        this.sendMessageService.step = 2;
         this.router.navigateByUrl(`send-message/second-step`);
       } else {
 
       }
+    } else if (this.sendMessageService.step == 2) {
+      this.sendMessageService.step = 3;
+      this.router.navigateByUrl(`send-message/third-step`);
     }
   }
 
   goToPreviousStep() {
-    if (this.sendMessageService.step == 2) {
-      this.router.navigateByUrl(`send-message/first-step`);
+    switch (this.sendMessageService.step) {
+      case 2:
+        this.sendMessageService.step = 1;
+        this.router.navigateByUrl(`send-message/first-step`);
+        break;
+
+      case 3:
+        this.sendMessageService.step = 2;
+        this.router.navigateByUrl(`send-message/second-step`);
     }
   }
 }

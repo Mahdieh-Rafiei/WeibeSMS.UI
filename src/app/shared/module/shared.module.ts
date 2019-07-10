@@ -17,7 +17,7 @@ import {BarChartComponent} from '../component/bar-chart/bar-chart.component';
 import {ChartsModule} from 'ng2-charts';
 import {QuickShowNotificationComponent} from '../../main/layout/top-nav/quick-show-notification/quick-show-notification.component';
 import {MessageTemplateBuilderComponent} from '../component/message-template-builder/message-template-builder.component';
-import {SelectContactsComponent} from '../select-contacts/select-contacts.component';
+import {SelectContactsComponent} from '../component/select-contacts/select-contacts.component';
 
 @NgModule({
   imports: [

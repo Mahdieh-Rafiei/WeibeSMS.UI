@@ -1,0 +1,30 @@
+@import "../../../../assets/style/components/variables";
+.tab-section {
+  .other-list {
+    padding: 10px;
+    min-height: 400px;
+    max-height: 400px;
+    overflow: auto;
+    border-radius: 5px;
+  }
+
+  .light-blue-btn {
+    width: 100%;
+  }
+
+  .recipient-div {
+    background: #fff8e8;
+    padding: 5px;
+    border-radius: 5px;
+    border: 1px solid $yellow;
+    font-size: 14px;
+  }
+
+  .add-contact-div {
+    svg {
+      margin: 40px auto;
+      display: block;
+      height: 200px;
+    }
+  }
+}

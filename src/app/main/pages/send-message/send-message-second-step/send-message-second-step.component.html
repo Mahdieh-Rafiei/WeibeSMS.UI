@@ -1,15 +1,14 @@
 <div class="content-box originator">
-    <h5 class="mb-4">Originator</h5>
-    <h6>choose your originator :</h6>
-    <div class="col-md-4 pl-0 form-group">
-        <select>
-            <option>100000</option>
-            <option>3000000</option>
-            <option>50000 sms</option>
-        </select>
-    </div>
+  <h5 class="mb-4">Originator</h5>
+  <h6>choose your originator :</h6>
+  <div class="col-md-4 pl-0 form-group">
+    <select (change)="setLine($event)">
+      <option [value]="line.id" *ngFor="let line of sendSmsLines"> {{line.line}}</option>
+    </select>
+  </div>
 </div>
 
-<app-select-contacts>
+<app-select-contacts [hasOperation]="false"
+(apiModelChanged)="setApiModel($event)">
 
 </app-select-contacts>

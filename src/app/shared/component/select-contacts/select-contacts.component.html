@@ -1,0 +1,165 @@
+<div class="tab-section">
+  <div class="col-md-12">
+    <div class="title">
+      <h5 class="mb-4">Select Contacts</h5>
+    </div>
+    <div class="row">
+      <div class="col-md-3">
+        <div class="border other-list form-group" id="style-1">
+          <div>
+            <div class="mt-3">
+              <div *ngFor="let g of groups">
+                <p>
+                  <mat-checkbox (ngModelChange)="groupCheckedChanged($event,g)"
+                                [(ngModel)]="g.isSelected"></mat-checkbox>
+                  <span class="ml-2" (click)="loadContacts(g)">{{g.groupName}}  ({{g.contactsCount}})  <span
+                    class="red-text fo-3 pointer">(show)</span></span>
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-9 form-group">
+        <div class="border other-list p-3" id="style-2">
+          <div *ngIf="!clickedGroup">
+            <div class="add-contact-div text-center">
+              <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg"
+                   xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                   viewBox="0 0 512 438.3" style="enable-background:new 0 0 512 438.3;" xml:space="preserve">
+                    <style type="text/css">
+                      .st0 {
+                        fill: none;
+                        stroke: #2A2A2A;
+                        stroke-width: 7;
+                        stroke-linecap: round;
+                        stroke-linejoin: round;
+                      }
+
+                      .st1 {
+                        fill: none;
+                        stroke: #2A2A2A;
+                        stroke-width: 7;
+                        stroke-linecap: round;
+                        stroke-miterlimit: 10;
+                      }
+
+                      .st2 {
+                        fill: none;
+                        stroke: #2A2A2A;
+                        stroke-width: 7;
+                        stroke-miterlimit: 10;
+                      }
+
+                      .st3 {
+                        fill: #FFFFFF;
+                      }
+
+                      .st4 {
+                        fill: #2A2A2A;
+                      }
+
+                      .st5 {
+                        fill: none;
+                        stroke: #2A2A2A;
+                        stroke-width: 6;
+                        stroke-linecap: round;
+                        stroke-miterlimit: 10;
+                      }
+                    </style>
+                <g id="group1">
+                      <line class="st0" x1="25.3" y1="425.8" x2="6" y2="425.8"/>
+                  <line class="st0" x1="39.3" y1="425.7" x2="506" y2="425.7"/>
+                  <path class="st1" d="M79.5,423.8c0-97.4,79.1-176.5,176.5-176.5c97.5,0,176.5,79.1,176.5,176.5"/>
+                  <path class="st2" d="M256,204c-52.7,0-95.6-42.8-95.6-95.6c0-52.7,42.8-95.6,95.6-95.6c52.8,0,95.6,42.8,95.6,95.6
+                        C351.6,161.2,308.8,204,256,204z"/>
+                    </g>
+                <g id="group2">
+                      <g>
+                        <circle [ngClass]="{'chang-fill':addTypeSelected==='list'}" class="st3" cx="441" cy="361.4"
+                                r="64.2"/>
+                        <path class="st4" d="M441,299.7c34.1,0,61.7,27.6,61.7,61.7c0,34.1-27.6,61.7-61.7,61.7c-34.1,0-61.7-27.6-61.7-61.7
+                          C379.3,327.4,406.9,299.7,441,299.7 M441,294.7c-36.8,0-66.7,29.9-66.7,66.7c0,36.8,29.9,66.7,66.7,66.7s66.7-29.9,66.7-66.7
+                          C507.7,324.7,477.8,294.7,441,294.7L441,294.7z"/>
+                      </g>
+                  <line class="st5" x1="434" y1="362.5" x2="478.3" y2="362.5"/>
+                  <circle class="st4" cx="411.8" cy="362.5" r="6.3"/>
+                  <line class="st5" x1="434" y1="337.2" x2="478.3" y2="337.2"/>
+                  <circle class="st4" cx="411.8" cy="337.2" r="6.3"/>
+                  <line class="st5" x1="434" y1="387.9" x2="478.3" y2="387.9"/>
+                  <circle class="st4" cx="411.8" cy="387.9" r="6.3"/>
+                    </g>
+                    </svg>
+              <p>Click on <span class="red-text">“show”</span> to see contacts in group</p>
+            </div>
+          </div>
+          <div *ngIf="clickedGroup">
+            <div class="table-div table-responsive">
+              <table class="index-table text-left">
+                <thead>
+                <tr>
+                  <th class="text-left"><i class="fa fa-sort"></i> #</th>
+                  <th class="text-center"><i class="fa fa-sort"></i> Name</th>
+                  <th class="text-center"><i class="fa fa-sort"></i> SureName</th>
+                  <th class="text-center"><i class="fa fa-sort"></i> Recipient number</th>
+                </tr>
+                </thead>
+                <tbody *ngIf="clickedGroup && clickedGroup.contacts">
+                <tr *ngFor="let c of clickedGroup.contacts| paginate : {
+                    itemsPerPage :10 , currentPage : clickedGroup.pageNumber , totalItems : clickedGroup.totalItems
+                    },index as i">
+                  <td class="text-left">
+                    <div class="table-head">
+                      <mat-checkbox (ngModelChange)="contactCheckedChanged($event,c)"
+                                    [(ngModel)]="c.isSelected"></mat-checkbox>
+                      {{i + 1}}
+                    </div>
+                  </td>
+                  <td class=" text-center">
+                    {{c.firstName}}
+                  </td>
+                  <td class="text-center">
+                    {{c.lastName}}
+                  </td>
+                  <td class="td-single text-right actions-container">
+                    {{c.mobile}}
+                  </td>
+                </tr>
+                </tbody>
+              </table>
+              <!--pagination-->
+              <div class="col-12 pagination-div">
+                <div class="row pt-1 pb-1">
+                  <div class="col-12 col-md-6 text-left fo-3 black-text font-weight-bold">Displaying 1-10 of
+                    {{clickedGroup.totalItems}} records
+                  </div>
+                  <div class="col-12 col-md-6 text-right">
+                    <pagination-controls (pageChange)="doPaging($event)"
+                                         maxSize="5"
+                                         responsive="true"
+                                         previousLabel=""
+                                         nextLabel="">
+                    </pagination-controls>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="recipient-div text-right col-md-12 form-group">
+      <div class="row">
+        <div class="col-md-6 text-left">
+          Total contacts selected :  {{totalContactsSelectedCount ? totalContactsSelectedCount : 0}}
+        </div>
+      </div>
+    </div>
+    <div *ngIf="hasOperation" class="col-md-12 operation text-right p-1">
+      <button (click)="operation(true)" class="blue-btn mr-2"><i class="fa fa-cut"></i> cut
+      </button>
+      <button (click)="operation(false)" class="blue-btn"><i class="fa fa-copy"></i> copy</button>
+    </div>
+  </div>
+</div>
+

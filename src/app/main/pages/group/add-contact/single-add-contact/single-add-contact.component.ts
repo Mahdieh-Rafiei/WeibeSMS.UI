@@ -16,7 +16,7 @@ import {UtilityService} from '../../../../../shared/utility.service';
 import {UserEventInterface} from '../../../user-event/models/user-event.interface';
 import {UserEventResponseInterface} from '../../../user-event/models/user-event-response.interface';
 import {EventUserAddContactInterface} from './models/event-user-add-contact.interface';
-import {forEach} from '@angular/router/src/utils/collection';
+
 
 
 @Component({
@@ -229,29 +229,31 @@ export class SingleAddContactComponent implements OnInit {
         });
       }
 
-      const uniqueIds = Array.from(new Set(payload.eventsUser.map
-      ((item: EventUserAddContactInterface): number => item.id)));
+      if (payload.eventsUser && payload.eventsUser.length > 0) {
+        const uniqueIds = Array.from(new Set(payload.eventsUser.map
+        ((item: EventUserAddContactInterface): number => item.id)));
 
-      let uniqueEventUsers: EventUserAddContactInterface[] = [];
+        let uniqueEventUsers: EventUserAddContactInterface[] = [];
 
-      let i = 0;
-      uniqueIds.forEach(id => {
-        let found = false;
+        let i = 0;
+        uniqueIds.forEach(id => {
+          let found = false;
 
-        let eu = payload.eventsUser[i];
-        for (let j = 0; j < payload.eventsUser.length; j++) {
-          if (eu.id == id) {
-            found = true;
-            break;
+          let eu = payload.eventsUser[i];
+          for (let j = 0; j < payload.eventsUser.length; j++) {
+            if (eu.id == id) {
+              found = true;
+              break;
+            }
           }
-        }
-        if (found){
-          uniqueEventUsers.push(eu);
-        }
-        i++;
-      });
+          if (found){
+            uniqueEventUsers.push(eu);
+          }
+          i++;
+        });
 
-      payload.eventsUser = uniqueEventUsers;
+        payload.eventsUser = uniqueEventUsers;
+      }
 
       if (!this.contactId) {
         this.contactService.addContact(payload)
