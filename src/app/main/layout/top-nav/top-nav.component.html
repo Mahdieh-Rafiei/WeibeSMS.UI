@@ -1,7 +1,7 @@
 <nav [ngClass]="{'slim-navbar':configService.sidebarMode=='slim', 'hidden-navbar':configService.sidebarMode=='hidden'}"
      class="navbar navbar-expand-lg fixed-top">
     <div class="container-fluid p-0">
-        <div class="col-md-12 navbar-content ">
+        <div class="col-md-12 navbar-content p-0">
             <div class="">
                 <a (click)="changeSidebarState()" class="toggle-menu"><i class="fa fa-bars"></i></a>
             </div>
@@ -12,21 +12,6 @@
                         <button [routerLink]="['add-fund/list']" class="light-green-btn">Buy Credit</button>
                     </div>
                 </li>
-                <!--<li class="nav-item">-->
-                <!--<div class="btn-group guide" dropdown>-->
-                <!--<a mat-button [matMenuTriggerFor]="star">-->
-                <!--<i class="fa fa-star"></i>-->
-                <!--</a>-->
-                <!--<mat-menu #star="matMenu">-->
-                <!--<button mat-menu-item>-->
-                <!--1-->
-                <!--</button>-->
-                <!--<button mat-menu-item>-->
-                <!--2-->
-                <!--</button>-->
-                <!--</mat-menu>-->
-                <!--</div>-->
-                <!--</li>-->
                 <li class="nav-item">
                     <div class="btn-group guide" dropdown>
                         <a mat-button (click)="showHelp()">
@@ -36,7 +21,7 @@
                 </li>
                 <li class="nav-item">
                     <div class="btn-group notification" dropdown>
-                        <a mat-button [matMenuTriggerFor]="notification">
+                        <a mat-button [matMenuTriggerFor]="notification" >
                             <i class="fa fa-bell"></i>
                         </a>
                         <div class="notification-alarm">
