@@ -1,4 +1,8 @@
+@import "../../../../assets/style/components/variables";
 .input-group-prepend span{
   background-color: #a7abc3;
   color: #ffffff;
+}
+::placeholder{
+  color: $gray;
 }
