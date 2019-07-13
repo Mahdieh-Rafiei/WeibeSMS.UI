@@ -11,7 +11,7 @@ import {Router} from '@angular/router';
 })
 export class SendMessageSecondStepComponent implements OnInit {
 
-  constructor(private sendMessageService: SendMessageService,
+  constructor(public sendMessageService: SendMessageService,
               private router:Router) {
   }
 
@@ -32,10 +32,13 @@ export class SendMessageSecondStepComponent implements OnInit {
   setLine(e) {
     this.sendMessageService.messageModel.lineConfig =
       this.sendSmsLines.find(res => res.id == e.target.value);
-
   }
 
   setApiModel(e: Map<number, number[]>) {
     this.sendMessageService.messageModel.contacts = e;
+  }
+
+  setGroups(e:any[]){
+    this.sendMessageService.messageModel.groups = e;
   }
 }

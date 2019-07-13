@@ -110,7 +110,7 @@
                     },index as i">
                   <td class="text-left">
                     <div class="table-head">
-                      <mat-checkbox (ngModelChange)="contactCheckedChanged($event,c)"
+                      <mat-checkbox (input)="contactCheckedChanged()"
                                     [(ngModel)]="c.isSelected"></mat-checkbox>
                       {{i + 1}}
                     </div>

@@ -1,8 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {ContactService} from '../single-add-contact/contact.service';
-import {NotificationService} from '../../../../../shared/notification.service';
 import {GroupService} from '../../group.service';
-import {ActivatedRoute, Router} from '@angular/router';
+import {ActivatedRoute} from '@angular/router';
 
 @Component({
   selector: 'app-import-contact-from-other-lists',

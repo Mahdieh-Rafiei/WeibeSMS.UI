@@ -61,7 +61,7 @@ export class ForgotPasswordComponent implements OnInit {
               private shs: SharedService,
               private authSharedService: AuthSharedService,
               private authService: AuthenticationService,
-              private configService: ConfigService,
+              public configService: ConfigService,
               private notificationService: NotificationService,
               private utilityService: UtilityService) {
   }

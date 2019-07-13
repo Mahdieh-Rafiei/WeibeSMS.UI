@@ -36,7 +36,7 @@
                     </button>
                 </div>
                 <div class="col-md-3 offset-md-3 operation-section form-group text-right">
-                    <app-search (searchText)="getData($event)"></app-search>
+                    <app-search></app-search>
                 </div>
             </div>
             <!--table-->
@@ -79,10 +79,10 @@
                 <div class="col-12 pagination-div">
                     <div class="row pt-1 pb-1">
                         <div class="col-12 col-md-6 text-left fo-3 black-text font-weight-bold">Displaying 1-10 of
-                            {{totalItems}} records
+                            {{0}} records
                         </div>
                         <div class="col-12 col-md-6 text-right">
-                            <pagination-controls (pageChange)="doPaging($event)"
+                            <pagination-controls
                                                  maxSize="5"
                                                  responsive="true"
                                                  previousLabel=""

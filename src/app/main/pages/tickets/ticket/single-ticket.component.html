@@ -1,77 +1,81 @@
 <div class="single-ticket">
-    <div class="col-md-12 warning-box form-group" *ngIf="ticket && isClosed">
-        <p>support request closed. u can open that with sending reply.</p>
-    </div>
-    <div class="btn-section">
-        <div class="row">
-            <div class="col-md-6 text-left">
-                <button class="previous-btn" [routerLink]="['/ticket/list']"> <i class="fa fa-arrow-left"></i> Previous </button>
-            </div>
-            <div class="col-md-6 text-right">
-                <button [innerText]="isClosed ? 'Closed' : 'Close this ticket'" (click)="closeTicket()"
-                        [disabled]="isClosed" [ngClass]="[isClosed ? 'gray-btn red-btn' : 'btn red-btn']">
-                </button>
-            </div>
-        </div>
-    </div>
-    <div class="div-section">
-        <div class="col-md-12 subject-ticket">
-            <h5 *ngIf="ticket">Title :{{ticket.title}}</h5>
-            <p class="red-text">Department: <span class="font-weight-bold">supporter</span> - Priority: <span class="font-weight-bold">here is priority</span></p>
-            <!--TODO : dynamic above text-->
-        </div>
-        <div class="row rtl-div">
-            <div class="col-md-1 text-center profile-pic float-right form-group">
-                <!--<img src="../../../../../assets/images/user.jpg" alt=""-->
-                     <!--class="profile-picture img-thumbnail img-circle">-->
-                <img *ngIf="sharedService.getCurrentUserInfo().imageUrl" 
-                     class="profile-picture img-thumbnail img-circle" [src]="sharedService.getCurrentUserInfo().imageUrl" alt="">
-            </div>
-            <div class="col-md-8 form-group">
-                <p class="date-author">
-                    <span *ngIf="ticket">{{ticket.authorName}}</span>
-                    <span *ngIf="ticket">{{ticket.date | dateTime:'YYYY-MM-DD hh:mm:ss'}}</span>
-                </p>
-                <div class="customer-ticket">
-                    <p *ngIf="ticket" [innerHTML]="ticket.message"></p>
-                </div>
-            </div>
-        </div>
-
-        <div *ngIf="ticket">
-            <div class="row" *ngFor="let r of ticket.ticketReply"
-                 [ngClass]="[r.isAdmin ? 'support' : 'customer rtl-div']">
-                <div class="col-md-1 text-center profile-pic form-group" [ngClass]="{'right':!r.isAdmin}">
-                    <img src="../../../../../assets/images/user.jpg" alt=""
-                         class="profile-picture img-thumbnail img-circle">
-                </div>
-                <div class="col-md-8 form-group" [ngClass]="[r.isAdmin ? 'supporter' : 'customer']">
-                    <p class="date-author text-right">
-                        <span>{{r.isAdmin ? 'Admin hastman' : ticket.authorName}}</span>
-                        <span>{{r.creationDateTime}}</span>
-                    </p>
-                    <div [ngClass]="[r.isAdmin ? 'supporter-ticket' : 'customer-ticket']">
-                        <p [innerHTML]="r.message"></p>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <hr>
-        <div class="row">
-            <div class="col-md-12 text-right form-group">
-                <button (click)="isReplyMode=true" class="light-green-btn">Reply ticket</button>
-            </div>
-        </div>
-    </div>
-    <div *ngIf="isReplyMode" class="div-section">
-        <angular-editor [(ngModel)]="replyText"></angular-editor>
-      <div class="text-left">
-        <p class="errorMessage" *ngIf="messageRequired && replyText.length===0">
-          this filed is required!
-        </p>
+  <div class="col-md-12 warning-box form-group" *ngIf="ticket && isClosed">
+    <p>support request closed. u can open that with sending reply.</p>
+  </div>
+  <div class="btn-section">
+    <div class="row">
+      <div class="col-md-6 text-left">
+        <button class="previous-btn" [routerLink]="['/ticket/list']"><i class="fa fa-arrow-left"></i> Previous</button>
       </div>
-        <div class="form-group">
-            <button (click)="sendReply()" class="green-btn">Submit</button>
-        </div>
+      <div class="col-md-6 text-right">
+        <button [innerText]="isClosed ? 'Closed' : 'Close this ticket'" (click)="closeTicket()"
+                [disabled]="isClosed" [ngClass]="[isClosed ? 'gray-btn red-btn' : 'btn red-btn']">
+        </button>
+      </div>
     </div>
+  </div>
+  <div class="div-section">
+    <div class="col-md-12 subject-ticket">
+      <h5 *ngIf="ticket">Title :{{ticket.title}}</h5>
+      <p class="red-text">Department: <span class="font-weight-bold">supporter</span> - Priority: <span
+        class="font-weight-bold">here is priority</span></p>
+      <!--TODO : dynamic above text-->
+    </div>
+    <div class="row rtl-div">
+      <div class="col-md-1 text-center profile-pic float-right form-group">
+        <img class="profile-picture img-thumbnail img-circle"
+             [src]="sharedService.getCurrentUserInfo().imageUrl ?
+             sharedService.getCurrentUserInfo().imageUrl :
+             '../../../../../assets/images/user.jpg'"
+             alt="">
+      </div>
+      <div class="col-md-8 form-group">
+        <p class="date-author">
+          <span *ngIf="ticket">{{ticket.authorName}}</span>
+          <span *ngIf="ticket">{{ticket.date | dateTime:'YYYY-MM-DD hh:mm:ss'}}</span>
+        </p>
+        <div class="customer-ticket">
+          <p *ngIf="ticket" [innerHTML]="ticket.message"></p>
+        </div>
+      </div>
+    </div>
+
+    <div *ngIf="ticket">
+      <div class="row" *ngFor="let r of ticket.ticketReply"
+           [ngClass]="[r.isAdmin ? 'support' : 'customer rtl-div']">
+        <div class="col-md-1 text-center profile-pic form-group" [ngClass]="{'right':!r.isAdmin}">
+          <img [src]="sharedService.getCurrentUserInfo().imageUrl ?
+             sharedService.getCurrentUserInfo().imageUrl :
+             '../../../../../assets/images/user.jpg'" alt=""
+               class="profile-picture img-thumbnail img-circle">
+        </div>
+        <div class="col-md-8 form-group" [ngClass]="[r.isAdmin ? 'supporter' : 'customer']">
+          <p class="date-author text-right">
+            <span>{{r.isAdmin ? 'Admin hastman' : ticket.authorName}}</span>
+            <span>{{r.creationDateTime}}</span>
+          </p>
+          <div [ngClass]="[r.isAdmin ? 'supporter-ticket' : 'customer-ticket']">
+            <p [innerHTML]="r.message"></p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <hr>
+    <div class="row">
+      <div class="col-md-12 text-right form-group">
+        <button (click)="isReplyMode=true" class="light-green-btn">Reply ticket</button>
+      </div>
+    </div>
+  </div>
+  <div *ngIf="isReplyMode" class="div-section">
+    <angular-editor [(ngModel)]="replyText"></angular-editor>
+    <div class="text-left">
+      <p class="errorMessage" *ngIf="messageRequired && replyText.length===0">
+        this filed is required!
+      </p>
+    </div>
+    <div class="form-group">
+      <button (click)="sendReply()" class="green-btn">Submit</button>
+    </div>
+  </div>
 </div>

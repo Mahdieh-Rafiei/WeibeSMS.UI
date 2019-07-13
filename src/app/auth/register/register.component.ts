@@ -48,7 +48,7 @@ export class RegisterComponent implements OnInit {
               private fb: FormBuilder,
               private shs: SharedService,
               public us: UtilityService,
-              private configService: ConfigService,
+              public configService: ConfigService,
               private notificationService: NotificationService,
               private authSharedService: AuthSharedService,
               private userAccountService: UserAccountService) {
