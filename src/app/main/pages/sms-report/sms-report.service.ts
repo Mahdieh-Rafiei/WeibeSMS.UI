@@ -15,13 +15,13 @@ export class SmsReportService {
 
   getAllReports(pageSize: number, pageNumber: number, searchValue: string,
                 sendType: number, sendStatus: number, fromDate: number,
-                toDate: number) : Observable<GetAllSmsReportsResponse> {
+                toDate: number): Observable<GetAllSmsReportsResponse> {
 
     let url = `SendMessage?pageNumber=${pageNumber}&pageSize=${pageSize}
     &searchValue=${searchValue}&fromDate=${fromDate}&toDate=${toDate}
     &sendType=${sendType}`;
 
-    if (sendStatus && sendStatus != 0) {
+    if (sendStatus && sendStatus !== 0) {
       url += `&sendStatus=${sendStatus}`;
     }
 
