@@ -19,7 +19,7 @@ export class VerifyNumberComponent implements OnInit {
               private uas: UserAccountService,
               private router: Router,
               private ns: NotificationService,
-              private shs: SharedService) {
+              public shs: SharedService) {
   }
 
   ngOnInit() {

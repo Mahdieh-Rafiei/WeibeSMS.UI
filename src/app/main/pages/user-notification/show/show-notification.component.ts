@@ -1,6 +1,6 @@
 import {Component, Inject, OnInit} from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material';
-import {DataNotificationInterface} from '../list/models/data-notification.interface';
+import {DataGetUserNotificationInterface} from '../list/models/data-get-user-notification.interface';
 
 @Component({
   selector: 'app-dialog',
@@ -10,7 +10,7 @@ import {DataNotificationInterface} from '../list/models/data-notification.interf
 export class ShowNotificationComponent implements OnInit {
 
   optionIndex: number;
-  userNotification: DataNotificationInterface;
+  userNotification: DataGetUserNotificationInterface;
 
   constructor(public dialogRef: MatDialogRef<ShowNotificationComponent>,
               @Inject(MAT_DIALOG_DATA) public data: any) {

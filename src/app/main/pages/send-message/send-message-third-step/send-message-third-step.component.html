@@ -6,7 +6,7 @@
   <div class="content">
     <div class="title-section form-group">
       <h6>Content</h6>
-      <button class="blue-btn edit">Edit</button>
+      <button class="blue-btn edit" [routerLink]="['../first-step']">Edit</button>
     </div>
     <div class="content-section">
       <p>{{sendMessageService.messageModel.messageText}}</p>
@@ -14,7 +14,7 @@
   </div>
   <div class="originator-recipients content">
     <div class="title-section form-group"><h5>Originator & Recipients</h5>
-      <button class="blue-btn edit">Edit</button>
+      <button class="blue-btn edit" [routerLink]="['../second-step']">Edit</button>
     </div>
     <p>
       <span>Originator </span> &nbsp;&nbsp;&nbsp; : &nbsp;&nbsp;&nbsp;
@@ -34,6 +34,6 @@
     </p>
   </div>
   <div class="col-md-12 text-right confirm-section">
-    <button class="light-green-btn">Send</button>
+    <button (click)="send()" class="light-green-btn">Send</button>
   </div>
 </div>

@@ -88,7 +88,6 @@ export class SingleDraftComponent implements OnInit {
   }
 
   setDraft(draft: DraftInterface) {
-    debugger;
     this.draft.messageText = draft.messageText;
     if (this.isAddMode || this.draft.title.length == 0) {
       this.draft.title = draft.title;

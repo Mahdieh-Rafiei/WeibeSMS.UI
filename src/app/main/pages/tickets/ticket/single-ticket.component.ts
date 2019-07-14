@@ -26,7 +26,7 @@ export class SingleTicketComponent implements OnInit {
               private activatedRoute: ActivatedRoute,
               private notificationService: NotificationService,
               private router: Router,
-              private sharedService:SharedService) {
+              public sharedService:SharedService) {
   }
 
   ngOnInit() {

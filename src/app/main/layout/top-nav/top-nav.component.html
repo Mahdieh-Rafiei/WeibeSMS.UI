@@ -30,7 +30,7 @@
                    *ngFor="let notification of userNotifications,index as i">
                     {{notification.title}}
                 </a>
-                <a class="dropdown-item d-flex align-items-center" (click)="showNotification(notification,i)"
+                <a class="dropdown-item d-flex align-items-center"
                    routerLink="../notification">
                     More
                 </a>

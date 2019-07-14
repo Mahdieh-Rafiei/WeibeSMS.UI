@@ -16,7 +16,9 @@ import {UtilityService} from '../../../../../shared/utility.service';
 import {UserEventInterface} from '../../../user-event/models/user-event.interface';
 import {UserEventResponseInterface} from '../../../user-event/models/user-event-response.interface';
 import {EventUserAddContactInterface} from './models/event-user-add-contact.interface';
-
+import {DialogComponent} from '../../../../../shared/component/dialog/dialog.component';
+import {RemoveGroupNameResponseInterface} from '../../group-list/models/remove-group-name-response.interface';
+import {MatDialog} from '@angular/material';
 
 
 @Component({
@@ -63,7 +65,8 @@ export class SingleAddContactComponent implements OnInit {
               private fb: FormBuilder,
               private router: Router,
               private shs: SharedService,
-              private utilityService: UtilityService) {
+              private utilityService: UtilityService,
+              private dialog: MatDialog) {
     if (!this.contactId) {
       this.getCountry();
     }
@@ -177,7 +180,6 @@ export class SingleAddContactComponent implements OnInit {
     });
   }
 
-
   submit() {
     if (!this.contactId) {
       this.countries.forEach(item => {
@@ -246,7 +248,7 @@ export class SingleAddContactComponent implements OnInit {
               break;
             }
           }
-          if (found){
+          if (found) {
             uniqueEventUsers.push(eu);
           }
           i++;
@@ -291,9 +293,37 @@ export class SingleAddContactComponent implements OnInit {
     }
   }
 
-
   get userEvent() {
     return this.singleContactForm.controls.eventsUser;
   }
 
+  removeContact() {
+    this.openDeleteDialog('480px', 'auto', '', {
+      modalType: 'deleteContact',
+      modalHeader: 'Delete Contact',
+      modalText: 'Are you sure to remove this contact?'
+    });
+  }
+
+  openDeleteDialog(width, height, panelClass, data): void {
+    const dialogRef = this.dialog.open(DialogComponent, {
+      width,
+      height,
+      panelClass,
+      data
+    });
+
+    dialogRef.afterClosed()
+      .subscribe(result => {
+        if (result) {
+          if (result.remove.modalType === 'deleteContact') {
+            this.contactService.removeContact(this.contactId)
+              .subscribe(res => {
+                this.notificationService.success('Contact removed successfully', '');
+                this.router.navigateByUrl(`group/${this.groupId}`);
+              });
+          }
+        }
+      });
+  }
 }

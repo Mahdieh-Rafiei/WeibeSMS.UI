@@ -31,19 +31,19 @@ export class TableComponent implements OnInit {
     }
 
     removeItem(index: number, item: any) {
-        this.itemRemoved.emit({index: index, item: item});
+        this.itemRemoved.emit({index, item});
     }
 
     showItem(item: any) {
-        this.itemSelected.emit({item: item});
+        this.itemSelected.emit({item});
     }
 
     editItem(index: number, item: any) {
-        this.editItemClicked.emit({index: index, item: item});
+        this.editItemClicked.emit({index, item});
     }
 
     manageItem(index: number, item: any) {
-        this.manageButtonClicked.emit({item: item, index: index});
+        this.manageButtonClicked.emit({item, index});
     }
 
 

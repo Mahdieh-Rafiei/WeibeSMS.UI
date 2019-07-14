@@ -1,6 +1,5 @@
 import {Component, OnInit} from '@angular/core';
 import {SendMessageService} from '../send-message.service';
-import {Router} from '@angular/router';
 import {DraftInterface} from '../../draft/draft/models/draft.interface';
 
 @Component({
@@ -10,8 +9,7 @@ import {DraftInterface} from '../../draft/draft/models/draft.interface';
 })
 export class SendMessageFirstStepComponent implements OnInit {
 
-  constructor(private sendMessageService: SendMessageService,
-              private router: Router) {
+  constructor(public sendMessageService: SendMessageService) {
   }
 
   ngOnInit() {

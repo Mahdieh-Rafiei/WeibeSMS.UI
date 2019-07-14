@@ -9,7 +9,7 @@ import {ContactService} from './single-add-contact/contact.service';
 })
 export class AddContactComponent implements OnInit,AfterViewChecked {
   constructor(private activatedRoute: ActivatedRoute,
-              private contactService: ContactService,
+              public contactService: ContactService,
               private changeDetectorRef: ChangeDetectorRef) {
   }
 

@@ -5,9 +5,11 @@ export class MessageModel {
   isMaxLenValid: boolean;
   lineConfig: LineConfig;
   contacts: Map<number, number[]>;
+  groups: any[];
 
   constructor(messageText: string) {
     this.messageText = messageText;
     this.lineConfig = new LineConfig();
+    this.groups = [];
   }
 }

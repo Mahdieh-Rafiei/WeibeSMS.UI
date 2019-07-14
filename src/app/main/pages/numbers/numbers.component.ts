@@ -8,7 +8,7 @@ import {NumbersService} from './numbers.service';
 })
 export class NumbersComponent implements OnInit, AfterViewChecked {
 
-  constructor(private numberService: NumbersService,
+  constructor(public numberService: NumbersService,
               private changeDetectorRef: ChangeDetectorRef) {
   }
 
@@ -18,5 +18,4 @@ export class NumbersComponent implements OnInit, AfterViewChecked {
   ngAfterViewChecked() {
     this.changeDetectorRef.detectChanges();
   }
-
 }

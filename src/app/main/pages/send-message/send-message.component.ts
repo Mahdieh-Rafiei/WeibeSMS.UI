@@ -9,7 +9,7 @@ import {Router} from '@angular/router';
 })
 export class SendMessageComponent implements OnInit, AfterViewChecked {
 
-  constructor(private sendMessageService: SendMessageService,
+  constructor(public sendMessageService: SendMessageService,
               private changeDetectorRef: ChangeDetectorRef,
               private router: Router) {
   }
