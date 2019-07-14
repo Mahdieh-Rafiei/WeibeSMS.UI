@@ -17,7 +17,7 @@ export class SmsReportListComponent implements OnInit {
   // tableConfig : TableConfigInterface = {
   //   headersConfig =
   // };
-  
+
   constructor(private smsReportService: SmsReportService) {
   }
 
