@@ -18,7 +18,7 @@ export class SelectContactsComponent implements OnInit {
 
   clickedGroup: any;
   totalContactsSelectedCount;
-  contactPageSize: number = 10;
+  contactPageSize = 10;
 
   @Input() groups: any[];
   @Input() groupId: number;
@@ -37,7 +37,7 @@ export class SelectContactsComponent implements OnInit {
   }
 
   ngOnInit() {
-    if (!this.groups || this.groups.length == 0) {
+    if (!this.groups || this.groups.length === 0) {
       this.getAllGroupList();
     } else {
       this.totalContactsSelectedCountCalculate();
@@ -79,7 +79,7 @@ export class SelectContactsComponent implements OnInit {
   }
 
   groupCheckedChanged(e, g) {
-     g.contacts.forEach(c => c.isSelected = e);
+    g.contacts.forEach(c => c.isSelected = e);
     this.totalContactsSelectedCountCalculate();
     this.calculateApiModel();
   }
@@ -87,7 +87,7 @@ export class SelectContactsComponent implements OnInit {
   loadContacts(group) {
     this.clickedGroup = group;
 
-    if (group.loadedPageNumbers.length == 0 || group.loadedPageNumbers.filter(x => x == group.pageNumber).length == 0) {
+    if (group.loadedPageNumbers.length === 0 || group.loadedPageNumbers.filter(x => x === group.pageNumber).length === 0) {
       this.getContactsFromServer(this.clickedGroup);
     }
   }
@@ -95,11 +95,12 @@ export class SelectContactsComponent implements OnInit {
   getContactsFromServer(group) {
     this.contactService.getAllContacts(group.id, group.pageNumber, this.contactPageSize, '')
       .subscribe((res: GetAllContactGroupInterface) => {
-        res.data.items.forEach(i => {
-          group.contacts.push(i);
+        res.data.items.forEach(item => {
+          const contact: any = item;
+          contact.isSelected = group.isSelected;
+          group.contacts.push(contact);
         });
         group.loadedPageNumbers.push(group.pageNumber);
-        group.contacts.forEach(c => c.isSelected = this.clickedGroup.isSelected);
       });
   }
 
@@ -107,26 +108,28 @@ export class SelectContactsComponent implements OnInit {
     this.clickedGroup.pageNumber = e;
 
     for (let i = 0; this.clickedGroup.loadedPageNumbers.length > i; i++) {
-      let num = this.clickedGroup.loadedPageNumbers[i];
-      if (num == e) {
+      const num = this.clickedGroup.loadedPageNumbers[i];
+      if (num === e) {
         return;
       }
     }
 
     this.getContactsFromServer(this.clickedGroup);
+    this.totalContactsSelectedCountCalculate();
+    this.calculateApiModel();
   }
 
   calculateApiModel() {
 
     this.apiModel = new Map<number, number[]>();
 
-    for (let i=0;this.groups.length > i;i++){
+    for (let i = 0; this.groups.length > i; i++) {
       const group = this.groups[i];
-      if (group.totalItems == 0){
+      if (group.totalItems === 0) {
         continue;
       }
 
-      if (group.isSelected){
+      if (group.isSelected) {
         this.apiModel.set(group.id, []);
       } else {
 

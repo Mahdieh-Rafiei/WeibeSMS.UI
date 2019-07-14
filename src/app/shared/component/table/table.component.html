@@ -3,7 +3,7 @@
     <thead *ngIf="collection.length > 0">
     <tr>
       <th [ngClass]="{'d-none d-sm-table-cell':config.hideInResponsive}" *ngFor="let config of tableConfig.headersConfig" class="text-left">
-        <i *ngIf="headerName" class="fa fa-sort"></i>{{config.title}}
+        <i *ngIf="config.title" class="fa fa-sort"></i>{{config.title}}
       </th>
       <th *ngIf="tableConfig.hasActions"></th>
     </tr>

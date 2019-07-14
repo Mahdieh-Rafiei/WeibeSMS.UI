@@ -1,96 +1,105 @@
 <div class="btn-section text-right">
-    <div class="row">
-        <div class="col-12 col-md-6 col-sm-6 col-xs-6 text-left">
-            <button class="previous-btn"><i class="fa fa-arrow-left"></i> Previous</button>
-        </div>
-        <div class="col-12 col-md-6 col-sm-6 col-xs-6 text-right">
-            <button class="red-btn" disabled><i class="fa fa-trash"></i> Delete report</button>
-        </div>
+  <div class="row">
+    <div class="col-12 col-md-6 col-sm-6 col-xs-6 text-left">
+      <button class="previous-btn"><i class="fa fa-arrow-left"></i> Previous</button>
     </div>
+    <div class="col-12 col-md-6 col-sm-6 col-xs-6 text-right">
+      <button (click)="removeSmsReport()" class="red-btn"><i class="fa fa-trash"></i> Delete report</button>
+    </div>
+  </div>
 </div>
-    <div class="div-section">
-        <div class="sms-report">
-            <h5 class="yellow-text">Your message : </h5>
-            <div class="col-md-12 message-report">
-                <p class="fo-4 black-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore
-                    et dolore magna aliqua.</p>
-                <p class="send-again">
-                    <span>2019-4-05 , 11:08:35</span>
-                    <a class="green-text"><i class="fa fa-undo"></i> send text again</a>
-                </p>
-            </div>
-            <!--operation-->
-            <div class="title form-group">
-                <hr>
-                <h5>Report for this message: </h5>
-            </div>
-            <div class="row">
-                <div class="col-md-6 operation-section form-group">
-                    <select class="light-blue-btn mr-2">
-                        <option> Export</option>
-                        <option> Test 1</option>
-                        <option> Test 1</option>
-                    </select>
-                    <button class="light-blue-btn">
-                        <i class="fa fa-filter"></i> Filter
-                    </button>
-                </div>
-                <div class="col-md-3 offset-md-3 operation-section form-group text-right">
-                    <app-search></app-search>
-                </div>
-            </div>
-            <!--table-->
-            <div class="table-div table-responsive">
-                <table class="index-table text-left">
-                    <thead>
-                    <tr>
-                        <th class="text-left"><i class="fa fa-sort"></i>ID</th>
-                        <th class="text-cleft"><i class="fa fa-sort"></i>Recipient number</th>
-                        <th class="text-cleft"><i class="fa fa-sort"></i>Recipient Name</th>
-                        <th class="text-cleft"><i class="fa fa-sort"></i>Recipient sureName</th>
-                        <th class="text-cleft"><i class="fa fa-sort"></i>Status</th>
-                        <th class="text-cleft"><i class="fa fa-sort"></i>DateTime</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr>
-                        <td class="text-left">#1</td>
-                        <td class="text-left">+989197514700</td>
-                        <td class="text-left">
-                            <button class="blue-btn"> Schedule</button>
-                        </td>
-                        <td class="text-left">+989197514700</td>
-                        <td class="text-left">35</td>
-                        <td class="text-left">Sent</td>
-                    </tr>
-                    <tr>
-                        <td class="text-left">#1</td>
-                        <td class="text-left">+989197514700</td>
-                        <td class="text-left">
-                            <button class="green-btn"> Event</button>
-                        </td>
-                        <td class="text-left">+989197514700</td>
-                        <td class="text-left">35</td>
-                        <td class="text-left">Sent</td>
-                    </tr>
-                    </tbody>
-                </table>
-                <!--pagination-->
-                <div class="col-12 pagination-div">
-                    <div class="row pt-1 pb-1">
-                        <div class="col-12 col-md-6 text-left fo-3 black-text font-weight-bold">Displaying 1-10 of
-                            {{0}} records
-                        </div>
-                        <div class="col-12 col-md-6 text-right">
-                            <pagination-controls
-                                                 maxSize="5"
-                                                 responsive="true"
-                                                 previousLabel=""
-                                                 nextLabel=""></pagination-controls>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+<div class="div-section">
+  <div class="sms-report">
+    <h5 class="yellow-text">Your message : </h5>
+    <div class="col-md-12 message-report">
+      <p class="fo-4 black-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+        incididunt ut labore
+        et dolore magna aliqua.</p>
+      <p class="send-again">
+        <span>2019-4-05 , 11:08:35</span>
+        <a class="green-text"><i class="fa fa-undo"></i> send text again</a>
+      </p>
     </div>
+    <!--operation-->
+    <div class="title form-group">
+      <hr>
+      <h5>Report for this message: </h5>
+    </div>
+
+    <div class="row">
+      <div class="col-12 col-md-6 operation-section form-group export-filter">
+        <select (change)="export($event)" class="light-blue-btn mr-3">
+          <option> Export</option>
+          <option [value]="1">Paged data</option>
+          <option [value]="2">All records</option>
+        </select>
+        <app-filter [filterDataModel]="filterDataModel" (filterValue)="getFilterData($event)"></app-filter>
+      </div>
+      <div class="col-md-3 offset-md-3 operation-section form-group text-right">
+        <app-search (searchText)="getData($event)"></app-search>
+      </div>
+    </div>
+
+    <app-table [collection]="items"
+               [tableConfig]="tableConfig"
+               (pagingModelChanged)="getSmsDetail()"
+    >
+
+    </app-table>
+    <!--table-->
+    <!--<div class="table-div table-responsive">-->
+    <!--<table class="index-table text-left">-->
+    <!--<thead>-->
+    <!--<tr>-->
+    <!--<th class="text-left"><i class="fa fa-sort"></i>ID</th>-->
+    <!--<th class="text-cleft"><i class="fa fa-sort"></i>Recipient number</th>-->
+    <!--<th class="text-cleft"><i class="fa fa-sort"></i>Recipient Name</th>-->
+    <!--<th class="text-cleft"><i class="fa fa-sort"></i>Recipient sureName</th>-->
+    <!--<th class="text-cleft"><i class="fa fa-sort"></i>Status</th>-->
+    <!--<th class="text-cleft"><i class="fa fa-sort"></i>DateTime</th>-->
+    <!--</tr>-->
+    <!--</thead>-->
+    <!--<tbody>-->
+    <!--<tr>-->
+    <!--<td class="text-left">#1</td>-->
+    <!--<td class="text-left">+989197514700</td>-->
+    <!--<td class="text-left">-->
+    <!--<button class="blue-btn"> Schedule</button>-->
+    <!--</td>-->
+    <!--<td class="text-left">+989197514700</td>-->
+    <!--<td class="text-left">35</td>-->
+    <!--<td class="text-left">Sent</td>-->
+    <!--</tr>-->
+    <!--<tr>-->
+    <!--<td class="text-left">#1</td>-->
+    <!--<td class="text-left">+989197514700</td>-->
+    <!--<td class="text-left">-->
+    <!--<button class="green-btn"> Event</button>-->
+    <!--</td>-->
+    <!--<td class="text-left">+989197514700</td>-->
+    <!--<td class="text-left">35</td>-->
+    <!--<td class="text-left">Sent</td>-->
+    <!--</tr>-->
+    <!--</tbody>-->
+    <!--</table>-->
+    <!--&lt;!&ndash;pagination&ndash;&gt;-->
+    <!--<div class="col-12 pagination-div">-->
+    <!--<div class="row pt-1 pb-1">-->
+    <!--<div class="col-12 col-md-6 text-left fo-3 black-text font-weight-bold">Displaying 1-10 of-->
+    <!--{{0}} records-->
+    <!--</div>-->
+    <!--<div class="col-12 col-md-6 text-right">-->
+    <!--<pagination-controls-->
+    <!--maxSize="5"-->
+    <!--responsive="true"-->
+    <!--previousLabel=""-->
+    <!--nextLabel=""></pagination-controls>-->
+    <!--</div>-->
+    <!--</div>-->
+    <!--</div>-->
+    <!--</div>-->
+
+
+  </div>
+</div>
 
