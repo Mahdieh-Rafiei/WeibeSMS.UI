@@ -20,6 +20,7 @@ import {MessageTemplateBuilderComponent} from '../component/message-template-bui
 import {SelectContactsComponent} from '../component/select-contacts/select-contacts.component';
 import {NoSanitizePipe} from "../pipe/no-sanitize.pipe";
 import {CountryFlagNumbersComponent} from '../component/country-flag-numbers/country-flag-numbers.component';
+import {UnderConstructionComponent} from '../component/under-construction/under-construction.component';
 
 @NgModule({
   imports: [
@@ -46,7 +47,8 @@ import {CountryFlagNumbersComponent} from '../component/country-flag-numbers/cou
     MessageTemplateBuilderComponent,
     SelectContactsComponent,
     NoSanitizePipe,
-    CountryFlagNumbersComponent
+    CountryFlagNumbersComponent,
+    UnderConstructionComponent
   ],
   entryComponents: [
     LoadingSpinnerComponent,
@@ -73,7 +75,8 @@ import {CountryFlagNumbersComponent} from '../component/country-flag-numbers/cou
     MessageTemplateBuilderComponent,
     SelectContactsComponent,
     NoSanitizePipe,
-    CountryFlagNumbersComponent
+    CountryFlagNumbersComponent,
+    UnderConstructionComponent
   ]
 })
 export class SharedModule {

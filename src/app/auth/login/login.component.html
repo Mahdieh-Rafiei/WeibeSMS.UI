@@ -91,7 +91,7 @@
                 <div>
                     <div>
                         <p class="wrong gray-text fo-2t">your number : <span
-                                class="mobile-num">{{signUpForm['controls'].mobile.value}}</span>
+                                class="mobile-num">{{inputedMobileModel.country.prefixNumber}}{{signUpForm['controls'].mobile.value}}</span>
                             <span
                                     (click)="rollbackToFirstStep()"> wrong ? </span></p>
                         <p class="text-left gray-text fo-2">Enter verification code</p>

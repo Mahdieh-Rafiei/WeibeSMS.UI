@@ -119,7 +119,7 @@ export class SidebarComponent implements OnInit {
               private ds: DataService,
               private route: ActivatedRoute,
               private configService: ConfigService,
-              private sharedService:SharedService) {
+              private sharedService: SharedService) {
     this.navigateRoute(window.location.pathname);
     this.menuItems.forEach(item => {
         if (item.subMenu) {
@@ -135,7 +135,8 @@ export class SidebarComponent implements OnInit {
 
   ngOnInit() {
     this.showMenu = '';
-    this.menuItems[0].title = `Hi ${this.sharedService.getCurrentUserInfo().firstName}`;
+    this.menuItems[0].title = `Hi ${this.sharedService.getCurrentUserInfo().firstName.length > 10 ?
+     `${this.sharedService.getCurrentUserInfo().firstName.substring(0, 6)} ...`  : this.sharedService.getCurrentUserInfo().firstName}`;
   }
 
   // subMenu

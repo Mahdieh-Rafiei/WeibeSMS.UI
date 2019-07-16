@@ -140,7 +140,12 @@ export class LoginComponent implements OnInit {
         .subscribe((res: SendVerificationCodeResponseInterface) => {
             debugger;
             this.showSpinner = false;
-            this.notificationService.success('Verification code sent successfully', '');
+            if (res.data.codeIsExists) {
+              this.notificationService.success('Please use the last code', '');
+            } else {
+              this.notificationService.success('Verification code sent successfully', '');
+            }
+
             localStorage.setItem('k-l', res.data.key);
             this.verificationCodeSent = true;
             setTimeout(() => {
@@ -200,7 +205,16 @@ export class LoginComponent implements OnInit {
         },
         err => {
           this.showSpinner = false;
+          this.emptyBoxes();
         });
+  }
+
+  emptyBoxes() {
+    this.verificationCodePart1 = '';
+    this.verificationCodePart2 = '';
+    this.verificationCodePart3 = '';
+    this.verificationCodePart4 = '';
+    this.verificationCodePart5 = '';
   }
 
   setFocus(elementNumber: number, value) {
@@ -228,6 +242,7 @@ export class LoginComponent implements OnInit {
 
       case 5:
     }
+
     if (this.verificationCodePart1 && this.verificationCodePart2 && this.verificationCodePart3 &&
       this.verificationCodePart4 && this.verificationCodePart5) {
       this.verify();

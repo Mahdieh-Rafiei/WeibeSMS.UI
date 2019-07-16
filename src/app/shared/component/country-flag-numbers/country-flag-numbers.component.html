@@ -1,4 +1,4 @@
-<div class="mt-3 mb-3" (keydown)="onKeyDown($event)" >
+<div (keydown)="onKeyDown($event)" >
   <div class="flex-group" *ngIf="countries">
     <div class="btn-group">
       <button class="form-control dropdown-toggle btn-default btn-select" type="button"
@@ -18,9 +18,12 @@
       </div>
     </div>
     <input type="text"
+           [autofocus]="true"
            placeholder="Your phone number"
            class="form-control"
            (input)="changeMobile($event)"
+           (focusout)="inputGotFocus = false"
+           (focus)="inputGotFocus = true"
            appNumericInput
            [(ngModel)]="mobile"
            [ngClass]="{'border-error' : isTried && (mobile.length ===0 || !isCorrectMobile)}"
@@ -29,8 +32,8 @@
   <div class="text-left"
        *ngIf="true">
     <p class="errorMessage"
-       *ngIf="!isCorrectMobile">
-      phone number is invalid!
+       *ngIf="!isCorrectMobile && !inputGotFocus">
+      Phone number is invalid!
     </p>
   </div>
 </div>

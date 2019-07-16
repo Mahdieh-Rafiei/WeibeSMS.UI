@@ -17,7 +17,6 @@ import {UserEventInterface} from '../../../user-event/models/user-event.interfac
 import {UserEventResponseInterface} from '../../../user-event/models/user-event-response.interface';
 import {EventUserAddContactInterface} from './models/event-user-add-contact.interface';
 import {DialogComponent} from '../../../../../shared/component/dialog/dialog.component';
-import {RemoveGroupNameResponseInterface} from '../../group-list/models/remove-group-name-response.interface';
 import {MatDialog} from '@angular/material';
 
 

@@ -21,15 +21,19 @@ export class CountryFlagNumbersComponent implements OnInit {
   @Output() inputMobileStateChanged: EventEmitter<InputedMobileModel> = new EventEmitter<InputedMobileModel>();
   @ViewChild('dd') dd: ElementRef;
   filteredCountries: DataCountryInterface[];
+  inputGotFocus = true;
+  pureMobile = '';
 
   constructor(private utilityService: UtilityService,
               private sharedService: SharedService) {
   }
 
   ngOnInit() {
+    debugger;
     this.getCountries();
     if (this.lastData) {
       this.mobile = `${this.lastData.country.prefixNumber}${this.lastData.mobile}`;
+      this.pureMobile = this.mobile.substring(this.lastData.country.prefixNumber.length, this.mobile.length);
       this.selectedCountry = this.lastData.country;
       this.isCorrectMobile = this.lastData.isCorrectMobile;
     }
@@ -37,8 +41,8 @@ export class CountryFlagNumbersComponent implements OnInit {
 
   changeMobile(e) {
 
-    let pureMobile = this.mobile.substring(this.selectedCountry.prefixNumber.length, this.mobile.length);
-    this.isCorrectMobile = this.utilityService.isMobile(pureMobile);
+    this.pureMobile = this.mobile.substring(this.selectedCountry.prefixNumber.length, this.mobile.length);
+    this.isCorrectMobile = this.utilityService.isMobile(this.pureMobile);
     for (let i = 0; this.countries.length > i; i++) {
       let country = this.countries[i];
       if (country.prefixNumber == e.target.value) {
@@ -48,7 +52,7 @@ export class CountryFlagNumbersComponent implements OnInit {
     }
 
     this.inputMobileStateChanged.emit({
-      mobile: pureMobile,
+      mobile: this.pureMobile,
       country: this.selectedCountry,
       isCorrectMobile: this.isCorrectMobile
     });
@@ -58,6 +62,12 @@ export class CountryFlagNumbersComponent implements OnInit {
     this.mobile = this.mobile.substring(this.selectedCountry ? this.selectedCountry.prefixNumber.length : 0);
     this.selectedCountry = country;
     this.mobile = `${this.selectedCountry.prefixNumber}${this.mobile}`;
+
+    this.inputMobileStateChanged.emit({
+      mobile: this.pureMobile,
+      country: this.selectedCountry,
+      isCorrectMobile: this.isCorrectMobile
+    });
   }
 
   getCountries() {
