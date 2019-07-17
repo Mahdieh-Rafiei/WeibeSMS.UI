@@ -19,7 +19,7 @@ export class DashboardComponent implements OnInit {
     billingAddressNotifCloseSelected = false;
 
     constructor(private dashboardService: DashboardService,
-                private sharedService: SharedService) {
+                public sharedService: SharedService) {
     }
 
 

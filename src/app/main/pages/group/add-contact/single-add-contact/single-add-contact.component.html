@@ -5,10 +5,10 @@
             </button>
         </div>
         <div class="col-12 col-md-6 col-sm-6 col-xs-6 text-right">
-            <button class="red-btn"><i class="fa fa-trash"></i>
+            <button (click)="removeContact()" class="red-btn"><i class="fa fa-trash"></i>
                 Delete permanent
             </button>
-            <button class="green-btn ml-3">
+            <button (click)="submit()" class="green-btn ml-3">
                 Save
             </button>
         </div>
@@ -150,7 +150,7 @@
                                formControlName="value"
                                #pickerValue
                                [matDatepicker]="picker"
-                               placeholder="Enter your Birthday">
+                               placeholder="MM/DD/YYYY">
                         <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
                         <mat-datepicker #picker></mat-datepicker>
                     </mat-form-field>

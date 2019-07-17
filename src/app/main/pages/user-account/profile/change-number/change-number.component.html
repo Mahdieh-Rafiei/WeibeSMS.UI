@@ -7,34 +7,42 @@
         <div class="col-12 col-md-6 pt-3 pb-3">
           <label>Your phone number: </label>
           <div class="input-group">
-            <div class="btn-group">
-              <button class="form-control dropdown-toggle btn-default btn-select" type="button"
-                      data-toggle="dropdown" role="button" aria-expanded="true">
-                <img class="mr-2" width="20" [src]="'data:image/jpg;base64,'+countryFlag"/>
-              </button>
-              <div class="custom-dropdown">
-                <ul class="dropdown-menu" role="listbox" aria-expanded="true">
-                  <li class="dropdown-item" *ngFor="let country of countries"
-                      (click)="selectCountry(2, country)">
-                    <img class="ml-2 mr-2" width="20"
-                         [src]="'data:image/jpg;base64,'+country.flag"/>
-                    <span>{{country.name}}</span>
-                    (<span>{{country.prefixNumber}}</span>)
-                  </li>
-                </ul>
-              </div>
-            </div>
-            <input type="text"
-                   #mobileInput
-                   placeholder="Your phone number"
-                   class="form-control"
-                   formControlName="mobile"
-                   (input)="changeMobile(mobileInput.value)"
-                   appNumericInput
-                   [ngClass]="{'border-error' : (changeNumberForm.controls['mobile'].hasError('pattern')) && (changeNumberForm.controls['mobile'].touched || changeNumberForm.controls['mobile'].dirty )}"
-                   autofocus autocomplete="off">
-            <div  class="input-group-prepend">
-              <button [disabled]="changeNumberForm.value.mobile.substring(1) == currentUserInfo.mobile" [ngClass]="is" type="submit" class="light-blue-btn ml-2">Verification Code</button>
+
+            <app-country-flag-numbers (inputMobileStateChanged)="setValue($event)"
+                                      [lastData]="inputedMobileModel">
+
+            </app-country-flag-numbers>
+
+            <!---->
+            <!--<div class="btn-group">-->
+            <!--<button class="form-control dropdown-toggle btn-default btn-select" type="button"-->
+            <!--data-toggle="dropdown" role="button" aria-expanded="true">-->
+            <!--<img class="mr-2" width="20" [src]="'data:image/jpg;base64,'+countryFlag"/>-->
+            <!--</button>-->
+            <!--<div class="custom-dropdown">-->
+            <!--<ul class="dropdown-menu" role="listbox" aria-expanded="true">-->
+            <!--<li class="dropdown-item" *ngFor="let country of countries"-->
+            <!--(click)="selectCountry(2, country)">-->
+            <!--<img class="ml-2 mr-2" width="20"-->
+            <!--[src]="'data:image/jpg;base64,'+country.flag"/>-->
+            <!--<span>{{country.name}}</span>-->
+            <!--(<span>{{country.prefixNumber}}</span>)-->
+            <!--</li>-->
+            <!--</ul>-->
+            <!--</div>-->
+            <!--</div>-->
+            <!--<input type="text"-->
+            <!--#mobileInput-->
+            <!--placeholder="Your phone number"-->
+            <!--class="form-control"-->
+            <!--formControlName="mobile"-->
+            <!--(input)="changeMobile(mobileInput.value)"-->
+            <!--appNumericInput-->
+            <!--[ngClass]="{'border-error' : (changeNumberForm.controls['mobile'].hasError('pattern')) && (changeNumberForm.controls['mobile'].touched || changeNumberForm.controls['mobile'].dirty )}"-->
+            <!--autofocus autocomplete="off">-->
+            <!---->
+            <div class="input-group-prepend">
+              <button [disabled]="false" type="submit" class="light-blue-btn ml-2">Verification Code</button>
             </div>
           </div>
         </div>

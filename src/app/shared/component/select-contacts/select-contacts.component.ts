@@ -6,7 +6,6 @@ import {ContactService} from '../../../main/pages/group/add-contact/single-add-c
 import {GroupService} from '../../../main/pages/group/group.service';
 import {NotificationService} from '../../notification.service';
 import {Router} from '@angular/router';
-import _ from 'node_modules/lodash/lodash.js';
 
 @Component({
   selector: 'app-select-contacts',
@@ -16,15 +15,18 @@ import _ from 'node_modules/lodash/lodash.js';
 
 export class SelectContactsComponent implements OnInit {
 
-  groups = [];
+
   clickedGroup: any;
   totalContactsSelectedCount;
-  contactPageSize: number = 10;
-  groupSelectedFromLeft: number[] = [];
-  contactsSelectedFromGrid: Map<number, number[]> = new Map<number, number[]>();
+  contactPageSize = 10;
+
+  @Input() groups: any[];
   @Input() groupId: number;
   @Input() hasOperation: boolean;
-  apiModel: Map<number, number[]>;
+  @Input() apiModel: Map<number, number[]>;
+
+  @Output() groupStatesChanged: EventEmitter<any[]> = new EventEmitter<any[]>();
+
   @Output() apiModelChanged: EventEmitter<Map<number, number[]>> =
     new EventEmitter<Map<number, number[]>>();
 
@@ -35,7 +37,11 @@ export class SelectContactsComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.getAllGroupList();
+    if (!this.groups || this.groups.length === 0) {
+      this.getAllGroupList();
+    } else {
+      this.totalContactsSelectedCountCalculate();
+    }
   }
 
   getAllGroupList() {
@@ -53,76 +59,35 @@ export class SelectContactsComponent implements OnInit {
   }
 
   totalContactsSelectedCountCalculate() {
+
     let count = 0;
-
-    this.groupSelectedFromLeft.forEach(g => {
-      const group = _.find(this.groups, grp => grp.id === g);
-      count += group.contactsCount;
-    });
-
-    this.contactsSelectedFromGrid.forEach(value => {
-      count += value.length;
+    this.groups.forEach(g => {
+      if (g.isSelected) {
+        count += g.totalItems;
+      } else {
+        count += g.contacts.filter(c => c.isSelected).length;
+      }
     });
 
     this.totalContactsSelectedCount = count;
+  }
+
+  contactCheckedChanged() {
+    this.clickedGroup.isSelected = false;
+    this.totalContactsSelectedCountCalculate();
     this.calculateApiModel();
   }
 
-  contactCheckedChanged(e, c) {
-    this.clickedGroup.contacts.forEach(cc => {
-      if (cc.id === c.id) {
-        cc.isSelected = e;
-      }
-    });
-
-    const keyExists = this.contactsSelectedFromGrid.has(this.clickedGroup.id);
-    if (e) {
-      if (keyExists) {
-        this.contactsSelectedFromGrid.get(this.clickedGroup.id).push(c.id);
-      } else {
-        this.contactsSelectedFromGrid.set(this.clickedGroup.id, [c.id]);
-      }
-    } else {
-      this.clickedGroup.isSelected = false;
-      //TODO: use splice instead of lodash in all components!
-      _.remove(this.groupSelectedFromLeft, id => id === this.clickedGroup.id);
-
-      const selectedContacts = this.clickedGroup.contacts.filter(c => c.isSelected);
-      if (!this.contactsSelectedFromGrid.has(this.clickedGroup.id)) {
-        this.contactsSelectedFromGrid.set(this.clickedGroup.id, []);
-      } else {
-        const array = this.contactsSelectedFromGrid.get(this.clickedGroup.id);
-        selectedContacts.forEach(sc => {
-          if (!_.includes(array, sc.id)) {
-            array.push(sc.id);
-          }
-        });
-      }
-
-      if (keyExists) {
-        _.remove(this.contactsSelectedFromGrid.get(this.clickedGroup.id), id => id == c.id);
-      }
-    }
-
-    this.totalContactsSelectedCountCalculate();
-  }
-
   groupCheckedChanged(e, g) {
-    if (e) {
-      this.groupSelectedFromLeft.push(g.id);
-      this.contactsSelectedFromGrid.delete(g.id);
-    } else {
-      _.remove(this.groupSelectedFromLeft, id => id == g.id);
-    }
-
     g.contacts.forEach(c => c.isSelected = e);
     this.totalContactsSelectedCountCalculate();
+    this.calculateApiModel();
   }
 
   loadContacts(group) {
     this.clickedGroup = group;
 
-    if (group.loadedPageNumbers.length == 0 || group.loadedPageNumbers.filter(x => x == group.pageNumber).length == 0) {
+    if (group.loadedPageNumbers.length === 0 || group.loadedPageNumbers.filter(x => x === group.pageNumber).length === 0) {
       this.getContactsFromServer(this.clickedGroup);
     }
   }
@@ -130,11 +95,12 @@ export class SelectContactsComponent implements OnInit {
   getContactsFromServer(group) {
     this.contactService.getAllContacts(group.id, group.pageNumber, this.contactPageSize, '')
       .subscribe((res: GetAllContactGroupInterface) => {
-        res.data.items.forEach(i => {
-          group.contacts.push(i);
+        res.data.items.forEach(item => {
+          const contact: any = item;
+          contact.isSelected = group.isSelected;
+          group.contacts.push(contact);
         });
         group.loadedPageNumbers.push(group.pageNumber);
-        group.contacts.forEach(c => c.isSelected = this.clickedGroup.isSelected);
       });
   }
 
@@ -142,27 +108,43 @@ export class SelectContactsComponent implements OnInit {
     this.clickedGroup.pageNumber = e;
 
     for (let i = 0; this.clickedGroup.loadedPageNumbers.length > i; i++) {
-      let num = this.clickedGroup.loadedPageNumbers[i];
-      if (num == e) {
+      const num = this.clickedGroup.loadedPageNumbers[i];
+      if (num === e) {
         return;
       }
     }
 
     this.getContactsFromServer(this.clickedGroup);
+    this.totalContactsSelectedCountCalculate();
+    this.calculateApiModel();
   }
 
   calculateApiModel() {
+
+    debugger;
     this.apiModel = new Map<number, number[]>();
 
-    this.contactsSelectedFromGrid.forEach((value, key) => {
-      this.apiModel.set(key, value);
-    });
+    for (let i = 0; this.groups.length > i; i++) {
+      const group = this.groups[i];
+      if (group.totalItems === 0) {
+        continue;
+      }
 
-    this.groupSelectedFromLeft.forEach(g => {
-      this.apiModel.set(g, []);
-    });
+      if (group.isSelected) {
+        this.apiModel.set(group.id, []);
+      } else {
+
+        const contactIds = group.contacts.filter(c => c.isSelected)
+          .map(c => c.id);
+
+        if (contactIds.length > 0){
+          this.apiModel.set(group.id, contactIds);
+        }
+      }
+    }
 
     this.apiModelChanged.emit(this.apiModel);
+    this.groupStatesChanged.emit(this.groups);
   }
 
   operation(isCut: boolean) {

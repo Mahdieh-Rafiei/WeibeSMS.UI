@@ -1,12 +1,12 @@
 import {Injectable, Pipe, PipeTransform} from '@angular/core';
 
 @Pipe({
-  name: 'statusTranslator'
+  name: 'ticketStatusTranslator'
 })
 @Injectable({
   providedIn: 'root'
 })
-export class StatusTranslatorPipe implements PipeTransform {
+export class TicketStatusTranslatorPipe implements PipeTransform {
 
   transform(value: any, args?: any): string {
     let result = 'Unknown';

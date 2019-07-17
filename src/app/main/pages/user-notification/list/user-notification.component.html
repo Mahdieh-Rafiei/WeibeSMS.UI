@@ -10,17 +10,16 @@
       <app-filter [filterDataModel]="filterDataModel" (filterValue)="getFilterData($event)"></app-filter>
     </div>
     <div class="col-md-3 offset-md-3 operation-section form-group text-right">
-      <app-search (searchText)="getData($event)"></app-search>
+      <app-search></app-search>
     </div>
   </div>
   <app-table
-          (pagingModelChanged)="getAllUserNotifications()"
-          [tableConfig]="tableConfig"
-          [collection]="userNotifications"
+    (pagingModelChanged)="getAllUserNotifications()"
+    [tableConfig]="tableConfig"
+    [collection]="userNotifications"
   >
   </app-table>
 </div>
-
 
 <div *ngIf="showNotification" class="modal fade in modal-back" role="dialog" tabindex="-1" style="display: block;"
      aria-modal="true">

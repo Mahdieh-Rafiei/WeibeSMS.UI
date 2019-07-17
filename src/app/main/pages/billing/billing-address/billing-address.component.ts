@@ -142,8 +142,7 @@ export class BillingAddressComponent implements OnInit, AfterViewChecked {
       zipCode: [null, Validators.required],
       prefixNumberId: ['', Validators.required],
       vatNumber: [null],
-    })
-    ;
+    });
   }
 
   countrySelect(id) {
@@ -163,6 +162,7 @@ export class BillingAddressComponent implements OnInit, AfterViewChecked {
       this.bs.modifyAddress(payload)
         .subscribe(res => {
           this.notificationService.success('Billing address saved successfully', '');
+          this.shs.getCurrentUserInfo().hasBillingAddress = true;
         });
     }
   }

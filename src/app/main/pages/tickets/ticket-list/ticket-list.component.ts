@@ -4,7 +4,7 @@ import {TicketListResponseModel} from './models/ticket-list-response.model';
 import {ItemsTicketListInterface} from './models/items-ticket-list.interface';
 import {TableConfigInterface} from '../../../../shared/component/table/models/table-config.interface';
 import {PagingModel} from '../../../../shared/component/table/models/paging-model';
-import {StatusTranslatorPipe} from '../../../../shared/pipe/status-translator.pipe';
+import {TicketStatusTranslatorPipe} from '../ticket-status-translator.pipe';
 import {Router} from '@angular/router';
 import {FilterDataModel} from '../../../../shared/component/filter/filter-data-model';
 
@@ -35,7 +35,7 @@ export class TicketListComponent implements OnInit {
     filterDataModel: FilterDataModel = new FilterDataModel();
 
     constructor(private ticketService: TicketService,
-                private statusTranslatorPipe: StatusTranslatorPipe,
+                private statusTranslatorPipe: TicketStatusTranslatorPipe,
                 private router: Router) {
     }
 

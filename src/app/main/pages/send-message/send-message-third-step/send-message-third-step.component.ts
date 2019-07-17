@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {SendMessageService} from '../send-message.service';
 import {DataSendMessage} from '../models/data-send-message';
 import {Router} from '@angular/router';
+import {MessageModel} from '../models/message.model';
 
 @Component({
   selector: 'app-send-message-third-step',
@@ -12,7 +13,7 @@ export class SendMessageThirdStepComponent implements OnInit {
 
   dataSendMessage: DataSendMessage;
 
-  constructor(private sendMessageService: SendMessageService,
+  constructor(public sendMessageService: SendMessageService,
               private router :Router) {
   }
 
@@ -25,6 +26,15 @@ export class SendMessageThirdStepComponent implements OnInit {
     this.sendMessageService.sendMessage(false)
       .subscribe(res => {
         this.dataSendMessage = res.data;
+      })
+  }
+
+  send(){
+    this.sendMessageService.sendMessage(true)
+      .subscribe(res => {
+        console.log(res);
+        this.sendMessageService.messageModel = new MessageModel('');
+        this.router.navigateByUrl('');
       })
   }
 }

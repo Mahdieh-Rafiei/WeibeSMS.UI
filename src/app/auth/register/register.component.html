@@ -17,7 +17,7 @@
               <div class="col-12 col-md-4">
                 <label>Name*</label>
                 <input type="text"
-                       [ngClass]="{'border-error' : (((registerForm.controls['firstName'].dirty || registerForm.controls['firstName'].touched)&& registerForm.hasError('required', 'firstName')) || formDir.submitted)}"
+                       [ngClass]="{'border-error' : (((registerForm.controls['firstName'].dirty || registerForm.controls['firstName'].touched || formDir.submitted)&& registerForm.hasError('required', 'firstName')))}"
                        class="form-control"
                        placeholder="Your Name"
                        formControlName="firstName">
@@ -37,7 +37,7 @@
               <div class="col-12 col-md-4">
                 <label>Surname*</label>
                 <input type="text"
-                       [ngClass]="{'border-error' : (((registerForm.controls['lastName'].dirty || registerForm.controls['lastName'].touched) && registerForm.hasError('required', 'lastName')) || formDir.submitted)}"
+                       [ngClass]="{'border-error' : (((registerForm.controls['lastName'].dirty || registerForm.controls['lastName'].touched || formDir.submitted) && registerForm.hasError('required', 'lastName')))}"
                        class="form-control"
                        placeholder="Your Surname"
                        formControlName="lastName">
@@ -102,7 +102,7 @@
                   </div>
                   <div class="text-left" *ngIf="!checkingEmail">
                     <p class="errorMessage" *ngIf="emailUnique" [@errorAnimation]>
-                      <i class="far fa-exclamation-circle"></i> this user name is already taken!
+                      <i class="far fa-exclamation-circle"></i> This email is already taken!
                     </p>
                   </div>
                   <div class="text-left" *ngIf="!checkingEmail">
