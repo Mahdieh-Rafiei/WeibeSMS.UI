@@ -1,9 +1,9 @@
 <div class="btn-section">
     <div class="row">
-        <div class="col-md-1 text-left" *ngIf="sendMessageService.step != 1">
+        <div class="col-md-2 text-left" *ngIf="sendMessageService.step != 1">
             <button class="previous-btn" (click)="goToPreviousStep()"> <i class="fa fa-arrow-left"></i> Previous</button>
         </div>
-        <div class="text-right" [ngClass]="sendMessageService.step != 1 ? 'col-md-11' : 'col-md-12'">
+        <div class="text-right" [ngClass]="sendMessageService.step != 1 ? 'col-md-10' : 'col-md-12'">
             <button class="green-btn" (click)="goToNextStep()"> Next</button>
         </div>
     </div>
