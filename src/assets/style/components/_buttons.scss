@@ -51,7 +51,7 @@
   border: 1px solid $blue;
   color: $white;
   border-radius: .25rem !important;
-  padding: .5rem .75rem;;
+  padding: 6px .75rem;;
   font-size: 14px;
   transition: .4s;
 }
@@ -61,7 +61,7 @@
   border: 1px solid $v-light-blue;
   color: $light-blue;
   border-radius: .25rem !important;
-  padding: .5rem .75rem;;
+  padding: 6px .75rem;;
   font-size: 14px;
   transition: .4s;
 }
@@ -134,9 +134,9 @@
 }
 
 .disable-btn {
-  color: $white;
-  background-color: $purple;
-  border-color: $purple;
+  background-color: $v-light-blue;
+  border: 1px solid $v-light-blue;
+  color: $light-blue;
 }
 
 .ws-btn {
