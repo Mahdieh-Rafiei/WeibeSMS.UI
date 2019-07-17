@@ -85,7 +85,6 @@ export class SmsReportListComponent implements OnInit {
   }
 
   export(e) {
-    debugger;
     const ids: Map<boolean, number[]> = new Map<boolean, number[]>();
     if (e.target.value === 1) {
       const isBulkIds = this.items.filter(i => i.isBulk).map(i => i.id);

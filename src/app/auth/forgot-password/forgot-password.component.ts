@@ -82,7 +82,7 @@ export class ForgotPasswordComponent implements OnInit {
   }
 
   sendVerificationCode() {
-    debugger;
+
     if (this.forgotPasswordForm.valid && this.isCorrectMobile) {
       this.authSharedService.prefixNumberId = +this.forgotPasswordForm.value.countryId;
       const payload: SendVerificationCodeInterface = this.forgotPasswordForm.value;

@@ -121,7 +121,6 @@ export class SelectContactsComponent implements OnInit {
 
   calculateApiModel() {
 
-    debugger;
     this.apiModel = new Map<number, number[]>();
 
     for (let i = 0; this.groups.length > i; i++) {

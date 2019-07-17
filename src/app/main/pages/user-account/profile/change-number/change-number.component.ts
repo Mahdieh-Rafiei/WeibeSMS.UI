@@ -36,7 +36,7 @@ export class ChangeNumberComponent implements OnInit {
 
   ngOnInit() {
 
-    this.countries = this.countries = this.shs.getCountriesByCache();
+    this.countries = this.shs.getCountries().data;
     this.currentUserInfo = this.shs.getCurrentUserInfo();
     const pureMobile = this.currentUserInfo.mobile.toString().substring(this.currentUserInfo.mobile.toString().length - 10);
     const prefixNumber = '+' + this.currentUserInfo.mobile.toString().substring(0, this.currentUserInfo.mobile.toString().length - 10);
@@ -55,32 +55,6 @@ export class ChangeNumberComponent implements OnInit {
 
   }
 
-  // getCountry() {
-  //   this.selectCountry(1, this.countries[this.currentUserInfo.prefixNumberId - 1]);
-  //   this.changeNumberForm.patchValue({mobile: `+${this.currentUserInfo.mobile}`});
-  // }
-
-  // selectCountry(index, country) {
-  //   this.countryPrefix = country.prefixNumber;
-  //   this.countryFlag = country.flag;
-  //   if (index === 2) {
-  //     this.mobileInput.nativeElement.focus();
-  //
-  //     this.setMobileValue();
-  //
-  //     this.changeNumberForm.patchValue({
-  //       mobile: country.prefixNumber + this.mobileValue
-  //     });
-  //   } else {
-  //     this.changeNumberForm.patchValue({
-  //       mobile: country.prefixNumber
-  //     });
-  //   }
-  //   this.changeNumberForm.patchValue({
-  //     prefixNumberId: country.id,
-  //   });
-  // }
-
   createForm() {
     this.changeNumberForm = this.fb.group({
       mobile: [null, Validators.required],
@@ -88,15 +62,6 @@ export class ChangeNumberComponent implements OnInit {
       prefixNumberId: [1, Validators.required]
     });
   }
-
-  // changeMobile(mobile: string) {
-  //   this.setMobileValue();
-  //   this.isCorrectMobile = this.utilityService.isMobile(this.mobileValue);
-  //   this.oldMobileEntered = this.changeNumberForm.value.mobile.substring(1) == this.currentUserInfo.mobile;
-  //   this.countries.forEach(item => {
-  //     mobile === item.prefixNumber ? this.selectCountry(2, item) : null;
-  //   });
-  // }
 
   submit() {
     if (this.changeNumberForm.valid) {
@@ -124,12 +89,4 @@ export class ChangeNumberComponent implements OnInit {
           });
     }
   }
-
-  // setMobileValue() {
-  //   this.countries.forEach(item => {
-  //     if (this.changeNumberForm.value.prefixNumberId === item.id) {
-  //       this.mobileValue = this.changeNumberForm.value.mobile.substring(item.prefixNumber.length);
-  //     }
-  //   });
-  // }
 }

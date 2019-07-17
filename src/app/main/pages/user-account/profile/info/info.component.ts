@@ -49,9 +49,7 @@ export class InfoComponent implements OnInit {
   }
 
   getCountry() {
-    this.shs.getCountries().subscribe(res => {
-      this.countries = res.data;
-    });
+    this.countries = this.shs.getCountries().data;
   }
 
   createForm() {
@@ -99,6 +97,10 @@ export class InfoComponent implements OnInit {
       }
       this.uas.modifyProfile(payload)
         .subscribe(res => {
+          let userInfo = this.shs.getCurrentUserInfo();
+          userInfo.firstName = payload['firstName'];
+          this.shs.setUserInfo(userInfo);
+          this.uas.firstNameChanged.emit();
           this.notificationService.success('Update profile successfully', '');
           this.router.navigateByUrl('');
         });

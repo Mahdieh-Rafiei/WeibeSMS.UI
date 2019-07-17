@@ -66,9 +66,11 @@ export class SingleAddContactComponent implements OnInit {
               private shs: SharedService,
               private utilityService: UtilityService,
               private dialog: MatDialog) {
+
     if (!this.contactId) {
       this.getCountry();
     }
+
     this.route.params.subscribe(item => {
       this.contactId = parseInt(item.contactId);
       this.groupId = parseInt(item.groupId);
@@ -123,42 +125,9 @@ export class SingleAddContactComponent implements OnInit {
   }
 
   getCountry() {
-    this.shs.getCountries()
-      .subscribe((res: CountryInterface) => {
-        this.countries = res.data;
-        this.selectCountry(1, this.countries[0]);
-      });
+    this.countries = this.shs.getCountries().data;
   }
-
-  selectCountry(index, country) {
-    if (!this.contactId) {
-      this.countryPrefix = country.prefixNumber;
-      this.countryFlag = country.flag;
-      if (index === 2) {
-        this.countries.forEach(item => {
-          if (this.singleContactForm.value.prefixNumberId === item.id) {
-            this.mobileValue = this.singleContactForm.value.mobile.substring(item.prefixNumber.length);
-          }
-        });
-        this.singleContactForm.patchValue({
-          mobile: country.prefixNumber + this.mobileValue
-        });
-      } else {
-        this.singleContactForm.patchValue({
-          mobile: country.prefixNumber
-        });
-      }
-      this.singleContactForm.patchValue({
-        prefixNumberId: country.id,
-      });
-    }
-  }
-
-  changeMobile(mobile: string) {
-    this.countries.forEach(item => mobile === item.prefixNumber ? this.selectCountry(2, item) : null);
-    this.mobileValue = mobile;
-  }
-
+  
   getUserEvents() {
     this.userEventService.getUserEvents(this.pageNumber, this.pageSize, this.phrase)
       .subscribe((res: UserEventResponseInterface) => {

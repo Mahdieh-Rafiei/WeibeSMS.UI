@@ -1,4 +1,4 @@
-import {Injectable} from '@angular/core';
+import {EventEmitter, Injectable, Output} from '@angular/core';
 import {ApiService} from '../../../shared/api.service';
 import {Observable} from 'rxjs';
 import {InfoGetInterface} from './profile/info/models/info-get.interface';
@@ -18,6 +18,8 @@ import {DashboardInfoResponseInterface} from '../dashboard/models/dashboard-info
   providedIn: 'root'
 })
 export class UserAccountService {
+
+  @Output() firstNameChanged: EventEmitter<null> = new EventEmitter<null>();
 
   constructor(private apiService: ApiService) {
   }

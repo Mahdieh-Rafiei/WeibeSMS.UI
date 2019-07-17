@@ -29,7 +29,6 @@ export class CountryFlagNumbersComponent implements OnInit {
   }
 
   ngOnInit() {
-    debugger;
     this.getCountries();
     if (this.lastData) {
       this.mobile = `${this.lastData.country.prefixNumber}${this.lastData.mobile}`;
@@ -71,13 +70,11 @@ export class CountryFlagNumbersComponent implements OnInit {
   }
 
   getCountries() {
-    this.sharedService.getCountries().subscribe((res) => {
-      this.countries = res.data;
-      this.filteredCountries = this.countries;
-      if (!this.lastData) {
-        this.selectCountry(1, this.countries[0]);
-      }
-    });
+    this.countries = this.sharedService.getCountries().data;
+    this.filteredCountries = this.countries;
+    if (!this.lastData) {
+      this.selectCountry(1, this.countries[0]);
+    }
   }
 
   checkDropDownOpen() {

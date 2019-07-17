@@ -138,7 +138,7 @@ export class LoginComponent implements OnInit {
 
       this.registerService.sendVerificationCode(payload)
         .subscribe((res: SendVerificationCodeResponseInterface) => {
-            debugger;
+
             this.showSpinner = false;
             if (res.data.codeIsExists) {
               this.notificationService.success('Please use the last code', '');
@@ -154,7 +154,7 @@ export class LoginComponent implements OnInit {
             this.registrationKey = res.data.key;
           },
           err => {
-            debugger;
+
             this.showSpinner = false;
             if (err.error.Message === '4') {
               console.log(err);
@@ -201,6 +201,7 @@ export class LoginComponent implements OnInit {
           this.showSpinner = false;
           // this.authService.setToken(res.data);
           this.authSharedService.keyLogin = res.data;
+          this.authSharedService.mobile = this.signUpForm.value.mobile;
           this.router.navigateByUrl('/register');
         },
         err => {

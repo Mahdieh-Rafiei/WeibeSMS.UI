@@ -61,7 +61,7 @@ export class BillingAddressComponent implements OnInit, AfterViewChecked {
 
     this.bs.mode = 'address';
     this.createForm();
-    this.countries = this.shs.getCountriesByCache();
+    this.countries = this.shs.getCountries().data;
     this.selectCountry(1, this.countries[0]);
     this.fillBillingAddress(this.billingAddressForm);
     this.setMobileValue();
