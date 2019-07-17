@@ -5,6 +5,7 @@ import {PrivacyService} from '../privacy.service';
 import {TableConfigInterface} from '../../../../../shared/component/table/models/table-config.interface';
 import {ItemsLoginLogInterface} from './models/items-login-log.interface';
 import {PagingModel} from '../../../../../shared/component/table/models/paging-model';
+import {FilterDataModel} from '../../../../../shared/component/filter/filter-data-model';
 
 @Component({
   selector: 'app-login-log',
@@ -14,11 +15,11 @@ import {PagingModel} from '../../../../../shared/component/table/models/paging-m
 export class LoginLogComponent implements OnInit {
   loginLogs: ItemsLoginLogInterface[];
   phrase = '';
+  filterDataModel = new FilterDataModel();
 
   tableConfig: TableConfigInterface = {
     rowColumnsConfig: [],
     pagingModel: new PagingModel(),
-    // headerNames: ['Id', 'Device', 'Location', 'Date time']
     headersConfig: [{
       title: 'Id',
       hideInResponsive: false
@@ -41,10 +42,17 @@ export class LoginLogComponent implements OnInit {
 
   ngOnInit() {
     this.generateRowColumns();
+    this.filterDataModel.fromToDate = true;
+  }
+
+  getFilterData(e: FilterDataModel) {
+    this.tableConfig.pagingModel.pageSize = e.pageSize;
+    this.getAllLogs();
   }
 
   getAllLogs() {
-    this.ps.loginLog(this.tableConfig.pagingModel.pageNumber, this.tableConfig.pagingModel.pageSize, this.phrase)
+    this.ps.loginLog(this.tableConfig.pagingModel.pageNumber, this.tableConfig.pagingModel.pageSize,
+      this.phrase, this.filterDataModel.fromDate, this.filterDataModel.toDate)
       .subscribe((res: LoginLogInterface) => {
         this.tableConfig.pagingModel.totalItemsCount = res.data.totalItemsCount;
         this.loginLogs = res.data.items;

@@ -32,11 +32,11 @@
                          *ngIf="(((profileForm.controls['firstName'].dirty || profileForm.controls['firstName'].touched) || formDir.submitted))"
                          [@errorAnimation]>
                         <p class="errorMessage" *ngIf="profileForm.hasError('required', 'firstName')">
-                            <i class="far fa-exclamation-circle"></i> this filed is required!
+                            <i class="far fa-exclamation-circle"></i> Required!
                         </p>
                         <p class="errorMessage"
                            *ngIf="(profileForm.controls['firstName'].hasError('maxlength'))" [@errorAnimation]>
-                            <i class="far fa-exclamation-circle"></i> Firstname max length is 20 char!
+                            <i class="far fa-exclamation-circle"></i> First name max length is 20 char!
                         </p>
                     </div>
                 </div>
@@ -53,11 +53,11 @@
                          *ngIf="((profileForm.controls['lastName'].dirty || profileForm.controls['lastName'].touched || formDir.submitted))"
                          [@errorAnimation]>
                         <p class="errorMessage" *ngIf="profileForm.hasError('required', 'lastName')">
-                            <i class="far fa-exclamation-circle"></i> this filed is required!
+                            <i class="far fa-exclamation-circle"></i> Required!
                         </p>
                         <p class="errorMessage"
                            *ngIf="(profileForm.controls['lastName'].hasError('maxlength')) " [@errorAnimation]>
-                            <i class="far fa-exclamation-circle"></i> Surename max length is 30 char!
+                            <i class="far fa-exclamation-circle"></i> Sure name max length is 30 char!
                         </p>
                     </div>
                 </div>
@@ -83,10 +83,10 @@
                 <label>Birthday :</label>
                 <mat-form-field class="date-picker">
                     <input matInput class="form-control birthday-field"
-                           formControlName="value"
+                           formControlName="birthday"
                            #pickerValue
                            [matDatepicker]="picker"
-                           placeholder="Enter your Birthday">
+                           placeholder="MM/DD/YYYY">
                     <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
                     <mat-datepicker #picker></mat-datepicker>
                 </mat-form-field>

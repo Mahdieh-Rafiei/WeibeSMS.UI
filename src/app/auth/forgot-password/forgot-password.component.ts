@@ -14,6 +14,7 @@ import {AuthSharedService} from '../auth-shared.service';
 import {CacheObject} from '../../shared/models/cache-object';
 import {NotificationService} from '../../shared/notification.service';
 import {UtilityService} from '../../shared/utility.service';
+import {InputedMobileModel} from '../../shared/component/country-flag-numbers/inputed-mobile-model';
 
 
 @Component({
@@ -25,7 +26,6 @@ import {UtilityService} from '../../shared/utility.service';
 export class ForgotPasswordComponent implements OnInit {
 
   step: number = 1;
-  isCorrectMobile = false;
   verificationCodePart1: string = '';
   verificationCodePart2: string = '';
   verificationCodePart3: string = '';
@@ -35,40 +35,31 @@ export class ForgotPasswordComponent implements OnInit {
   verifyKey: string;
   password: string;
   confirmPassword: string;
-
+  isCorrectMobile = false;
   forgotPasswordForm: FormGroup;
   resetPassForm: FormGroup;
   notMatch: boolean = false;
   enterPressConfirm: boolean = false;
   verificationCode: string;
-  countries: DataCountryInterface[];
   showSpinner: boolean = false;
-  isTried: boolean;
-  countryPrefix;
-  countryFlag;
 
-  mobileValue;
   @ViewChild('verificationCodePart1Element') verificationCodePart1Element: ElementRef;
   @ViewChild('verificationCodePart2Element') verificationCodePart2Element: ElementRef;
   @ViewChild('verificationCodePart3Element') verificationCodePart3Element: ElementRef;
   @ViewChild('verificationCodePart4Element') verificationCodePart4Element: ElementRef;
   @ViewChild('verificationCodePart5Element') verificationCodePart5Element: ElementRef;
-  @ViewChild('mobileInput') mobileInput: ElementRef;
 
   constructor(private forgotPasswordService: ForgotPasswordService,
               private router: Router,
               private fb: FormBuilder,
-              private shs: SharedService,
               private authSharedService: AuthSharedService,
               private authService: AuthenticationService,
               public configService: ConfigService,
-              private notificationService: NotificationService,
-              private utilityService: UtilityService) {
+              private notificationService: NotificationService) {
   }
 
   ngOnInit() {
     this.createForm();
-    this.getCountries();
   }
 
   createForm() {
@@ -84,49 +75,19 @@ export class ForgotPasswordComponent implements OnInit {
     });
   }
 
-  changeMobile(mobile: string) {
-    this.setMobileValue();
-    this.isCorrectMobile = this.utilityService.isMobile(this.mobileValue);
-    this.countries.forEach(item => mobile === item.prefixNumber ? this.selectCountry(2, item) : null);
-  }
-
-  selectCountry(index, country) {
-    this.countryPrefix = country.prefixNumber;
-    this.countryFlag = country.flag;
-    if (index === 2) {
-      this.mobileInput.nativeElement.focus();
-      this.countries.forEach(item => {
-        if (this.forgotPasswordForm.value.prefixNumberId === item.id) {
-          this.mobileValue = this.forgotPasswordForm.value.Mobile.substring(item.prefixNumber.length);
-        }
-      });
-      this.forgotPasswordForm.patchValue({
-        Mobile: country.prefixNumber + this.mobileValue
-      });
-    } else {
-      this.forgotPasswordForm.patchValue({
-        Mobile: country.prefixNumber
-      });
-    }
-    this.forgotPasswordForm.patchValue({
-      prefixNumberId: country.id,
-    });
-  }
-
-  getCountries() {
-    this.shs.getCountries().subscribe((res) => {
-      this.countries = res.data;
-      this.selectCountry(1, this.countries[0]);
-    });
+  setMobile(e: InputedMobileModel) {
+    this.forgotPasswordForm.patchValue({'Mobile': e.mobile});
+    this.forgotPasswordForm.patchValue({'prefixNumberId': e.country.id});
+    this.isCorrectMobile = e.isCorrectMobile;
   }
 
   sendVerificationCode() {
-    if (this.forgotPasswordForm.valid) {
-      this.setMobileValue();
-      this.authSharedService.mobile = this.mobileValue;
+    debugger;
+    if (this.forgotPasswordForm.valid && this.isCorrectMobile) {
       this.authSharedService.prefixNumberId = +this.forgotPasswordForm.value.countryId;
       const payload: SendVerificationCodeInterface = this.forgotPasswordForm.value;
-      payload['Mobile'] = this.mobileValue;
+      payload['Mobile'] = this.forgotPasswordForm.controls['Mobile'].value;
+      payload['prefixNumberId'] = this.forgotPasswordForm.controls['prefixNumberId'].value;
 
       this.showSpinner = true;
       this.forgotPasswordService.sendVerificationCode(payload)
@@ -145,7 +106,7 @@ export class ForgotPasswordComponent implements OnInit {
 
           },
           err => {
-            this.isTried = true;
+            // this.isTried = true;
             this.showSpinner = false;
             if (err.error.Message === '4') {
               this.step = 2;
@@ -310,15 +271,6 @@ export class ForgotPasswordComponent implements OnInit {
       this.verificationCodePart4 && this.verificationCodePart5) {
       this.verify();
     }
-  }
-
-  setMobileValue() {
-    this.countries.forEach(item => {
-      if (this.forgotPasswordForm.value.prefixNumberId === item.id) {
-        this.mobileValue = this.isTried ? this.forgotPasswordForm.value.Mobile :
-          this.forgotPasswordForm.value.Mobile.substring(item.prefixNumber.length);
-      }
-    });
   }
 }
 

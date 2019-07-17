@@ -116,6 +116,7 @@ export class SenderIdComponent implements OnInit {
           };
           this.notificationService.success('Sender Id added successfully', '');
           this.senderNames.push(addedItem);
+          this.senderIdForm.patchValue({'name': ''});
         });
     }
   }
@@ -154,8 +155,8 @@ export class SenderIdComponent implements OnInit {
   }
 
   generateRowColumns() {
-    this.tableConfig.rowColumnsConfig.push({propertyName: 'title',hideInResponsive: false});
-    this.tableConfig.rowColumnsConfig.push({propertyName: 'creationDateTime',hideInResponsive: true, isDateTime: true});
+    this.tableConfig.rowColumnsConfig.push({propertyName: 'title', hideInResponsive: false});
+    this.tableConfig.rowColumnsConfig.push({propertyName: 'creationDateTime', hideInResponsive: true, isDateTime: true});
     this.tableConfig.rowColumnsConfig.push({
       hideInResponsive: false,
       buttonConfig: {

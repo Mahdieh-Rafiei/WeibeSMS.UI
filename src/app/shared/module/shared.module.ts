@@ -19,6 +19,8 @@ import {QuickShowNotificationComponent} from '../../main/layout/top-nav/quick-sh
 import {MessageTemplateBuilderComponent} from '../component/message-template-builder/message-template-builder.component';
 import {SelectContactsComponent} from '../component/select-contacts/select-contacts.component';
 import {NoSanitizePipe} from "../pipe/no-sanitize.pipe";
+import {CountryFlagNumbersComponent} from '../component/country-flag-numbers/country-flag-numbers.component';
+import {UnderConstructionComponent} from '../component/under-construction/under-construction.component';
 
 @NgModule({
   imports: [
@@ -44,7 +46,9 @@ import {NoSanitizePipe} from "../pipe/no-sanitize.pipe";
     QuickShowNotificationComponent,
     MessageTemplateBuilderComponent,
     SelectContactsComponent,
-    NoSanitizePipe
+    NoSanitizePipe,
+    CountryFlagNumbersComponent,
+    UnderConstructionComponent
   ],
   entryComponents: [
     LoadingSpinnerComponent,
@@ -70,7 +74,9 @@ import {NoSanitizePipe} from "../pipe/no-sanitize.pipe";
     QuickShowNotificationComponent,
     MessageTemplateBuilderComponent,
     SelectContactsComponent,
-    NoSanitizePipe
+    NoSanitizePipe,
+    CountryFlagNumbersComponent,
+    UnderConstructionComponent
   ]
 })
 export class SharedModule {

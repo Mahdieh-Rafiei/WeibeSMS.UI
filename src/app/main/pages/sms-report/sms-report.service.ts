@@ -35,9 +35,9 @@ export class SmsReportService {
     return this.apiService.get(url, true);
   }
 
-  getSmsReportsExcel(ids: number[]): Observable<GetSmsReportsExcelResponse> {
-    const url = '';
-    return this.apiService.post(url, null, true);
+  getSmsReportsExcel(ids: Map<boolean, number[]>): Observable<GetSmsReportsExcelResponse> {
+    const url = 'SendMessage/Excel';
+    return this.apiService.post(url, ids, true);
   }
 
   getSmsDetailReport(id: number, pageSize: number, pageNumber: number, searchValue: string,
@@ -47,6 +47,11 @@ export class SmsReportService {
     &searchValue=${searchValue}&isBulk=${isBulk}`;
 
     return this.apiService.get(url, true);
+  }
+
+  getSmsDetaiReportsExcel(masterId: number, isBulk: boolean, ids: number[]): Observable<GetSmsReportsExcelResponse> {
+    const url = `SendMessage/Excel/${masterId}/${isBulk}`;
+    return this.apiService.post(url, ids, true);
   }
 
   removeSmsReport(): Observable<any> {

@@ -52,7 +52,7 @@
         <div class="col-md-8 form-group" [ngClass]="[r.isAdmin ? 'supporter' : 'customer']">
           <p class="date-author text-right">
             <span>{{r.isAdmin ? 'Admin hastman' : ticket.authorName}}</span>
-            <span>{{r.creationDateTime}}</span>
+            <span>{{r.creationDateTime | dateTime:'YYYY-MM-DD hh:mm:ss'}}</span>
           </p>
           <div [ngClass]="[r.isAdmin ? 'supporter-ticket' : 'customer-ticket']">
             <p [innerHTML]="r.message"></p>

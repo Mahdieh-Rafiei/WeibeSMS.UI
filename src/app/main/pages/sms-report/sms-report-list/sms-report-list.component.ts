@@ -85,11 +85,13 @@ export class SmsReportListComponent implements OnInit {
   }
 
   export(e) {
-    const ids: number[] = [];
+    debugger;
+    const ids: Map<boolean, number[]> = new Map<boolean, number[]>();
     if (e.target.value === 1) {
-      this.items.forEach(p => {
-        ids.push(p.id);
-      });
+      const isBulkIds = this.items.filter(i => i.isBulk).map(i => i.id);
+      const isNotBulkIds = this.items.filter(i => !i.isBulk).map(i => i.id);
+
+      ids.set(true, isBulkIds);
     }
     this.smsReportService.getSmsReportsExcel(ids)
       .subscribe(res => {

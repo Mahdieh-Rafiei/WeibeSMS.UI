@@ -109,7 +109,8 @@ export class ShowSmsReportComponent implements OnInit {
         ids.push(p.id);
       });
     }
-    this.smsReportService.getSmsReportsExcel(ids)
+    this.smsReportService.getSmsDetaiReportsExcel(this.smsReportService.selectedSms.id,
+      this.smsReportService.selectedSms.isBulk,ids)
       .subscribe(res => {
         window.open(res.data, '_blank');
       });

@@ -68,6 +68,7 @@ export class DeactiveAccountComponent implements OnInit {
 
     dialogRef.afterClosed()
       .subscribe(result => {
+        debugger;
         if (result && result.deleteAccount) {
           this.authService.logOut();
           this.ns.success('User deactivated successfully. Deactivation allowed just per 24 hours!', '');

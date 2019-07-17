@@ -134,6 +134,7 @@
             <div class="col-12 col-md-8 ">
               <label>Address :</label>
               <textarea type="text"
+                        [maxLength]="300"
                         placeholder="Enter your address"
                         formControlName="address" class="form-control"
                         [ngClass]="{'border-error':!billingAddressForm.controls['address'].value && (((billingAddressForm.controls['address'].dirty || billingAddressForm.controls['address'].touched) || formDir.submitted))}"
