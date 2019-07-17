@@ -90,21 +90,29 @@ a.toggle-menu {
   }
 }
 
-.profile {
-  img {
-    width: 50px;
-    height: 50px;
-  }
-  a {
-    padding: 1rem;
-  }
-}
-
-.language, .notification, .guide {
+.language, .notification, .guide, .profile {
   line-height: 51px;
   i {
     color: $dark-purple;
     font-size: 20px;
+  }
+}
+
+.profile {
+  a:hover {
+    background-color: #e2e5ec;
+  }
+}
+
+.language-div {
+  a:hover {
+    background-color: #e2e5ec;
+  }
+}
+
+.notification-div {
+  a:hover {
+    background-color: #e2e5ec;
   }
 }
 
