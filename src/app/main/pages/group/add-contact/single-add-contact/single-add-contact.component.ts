@@ -127,7 +127,7 @@ export class SingleAddContactComponent implements OnInit {
   getCountry() {
     this.countries = this.shs.getCountries().data;
   }
-  
+
   getUserEvents() {
     this.userEventService.getUserEvents(this.pageNumber, this.pageSize, this.phrase)
       .subscribe((res: UserEventResponseInterface) => {
