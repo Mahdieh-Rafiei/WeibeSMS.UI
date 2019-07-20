@@ -25,7 +25,7 @@
       <div class="row">
         <div class="col-md-4 form-group" *ngIf="!contactId">
           <label>Phone Number</label>
-          <app-country-flag-numbers>
+          <app-country-flag-numbers (inputMobileStateChanged)="setMobile($event)">
 
           </app-country-flag-numbers>
         </div>

@@ -1,4 +1,12 @@
-import {Component, ElementRef, OnInit, ViewChild, ViewEncapsulation} from '@angular/core';
+import {
+  AfterViewChecked,
+  ChangeDetectorRef,
+  Component,
+  ElementRef,
+  OnInit,
+  ViewChild,
+  ViewEncapsulation
+} from '@angular/core';
 import {RegisterService} from '../register/register.service';
 import {Router} from '@angular/router';
 import {AuthenticationService} from './authentication.service';
@@ -29,7 +37,7 @@ import {InputedMobileModel} from '../../shared/component/country-flag-numbers/in
   encapsulation: ViewEncapsulation.None
 })
 
-export class LoginComponent implements OnInit {
+export class LoginComponent implements OnInit, AfterViewChecked {
 
   isLoginMode = true;
   verificationCodeSent = false;
@@ -73,11 +81,15 @@ export class LoginComponent implements OnInit {
               private shs: SharedService,
               private router: Router,
               private userAccountService: UserAccountService,
-              private utilityService: UtilityService) {
+              private changeDetectorRef: ChangeDetectorRef) {
   }
 
   ngOnInit() {
     this.createForm();
+  }
+
+  ngAfterViewChecked() {
+    this.changeDetectorRef.detectChanges();
   }
 
   createForm() {

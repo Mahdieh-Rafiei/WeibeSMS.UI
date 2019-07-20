@@ -7,13 +7,10 @@ import {NotificationService} from '../../shared/notification.service';
 import {UtilityService} from '../../shared/utility.service';
 import {AuthSharedService} from '../auth-shared.service';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {Gender} from '../../shared/enums';
 import {RegisterInterface} from './models/register.interface';
 import {SharedService} from '../../shared/service/shared.service';
 import {errorAnimation} from '../../shared/component/animation/error-animation';
-import {UserInfoResponseInterface} from '../login/models/user-info-response.interface';
-import {UserAccountService} from '../../main/pages/user-account/user-account.service';
-import {Subject} from 'rxjs';
-import {debounceTime} from 'rxjs/operators';
 
 
 @Component({
@@ -36,58 +33,37 @@ export class RegisterComponent implements OnInit {
 
   showSpinner: boolean = false;
 
-  userNameSubject: Subject<any> = new Subject();
-  emailSubject: Subject<any> = new Subject();
-
-  checkingUserName: boolean;
-  checkingEmail: boolean;
-
   constructor(private registerService: RegisterService,
               private authService: AuthenticationService,
               private router: Router,
               private fb: FormBuilder,
               private shs: SharedService,
-              public us: UtilityService,
-              public configService: ConfigService,
+              private configService: ConfigService,
               private notificationService: NotificationService,
-              private authSharedService: AuthSharedService,
-              private userAccountService: UserAccountService) {
+              private authSharedService: AuthSharedService) {
   }
 
   ngOnInit() {
     this.createForm();
-    this.userNameSubject
-      .pipe(debounceTime(300))
-      .subscribe(() => {
-          this.registerForm.controls.userName.updateValueAndValidity();
-          this.checkUnique(1, this.registerForm.value.userName);
-        }
-      );
-    this.emailSubject
-      .pipe(debounceTime(300))
-      .subscribe(() => {
-          this.registerForm.controls.email.updateValueAndValidity();
-          this.checkUnique(2, this.registerForm.value.email);
-        }
-      );
   }
 
   createForm() {
     this.registerForm = this.fb.group({
       firstName: [null, Validators.compose([Validators.required, Validators.maxLength(20)])],
       lastName: [null, Validators.compose([Validators.required, Validators.maxLength(30)])],
-      userName: [null, Validators.required],
+      userName: [null, Validators.compose([Validators.required, Validators.minLength(6)])],
       password: [null, Validators.compose([Validators.required,
         Validators.pattern(/^(?=^.{8,}$)(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?!.*\s)[0-9a-zA-Z!@#$%^&*()]*$/)])],
       email: [null, Validators.required],
       confirmPassword: [null],
       companyName: [null],
       gender: [''],
+      // countryId: [null],
+      // defaultPrefix: [null]
     });
   }
 
   submit() {
-
     if (!this.registerForm.value.confirmPassword) {
       this.confirmPasswordOut();
     }
@@ -103,19 +79,16 @@ export class RegisterComponent implements OnInit {
       delete payload['confirmPassword'];
       this.registerService.saveInfo(payload)
         .subscribe(res => {
+            this.showSpinner = false;
             this.authService.setToken(res.data.token);
             localStorage.removeItem('k-l');
-            this.userAccountService.getUserInfo()
-              .subscribe((result: UserInfoResponseInterface) => {
-                this.showSpinner = false;
-                this.shs.setUserInfo(result.data);
-                this.router.navigateByUrl('');
-                this.configService.authenticationChanged.emit(true);
-              });
+            this.configService.authenticationChanged.emit(true);
+            this.router.navigateByUrl('');
           },
           err => {
             this.showSpinner = false;
             if (err.error.Message === '1') {
+              console.log(err);
               this.router.navigate(['/login']);
             }
           });
@@ -136,7 +109,7 @@ export class RegisterComponent implements OnInit {
   }
 
   checkUnique(key: number, value: string) {
-    if (key === 1 ? value.length > 5 : value.length > 0 && key === 2 ? this.us.checkEmail(value) : null) {
+    if (key === 1 ? value.length > 5 : value.length > 0) {
       const payload = {key, value};
       this.shs.checkUnique(payload)
         .subscribe((res: any) => {
@@ -153,38 +126,8 @@ export class RegisterComponent implements OnInit {
               this.emailUnique = true;
             }
           }
-          this.checkingEmail = false;
-          this.checkingUserName = false;
         });
     }
   }
 
-  onKeyUp(type, value) {
-
-    if (type === 'userName') {
-      if (value.length > 5) {
-        this.checkingUserName = true;
-      } else {
-        this.checkingUserName = false;
-        this.userNameUnique = false;
-      }
-      this.userNameSubject.next();
-    } else if (type === 'email') {
-      if (value.length > 0 && this.us.checkEmail(value)) {
-        this.checkingEmail = true;
-      } else {
-        this.checkingEmail = false;
-        this.userNameUnique = false;
-      }
-      this.emailSubject.next();
-    }
-  }
-
-  onKeyDown(type): void {
-    if (type === 'userName') {
-      this.registerForm.controls.userName.clearValidators();
-    } else if (type === 'email') {
-      this.registerForm.controls.email.clearValidators();
-    }
-  }
 }
