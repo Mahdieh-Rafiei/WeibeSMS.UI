@@ -42,7 +42,7 @@
             <!--autofocus autocomplete="off">-->
             <!---->
             <div class="input-group-prepend">
-              <button [disabled]="false" type="submit" class="light-blue-btn ml-2">Verification Code</button>
+              <button [disabled]="!inputedMobileModel.isCorrectMobile || !mobileModified" type="submit" class="light-blue-btn ml-2">Verification Code</button>
             </div>
           </div>
         </div>

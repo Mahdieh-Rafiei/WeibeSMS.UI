@@ -10,6 +10,7 @@
         <div class="input-group mb-3">
           <select class="form-control content-box" (change)="countryChanged($event)"
                   aria-describedby="basic-addon2">
+            <option [value]="null">Select</option>
             <option [innerText]="c.name" [value]="c.id" *ngFor="let c of countries"></option>
           </select>
         </div>

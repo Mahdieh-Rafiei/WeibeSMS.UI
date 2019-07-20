@@ -6,7 +6,6 @@ import {DataCountryInterface} from '../../../../../shared/models/data-country.in
 import {SendVerificationCodeInterface} from '../../../../../auth/login/models/send-verification-code.interface';
 import {UserAccountService} from '../../user-account.service';
 import {ChangeNumberInterface} from './models/change-number.interface';
-import {UtilityService} from '../../../../../shared/utility.service';
 import {UserInfoInterface} from '../../../../../auth/login/models/user-info.interface';
 import {InputedMobileModel} from '../../../../../shared/component/country-flag-numbers/inputed-mobile-model';
 
@@ -19,14 +18,9 @@ export class ChangeNumberComponent implements OnInit {
 
   changeNumberForm: FormGroup;
   countries: DataCountryInterface[];
-  // countryPrefix;
-  // countryFlag;
-  mobileValue;
   currentUserInfo: UserInfoInterface;
-  isTried = false;
-  oldMobileEntered = true;
-  isCorrectMobile = true;
   inputedMobileModel: InputedMobileModel;
+  mobileModified = false;
 
   constructor(private fb: FormBuilder,
               private shs: SharedService,
@@ -51,8 +45,11 @@ export class ChangeNumberComponent implements OnInit {
     this.createForm();
   }
 
-  setValue(e) {
-
+  setValue(e: InputedMobileModel) {
+    this.changeNumberForm.patchValue({'mobile': e.mobile});
+    this.changeNumberForm.patchValue({'prefixNumberId': e.country.id});
+    this.inputedMobileModel.isCorrectMobile = e.isCorrectMobile;
+    this.mobileModified = this.currentUserInfo.mobile.toString() != (e.country.prefixNumber + e.mobile).substring(1);
   }
 
   createForm() {
@@ -65,15 +62,8 @@ export class ChangeNumberComponent implements OnInit {
 
   submit() {
     if (this.changeNumberForm.valid) {
-      this.countries.forEach(item => {
-        if (this.changeNumberForm.value.prefixNumberId === item.id) {
-          if (!this.isTried) {
-            this.mobileValue = this.changeNumberForm.value.mobile.substring(item.prefixNumber.length);
-          }
-        }
-      });
+
       const payload: SendVerificationCodeInterface = this.changeNumberForm.value;
-      payload.mobile = this.mobileValue;
       this.shs.data = payload;
       this.uas.sendVerificationCode(payload)
         .subscribe((res: ChangeNumberInterface) => {
@@ -82,7 +72,6 @@ export class ChangeNumberComponent implements OnInit {
             localStorage.setItem('k-u', res.data.key);
           },
           err => {
-            this.isTried = true;
             if (err.error.Message === '4') {
               this.router.navigate(['/profile/verify-number']);
             }
