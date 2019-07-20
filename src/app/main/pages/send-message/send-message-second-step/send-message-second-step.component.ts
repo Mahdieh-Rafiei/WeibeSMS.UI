@@ -12,19 +12,20 @@ import {Router} from '@angular/router';
 export class SendMessageSecondStepComponent implements OnInit {
 
   constructor(public sendMessageService: SendMessageService,
-              private router:Router) {
+              private router: Router) {
   }
 
   sendSmsLines: SendSmsLineView[];
 
   ngOnInit() {
-    if (this.sendMessageService.messageModel.messageText.length == 0){
+    if (this.sendMessageService.messageModel.messageText.length == 0) {
       this.router.navigateByUrl('send-message/first-step');
     }
 
     this.sendMessageService.getActiveLines()
       .subscribe((res: GetUserActiveLineResponse) => {
         this.sendSmsLines = res.data;
+        this.sendSmsLines.forEach(s => s.line = `+${s.line}`);
         this.sendMessageService.messageModel.lineConfig = this.sendSmsLines[0];
       });
   }
@@ -38,7 +39,7 @@ export class SendMessageSecondStepComponent implements OnInit {
     this.sendMessageService.messageModel.contacts = e;
   }
 
-  setGroups(e:any[]){
+  setGroups(e: any[]) {
     this.sendMessageService.messageModel.groups = e;
   }
 }

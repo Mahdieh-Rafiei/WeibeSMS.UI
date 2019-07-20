@@ -1,4 +1,14 @@
-import {Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild} from '@angular/core';
+import {
+  AfterViewChecked,
+  ChangeDetectorRef,
+  Component,
+  ElementRef,
+  EventEmitter,
+  Input,
+  OnInit,
+  Output,
+  ViewChild
+} from '@angular/core';
 import {UtilityService} from '../../utility.service';
 import {DataCountryInterface} from '../../models/data-country.interface';
 import {SharedService} from '../../service/shared.service';
@@ -10,7 +20,7 @@ import {InputedMobileModel} from './inputed-mobile-model';
   styleUrls: ['./country-flag-numbers.component.scss']
 })
 
-export class CountryFlagNumbersComponent implements OnInit {
+export class CountryFlagNumbersComponent implements OnInit, AfterViewChecked {
 
   countries: DataCountryInterface[];
   isTried: boolean;
@@ -25,7 +35,8 @@ export class CountryFlagNumbersComponent implements OnInit {
   pureMobile = '';
 
   constructor(private utilityService: UtilityService,
-              private sharedService: SharedService) {
+              private sharedService: SharedService,
+              private changeDetectorRef: ChangeDetectorRef) {
   }
 
   ngOnInit() {
@@ -36,6 +47,10 @@ export class CountryFlagNumbersComponent implements OnInit {
       this.selectedCountry = this.lastData.country;
       this.isCorrectMobile = this.lastData.isCorrectMobile;
     }
+  }
+
+  ngAfterViewChecked(){
+    this.changeDetectorRef.detectChanges();
   }
 
   changeMobile(e) {

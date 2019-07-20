@@ -1,6 +1,7 @@
 import {AfterViewChecked, ChangeDetectorRef, Component, OnInit} from '@angular/core';
 import {SendMessageService} from './send-message.service';
 import {Router} from '@angular/router';
+import {NotificationService} from "../../../shared/notification.service";
 
 @Component({
   selector: 'app-send-message',
@@ -11,7 +12,8 @@ export class SendMessageComponent implements OnInit, AfterViewChecked {
 
   constructor(public sendMessageService: SendMessageService,
               private changeDetectorRef: ChangeDetectorRef,
-              private router: Router) {
+              private router: Router,
+              private notificationService: NotificationService) {
   }
 
   ngAfterViewChecked() {
@@ -32,6 +34,12 @@ export class SendMessageComponent implements OnInit, AfterViewChecked {
 
       }
     } else if (this.sendMessageService.step == 2) {
+
+      if (!this.sendMessageService.messageModel.contacts ||
+        this.sendMessageService.messageModel.contacts.size === 0) {
+        this.notificationService.error('First, Please select some contacts!', '');
+        return;
+      }
       this.sendMessageService.step = 3;
       this.router.navigateByUrl(`send-message/third-step`);
     }
