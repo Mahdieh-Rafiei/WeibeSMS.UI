@@ -4,7 +4,7 @@ import {TicketComponent} from './ticket.component';
 import {TicketListComponent} from './ticket-list/ticket-list.component';
 import {SingleTicketComponent} from './ticket/single-ticket.component';
 import {AddTicketComponent} from './add-ticket/add-ticket.component';
-import {StatusTranslatorPipe} from '../../../shared/pipe/status-translator.pipe';
+import {TicketStatusTranslatorPipe} from './ticket-status-translator.pipe';
 
 const routes: Routes = [{
   path: '',
@@ -45,5 +45,5 @@ export const routedComponents = [
   TicketListComponent,
   SingleTicketComponent,
   AddTicketComponent,
-  StatusTranslatorPipe
+  TicketStatusTranslatorPipe
 ];

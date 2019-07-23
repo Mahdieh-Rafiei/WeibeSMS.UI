@@ -10,11 +10,12 @@ import {ActivatedRoute, Router} from '@angular/router';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {SharedService} from '../../../../shared/service/shared.service';
 import {DataCountryInterface} from '../../../../shared/models/data-country.interface';
-import {CityInterface} from '../../../../shared/models/city.interface';
 import {BillingService} from '../billing.service';
 import {NotificationService} from '../../../../shared/notification.service';
 import {BillindAddressResponseInterface} from './models/billind-address-response.interface';
 import {errorAnimation} from '../../../../shared/component/animation/error-animation';
+import {InputedMobileModel} from '../../../../shared/component/country-flag-numbers/inputed-mobile-model';
+import {DataBillingAddressInterface} from './models/data-billing-address.interface';
 
 @Component({
   selector: 'app-billing-address',
@@ -26,16 +27,15 @@ import {errorAnimation} from '../../../../shared/component/animation/error-anima
 })
 
 export class BillingAddressComponent implements OnInit, AfterViewChecked {
-  billingAddressData;
+  billingAddress: DataBillingAddressInterface;
   billingAddressForm: FormGroup;
   cities = [];
   vatNumber = true;
+  lastMobileData: InputedMobileModel;
 
   @ViewChild('mobileInput') mobileInput: ElementRef;
 
   countries: DataCountryInterface[];
-  countryPrefix;
-  countryFlag;
   mobileValue;
 
   constructor(private route: ActivatedRoute,
@@ -43,14 +43,15 @@ export class BillingAddressComponent implements OnInit, AfterViewChecked {
               private bs: BillingService,
               private notificationService: NotificationService,
               private shs: SharedService,
-              private changeDetectorRef: ChangeDetectorRef,
-              private router: Router) {
+              private changeDetectorRef: ChangeDetectorRef) {
     this.route.data
       .subscribe((data: { billingAddress: BillindAddressResponseInterface }) => {
-        this.billingAddressData = data.billingAddress;
+        this.billingAddress = data.billingAddress.data;
+        if (this.billingAddress) {
+          this.mobileValue = true;
 
+        }
       });
-
   }
 
   ngAfterViewChecked() {
@@ -61,66 +62,38 @@ export class BillingAddressComponent implements OnInit, AfterViewChecked {
 
     this.bs.mode = 'address';
     this.createForm();
-    this.countries = this.shs.getCountriesByCache();
-    this.selectCountry(1, this.countries[0]);
+    this.countries = this.shs.getCountries().data;
+
+    this.lastMobileData = {
+      isCorrectMobile: true,
+      mobile: this.billingAddress.phone.toString(),
+      country: this.countries.filter(c => c.id == this.billingAddress.prefixNumberId)[0]
+    };
+
     this.fillBillingAddress(this.billingAddressForm);
-    this.setMobileValue();
-  }
-
-
-  changeMobile(mobile: string) {
-    this.countries.forEach(item => {
-      mobile === item.prefixNumber ? this.selectCountry(2, item) : null;
-    });
-    this.setMobileValue();
-  }
-
-  selectCountry(index, country) {
-    this.countryPrefix = country.prefixNumber;
-    this.countryFlag = country.flag;
-    if (index === 2) {
-      this.mobileInput.nativeElement.focus();
-      this.setMobileValue();
-      this.billingAddressForm.patchValue({
-        phone: country.prefixNumber + this.mobileValue
-      });
-    } else {
-      this.billingAddressForm.patchValue({
-        phone: country.prefixNumber
-      });
-    }
-    this.billingAddressForm.patchValue({
-      prefixNumberId: country.id,
-    });
   }
 
   fillBillingAddress(billingAddressForm) {
-    if (!this.billingAddressData.data) {
+    if (!this.billingAddress) {
       return;
     }
 
-    if (this.billingAddressData.data && this.billingAddressData.data.countryId) {
-      this.countrySelect(this.billingAddressData.data.countryId);
-    }
-    let prefixNumber;
-    this.countries.forEach(item => {
-      if (this.billingAddressData.data.prefixNumberId === item.id) {
-        prefixNumber = item.prefixNumber;
-        this.selectCountry(1, item);
-      }
-    });
     billingAddressForm.patchValue({
-      fullName: this.billingAddressData.data ? this.billingAddressData.data.fullName : null,
-      countryId: this.billingAddressData.data ? this.billingAddressData.data.countryId : '',
-      cityId: this.billingAddressData.data ? this.billingAddressData.data.cityId : '',
-      phone: this.billingAddressData.data ? prefixNumber + this.billingAddressData.data.phone : null,
-      address: this.billingAddressData.data ? this.billingAddressData.data.address : null,
-      zipCode: this.billingAddressData.data ? this.billingAddressData.data.zipCode : null,
-      prefixNumberId: this.billingAddressData.data ? this.billingAddressData.data.prefixNumberId : '',
-      vatNumber: this.billingAddressData.data ? this.billingAddressData.data.vatNumber : null,
+      fullName: this.billingAddress ? this.billingAddress.fullName : null,
+      countryId: this.billingAddress ? this.billingAddress.countryId : '',
+      phone: this.billingAddress ? this.lastMobileData.country.prefixNumber + this.billingAddress.phone : null,
+      address: this.billingAddress ? this.billingAddress.address : null,
+      zipCode: this.billingAddress ? this.billingAddress.zipCode : null,
+      prefixNumberId: this.billingAddress ? this.billingAddress.countryId : '',
+      vatNumber: this.billingAddress ? this.billingAddress.vatNumber : null,
     });
-    if (this.billingAddressData.data && this.billingAddressData.data.vatNumber) {
+
+    this.cities = this.countries.filter(c => c.id == this.billingAddress.countryId)[0].states;
+    billingAddressForm.patchValue({'cityId':this.billingAddress.cityId});
+    this.billingAddressForm.patchValue({cityId: this.billingAddress.cityId});
+    if (this.billingAddress && this.billingAddress.vatNumber) {
       this.vatNumber = false;
+
     }
   }
 
@@ -130,6 +103,12 @@ export class BillingAddressComponent implements OnInit, AfterViewChecked {
     } else if (event.value === '2') {
       this.vatNumber = false;
     }
+  }
+
+  setMobile(e: InputedMobileModel) {
+    this.billingAddressForm.patchValue({'phone': e.mobile});
+    this.billingAddressForm.patchValue({'prefixNumberId': e.country.id});
+    this.mobileValue = e.isCorrectMobile;
   }
 
   createForm() {
@@ -142,36 +121,25 @@ export class BillingAddressComponent implements OnInit, AfterViewChecked {
       zipCode: [null, Validators.required],
       prefixNumberId: ['', Validators.required],
       vatNumber: [null],
-    })
-    ;
+    });
   }
 
-  countrySelect(id) {
-    const countryId = id ? id : this.billingAddressForm.get('countryId').value;
-    this.shs.getCity(countryId)
-      .subscribe((res: CityInterface) => this.cities = res.data);
+  countrySelect(e) {
+    const countryId = e.target.value;
+    this.cities = this.countries.filter(c => c.id == countryId)[0].states;
   }
 
   submit() {
     if (this.billingAddressForm.valid) {
-      this.setMobileValue();
       const payload = this.billingAddressForm.value;
-      payload.phone = this.mobileValue;
       if (!payload.vatNumber) {
         delete payload.vatNumber;
       }
       this.bs.modifyAddress(payload)
         .subscribe(res => {
           this.notificationService.success('Billing address saved successfully', '');
+          this.shs.getCurrentUserInfo().hasBillingAddress = true;
         });
     }
-  }
-
-  setMobileValue() {
-    this.countries.forEach(item => {
-      if (this.billingAddressForm.value.prefixNumberId === item.id) {
-        this.mobileValue = this.billingAddressForm.value.phone.substring(item.prefixNumber.length);
-      }
-    });
   }
 }

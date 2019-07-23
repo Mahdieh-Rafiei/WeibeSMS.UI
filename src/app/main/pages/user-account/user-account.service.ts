@@ -1,4 +1,4 @@
-import {Injectable} from '@angular/core';
+import {EventEmitter, Injectable, Output} from '@angular/core';
 import {ApiService} from '../../../shared/api.service';
 import {Observable} from 'rxjs';
 import {InfoGetInterface} from './profile/info/models/info-get.interface';
@@ -9,15 +9,19 @@ import {SenderIdResponseInterface} from './profile/sender-id/models/sender-id-re
 import {SendVerificationCodeResponseInterface} from '../../../auth/login/models/send-verification-code-response.interface';
 import {SendVerificationCodeInterface} from '../../../auth/login/models/send-verification-code.interface';
 import {ChangeNumberInterface} from './profile/change-number/models/change-number.interface';
-import {VerifyMobileInterface} from './profile/change-number/verify-number/models/verify-mobile.interface';
 import {AddSenderIdResponseInterface} from './profile/sender-id/models/add-sender-id-response.interface';
 import {UserInfoResponseInterface} from '../../../auth/login/models/user-info-response.interface';
 import {DashboardInfoResponseInterface} from '../dashboard/models/dashboard-info-response.interface';
+import {VerifyMobileInterface} from '../../../shared/component/verify-mobile/models/verify-mobile.interface';
+import {VerifyMobileResponseInterface} from '../../../auth/login/models/verify-mobile-response.interface';
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserAccountService {
+
+  @Output() firstNameChanged: EventEmitter<null> = new EventEmitter<null>();
 
   constructor(private apiService: ApiService) {
   }
@@ -53,7 +57,7 @@ export class UserAccountService {
     return this.apiService.post<SendVerificationCodeInterface>(url, payload, true);
   }
 
-  verifyMobile(payload): Observable<any> {
+  verifyMobile(payload): Observable<VerifyMobileResponseInterface> {
     const url = `user/verifyMobile`;
     return this.apiService.post<VerifyMobileInterface>(url, payload, true);
   }

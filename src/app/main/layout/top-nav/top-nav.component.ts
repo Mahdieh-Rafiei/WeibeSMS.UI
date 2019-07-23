@@ -25,7 +25,7 @@ export class TopNavComponent implements OnInit {
               private userNotificationService: UserNotificationService,
               private authService: AuthenticationService,
               private ds: DataService,
-              private sharedService: SharedService,
+              public sharedService: SharedService,
               private dialog: MatDialog) {
   }
 

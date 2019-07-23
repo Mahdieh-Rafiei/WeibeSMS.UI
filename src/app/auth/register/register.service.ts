@@ -4,9 +4,9 @@ import {Observable} from 'rxjs';
 import {SendVerificationCodeInterface} from '../login/models/send-verification-code.interface';
 import {SendVerificationCodeResponseInterface} from '../login/models/send-verification-code-response.interface';
 import {VerifyMobileResponseInterface} from '../login/models/verify-mobile-response.interface';
-import {VerifyMobileInterface} from '../login/models/verify-mobile.interface';
 import {RegisterInterface} from './models/register.interface';
 import {RegisterResponseInterface} from './models/register-response.interface';
+import {VerifyMobileInterface} from '../../shared/component/verify-mobile/models/verify-mobile.interface';
 
 @Injectable({
   providedIn: 'root'

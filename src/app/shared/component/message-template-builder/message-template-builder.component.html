@@ -1,49 +1,56 @@
 <div class="col-12 draft">
-    <div class="row">
-        <div class="col-md-12 p-0">
-            <label>Compose</label>
-        </div>
-        <div [ngClass]="{'border-error' : (messageText.length == 0 || !isMaxLenValid)}"
-             class="col-md-8 pr-2 pl-0 content-box">
+  <div class="row">
+    <div class="col-md-12 p-0">
+      <label>Compose</label>
+    </div>
+    <div [ngClass]="{'border-error' : (messageText.length == 0 || !isMaxLenValid)}"
+         class="col-md-8 pr-2 pl-0 content-box">
                 <textarea class="hasan" [maxLength]="hasDoubleChar ? 603 : 1377" placeholder="Message |"
                           (input)="onMessageTextChange()"
                           [(ngModel)]="messageText"
-                          rows="9" #message></textarea>
-            <div class="count-sms">
-                <span>{{messageText.length}} / {{totalSize}}</span> | <span>{{smsCount}} SMS</span>
-            </div>
-        </div>
-        <div class="col-md-4 pl-2 pr-0">
-            <div class="content-box personalize mb-3">
-                <h5>Personalize</h5>
-                <p class="yellow-text fo-3 pt-1 pb-1 font-weight-bold">* To use the field dynamically</p>
-                <p class="green-text fo-2 pt-2" (click)="addSegment(1)"><i class="fa fa-plus-circle"></i> Name
-                </p>
-                <p class="green-text fo-2 pt-2" (click)="addSegment(2)"><i class="fa fa-plus-circle"></i>
-                    Surname</p>
-                <p class="green-text fo-2 pt-2" (click)="addSegment(3)"><i class="fa fa-plus-circle"></i> Phone
-                    number</p>
-            </div>
-            <div class="template">
-                <select class="form-control" (change)="selectTemplate($event)">
-                    <option hidden *ngIf="drafts?.length===0">No Template</option>
-                    <option hidden *ngIf="drafts?.length>0">Select Template</option>
-                    <option [innerText]="d.title" [value]="d.id" *ngFor="let d of drafts">
-                    </option>
-                </select>
-            </div>
-        </div>
-        <div class="error-place">
-            <div class="text-left">
-                <p class="errorMessage" *ngIf="messageText && (!isMaxLenValid || (messageText.length == 0))">
-                    <i class="far fa-exclamation-circle"></i>{{!isMaxLenValid ? 'Notice to Max length message!' :
-                    'Required!'}}
-                </p>
-            </div>
-        </div>
-        <p *ngIf="hasDoubleChar">
-            You used unicode chars!
-        </p>
+                          rows="9" #message
+                          (focusin)="setNeedRequiredErrorIn()"
+                          (focusout)="setNeedRequiredErrorOut()"></textarea>
+      <div class="count-sms">
+        <span>{{messageText.length}} / {{totalSize}}</span> | <span>{{smsCount}} SMS</span>
+      </div>
     </div>
+    <div class="col-md-4 pl-2 pr-0">
+      <div class="content-box personalize mb-3">
+        <h5>Personalize</h5>
+        <p class="yellow-text fo-3 pt-1 pb-1 font-weight-bold">* To use the field dynamically</p>
+        <p class="green-text fo-2 pt-2" (click)="addSegment(1)"><i class="fa fa-plus-circle"></i> Name
+        </p>
+        <p class="green-text fo-2 pt-2" (click)="addSegment(2)"><i class="fa fa-plus-circle"></i>
+          Surname</p>
+        <p class="green-text fo-2 pt-2" (click)="addSegment(3)"><i class="fa fa-plus-circle"></i> Phone
+          number</p>
+      </div>
+      <div class="template">
+        <select class="form-control" (change)="selectTemplate($event)">
+          <option hidden *ngIf="drafts?.length===0">No Template</option>
+          <option hidden *ngIf="drafts?.length>0">Select Template</option>
+          <option [innerText]="d.title" [value]="d.id" *ngFor="let d of drafts">
+          </option>
+        </select>
+      </div>
+    </div>
+    <div class="error-place">
+      <div class="text-left">
+        <p class="errorMessage"
+           *ngIf="!messageText || messageText.length === 0 ||( messageText && (!isMaxLenValid || (messageText.length == 0)))">
+          <span *ngIf="needRequiredError">
+            <i class="far fa-exclamation-circle"></i>Required!
+          </span>
+          <span *ngIf="!isMaxLenValid">
+             <i class="far fa-exclamation-circle"></i>Notice to Max length message!
+          </span>
+        </p>
+      </div>
+    </div>
+    <p *ngIf="hasDoubleChar">
+      You used unicode chars!
+    </p>
+  </div>
 </div>
 

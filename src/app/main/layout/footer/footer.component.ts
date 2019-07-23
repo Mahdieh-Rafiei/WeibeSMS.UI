@@ -8,7 +8,7 @@ import {ConfigService} from "../../../shared/config.service";
 })
 export class FooterComponent implements OnInit {
 
-  constructor(private configService: ConfigService,) { }
+  constructor(public configService: ConfigService,) { }
 
   ngOnInit() {
   }

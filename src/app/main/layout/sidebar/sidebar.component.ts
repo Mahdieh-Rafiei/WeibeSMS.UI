@@ -4,6 +4,7 @@ import {DataService} from '../../../shared/service/data.service';
 import {ConfigService} from '../../../shared/config.service';
 import {animate, style, transition, trigger} from '@angular/animations';
 import {SharedService} from '../../../shared/service/shared.service';
+import {UserAccountService} from '../../pages/user-account/user-account.service';
 
 @Component({
   selector: 'app-sidebar',
@@ -115,11 +116,13 @@ export class SidebarComponent implements OnInit {
   ];
   activeRoute: string;
 
+
   constructor(private router: Router,
               private ds: DataService,
               private route: ActivatedRoute,
               private configService: ConfigService,
-              private sharedService:SharedService) {
+              private sharedService: SharedService,
+              private userAccountService: UserAccountService) {
     this.navigateRoute(window.location.pathname);
     this.menuItems.forEach(item => {
         if (item.subMenu) {
@@ -135,7 +138,10 @@ export class SidebarComponent implements OnInit {
 
   ngOnInit() {
     this.showMenu = '';
-    this.menuItems[0].title = `Hi ${this.sharedService.getCurrentUserInfo().firstName}`;
+    this.setFirstName();
+    this.userAccountService.firstNameChanged.subscribe(res => {
+      this.setFirstName();
+    });
   }
 
   // subMenu
@@ -161,5 +167,10 @@ export class SidebarComponent implements OnInit {
       this.configService.sidebarMode = this.configService.sidebarMode == 'default' ? 'slim' : 'default';
       this.ds.showSideBar = false;
     }
+  }
+
+  setFirstName() {
+    this.menuItems[0].title = `Hi ${this.sharedService.getCurrentUserInfo().firstName.length > 10 ?
+      `${this.sharedService.getCurrentUserInfo().firstName.substring(0, 6)} ...` : this.sharedService.getCurrentUserInfo().firstName}`;
   }
 }

@@ -16,7 +16,9 @@ import {UtilityService} from '../../../../../shared/utility.service';
 import {UserEventInterface} from '../../../user-event/models/user-event.interface';
 import {UserEventResponseInterface} from '../../../user-event/models/user-event-response.interface';
 import {EventUserAddContactInterface} from './models/event-user-add-contact.interface';
-
+import {DialogComponent} from '../../../../../shared/component/dialog/dialog.component';
+import {MatDialog} from '@angular/material';
+import {InputedMobileModel} from '../../../../../shared/component/country-flag-numbers/inputed-mobile-model';
 
 
 @Component({
@@ -39,8 +41,6 @@ export class SingleAddContactComponent implements OnInit {
     {title: 'Male', value: 3}];
 
   countries: DataCountryInterface[];
-  countryPrefix;
-  countryFlag;
   mobileValue;
   val = [];
   id = [];
@@ -63,10 +63,13 @@ export class SingleAddContactComponent implements OnInit {
               private fb: FormBuilder,
               private router: Router,
               private shs: SharedService,
-              private utilityService: UtilityService) {
+              private utilityService: UtilityService,
+              private dialog: MatDialog) {
+
     if (!this.contactId) {
       this.getCountry();
     }
+
     this.route.params.subscribe(item => {
       this.contactId = parseInt(item.contactId);
       this.groupId = parseInt(item.groupId);
@@ -95,6 +98,12 @@ export class SingleAddContactComponent implements OnInit {
       });
   }
 
+  setMobile(e: InputedMobileModel) {
+
+    this.singleContactForm.patchValue({mobile: e.mobile});
+    this.singleContactForm.patchValue({prefixNumberId: e.country.id});
+  }
+
   fillContact(singleContactForm) {
     singleContactForm.patchValue({
       contactGroupId: this.groupId,
@@ -121,40 +130,7 @@ export class SingleAddContactComponent implements OnInit {
   }
 
   getCountry() {
-    this.shs.getCountries()
-      .subscribe((res: CountryInterface) => {
-        this.countries = res.data;
-        this.selectCountry(1, this.countries[0]);
-      });
-  }
-
-  selectCountry(index, country) {
-    if (!this.contactId) {
-      this.countryPrefix = country.prefixNumber;
-      this.countryFlag = country.flag;
-      if (index === 2) {
-        this.countries.forEach(item => {
-          if (this.singleContactForm.value.prefixNumberId === item.id) {
-            this.mobileValue = this.singleContactForm.value.mobile.substring(item.prefixNumber.length);
-          }
-        });
-        this.singleContactForm.patchValue({
-          mobile: country.prefixNumber + this.mobileValue
-        });
-      } else {
-        this.singleContactForm.patchValue({
-          mobile: country.prefixNumber
-        });
-      }
-      this.singleContactForm.patchValue({
-        prefixNumberId: country.id,
-      });
-    }
-  }
-
-  changeMobile(mobile: string) {
-    this.countries.forEach(item => mobile === item.prefixNumber ? this.selectCountry(2, item) : null);
-    this.mobileValue = mobile;
+    this.countries = this.shs.getCountries().data;
   }
 
   getUserEvents() {
@@ -176,7 +152,6 @@ export class SingleAddContactComponent implements OnInit {
       eventsUser: this.fb.array([])
     });
   }
-
 
   submit() {
     if (!this.contactId) {
@@ -216,7 +191,7 @@ export class SingleAddContactComponent implements OnInit {
     if (this.singleContactForm.valid && this.mobileValue && !this.req) {
 
       const payload: AddContactInterface = this.singleContactForm.value;
-      payload.mobile = this.mobileValue;
+      // payload.mobile = this.mobileValue;
       payload.gender === 0 ? payload.gender = 1 : payload.gender;
       if (payload.eventsUser.length === 1 && !payload.eventsUser[0].value && !payload.eventsUser[0].id) {
         delete payload.eventsUser;
@@ -233,20 +208,20 @@ export class SingleAddContactComponent implements OnInit {
         const uniqueIds = Array.from(new Set(payload.eventsUser.map
         ((item: EventUserAddContactInterface): number => item.id)));
 
-        let uniqueEventUsers: EventUserAddContactInterface[] = [];
+        const uniqueEventUsers: EventUserAddContactInterface[] = [];
 
         let i = 0;
         uniqueIds.forEach(id => {
           let found = false;
 
-          let eu = payload.eventsUser[i];
+          const eu = payload.eventsUser[i];
           for (let j = 0; j < payload.eventsUser.length; j++) {
             if (eu.id == id) {
               found = true;
               break;
             }
           }
-          if (found){
+          if (found) {
             uniqueEventUsers.push(eu);
           }
           i++;
@@ -291,9 +266,37 @@ export class SingleAddContactComponent implements OnInit {
     }
   }
 
-
   get userEvent() {
-    return this.singleContactForm.controls.eventsUser;
+    return this.singleContactForm.get('eventsUser')['controls'];
   }
 
+  removeContact() {
+    this.openDeleteDialog('480px', 'auto', '', {
+      modalType: 'deleteContact',
+      modalHeader: 'Delete Contact',
+      modalText: 'Are you sure to remove this contact?'
+    });
+  }
+
+  openDeleteDialog(width, height, panelClass, data): void {
+    const dialogRef = this.dialog.open(DialogComponent, {
+      width,
+      height,
+      panelClass,
+      data
+    });
+
+    dialogRef.afterClosed()
+      .subscribe(result => {
+        if (result) {
+          if (result.remove.modalType === 'deleteContact') {
+            this.contactService.removeContact(this.contactId)
+              .subscribe(res => {
+                this.notificationService.success('Contact removed successfully', '');
+                this.router.navigateByUrl(`group/${this.groupId}`);
+              });
+          }
+        }
+      });
+  }
 }

@@ -3,7 +3,11 @@
         <div class="col-md-2 text-left" *ngIf="sendMessageService.step != 1">
             <button class="previous-btn" (click)="goToPreviousStep()"> <i class="fa fa-arrow-left"></i> Previous</button>
         </div>
+<<<<<<< HEAD
         <div class="text-right" [ngClass]="sendMessageService.step != 1 ? 'col-md-10' : 'col-md-12'">
+=======
+        <div *ngIf="sendMessageService.step != 3" class="text-right" [ngClass]="sendMessageService.step != 1 ? 'col-md-11' : 'col-md-12'">
+>>>>>>> 769df7fc03d4abd019af1eeb91845dcd369b80d7
             <button class="green-btn" (click)="goToNextStep()"> Next</button>
         </div>
     </div>

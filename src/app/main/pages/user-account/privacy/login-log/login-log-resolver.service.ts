@@ -15,7 +15,7 @@ export class LoginLogResolverService implements Resolve<LoginLogInterface> {
   }
 
   resolve(rout: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<LoginLogInterface> {
-    return this.ps.loginLog(1, 10, '').pipe(
+    return this.ps.loginLog(1, 10, '',0,2147483647).pipe(
       mergeMap(loginLog => {
         if (loginLog) {
           return of(loginLog);

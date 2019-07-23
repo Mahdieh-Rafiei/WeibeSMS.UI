@@ -2,6 +2,8 @@ import {Component, OnInit} from '@angular/core';
 import {SendMessageService} from '../send-message.service';
 import {DataSendMessage} from '../models/data-send-message';
 import {Router} from '@angular/router';
+import {MessageModel} from '../models/message.model';
+import {NotificationService} from '../../../../shared/notification.service';
 
 @Component({
   selector: 'app-send-message-third-step',
@@ -12,12 +14,13 @@ export class SendMessageThirdStepComponent implements OnInit {
 
   dataSendMessage: DataSendMessage;
 
-  constructor(private sendMessageService: SendMessageService,
-              private router :Router) {
+  constructor(public sendMessageService: SendMessageService,
+              private router: Router,
+              private notificationService: NotificationService) {
   }
 
   ngOnInit() {
-    if (this.sendMessageService.messageModel.messageText.length == 0){
+    if (this.sendMessageService.messageModel.messageText.length == 0) {
       this.router.navigateByUrl('send-message/first-step');
       return;
     }
@@ -25,6 +28,15 @@ export class SendMessageThirdStepComponent implements OnInit {
     this.sendMessageService.sendMessage(false)
       .subscribe(res => {
         this.dataSendMessage = res.data;
-      })
+      });
+  }
+
+  send() {
+    this.sendMessageService.sendMessage(true)
+      .subscribe(res => {
+        this.sendMessageService.messageModel = new MessageModel('');
+        this.notificationService.success('Message sent successfully', '');
+        this.router.navigateByUrl('');
+      });
   }
 }

@@ -10,7 +10,7 @@
             <div class="mt-3">
               <div *ngFor="let g of groups">
                 <p>
-                  <mat-checkbox (ngModelChange)="groupCheckedChanged($event,g)"
+                  <mat-checkbox (input)="groupCheckedChanged($event,g)"
                                 [(ngModel)]="g.isSelected"></mat-checkbox>
                   <span class="ml-2" (click)="loadContacts(g)">{{g.groupName}}  ({{g.contactsCount}})  <span
                     class="red-text fo-3 pointer">(show)</span></span>
@@ -94,6 +94,7 @@
             </div>
           </div>
           <div *ngIf="clickedGroup">
+            <div>{{clickedGroup.groupName}}</div>
             <div class="table-div table-responsive">
               <table class="index-table text-left">
                 <thead>
@@ -110,7 +111,7 @@
                     },index as i">
                   <td class="text-left">
                     <div class="table-head">
-                      <mat-checkbox (ngModelChange)="contactCheckedChanged($event,c)"
+                      <mat-checkbox (input)="contactCheckedChanged()"
                                     [(ngModel)]="c.isSelected"></mat-checkbox>
                       {{i + 1}}
                     </div>

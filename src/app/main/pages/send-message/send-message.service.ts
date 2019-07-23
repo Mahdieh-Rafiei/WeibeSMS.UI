@@ -4,8 +4,6 @@ import {ApiService} from '../../../shared/api.service';
 import {Observable} from 'rxjs';
 import {GetUserActiveLineResponse} from './models/get-user-active-line-response';
 import {SendMessageResponse} from './models/send-message-response';
-import * as moment from 'moment';
-import _date = moment.unitOfTime._date;
 
 @Injectable({
   providedIn: 'root'
@@ -18,7 +16,6 @@ export class SendMessageService {
 
   constructor(private apiService: ApiService) {
   }
-
 
   getActiveLines(): Observable<GetUserActiveLineResponse> {
     const url = `line/UserActiveLine`;

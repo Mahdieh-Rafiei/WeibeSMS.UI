@@ -9,6 +9,9 @@
 </div>
 
 <app-select-contacts [hasOperation]="false"
-(apiModelChanged)="setApiModel($event)">
+                     [apiModel]="sendMessageService.messageModel.contacts"
+                     [groups]="sendMessageService.messageModel.groups"
+                     (apiModelChanged)="setApiModel($event)"
+ (groupStatesChanged)="setGroups($event)">
 
 </app-select-contacts>
