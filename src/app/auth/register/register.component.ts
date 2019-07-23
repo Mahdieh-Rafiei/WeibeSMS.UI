@@ -136,6 +136,10 @@ export class RegisterComponent implements OnInit {
   }
 
   checkUnique(key: number, value: string) {
+    if (!value) {
+      return;
+    }
+
     if (key === 1 ? value.length > 5 : value.length > 0 && key === 2 ? this.us.checkEmail(value) : null) {
       const payload = {key, value};
       this.shs.checkUnique(payload)

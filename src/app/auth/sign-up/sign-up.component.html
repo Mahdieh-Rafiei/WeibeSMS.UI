@@ -1,0 +1,49 @@
+<form class="form-content pr-4 pl-4 pb-3" *ngIf="verificationCodeSent === false" #formDir="ngForm"
+      (keydown)="keySendVerificationCode($event)">
+  <div class="text-center">
+    <h5>Hello Stranger!</h5>
+    <span class="gray-text fo-2">Create a free account on <span
+      class="weib">{{configService.appTitle}}</span>.</span>
+  </div>
+  <app-country-flag-numbers (inputMobileStateChanged)="setMobile($event)"
+                            [lastData]="null">
+
+  </app-country-flag-numbers>
+  <div class="mt-3">
+    <button type="submit" (click)="sendVerificationCode()" class="ws-btn login-btn">Register</button>
+  </div>
+  <div class="text-center">
+    <hr>
+    <p class="gray-text fo-2">Already have an account? <span class="sign-fill"
+                                                             (click)="rollbackToLoginMode()">Sign in</span>
+    </p>
+  </div>
+</form>
+
+<div class="pr-4 pl-4 pb-3" *ngIf="verificationCodeSent === true">
+  <div class="text-center">
+    <h5>Hello Stranger!</h5>
+    <span class="gray-text fo-2">Create a free account on <span
+      class="sign-fill">{{configService.appTitle}}</span>.</span>
+  </div>
+
+  <app-verify-mobile [mobile]="authSharedService.mobile"
+                     [registrationKey]="authSharedService.keyLogin"
+                     [prefixNumberId]="authSharedService.prefixNumberId"
+                     [reason]="1"
+                     (wrongClicked)="rollbackToFirstStep()"
+                     (verified)="router.navigateByUrl('/auth/register')">
+
+  </app-verify-mobile>
+
+  <div class="text-center">
+    <hr>
+    <p class="gray-text fo-2">Already have an account? <span class="sign-fill"
+                                                             (click)="rollbackToLoginMode()">Sign in</span>
+    </p>
+  </div>
+</div>
+
+
+
+

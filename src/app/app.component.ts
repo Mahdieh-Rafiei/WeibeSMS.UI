@@ -39,7 +39,7 @@ export class AppComponent implements OnInit {
     // this.configService.sidebarStateChanged.subscribe(res => this.configService.sidebarMode = res);
 
     if (!this.authService.isAuthenticated()) {
-      this.router.navigateByUrl('/login');
+      this.router.navigateByUrl('/auth/login');
     }
 
   }

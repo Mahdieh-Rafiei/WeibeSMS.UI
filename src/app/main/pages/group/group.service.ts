@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {ApiService} from '../../../shared/api.service';
 import {Observable} from 'rxjs';
-import {GroupListInterface} from './group-list/models/group-list.interface';
+import {GroupListResponse} from './group-list/models/group-list-response';
 import {AddGroupNameInterface} from './group-list/models/add-group-name.interface';
 import {AddGroupNameResponseInterface} from './group-list/models/add-group-name-response.interface';
 import {ModifyGroupNameInterface} from './group-list/models/modify-group-name.interface';
@@ -18,7 +18,7 @@ export class GroupService {
   constructor(private apiService: ApiService) {
   }
 
-  getAllGroupList(pageNumber: number, pageSize: number, phrase: string): Observable<GroupListInterface> {
+  getAllGroupList(pageNumber: number, pageSize: number, phrase: string): Observable<GroupListResponse> {
     const url = `ContactGroup?pageSize=${pageSize}&pageNumber=${pageNumber}&searchValue=${phrase}`;
     return this.apiService.get(url, true);
   }

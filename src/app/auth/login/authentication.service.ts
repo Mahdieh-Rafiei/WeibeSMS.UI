@@ -33,14 +33,8 @@ export class AuthenticationService {
 
   logOut() {
     localStorage.removeItem(this.configService.tokenKeyName);
-    // let cacheJson = localStorage.getItem('cache-object');
-    // if (cacheJson){
-    //   let cacheObject = <CacheObject>JSON.parse(cacheJson);
-    //   cacheObject.currentUserInfo = null;
-    //   cache
-    // }
     this.configService.authenticationChanged.emit(false);
-    this.router.navigateByUrl('/login');
+    this.router.navigateByUrl('/auth/login');
   }
 
   deleteAccount() {

@@ -1,4 +1,4 @@
-export interface ItemsGroupListInterface {
+export interface GroupListModel {
   contacts: null;
   contactsCount: number;
   creationDateTime: Date;

@@ -1,5 +1,5 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import {GroupListInterface} from '../../../main/pages/group/group-list/models/group-list.interface';
+import {GroupListResponse} from '../../../main/pages/group/group-list/models/group-list-response';
 import {GetAllContactGroupInterface} from '../../../main/pages/group/add-contact/import-contact-from-other-list/models/get-all--contact-group.interface';
 import {ContactGroupMoveCopyResponseInterface} from '../../../main/pages/group/add-contact/import-contact-from-other-list/models/contact-group-move-copy-response.interface';
 import {ContactService} from '../../../main/pages/group/add-contact/single-add-contact/contact.service';
@@ -46,7 +46,7 @@ export class SelectContactsComponent implements OnInit {
 
   getAllGroupList() {
     this.groupService.getAllGroupList(1, 1000, '')
-      .subscribe((res: GroupListInterface) => {
+      .subscribe((res: GroupListResponse) => {
         this.groups = res.data.items.filter(i => i.id !== this.groupId);
         this.groups.forEach(g => {
           g.isSelected = false;
