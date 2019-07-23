@@ -5,8 +5,6 @@ import {ConfigService} from '../../shared/config.service';
 import {LoginInterface} from './models/login.interface';
 import {LoginResponseInterface} from './models/login-response.interface';
 import {Observable} from 'rxjs';
-import {DataCountryInterface} from '../../shared/models/data-country.interface';
-import {CacheObject} from '../../shared/models/cache-object';
 
 @Injectable({
   providedIn: 'root'

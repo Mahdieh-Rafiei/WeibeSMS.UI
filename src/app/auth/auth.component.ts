@@ -14,23 +14,20 @@ import {AuthSharedService} from './auth-shared.service';
 })
 
 
-export class AuthComponent implements OnInit, AfterViewChecked {
+export class AuthComponent implements OnInit {
 
-  showSpinner=false;
+  showSpinner: boolean;
 
-  constructor(private configService: ConfigService,
-              private authSharedService: AuthSharedService,
-              private changeDetectorRef: ChangeDetectorRef) {
-
+  constructor(private configService: ConfigService) {
   }
 
-  ngOnInit(): void {
-    this.authSharedService.spinnerStatusChanged.subscribe(res => {
+  ngOnInit() {
+    this.configService.spinnerStatusChanged.subscribe(res => {
       this.showSpinner = res;
-    })
+    });
   }
 
-  ngAfterViewChecked(): void {
-    this.changeDetectorRef.detectChanges();
-  }
+  // ngAfterViewChecked(): void {
+  //   this.changeDetectorRef.detectChanges();
+  // }
 }

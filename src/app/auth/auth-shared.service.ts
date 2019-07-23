@@ -9,8 +9,6 @@ export class AuthSharedService {
   mobile: string;
   prefixNumberId: number;
 
-  @Output() spinnerStatusChanged: EventEmitter<boolean> = new EventEmitter<boolean>();
-
   constructor() {
 
   }

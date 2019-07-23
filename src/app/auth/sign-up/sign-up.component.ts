@@ -56,7 +56,7 @@ export class SignUpComponent implements OnInit, AfterViewChecked {
   sendVerificationCode() {
 
     if (this.signUpForm.valid && this.isCorrectMobile) {
-      this.authSharedService.spinnerStatusChanged.emit(true);
+      // this.configService.spinnerStatusChanged.emit(true);
       this.authSharedService.mobile = this.signUpForm.value.mobile;
       this.authSharedService.prefixNumberId = +this.signUpForm.value.prefixNumberId;
       const payload: SendVerificationCodeInterface = this.signUpForm.value;
@@ -64,7 +64,7 @@ export class SignUpComponent implements OnInit, AfterViewChecked {
       this.registerService.sendVerificationCode(payload)
         .subscribe((res: SendVerificationCodeResponseInterface) => {
 
-            this.authSharedService.spinnerStatusChanged.emit(false);
+            // this.configService.spinnerStatusChanged.emit(false);
             if (res.data.codeIsExists) {
               this.notificationService.success('Please use the last code', '');
             } else {
@@ -81,7 +81,8 @@ export class SignUpComponent implements OnInit, AfterViewChecked {
           },
           err => {
 
-            this.authSharedService.spinnerStatusChanged.emit(false);
+            // this.configService.spinnerStatusChanged.emit(false);
+
             if (err.error.Message === '4') {
               console.log(err);
               this.verificationCodeSent = true;

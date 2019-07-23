@@ -73,14 +73,14 @@ export class LoginComponent implements OnInit, AfterViewChecked {
 
   login() {
     if (this.signInForm.valid) {
-      this.authSharedService.spinnerStatusChanged.emit( true);
+      this.configService.spinnerStatusChanged.emit( true);
       const payload: LoginInterface = this.signInForm.value;
       this.authenticationService.loginViaUsernamePassword(payload)
         .subscribe((res: LoginResponseInterface) => {
             this.authenticationService.setToken(res.data.token);
             this.userAccountService.getUserInfo()
               .subscribe((res: UserInfoResponseInterface) => {
-                this.authSharedService.spinnerStatusChanged.emit(false);
+                this.configService.spinnerStatusChanged.emit(false);
                 this.sharedService.setUserInfo(res.data);
                 this.router.navigateByUrl('');
                 this.configService.authenticationChanged.emit(true);
@@ -88,7 +88,7 @@ export class LoginComponent implements OnInit, AfterViewChecked {
           },
           err => {
             this.isTried = true;
-            this.authSharedService.spinnerStatusChanged.emit(false);
+            this.configService.spinnerStatusChanged.emit(false);
           });
     }
   }

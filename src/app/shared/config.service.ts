@@ -18,6 +18,7 @@ export class ConfigService {
   }
 
   @Output() authenticationChanged: EventEmitter<boolean> = new EventEmitter<boolean>();
+  @Output() spinnerStatusChanged: EventEmitter<boolean> = new EventEmitter<boolean>();
 
   constructor() {
     this.tokenKeyName = 'jwt-sms';
