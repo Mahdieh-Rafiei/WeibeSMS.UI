@@ -1,8 +1,8 @@
 <div class="col-md-12 tab-section" *ngIf="countries">
   <div class="change-password">
     <h5>Phone number</h5>
-    <p class="black-text fo-4">you can change your phone number, but you should verify it.</p>
-    <div class="input-box">
+    <p class="black-text fo-4">You can change your phone number, but you should verify it.</p>
+    <div class="input-box" *ngIf="!codeSent">
       <form class="row" (ngSubmit)="submit()" [formGroup]="changeNumberForm">
         <div class="col-12 col-md-6 pt-3 pb-3">
           <label>Your phone number: </label>
@@ -12,41 +12,34 @@
                                       [lastData]="inputedMobileModel">
 
             </app-country-flag-numbers>
-
-            <!---->
-            <!--<div class="btn-group">-->
-            <!--<button class="form-control dropdown-toggle btn-default btn-select" type="button"-->
-            <!--data-toggle="dropdown" role="button" aria-expanded="true">-->
-            <!--<img class="mr-2" width="20" [src]="'data:image/jpg;base64,'+countryFlag"/>-->
-            <!--</button>-->
-            <!--<div class="custom-dropdown">-->
-            <!--<ul class="dropdown-menu" role="listbox" aria-expanded="true">-->
-            <!--<li class="dropdown-item" *ngFor="let country of countries"-->
-            <!--(click)="selectCountry(2, country)">-->
-            <!--<img class="ml-2 mr-2" width="20"-->
-            <!--[src]="'data:image/jpg;base64,'+country.flag"/>-->
-            <!--<span>{{country.name}}</span>-->
-            <!--(<span>{{country.prefixNumber}}</span>)-->
-            <!--</li>-->
-            <!--</ul>-->
-            <!--</div>-->
-            <!--</div>-->
-            <!--<input type="text"-->
-            <!--#mobileInput-->
-            <!--placeholder="Your phone number"-->
-            <!--class="form-control"-->
-            <!--formControlName="mobile"-->
-            <!--(input)="changeMobile(mobileInput.value)"-->
-            <!--appNumericInput-->
-            <!--[ngClass]="{'border-error' : (changeNumberForm.controls['mobile'].hasError('pattern')) && (changeNumberForm.controls['mobile'].touched || changeNumberForm.controls['mobile'].dirty )}"-->
-            <!--autofocus autocomplete="off">-->
-            <!---->
             <div class="input-group-prepend">
-              <button [disabled]="false" type="submit" class="light-blue-btn ml-2">Verification Code</button>
+              <button [disabled]="!inputedMobileModel.isCorrectMobile || !mobileModified" type="submit"
+                      class="light-blue-btn ml-2">Verification Code
+              </button>
             </div>
           </div>
+
+
         </div>
       </form>
     </div>
+
+    <div class="row" *ngIf="codeSent">
+      <div class="col-12 col-md-6 pt-3 pb-3">
+        <div class="pr-4 pl-4 pb-3" >
+          <app-verify-mobile [mobile]="changeNumberForm.controls['mobile'].value"
+                             [registrationKey]="key"
+                             [prefixNumberId]="changeNumberForm.controls['prefixNumberId'].value"
+                             [reason]="3"
+                             (verified)="onVerified($event)"
+                             (wrongClicked)="router.navigateByUrl('/profile/change-number')"
+          >
+
+          </app-verify-mobile>
+        </div>
+      </div>
+    </div>
+
+
   </div>
 </div>

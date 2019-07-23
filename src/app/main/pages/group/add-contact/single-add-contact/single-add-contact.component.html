@@ -1,183 +1,149 @@
 <div *ngIf="contactId" class="btn-section">
-    <div class="row">
-        <div class="col-12 col-md-6 col-sm-6 col-xs-6 text-left">
-            <button class="previous-btn" [routerLink]="['/group',groupId]"><i class="fa fa-arrow-left"></i> Previous
-            </button>
-        </div>
-        <div class="col-12 col-md-6 col-sm-6 col-xs-6 text-right">
-            <button (click)="removeContact()" class="red-btn"><i class="fa fa-trash"></i>
-                Delete permanent
-            </button>
-            <button (click)="submit()" class="green-btn ml-3">
-                Save
-            </button>
-        </div>
+  <div class="row">
+    <div class="col-12 col-md-6 col-sm-6 col-xs-6 text-left">
+      <button class="previous-btn" [routerLink]="['/group',groupId]"><i class="fa fa-arrow-left"></i> Previous
+      </button>
     </div>
+    <div class="col-12 col-md-6 col-sm-6 col-xs-6 text-right">
+      <button (click)="removeContact()" class="red-btn"><i class="fa fa-trash"></i>
+        Delete permanent
+      </button>
+      <button (click)="submit()" class="green-btn ml-3">
+        Save
+      </button>
+    </div>
+  </div>
 </div>
 <!--<div class="tab-section">-->
 <div [ngClass]="(contactId) ?'div-section':'tab-section'">
-    <form class="col-md-12 single-add-contact"
-          [formGroup]="singleContactForm" #formDir="ngForm" (ngSubmit)="submit()">
-        <div class="add-contact">
-            <div class="title">
-                <h5 class="mb-4">{{contactId ? 'Edit contact' : 'Add contact'}}</h5>
-            </div>
-            <div class="row">
-                <div class="col-md-4 form-group" *ngIf="!contactId">
-                    <label>Phone Number</label>
-                    <div class="flex-group">
-                        <div class="btn-group">
-                            <button class="form-control dropdown-toggle btn-default btn-select" type="button"
-                                    data-toggle="dropdown" role="button" aria-expanded="true">
-                                <img class="mr-2" width="20" [src]="'data:image/jpg;base64,'+countryFlag"/>
-                            </button>
-                            <div class="custom-dropdown">
-                                <ul class="dropdown-menu" role="listbox" aria-expanded="true">
-                                    <li class="dropdown-item" *ngFor="let country of countries"
-                                        (click)="selectCountry(2, country)">
-                                        <img class="ml-2 mr-2" width="20"
-                                             [src]="'data:image/jpg;base64,'+country.flag"/>
-                                        <span>{{country.name}}</span>
-                                        (<span>{{country.prefixNumber}}</span>)
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                        <input type="text"
-                               placeholder="Your phone number"
-                               class="form-control"
-                               #mobileInput
-                               formControlName="mobile"
-                               (input)="changeMobile(mobileInput.value)"
-                               appNumericInput
-                               [ngClass]="{'border-error' :(singleContactForm.controls['mobile'].touched || singleContactForm.controls['mobile'].dirty ) && !mobileValue}"
-                               autofocus autocomplete="off">
-                    </div>
-                    <div class="error-place">
-                        <div class="text-left"
-                             *ngIf="formDir.submitted">
-                            <p class="errorMessage"
-                               *ngIf="(!mobileValue)">
-                                <i class="far fa-exclamation-circle"></i> This filed is required!
-                            </p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4 form-group" *ngIf="contactId">
-                    <label>Phone Number</label>
-                    <input type="text"
-                           class="form-control"
-                           formControlName="mobile"
-                           placeholder="">
-                </div>
-                <div class="col-md-4 form-group">
-                    <label>First Name</label>
-                    <input type="text"
-                           class="form-control"
-                           formControlName="firstName"
-                           placeholder="Name :">
-                </div>
-                <div class="col-md-4 form-group">
-                    <label>Surename</label>
-                    <input type="text"
-                           class="form-control"
-                           formControlName="lastName"
-                           placeholder="Surname :">
-                </div>
-                <div class="col-md-4 form-group">
-                    <label>Email</label>
-                    <input type="text"
-                           class="form-control"
-                           formControlName="email"
-                           placeholder="Enter recipient Email :">
-                    <div class="error-place">
-                        <div class="text-left"
-                             *ngIf="(((singleContactForm.controls['email'].dirty || singleContactForm.controls['email'].touched) || formDir.submitted))"
-                             [@errorAnimation]>
-                            <p class="errorMessage"
-                               *ngIf="(singleContactForm.controls['email'].hasError('email'))">
-                                <i class="far fa-exclamation-circle"></i> email is invalid!
-                            </p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4 form-group">
-                    <label>Gender</label>
-                    <select formControlName="gender" class="form-control">
-                        <option hidden value="">Select</option>
-                        <option [value]="gender.value" *ngFor="let gender of genders">{{gender.title}}</option>
-                    </select>
-                </div>
-            </div>
+  <form class="col-md-12 single-add-contact"
+        [formGroup]="singleContactForm" #formDir="ngForm" (ngSubmit)="submit()">
+    <div class="add-contact">
+      <div class="title">
+        <h5 class="mb-4">{{contactId ? 'Edit contact' : 'Add contact'}}</h5>
+      </div>
+      <div class="row">
+        <div class="col-md-4 form-group" *ngIf="!contactId">
+          <label>Phone Number</label>
+          <app-country-flag-numbers (inputMobileStateChanged)="setMobile($event)">
+
+          </app-country-flag-numbers>
         </div>
-        <div class="field border-top">
-            <div class="title form-group">
-                <h5 class="yellow-text">Recipient field</h5>
-                <p>
-                    you can go
-                    <span class="red-text">"Option>event field"</span>
-                    and create field for
-                    <span class="font-weight-bold">event</span>
-                    send sms.
-                </p>
+        <div class="col-md-4 form-group" *ngIf="contactId">
+          <label>Phone Number</label>
+          <input type="text"
+                 class="form-control"
+                 formControlName="mobile"
+                 placeholder="">
+        </div>
+        <div class="col-md-4 form-group">
+          <label>First Name</label>
+          <input type="text"
+                 class="form-control"
+                 formControlName="firstName"
+                 placeholder="Name :">
+        </div>
+        <div class="col-md-4 form-group">
+          <label>Sure name</label>
+          <input type="text"
+                 class="form-control"
+                 formControlName="lastName"
+                 placeholder="Surname :">
+        </div>
+        <div class="col-md-4 form-group">
+          <label>Email</label>
+          <input type="text"
+                 class="form-control"
+                 formControlName="email"
+                 placeholder="Enter recipient Email :">
+          <div class="error-place">
+            <div class="text-left"
+                 *ngIf="(((singleContactForm.controls['email'].dirty || singleContactForm.controls['email'].touched) || formDir.submitted))"
+                 [@errorAnimation]>
+              <p class="errorMessage"
+                 *ngIf="(singleContactForm.controls['email'].hasError('email'))">
+                <i class="far fa-exclamation-circle"></i> email is invalid!
+              </p>
             </div>
-            <div class="row">
-                <div class="col-md-12">
-                    <label>Select field</label>
-                </div>
+          </div>
+        </div>
+        <div class="col-md-4 form-group">
+          <label>Gender</label>
+          <select formControlName="gender" class="form-control">
+            <option hidden value="">Select</option>
+            <option [value]="gender.value" *ngFor="let gender of genders">{{gender.title}}</option>
+          </select>
+        </div>
+      </div>
+    </div>
+    <div class="field border-top">
+      <div class="title form-group">
+        <h5 class="yellow-text">Recipient field</h5>
+        <p>
+          you can go
+          <span class="red-text">"Option>event field"</span>
+          and create field for
+          <span class="font-weight-bold">event</span>
+          send sms.
+        </p>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <label>Select field</label>
+        </div>
+      </div>
+      <div class="row" *ngFor="let eventUser of userEvent.controls; let i=index"
+           [formGroup]="eventUser">
+        <div class="col-md-4">
+          <select formControlName="id" #select class="form-control select-field">
+            <option hidden value="">Select</option>
+            <option *ngFor="let ue of userEvents"
+                    [value]="ue.id">{{ue.name}}
+            </option>
+          </select>
+          <div class="error-place">
+            <div class="text-left"
+                 *ngIf="id[i] && !select.value" [@errorAnimation]>
+              <p class="errorMessage">
+                <i class="far fa-exclamation-circle"></i> this filed is required!
+              </p>
             </div>
-            <div class="row" *ngFor="let eventUser of userEvent.controls; let i=index"
-                 [formGroup]="eventUser">
-                <div class="col-md-4">
-                    <select formControlName="id" #select class="form-control select-field">
-                        <option hidden value="">Select</option>
-                        <option *ngFor="let ue of userEvents"
-                                [value]="ue.id">{{ue.name}}
-                        </option>
-                    </select>
-                    <div class="error-place">
-                        <div class="text-left"
-                             *ngIf="id[i] && !select.value" [@errorAnimation]>
-                            <p class="errorMessage">
-                                <i class="far fa-exclamation-circle"></i> this filed is required!
-                            </p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4 select">
-                    <mat-form-field class="date-picker">
-                        <input matInput class="form-control birthday-field"
-                               formControlName="value"
-                               #pickerValue
-                               [matDatepicker]="picker"
-                               placeholder="MM/DD/YYYY">
-                        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-                        <mat-datepicker #picker></mat-datepicker>
-                    </mat-form-field>
-                    <div class="error-place">
-                        <div class="text-left"
-                             *ngIf="val[i] && !pickerValue.value" [@errorAnimation]>
-                            <p class="errorMessage">
-                                <i class="far fa-exclamation-circle"></i> this filed is required!
-                            </p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-1 p-0">
+          </div>
+        </div>
+        <div class="col-md-4 select">
+          <mat-form-field class="date-picker">
+            <input matInput class="form-control birthday-field"
+                   formControlName="value"
+                   #pickerValue
+                   [matDatepicker]="picker"
+                   placeholder="MM/DD/YYYY">
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+          </mat-form-field>
+          <div class="error-place">
+            <div class="text-left"
+                 *ngIf="val[i] && !pickerValue.value" [@errorAnimation]>
+              <p class="errorMessage">
+                <i class="far fa-exclamation-circle"></i> this filed is required!
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-1 p-0">
                     <span (click)="deleteEventUser(i, singleContactForm['controls'].eventsUser.length)"
                           class="fa fa-trash  light-red-btn">
                     </span>
-                    <span *ngIf="showAdd===i && userEvent.length<userEvents.length"
-                          (click)="addUserEvent(singleContactForm['controls'].eventsUser.length)"
-                          class="fa fa-plus  light-green-btn ml-1">
+          <span *ngIf="showAdd===i && userEvent.length<userEvents.length"
+                (click)="addUserEvent(singleContactForm['controls'].eventsUser.length)"
+                class="fa fa-plus  light-green-btn ml-1">
                     </span>
-                </div>
-
-            </div>
-
         </div>
-        <div *ngIf="!contactId" class="col-md-12 text-right">
-            <button type="submit" class="blue-btn">Add</button>
-        </div>
-    </form>
+
+      </div>
+
+    </div>
+    <div *ngIf="!contactId" class="col-md-12 text-right">
+      <button type="submit" class="blue-btn">Add</button>
+    </div>
+  </form>
 </div>

@@ -22,7 +22,9 @@ export class ContactService {
 
   addMode = 'single';
 
-  constructor(private apiService: ApiService, private http: HttpClient, private configService: ConfigService) {
+
+  constructor(private apiService: ApiService, private http: HttpClient,
+              private configService: ConfigService) {
   }
 
   getAllContacts(groupId: number, pageNumber: number, pageSize: number, searchValue: string): Observable<GetAllContactGroupInterface> {

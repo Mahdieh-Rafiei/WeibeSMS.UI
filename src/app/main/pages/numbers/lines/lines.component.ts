@@ -35,8 +35,6 @@ export class LinesComponent implements OnInit {
     this.numberService.mode = 'buyNumbers';
     this.numberService.getCountriesThatHasLine(true).subscribe(res => {
       this.countries = res.data;
-      this.selectedCountryId=this.countries[0].id;
-      this.getLines();
     });
   }
 
@@ -49,6 +47,9 @@ export class LinesComponent implements OnInit {
   }
 
   countryChanged(e) {
+    if (!e)
+      return;
+
     this.selectedCountryId = e.target.value;
     this.getLines();
   }

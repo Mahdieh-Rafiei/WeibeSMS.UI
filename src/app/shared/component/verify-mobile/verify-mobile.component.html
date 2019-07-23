@@ -1,0 +1,35 @@
+<app-loading-spinner *ngIf="showSpinner"></app-loading-spinner>
+<div>
+  <div>
+    <p class="wrong gray-text fo-2t">your number : <span
+      class="mobile-num">{{prefixNumber}}{{mobile}}</span>
+      <span
+        (click)="rollback()"> Wrong ? </span></p>
+    <p class="text-left gray-text fo-2">Enter verification code</p>
+  </div>
+  <div>
+    <input appNumericInput maxlength="1" autofocus [(ngModel)]="verificationCodePart1"
+           (ngModelChange)="setFocus(1,$event)" (keydown)="changeFocus(1,$event)"
+           #verificationCodePart1Element type="text"
+           class=" verification-code-input" placeholder="-">
+    <input appNumericInput maxlength="1" [(ngModel)]="verificationCodePart2"
+           (ngModelChange)="setFocus(2,$event)" (keydown)="changeFocus(2,$event)"
+           #verificationCodePart2Element type="text"
+           class=" verification-code-input" placeholder="-">
+    <input appNumericInput maxlength="1" [(ngModel)]="verificationCodePart3"
+           (ngModelChange)="setFocus(3,$event)" (keydown)="changeFocus(3,$event)"
+           #verificationCodePart3Element type="text"
+           class=" verification-code-input" placeholder="-">
+    <input appNumericInput maxlength="1" [(ngModel)]="verificationCodePart4"
+           (ngModelChange)="setFocus(4,$event)" (keydown)="changeFocus(4,$event)"
+           #verificationCodePart4Element type="text"
+           class=" verification-code-input" placeholder="-">
+    <input appNumericInput maxlength="1" [(ngModel)]="verificationCodePart5"
+           (ngModelChange)="setFocus(5,$event)" (keydown)="changeFocus(5,$event)"
+           #verificationCodePart5Element type="text"
+           class="col-2 verification-code-input" placeholder="-">
+  </div>
+  <div>
+    <app-countdown (countDownEmit)="getCountDown($event)"></app-countdown>
+  </div>
+</div>

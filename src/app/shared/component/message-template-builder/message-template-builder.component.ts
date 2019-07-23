@@ -20,6 +20,7 @@ export class MessageTemplateBuilderComponent implements OnInit {
   localSmsLen = 0;
   smsCount = 0;
   drafts: any[];
+  needRequiredError = false;
 
   @Input() messageText = '';
   @Output() draftLoaded: EventEmitter<DraftInterface> = new EventEmitter<DraftInterface>();
@@ -91,6 +92,14 @@ export class MessageTemplateBuilderComponent implements OnInit {
     }
     this.messageText = this.messageText.concat(` ${expression}`);
     this.onMessageTextChange();
+  }
+
+  setNeedRequiredErrorIn(){
+    this.needRequiredError = false;
+  }
+
+  setNeedRequiredErrorOut(){
+    this.needRequiredError = this.messageText.length == 0;
   }
 
   maxLenValidating() {

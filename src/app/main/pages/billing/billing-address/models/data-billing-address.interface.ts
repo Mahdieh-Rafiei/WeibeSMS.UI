@@ -6,4 +6,5 @@ export interface DataBillingAddressInterface {
   phone: number;
   vatNumber: number;
   zipCode: string;
+  prefixNumberId: number;
 }

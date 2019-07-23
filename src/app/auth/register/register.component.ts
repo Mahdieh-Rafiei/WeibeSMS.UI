@@ -87,6 +87,7 @@ export class RegisterComponent implements OnInit {
   }
 
   submit() {
+
     if (!this.registerForm.value.confirmPassword) {
       this.confirmPasswordOut();
     }

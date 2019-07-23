@@ -28,44 +28,10 @@
           <div class="row">
             <div class="col-12 col-md-4">
               <label>Phone :</label>
-              <div class="flex-group">
-                <div class="btn-group">
-                  <button class="form-control dropdown-toggle btn-default btn-select" type="button"
-                          data-toggle="dropdown" role="button" aria-expanded="true">
-                    <img class="mr-2" width="20" [src]="'data:image/jpg;base64,'+countryFlag"/>
-                  </button>
-                  <div class="custom-dropdown">
-                    <ul class="dropdown-menu" role="listbox" aria-expanded="true">
-                      <li class="dropdown-item" *ngFor="let country of countries"
-                          (click)="selectCountry(2, country)">
-                        <img class="ml-2 mr-2" width="20"
-                             [src]="'data:image/jpg;base64,'+country.flag"/>
-                        <span>{{country.name}}</span>
-                        (<span>{{country.prefixNumber}}</span>)
-                      </li>
-                    </ul>
-                  </div>
-                </div>
-                <input type="text"
-                       #mobileInput
-                       placeholder="Your phone number"
-                       class="form-control"
-                       formControlName="phone"
-                       (input)="changeMobile(mobileInput.value)"
-                       appNumericInput
-                       [ngClass]="{'border-error' : !mobileValue && ((billingAddressForm.controls['phone'].touched || billingAddressForm.controls['phone'].dirty ) || formDir.submitted)}"
-                       autofocus autocomplete="off">
+              <app-country-flag-numbers (inputMobileStateChanged)="setMobile($event)"
+              [lastData]="lastMobileData">
 
-              </div>
-              <div class="error-place">
-                <div class="text-left"
-                     *ngIf="!mobileValue && ((billingAddressForm.controls['phone'].dirty || billingAddressForm.controls['phone'].touched) || formDir.submitted)">
-                  <p class="errorMessage" *ngIf="!mobileValue"
-                     [@errorAnimation]>
-                    <i class="far fa-exclamation-circle"></i>Required!
-                  </p>
-                </div>
-              </div>
+              </app-country-flag-numbers>
             </div>
             <div class="col-12 col-md-4">
               <label>Country :</label>
@@ -74,7 +40,7 @@
                       [ngClass]="{'border-error':!billingAddressForm.controls['countryId'].value && (((billingAddressForm.controls['countryId'].dirty || billingAddressForm.controls['countryId'].touched) || formDir.submitted))}"
                       formControlName="countryId"
                       #country
-                      (change)="countrySelect(null)">
+                      (change)="countrySelect($event)">
                 <option hidden value="">select</option>
                 <option *ngFor="let country of countries" [value]="country.id">{{country.name}}</option>
               </select>
@@ -98,7 +64,7 @@
                 <option hidden value="" *ngIf="cities.length===0">
                   loading...
                 </option>
-                <option hidden value="" *ngIf="country.value && cities.length!==0">select</option>
+                <option hidden value="" *ngIf="country.value && !city && cities.length!==0">select</option>
                 <option *ngFor="let city of cities" [value]="city.id">{{city.name}}</option>
               </select>
               <div class="error-place">
