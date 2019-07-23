@@ -18,9 +18,10 @@ import {ChartsModule} from 'ng2-charts';
 import {QuickShowNotificationComponent} from '../../main/layout/top-nav/quick-show-notification/quick-show-notification.component';
 import {MessageTemplateBuilderComponent} from '../component/message-template-builder/message-template-builder.component';
 import {SelectContactsComponent} from '../component/select-contacts/select-contacts.component';
-import {NoSanitizePipe} from "../pipe/no-sanitize.pipe";
+import {NoSanitizePipe} from '../pipe/no-sanitize.pipe';
 import {CountryFlagNumbersComponent} from '../component/country-flag-numbers/country-flag-numbers.component';
 import {UnderConstructionComponent} from '../component/under-construction/under-construction.component';
+import {VerifyMobileComponent} from '../component/verify-mobile/verify-mobile.component';
 
 @NgModule({
   imports: [
@@ -48,7 +49,8 @@ import {UnderConstructionComponent} from '../component/under-construction/under-
     SelectContactsComponent,
     NoSanitizePipe,
     CountryFlagNumbersComponent,
-    UnderConstructionComponent
+    UnderConstructionComponent,
+    VerifyMobileComponent
   ],
   entryComponents: [
     LoadingSpinnerComponent,
@@ -76,7 +78,8 @@ import {UnderConstructionComponent} from '../component/under-construction/under-
     SelectContactsComponent,
     NoSanitizePipe,
     CountryFlagNumbersComponent,
-    UnderConstructionComponent
+    UnderConstructionComponent,
+    VerifyMobileComponent
   ]
 })
 export class SharedModule {

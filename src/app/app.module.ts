@@ -32,6 +32,7 @@ import {AuthGuard} from './shared/auth.guard';
 import {ConfirmationAddContactFromFileComponent} from './main/pages/group/add-contact/add-contact-from-file/confirmation-add-contact-from-file/confirmation-add-contact-from-file.component';
 import {HelpComponent} from './main/pages/help/help.component';
 import { UnderConstructionComponent } from './shared/component/under-construction/under-construction.component';
+import { VerifyMobileComponent } from './shared/component/verify-mobile/verify-mobile.component';
 
 @NgModule({
 

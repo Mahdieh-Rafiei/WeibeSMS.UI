@@ -5,7 +5,6 @@ import {InfoComponent} from './info/info.component';
 import {ChangeNumberComponent} from './change-number/change-number.component';
 import {ChangeEmailComponent} from './change-email/change-email.component';
 import {SenderIdComponent} from './sender-id/sender-id.component';
-import {VerifyNumberComponent} from './change-number/verify-number/verify-number.component';
 import {InfoResolverService} from './info/info-resolver.service';
 
 const routes: Routes = [{
@@ -42,14 +41,15 @@ const routes: Routes = [{
       title: 'sender id',
       num: 1
     },
-  }, {
-    path: 'verify-number',
-    component: VerifyNumberComponent,
-    data: {
-      title: 'verify number',
-      num: 1
-    },
-  }
+  },
+  //   {
+  //   path: 'verify-number',
+  //   component: VerifyNumberInChangeNumberComponent,
+  //   data: {
+  //     title: 'verify number',
+  //     num: 1
+  //   },
+  // }
   ],
 }];
 
@@ -65,6 +65,5 @@ export const routedComponents = [
   InfoComponent,
   ChangeNumberComponent,
   ChangeEmailComponent,
-  SenderIdComponent,
-  VerifyNumberComponent,
+  SenderIdComponent
 ];
