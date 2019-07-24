@@ -1,6 +1,7 @@
+@import "../../../../assets/style/components/variables";
 .footer {
-  margin-left: 235px;
-  border-top: 1px solid #a7abc33d;
+  margin-left: $sidebar-padding;
+  border-top: 1px solid $light-gray;
   padding: 10px 0;
   position: absolute;
   bottom: 0;
@@ -10,13 +11,9 @@
 }
 
 .slim-footer {
-  margin-left: 70px;
+  margin-left: $sidebar-padding-slim;
 }
 
 .hidden-footer {
-  margin-left: 0;
-}
-
-.footer-toggle {
   margin-left: 0;
 }

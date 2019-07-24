@@ -16,7 +16,6 @@
                 <ul class="submenu">
                     <li *ngFor="let sub of item.subMenu">
                         <a [routerLink]="[sub.link]">
-                            <i class="fa fa-monument"></i>
                             <span><i class="fa fa-{{sub.icon}}"></i></span>
                         </a>
                     </li>

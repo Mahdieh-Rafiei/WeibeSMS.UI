@@ -1,5 +1,5 @@
 <nav [ngClass]="{'slim-navbar':sharedService.sidebarMode=='slim', 'hidden-navbar':sharedService.sidebarMode=='hidden'}"
-     class="navbar navbar-expand navbar-light topbar static-top">
+     class="navbar navbar-expand navbar-light topbar static-top p-0 mb-0">
     <!--Sidebar Toggle (Topbar) -->
     <a (click)="changeSidebarState()" class="toggle-menu"><i class="fa fa-bars"></i></a>
     <!-- Topbar Navbar -->
@@ -7,7 +7,7 @@
         <!--credit-->
         <li class="nav-item d-none d-xl-block">
             <div class="credit">
-                <span>Your credits : €{{sharedService.getCurrentUserInfo().credit}}</span>
+                <span class="pr-3">Your credits : €{{sharedService.getCurrentUserInfo().credit}}</span>
                 <button [routerLink]="['add-fund/list']" class="light-green-btn">Buy Credit</button>
             </div>
         </li>
@@ -30,7 +30,7 @@
                    *ngFor="let notification of userNotifications,index as i">
                     {{notification.title}}
                 </a>
-                <a class="dropdown-item d-flex align-items-center"
+                <a class="dropdown-item d-flex align-items-center more-notif"
                    routerLink="../notification">
                     More
                 </a>
