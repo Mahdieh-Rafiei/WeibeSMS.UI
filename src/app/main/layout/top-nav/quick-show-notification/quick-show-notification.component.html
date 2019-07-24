@@ -1,9 +1,8 @@
 <div class="dialog">
-
-  <div class="row">
-    <div class="col-12 modal-header p-2 text-center">
-      <div>
-        <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+    <div class="row">
+        <div class="col-12 modal-header p-2 text-center">
+            <div>
+                <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
              x="0px" y="0px"
              viewBox="0 0 435.3 432.9" xml:space="preserve">
 	<g class="circle">
@@ -17,27 +16,27 @@
 	</g>
 
 </svg>
-        <h5 class="blue-text">Notification: </h5>
-      </div>
+                <h5 class="blue-text">Notification: </h5>
+            </div>
+        </div>
     </div>
-  </div>
 
-  <div *ngIf="notification">
-    <p>{{notification.title}}</p>
-    <br>
-    <p>{{notification.message}}</p>
-    <br>
-    <p>{{notification.creationDateTime | dateTime:'YYYY-MM-DD hh:mm:ss'}}</p>
-    <br>
-  </div>
-
-  <div class="row">
-    <div class="col-12 mt-3">
-      <div class="text-center" dir="ltr">
-        <button class="red-btn" (click)="closeDialog()">
-          OK
-        </button>
-      </div>
+    <div *ngIf="notification">
+        <p>{{notification.title}}</p>
+        <br>
+        <p>{{notification.message}}</p>
+        <br>
+        <p>{{notification.creationDateTime | dateTime:'YYYY-MM-DD hh:mm:ss'}}</p>
+        <br>
     </div>
-  </div>
+
+    <div class="row">
+        <div class="col-12 mt-3">
+            <div class="text-center" dir="ltr">
+                <button class="red-btn" (click)="closeDialog()">
+                    OK
+                </button>
+            </div>
+        </div>
+    </div>
 </div>

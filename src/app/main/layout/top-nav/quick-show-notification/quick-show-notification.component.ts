@@ -9,7 +9,7 @@ import {UserNotificationService} from '../../../pages/user-notification/user-not
 @Component({
   selector: 'app-quick-show-notification',
   templateUrl: './quick-show-notification.component.html',
-  styleUrls: ['./quick-show-notification.component.css']
+  styleUrls: ['./quick-show-notification.component.scss']
 })
 
 export class QuickShowNotificationComponent implements OnInit {

@@ -1,3 +1,4 @@
+$colors: () !default;
 $white: #fff;
 $black: #000;
 $light-black: #495057;
@@ -18,15 +19,33 @@ $light-green: #ceeded;
 $purple: #ededf3;
 $dark-purple: #6c7293;
 $focus-blue: #2cd9f4;
+$dark-sidebar: #1e262d;
+$dark-white: #e7e7e7;
 
-//$colors: () !default;
-//$colors: map-merge((
-//        "white": $white,
-//        "black": $black,
-//        "yellow": $yellow,
-//        "green": $green,
-//        "red": $red,
-//        "blue": $blue,
-//        "gray": $gray,
-//), $colors);
+//shadow
+$box-shadow: 0 1px 5px rgba(0, 0, 0, 0.18);
 
+//padding & margin
+$sidebar-padding: 235px;
+$sidebar-padding-slim: 70px;
+//border-radius
+$radius-0: 0;
+$radius-1: 4px;
+$radius-2: 8px;
+
+//border
+$border-light: 1px solid rgba(0, 0, 0, 0.05);
+
+//font
+$fo-5: 5px;
+$fo-10: 10px;
+$fo-12: 12px;
+$fo-13: 13px;
+$fo-14: 14px;
+$fo-15: 15px;
+$fo-16: 16px;
+$fo-18: 18px;
+$fo-20: 20px;
+$fo-22: 22px;
+$fo-24: 24px;
+$fo-25: 25px;
