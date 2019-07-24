@@ -64,11 +64,13 @@ export class BillingAddressComponent implements OnInit, AfterViewChecked {
     this.createForm();
     this.countries = this.shs.getCountries().data;
 
-    this.lastMobileData = {
-      isCorrectMobile: true,
-      mobile: this.billingAddress.phone.toString(),
-      country: this.countries.filter(c => c.id == this.billingAddress.prefixNumberId)[0]
-    };
+    if (this.billingAddress){
+      this.lastMobileData = {
+        isCorrectMobile: true,
+        mobile: this.billingAddress.phone.toString(),
+        country: this.countries.filter(c => c.id == this.billingAddress.prefixNumberId)[0]
+      };
+    }
 
     this.fillBillingAddress(this.billingAddressForm);
   }

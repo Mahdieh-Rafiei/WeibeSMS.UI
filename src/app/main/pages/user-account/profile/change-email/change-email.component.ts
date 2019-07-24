@@ -21,15 +21,15 @@ export class ChangeEmailComponent implements OnInit {
   disableButton: boolean = false;
   currentUserInfo: UserInfoInterface;
 
-  constructor(private fb: FormBuilder,
-              private shs: SharedService,
-              private ns: NotificationService,
-              private uas: UserAccountService) {
+  constructor(private formBuilder: FormBuilder,
+              private sharedService: SharedService,
+              private notificationService: NotificationService,
+              private userAccountService: UserAccountService) {
   }
 
   ngOnInit() {
     this.createForm();
-    this.currentUserInfo = this.shs.getCurrentUserInfo();
+    this.currentUserInfo = this.sharedService.getCurrentUserInfo();
     this.changeEmailForm.patchValue({email: this.currentUserInfo.email});
 
     if (this.currentUserInfo.emailConfirmed) {
@@ -38,7 +38,7 @@ export class ChangeEmailComponent implements OnInit {
   }
 
   createForm() {
-    this.changeEmailForm = this.fb.group({
+    this.changeEmailForm = this.formBuilder.group({
       email: [null, Validators.compose([Validators.required, Validators.email])]
     });
   }
@@ -46,10 +46,10 @@ export class ChangeEmailComponent implements OnInit {
   submit() {
     if (this.changeEmailForm.valid && !this.emailUnique) {
       const payload: ChangeEmailInterface = this.changeEmailForm.value;
-      this.uas.verifyEmail(payload)
+      this.userAccountService.verifyEmail(payload)
         .subscribe(res => {
           this.disableButton = true;
-          this.ns.success('send Email successfully', '');
+          this.notificationService.success('send Email successfully', '');
         });
     }
   }
@@ -57,7 +57,7 @@ export class ChangeEmailComponent implements OnInit {
   checkUnique(key: number, value: string) {
     if (value.length > 0) {
       const payload = {key, value};
-      this.shs.checkUnique(payload)
+      this.sharedService.checkUnique(payload)
         .subscribe((res: any) => {
           if (!res.data) {
             this.emailUnique = false;

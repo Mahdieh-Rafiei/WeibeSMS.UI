@@ -1,5 +1,5 @@
 import {Component, OnInit, ViewEncapsulation} from '@angular/core';
-import {FileSystemFileEntry, UploadEvent} from 'ngx-file-drop';
+import {FileSystemFileEntry} from 'ngx-file-drop';
 import {ContactService} from '../single-add-contact/contact.service';
 import {GroupService} from '../../group.service';
 import {NotificationService} from '../../../../../shared/notification.service';
@@ -46,7 +46,7 @@ export class AddContactFromFileComponent implements OnInit {
         this.notificationService.error('File format doesn\'t support', '');
         return;
       }
-      ;
+
       const formData = new FormData();
       formData.append('logo', file, droppedFile.relativePath);
       formData.append('replaceDuplicateContact', true.toString());

@@ -8,7 +8,6 @@ import {UserAccountService} from '../../user-account.service';
 import {ChangeNumberInterface} from './models/change-number.interface';
 import {UserInfoInterface} from '../../../../../auth/login/models/user-info.interface';
 import {InputedMobileModel} from '../../../../../shared/component/country-flag-numbers/inputed-mobile-model';
-import {ConfigService} from '../../../../../shared/config.service';
 import {NotificationService} from '../../../../../shared/notification.service';
 
 @Component({
@@ -26,18 +25,17 @@ export class ChangeNumberComponent implements OnInit {
   key = '';
   codeSent = false;
 
-  constructor(private fb: FormBuilder,
-              private shs: SharedService,
+  constructor(private formBuilder: FormBuilder,
+              private sharedService: SharedService,
               private router: Router,
-              private uas: UserAccountService,
+              private userAccountService: UserAccountService,
               private notificationService: NotificationService) {
   }
 
   ngOnInit() {
 
-    debugger;
-    this.countries = this.shs.getCountries().data;
-    this.currentUserInfo = this.shs.getCurrentUserInfo();
+    this.countries = this.sharedService.getCountries().data;
+    this.currentUserInfo = this.sharedService.getCurrentUserInfo();
     const pureMobile = this.currentUserInfo.mobile.toString().substring(this.currentUserInfo.mobile.toString().length - 10);
     const prefixNumber = '+' + this.currentUserInfo.mobile.toString().substring(0, this.currentUserInfo.mobile.toString().length - 10);
     const country = this.countries.filter(c => c.prefixNumber == prefixNumber)[0];
@@ -59,7 +57,7 @@ export class ChangeNumberComponent implements OnInit {
   }
 
   createForm() {
-    this.changeNumberForm = this.fb.group({
+    this.changeNumberForm = this.formBuilder.group({
       mobile: [null, Validators.required],
       reason: [3],
       prefixNumberId: [1, Validators.required]
@@ -70,10 +68,10 @@ export class ChangeNumberComponent implements OnInit {
     if (this.changeNumberForm.valid) {
 
       const payload: SendVerificationCodeInterface = this.changeNumberForm.value;
-      this.shs.data = payload;
-      this.uas.sendVerificationCode(payload)
+      this.sharedService.data = payload;
+      this.userAccountService.sendVerificationCode(payload)
         .subscribe((res: ChangeNumberInterface) => {
-            this.shs.data.key = res.data.key;
+            this.sharedService.data.key = res.data.key;
             localStorage.setItem('k-u', res.data.key);
             this.key = res.data.key;
             this.codeSent = true;
@@ -92,10 +90,10 @@ export class ChangeNumberComponent implements OnInit {
     debugger;
     this.inputedMobileModel.mobile = this.changeNumberForm.controls['mobile'].value;
     this.inputedMobileModel.country = this.countries.filter(c => c.id === this.changeNumberForm.controls['prefixNumberId'].value)[0];
-    let userInfo = this.shs.getCurrentUserInfo();
+    let userInfo = this.sharedService.getCurrentUserInfo();
     userInfo.mobile = parseInt(`${this.inputedMobileModel.country.prefixNumber}${this.inputedMobileModel.mobile}`);
     userInfo.prefixNumberId = this.inputedMobileModel.country.id;
-    this.shs.setUserInfo(userInfo);
+    this.sharedService.setUserInfo(userInfo);
     this.codeSent = false;
   }
 }

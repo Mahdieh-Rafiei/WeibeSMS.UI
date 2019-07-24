@@ -8,15 +8,14 @@ import {AuthComponent} from './app/auth/auth.component';
 
 export const APP_ROUTES: Routes = [
 
-    {
-        path: 'auth', component: AuthComponent, canActivate: [AuthGuard], children: [
-            {path: 'login', component: LoginComponent, canActivate: [AuthGuard]},
-            {path: 'sign-up', component: SignUpComponent, canActivate: [AuthGuard]},
+  {
+    path: 'auth', component: AuthComponent, canActivate: [AuthGuard], children: [
+      {path: 'login', component: LoginComponent, canActivate: [AuthGuard]},
+      {path: 'sign-up', component: SignUpComponent, canActivate: [AuthGuard]},
+      {path: 'forgot-password', component: ForgotPasswordComponent, canActivate: [AuthGuard]},
+    ],
+  },
 
-            {path: 'forgot-password', component: ForgotPasswordComponent, canActivate: [AuthGuard]},
-        ]
-
-    },
-    {path: 'register', component: RegisterComponent, canActivate: [AuthGuard]},
-    {path: '**', redirectTo: 'notfound'}
+  {path: 'register', component: RegisterComponent, canActivate: [AuthGuard]},
+  {path: '**', redirectTo: 'notfound'},
 ];

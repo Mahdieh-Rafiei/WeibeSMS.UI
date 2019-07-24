@@ -41,15 +41,7 @@ const routes: Routes = [{
       title: 'sender id',
       num: 1
     },
-  },
-  //   {
-  //   path: 'verify-number',
-  //   component: VerifyNumberInChangeNumberComponent,
-  //   data: {
-  //     title: 'verify number',
-  //     num: 1
-  //   },
-  // }
+  }
   ],
 }];
 

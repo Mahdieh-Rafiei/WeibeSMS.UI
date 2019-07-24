@@ -28,13 +28,13 @@ export class InfoComponent implements OnInit {
     {title: 'Male', value: 3}];
   imageUrl: string = null;
 
-  constructor(private fb: FormBuilder,
+  constructor(private formBuilder: FormBuilder,
               private route: ActivatedRoute,
               private router: Router,
-              private uas: UserAccountService,
+              private userAccountService: UserAccountService,
               private notificationService: NotificationService,
-              private ds: DataService,
-              private shs: SharedService) {
+              private dataService: DataService,
+              private sharedService: SharedService) {
     this.route.data
       .subscribe((data: { info: InfoGetInterface }) => {
         this.infoData = data.info;
@@ -49,11 +49,11 @@ export class InfoComponent implements OnInit {
   }
 
   getCountry() {
-    this.countries = this.shs.getCountries().data;
+    this.countries = this.sharedService.getCountries().data;
   }
 
   createForm() {
-    this.profileForm = this.fb.group({
+    this.profileForm = this.formBuilder.group({
       firstName: [null, Validators.compose([Validators.required, Validators.maxLength(20)])],
       lastName: [null, Validators.compose([Validators.required, Validators.maxLength(30)])],
       companyName: [null],
@@ -66,9 +66,9 @@ export class InfoComponent implements OnInit {
 
   getData(event) {
     if (event) {
-      this.uas.removeAvatar()
+      this.userAccountService.removeAvatar()
         .subscribe(res => {
-          this.ds.sendData(true);
+          this.dataService.sendData(true);
         });
     }
   }
@@ -92,15 +92,14 @@ export class InfoComponent implements OnInit {
       const payload = this.profileForm.value;
       payload['gender'] = +payload['gender'];
       if (this.profileForm.value.birthday) {
-        const date = new Date(this.profileForm.value.birthday).getTime() / 1000;
-        payload['birthday'] = date;
+        payload['birthday'] = new Date(this.profileForm.value.birthday).getTime() / 1000;
       }
-      this.uas.modifyProfile(payload)
+      this.userAccountService.modifyProfile(payload)
         .subscribe(res => {
-          let userInfo = this.shs.getCurrentUserInfo();
+          let userInfo = this.sharedService.getCurrentUserInfo();
           userInfo.firstName = payload['firstName'];
-          this.shs.setUserInfo(userInfo);
-          this.uas.firstNameChanged.emit();
+          this.sharedService.setUserInfo(userInfo);
+          this.userAccountService.firstNameChanged.emit();
           this.notificationService.success('Update profile successfully', '');
           this.router.navigateByUrl('');
         });

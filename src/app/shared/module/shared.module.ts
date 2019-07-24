@@ -22,6 +22,7 @@ import {NoSanitizePipe} from '../pipe/no-sanitize.pipe';
 import {CountryFlagNumbersComponent} from '../component/country-flag-numbers/country-flag-numbers.component';
 import {UnderConstructionComponent} from '../component/under-construction/under-construction.component';
 import {VerifyMobileComponent} from '../component/verify-mobile/verify-mobile.component';
+import {PageDescriptorComponent} from '../component/page-descriptor/page-descriptor.component';
 
 @NgModule({
   imports: [
@@ -50,7 +51,8 @@ import {VerifyMobileComponent} from '../component/verify-mobile/verify-mobile.co
     NoSanitizePipe,
     CountryFlagNumbersComponent,
     UnderConstructionComponent,
-    VerifyMobileComponent
+    VerifyMobileComponent,
+    PageDescriptorComponent
   ],
   entryComponents: [
     LoadingSpinnerComponent,
@@ -79,7 +81,8 @@ import {VerifyMobileComponent} from '../component/verify-mobile/verify-mobile.co
     NoSanitizePipe,
     CountryFlagNumbersComponent,
     UnderConstructionComponent,
-    VerifyMobileComponent
+    VerifyMobileComponent,
+    PageDescriptorComponent
   ]
 })
 export class SharedModule {

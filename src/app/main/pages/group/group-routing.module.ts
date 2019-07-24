@@ -25,27 +25,26 @@ const routes: Routes = [{
     {
       path: ':groupId/contact/:contactId',
       component: SingleAddContactComponent,
-    }, {
+    },
+    {
       path: ':groupId/add-contact',
       component: AddContactComponent,
-      children: [
-        {
-          path: 'from-file',
-          component: AddContactFromFileComponent,
-        },
-        {
-          path: 'single-contact',
-          component: SingleAddContactComponent
-        },
-        {
-          path: 'single-contact/:contactId',
-          component: SingleAddContactComponent
-        },
-        {
-          path: 'from-list',
-          component: ImportContactFromOtherListsComponent
-        },
-      ]
+    },
+    {
+      path: ':groupId/add-contact/from-file',
+      component: AddContactFromFileComponent,
+    },
+    {
+      path: ':groupId/add-contact/single-contact',
+      component: SingleAddContactComponent
+    },
+    {
+      path: ':groupId/add-contact/single-contact/:contactId',
+      component: SingleAddContactComponent
+    },
+    {
+      path: ':groupId/add-contact/from-list',
+      component: ImportContactFromOtherListsComponent
     },
     {
       path: ':groupId',
