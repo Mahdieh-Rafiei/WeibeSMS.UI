@@ -1,12 +1,20 @@
 @import "../../../../assets/style/components/variables";
 
 .navbar {
-  margin-left: 235px;
+  margin-left: $sidebar-padding;
   background: $white;
-  border-radius: 0 !important;
-  margin-bottom: 0;
-  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.18);
-  padding: 0;
+  border-radius: $radius-0;
+  box-shadow: $box-shadow;
+
+  //bar
+  a.toggle-menu {
+    padding: 0 14px;
+    line-height: 60px;
+    min-height: 60px;
+    font-size: $fo-25;
+    color: $dark-purple;
+    cursor: pointer !important;
+  }
 }
 
 .slim-navbar {
@@ -21,117 +29,87 @@
   margin-left: 0;
 }
 
-@media (max-width: 767px) {
-  .navbar-toggle {
-    margin-left: 0;
+.credit {
+  h5 {
+    color: $white;
+    padding: 5px 0;
+    margin: 0;
   }
-}
-
-a {
-  cursor: pointer !important;
-}
-
-//.navbar-content {
-//  display: flex !important;
-//  flex-basis: auto;
-//  ul {
-//    margin-left: auto !important;
-//    flex-direction: row;
-//    padding-left: 0;
-//    margin-bottom: 0;
-//    list-style: none;
-//    li.nav-item {
-//      border-left: 1px solid $light-gray;
-//    }
-//  }
-//}
-
-//bar
-a.toggle-menu {
-  padding: 0 14px;
-  line-height: 60px;
-  min-height: 60px;
-  font-size: 25px;
-  color: $dark-purple;
-  cursor: pointer !important;
-}
-
-.right-nav span {
-  font-size: 15px;
-  color: $light-black;
-}
-
-.credit h5 {
-  color: $white;
-  padding: 5px 0;
-  margin: 0;
 }
 
 /*------nav-right-section------*/
 .dropdown-menu {
-  border: 1px solid rgba(0, 0, 0, 0.05);
-  border-radius: 0;
-  color: $light-black !important;
-}
-
-.dropdown-item {
-  color: $light-black !important;
-}
-
-.dropdown-item.active, .dropdown-item:active {
-  background-color: $light-gray;
+  border: $border-light;
+  border-radius: $radius-0;
+  color: $light-black;
+  .dropdown-item {
+    color: $light-black;
+  }
+  .dropdown-item.active, .dropdown-item:active {
+    background-color: $light-gray;
+  }
 }
 
 .credit {
   padding: 14px 10px;
   span {
-    padding-right: 10px;
     color: $dark-purple;
   }
 }
 
-.language, .notification, .guide, .profile {
-  line-height: 51px;
-  i {
-    color: $dark-purple;
-    font-size: 20px;
+.navbar-nav {
+  .language, .notification, .guide, .profile {
+    line-height: 51px;
+    i {
+      color: $dark-purple;
+      font-size: 20px;
+    }
+  }
+
+  .profile {
+    a:hover {
+      background-color: #e2e5ec;
+    }
+  }
+
+  .language-div {
+    cursor: pointer;
+    a {
+      cursor: pointer;
+    }
+    a:hover {
+      background-color: #e2e5ec;
+    }
+  }
+
+  .notification-div {
+    a:hover {
+      background-color: #e2e5ec;
+    }
+  }
+
+  .language-div {
+    a {
+      padding: 1rem;
+    }
+  }
+
+  img.language-flag {
+    width: 28px;
+  }
+
+  button.mat-menu-item {
+    font-size: 15px;
+    border-bottom: 1px solid $light-gray;
+  }
+
+  button.mat-menu-item:last-child {
+    border-bottom: none;
+  }
+  .more-notif {
+    color: $red !important;
+    border-top: 1px solid $dark-white;
   }
 }
 
-.profile {
-  a:hover {
-    background-color: #e2e5ec;
-  }
-}
-
-.language-div {
-  a:hover {
-    background-color: #e2e5ec;
-  }
-}
-
-.notification-div {
-  a:hover {
-    background-color: #e2e5ec;
-  }
-}
-
-.language-div {
-  a {
-    padding: 1rem;
-  }
-}
-
-img.language-flag {
-  width: 28px;
-}
-
-button.mat-menu-item {
-  font-size: 15px;
-  border-bottom: 1px solid $light-gray;
-}
-
-button.mat-menu-item:last-child {
-  border-bottom: none;
-}
 

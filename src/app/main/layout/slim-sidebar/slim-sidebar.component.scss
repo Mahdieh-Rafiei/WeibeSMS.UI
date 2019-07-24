@@ -1,9 +1,11 @@
+@import "../../../../assets/style/components/variables";
+
 .sidebar {
   position: fixed;
   z-index: 1000;
   top: 0;
   left: 0;
-  width: 70px;
+  width: $sidebar-padding-slim;
   margin-right: -235px;
   margin-bottom: 48px;
   border: none;
@@ -17,113 +19,93 @@
   transition: all 0.2s ease-in-out;
   text-align: left;
   height: 100%;
-}
-
-/*-----------------------------scroll bar-----------------------------*/
-#style-1::-webkit-scrollbar-track {
-  -webkit-box-shadow: inset 0 0 6px rgba(255, 255, 255, 0.45);
-  background-color: #F5F5F5;
-}
-
-#style-1::-webkit-scrollbar {
-  width: 6px;
-  background-color: #F5F5F5;
-}
-
-#style-1::-webkit-scrollbar-thumb {
-  -webkit-box-shadow: inset 0 0 6px rgba(255, 255, 255, 0.45);
-  background-color: #555;
-}
-
-/*---- top section ----*/
-.company-name {
-  padding: 10px 0;
-  p {
-    color: #ffffff;
-    font-size: 24px;
+  .sidebar-section {
+    .company-name {
+      padding: 10px 0;
+      p {
+        color: #ffffff;
+        font-size: $fo-24;
+      }
+    }
   }
-}
 
-/*---- li a ----*/
-a.list-group-item {
-  background-color: #1e262d;
-  border: none;
-  transition: .5s;
-  color: #E7E7E7;
-  font-weight: 500;
-  margin: 10px 15px 0;
-}
-
-a.list-group-item:hover {
-  background-color: rgba(200, 200, 200, .1);
-  transition: .1s;
-  border-radius: 5px !important;
-}
-
-//a.list-group-item:active {
-//  background-color: #5867dd;
-//}
-
-a:not([href]) {
-  color: #E7E7E7 !important;
-}
-
-.fa {
-  width: 26px;
-  opacity: .99;
-  display: inline-block;
-  font-family: FontAwesome;
-  font-style: normal;
-  font-weight: 400;
-  font-size: 18px;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-/*---- Sub Menu ----*/
-.nested-menu .list-group-item {
-  cursor: pointer;
-  padding: 10px 0;
-  text-align: center;
-}
-
-.nested-menu .nested {
-  list-style-type: none;
-}
-
-.nested-menu ul.submenu {
-  display: none;
-  height: 0;
-}
-
-.nested-menu .expand ul.submenu {
-  display: block;
-  list-style-type: none;
-  height: auto;
-  padding-left: 0;
-  margin: 0;
-  li {
-    position: relative;
+  /*---- li a ----*/
+  .nested-menu {
+    a.list-group-item {
+      background-color: #1e262d;
+      border: none;
+      transition: .5s;
+      color: $dark-white;
+      font-weight: 500;
+      margin: 10px 5px 0;
+    }
+    a.list-group-item:hover {
+      background-color: rgba(200, 200, 200, .1);
+      transition: .1s;
+      border-radius: 5px !important;
+    }
   }
-  li a {
-    color: #f9f9f9;
-    padding: 10px;
+
+  a:not([href]) {
+    color: $dark-white !important;
+  }
+
+  .fa {
+    width: 26px;
+    opacity: .99;
+    display: inline-block;
+    font-family: FontAwesome;
+    font-style: normal;
+    font-weight: 400;
+    font-size: $fo-18;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  /*---- Sub Menu ----*/
+  .nested-menu .list-group-item {
+    cursor: pointer;
+  }
+
+  .nested-menu .nested {
+    list-style-type: none;
+  }
+
+  .nested-menu ul.submenu {
+    display: none;
+    height: 0;
+  }
+
+  .nested-menu .expand ul.submenu {
     display: block;
-    margin: 0 15px;
-    span {
-      font-size: 12px;
-      i {
-        font-size: 5px;
-        text-align: center;
-        position: absolute;
-        left: 23px;
-        top: 18px;
+    list-style-type: none;
+    height: auto;
+    padding-left: 0;
+    margin: 0;
+    li {
+      position: relative;
+    }
+    li a {
+      color: #f9f9f9;
+      padding: 10px;
+      display: block;
+      margin: 0 15px;
+      span {
+        font-size: $fo-12;
+        padding-left: 10px;
+        i {
+          font-size: $fo-5;
+          text-align: center;
+          position: absolute;
+          left: 23px;
+          top: 18px;
+        }
       }
     }
   }
 }
 
 .nested-menu .expand ul.submenu li a span:hover {
-  color: #2cd9f4;
+  color: $focus-blue;
 }
 
 .active a span.fa {
@@ -135,9 +117,9 @@ a:not([href]) {
   float: right;
   text-align: center;
   margin-top: 3px;
-  font-size: 10px;
+  font-size: $fo-10;
   min-width: inherit;
-  color: #C4CFDA;
+  color: $dark-white;
 }
 
 a.list-group-item:active span.fa {
@@ -146,8 +128,9 @@ a.list-group-item:active span.fa {
 }
 
 a:not([href]) {
-  color: #E7E7E7 !important;
+  color: $dark-white !important;
 }
 
-
-
+.active {
+  background-color: $dark-purple !important;
+}
