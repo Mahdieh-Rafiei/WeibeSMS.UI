@@ -12,11 +12,10 @@ export const APP_ROUTES: Routes = [
     path: 'auth', component: AuthComponent, canActivate: [AuthGuard], children: [
       {path: 'login', component: LoginComponent, canActivate: [AuthGuard]},
       {path: 'sign-up', component: SignUpComponent, canActivate: [AuthGuard]},
-      {path: 'register', component: RegisterComponent, canActivate: [AuthGuard]},
       {path: 'forgot-password', component: ForgotPasswordComponent, canActivate: [AuthGuard]},
-    ]
+    ],
   },
 
+  {path: 'register', component: RegisterComponent, canActivate: [AuthGuard]},
   {path: '**', redirectTo: 'notfound'},
-
 ];

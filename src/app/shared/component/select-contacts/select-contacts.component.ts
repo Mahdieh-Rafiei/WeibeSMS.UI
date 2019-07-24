@@ -15,7 +15,6 @@ import {Router} from '@angular/router';
 
 export class SelectContactsComponent implements OnInit {
 
-
   clickedGroup: any;
   totalContactsSelectedCount;
   contactPageSize = 10;
@@ -79,7 +78,7 @@ export class SelectContactsComponent implements OnInit {
   }
 
   groupCheckedChanged(e, g) {
-    g.contacts.forEach(c => c.isSelected = e);
+    g.contacts.forEach(c => c.isSelected = e.target.checked);
     this.totalContactsSelectedCountCalculate();
     this.calculateApiModel();
   }
@@ -152,5 +151,9 @@ export class SelectContactsComponent implements OnInit {
         this.notificationService.success('Operation done successfully', '');
         this.router.navigateByUrl(`group/${this.groupId}`);
       });
+  }
+
+  textSearch(e){
+    console.log(e);
   }
 }

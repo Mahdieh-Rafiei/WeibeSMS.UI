@@ -6,12 +6,10 @@ import {InfoInterface} from './profile/info/models/info.interface';
 import {ChangePasswordResponseInterface} from './privacy/change-password/models/change-password-response.interface';
 import {ChangeEmailInterface} from './profile/change-email/models/change-email.interface';
 import {SenderIdResponseInterface} from './profile/sender-id/models/sender-id-response.interface';
-import {SendVerificationCodeResponseInterface} from '../../../auth/login/models/send-verification-code-response.interface';
 import {SendVerificationCodeInterface} from '../../../auth/login/models/send-verification-code.interface';
 import {ChangeNumberInterface} from './profile/change-number/models/change-number.interface';
 import {AddSenderIdResponseInterface} from './profile/sender-id/models/add-sender-id-response.interface';
 import {UserInfoResponseInterface} from '../../../auth/login/models/user-info-response.interface';
-import {DashboardInfoResponseInterface} from '../dashboard/models/dashboard-info-response.interface';
 import {VerifyMobileInterface} from '../../../shared/component/verify-mobile/models/verify-mobile.interface';
 import {VerifyMobileResponseInterface} from '../../../auth/login/models/verify-mobile-response.interface';
 

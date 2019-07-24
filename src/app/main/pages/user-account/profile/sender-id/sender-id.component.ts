@@ -48,8 +48,8 @@ export class SenderIdComponent implements OnInit {
   };
 
 
-  constructor(private fb: FormBuilder,
-              private shs: SharedService,
+  constructor(private formBuilder: FormBuilder,
+              private sharedService: SharedService,
               private userAccountService: UserAccountService,
               private notificationService: NotificationService,
               private dialog: MatDialog) {
@@ -76,7 +76,7 @@ export class SenderIdComponent implements OnInit {
   }
 
   createForm() {
-    this.senderIdForm = this.fb.group({
+    this.senderIdForm = this.formBuilder.group({
       name: [null, Validators.compose([Validators.required, Validators.pattern('^[a-zA-Z]{1,11}$')])],
     });
   }
@@ -85,7 +85,7 @@ export class SenderIdComponent implements OnInit {
   checkUnique(key: number, value: string) {
     if (value.length > 0) {
       const payload = {key, value};
-      this.shs.checkUnique(payload)
+      this.sharedService.checkUnique(payload)
         .subscribe((res: any) => {
           if (!res.data) {
             this.senderIdUnique = false;

@@ -19,7 +19,7 @@ export class ImportContactFromOtherListsComponent implements OnInit {
 
   ngOnInit() {
     this.contactService.addMode = 'list';
-    const strGroupId = this.activatedRoute.parent.snapshot.paramMap.get('groupId');
+    const strGroupId = this.activatedRoute.snapshot.paramMap.get('groupId');
     if (strGroupId) {
       this.groupId = parseInt(strGroupId);
     }

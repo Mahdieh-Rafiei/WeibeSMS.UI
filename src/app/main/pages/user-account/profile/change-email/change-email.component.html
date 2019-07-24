@@ -23,14 +23,14 @@
                              *ngIf="((changeEmailForm.controls['email'].dirty || changeEmailForm.controls['email'].touched || formDir.submitted) || emailUnique)">
                             <p class="errorMessage" *ngIf="changeEmailForm.hasError('required', 'email')"
                                [@errorAnimation]>
-                                <i class="far fa-exclamation-circle"></i> this filed is required!
+                                <i class="far fa-exclamation-circle"></i> Required!
                             </p>
                             <p class="errorMessage"
                                *ngIf="(changeEmailForm.controls['email'].hasError('email')) " [@errorAnimation]>
-                                <i class="far fa-exclamation-circle"></i> email is invalid!
+                                <i class="far fa-exclamation-circle"></i> Email is invalid!
                             </p>
                             <p class="errorMessage" *ngIf="emailUnique" [@errorAnimation]>
-                                <i class="far fa-exclamation-circle"></i> this email is already taken!
+                                <i class="far fa-exclamation-circle"></i> This email is already taken!
                             </p>
                         </div>
                     </div>

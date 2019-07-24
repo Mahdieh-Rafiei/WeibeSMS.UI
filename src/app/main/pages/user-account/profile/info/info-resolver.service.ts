@@ -14,11 +14,11 @@ import {UserAccountService} from '../../user-account.service';
   providedIn: 'root',
 })
 export class InfoResolverService implements Resolve<InfoGetInterface> {
-  constructor(private uas: UserAccountService) {
+  constructor(private userAccountService: UserAccountService) {
   }
 
   resolve(rout: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<InfoGetInterface> {
-    return this.uas.getProfile().pipe(
+    return this.userAccountService.getProfile().pipe(
       mergeMap(info => {
         if (info) {
           return of(info);
