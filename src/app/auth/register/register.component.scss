@@ -4,59 +4,42 @@
   flex-flow: row wrap;
   align-items: center;
   height: 100vh;
-}
-
-.flex-container-child {
-  justify-content: center;
-  display: flex;
-  flex-flow: column wrap;
-  max-width: 1001px;
-  width: 100%;
-}
-
-.ws-login-box {
-  background: #fff;
-  box-shadow: 0 1px 6px 0 rgba(32, 33, 36, 0.28);
-  padding: 1rem;
-  border-radius: .4rem;
-}
-
-.ws-btn {
-  width: 50%;
-}
-
-.subject {
-  padding: 0;
-  display: inline-flex;
-  img {
-    width: 130px;
+  .flex-container-child {
+    justify-content: center;
+    display: flex;
+    flex-flow: column wrap;
+    max-width: 1001px;
+    width: 100%;
   }
-}
-
-.subject-detail h4 {
-  padding-top: 40px;
-}
-
-label.mat-checkbox-layout {
-  margin-bottom: 0;
-}
-
-@media (min-width: 1600px) {
-}
-
-@media (max-width: 768px) {
-  .vb-content {
-    width: calc(100% + -30px) !important;
+  .ws-login-box {
+    background: #fff;
+    box-shadow: 0 1px 6px 0 rgba(32, 33, 36, 0.28);
+    padding: 1rem;
+    border-radius: .4rem;
+  }
+  .ws-btn {
+    width: 50%;
+  }
+  .subject {
+    padding: 0;
+    display: inline-flex;
+    img {
+      width: 130px;
+    }
+    .subject-detail {
+      h4 {
+      }
+      padding-top: 40px;
+    }
   }
 
-  .affiliate-register-form {
-    margin-top: 20px;
+  label.mat-checkbox-layout {
+    margin-bottom: 0;
   }
 }
 
 @media (max-width: 767px) and (min-width: 320px) {
-  .privacy {
-    padding: 20px 5px;
-    display: inline-flex;
+  .ws-btn {
+    width: 100%;
   }
 }

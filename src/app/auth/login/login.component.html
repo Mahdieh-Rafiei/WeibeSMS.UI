@@ -1,4 +1,4 @@
-<form class="form-content pr-4 pl-4 pb-3" [formGroup]="signInForm" #formDir="ngForm">
+<form class="form-content pb-3 col-12" [formGroup]="signInForm" #formDir="ngForm">
   <div>
     <div class="text-center">
       <h5>Welcome back</h5>
@@ -40,13 +40,13 @@
         </div>
       </div>
     </div>
-    <div class="btn-login-div">
+    <div>
       <span [routerLink]="['../forgot-password']" class="forgot-pass gray-text fo-2 pb-2"> Forgot password ?</span>
       <button type="submit" (click)="login()" class="ws-btn login-btn mt-1">Login</button>
     </div>
   </div>
   <div class="text-center">
-    <hr>
+    <hr class="mb-3">
     <p class="gray-text fo-2">Don't have an account?
       <span class="sign-fill" [routerLink]="['../sign-up']">Sign up</span>
     </p>

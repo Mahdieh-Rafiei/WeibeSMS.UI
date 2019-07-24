@@ -4,7 +4,7 @@ import {Component, EventEmitter, OnInit, Output} from '@angular/core';
   selector: 'app-countdown',
   template: `
     <div class="mt-2">
-        <p class="text-center welcome-text" *ngIf="!disableConfirm">We will send you in : <span class="red-text">{{countDown}}</span></p>
+        <p class="text-center gray-text fo-3" *ngIf="!disableConfirm">We will send you in : <span class="red-text">{{countDown}}</span></p>
         <p class="text-center resend" *ngIf="disableConfirm" (click)="resendCode()"><i class="fa fa-bel"></i> Resend again</p>
     </div>
   `,
