@@ -1,16 +1,15 @@
-<app-top-nav *ngIf="isAuthenticated"></app-top-nav>
+<app-loading-spinner [hidden]="!showSpinner"></app-loading-spinner>
 
-<div *ngIf="isAuthenticated && configService.sidebarMode!='hidden'">
-  <app-slim-sidebar *ngIf="configService.sidebarMode=='slim'"></app-slim-sidebar>
-  <app-sidebar *ngIf="configService.sidebarMode=='default'"></app-sidebar>
+<div [hidden]="showSpinner">
+  <app-top-nav *ngIf="isAuthenticated"></app-top-nav>
+
+  <div *ngIf="isAuthenticated && sharedService.sidebarMode!='hidden'">
+    <app-slim-sidebar *ngIf="sharedService.sidebarMode=='slim'"></app-slim-sidebar>
+    <app-sidebar *ngIf="sharedService.sidebarMode=='default'"></app-sidebar>
+  </div>
+
+  <router-outlet></router-outlet>
+
+  <app-footer *ngIf="isAuthenticated"
+              [ngClass]="{'slim-footer':sharedService.sidebarMode=='slim', 'hidden-footer':sharedService.sidebarMode=='hidden'}"></app-footer>
 </div>
-
-<!--<section-->
-<!--[ngClass]="{'slim-navbar':configService.sidebarMode=='slim', 'hidden-navbar':configService.sidebarMode=='hidden'}">-->
-<!---->
-<router-outlet #route></router-outlet>
-<!--</section>-->
-
-<app-footer *ngIf="isAuthenticated"
-            [ngClass]="{'slim-footer':configService.sidebarMode=='slim', 'hidden-footer':configService.sidebarMode=='hidden'}"></app-footer>
-

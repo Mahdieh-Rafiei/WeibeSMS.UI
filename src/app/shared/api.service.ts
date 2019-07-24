@@ -6,6 +6,7 @@ import {map} from 'rxjs/operators';
 import {catchError} from 'rxjs/internal/operators';
 import {Router} from '@angular/router';
 import {NotificationService} from './notification.service';
+import {SharedService} from './service/shared.service';
 
 @Injectable({
   providedIn: 'root'

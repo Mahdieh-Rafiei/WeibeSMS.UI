@@ -3,11 +3,11 @@ import {GroupService} from '../group.service';
 import {Router} from '@angular/router';
 import {UtilityService} from '../../../../shared/utility.service';
 import {NotificationService} from '../../../../shared/notification.service';
-import {GroupListInterface} from './models/group-list.interface';
+import {GroupListResponse} from './models/group-list-response';
 import {RemoveGroupNameResponseInterface} from './models/remove-group-name-response.interface';
 import {MatDialog} from '@angular/material';
 import {AddEditGroupComponent} from './add-edit/add-edit-group.component';
-import {ItemsGroupListInterface} from './models/items-group-list.interface';
+import {GroupListModel} from './models/group-list-model';
 import {errorAnimation} from '../../../../shared/component/animation/error-animation';
 import {DialogComponent} from '../../../../shared/component/dialog/dialog.component';
 import {TableConfigInterface} from '../../../../shared/component/table/models/table-config.interface';
@@ -26,7 +26,7 @@ import {FilterDataModel} from '../../../../shared/component/filter/filter-data-m
 export class GroupListComponent implements OnInit {
 
     data: any;
-    groups: ItemsGroupListInterface[] = [];
+    groups: GroupListModel[] = [];
     phrase = '';
     groupName = '';
     filterDataModel = new FilterDataModel();
@@ -61,7 +61,7 @@ export class GroupListComponent implements OnInit {
         this.groupService.getAllGroupList(this.tableConfig.pagingModel.pageNumber,
             this.tableConfig.pagingModel.pageSize
             , this.phrase)
-            .subscribe((res: GroupListInterface) => {
+            .subscribe((res: GroupListResponse) => {
                 this.data = res.data;
                 this.groups = this.data.items;
                 this.tableConfig.pagingModel.totalItemsCount = this.data.totalItemsCount;
@@ -101,7 +101,7 @@ export class GroupListComponent implements OnInit {
     }
 
 
-    addEditGroup(data: ItemsGroupListInterface, index) {
+    addEditGroup(data: GroupListModel, index) {
         this.openDialog('480px', 'auto', '', {data, index});
     }
 
@@ -150,7 +150,7 @@ export class GroupListComponent implements OnInit {
             });
     }
 
-    showDetails(group: ItemsGroupListInterface) {
+    showDetails(group: GroupListModel) {
         this.router.navigateByUrl(`/group/${group.id}`);
     }
 

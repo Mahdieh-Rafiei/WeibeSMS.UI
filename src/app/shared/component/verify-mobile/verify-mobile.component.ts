@@ -1,4 +1,15 @@
-import {Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild} from '@angular/core';
+import {
+  AfterContentInit,
+  AfterViewChecked, AfterViewInit,
+  Component,
+  DoCheck,
+  ElementRef,
+  EventEmitter,
+  Input,
+  OnInit,
+  Output,
+  ViewChild
+} from '@angular/core';
 import {RegisterService} from '../../../auth/register/register.service';
 import {AuthSharedService} from '../../../auth/auth-shared.service';
 import {Router} from '@angular/router';
@@ -14,7 +25,7 @@ import {VerifyMobileResponseInterface} from '../../../auth/login/models/verify-m
   styleUrls: ['./verify-mobile.component.scss']
 })
 
-export class VerifyMobileComponent implements OnInit {
+export class VerifyMobileComponent implements OnInit, AfterViewInit {
 
   showSpinner = false;
   prefixNumber = '';
@@ -50,7 +61,10 @@ export class VerifyMobileComponent implements OnInit {
   ngOnInit() {
     this.prefixNumber = this.sharedService.getCountries()
       .data.filter(c => c.id == this.prefixNumberId)[0].prefixNumber;
+  }
 
+  ngAfterViewInit() {
+    //TODO: first focus not works!
     this.verificationCodePart1Element.nativeElement.focus();
   }
 
@@ -100,6 +114,7 @@ export class VerifyMobileComponent implements OnInit {
   }
 
   setFocus(elementNumber: number, value) {
+
     if (!value || value.length === 0) {
       return;
     }

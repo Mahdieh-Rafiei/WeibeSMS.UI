@@ -24,7 +24,7 @@ export class TopNavComponent implements OnInit {
   constructor(public configService: ConfigService,
               private userNotificationService: UserNotificationService,
               private authService: AuthenticationService,
-              private ds: DataService,
+              private dataService: DataService,
               public sharedService: SharedService,
               private dialog: MatDialog) {
   }
@@ -40,12 +40,12 @@ export class TopNavComponent implements OnInit {
   }
 
   changeSidebarState() {
-    this.ds.show = !this.ds.show;
+    this.dataService.show = !this.dataService.show;
 
     if (window.innerWidth < 768) {
-      this.configService.sidebarMode = this.configService.sidebarMode == 'default' ? 'hidden' : 'default';
+      this.sharedService.sidebarMode = this.sharedService.sidebarMode == 'default' ? 'hidden' : 'default';
     } else {
-      this.configService.sidebarMode = this.configService.sidebarMode == 'default' ? 'slim' : 'default';
+      this.sharedService.sidebarMode = this.sharedService.sidebarMode == 'default' ? 'slim' : 'default';
     }
   }
 
@@ -68,14 +68,14 @@ export class TopNavComponent implements OnInit {
     dialogRef.afterClosed()
       .subscribe(result => {
         if (result) {
-          this.userNotifications.splice(result.index,1);
+          this.userNotifications.splice(result.index, 1);
         }
       });
   }
 
   showHelp() {
     this.openHelp = !this.openHelp;
-    this.ds.sendDataShowHelp(this.openHelp);
+    this.dataService.sendDataShowHelp(this.openHelp);
   }
 
   deleteAccount() {

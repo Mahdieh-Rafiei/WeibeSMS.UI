@@ -1,4 +1,3 @@
-<app-loading-spinner *ngIf="showSpinner"></app-loading-spinner>
 <div>
   <div>
     <p class="wrong gray-text fo-2t">your number : <span
@@ -8,7 +7,7 @@
     <p class="text-left gray-text fo-2">Enter verification code</p>
   </div>
   <div>
-    <input appNumericInput maxlength="1" autofocus [(ngModel)]="verificationCodePart1"
+    <input autofocus appNumericInput maxlength="1" [(ngModel)]="verificationCodePart1"
            (ngModelChange)="setFocus(1,$event)" (keydown)="changeFocus(1,$event)"
            #verificationCodePart1Element type="text"
            class=" verification-code-input" placeholder="-">

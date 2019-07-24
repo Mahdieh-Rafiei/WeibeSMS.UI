@@ -34,7 +34,6 @@ export class RegisterComponent implements OnInit {
   emailUnique: boolean = false;
   userNameUnique: boolean = false;
 
-  showSpinner: boolean = false;
 
   userNameSubject: Subject<any> = new Subject();
   emailSubject: Subject<any> = new Subject();
@@ -45,9 +44,9 @@ export class RegisterComponent implements OnInit {
   constructor(private registerService: RegisterService,
               private authService: AuthenticationService,
               private router: Router,
-              private fb: FormBuilder,
-              private shs: SharedService,
-              public us: UtilityService,
+              private formBuilder: FormBuilder,
+              private sharedService: SharedService,
+              public utilityService: UtilityService,
               public configService: ConfigService,
               private notificationService: NotificationService,
               private authSharedService: AuthSharedService,
@@ -73,12 +72,12 @@ export class RegisterComponent implements OnInit {
   }
 
   createForm() {
-    this.registerForm = this.fb.group({
+    this.registerForm = this.formBuilder.group({
       firstName: [null, Validators.compose([Validators.required, Validators.maxLength(20)])],
       lastName: [null, Validators.compose([Validators.required, Validators.maxLength(30)])],
       userName: [null, Validators.required],
       password: [null, Validators.compose([Validators.required,
-        Validators.pattern(/^(?=^.{8,}$)(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?!.*\s)[0-9a-zA-Z!@#$%^&*()]*$/)])],
+        Validators.pattern(this.utilityService.passwordRegex())])],
       email: [null, Validators.required],
       confirmPassword: [null],
       companyName: [null],
@@ -93,7 +92,7 @@ export class RegisterComponent implements OnInit {
     }
     if (this.registerForm.valid && !this.notMatch && this.registerForm.value.confirmPassword && !this.emailUnique && !this.userNameUnique) {
       this.confirmPasswordOut();
-      this.showSpinner = true;
+      this.sharedService.spinnerStatusChanged.emit(true);
       const key = this.authSharedService.keyLogin;
       const mobile = +this.authSharedService.mobile;
       const payload: RegisterInterface = this.registerForm.value;
@@ -107,14 +106,14 @@ export class RegisterComponent implements OnInit {
             localStorage.removeItem('k-l');
             this.userAccountService.getUserInfo()
               .subscribe((result: UserInfoResponseInterface) => {
-                this.showSpinner = false;
-                this.shs.setUserInfo(result.data);
+                this.sharedService.spinnerStatusChanged.emit(false);
+                this.sharedService.setUserInfo(result.data);
                 this.router.navigateByUrl('');
                 this.configService.authenticationChanged.emit(true);
               });
           },
           err => {
-            this.showSpinner = false;
+            this.sharedService.spinnerStatusChanged.emit(false);
             if (err.error.Message === '1') {
               this.router.navigate(['/login']);
             }
@@ -136,9 +135,13 @@ export class RegisterComponent implements OnInit {
   }
 
   checkUnique(key: number, value: string) {
-    if (key === 1 ? value.length > 5 : value.length > 0 && key === 2 ? this.us.checkEmail(value) : null) {
+    if (!value) {
+      return;
+    }
+
+    if (key === 1 ? value.length > 5 : value.length > 0 && key === 2 ? this.utilityService.checkEmail(value) : null) {
       const payload = {key, value};
-      this.shs.checkUnique(payload)
+      this.sharedService.checkUnique(payload)
         .subscribe((res: any) => {
           if (!res.data) {
             if (key === 1) {
@@ -170,7 +173,7 @@ export class RegisterComponent implements OnInit {
       }
       this.userNameSubject.next();
     } else if (type === 'email') {
-      if (value.length > 0 && this.us.checkEmail(value)) {
+      if (value.length > 0 && this.utilityService.checkEmail(value)) {
         this.checkingEmail = true;
       } else {
         this.checkingEmail = false;

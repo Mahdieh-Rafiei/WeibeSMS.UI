@@ -5,6 +5,7 @@ import {ActivatedRoute, NavigationEnd, Router} from '@angular/router';
 import {AuthenticationService} from './auth/login/authentication.service';
 
 import {Title} from '@angular/platform-browser';
+import {SharedService} from './shared/service/shared.service';
 
 @Component({
   selector: 'app-root',
@@ -16,14 +17,13 @@ export class AppComponent implements OnInit {
 
   constructor(private authService: AuthenticationService,
               public configService: ConfigService,
-              private router: Router,
-              private titleService: Title,
-              private route: ActivatedRoute) {
+              private sharedService : SharedService,
+              private router: Router) {
   }
 
   title = 'WeibeSMS';
   isAuthenticated: boolean;
-
+  showSpinner: boolean;
   public innerWidth: any;
 
   ngOnInit() {
@@ -32,28 +32,29 @@ export class AppComponent implements OnInit {
       this.isAuthenticated = res;
     });
 
+    this.sharedService.spinnerStatusChanged.subscribe(res => {
+      this.showSpinner = res;
+    });
+
     this.onResize(null);
     this.innerWidth = window.innerWidth;
 
     this.isAuthenticated = this.authService.isAuthenticated();
-    // this.configService.sidebarStateChanged.subscribe(res => this.configService.sidebarMode = res);
 
     if (!this.authService.isAuthenticated()) {
-      this.router.navigateByUrl('/login');
+      this.router.navigateByUrl('/auth/login');
     }
-
   }
 
   @HostListener('window:resize', ['$event'])
   onResize(event) {
     this.innerWidth = window.innerWidth;
     if (this.innerWidth < 768) {
-      this.configService.sidebarMode = 'hidden';
+      this.sharedService.sidebarMode = 'hidden';
     } else if (this.innerWidth >= 768 && this.innerWidth <= 991) {
-      this.configService.sidebarMode = 'slim';
-    }
-    else {
-      this.configService.sidebarMode = 'default';
+      this.sharedService.sidebarMode = 'slim';
+    } else {
+      this.sharedService.sidebarMode = 'default';
     }
   }
 }

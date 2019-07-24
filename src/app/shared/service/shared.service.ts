@@ -1,4 +1,4 @@
-import {Injectable} from '@angular/core';
+import {EventEmitter, Injectable, Output} from '@angular/core';
 import {Observable} from 'rxjs';
 import {ApiService} from '../api.service';
 import {CityInterface} from '../models/city.interface';
@@ -16,9 +16,11 @@ export class SharedService {
     this.fillCacheData();
   }
 
+  @Output() spinnerStatusChanged: EventEmitter<boolean> = new EventEmitter<boolean>();
+
   data;
   _cacheObject: CacheObject;
-
+  sidebarMode = 'default';
 
   private countries : CountryInterface = {
     message: 'OK',

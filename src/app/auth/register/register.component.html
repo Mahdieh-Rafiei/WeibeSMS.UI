@@ -1,4 +1,3 @@
-<app-loading-spinner *ngIf="showSpinner"></app-loading-spinner>
 <div class="flex-container">
   <div class="flex-container-child">
     <div class="right-box ws-login-box">
@@ -29,7 +28,7 @@
                     </p>
                     <p class="errorMessage"
                        *ngIf="(registerForm.controls['firstName'].hasError('maxlength'))" [@errorAnimation]>
-                      <i class="far fa-exclamation-circle"></i> Firstname max length is 20 char!
+                      <i class="far fa-exclamation-circle"></i> First name max length is 20 char!
                     </p>
                   </div>
                 </div>
@@ -49,7 +48,7 @@
                     </p>
                     <p class="errorMessage"
                        *ngIf="(registerForm.controls['lastName'].hasError('maxlength'))" [@errorAnimation]>
-                      <i class="far fa-exclamation-circle"></i> lastname max length is 30 char!
+                      <i class="far fa-exclamation-circle"></i> Last name max length is 30 char!
                     </p>
                   </div>
                 </div>
@@ -91,7 +90,7 @@
                       <p class="errorMessage" *ngIf="email.value < 1" [@errorAnimation]>
                         <i class="far fa-exclamation-circle"></i> Enter your email!
                       </p>
-                      <p class="errorMessage" *ngIf="!us.checkEmail(email.value) && email.value.length > 0"
+                      <p class="errorMessage" *ngIf="!utilityService.checkEmail(email.value) && email.value.length > 0"
                          [@errorAnimation]>
                         <i class="far fa-exclamation-circle"></i> This email is invalid.
                       </p>
@@ -107,7 +106,7 @@
                   </div>
                   <div class="text-left" *ngIf="!checkingEmail">
                     <p class="successMessage"
-                       *ngIf="!emailUnique && email.value.length > 0 && us.checkEmail(email.value)"
+                       *ngIf="!emailUnique && email.value.length > 0 && utilityService.checkEmail(email.value)"
                        [@errorAnimation]>
                       <i class="far fa-check"></i> {{email.value}} is available .
                     </p>

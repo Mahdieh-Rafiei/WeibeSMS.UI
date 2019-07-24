@@ -3,6 +3,7 @@ import {Router} from '@angular/router';
 import {ConfigService} from '../../../shared/config.service';
 import {DataService} from '../../../shared/service/data.service';
 import {animate, style, transition, trigger} from '@angular/animations';
+import {SharedService} from '../../../shared/service/shared.service';
 
 @Component({
   selector: 'app-slim-sidebar',
@@ -115,7 +116,8 @@ export class SlimSidebarComponent implements OnInit {
 
   constructor(private router: Router,
               private configService: ConfigService,
-              private ds: DataService) {
+              private dataService: DataService,
+              private sharedService : SharedService) {
   }
 
   ngOnInit() {
@@ -141,7 +143,7 @@ export class SlimSidebarComponent implements OnInit {
   }
 
   mouseEnter() {
-    this.configService.sidebarMode = this.configService.sidebarMode == 'default' ? 'slim' : 'default';
-    this.ds.showSideBar = true;
+    this.sharedService.sidebarMode = this.sharedService.sidebarMode == 'default' ? 'slim' : 'default';
+    this.dataService.showSideBar = true;
   }
 }

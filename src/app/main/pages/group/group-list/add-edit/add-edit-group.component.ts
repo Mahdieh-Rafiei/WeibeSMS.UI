@@ -4,7 +4,7 @@ import {AddGroupNameInterface} from '../models/add-group-name.interface';
 import {GroupService} from '../../group.service';
 import {AddGroupNameResponseInterface} from '../models/add-group-name-response.interface';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import {ItemsGroupListInterface} from '../models/items-group-list.interface';
+import {GroupListModel} from '../models/group-list-model';
 import {ModifyGroupNameResponseInterface} from '../models/modify-group-name-response.interface';
 
 @Component({
@@ -13,7 +13,7 @@ import {ModifyGroupNameResponseInterface} from '../models/modify-group-name-resp
   styleUrls: ['./add-edit-group.component.scss']
 })
 export class AddEditGroupComponent implements OnInit {
-  GroupNameData: ItemsGroupListInterface;
+  GroupNameData: GroupListModel;
   groupNameForm: FormGroup;
   index: number;
 

@@ -1,6 +1,5 @@
 import {Injectable} from '@angular/core';
 import {ActivatedRouteSnapshot, Resolve, RouterStateSnapshot} from '@angular/router';
-import {UserAccountService} from '../../user-account.service';
 import {mergeMap} from 'rxjs/operators';
 import {EMPTY, Observable, of} from 'rxjs';
 import {LoginLogInterface} from './models/login-log.interface';

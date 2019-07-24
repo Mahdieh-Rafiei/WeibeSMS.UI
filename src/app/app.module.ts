@@ -31,8 +31,8 @@ import {DialogComponent} from './shared/component/dialog/dialog.component';
 import {AuthGuard} from './shared/auth.guard';
 import {ConfirmationAddContactFromFileComponent} from './main/pages/group/add-contact/add-contact-from-file/confirmation-add-contact-from-file/confirmation-add-contact-from-file.component';
 import {HelpComponent} from './main/pages/help/help.component';
-import { UnderConstructionComponent } from './shared/component/under-construction/under-construction.component';
-import { VerifyMobileComponent } from './shared/component/verify-mobile/verify-mobile.component';
+import { SignUpComponent } from './auth/sign-up/sign-up.component';
+import {AuthComponent} from './auth/auth.component';
 
 @NgModule({
 
@@ -50,7 +50,9 @@ import { VerifyMobileComponent } from './shared/component/verify-mobile/verify-m
     DialogComponent,
     //TODO: move this c to groupModule
     ConfirmationAddContactFromFileComponent,
-    HelpComponent
+    HelpComponent,
+    SignUpComponent,
+    AuthComponent
   ],
   entryComponents: [
     DialogComponent,
@@ -82,7 +84,8 @@ import { VerifyMobileComponent } from './shared/component/verify-mobile/verify-m
     CanActivateRouteGuard,
     NotificationService,
     TicketService,
-    UserAccountService
+    UserAccountService,
+    AuthComponent
   ],
   bootstrap: [AppComponent]
 })
