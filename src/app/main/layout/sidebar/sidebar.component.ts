@@ -123,6 +123,7 @@ export class SidebarComponent implements OnInit {
               private configService: ConfigService,
               private sharedService: SharedService,
               private userAccountService: UserAccountService) {
+
     this.navigateRoute(window.location.pathname);
     this.menuItems.forEach(item => {
         if (item.subMenu) {
@@ -164,7 +165,7 @@ export class SidebarComponent implements OnInit {
 
   mouseLeave() {
     if (this.ds.showSideBar) {
-      this.configService.sidebarMode = this.configService.sidebarMode == 'default' ? 'slim' : 'default';
+      this.sharedService.sidebarMode = this.sharedService.sidebarMode == 'default' ? 'slim' : 'default';
       this.ds.showSideBar = false;
     }
   }

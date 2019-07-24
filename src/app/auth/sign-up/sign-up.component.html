@@ -1,4 +1,4 @@
-<form class="form-content pr-4 pl-4 pb-3" *ngIf="verificationCodeSent === false" #formDir="ngForm"
+<form class="form-content pr-4 pl-4 pb-3" *ngIf="!verificationCodeSent" #formDir="ngForm"
       (keydown)="keySendVerificationCode($event)">
   <div class="text-center">
     <h5>Hello Stranger!</h5>
@@ -20,7 +20,7 @@
   </div>
 </form>
 
-<div class="pr-4 pl-4 pb-3" *ngIf="verificationCodeSent === true">
+<div class="pr-4 pl-4 pb-3" *ngIf="verificationCodeSent">
   <div class="text-center">
     <h5>Hello Stranger!</h5>
     <span class="gray-text fo-2">Create a free account on <span

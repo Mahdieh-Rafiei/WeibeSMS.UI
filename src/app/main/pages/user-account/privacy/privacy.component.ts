@@ -26,6 +26,5 @@ export class PrivacyComponent implements OnInit {
     onClick(item) {
         this.privacyService.mode = item.mode;
         this.router.navigate(['./privacy/' + item.link]);
-
     }
 }

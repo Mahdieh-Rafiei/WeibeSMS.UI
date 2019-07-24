@@ -1,4 +1,4 @@
-<nav [ngClass]="{'slim-navbar':configService.sidebarMode=='slim', 'hidden-navbar':configService.sidebarMode=='hidden'}"
+<nav [ngClass]="{'slim-navbar':sharedService.sidebarMode=='slim', 'hidden-navbar':sharedService.sidebarMode=='hidden'}"
      class="navbar navbar-expand navbar-light topbar static-top">
     <!--Sidebar Toggle (Topbar) -->
     <a (click)="changeSidebarState()" class="toggle-menu"><i class="fa fa-bars"></i></a>

@@ -1,5 +1,4 @@
 import {Injectable} from '@angular/core';
-import _ from 'node_modules/lodash/lodash.js';
 
 @Injectable({
   providedIn: 'root'
@@ -28,7 +27,7 @@ export class UtilityService {
     return regex.test(phrase);
   }
 
-  isMobile(phrase){
+  isMobile(phrase) {
     return this.onlyDigit(phrase) && phrase.length == 10;
   }
 
@@ -37,21 +36,9 @@ export class UtilityService {
     return regex.test(phrase);
   }
 
-  filterByExpression(sourceCollection: any[], filteredCollection: any[], columnName, expression) {
-
-    _.remove(filteredCollection);
-    expression = expression.toLowerCase();
-    let filtered;
-    if (expression.length === 0) {
-      filtered = sourceCollection;
-    } else {
-      filtered = sourceCollection.filter((s) => {
-        let val = s[columnName];
-        val = val.toLowerCase();
-        return val.indexOf(expression) > -1;
-      });
-    }
-    filtered.forEach(f => filteredCollection.push(f));
+  passwordRegex(): RegExp {
+    const regex = /^(?=^.{8,}$)(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?!.*\s)[0-9a-zA-Z!@#$%^&*()]*$/;
+    return regex;
   }
 
   containsNonLatinCodepoints(s) {

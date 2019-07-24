@@ -1,7 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {TitleValueInterface} from './models/title-value.interface';
-import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import {CreateKeyComponent} from '../../../developers/developer-list/create-key/create-key.component';
+import {FormBuilder, FormGroup} from '@angular/forms';
 import {NotificationService} from '../../../../../shared/notification.service';
 import {MatDialog} from '@angular/material';
 import {DeleteAccountComponent} from './delete-acount/delete-account.component';
@@ -32,8 +31,8 @@ export class DeactiveAccountComponent implements OnInit {
 
   ];
 
-  constructor(private fb: FormBuilder,
-              private ns: NotificationService,
+  constructor(private formBuilder: FormBuilder,
+              private notificationService: NotificationService,
               private dialog: MatDialog,
               private authService: AuthenticationService,
               private privacyService: PrivacyService) {
@@ -46,7 +45,7 @@ export class DeactiveAccountComponent implements OnInit {
   }
 
   createForm() {
-    this.deActiveForm = this.fb.group({
+    this.deActiveForm = this.formBuilder.group({
       reason: [''],
       description: [''],
     });
@@ -70,7 +69,7 @@ export class DeactiveAccountComponent implements OnInit {
       .subscribe(result => {
         if (result && result.deleteAccount) {
           this.authService.logOut();
-          this.ns.success('User deactivated successfully. Deactivation allowed just per 24 hours!', '');
+          this.notificationService.success('User deactivated successfully. Deactivation allowed just per 24 hours!', '');
         }
       });
   }

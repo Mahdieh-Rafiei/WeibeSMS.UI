@@ -2,12 +2,11 @@ import {Component, OnInit} from '@angular/core';
 import {UserAccountService} from '../../user-account.service';
 import {NotificationService} from '../../../../../shared/notification.service';
 import {UtilityService} from '../../../../../shared/utility.service';
-import {AbstractControl, FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {ChangePasswordInterface} from './models/change-password.interface';
 import {ChangePasswordResponseInterface} from './models/change-password-response.interface';
 import {errorAnimation} from '../../../../../shared/component/animation/error-animation';
 import {Router} from '@angular/router';
-import {SharedService} from '../../../../../shared/service/shared.service';
 import {PrivacyService} from '../privacy.service';
 
 @Component({
@@ -26,7 +25,7 @@ export class ChangePasswordComponent implements OnInit {
   constructor(private userService: UserAccountService,
               private notificationService: NotificationService,
               private utilityService: UtilityService,
-              private fb: FormBuilder,
+              private formBuilder: FormBuilder,
               private router: Router,
               private privacyService: PrivacyService) {
   }
@@ -37,10 +36,10 @@ export class ChangePasswordComponent implements OnInit {
   }
 
   createForm() {
-    this.changePassForm = this.fb.group({
+    this.changePassForm = this.formBuilder.group({
       oldPassword: ['', Validators.required],
       newPassword: [null, Validators.compose([Validators.required,
-        Validators.pattern(/^(?=^.{8,}$)(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?!.*\s)[0-9a-zA-Z!@#$%^&*()]*$/)])],
+        Validators.pattern(this.utilityService.passwordRegex())])],
       confirmPassword: ['', Validators.required]
     });
   }

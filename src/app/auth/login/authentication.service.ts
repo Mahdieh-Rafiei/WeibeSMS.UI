@@ -37,6 +37,6 @@ export class AuthenticationService {
 
   deleteAccount() {
     const url = `user/delete`;
-    return this.apiService.delete(url, null,true);
+    return this.apiService.delete(url, null, true);
   }
 }

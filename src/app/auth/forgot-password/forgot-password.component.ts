@@ -1,4 +1,4 @@
-import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
+import {ChangeDetectionStrategy, Component, OnInit} from '@angular/core';
 import {ForgotPasswordService} from './forgot-password.service';
 import {Router} from '@angular/router';
 import {AuthenticationService} from '../login/authentication.service';
@@ -9,6 +9,7 @@ import {ChangePasswordInterface} from './models/change-password.interface';
 import {AuthSharedService} from '../auth-shared.service';
 import {NotificationService} from '../../shared/notification.service';
 import {InputedMobileModel} from '../../shared/component/country-flag-numbers/inputed-mobile-model';
+import {SharedService} from '../../shared/service/shared.service';
 
 @Component({
   selector: 'app-forgot-password',
@@ -28,12 +29,12 @@ export class ForgotPasswordComponent implements OnInit {
   notMatch: boolean = false;
   enterPressConfirm: boolean = false;
   verificationCode: string;
-  showSpinner: boolean = false;
 
   constructor(private forgotPasswordService: ForgotPasswordService,
               private router: Router,
-              private fb: FormBuilder,
+              private formBuilder: FormBuilder,
               private authSharedService: AuthSharedService,
+              private sharedService: SharedService,
               private authService: AuthenticationService,
               public configService: ConfigService,
               private notificationService: NotificationService) {
@@ -44,12 +45,12 @@ export class ForgotPasswordComponent implements OnInit {
   }
 
   createForm() {
-    this.forgotPasswordForm = this.fb.group({
+    this.forgotPasswordForm = this.formBuilder.group({
       mobile: [null, Validators.compose([Validators.required])],
       reason: [2],
       prefixNumberId: [1, Validators.required]
     });
-    this.resetPassForm = this.fb.group({
+    this.resetPassForm = this.formBuilder.group({
       password: [null, Validators.compose([Validators.required,
         Validators.pattern(/^(?=^.{8,}$)(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?!.*\s)[0-9a-zA-Z!@#$%^&*()]*$/)])],
       confirmPassword: [null]
@@ -70,14 +71,16 @@ export class ForgotPasswordComponent implements OnInit {
       payload['mobile'] = this.forgotPasswordForm.controls['mobile'].value;
       payload['prefixNumberId'] = this.forgotPasswordForm.controls['prefixNumberId'].value;
 
-      this.showSpinner = true;
+      this.sharedService.spinnerStatusChanged.emit(true);
+
       this.forgotPasswordService.sendVerificationCode(payload)
         .subscribe(res => {
             if (res.data.codeIsExists) {
               this.notificationService.info('Use the last verification code', '');
             }
 
-            this.showSpinner = false;
+            this.sharedService.spinnerStatusChanged.emit(false);
+
             this.step = 2;
             setTimeout(() => {
 
@@ -87,7 +90,8 @@ export class ForgotPasswordComponent implements OnInit {
 
           },
           err => {
-            this.showSpinner = false;
+            this.sharedService.spinnerStatusChanged.emit(false);
+
             if (err.error.Message === '4') {
               this.step = 2;
               setTimeout(() => {
@@ -112,7 +116,9 @@ export class ForgotPasswordComponent implements OnInit {
     }
     if (this.resetPassForm.valid && !this.notMatch && this.resetPassForm.value.confirmPassword) {
       this.confirmPasswordOut();
-      this.showSpinner = true;
+
+      this.sharedService.spinnerStatusChanged.emit(true);
+
       const payload: ChangePasswordInterface = this.resetPassForm.value;
       delete payload['confirmPassword'];
       payload['key'] = this.key;
@@ -121,7 +127,7 @@ export class ForgotPasswordComponent implements OnInit {
       payload['verificationCode'] = +this.verificationCode;
       this.forgotPasswordService.changePassword(payload)
         .subscribe(res => {
-          this.showSpinner = false;
+          this.sharedService.spinnerStatusChanged.emit(false);
           this.notificationService.success('Password changed successfully', '');
           this.configService.authenticationChanged.emit(true);
           localStorage.removeItem('k-f');
@@ -130,7 +136,7 @@ export class ForgotPasswordComponent implements OnInit {
           this.authService.setToken(res.data.token);
           this.configService.authenticationChanged.emit(true);
         }, err => {
-          this.showSpinner = false;
+          this.sharedService.spinnerStatusChanged.emit(false);
         });
     }
   }

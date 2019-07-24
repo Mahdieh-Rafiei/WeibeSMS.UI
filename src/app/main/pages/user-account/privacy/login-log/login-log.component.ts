@@ -1,4 +1,4 @@
-import {AfterViewChecked, ChangeDetectorRef, Component, OnInit} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
 import {LoginLogInterface} from './models/login-log.interface';
 import {PrivacyService} from '../privacy.service';
@@ -30,14 +30,15 @@ export class LoginLogComponent implements OnInit {
   };
 
   constructor(private route: ActivatedRoute,
-              private ps: PrivacyService) {
+              private privacyService: PrivacyService) {
+
     this.route.data
       .subscribe((data: { loginLog: LoginLogInterface }) => {
         this.loginLogs = data.loginLog.data.items;
         this.tableConfig.pagingModel.totalItemsCount = data.loginLog.data.totalItemsCount;
       });
 
-    this.ps.mode = 'loginLog';
+    this.privacyService.mode = 'loginLog';
   }
 
   ngOnInit() {
@@ -51,7 +52,7 @@ export class LoginLogComponent implements OnInit {
   }
 
   getAllLogs() {
-    this.ps.loginLog(this.tableConfig.pagingModel.pageNumber, this.tableConfig.pagingModel.pageSize,
+    this.privacyService.loginLog(this.tableConfig.pagingModel.pageNumber, this.tableConfig.pagingModel.pageSize,
       this.phrase, this.filterDataModel.fromDate, this.filterDataModel.toDate)
       .subscribe((res: LoginLogInterface) => {
         this.tableConfig.pagingModel.totalItemsCount = res.data.totalItemsCount;

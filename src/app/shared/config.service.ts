@@ -10,15 +10,13 @@ export class ConfigService {
   globalUrl: string;
   tokenKeyName: string;
   errorMessages: Map<number, string> = new Map<number, string>();
-  sidebarMode = 'default';
   documentationUrl = '';
+
+  @Output() authenticationChanged: EventEmitter<boolean> = new EventEmitter<boolean>();
 
   get appTitle(): string {
     return 'White SMS';
   }
-
-  @Output() authenticationChanged: EventEmitter<boolean> = new EventEmitter<boolean>();
-  @Output() spinnerStatusChanged: EventEmitter<boolean> = new EventEmitter<boolean>();
 
   constructor() {
     this.tokenKeyName = 'jwt-sms';

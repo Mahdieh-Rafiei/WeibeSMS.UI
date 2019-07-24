@@ -1,10 +1,6 @@
 import {
-  AfterViewChecked,
-  ChangeDetectorRef,
   Component,
-  ElementRef,
   OnInit,
-  ViewChild,
   ViewEncapsulation
 } from '@angular/core';
 import {RegisterService} from '../register/register.service';
@@ -31,15 +27,9 @@ import {UserInfoResponseInterface} from './models/user-info-response.interface';
   encapsulation: ViewEncapsulation.None
 })
 
-export class LoginComponent implements OnInit, AfterViewChecked {
+export class LoginComponent implements OnInit {
 
-  @ViewChild('mobileInput') mobileInput: ElementRef;
-
-  mobile = '';
-  username = '';
-  password = '';
   signInForm: FormGroup;
-
   isTried = false;
 
   constructor(private authenticationService: AuthenticationService,
@@ -50,37 +40,30 @@ export class LoginComponent implements OnInit, AfterViewChecked {
               private authSharedService: AuthSharedService,
               private sharedService: SharedService,
               private router: Router,
-              private userAccountService: UserAccountService,
-              private changeDetectorRef: ChangeDetectorRef) {
+              private userAccountService: UserAccountService) {
   }
 
   ngOnInit() {
     this.createForm();
   }
 
-  ngAfterViewChecked() {
-    this.changeDetectorRef.detectChanges();
-  }
-
   createForm() {
-
     this.signInForm = this.formBuilder.group({
       username: [null, Validators.required],
       password: [null, Validators.required]
     });
   }
 
-
   login() {
     if (this.signInForm.valid) {
-      this.configService.spinnerStatusChanged.emit( true);
+      this.sharedService.spinnerStatusChanged.emit(true);
       const payload: LoginInterface = this.signInForm.value;
       this.authenticationService.loginViaUsernamePassword(payload)
         .subscribe((res: LoginResponseInterface) => {
             this.authenticationService.setToken(res.data.token);
             this.userAccountService.getUserInfo()
               .subscribe((res: UserInfoResponseInterface) => {
-                this.configService.spinnerStatusChanged.emit(false);
+                this.sharedService.spinnerStatusChanged.emit(false);
                 this.sharedService.setUserInfo(res.data);
                 this.router.navigateByUrl('');
                 this.configService.authenticationChanged.emit(true);
@@ -88,7 +71,7 @@ export class LoginComponent implements OnInit, AfterViewChecked {
           },
           err => {
             this.isTried = true;
-            this.configService.spinnerStatusChanged.emit(false);
+            this.sharedService.spinnerStatusChanged.emit(false);
           });
     }
   }

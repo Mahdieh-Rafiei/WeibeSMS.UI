@@ -1,7 +1,6 @@
-import {AfterViewChecked, ChangeDetectorRef, Component, OnInit, ViewEncapsulation} from '@angular/core';
+import {Component, OnInit, ViewEncapsulation} from '@angular/core';
 import {errorAnimation} from '../shared/component/animation/error-animation';
 import {ConfigService} from '../shared/config.service';
-import {AuthSharedService} from './auth-shared.service';
 
 @Component({
   selector: 'app-auth',
@@ -16,18 +15,9 @@ import {AuthSharedService} from './auth-shared.service';
 
 export class AuthComponent implements OnInit {
 
-  showSpinner: boolean;
-
   constructor(private configService: ConfigService) {
   }
 
   ngOnInit() {
-    this.configService.spinnerStatusChanged.subscribe(res => {
-      this.showSpinner = res;
-    });
   }
-
-  // ngAfterViewChecked(): void {
-  //   this.changeDetectorRef.detectChanges();
-  // }
 }
