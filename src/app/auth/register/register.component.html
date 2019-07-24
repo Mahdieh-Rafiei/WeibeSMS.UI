@@ -1,233 +1,242 @@
 <div class="flex-container">
-  <div class="flex-container-child">
-    <div class="right-box ws-login-box">
-      <div class="subject text-left">
-        <img src="../../../assets/images/svg/LogoLogin.svg" class="img-responsive">
-        <div class="subject-detail">
-          <h4>Lets go!</h4>
-          <p class="welcome-text">complete your information to create account.</p>
-        </div>
-      </div>
-      <hr>
-      <form class="register-input" [formGroup]="registerForm" #formDir="ngForm" (ngSubmit)="submit()">
-        <div class="row">
-          <div class="col-md-12">
-            <div class="row">
-              <div class="col-12 col-md-4">
-                <label>Name*</label>
-                <input type="text"
-                       [ngClass]="{'border-error' : (((registerForm.controls['firstName'].dirty || registerForm.controls['firstName'].touched || formDir.submitted)&& registerForm.hasError('required', 'firstName')))}"
-                       class="form-control"
-                       placeholder="Your Name"
-                       formControlName="firstName">
-                <div class="error-place">
-                  <div class="text-left"
-                       *ngIf="(((registerForm.controls['firstName'].dirty || registerForm.controls['firstName'].touched) || formDir.submitted))">
-                    <p class="errorMessage" *ngIf="registerForm.hasError('required', 'firstName')" [@errorAnimation]>
-                      <i class="far fa-exclamation-circle"></i> Enter first name!
-                    </p>
-                    <p class="errorMessage"
-                       *ngIf="(registerForm.controls['firstName'].hasError('maxlength'))" [@errorAnimation]>
-                      <i class="far fa-exclamation-circle"></i> First name max length is 20 char!
-                    </p>
-                  </div>
+    <div class="flex-container-child">
+        <div class="right-box ws-login-box">
+            <div class="subject text-left">
+                <img src="../../../assets/images/svg/LogoLogin.svg" class="img-responsive">
+                <div class="subject-detail">
+                    <h4>Lets go!</h4>
+                    <p class="gray-text fo-3">complete your information to create account.</p>
                 </div>
-              </div>
-              <div class="col-12 col-md-4">
-                <label>Surname*</label>
-                <input type="text"
-                       [ngClass]="{'border-error' : (((registerForm.controls['lastName'].dirty || registerForm.controls['lastName'].touched || formDir.submitted) && registerForm.hasError('required', 'lastName')))}"
-                       class="form-control"
-                       placeholder="Your Surname"
-                       formControlName="lastName">
-                <div class="error-place">
-                  <div class="text-left"
-                       *ngIf="((((registerForm.controls['lastName'].dirty || registerForm.controls['lastName'].touched)&& registerForm.hasError('required', 'lastName')) || formDir.submitted))">
-                    <p class="errorMessage" *ngIf="registerForm.hasError('required', 'lastName')" [@errorAnimation]>
-                      <i class="far fa-exclamation-circle"></i> Enter last name!
-                    </p>
-                    <p class="errorMessage"
-                       *ngIf="(registerForm.controls['lastName'].hasError('maxlength'))" [@errorAnimation]>
-                      <i class="far fa-exclamation-circle"></i> Last name max length is 30 char!
-                    </p>
-                  </div>
-                </div>
+            </div>
+            <hr>
+            <form class="register-input" [formGroup]="registerForm" #formDir="ngForm" (ngSubmit)="submit()">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="row">
+                            <div class="col-12 col-md-4">
+                                <label>Name*</label>
+                                <input type="text"
+                                       [ngClass]="{'border-error' : (((registerForm.controls['firstName'].dirty || registerForm.controls['firstName'].touched || formDir.submitted)&& registerForm.hasError('required', 'firstName')))}"
+                                       class="form-control"
+                                       placeholder="Your Name"
+                                       formControlName="firstName">
+                                <div class="error-place">
+                                    <div class="text-left"
+                                         *ngIf="(((registerForm.controls['firstName'].dirty || registerForm.controls['firstName'].touched) || formDir.submitted))">
+                                        <p class="errorMessage" *ngIf="registerForm.hasError('required', 'firstName')"
+                                           [@errorAnimation]>
+                                            <i class="far fa-exclamation-circle"></i> Enter first name!
+                                        </p>
+                                        <p class="errorMessage"
+                                           *ngIf="(registerForm.controls['firstName'].hasError('maxlength'))"
+                                           [@errorAnimation]>
+                                            <i class="far fa-exclamation-circle"></i> First name max length is 20 char!
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-12 col-md-4">
+                                <label>Surname*</label>
+                                <input type="text"
+                                       [ngClass]="{'border-error' : (((registerForm.controls['lastName'].dirty || registerForm.controls['lastName'].touched || formDir.submitted) && registerForm.hasError('required', 'lastName')))}"
+                                       class="form-control"
+                                       placeholder="Your Surname"
+                                       formControlName="lastName">
+                                <div class="error-place">
+                                    <div class="text-left"
+                                         *ngIf="((((registerForm.controls['lastName'].dirty || registerForm.controls['lastName'].touched)&& registerForm.hasError('required', 'lastName')) || formDir.submitted))">
+                                        <p class="errorMessage" *ngIf="registerForm.hasError('required', 'lastName')"
+                                           [@errorAnimation]>
+                                            <i class="far fa-exclamation-circle"></i> Enter last name!
+                                        </p>
+                                        <p class="errorMessage"
+                                           *ngIf="(registerForm.controls['lastName'].hasError('maxlength'))"
+                                           [@errorAnimation]>
+                                            <i class="far fa-exclamation-circle"></i> Last name max length is 30 char!
+                                        </p>
+                                    </div>
+                                </div>
 
-              </div>
-              <div class="col-12 col-md-4">
-                <label>Gender :</label>
-                <select formControlName="gender" class="form-control">
-                  <option hidden value="">select</option>
-                  <option *ngFor="let gender of genders" [value]="gender.value">
-                    {{gender.title}}
-                  </option>
-                </select>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-12">
-            <div class="row">
-              <div class="col-12 col-md-4">
-                <label>Company name</label>
-                <input type="text"
-                       class="form-control"
-                       placeholder="Your Company name"
-                       formControlName="companyName">
-              </div>
-              <div class="col-12 col-md-4">
-                <label>Email*</label>
-                <input type="text"
-                       class="form-control"
-                       [ngClass]="{'border-error' : (((registerForm.controls['email'].dirty || registerForm.controls['email'].touched) || formDir.submitted) && (emailUnique || !email.value))}"
-                       #email
-                       placeholder="User Email"
-                       (keydown)="onKeyDown('email')"
-                       (keyup)="onKeyUp('email', email?.value)"
-                       formControlName="email">
-                <div class="error-place">
-                  <div class="text-left" *ngIf="!checkingEmail">
-                    <div *ngIf="((registerForm.controls['email'].touched) || formDir.submitted)">
-                      <p class="errorMessage" *ngIf="email.value < 1" [@errorAnimation]>
-                        <i class="far fa-exclamation-circle"></i> Enter your email!
-                      </p>
-                      <p class="errorMessage" *ngIf="!utilityService.checkEmail(email.value) && email.value.length > 0"
-                         [@errorAnimation]>
-                        <i class="far fa-exclamation-circle"></i> This email is invalid.
-                      </p>
+                            </div>
+                            <div class="col-12 col-md-4">
+                                <label>Gender :</label>
+                                <select formControlName="gender" class="form-control">
+                                    <option hidden value="">select</option>
+                                    <option *ngFor="let gender of genders" [value]="gender.value">
+                                        {{gender.title}}
+                                    </option>
+                                </select>
+                            </div>
+                        </div>
                     </div>
-                  </div>
-                  <div class="text-left" *ngIf="checkingEmail">
-                    <p class="defaultMessage">Checking email...</p>
-                  </div>
-                  <div class="text-left" *ngIf="!checkingEmail">
-                    <p class="errorMessage" *ngIf="emailUnique" [@errorAnimation]>
-                      <i class="far fa-exclamation-circle"></i> This email is already taken!
-                    </p>
-                  </div>
-                  <div class="text-left" *ngIf="!checkingEmail">
-                    <p class="successMessage"
-                       *ngIf="!emailUnique && email.value.length > 0 && utilityService.checkEmail(email.value)"
-                       [@errorAnimation]>
-                      <i class="far fa-check"></i> {{email.value}} is available .
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-12">
-            <div class="row">
-              <div class="col-12 col-md-4">
-                <label>Username*</label>
-                <input type="text"
-                       [ngClass]="{'border-error' : (((registerForm.controls['userName'].dirty || registerForm.controls['userName'].touched) || formDir.submitted) && ( userName.value.length < 6 || userNameUnique))}"
-                       autocomplete="off"
-                       class="form-control"
-                       placeholder="Your username"
-                       #userName
-                       (keydown)="onKeyDown('userName')"
-                       (keyup)="onKeyUp('userName', userName?.value)"
-                       formControlName="userName">
-                <!--(change)="checkUnique(1, userName?.value)"-->
-                <div class="error-place">
-                  <div class="text-left" *ngIf="!checkingUserName">
-                    <div *ngIf="(((registerForm.controls['userName'].touched) || formDir.submitted))" [@errorAnimation]>
-                      <p class="errorMessage"
-                         *ngIf="registerForm.hasError('required', 'userName') || userName.value.length < 6">
-                        <i class="far fa-exclamation-circle"></i> Username min length is 6 char!
-                      </p>
+                    <div class="col-md-12">
+                        <div class="row">
+                            <div class="col-12 col-md-4">
+                                <label>Company name</label>
+                                <input type="text"
+                                       class="form-control"
+                                       placeholder="Your Company name"
+                                       formControlName="companyName">
+                            </div>
+                            <div class="col-12 col-md-4">
+                                <label>Email*</label>
+                                <input type="text"
+                                       class="form-control"
+                                       [ngClass]="{'border-error' : (((registerForm.controls['email'].dirty || registerForm.controls['email'].touched) || formDir.submitted) && (emailUnique || !email.value))}"
+                                       #email
+                                       placeholder="User Email"
+                                       (keydown)="onKeyDown('email')"
+                                       (keyup)="onKeyUp('email', email?.value)"
+                                       formControlName="email">
+                                <div class="error-place">
+                                    <div class="text-left" *ngIf="!checkingEmail">
+                                        <div *ngIf="((registerForm.controls['email'].touched) || formDir.submitted)">
+                                            <p class="errorMessage" *ngIf="email.value < 1" [@errorAnimation]>
+                                                <i class="far fa-exclamation-circle"></i> Enter your email!
+                                            </p>
+                                            <p class="errorMessage"
+                                               *ngIf="!utilityService.checkEmail(email.value) && email.value.length > 0"
+                                               [@errorAnimation]>
+                                                <i class="far fa-exclamation-circle"></i> This email is invalid.
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div class="text-left" *ngIf="checkingEmail">
+                                        <p class="defaultMessage">Checking email...</p>
+                                    </div>
+                                    <div class="text-left" *ngIf="!checkingEmail">
+                                        <p class="errorMessage" *ngIf="emailUnique" [@errorAnimation]>
+                                            <i class="far fa-exclamation-circle"></i> This email is already taken!
+                                        </p>
+                                    </div>
+                                    <div class="text-left" *ngIf="!checkingEmail">
+                                        <p class="successMessage"
+                                           *ngIf="!emailUnique && email.value.length > 0 && utilityService.checkEmail(email.value)"
+                                           [@errorAnimation]>
+                                            <i class="far fa-check"></i> {{email.value}} is available .
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                  </div>
-                  <div class="text-left" *ngIf="checkingUserName">
-                    <p class="defaultMessage">Checking username...</p>
-                  </div>
-                  <div class="text-left" *ngIf="!checkingUserName">
-                    <p class="errorMessage" *ngIf="userNameUnique" [@errorAnimation]>
-                      <i class="far fa-exclamation-circle"></i> this user name is already taken!
-                    </p>
-                  </div>
-                  <div class="text-left" *ngIf="!checkingUserName">
-                    <p class="successMessage" *ngIf="!userNameUnique && userName.value.length > 5" [@errorAnimation]>
-                      <i class="far fa-check"></i> {{userName.value}} is available .
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-12">
-            <div class="row">
-              <div class="col-12 col-md-4">
-                <label>Password*</label>
-                <input type="password"
-                       placeholder="Enter Your Password"
-                       class="form-control"
-                       autocomplete="off"
-                       [ngClass]="{'border-error':(((registerForm.controls['password'].touched) || formDir.submitted)) && (registerForm.controls['password'].hasError('pattern') || !registerForm.controls['password'].value)}"
-                       formControlName="password">
-                <div class="text-left"
-                     *ngIf="(((registerForm.controls['password'].touched) || formDir.submitted))">
-                  <ul class="pl-0 pt-1">
-                    <li class="errorMessage pl-0" *ngIf="registerForm.hasError('required', 'password')">
-                      <i class="fa fa-check-circle"></i><span class="pl-1">Required!</span>
-                    </li>
-                    <ul *ngIf="registerForm.controls['password'].hasError('pattern')">
-                      <li class="errorMessage pl-0">
-                        <i class="fa fa-check-circle"></i><span class="pl-1"> min length is 8 char!</span>
-                      </li>
-                      <li class="errorMessage">
-                        <i class="fa fa-check-circle"></i><span class="pl-1">least one Digit letter!</span>
-                      </li>
-                      <li class="errorMessage">
-                        <i class="fa fa-check-circle"></i><span class="pl-1">least one uppercase letter!</span>
-                      </li>
-                      <li class="errorMessage">
-                        <i class="fa fa-check-circle"></i><span class="pl-1">least one LowerCase letter!</span>
-                      </li>
-                      <li class="errorMessage">
-                        <i class="fa fa-check-circle"></i><span class="pl-1">least one Symbol letter!</span>
-                      </li>
-                    </ul>
-                  </ul>
-                </div>
-              </div>
-              <div class="col-12 col-md-4">
-                <label>Re-enter Password*</label>
-                <input type="password"
-                       class="form-control"
-                       autocomplete="off"
-                       [ngClass]="{'border-error':(((registerForm.controls['confirmPassword'].touched) || formDir.submitted)) &&
+                    <div class="col-md-12">
+                        <div class="row">
+                            <div class="col-12 col-md-4">
+                                <label>Username*</label>
+                                <input type="text"
+                                       [ngClass]="{'border-error' : (((registerForm.controls['userName'].dirty || registerForm.controls['userName'].touched) || formDir.submitted) && ( userName.value.length < 6 || userNameUnique))}"
+                                       autocomplete="off"
+                                       class="form-control"
+                                       placeholder="Your username"
+                                       #userName
+                                       (keydown)="onKeyDown('userName')"
+                                       (keyup)="onKeyUp('userName', userName?.value)"
+                                       formControlName="userName">
+                                <!--(change)="checkUnique(1, userName?.value)"-->
+                                <div class="error-place">
+                                    <div class="text-left" *ngIf="!checkingUserName">
+                                        <div *ngIf="(((registerForm.controls['userName'].touched) || formDir.submitted))"
+                                             [@errorAnimation]>
+                                            <p class="errorMessage"
+                                               *ngIf="registerForm.hasError('required', 'userName') || userName.value.length < 6">
+                                                <i class="far fa-exclamation-circle"></i> Username min length is 6 char!
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div class="text-left" *ngIf="checkingUserName">
+                                        <p class="defaultMessage">Checking username...</p>
+                                    </div>
+                                    <div class="text-left" *ngIf="!checkingUserName">
+                                        <p class="errorMessage" *ngIf="userNameUnique" [@errorAnimation]>
+                                            <i class="far fa-exclamation-circle"></i> this user name is already taken!
+                                        </p>
+                                    </div>
+                                    <div class="text-left" *ngIf="!checkingUserName">
+                                        <p class="successMessage" *ngIf="!userNameUnique && userName.value.length > 5"
+                                           [@errorAnimation]>
+                                            <i class="far fa-check"></i> {{userName.value}} is available .
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="row">
+                            <div class="col-12 col-md-4">
+                                <label>Password*</label>
+                                <input type="password"
+                                       placeholder="Enter Your Password"
+                                       class="form-control"
+                                       autocomplete="off"
+                                       [ngClass]="{'border-error':(((registerForm.controls['password'].touched) || formDir.submitted)) && (registerForm.controls['password'].hasError('pattern') || !registerForm.controls['password'].value)}"
+                                       formControlName="password">
+                                <div class="text-left"
+                                     *ngIf="(((registerForm.controls['password'].touched) || formDir.submitted))">
+                                    <ul class="pl-0 pt-1">
+                                        <li class="errorMessage pl-0"
+                                            *ngIf="registerForm.hasError('required', 'password')">
+                                            <i class="fa fa-check-circle"></i><span class="pl-1">Required!</span>
+                                        </li>
+                                        <ul *ngIf="registerForm.controls['password'].hasError('pattern')">
+                                            <li class="errorMessage pl-0">
+                                                <i class="fa fa-check-circle"></i><span class="pl-1"> min length is 8 char!</span>
+                                            </li>
+                                            <li class="errorMessage">
+                                                <i class="fa fa-check-circle"></i><span class="pl-1">least one Digit letter!</span>
+                                            </li>
+                                            <li class="errorMessage">
+                                                <i class="fa fa-check-circle"></i><span class="pl-1">least one uppercase letter!</span>
+                                            </li>
+                                            <li class="errorMessage">
+                                                <i class="fa fa-check-circle"></i><span class="pl-1">least one LowerCase letter!</span>
+                                            </li>
+                                            <li class="errorMessage">
+                                                <i class="fa fa-check-circle"></i><span class="pl-1">least one Symbol letter!</span>
+                                            </li>
+                                        </ul>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="col-12 col-md-4">
+                                <label>Re-enter Password*</label>
+                                <input type="password"
+                                       class="form-control"
+                                       autocomplete="off"
+                                       [ngClass]="{'border-error':(((registerForm.controls['confirmPassword'].touched) || formDir.submitted)) &&
                        (!registerForm.controls['confirmPassword'].value || (registerForm.controls['confirmPassword'].value != registerForm.controls['password'].value))}"
-                       placeholder="Confirm Your Password"
-                       (input)="confirmPasswordOut()"
-                       (focusout)="confirmPasswordOut()"
-                       formControlName="confirmPassword">
-                <div class="text-left">
-                  <p class="errorMessage" *ngIf="notMatch">
-                    Confirm value is not correct!
-                  </p>
+                                       placeholder="Confirm Your Password"
+                                       (input)="confirmPasswordOut()"
+                                       (focusout)="confirmPasswordOut()"
+                                       formControlName="confirmPassword">
+                                <div class="text-left">
+                                    <p class="errorMessage" *ngIf="notMatch">
+                                        Confirm value is not correct!
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <mat-checkbox (change)="confirm($event)">
+                        </mat-checkbox>
+                        I have read and agree to {{configService.appTitle}} terms and <span
+                            class="sign-fill">conditions</span>
+                        and the <span class="sign-in">privacy policy</span>.
+                    </div>
+                    <div class="col-md-12 text-center btn-save pt-3">
+                        <button [disabled]="disableButton"
+                                [ngStyle]="{'color' : disableButton? '#ffffff': '', 'background-color': disableButton? '#a0a7eb': ''}"
+                                class="ws-btn">
+                            <i class="fa fa-spinner fa-spin"
+                               style="display: none;">
+                            </i>
+                            CREATE ACCOUNT
+                        </button>
+                    </div>
                 </div>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-12 privacy">
-            <mat-checkbox (change)="confirm($event)">I have read and agree to {{configService.appTitle}} terms and <span
-              class="sign-in">conditions</span>
-              and the <span class="sign-in">privacy policy</span>.
-            </mat-checkbox>
-          </div>
-          <div class="col-md-12 text-center btn-save">
-            <button [disabled]="disableButton"
-                    [ngStyle]="{'color' : disableButton? '#ffffff': '', 'background-color': disableButton? '#a0a7eb': ''}"
-                    class="ws-btn">
-              <i class="fa fa-spinner fa-spin"
-                 style="display: none;">
-              </i>
-              CREATE ACCOUNT
-            </button>
-          </div>
+            </form>
         </div>
-      </form>
     </div>
-  </div>
 </div>

@@ -180,11 +180,6 @@ article, aside, details, figcaption, figure, footer, header, hgroup, main, menu,
   color: $blue;
 }
 
-.welcome-text {
-  color: $gray;
-  font-size: 14px;
-}
-
 .copyright {
   color: $gray;
   font-size: 13px;
@@ -205,7 +200,7 @@ article, aside, details, figcaption, figure, footer, header, hgroup, main, menu,
   font-size: 12px;
 }
 
-.weib {
+.name-company {
   font-weight: 600;
   color: $dark-purple;
 }
@@ -477,4 +472,14 @@ textarea {
 span.fa.fa-trash, span.fa.fa-plus {
   cursor: pointer;
   line-height: 2;
+}
+
+.svg-img{
+  img{
+    width: 70px;
+  }
+}
+
+app-login, app-sign-up, app-forgot-password {
+  width: 100%;
 }
