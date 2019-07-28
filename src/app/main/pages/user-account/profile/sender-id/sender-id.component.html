@@ -1,47 +1,45 @@
 <div class="col-md-12 tab-section">
-    <div class="sender-id">
-        <div>
-            <h5>Sender ID</h5>
-            <p class="fo-4 black-text">You can choose sender id but u should wait we check this. it can't be more than 6
-                character.</p>
-            <div class="mt-3 mb-3">
-                <form class="row" [formGroup]="senderIdForm" #formDir="ngForm" (ngSubmit)="submit()">
-                    <div class="col-md-4">
-                        <div class="input-group">
-                            <input type="text"
-                                   maxlength="11"
-                                   formControlName="name"
-                                   class="form-control"
-                                   #senderId
-                                   (change)="checkUnique(2, senderId?.value)"
-                                   placeholder="Enter your sender id">
-                            <i *ngIf="newSenderName.isValid" class="fal fa-check-circle"></i>
-                            <div class="input-group-append">
-                                <button type="submit" id="basic-addon2" class="light-blue-btn ml-2">Request</button>
-                            </div>
-                        </div>
-                        <div class="error-place">
-                            <div class="text-left"
-                                 *ngIf="((senderIdForm.controls['name'].dirty || senderIdForm.controls['name'].touched || formDir.submitted)|| senderIdUnique)"
-                                 [@errorAnimation]>
-                                <p class="errorMessage"
-                                   *ngIf="(senderIdForm.controls['name'].hasError('pattern')) " [@errorAnimation]>
-                                    <i class="far fa-exclamation-circle"></i> sender id is invalid!
-                                </p>
-                            </div>
+    <div>
+        <h5>Sender ID</h5>
+        <p class="fo-4 black-text">You can choose sender id but u should wait we check this. it can't be more than 6
+            character.</p>
+        <div class="mt-3 mb-3">
+            <form class="row" [formGroup]="senderIdForm" #formDir="ngForm" (ngSubmit)="submit()">
+                <div class="col-md-4">
+                    <div class="input-group">
+                        <input type="text"
+                               maxlength="11"
+                               formControlName="name"
+                               class="form-control"
+                               #senderId
+                               (change)="checkUnique(2, senderId?.value)"
+                               placeholder="Enter your sender id">
+                        <i *ngIf="newSenderName.isValid" class="fal fa-check-circle"></i>
+                        <div class="input-group-append">
+                            <button type="submit" id="basic-addon2" class="light-blue-btn ml-2">Request</button>
                         </div>
                     </div>
-                </form>
-            </div>
+                    <div class="error-place">
+                        <div class="text-left"
+                             *ngIf="((senderIdForm.controls['name'].dirty || senderIdForm.controls['name'].touched || formDir.submitted)|| senderIdUnique)"
+                             [@errorAnimation]>
+                            <p class="errorMessage"
+                               *ngIf="(senderIdForm.controls['name'].hasError('pattern')) " [@errorAnimation]>
+                                <i class="far fa-exclamation-circle"></i> sender id is invalid!
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </form>
         </div>
-        <hr>
-        <!--table-->
-        <app-table
-                (pagingModelChanged)="getSenderIds()"
-                [tableConfig]="tableConfig"
-                [collection]="senderNames "
-                (itemRemoved)="removeSenderName($event.index,$event.item)"
-        >
-        </app-table>
     </div>
+    <hr>
+    <!--table-->
+    <app-table
+            (pagingModelChanged)="getSenderIds()"
+            [tableConfig]="tableConfig"
+            [collection]="senderNames "
+            (itemRemoved)="removeSenderName($event.index,$event.item)"
+    >
+    </app-table>
 </div>

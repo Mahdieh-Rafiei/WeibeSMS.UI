@@ -33,7 +33,7 @@ body {
   margin: 0;
   overflow-x: hidden;
   font-family: 'OpenSans-Regular';
-  font-weight: 300;
+  font-weight: $font-weight3;
   //height: 81vh;
 }
 
@@ -41,7 +41,7 @@ h1, h2, h3, h4, h5, h6 {
   color: #6c7293;
   margin: 10px 0;
   font-family: 'OpenSans-Regular';
-  font-weight: 600;
+  font-weight: $font-weight6;
   letter-spacing: 1px;
 }
 
@@ -55,7 +55,7 @@ p {
 }
 
 b {
-  font-weight: 600;
+  font-weight: $font-weight6;
 }
 
 a:hover {
@@ -96,22 +96,19 @@ article, aside, details, figcaption, figure, footer, header, hgroup, main, menu,
 }
 
 ::placeholder {
-  color: #a7abc3;
-  font-size: 14px !important;
+  color: $gray;
+  font-size: $fo-14 !important;
 }
 
 /*-----------------------------Div-----------------------------*/
-//.no-pad {
-//  padding: 0 !important;
-//}
 
 .img-circle {
   border-radius: 50%;
 }
 
 .description {
-  font-size: 15px;
-  color: #495057;
+  font-size: $fo-15;
+  color: $light-black;
 }
 
 /*---------------------------Main Div--------------------------*/
@@ -155,25 +152,25 @@ article, aside, details, figcaption, figure, footer, header, hgroup, main, menu,
   }
 }
 
-.ws-login-input {
-  display: block;
-  margin: 0 auto 0;
-  width: 100%;
-  background: rgba(235, 237, 242, .4);
-  color: #778796;
-  height: 42px;
-  padding: 0 10px;
-  font-size: 14px;
-  font-weight: bold;
-  border-radius: .5rem;
-  border: 1px solid #ebedf2;
-  transition: all .5s ease;
-}
+//.ws-login-input {
+//  display: block;
+//  margin: 0 auto 0;
+//  width: 100%;
+//  background: rgba(235, 237, 242, .4);
+//  color: #778796;
+//  height: 42px;
+//  padding: 0 10px;
+//  font-size: 14px;
+//  font-weight: bold;
+//  border-radius: .5rem;
+//  border: 1px solid #ebedf2;
+//  transition: all .5s ease;
+//}
 
 .sign-fill {
   color: $dark-purple;
   cursor: pointer;
-  font-weight: 600;
+  font-weight: $font-weight6;
 }
 
 .sign-fill:hover {
@@ -182,7 +179,7 @@ article, aside, details, figcaption, figure, footer, header, hgroup, main, menu,
 
 .copyright {
   color: $gray;
-  font-size: 13px;
+  font-size: $fo-13;
 }
 
 .wrong {
@@ -192,16 +189,16 @@ article, aside, details, figcaption, figure, footer, header, hgroup, main, menu,
 }
 
 .wrong span:first-child {
-  font-weight: 600;
+  font-weight: $font-weight6;
 }
 
 .wrong span:nth-child(2) {
   color: $red;
-  font-size: 12px;
+  font-size: $fo-12;
 }
 
 .name-company {
-  font-weight: 600;
+  font-weight: $font-weight6;
   color: $dark-purple;
 }
 
@@ -216,16 +213,16 @@ input.verification-code-input {
   text-align: center;
   background: rgba(235, 237, 242, .4);
   color: #778796;
-  font-size: 14px;
+  font-size: $fo-14;
   font-weight: bold;
   border-radius: 3px;
-  border: 1px solid #ebedf2;
+  border: 1px solid $dark-white;
 }
 
 .forgot-pass {
   cursor: pointer;
   text-align: right;
-  font-size: 13px;
+  font-size: $fo-13;
   float: right;
 }
 
@@ -407,7 +404,7 @@ li {
 label {
   display: block;
   color: $dark-purple;
-  font-weight: 600;
+  font-weight: $font-weight6;
   font-size: 15px;
 }
 
@@ -433,11 +430,10 @@ textarea {
 
 .title-tab {
   cursor: pointer;
-  margin: 0 5px;
   p {
-    font-weight: 600;
+    font-weight: $font-weight6;
     padding: 5px 15px;
-    border-radius: 5px;
+    border-radius: $radius-1;
     color: $blue;
     text-align: center;
   }
@@ -454,9 +450,9 @@ textarea {
 .tab-div {
   background: $white;
   padding: 20px;
-  border-radius: .4rem .4rem 0 0;
+  border-radius: $radius-div;
   display: flex;
-  border-bottom: 1px solid $light-gray;
+  border-bottom: $border-light;
 }
 
 .border-text {
@@ -482,4 +478,16 @@ span.fa.fa-trash, span.fa.fa-plus {
 
 app-login, app-sign-up, app-forgot-password {
   width: 100%;
+}
+
+.operation{
+  padding: 10px 0;
+}
+
+.angular-editor-toolbar .angular-editor-toolbar-set {
+  margin-right: 0 !important;
+  margin-bottom: 0 !important;
+}
+.angular-editor-toolbar-set label{
+  display: inline;
 }

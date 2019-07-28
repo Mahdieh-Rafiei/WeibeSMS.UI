@@ -1,21 +1,18 @@
 <div class="dialog">
-
   <div class="row">
     <div class="col-12 modal-header p-2 text-center">
-      <div *ngIf="!GroupNameData">
-          <img src="../../../../../../assets/images/svg/create.svg" style="width: 70px;">
+      <div *ngIf="!GroupNameData" class="svg-img">
+          <img src="../../../../../../assets/images/svg/create.svg">
         <h5 class="green-text">Add Group</h5>
         <p class="fo-3 black-text pb-2 text-center">please choose lorem name</p>
       </div>
-      <div *ngIf="GroupNameData">
-          <img src="../../../../../../assets/images/svg/edit.svg" style="width: 70px;">
+      <div *ngIf="GroupNameData" class="svg-img">
+          <img src="../../../../../../assets/images/svg/edit.svg">
         <h5 class="blue-text">Edit Group</h5>
         <p class="fo-3 black-text pb-2 text-center">please choose lorem sdfcv name</p>
       </div>
     </div>
   </div>
-
-
   <form [formGroup]="groupNameForm" #formDir="ngForm">
     <div class="row">
       <div class="col-12 form-group">
@@ -26,8 +23,6 @@
                maxlength="32">
       </div>
     </div>
-
-
     <div class="row">
       <div class="col-12 mt-3">
         <div class="text-center" dir="ltr">

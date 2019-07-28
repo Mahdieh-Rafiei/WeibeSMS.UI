@@ -1,45 +1,37 @@
 <div class="col-md-12 tab-section" *ngIf="countries">
-  <div class="change-password">
     <h5>Phone number</h5>
     <p class="black-text fo-4">You can change your phone number, but you should verify it.</p>
     <div class="input-box" *ngIf="!codeSent">
-      <form class="row" (ngSubmit)="submit()" [formGroup]="changeNumberForm">
-        <div class="col-12 col-md-6 pt-3 pb-3">
-          <label>Your phone number: </label>
-          <div class="input-group">
-
-            <app-country-flag-numbers (inputMobileStateChanged)="setValue($event)"
-                                      [lastData]="inputedMobileModel">
-
-            </app-country-flag-numbers>
-            <div class="input-group-prepend">
-              <button [disabled]="!inputedMobileModel.isCorrectMobile || !mobileModified" type="submit"
-                      class="light-blue-btn ml-2">Verification Code
-              </button>
+        <form class="row" (ngSubmit)="submit()" [formGroup]="changeNumberForm">
+            <div class="col-12 col-md-8 pt-3 pb-3">
+                <label>Your phone number: </label>
+                <div class="row">
+                    <div class="col-md-5">
+                        <app-country-flag-numbers (inputMobileStateChanged)="setValue($event)"
+                                                  [lastData]="inputedMobileModel">
+                        </app-country-flag-numbers>
+                    </div>
+                    <div class="col-md-3 p-0">
+                        <button [disabled]="!inputedMobileModel.isCorrectMobile || !mobileModified" type="submit"
+                                class="light-blue-btn">Verification Code
+                        </button>
+                    </div>
+                </div>
             </div>
-          </div>
-
-
-        </div>
-      </form>
+        </form>
     </div>
-
     <div class="row" *ngIf="codeSent">
-      <div class="col-12 col-md-6 pt-3 pb-3">
-        <div class="pr-4 pl-4 pb-3">
-          <app-verify-mobile [mobile]="changeNumberForm.controls['mobile'].value"
-                             [registrationKey]="key"
-                             [prefixNumberId]="changeNumberForm.controls['prefixNumberId'].value"
-                             [reason]="3"
-                             (verified)="onVerified($event)"
-                             (wrongClicked)="router.navigateByUrl('/profile/change-number')"
-          >
-
-          </app-verify-mobile>
+        <div class="col-12 col-md-6 pt-3 pb-3">
+            <div class="pr-4 pl-4 pb-3">
+                <app-verify-mobile [mobile]="changeNumberForm.controls['mobile'].value"
+                                   [registrationKey]="key"
+                                   [prefixNumberId]="changeNumberForm.controls['prefixNumberId'].value"
+                                   [reason]="3"
+                                   (verified)="onVerified($event)"
+                                   (wrongClicked)="router.navigateByUrl('/profile/change-number')"
+                >
+                </app-verify-mobile>
+            </div>
         </div>
-      </div>
     </div>
-
-
-  </div>
 </div>

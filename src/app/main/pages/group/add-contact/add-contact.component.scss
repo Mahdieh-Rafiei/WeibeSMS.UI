@@ -1,17 +1,19 @@
 @import "../../../../../assets/style/components/variables";
-.tab-div{
+
+.tab-div {
   display: block;
 }
 
-.tab-div {
-  svg{
-    margin: 0 auto;
-    display: block;
-    height: 85px;
-    cursor: pointer;
+.add-contact-div {
+  padding: 10px;
+  img {
+    width: 200px;
+    padding: 10px;
   }
 }
-.chang-fill{
-  fill: $green;
-}
 
+.add-contact-div:hover {
+  box-shadow: 1px 1px 1px 1px rgba(1, 1, 1, .5);
+  border-radius: 5px;
+  cursor: pointer;
+}

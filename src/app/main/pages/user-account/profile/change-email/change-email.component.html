@@ -1,42 +1,40 @@
 <div class="col-md-12 tab-section">
-    <div class="change-password">
-        <h5>Email</h5>
-        <p class="fo-4 black-text">You can change your email before verify it.</p>
-        <div class="mt-3 mb-3">
-            <form class="row" [formGroup]="changeEmailForm" #formDir="ngForm" (ngSubmit)="submit()">
-                <div class="col-md-4">
-                    <div class="input-group">
-                        <input type="text"
-                               class="form-control number-form"
-                               #email
-                               (change)="checkUnique(2, email?.value)"
-                               formControlName="email"
-                               placeholder="Enter your Email"
-                               aria-describedby="basic-addon2">
-                        <div class="input-group-append">
-                            <button [disabled]="disableButton" type="submit" id="basic-addon2" class="light-blue-btn ml-2">Get link</button>
-                        </div>
-                    </div>
-
-                    <div class="error-place">
-                        <div class="text-left"
-                             *ngIf="((changeEmailForm.controls['email'].dirty || changeEmailForm.controls['email'].touched || formDir.submitted) || emailUnique)">
-                            <p class="errorMessage" *ngIf="changeEmailForm.hasError('required', 'email')"
-                               [@errorAnimation]>
-                                <i class="far fa-exclamation-circle"></i> Required!
-                            </p>
-                            <p class="errorMessage"
-                               *ngIf="(changeEmailForm.controls['email'].hasError('email')) " [@errorAnimation]>
-                                <i class="far fa-exclamation-circle"></i> Email is invalid!
-                            </p>
-                            <p class="errorMessage" *ngIf="emailUnique" [@errorAnimation]>
-                                <i class="far fa-exclamation-circle"></i> This email is already taken!
-                            </p>
-                        </div>
+    <h5>Email</h5>
+    <p class="fo-4 black-text">You can change your email before verify it.</p>
+    <div class="mt-3 mb-3">
+        <form class="row" [formGroup]="changeEmailForm" #formDir="ngForm" (ngSubmit)="submit()">
+            <div class="col-md-4">
+                <div class="input-group">
+                    <input type="text"
+                           class="form-control number-form"
+                           #email
+                           (change)="checkUnique(2, email?.value)"
+                           formControlName="email"
+                           placeholder="Enter your Email"
+                           aria-describedby="basic-addon2">
+                    <div class="input-group-append">
+                        <button [disabled]="disableButton" type="submit" id="basic-addon2" class="light-blue-btn ml-2">
+                            Get link
+                        </button>
                     </div>
                 </div>
-
-            </form>
-        </div>
+                <div class="error-place">
+                    <div class="text-left"
+                         *ngIf="((changeEmailForm.controls['email'].dirty || changeEmailForm.controls['email'].touched || formDir.submitted) || emailUnique)">
+                        <p class="errorMessage" *ngIf="changeEmailForm.hasError('required', 'email')"
+                           [@errorAnimation]>
+                            <i class="far fa-exclamation-circle"></i> Required!
+                        </p>
+                        <p class="errorMessage"
+                           *ngIf="(changeEmailForm.controls['email'].hasError('email')) " [@errorAnimation]>
+                            <i class="far fa-exclamation-circle"></i> Email is invalid!
+                        </p>
+                        <p class="errorMessage" *ngIf="emailUnique" [@errorAnimation]>
+                            <i class="far fa-exclamation-circle"></i> This email is already taken!
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </form>
     </div>
 </div>

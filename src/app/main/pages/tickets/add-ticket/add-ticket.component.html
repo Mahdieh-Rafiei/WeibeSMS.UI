@@ -1,59 +1,60 @@
 <div class="btn-section">
-  <div class="row">
-    <div class="col-12 col-md-6 col-sm-6 col-xs-6 text-left">
-      <button class="previous-btn" [routerLink]="['/ticket/list']"><i class="fa fa-arrow-left"></i> Previous</button>
+    <div class="row">
+        <div class="col-12 col-md-6 col-sm-6 col-xs-6 text-left">
+            <button class="previous-btn" [routerLink]="['/ticket/list']"><i class="fa fa-arrow-left"></i> Previous
+            </button>
+        </div>
     </div>
-  </div>
 </div>
 <div class="div-section">
-  <div>
-    <h5>Add Ticket</h5>
-    <p class="fo-4 black-text pb-3">please write your ticket</p>
-    <label>Define title name for your Ticket Please :</label>
-    <input [(ngModel)]="title"
-           type="text"
-           placeholder="title"
-           class="form-control"
-           maxlength="64"
-           [ngClass]="{'border-error':saveTried && title.length===0}"
-    >
+    <div>
+        <h5>Add Ticket</h5>
+        <p class="fo-4 black-text pb-3">please write your ticket</p>
+        <label>Define title name for your Ticket Please :</label>
+        <input [(ngModel)]="title"
+               type="text"
+               placeholder="title"
+               class="form-control"
+               maxlength="64"
+               [ngClass]="{'border-error':saveTried && title.length===0}"
+        >
+        <div class="error-place">
+            <div class="text-left">
+                <p class="errorMessage" *ngIf="saveTried && title.length===0" [@errorAnimation]>
+                    <i class="far fa-exclamation-circle"></i>Required!
+                </p>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12 col-md-6 col-xs-6 mb-4">
+            <label>Select the relevant section</label>
+            <select [(ngModel)]="departmentId" class="form-control">
+                <option value="1">Support</option>
+                <option value="2">Developer</option>
+                <option value="3">Sale</option>
+            </select>
+        </div>
+        <div class="col-12 col-md-6 col-xs-6 mb-4">
+            <label>The priority of your question</label>
+            <select [(ngModel)]="priorityId" class="form-control">
+                <option value="1">Low</option>
+                <option value="2">Medium</option>
+                <option value="3">High</option>
+            </select>
+        </div>
+    </div>
+    <angular-editor [(ngModel)]="message"></angular-editor>
     <div class="error-place">
-      <div class="text-left">
-        <p class="errorMessage" *ngIf="saveTried && title.length===0" [@errorAnimation]>
-          <i class="far fa-exclamation-circle"></i>Required!
-        </p>
-      </div>
+        <div class="text-left">
+            <p class="errorMessage" *ngIf="saveTried && message.length===0" [@errorAnimation]>
+                <i class="far fa-exclamation-circle"></i>Template body is required!
+            </p>
+        </div>
     </div>
-  </div>
-  <div class="row">
-    <div class="col-12 col-md-6 col-xs-6 mb-4">
-      <label>Select the relevant section</label>
-      <select [(ngModel)]="departmentId" class="form-control">
-        <option value="1">Support</option>
-        <option value="2">Developer</option>
-        <option value="3">Sale</option>
-      </select>
+    <div class="submit-btn">
+        <button (click)="addNewTicket()" class="green-btn">Submit</button>
     </div>
-    <div class="col-12 col-md-6 col-xs-6 mb-4">
-      <label>The priority of your question</label>
-      <select [(ngModel)]="priorityId" class="form-control">
-        <option value="1">Low</option>
-        <option value="2">Medium</option>
-        <option value="3">High</option>
-      </select>
-    </div>
-  </div>
-  <angular-editor [(ngModel)]="message"></angular-editor>
-  <div class="error-place">
-    <div class="text-left">
-      <p class="errorMessage" *ngIf="saveTried && message.length===0" [@errorAnimation]>
-        <i class="far fa-exclamation-circle"></i>Template body is required!
-      </p>
-    </div>
-  </div>
-  <div class="submit-btn">
-    <button (click)="addNewTicket()" class="green-btn">Submit</button>
-  </div>
 </div>
 
 

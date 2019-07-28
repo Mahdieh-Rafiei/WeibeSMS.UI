@@ -1,41 +1,41 @@
-<div (keydown)="onKeyDown($event)">
-    <div class="flex-group" *ngIf="countries">
-        <div class="btn-group">
-            <button class="form-control dropdown-toggle btn-default btn-select" type="button"
-                    data-toggle="dropdown" role="button" aria-expanded="undefined">
-                <img class="mr-2" width="20" [src]="'data:image/jpg;base64,'+selectedCountry.flag"/>
-            </button>
-            <div class="custom-dropdown">
-                <ul #dd class="dropdown-menu" role="listbox" aria-expanded="true">
-                    <li class="dropdown-item" *ngFor="let country of filteredCountries"
-                        (click)="selectCountry(2, country)">
-                        <img class="ml-2 mr-2" width="20"
-                             [src]="'data:image/jpg;base64,'+country.flag"/>
-                        <span>{{country.name}}</span>
-                        (<span>{{country.prefixNumber}}</span>)
-                    </li>
-                </ul>
-            </div>
-        </div>
-        <input type="text"
-               [autofocus]="true"
-               placeholder="Your phone number"
-               class="form-control"
-               (input)="changeMobile($event)"
-               (focusout)="inputGotFocus = false"
-               (focus)="inputGotFocus = true"
-               appNumericInput
-               [(ngModel)]="mobile"
-               [ngClass]="{'border-error' : isTried && (mobile.length ===0 || !isCorrectMobile)}"
-               autofocus autocomplete="off">
+<div (keydown)="onKeyDown($event)" >
+  <div class="flex-group" *ngIf="countries">
+    <div class="btn-group">
+      <button class="form-control dropdown-toggle btn-default btn-select" type="button"
+              data-toggle="dropdown" role="button" aria-expanded="undefined">
+        <img class="mr-2" width="20" [src]="'data:image/jpg;base64,'+selectedCountry.flag"/>
+      </button>
+      <div class="custom-dropdown">
+        <ul #dd class="dropdown-menu" role="listbox" aria-expanded="true">
+          <li class="dropdown-item" *ngFor="let country of filteredCountries"
+              (click)="selectCountry(2, country)">
+            <img class="ml-2 mr-2" width="20"
+                 [src]="'data:image/jpg;base64,'+country.flag"/>
+            <span>{{country.name}}</span>
+            (<span>{{country.prefixNumber}}</span>)
+          </li>
+        </ul>
+      </div>
     </div>
-    <div class="error-place">
-        <div class="text-left"
-             *ngIf="true">
-            <p class="errorMessage"
-               *ngIf="!isCorrectMobile && !inputGotFocus">
-                Phone number is invalid!
-            </p>
-        </div>
+    <input type="text"
+           [autofocus]="true"
+           placeholder="Your phone number"
+           class="form-control"
+           (input)="changeMobile($event)"
+           (focusout)="inputGotFocus = false"
+           (focus)="inputGotFocus = true"
+           appNumericInput
+           [(ngModel)]="mobile"
+           [ngClass]="{'border-error' : isTried && (mobile.length ===0 || !isCorrectMobile)}"
+           autofocus autocomplete="off">
+  </div>
+  <div class="error-place">
+    <div class="text-left"
+         *ngIf="true">
+      <p class="errorMessage"
+         *ngIf="!isCorrectMobile && !inputGotFocus">
+        Phone number is invalid!
+      </p>
     </div>
+  </div>
 </div>

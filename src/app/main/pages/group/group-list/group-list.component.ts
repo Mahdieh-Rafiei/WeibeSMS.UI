@@ -118,7 +118,7 @@ export class GroupListComponent implements OnInit {
                 if (result && result.addGroup) {
                     const id = result.addGroup.id;
                     this.notificationService.success('New group added successfully', '');
-                    this.router.navigateByUrl(`group/${id}/add-contact/single-contact`);
+                    this.router.navigateByUrl(`group/${id}/add-contact`);
                 } else if (result && result.editGroup) {
                     this.groups[result.editGroup.index].groupName = result.editGroup.groupName;
                     this.notificationService.success('Group modified successfully', '');
